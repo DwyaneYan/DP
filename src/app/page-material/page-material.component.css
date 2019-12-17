@@ -40,8 +40,11 @@
     float: left;
     margin-left: 15px;
     line-height: 30px;
+    cursor:pointer;
 }
-
+.tag:hover{ color:orange; }
+.tag:active {
+    color:blue;}
 #limit{
     height: 210px;
     width: 1100px;
