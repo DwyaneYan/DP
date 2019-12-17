@@ -11,6 +11,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 })
 export class PageSystemManageComponent implements OnInit {
 
+//#region 试验Trial
   AddInfo = {
     Name:"",
     TrialType:"",
@@ -34,8 +35,9 @@ export class PageSystemManageComponent implements OnInit {
     TrialType:"",
     ParentId:"",
   }
+//#endregion
 
-///////////////////////////////
+//#region 厂家
 Addmanufac={
   name:"",
   address:"",
@@ -55,9 +57,15 @@ Updatefac={
 Getfac={
   name:"",
 }
+//#endregion
 
+//#region 材料
  Addmateria={
   name:"",
+  class:"",
+  manufactory:"",
+  model:"",
+  strength:"",
    }
 Deletemateria={
   id:"",
@@ -74,7 +82,9 @@ Getmateria={
   name:"",
 
 }
-/////////////////////////////
+//#endregion
+
+//#region 典型零部件
 
 AddtypicalpartInfo = {
   Name:"",
@@ -106,7 +116,9 @@ GettypicalpartInfo={
   // Remark:"",
   api:"http://localhost:60001/api/hangang/typicalPart/typicalParts"
 }
+//#endregion
 
+//#region 实验材料
 AddmaterialtrialInfo = {
   
   Name :"",
@@ -134,16 +146,17 @@ GetmaterialtrialInfo={
   Name:"",
 
 }
+//#endregion
 
 
 
-  constructor(
-    private operateDataService: OperateDataService,  //实例化一个操作数据服务
-    private modalService: NzModalService,
-    ) { }
+constructor(
+  private operateDataService: OperateDataService,  //实例化一个操作数据服务
+  private modalService: NzModalService,
+  ) { }
+ngOnInit() {
+}
 
-  ngOnInit() {
-  }
 
   AddTrial(AddInfo) {
 

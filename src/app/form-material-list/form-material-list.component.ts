@@ -7,6 +7,7 @@ interface ItemData {
   thickness: string;
   typicalPart: string;
   appVehicle:string;
+  date:string;
 }
 
 @Component({
@@ -49,6 +50,7 @@ export class FormMaterialListComponent implements OnInit {
         thickness: `1.${i}mm`,
         typicalPart:'车门板',
         appVehicle:'雅阁',
+        date:"2018-10-12",
       });
     }
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { MaterialServiceService } from './material-service.service'
 
 @Component({
   selector: 'app-page-material',
@@ -9,6 +10,7 @@ import { Output, EventEmitter } from '@angular/core';
 
 export class PageMaterialComponent implements OnInit {
 
+  //#region 材料分类字段
   //冷轧
   public lengzha = [
     {value: '烘烤硬化钢'},
@@ -17,7 +19,7 @@ export class PageMaterialComponent implements OnInit {
     {value: '低合金高强度钢'},
     {value: '双相钢'},
     {value: '淬火延性钢'},
-    {value:'马氏体'},
+    {value:'马氏体钢'},
     {value:'增强成形性双相钢'},
     {value:'IF钢'}
   ]
@@ -52,9 +54,9 @@ export class PageMaterialComponent implements OnInit {
     {value: '车桥钢'},
     {value:'自卸车厢体用耐磨钢'}
   ]
+  //#endregion
   
-  
-  
+  //#region 限制条件字段
   //厂家
   public listManufacturer = [    
     {
@@ -69,7 +71,7 @@ export class PageMaterialComponent implements OnInit {
     {value:'其他'}
   ]
     //型号规格
-  public listType = [    
+  public listModel = [    
     {
       value: '0.7mm',
     },
@@ -98,30 +100,36 @@ export class PageMaterialComponent implements OnInit {
       value: '500~1200MPa',
     },
   ]
+  //#endregion
 
+  //查询条件表单
   public params = {
-    class:'',
-    manufacturer: '',
-    type: "",
-    strength:"",}
+    materialType:'',  //材料分类
+    manufacturer: '',  //生产厂家
+    model: "",  //型号规格
+    strength:"",}  //屈服强度
   
 
-
-  constructor() { }
-
+  constructor(
+    private materialService: MaterialServiceService,)   { }  //实例化材料服务
+  ngOnInit() {
+  }
 
 
   //获取筛选条件
-  filtrationClass(item){
-    this.params.class = item.value
+  filtrationMaterialType(item){
+    this.params.materialType = item.value
+    
+    this.materialService.Getmaterial(this.params);
+    
     console.log(this.params)
   }
   filtrationManufacturer(item) {
     this.params.manufacturer = item.value
     console.log(this.params)
   }
-  filtrationType(item) {
-    this.params.type = item.value
+  filtrationModel(item) {
+    this.params.model = item.value
     console.log(this.params)
   }
   filtrationStrength(item) {
@@ -130,9 +138,9 @@ export class PageMaterialComponent implements OnInit {
   }
 
   clear(){
-    this.params.class = '',
+    this.params.materialType = '',
     this.params.manufacturer = '',
-    this.params.type = '',
+    this.params.model = '',
     this.params.strength = ''
     console.log(this.params)
   }
@@ -159,7 +167,6 @@ export class PageMaterialComponent implements OnInit {
 
 
 
-  ngOnInit() {
-  }
+
 
 }

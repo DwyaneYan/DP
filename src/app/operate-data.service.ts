@@ -9,6 +9,8 @@ export class OperateDataService {
 
   constructor(public http: HttpClient) { }
 
+
+//#region 试验Trial
   //增
   AddTrial(AddInfo) {
     
@@ -57,9 +59,9 @@ export class OperateDataService {
 
     // alert('done')
   }
+//#endregion
 
-
- ////////////
+//#region  厂家
   //增加厂家
   Addmanufactory(Addmanufac) {
     
@@ -69,7 +71,6 @@ export class OperateDataService {
       console.log(response);
     })
 }
-
 
 //删除厂家
 Deletemanufactory(Deletemanufac) {
@@ -92,15 +93,17 @@ Updatefactory(Updatefac){
     console.log(response)
   })
 }
-// 查询厂家
 
+// 查询厂家
 Getfactory(Getfac){
   let api ="http://localhost:60001/api/hangang/manufactory/manufactories?Name=";
   this.http.get(api+Getfac.name, Getfac).subscribe((response) => {
     console.log(response)
   })
 }
+//#endregion
 
+//#region 材料Material
 
 // 增加材料
 Addmaterial(Addmaterial) {    
@@ -120,7 +123,6 @@ this.http.delete( api, Deletemanufac).subscribe((response) => {
 })
 }
 
-
 // 更新材料
 Updatematerial(Updatemateri){
 let id=Updatemateri.id
@@ -137,9 +139,10 @@ this.http.get(api+Getma.name, Getma).subscribe((response) => {
   console.log(response)
 })
 }
-/////////////////////////////
 
- ///零部件增删改查
+//#endregion
+
+//#region 典型零部件
   //增
   Addtypicalpart(AddtypicalpartInfo) {
 
@@ -186,8 +189,10 @@ this.http.get(api+Getma.name, Getma).subscribe((response) => {
 
     // alert('done')
   }
+  //#endregion
 
-   ////材料实验的增删改查
+//#region 实验材料
+
   //增
   Addmaterialtrial(AddInfo) {
 
@@ -236,4 +241,7 @@ this.http.get(api+Getma.name, Getma).subscribe((response) => {
 
     // alert('done')
   }
+  //#endregion
+
+
 }
