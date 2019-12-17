@@ -35,6 +35,7 @@ import { PageMaterialFakeComponent } from './page-material-fake/page-material-fa
 import { FormFloatingBoxComponent } from './form-floating-box/form-floating-box.component';
 import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/page-material-floating-box.component';
 import { PageSystemManageComponent } from './page-system-manage/page-system-manage.component';
+import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { PageSystemManageComponent } from './page-system-manage/page-system-mana
     FormFloatingBoxComponent,
     PageMaterialFloatingBoxComponent,
     PageSystemManageComponent,
+    PageDisplayhomeComponent,
   ],
   imports: [
     BrowserModule,

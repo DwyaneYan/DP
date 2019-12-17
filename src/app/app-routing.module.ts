@@ -13,17 +13,26 @@ import { PageAttributeConstractComponent } from './page-attribute-constract/page
 import { PageMaterialFakeComponent } from './page-material-fake/page-material-fake.component';
 import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/page-material-floating-box.component';
 import { PageSystemManageComponent } from './page-system-manage/page-system-manage.component';
+import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
-  { path: 'display-table', component:PageDisplayTableComponent},
-  { path: 'diplay-picture', component:PageDisplayPictureComponent},
-  { path: 'display-report', component:PageDisplayReportComponent},
+  
+  {
+    path: 'display-home', component: PageDisplayhomeComponent,
+    children: [
+      { path: 'display-table', component: PageDisplayTableComponent },
+      { path: 'display-picture', component: PageDisplayPictureComponent },
+      { path: 'display-report', component: PageDisplayReportComponent },
+      { path: 'display-typical-part', component: PageDisplayTypicalPartComponent },
+     { path: '', redirectTo: 'display-table', pathMatch: 'full'}
+    ]
+  },
+  
   { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
-  { path: 'display-typical-part', component:PageDisplayTypicalPartComponent},
   { path: 'contrast', component:PageConstractComponent},
   { path: 'attribute-constract', component:PageAttributeConstractComponent},
   { path: 'material-fake', component:PageMaterialFakeComponent},
