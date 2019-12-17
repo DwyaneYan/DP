@@ -1,0 +1,286 @@
+<app-form-navigation></app-form-navigation>
+
+
+<div id="trial" class="block" >
+    <!--增-->
+    <div class="form" >
+        <br>
+        试验名称:<br>
+        <input type="text" [(ngModel)]="AddInfo.Name"><br>
+
+        试验编号:<br>
+        <input type="text" [(ngModel)]="AddInfo.TrialType"><br>
+
+        父级试验ID:<br>
+        <input type="text" [(ngModel)]="AddInfo.ParentId"><br>
+
+        <button (click)="AddTrial()">添加试验</button><br>
+
+    </div>
+
+    <!--删-->
+    <div class="form" >
+        <br>
+        试验Id:<br>
+        <input type="text" [(ngModel)]="DeleteInfo.Id"><br>
+
+        <button (click)="DeleteTrial()">删除试验</button>
+
+    </div>
+
+    <!--改-->
+    <div class="form" >
+        <br>
+        试验Id:<br>
+        <input type="text" [(ngModel)]="UpdateInfo.Id"><br>
+
+        试验名称:<br>
+        <input type="text" [(ngModel)]="UpdateInfo.Name"><br>
+
+        试验编号:<br>
+        <input type="text" [(ngModel)]="UpdateInfo.TrialType"><br>
+
+        父级试验ID:<br>
+        <input type="text" [(ngModel)]="UpdateInfo.ParentId"><br>
+
+        <button (click)="UpdateTrial()">更新试验</button>
+
+    </div>
+
+    <!--查-->
+    <div class="form" >
+        <br>
+        试验Id:<br>
+        <input type="text" [(ngModel)]="GetInfo.Id"><br>
+
+        试验名称:<br>
+        <input type="text" [(ngModel)]="GetInfo.Name"><br>
+
+        试验编号:<br>
+        <input type="text" [(ngModel)]="GetInfo.TrialType"><br>
+
+        父级试验ID:<br>
+        <input type="text" [(ngModel)]="GetInfo.ParentId"><br>
+
+        <button (click)="GetTrial()">查询试验</button>
+
+    </div>
+</div>   
+    
+
+<div id="manufactory" class="block">
+    <!--增-->    
+    <div class="form">
+        厂家名称:<br>
+        <input type="text"  [(ngModel)]="Addmanufac.name"><br>
+        厂家地址:<br>
+        <input  type="text" [(ngModel)]="Addmanufac.address"><br>
+        厂家电话:<br>
+        <input  type="text" [(ngModel)]="Addmanufac.telephone"><br>
+        <button (click)="Addmanufactory()">增加厂家</button>
+    </div>
+
+    <!--删-->
+    <div class="form"> 
+        厂家id:<br>
+        <input type="text"  [(ngModel)]="Deletemanufac.id"><br>
+        <button (click)="Deletemanufactory()">删除厂家</button>
+    </div>
+
+    <!--改-->
+    <div class="form"> 
+        厂家名称:<br>
+        <input type="text"  [(ngModel)]="Updatefac.name"><br>
+        厂家地址:<br>
+        <input  type="text" [(ngModel)]="Updatefac.address"><br>
+        厂家电话:<br>
+        <input  type="text" [(ngModel)]="Updatefac.telephone"><br>
+        <button (click)="Updatefactory()">更新厂家</button>
+    </div>
+
+    <!--查-->
+    <div class="form">
+        厂家名称:<br>
+        <input type="text"  [(ngModel)]="Getfac.name"><br>
+        <button (click)="Getfactory()">查询厂家</button>
+    </div>
+</div>
+
+
+<div id="material" class="block">
+    <div class="ma">
+        材料名称:<br>
+        <input type="text"  [(ngModel)]="Addmateria.name"><br>
+        <button (click)="Addmaterial()">增加材料</button>
+    </div>
+    <div class="ma">
+        材料id:<br>
+        <input type="text"  [(ngModel)]="Deletemateria.id"><br>
+        <button (click)="Deletematerial()">删除材料</button>
+    </div>
+    <div class="ma">
+        材料id:<br>
+        <input type="text"  [(ngModel)]="Updatemateria.id"><br>
+        材料名称:<br>
+        <input type="text"  [(ngModel)]="Updatemateria.name"><br>
+        材料强度:<br>
+        <input type="text"  [(ngModel)]="Updatemateria.strength"><br>
+        送样日期:<br>
+        <input type="text"  [(ngModel)]="Updatemateria.date"><br>
+        应用车型:<br>
+        <input type="text"  [(ngModel)]="Updatemateria.appliedVehicleType"><br>
+        <button (click)="Updatematerial()">更新材料</button>
+    </div>
+    <div class="ma">
+        材料名称:<br>
+        <input type="text"  [(ngModel)]="Getmateria.name"><br>
+        <button (click)="Getmaterial()">查询材料</button>
+    </div>
+</div>
+
+
+<div id="typicalPart" class="block">
+    <div>
+        <div class="form" style="margin-left: 50px;">
+            <br>
+            零部件名称:<br>
+            <input type="text" [(ngModel)]="AddtypicalpartInfo.Name"><br>
+    
+            零部件编号:<br>
+            <input type="text" [(ngModel)]="AddtypicalpartInfo.Code"><br>
+    
+            应用车型:<br>
+            <input type="text" [(ngModel)]="AddtypicalpartInfo.AppliedVehicleType"><br>
+            备注:<br>
+            <input type="text" [(ngModel)]="AddtypicalpartInfo.Remark"><br>
+    
+            <button (click)="Addtypicalpart()">添加零部件</button><br>
+    
+        </div>
+    
+    
+    
+        <div class="form" style="margin-left: 50px;">
+            <br>
+            零部件Id:<br>
+            <input type="text" [(ngModel)]="DeletetypicalpartInfo.Id"><br>
+    
+            <button (click)="Deletetypicalpart()">删除零部件</button>
+    
+        </div>
+    
+    
+        <div class="form" style="margin-left: 50px;">
+            <br>
+            零部件Id:<br>
+            <input type="text" [(ngModel)]="UpdatetypicalpartInfo.Id"><br>
+    
+            零部件名称:<br>
+            <input type="text" [(ngModel)]="UpdatetypicalpartInfo.Name"><br>
+    
+            零部件编号:<br>
+            <input type="text" [(ngModel)]="UpdatetypicalpartInfo.Code"><br>
+    
+            应用车型:<br>
+            <input type="text" [(ngModel)]="UpdatetypicalpartInfo.AppliedVehicleType"><br>
+            备注:<br>
+            <input type="text" [(ngModel)]="UpdatetypicalpartInfo.Remark"><br>
+    
+            <button (click)="Updatetypicalpart()">更新零部件</button>
+    
+        </div>
+    
+    
+        <div class="form" style="margin-left: 50px;">
+            <br>
+            <!-- 零部件Id:<br>
+        <input type="text" [(ngModel)]="GetInfo.Id"><br> -->
+    
+            零部件名称:<br>
+            <input type="text" [(ngModel)]="GettypicalpartInfo.Name"><br>
+    
+            零部件编号:<br>
+            <input type="text" [(ngModel)]="GettypicalpartInfo.Code"><br>
+    
+            <button (click)="Gettypicalpart()">查询零部件</button>
+    
+        </div>
+        
+    </div>
+</div>
+
+
+<div id="materialTrial" class="block">
+    <div class="form" style="margin-left: 50px;">
+        <br>
+
+        材料试验名称:<br>
+        <input type="text" [(ngModel)]="AddmaterialtrialInfo.Name"><br>
+
+        材料试验编号:<br>
+        <input type="text" [(ngModel)]="AddmaterialtrialInfo.Code"><br>
+
+        材料ID:<br>
+        <input type="text" [(ngModel)]="AddmaterialtrialInfo.MaterialId"><br>
+
+        试验ID:<br>
+        <input type="text" [(ngModel)]="AddmaterialtrialInfo.TrialId"><br>
+
+        备注:<br>
+        <input type="text" [(ngModel)]="AddmaterialtrialInfo.Remark"><br>
+
+        <button (click)="Addmaterialtrial()">添加材料试验</button><br>
+
+    </div>
+
+
+
+    <div class="form" style="margin-left: 50px;">
+        <br>
+        材料试验Id:<br>
+        <input type="text" [(ngModel)]="DeletematerialtrialInfo.Id"><br>
+
+        <button (click)="Deletematerialtrial()">删除材料试验</button>
+
+    </div>
+
+
+    <div class="form" style="margin-left: 50px;">
+        <br>
+        材料试验Id:<br>
+        <input type="text" [(ngModel)]="UpdatematerialtrialInfo.Id"><br>
+
+        材料试验名称:<br>
+        <input type="text" [(ngModel)]="UpdatematerialtrialInfo.Name"><br>
+
+        材料试验编号:<br>
+        <input type="text" [(ngModel)]="UpdatematerialtrialInfo.Code"><br>
+
+        材料ID:<br>
+        <input type="text" [(ngModel)]="UpdatematerialtrialInfo.MaterialId"><br>
+
+        试验ID:<br>
+        <input type="text" [(ngModel)]="UpdatematerialtrialInfo.TrialId"><br>
+
+        备注:<br>
+        <input type="text" [(ngModel)]="UpdatematerialtrialInfo.Remark"><br>
+
+        <button (click)="Updatematerialtrial()">更新材料试验</button>
+
+    </div>
+
+
+    <div class="form" style="margin-left: 50px;">
+        <br>
+        材料试验Id:<br>
+        <input type="text" [(ngModel)]="GetmaterialtrialInfo.Id"><br>
+
+        材料试验名称:<br>
+        <input type="text" [(ngModel)]="GetmaterialtrialInfo.Name"><br>
+
+
+        <button (click)="Getmaterialtrial()">查询材料试验</button>
+
+    </div>
+</div>
+

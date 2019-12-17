@@ -1,0 +1,25 @@
+#login{    
+    background-image: url('../../assets/images/login-background.png'); 
+     position:absolute; 
+    width:100%; 
+    height:100%; 
+    background-size: 100%;
+    background-repeat: no-repeat;
+} 
+
+#login-dialog{
+    background-image: url('../../assets/images/login_box.png');
+    width: 577px;
+    height: 558px;
+    border:solid transparent;  
+    margin-left: 60%;
+    margin-top: 5%;
+}
+
+#form{
+    margin-left: 22%;
+    margin-top: 40%;
+}
+
+
+

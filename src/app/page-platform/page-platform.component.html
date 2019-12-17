@@ -1,0 +1,143 @@
+<div id="background">
+
+    <app-form-navigation></app-form-navigation>
+
+    <!--整车模块-->
+    <div id="zhengche-module">
+        <div id="zhengche">
+                <nz-card style="width:995px;  margin:auto;"  nzTitle="全部车型" [nzExtra]="extraTemplate" [nzBordered]="false">
+                    
+                    <div id="jiaoche">
+                        <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">
+                            <img src="../../assets/images/jiaoche.png" alt="" width="90" height="54"> 轿车</a>
+                        
+                    </div>
+
+                    <div id="suv">
+                        <img src="../../assets/images/suv.png" alt="" width="99" height="64"> SUV
+                    </div>
+                        
+                    <div id="shangyongche">
+                        <img src="../../assets/images/shangyongche.png" alt="" width="90" height="64"> 商用车
+                     </div>
+
+                </nz-card>
+        </div>
+        
+        <ng-template #extraTemplate>
+            <div class="rightsearch">
+                
+                <div id="text">
+                        <a><img src="../../assets/images/add.png" alt="add"> 添加车型</a>            
+                </div>
+    
+                <div id="search-box">
+                        <nz-input-group [nzSuffix]="suffixIconSearch">
+                            <input type="text" nz-input placeholder="搜索车型" />
+                        </nz-input-group>
+                        <ng-template #suffixIconSearch>
+                            <i nz-icon nzType="search"></i>
+                        </ng-template>
+                </div>            
+                
+            </div>
+        </ng-template>
+    </div>
+
+    <!--材料库模块-->
+    <div id="material-model">
+
+        <div id="title2">
+            <div id="cailiaoku"><a routerLink="/material">材料库</a></div>
+
+            <div id="import">                
+                <div class="import">
+                    <button nz-button nzType="primary" (click)="showModal()" style="background-color: transparent; color: #1D8CE0; border:none; padding-left: 5px;">
+                        <span>导入数据</span>
+                      </button>
+                      <nz-modal
+                        [(nzVisible)]="isVisible"
+                        nzTitle="导入数据"
+                        (nzOnCancel)="handleCancel()"
+                        (nzOnOk)="handleOk()"
+                        [nzOkLoading]="isOkLoading"
+                      >
+                        <nz-input-group [nzSuffix]="suffixIconSearch">
+                            <input type="text" nz-input placeholder="搜索实验项目" />
+                          </nz-input-group>
+                          <ng-template #suffixIconSearch>
+                            <i nz-icon nzType="search"></i>
+                          </ng-template>
+
+                          <div id="text-syxm">
+                            <br/>
+                            试验项目: 
+                            <app-form-cascader-option></app-form-cascader-option>
+                          </div>
+                          
+                          <div id="text-xzwj">
+                            <br/>
+                            选择文件:
+                            <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/">
+                                <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
+                            </nz-upload>
+                          </div>
+
+                      </nz-modal>
+                </div>
+                <div class="import"><img src="../../assets/images/import-data.png" alt="import-data"></div>
+            </div>
+
+            <div id="search-box2">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                        <input type="text" nz-input placeholder="搜索材料" />
+                    </nz-input-group>
+                    <ng-template #suffixIconSearch>
+                        <i nz-icon nzType="search"></i>
+                </ng-template>
+            </div>
+           
+        </div>
+
+        <hr/>
+
+        <div id="content2">
+
+            <div class="material">
+                <div class="material-image"><img src="../../assets/images/DC01.png" alt="" width="100" height="100" ></div>
+                <div class="material-info">
+                    材料牌号: DC01<br/>
+                    材料类型: IF钢<br/>
+                    生产厂家: 邯钢<br/>
+                    型号规格: 0.2mm
+                </div>
+            </div>
+
+            <div class="material">
+                <div class="material-image"><img src="../../assets/images/DC02.png" alt="" width="100" height="100" ></div>
+                <div class="material-info">
+                    材料牌号: DC02<br/>
+                    材料类型: IF钢<br/>
+                    生产厂家: 邯钢<br/>
+                    型号规格: 0.2mm
+                </div>
+            </div>
+
+            <div class="material">
+                <div class="material-image"><img src="../../assets/images/DC03.png" alt="" width="100" height="100" ></div>
+                <div class="material-info">
+                    材料牌号: DC03<br/>
+                    材料类型: IF钢<br/>
+                    生产厂家: 邯钢<br/>
+                    型号规格: 0.2mm
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+    
+
+</div>

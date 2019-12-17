@@ -1,0 +1,55 @@
+<div class="menu-table">
+    <div class="left-menu">
+        <ul nz-menu nzMode="inline">
+            <li>
+                <div style="height:18px ;"></div>
+                <div class="titlee">实验项目</div>
+                <nz-divider></nz-divider>
+            </li>
+            <li nz-submenu nzTitle="理化性能" nzOpen="true">
+                <ul>
+                    <li nz-menu-item nzSelected>静态拉伸</li>
+                    <li nz-menu-item>弯曲</li>
+                    <li nz-menu-item>压缩</li>
+                    <li nz-menu-item>金相</li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="工艺性能">
+                <ul>
+                    <li nz-menu-item>焊接性能</li>
+                    <li nz-menu-item>涂装性能</li>
+                    <li nz-menu-item>烘烤硬化</li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="力学性能">
+                <ul>
+                    <li nz-menu-item> </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="table-border">
+        <table class="listOfData">
+            <thead>
+                <tr class="tr1">
+                    <td>材料牌号</td>
+                    <td>厚度</td>
+                    <td>生产厂家</td>
+                    <td>执行标准</td>
+                    <td>送样日期</td>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of listOfData">
+                    <td>{{ data.trademark }}</td>
+                    <td>{{ data.thickness}}</td>
+                    <td>{{data.manufacturer}}</td>
+                    <td>{{data.standard}}</td>
+                    <td>{{data.date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

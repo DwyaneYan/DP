@@ -1,0 +1,86 @@
+
+
+
+#zhengche, #material-model{
+    color: #000000;
+    background-color: #ffffff;
+    height: 220px;
+    width: 1000px;
+    padding: 20px;
+    margin: 20px auto;
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    border: 0.5px solid #969393;
+    border-radius: 5px;
+    border: solid transparent;
+    box-shadow: 0em 0em 0.5em 0 rgb(187, 187, 187);
+    padding: 0px;
+}
+
+#search-box, #text,#msearch-box, #mtext, #search-box2, #import{
+    float: right;
+}
+
+#text{
+    margin:5px 15px;
+}
+
+#jiaoche,#suv,#shangyongche{
+    float: left;
+    height: 100px;
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+    border: 0px solid #969393;
+    border-radius: 5px;
+    box-shadow: inset 0em 0em 0.3em 0 rgb(187, 187, 187);
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+hr{
+    margin-top: 5%;
+    border:solid 0.05em rgb(221, 220, 220);
+}
+
+#cailiaoku{
+    float: left;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+#import{
+    float: right;
+    margin-top: 1%;
+    margin-right: 4%;
+}
+
+.import{
+    float: right;
+}
+
+#search-box2{
+    float: right;
+    margin-top: 0.8%;
+    margin-right: 1%;
+}
+
+.material{
+    float: left;
+    height: 140px;
+    width: 300px;
+    text-align: center;
+    border: 0px solid #969393;
+    border-radius: 5px;
+    box-shadow: inset 0em 0em 0.3em 0 rgb(187, 187, 187);
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+.material-image, .material-info{
+    float: left;
+    margin-left: 10%;
+
+}
+
+

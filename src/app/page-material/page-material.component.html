@@ -1,0 +1,97 @@
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<div id="class">
+    <div class="material-class">
+        <h4 class="class-name">冷轧</h4>
+        <div class="tag-area" *ngFor="let item of lengzha">
+            <span class="tag" (click)="filtrationClass(item) ">{{item.value}}</span>            
+        </div>
+    </div>
+    
+    <div class="material-class">
+        <h4 class="class-name">镀锌</h4>
+        <div class="tag-area" *ngFor="let item of duxin">
+            <span class="tag" (click)="filtrationClass(item) ">{{item.value}}</span>            
+        </div>
+    </div>
+    
+    <div class="material-class">
+        <h4 class="class-name">热轧</h4>
+        <div class="tag-area" *ngFor="let item of rezha">
+                <span class="tag" (click)="filtrationClass(item) ">{{item.value}}</span>            
+            </div>
+    </div>
+    
+    <div class="material-class">
+        <h4 class="class-name">中板</h4>
+        <div class="tag-area" *ngFor="let item of zhongban">
+                <span class="tag">{{item.value}}</span>            
+            </div>
+    </div>
+</div>
+
+
+
+
+<div id="limit">
+    <div class="row">
+        生产厂家 :  
+        <span  *ngFor = "let item of listManufacturer">
+            <span class="limit-tag" (click)="filtrationManufacturer(item) "> {{item.value}} </span>
+         </span>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        型号规格 :  
+        <span  *ngFor = "let item of listType">
+           <span class="limit-tag" (click)=" filtrationType(item) "> {{item.value}} </span>
+        </span>
+        <span class="limit-tag"><input class="input-box" type="text">~<input class="input-box" type="text">mm</span>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        材料强度 :  
+        <span  *ngFor = "let item of listStrength">
+            <span class="limit-tag" (click)="filtrationStrength(item) "> {{item.value}} </span>
+         </span>
+         <span class="limit-tag"><input class="input-box" type="text">~<input class="input-box" type="text">MPa</span>
+    </div>
+
+    <hr/>
+
+    <button id="clear-btn" (click)="clear()">清除筛选</button>
+
+</div>
+
+
+
+
+<div id="list">
+
+    <div id="title">
+        <h3 id="cllb"> <strong>材料列表</strong></h3>
+
+        <a routerLink="/material-floating-box"><div class="text">添加材料对比</div></a>
+
+        <div class="image"><img src="../../assets/images/add.png" alt=""></div>
+
+        <div class="text">批量导出</div>
+
+        <div class="image"><img src="../../assets/images/export.png" alt=""></div>
+    
+    </div>
+
+    <hr class="solid-hr"/>
+
+    <div id="table">        
+        <app-form-material-list></app-form-material-list>
+    </div>
+    
+</div>
+
+

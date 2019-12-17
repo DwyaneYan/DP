@@ -1,0 +1,77 @@
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<div id="class">
+    <div class="material-class">
+        <h4 class="class-name">冷轧</h4>
+        <div class="tag" >IF钢 &nbsp;&nbsp; 双相钢 &nbsp;&nbsp; 马氏体钢 &nbsp;&nbsp; 铸铁  <br/><br/>低碳铝镇静钢 &nbsp;&nbsp; 其他</div>
+    </div>
+    
+    <div class="material-class">
+        <h4 class="class-name">镀锌</h4>
+        <div class="tag" >镀锌材料1 &nbsp;&nbsp; 镀锌材料2 &nbsp;&nbsp; 其他</div>
+    </div>
+    
+    <div class="material-class">
+        <h4 class="class-name">热轧</h4>
+        <div class="tag" >热轧材料1 &nbsp;&nbsp; 热轧材料2 &nbsp;&nbsp; 其他</div>
+    </div>
+    
+    <div class="material-class">
+        <h4 class="class-name">中板</h4>
+        <div class="tag" >中板材料1 &nbsp;&nbsp; 中板材料2 &nbsp;&nbsp; 其他</div>
+    </div>
+</div>
+
+<div id="limit">
+    <div class="row">
+        厂家 :  <span class="limit-tag1">邯钢</span>   <span class="limit-tag">xxxx</span>   <span class="limit-tag">....</span>
+    </div>
+    <hr/>
+
+    <div class="row">
+        厚度 :  
+            <span class="limit-tag1">0.6mm</span>  
+            <a routerLink = "/material-fake"><span id="thickness-1.2mm" class="limit-tag" >1.2mm</span>  </a>
+            <span class="limit-tag">2.0mm</span> 
+            <span class="limit-tag1">2.5~4.0mm</span>  
+            <span class="limit-tag1"> 
+            <input class="input-box" type="text"> ~ <input class="input-box" type="text"> mm   </span>
+    </div>
+    <hr/>
+
+    <div class="row">
+        强度 :  <span class="limit-tag1">200~500MPa</span>  <span class="limit-tag">500~800MPa</span>  <span class="limit-tag">800~1200MPa</span> <span class="limit-tag1">>1200MPa</span>  
+                <span class="limit-tag1"> <input class="input-box" type="text"> ~ <input class="input-box" type="text"> MPa   </span>
+    </div>
+    <hr/>
+
+    <button id="clear-btn">清楚筛选</button>
+
+</div>
+
+<div id="list">
+
+    <div id="title">
+        <h3 id="cllb"> <strong>材料列表</strong></h3>
+
+        <a routerLink="/constract"><div class="text">添加材料对比</div></a>
+
+        <div class="image"><img src="../../assets/images/add.png" alt=""></div>
+
+        <div class="text">批量导出</div>
+
+        <div class="image"><img src="../../assets/images/export.png" alt=""></div>
+    
+    </div>
+
+    <hr class="solid-hr"/>
+
+    <div id="table">        
+        <app-form-material-list></app-form-material-list>
+    </div>
+    
+</div>
+
+<app-form-floating-box></app-form-floating-box>
+
