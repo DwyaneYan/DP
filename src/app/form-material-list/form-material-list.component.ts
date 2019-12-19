@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialServiceService } from '../page-material/material-service.service'
+import { PageMaterialComponent } from '../page-material/page-material.component'
 
 interface ItemData {
   id: number;
@@ -18,8 +19,32 @@ interface ItemData {
 })
 export class FormMaterialListComponent implements OnInit {
 
-  constructor() { }
+  public listMaterials = []
 
+
+  constructor(    
+    private materialService: MaterialServiceService, 
+
+  ) { }
+
+
+//#region 模块 
+  ngOnInit(): void {
+    for (let i = 0; i < 100; i++) {
+      this.listOfAllData.push({
+        id: i,
+        name: `DC01`,
+        manufacture: `邯钢`,
+        thickness: `1.${i}mm`,
+        typicalPart:'车门板',
+        appVehicle:'雅阁',
+        date:"2018-10-12",
+      });
+    }
+  }
+
+  
+  
   isAllDisplayDataChecked = false;
   isIndeterminate = false;
   listOfDisplayData: ItemData[] = [];
@@ -41,19 +66,7 @@ export class FormMaterialListComponent implements OnInit {
     this.listOfDisplayData.forEach(item => (this.mapOfCheckedId[item.id] = value));
     this.refreshStatus();
   }
+  //#endregion
 
-  ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.listOfAllData.push({
-        id: i,
-        name: `DC01`,
-        manufacture: `邯钢`,
-        thickness: `1.${i}mm`,
-        typicalPart:'车门板',
-        appVehicle:'雅阁',
-        date:"2018-10-12",
-      });
-    }
-  }
 
 }

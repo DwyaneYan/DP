@@ -11,24 +11,25 @@ export class MaterialServiceService {
 
   
   // 查询材料
-  Getmaterial(params)
+  async GetMaterials(params)
   {
     let api ="http://localhost:60001/api/hangang/material/materials";
-    this.http.get(api, {params}).subscribe((response) => {
-      console.log(response)
-    })
+    let res= await this.http.get(api, {params})
+    .toPromise()
+    .catch(err =>{
+      console.log(err);
+    });
+    return res;
   }
 
-  //!!!!无法返回response
-  GetManufacturers()
+//查询厂家
+  async GetManufacturers()
   {
     let api = "http://localhost:60001/api/hangang/manufactory/manufactories";
-    let res;
-    this.http.get(api).subscribe((response) => {
-      res = response;
-      console.log(res)
-      return response;
+    let res= await this.http.get(api).toPromise().catch(err=>{
+      console.log(err);
     });
+    return res;
   }
 
 

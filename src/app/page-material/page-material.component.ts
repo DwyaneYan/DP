@@ -177,7 +177,7 @@ export class PageMaterialComponent implements OnInit {
       value: '1.5',
     },
     {
-      value: '6.0',
+      value: '2.0',
     },
   ]
 
@@ -208,37 +208,29 @@ export class PageMaterialComponent implements OnInit {
 
 
   constructor(
-    private materialService: MaterialServiceService, 
+    private materialService: MaterialServiceService,    //实例化材料服务
     public http: HttpClient
-    ) { }  //实例化材料服务
+    ) { }  
   ngOnInit() {
-    // let res = this.materialService.GetManufacturers();
-    // console.log(res)
-    // this.listManufacturers = res.items;
-    // let res = this.materialService.GetManufactories();
     this.getGetManufacturers();
   }
 
-//!!!!怎么写到service里边去
-  public getGetManufacturers(){
-    let api = "http://localhost:60001/api/hangang/manufactory/manufactories";
-    let res;
-    this.http.get(api).subscribe((response) => {
-      res = response;
-      console.log(res)
-      this.listManufacturers = res.items;
-      console.log(this.listManufacturers)
-    });
 
+  //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
+  public async getGetManufacturers(){
+    let res:any = await this.materialService.GetManufacturers();
+    this.listManufacturers = res.items;
   }
 
 
-//#region 获取筛选条件
-  //材料分类
-  filtrationMaterialType(childItem){
+//#region 获取筛选条件并发送查询请求
+  //材料分类  
+  public material = []
+  public async filtrationMaterialType(childItem){
     this.params.materialType = childItem.enum;
-    this.materialService.Getmaterial(this.params);
-    console.log(this.params)
+    let res:any = await this.materialService.GetMaterials(this.params);
+    this.material= res.items;    
+    // console.log(this.material)
   }
 
   //生产厂家
