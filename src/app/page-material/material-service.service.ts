@@ -11,11 +11,24 @@ export class MaterialServiceService {
 
   
   // 查询材料
-Getmaterial(Getma){
-  let api ="http://localhost:60001/api/hangang/material/materials?Name=";
-  this.http.get(api+Getma.name, Getma).subscribe((response) => {
-    console.log(response)
-  })
+  Getmaterial(params)
+  {
+    let api ="http://localhost:60001/api/hangang/material/materials";
+    this.http.get(api, {params}).subscribe((response) => {
+      console.log(response)
+    })
+  }
+
+  //!!!!无法返回response
+  GetManufacturers()
+  {
+    let api = "http://localhost:60001/api/hangang/manufactory/manufactories";
+    let res;
+    this.http.get(api).subscribe((response) => {
+      res = response;
+      console.log(res)
+      return response;
+    });
   }
 
 
