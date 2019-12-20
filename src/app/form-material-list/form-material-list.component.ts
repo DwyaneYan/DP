@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MaterialServiceService } from '../page-material/material-service.service'
-import { PageMaterialComponent } from '../page-material/page-material.component'
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 interface ItemData {
   id: number;
@@ -17,16 +15,33 @@ interface ItemData {
   templateUrl: './form-material-list.component.html',
   styleUrls: ['./form-material-list.component.css']
 })
-export class FormMaterialListComponent implements OnInit {
-
-  public listMaterials = []
+export class FormMaterialListComponent implements OnChanges, OnInit {
 
 
-  constructor(    
-    private materialService: MaterialServiceService, 
+  @Input() data = [];
+  
 
-  ) { }
+  constructor() { }
 
+  //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
+  ngOnChanges() {
+    this.listOfAllData = [];
+    console.log(this.data);
+    this.data.forEach((val, i, array) =>{
+      this.listOfAllData.push({
+        id: i,
+        name: val.name,
+        manufacture: val.manufactoryName,
+        thickness: val.model,
+        typicalPart:val.typicalPartName,
+        appVehicle:'雅阁',
+        date:val.date,
+      });
+    },
+    console.log(this.listOfAllData)
+    )
+    
+  }  
 
 //#region 模块 
   ngOnInit(): void {
@@ -67,6 +82,7 @@ export class FormMaterialListComponent implements OnInit {
     this.refreshStatus();
   }
   //#endregion
+
 
 
 }

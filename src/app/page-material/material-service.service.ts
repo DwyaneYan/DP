@@ -19,7 +19,7 @@ export class MaterialServiceService {
     .catch(err =>{
       console.log(err);
     });
-    return res;
+    return res;  //返回请求到的数据(Promise对象)
   }
 
 //查询厂家
