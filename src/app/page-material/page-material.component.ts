@@ -182,19 +182,59 @@ export class PageMaterialComponent implements OnInit {
   ]
 
   //屈服强度
-  public listStrength = [
+  public listStrength = 
+  [
+    //120~180MPa
     {
-      value: '120~180MPa',
+      children: 
+      [
+        {
+          min: '120'
+        },
+        {
+          max: '180'
+        },
+      ]      
     },
+
+    //180~340MPa
+    {      
+      children: 
+      [
+        {
+          min: '180'
+        },
+        {
+          max: '340'
+        },
+      ] 
+    },
+
+    //340~500MPa
     {
-      value: '180~340MPa',
+      children: 
+      [
+        {
+          min: '340'
+        },
+        {
+          max: '500'
+        },
+      ] 
     },
+
+    //500~1200MPa
     {
-      value: '340~500MPa',
-    },
-    {
-      value: '500~1200MPa',
-    },
+      children: 
+      [
+        {
+          min: '500'
+        },
+        {
+          max: '1200'
+        },
+      ] 
+    }
   ]
   //#endregion
 
@@ -205,9 +245,9 @@ export class PageMaterialComponent implements OnInit {
     model: "",  //型号规格
     maxModel: "", //最大型号规格
     minModel: "", //最小型号规格
-    strength: "",  //屈服强度
-    maxStrength: "", //最大屈服强度
-    minStrength: "", //最小屈服强度
+    Strength:"",
+    MaxStrenth: "", //最大屈服强度
+    MinStrenth: "", //最小屈服强度
   }
 
   constructor(
@@ -253,24 +293,50 @@ export class PageMaterialComponent implements OnInit {
   //型号规格
   public async  filtrationModel(item) {
     this.params.model = item.value
-    console.log(this.params);
+    // console.log(this.params);
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items;
-      console.log(this.material);
+      // console.log(this.material);
  })
   }
-  filtrationMinModel(e: any) {
-    
+
+  public async filtrationMinModel(e: any) {
+    this.params.model = "";
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+    })
+  }
+
+  public async filtrationMaxModel(e: any) {
+    this.params.model = "";
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+    })
   }
 
   //屈服强度
   public async filtrationStrength(item) {
-    this.params.strength = item.value
-    console.log(this.params)
+    this.params.MinStrenth = item.minvalue;
+    this.params.MaxStrenth = item.maxvalue;
+    console.log(this.params);
+    // await this.materialService.GetMaterials(this.params).then((res: any) => {
+    //   this.material = res.items;
+    //   console.log(this.material);
+//  })
+  }
+
+  public async filtrationMinStrength(e: any) {
+    this.params.Strength = "";
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items;
-      console.log(this.material);
- })
+    })
+  }
+
+  public async filtrationMaxStrength(e: any) {
+    this.params.Strength = "";
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+    })
   }
 
   //清楚筛选条件
@@ -278,7 +344,11 @@ export class PageMaterialComponent implements OnInit {
     this.params.materialType = '',
       this.params.manufactoryId = '',
       this.params.model = '',
-      this.params.strength = ''
+      this.params.minModel = ''
+      this.params.maxModel = ''
+      this.params.MaxStrenth = ''
+      this.params.MinStrenth = ''
+
     console.log(this.params)
   }
   //#endregion
