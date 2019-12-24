@@ -1,8 +1,7 @@
-
 <app-form-material-db-background></app-form-material-db-background>
 
 <div id="materialType">
-    <div class="material-class" *ngFor= "let item of materialType; index as typeIndex">
+    <div class="material-class" *ngFor="let item of materialType; index as typeIndex">
         <h4 class="class-name">{{item.name}}</h4>
         <div class="tag-area" *ngFor="let childItem of item.children">
             <span class="tag" (click)="filtrationMaterialType(childItem)" [class.selected]="params.materialType == childItem.enum">{{childItem.name}}</span>
@@ -21,27 +20,31 @@
          </span>
     </div>
 
-    <hr/>
+    <hr />
 
     <div class="row">
-        型号规格 :  
-        <span  *ngFor = "let item of listModel">
-           <span class="limit-tag" (click)=" filtrationModel(item) " [class.selected]="params.model == item.value"> {{item.value}} mm </span>
+        型号规格 :
+        <span *ngFor="let item of listModel">
+            <span class="limit-tag" (click)=" filtrationModel(item) " [class.selected]="params.model == item.value"> {{item.value}} mm </span>
         </span>
-        <span class="limit-tag4"><input class="input-box" type="text">~<input class="input-box" type="text">mm</span>
+        <span class="limit-tag"><input class="input-box" type="text" [(ngModel)]='params.minModel'
+                (blur)="filtrationMinModel($event)" >~
+                <input class="input-box" type="text" [(ngModel)]='maxModel'>mm
+        </span>
+        
     </div>
 
-    <hr/>
+    <hr />
 
     <div class="row">
-        材料强度 :  
-        <span  *ngFor = "let item of listStrength">
-            <span class="limit-tag" (click)="filtrationStrength(item) " [class.selected]="params.strength == item.value"> {{item.value}} </span>
-         </span>
-         <span class="limit-tag5"><input class="input-box" type="text">~<input class="input-box" type="text">MPa</span>
+        材料强度 :
+        <span *ngFor="let item of listStrength">
+            <span class="limit-tag" (click)="filtrationStrength(item)" [class.selected]="params.strength == item.value"> {{item.value}} </span>
+        </span>
+        <span class="limit-tag"><input class="input-box" type="text">~<input class="input-box" type="text">MPa</span>
     </div>
 
-    <hr/>
+    <hr />
 
     <button id="clear-btn" (click)="clear()">清除筛选</button>
 
@@ -55,22 +58,22 @@
     <div id="title">
         <h3 id="cllb"> <strong>材料列表</strong></h3>
 
-        <a routerLink="/material-floating-box"><div class="text">添加材料对比</div></a>
+        <a routerLink="/material-floating-box">
+            <div class="text">添加材料对比</div>
+        </a>
 
         <div class="image"><img src="../../assets/images/add.png" alt=""></div>
 
         <div class="text">批量导出</div>
 
         <div class="image"><img src="../../assets/images/export.png" alt=""></div>
-    
+
     </div>
 
-    <hr class="solid-hr"/>
+    <hr class="solid-hr" />
 
-    <div id="table">        
+    <div id="table">
         <app-form-material-list [data]="material"></app-form-material-list>
     </div>
-    
+
 </div>
-
-
