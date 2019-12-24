@@ -14,7 +14,7 @@ import { PageMaterialFakeComponent } from './page-material-fake/page-material-fa
 import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/page-material-floating-box.component';
 import { PageSystemManageComponent } from './page-system-manage/page-system-manage.component';
 import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
-
+import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'material-fake', component:PageMaterialFakeComponent},
   { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
   { path: 'system-manage', component:PageSystemManageComponent },
+  { path: 'products/:productId', component: FormFactoryListComponent },
 ]
 
 @NgModule({
