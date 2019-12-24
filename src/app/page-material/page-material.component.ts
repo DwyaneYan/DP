@@ -12,7 +12,6 @@ import { FormMaterialListComponent } from '../form-material-list/form-material-l
 
 export class PageMaterialComponent implements OnInit {
 
-
   materialType =
     [
       //冷轧
@@ -204,7 +203,11 @@ export class PageMaterialComponent implements OnInit {
     materialType: '',  //材料分类
     manufacturer: '',  //生产厂家
     model: "",  //型号规格
+    maxModel: "", //最大型号规格
+    minModel: "", //最小型号规格
     strength: "",  //屈服强度
+    maxStrength: "", //最大屈服强度
+    minStrength: "", //最小屈服强度
   }
 
 
@@ -219,7 +222,8 @@ export class PageMaterialComponent implements OnInit {
 
   //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
   public async getGetManufacturers() {
-    await this.materialService.GetManufacturers().then((res:any) => {
+    await this.materialService.GetManufacturers().then((res: any) => {
+      console.log(res);
       this.listManufacturers = res.items;
       console.log(this.listManufacturers)
     });
@@ -249,6 +253,9 @@ export class PageMaterialComponent implements OnInit {
     this.params.model = item.value
     console.log(this.params)
   }
+  filtrationMinModel(e: any) {
+    
+  }
 
   //屈服强度
   filtrationStrength(item) {
@@ -265,29 +272,6 @@ export class PageMaterialComponent implements OnInit {
     console.log(this.params)
   }
   //#endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
