@@ -8,7 +8,7 @@
         试验名称:<br>
         <input type="text" [(ngModel)]="AddInfo.Name"><br>
 
-        试验编号:<br>
+        试验类型:<br>
         <input type="text" [(ngModel)]="AddInfo.TrialType"><br>
 
         父级试验ID:<br>
@@ -100,8 +100,8 @@
 
     <!--查-->
     <div class="form">
-        厂家名称:<br>
-        <input type="text"  [(ngModel)]="Getfac.name"><br>
+        厂家id:<br>
+        <input type="text"  [(ngModel)]="Getfac.id"><br>
         <button (click)="Getfactory()">查询厂家</button>
     </div>
 </div>
@@ -112,13 +112,17 @@
         材料名称:<br>
         <input type="text"  [(ngModel)]="Addmateria.name"><br>
         材料分类:<br>
-        <input type="text"  [(ngModel)]="Addmateria.class"><br>
-        材生产厂家:<br>
-        <input type="text"  [(ngModel)]="Addmateria.manufactory"><br>
+        <input type="text"  [(ngModel)]="Addmateria.MaterialType"><br>
         型号规格:<br>
         <input type="text"  [(ngModel)]="Addmateria.model"><br>
         屈服强度:<br>
         <input type="text"  [(ngModel)]="Addmateria.strength"><br>
+        应用车型:<br>
+        <input type="text"  [(ngModel)]="Addmateria.AppliedVehicleType"><br>
+        典型零部件id:<br>
+        <input type="text"  [(ngModel)]="Addmateria.TypicalPartId"><br>
+        生产厂家id:<br>
+        <input type="text"  [(ngModel)]="Addmateria.ManufactoryId"><br>
         <button (click)="Addmaterial()">增加材料</button>
     </div>
     <div class="ma">
@@ -141,7 +145,7 @@
     </div>
     <div class="ma">
         材料名称:<br>
-        <input type="text"  [(ngModel)]="Getmateria.name"><br>
+        <input type="text"  [(ngModel)]="Addmateria.name"><br>
         <button (click)="Getmaterial()">查询材料</button>
     </div>
 </div>

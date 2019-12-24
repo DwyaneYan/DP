@@ -4,24 +4,24 @@
 #rowSelectionTable
 nzShowSizeChanger  
 [nzData]="listOfAllData"
-(nzCurrentPageDataChange)="currentPageDataChange($event)"
+(nzCurrentPageDataChange)="currentPageDataChange($event)"  [nzShowSizeChanger]=false
 >
 <thead>
   <tr>
-    <th
+    <th nzWidth="7%"
       nzShowCheckbox
       [nzSelections]="listOfSelection"
       [(nzChecked)]="isAllDisplayDataChecked"
       [nzIndeterminate]="isIndeterminate"
       (nzCheckedChange)="checkAll($event)"
     ></th>
-    <th>材料名称</th>
-    <th>生产厂家</th>
-    <th>厚度</th>
-    <th>典型零件</th>
-    <th>应用车型</th>
-    <th>送样日期</th>
-    <th>操作</th>
+    <th nzWidth="14%">材料名称</th>
+    <th nzWidth="14%">生产厂家</th>
+    <th nzWidth="10%">厚度</th>
+    <th nzWidth="14%">典型零件</th>
+    <th nzWidth="12%">应用车型</th>
+    <th nzWidth="20%">送样日期</th>
+    <th nzWidth="7%" nzRight="0px">操作</th>
   </tr>
 </thead>
 <tbody>

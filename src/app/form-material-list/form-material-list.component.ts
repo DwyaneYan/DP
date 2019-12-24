@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-
+import { MaterialListService } from './material-list.service'
 interface ItemData {
   id: number;
   name: string;
@@ -21,7 +21,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   @Input() data = [];
   
 
-  constructor() { }
+  constructor(private materiallistService: MaterialListService) { }
 
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
@@ -43,23 +43,31 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     
   }  
 
+public allmaterial=[]
 //#region 模块 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.listOfAllData.push({
-        id: i,
-        name: `DC01`,
-        manufacture: `邯钢`,
-        thickness: `1.${i}mm`,
-        typicalPart:'车门板',
-        appVehicle:'雅阁',
-        date:"2018-10-12",
-      });
-    }
+this.Allmaterial()
   }
+Allmaterial(){
+    this.materiallistService.AllMaterials().then((res: any) => {
+      this.allmaterial = res.items;
+      this.listOfAllData = [];
+       this.allmaterial.forEach((val, i, array) =>{
+        this.listOfAllData.push({
+          id: i,
+          name: val.name,
+          manufacture: val.manufactoryName,
+          thickness: val.model,
+          typicalPart:val.typicalPartName,
+          appVehicle:'雅阁',
+          date:val.date,
+        })})
+      }    
+      )
+  }
+  
 
-  
-  
+
   isAllDisplayDataChecked = false;
   isIndeterminate = false;
   listOfDisplayData: ItemData[] = [];

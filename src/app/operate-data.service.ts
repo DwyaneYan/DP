@@ -96,10 +96,12 @@ Updatefactory(Updatefac){
 
 // 查询厂家
 Getfactory(Getfac){
-  let api ="http://localhost:60001/api/hangang/manufactory/manufactories?Name=";
-  this.http.get(api+Getfac.name, Getfac).subscribe((response) => {
+  let id=Getfac.id
+  let api =`http://localhost:60001/api/hangang/manufactory/${id}/manufactoryById`;
+  this.http.get(api, Getfac).subscribe((response) => {
     console.log(response)
   })
+
 }
 //#endregion
 
