@@ -55,17 +55,19 @@ Updatefac={
 }
 
 Getfac={
-  name:"",
+  id:"",
 }
 //#endregion
 
 //#region 材料
  Addmateria={
   name:"",
-  class:"",
-  manufactory:"",
+  MaterialType:"",
+  ManufactoryId:"",
   model:"",
   strength:"",
+  AppliedVehicleType:"",
+  TypicalPartId:""
    }
 Deletemateria={
   id:"",
@@ -78,10 +80,7 @@ Updatemateria={
   appliedVehicleType:"",
 }
 
-Getmateria={
-  name:"",
 
-}
 //#endregion
 
 //#region 典型零部件
@@ -164,6 +163,7 @@ ngOnInit() {
     // return
   
     this.operateDataService.AddTrial(this.AddInfo);
+    
   }
 
   DeleteTrial(DeleteInfo) {
@@ -189,7 +189,8 @@ ngOnInit() {
     this.operateDataService.Updatefactory(this.Updatefac);
   }
   Getfactory(){
-    this.operateDataService.Getfactory(this.Getfac);
+   let res=this.operateDataService.Getfactory(this.Getfac);
+    console.log(res)
   }
   Addmaterial(){
     this.operateDataService.Addmaterial(this.Addmateria);
@@ -201,7 +202,8 @@ ngOnInit() {
     this.operateDataService.Updatematerial(this.Updatemateria);
   }
   Getmaterial(){
-    this.operateDataService.Getmaterial(this.Getmateria);
+  let res=  this.operateDataService.Getmaterial(this.Addmateria);
+  console.log(res)
   }
   ///////////////////////////////////////////////////
   Addtypicalpart(AddtypicalpartInfo) {

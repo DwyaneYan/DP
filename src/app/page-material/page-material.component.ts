@@ -22,7 +22,7 @@ export class PageMaterialComponent implements OnInit {
         children: [
           {
             enum: '20',
-            name: '冷烘烤硬化钢'
+            name: '烘烤硬化钢'
           },
           {
             enum: '30',
@@ -202,11 +202,10 @@ export class PageMaterialComponent implements OnInit {
   //查询条件表单
   public params = {
     materialType: '',  //材料分类
-    manufacturer: '',  //生产厂家
+    manufactoryId: '',  //生产厂家
     model: "",  //型号规格
     strength: "",  //屈服强度
   }
-
 
   constructor(
     private materialService: MaterialServiceService,    //实例化材料服务
@@ -225,41 +224,52 @@ export class PageMaterialComponent implements OnInit {
     });
 
   }
-
-
   //#region 获取筛选条件并 发送查询请求
   //材料分类  
   public material = []  //存放查询的数据并传给材料列表
   public async filtrationMaterialType(childItem) {
     this.params.materialType = childItem.enum;
+    console.log(this.params)
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items
-    });
-    console.log(this.material)
+      console.log(this.material)
+    })    
   }
 
   //生产厂家
-  filtrationManufacturers(item) {
-    this.params.manufacturer = item.id
-    console.log(this.params)
-  }
-
+  public async filtrationManufacturers(item) {
+    this.params.manufactoryId = item.id
+    console.log(this.params);
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+      console.log(this.material);
+ })
+ }
+  
   //型号规格
-  filtrationModel(item) {
+  public async  filtrationModel(item) {
     this.params.model = item.value
-    console.log(this.params)
+    console.log(this.params);
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+      console.log(this.material);
+ })
   }
 
   //屈服强度
-  filtrationStrength(item) {
+  public async filtrationStrength(item) {
     this.params.strength = item.value
     console.log(this.params)
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+      console.log(this.material);
+ })
   }
 
   //清楚筛选条件
   clear() {
     this.params.materialType = '',
-      this.params.manufacturer = '',
+      this.params.manufactoryId = '',
       this.params.model = '',
       this.params.strength = ''
     console.log(this.params)

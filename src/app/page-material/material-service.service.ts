@@ -31,7 +31,17 @@ export class MaterialServiceService {
     });
     return res;
   }
+// 筛选厂家
+async GetselectManufacturers(params)
+  {
 
+    let api ="http://localhost:60001/api/hangang/material/materials";
+    let res= await this.http.get(api,{params}).toPromise().catch(err=>{
+      console.log(err);
+    });
+    console.log(res)
+    return res;
+  }
 
 
 }
