@@ -254,9 +254,9 @@ export class PageMaterialComponent implements OnInit {
   //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
   public async getGetManufacturers() {
     await this.materialService.GetManufacturers().then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.listManufacturers = res.items;
-      console.log(this.listManufacturers)
+      // console.log(this.listManufacturers)
     });
 
   }

@@ -27,7 +27,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
     this.listOfAllData = [];
-    console.log(this.data);
+    // console.log(this.data);
     this.data.forEach((val, i, array) =>{
       this.listOfAllData.push({
         materialId: val.id,
