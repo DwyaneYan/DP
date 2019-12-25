@@ -21,8 +21,11 @@ const routes: Routes = [
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
   
+
+
+
   {
-    path: 'display-home', component: PageDisplayhomeComponent,
+    path: 'display-home/:materialId', component: PageDisplayhomeComponent,
     children: [
       { path: 'display-table', component: PageDisplayTableComponent },
       { path: 'display-picture', component: PageDisplayPictureComponent },
@@ -31,7 +34,10 @@ const routes: Routes = [
       { path: '', redirectTo: 'display-table', pathMatch: 'full'}
     ]
   },
+
   
+
+
   { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
   { path: 'contrast', component:PageConstractComponent},
   { path: 'attribute-constract', component:PageAttributeConstractComponent},

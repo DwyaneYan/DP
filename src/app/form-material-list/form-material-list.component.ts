@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
 interface ItemData {
+  materialId:any;
   id: number;
   name: string;
   manufacture: string;
@@ -29,6 +30,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     console.log(this.data);
     this.data.forEach((val, i, array) =>{
       this.listOfAllData.push({
+        materialId: val.id,
         id: i,
         name: val.name,
         manufacture: val.manufactoryName,
@@ -47,6 +49,9 @@ public allmaterial=[]
   ngOnInit(): void {
 this.Allmaterial()
   }
+
+
+  
 Allmaterial(){
     this.materiallistService.AllMaterials().then((res: any) => {
       this.allmaterial = res.items;
@@ -54,12 +59,13 @@ Allmaterial(){
        this.allmaterial.forEach((val, i, array) =>{
         this.listOfAllData.push({
           id: i,
+          materialId: val.id,
           name: val.name,
           manufacture: val.manufactoryName,
           thickness: val.model,
           typicalPart:val.typicalPartName,
           appVehicle:'雅阁',
-          date:val.date,
+          date:val.date,          
         })})
       }    
       )
