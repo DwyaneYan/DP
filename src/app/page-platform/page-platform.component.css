@@ -68,8 +68,7 @@ hr{
 .material{
     float: left;
     height: 140px;
-    width: 300px;
-    text-align: center;
+    width: 300px; 
     border: 0px solid #969393;
     border-radius: 5px;
     box-shadow: inset 0em 0em 0.3em 0 rgb(187, 187, 187);
