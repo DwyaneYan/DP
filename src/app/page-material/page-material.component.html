@@ -27,22 +27,37 @@
         <span *ngFor="let item of listModel">
             <span class="limit-tag" (click)=" filtrationModel(item) " [class.selected]="params.model == item.value"> {{item.value}} mm </span>
         </span>
-        <span class="limit-tag"><input class="input-box" type="text" [(ngModel)]='params.minModel'
-                (blur)="filtrationMinModel($event)" >~
-                <input class="input-box" type="text" [(ngModel)]='maxModel'>mm
+        <span class="limit-tag">
+            <input class="input-box" type="text" [(ngModel)]='params.minModel' (blur)="filtrationMinModel($event)" >~
+            <input class="input-box" type="text" [(ngModel)]='params.maxModel' (blur)="filtrationMaxModel($event)">mm
         </span>
         
     </div>
 
     <hr />
 
-    <div class="row">
+    <div class="row" >  
+        屈服强度 :
+        <span *ngFor="let item of listStrength ">
+            <span *ngFor="let childItem of item.children">
+                <span class="limit-tag" (click)= "filtrationStrength(childItem)" [class.selected]="params.model == item.value" >{{childItem.min}}~{{childItem.max}}MPa</span>
+            </span>            
+        </span>
+        <span class="limit-tag">
+            <input class="input-box" type="text" [(ngModel)]='params.MinStrenth' (blur)="filtrationMinStrength($event)" >~
+            <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth' (blur)="filtrationMaxStrength($event)">MPa
+        </span>
+    </div>
+
+
+
+    <!-- <div class="row">
         材料强度 :
         <span *ngFor="let item of listStrength">
-            <span class="limit-tag" (click)="filtrationStrength(item)" [class.selected]="params.strength == item.value"> {{item.value}} </span>
+            <span class="limit-tag" (click)="filtrationStrength(item)" [class.selected]="params.strength == item.value"> {{item.value}}MP </span>
         </span>
         <span class="limit-tag"><input class="input-box" type="text">~<input class="input-box" type="text">MPa</span>
-    </div>
+    </div> -->
 
     <hr />
 
