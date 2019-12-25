@@ -189,9 +189,7 @@ export class PageMaterialComponent implements OnInit {
       children: 
       [
         {
-          min: '120'
-        },
-        {
+          min: '120',
           max: '180'
         },
       ]      
@@ -202,9 +200,7 @@ export class PageMaterialComponent implements OnInit {
       children: 
       [
         {
-          min: '180'
-        },
-        {
+          min: '180',
           max: '340'
         },
       ] 
@@ -215,9 +211,7 @@ export class PageMaterialComponent implements OnInit {
       children: 
       [
         {
-          min: '340'
-        },
-        {
+          min: '340',
           max: '500'
         },
       ] 
@@ -228,9 +222,7 @@ export class PageMaterialComponent implements OnInit {
       children: 
       [
         {
-          min: '500'
-        },
-        {
+          min: '500',
           max: '1200'
         },
       ] 
@@ -316,13 +308,13 @@ export class PageMaterialComponent implements OnInit {
 
   //屈服强度
   public async filtrationStrength(item) {
-    this.params.MinStrenth = item.minvalue;
-    this.params.MaxStrenth = item.maxvalue;
+    this.params.MinStrenth = item.min;
+    this.params.MaxStrenth = item.max;
     console.log(this.params);
-    // await this.materialService.GetMaterials(this.params).then((res: any) => {
-    //   this.material = res.items;
-    //   console.log(this.material);
-//  })
+    await this.materialService.GetMaterials(this.params).then((res: any) => {
+      this.material = res.items;
+      console.log(this.material);
+  })
   }
 
   public async filtrationMinStrength(e: any) {

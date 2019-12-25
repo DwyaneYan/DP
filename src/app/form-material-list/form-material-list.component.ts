@@ -40,7 +40,6 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     },
     // console.log(this.listOfAllData)
     )
-    
   }  
 
 public allmaterial=[]
