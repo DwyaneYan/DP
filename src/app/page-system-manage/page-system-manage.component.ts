@@ -163,7 +163,7 @@ ngOnInit() {
     // return
   
     this.operateDataService.AddTrial(this.AddInfo);
-    
+
   }
 
   DeleteTrial(DeleteInfo) {
@@ -223,7 +223,8 @@ ngOnInit() {
   }
   
   Gettypicalpart() {
-    this.operateDataService.Gettypicalpart(this.GettypicalpartInfo);
+   let res= this.operateDataService.Gettypicalpart(this.GettypicalpartInfo);
+   console.log(res)
   }
   
   Addmaterialtrial() {

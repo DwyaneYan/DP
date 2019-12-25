@@ -9,14 +9,13 @@ nzShowSizeChanger
 <thead>
   <tr>
     <th nzWidth="7%"
-      nzShowCheckbox
       [nzSelections]="listOfSelection"
       [(nzChecked)]="isAllDisplayDataChecked"
       [nzIndeterminate]="isIndeterminate"
       (nzCheckedChange)="checkAll($event)"
     ></th>
     <th nzWidth="14%">材料名称</th>
-    <th nzWidth="14%">生产厂家</th>
+    <th nzWidth="14%"><a routerLink="/factory">生产厂家</a></th>
     <th nzWidth="10%">厚度</th>
     <th nzWidth="14%">典型零件</th>
     <th nzWidth="12%">应用车型</th>

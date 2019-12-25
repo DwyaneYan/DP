@@ -8,7 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class PagePlatformComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
-
+ public materials=[
+   {
+     name:"DC01",
+     class:"IF钢",
+     fac:"邯钢",
+     model:"0.2mm"
+   },
+   {
+    name:"DC02",
+    class:"IF钢",
+    fac:"邯钢",
+    model:"0.2mm"
+  },
+  {
+    name:"DC03",
+    class:"IF钢",
+    fac:"邯钢",
+    model:"0.2mm"
+  }
+ ]
   showModal(): void {
     this.isVisible = true;
   }

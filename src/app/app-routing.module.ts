@@ -44,7 +44,8 @@ const routes: Routes = [
   { path: 'material-fake', component:PageMaterialFakeComponent},
   { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
   { path: 'system-manage', component:PageSystemManageComponent },
-  { path: 'products/:productId', component: FormFactoryListComponent },
+  { path: 'factory', component: FormFactoryListComponent },
+
 ]
 
 @NgModule({

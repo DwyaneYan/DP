@@ -103,35 +103,17 @@
 
         <div id="content2">
 
-            <div class="material">
+            <div class="material"  *ngFor="let material of materials" >
                 <div class="material-image"><img src="../../assets/images/DC01.png" alt="" width="100" height="100" ></div>
                 <div class="material-info">
-                    材料牌号: DC01<br/>
-                    材料类型: IF钢<br/>
-                    生产厂家: 邯钢<br/>
-                    型号规格: 0.2mm
+                    材料牌号: {{material.name}}<br/>
+                    材料类型: {{material.class}}<br/>
+                    生产厂家: {{material.fac}}<br/>
+                    型号规格: {{material.model}}
                 </div>
             </div>
 
-            <div class="material">
-                <div class="material-image"><img src="../../assets/images/DC02.png" alt="" width="100" height="100" ></div>
-                <div class="material-info">
-                    材料牌号: DC02<br/>
-                    材料类型: IF钢<br/>
-                    生产厂家: 邯钢<br/>
-                    型号规格: 0.2mm
-                </div>
-            </div>
 
-            <div class="material">
-                <div class="material-image"><img src="../../assets/images/DC03.png" alt="" width="100" height="100" ></div>
-                <div class="material-info">
-                    材料牌号: DC03<br/>
-                    材料类型: IF钢<br/>
-                    生产厂家: 邯钢<br/>
-                    型号规格: 0.2mm
-                </div>
-            </div>
 
         </div>
 
