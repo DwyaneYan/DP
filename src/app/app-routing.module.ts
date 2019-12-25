@@ -15,6 +15,7 @@ import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/p
 import { PageSystemManageComponent } from './page-system-manage/page-system-manage.component';
 import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
+import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component'
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
   { path: 'system-manage', component:PageSystemManageComponent },
   { path: 'factory', component: FormFactoryListComponent },
+  { path: 'material-trial', component: PageMaterialTrialComponent },
 
 ]
 
