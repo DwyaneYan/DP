@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'display-picture', component: PageDisplayPictureComponent },
       { path: 'display-report', component: PageDisplayReportComponent },
       { path: 'display-typical-part', component: PageDisplayTypicalPartComponent },
-     { path: '', redirectTo: 'display-table', pathMatch: 'full'}
+      { path: '', redirectTo: 'display-table', pathMatch: 'full'}
     ]
   },
   

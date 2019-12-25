@@ -40,7 +40,7 @@
         屈服强度 :
         <span *ngFor="let item of listStrength ">
             <span *ngFor="let childItem of item.children">
-                <span class="limit-tag" (click)= "filtrationStrength(childItem)" [class.selected]="params.model == item.value" >{{childItem.min}}~{{childItem.max}}MPa</span>
+                <span class="limit-tag" (click)= "filtrationStrength(childItem)" [class.selected]="params.MinStrenth == childItem.min" >{{childItem.min}}~{{childItem.max}}MPa</span>
             </span>            
         </span>
         <span class="limit-tag">
@@ -48,17 +48,7 @@
             <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth' (blur)="filtrationMaxStrength($event)">MPa
         </span>
     </div>
-
-
-
-    <!-- <div class="row">
-        材料强度 :
-        <span *ngFor="let item of listStrength">
-            <span class="limit-tag" (click)="filtrationStrength(item)" [class.selected]="params.strength == item.value"> {{item.value}}MP </span>
-        </span>
-        <span class="limit-tag"><input class="input-box" type="text">~<input class="input-box" type="text">MPa</span>
-    </div> -->
-
+    
     <hr />
 
     <button id="clear-btn" (click)="clear()">清除筛选</button>
