@@ -1,0 +1,97 @@
+<div  class="block">
+    <div>
+        <div class="form" style="margin-left: 50px;">
+            <br>
+            材料名称:
+            <input type="text" [(ngModel)]="Addmaterial.name">  
+            材料编码:
+            <input type="text" [(ngModel)]="Addmaterial.code">   
+            厚度:
+            <input type="text" [(ngModel)]="Addmaterial.model">
+            屈服强度:
+            <input type="text" [(ngModel)]="Addmaterial.strength">
+            材料类型: 
+            <input type="text" [(ngModel)]="Addmaterial.type"><br>
+            送样日期:
+            <input type="text" [(ngModel)]="Addmaterial.date">
+            应用车型:
+            <input type="text" [(ngModel)]="Addmaterial.appliedVehicleType">
+            备注:
+            <input type="text" [(ngModel)]="Addmaterial.remark">
+            典型零部件id:
+            <input type="text" [(ngModel)]="Addmaterial.typicalpartid">
+            厂家id:
+            <input type="text" [(ngModel)]="Addmaterial.manufactoryid"><br>
+    
+            <button (click)="Addmaterials()">添加材料</button><br>
+    
+        </div>
+        <div class="form" style="margin-left: 50px;">
+            <br>
+            材料Id:
+            <input type="text" [(ngModel)]="Updatematerial.Id">
+            材料名称:
+            <input type="text" [(ngModel)]="Updatematerial.name">   
+            材料编码:
+            <input type="text" [(ngModel)]="Updatematerial.code">  
+            厚度:
+            <input type="text" [(ngModel)]="Updatematerial.model">
+            屈服强度:
+            <input type="text" [(ngModel)]="Updatematerial.strength"><br>
+            材料类型:
+            <input type="text" [(ngModel)]="Updatematerial.type">
+            送样日期:
+            <input type="text" [(ngModel)]="Updatematerial.date">
+            应用车型:
+            <input type="text" [(ngModel)]="Updatematerial.appliedVehicleType">
+            备注:
+            <input type="text" [(ngModel)]="Updatematerial.remark">
+            典型零部件id:
+            <input type="text" [(ngModel)]="Updatematerial.typicalpartid"><br>
+            厂家id:
+            <input type="text" [(ngModel)]="Updatematerial.manufactoryid"><br>
+            <button (click)="Updatematerials()">更新材料</button>
+    
+        </div>
+        
+    </div>
+</div>
+<div id="lizhi">
+    <h3 id="wyyy"> <strong>材料列表</strong></h3>
+    <button id="shuaxin" (click)="Shuaxinmaterial()">刷新</button>
+    <hr class="solid-hr" />
+    <nz-table
+    #basicTable [nzData]="dataSet" 
+    >
+        <thead>
+            <tr> 
+                <th >材料id</th>        
+                <th >材料名称</th>
+                <th >材料编码</th>
+                <th >厚度</th>
+                <th >屈服强度</th>
+                <th >材料类型</th>
+                <th >送样日期</th>
+                <th >应用车型</th>
+                <th >备注</th>
+                <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{data.guid}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.code}} </td>
+                <td>{{data.model}}</td>
+                <td>{{data.strength}} </td>
+                <td>{{data.materialtype}} </td>
+                <td>{{data.date}} </td>
+                <td>{{data.car}} </td>
+                <td>{{data.remark}} </td>
+                <td ><a nz-popconfirm nzTitle="确定删除该厂家?" (nzOnConfirm)="deleteRow(data.guid)">删除</a>                   
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+</div>

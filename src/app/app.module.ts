@@ -39,6 +39,7 @@ import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.co
 import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
 import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
 import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
+import { FormMateriaListComponent } from './form-materia-list/form-materia-list.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { PageMaterialTrialComponent } from './page-material-trial/page-material-
     FormFactoryListComponent,
     FormTypicpartListComponent,
     PageMaterialTrialComponent,
+    FormMateriaListComponent,
   ],
   imports: [
     BrowserModule,

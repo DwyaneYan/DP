@@ -46,7 +46,8 @@
     #basicTable [nzData]="dataSet" 
     >
         <thead>
-            <tr>         
+            <tr>  
+                <th>零部件id</th>       
                 <th>零部件名称</th>
                 <th>编码</th>
                 <th>应用车型</th>
@@ -56,6 +57,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let data of basicTable.data">
+                <td>{{data.guid}}</td>
                 <td>{{data.name}}</td>
                 <td>{{data.code}} </td>
                 <td>{{data.car}}</td>
