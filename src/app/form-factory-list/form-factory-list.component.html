@@ -1,3 +1,4 @@
+<div id="manufactory" class="block">
 <div class="form">
     厂家名称:<br>
     <input type="text"  [(ngModel)]="Addmanufac.name"><br>
@@ -5,25 +6,48 @@
     <input  type="text" [(ngModel)]="Addmanufac.address"><br>
     厂家电话:<br>
     <input  type="text" [(ngModel)]="Addmanufac.telephone"><br>
+    备注:<br>
+    <input  type="text" [(ngModel)]="Addmanufac.remark"><br>
     <button (click)="Addmanufactory()">增加厂家</button>
+</div>
+<div class="form"> 
+    厂家id:<br>
+    <input type="text"  [(ngModel)]="Updatemanufac.id"><br>
+    厂家名称:<br>
+    <input type="text"  [(ngModel)]="Updatemanufac.name"><br>
+    厂家地址:<br>
+    <input  type="text" [(ngModel)]="Updatemanufac.address"><br>
+    厂家电话:<br>
+    <input  type="text" [(ngModel)]="Updatemanufac.telephone"><br>
+    备注:<br>
+    <input  type="text" [(ngModel)]="Updatemanufac.remark"><br>
+    <button (click)="Updatefactory()">更新厂家</button>
+</div>
 </div>
 <div id="lizhi">
     <h3 id="wyyy"> <strong>生产厂家列表</strong></h3>
+    <button id="shuaxin" (click)="Shuaxinfactory()">刷新</button>
     <hr class="solid-hr" />
     <nz-table
-    #basicTable [nzData]="dataSet">
+    #basicTable [nzData]="dataSet" 
+    >
         <thead>
-            <tr>
+            <tr>         
                 <th>厂家名称</th>
                 <th>厂家地址</th>
                 <th>厂家电话</th>
+                <th>备注</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of basicTable.data">
                 <td>{{data.name}}</td>
-                <td>{{data.address}}</td>
+                <td>{{data.address}} </td>
                 <td>{{data.TelePhone}}</td>
+                <td>{{data.remark}} </td>
+                <td ><a nz-popconfirm nzTitle="确定删除该厂家?" (nzOnConfirm)="deleteRow(data.guid)">删除</a>                   
+                </td>
             </tr>
         </tbody>
     </nz-table>

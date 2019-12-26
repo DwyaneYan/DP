@@ -245,6 +245,7 @@ export class PageMaterialComponent implements OnInit {
   constructor(
     private materialService: MaterialServiceService,    //实例化材料服务
     public http: HttpClient,
+
   ) { }
   ngOnInit() {
     this.getGetManufacturers();
@@ -332,7 +333,7 @@ export class PageMaterialComponent implements OnInit {
   }
 
   //清楚筛选条件
-  clear() {
+  public async clear() {
     this.params.materialType = '',
       this.params.manufactoryId = '',
       this.params.model = '',
@@ -340,8 +341,11 @@ export class PageMaterialComponent implements OnInit {
       this.params.maxModel = ''
       this.params.MaxStrenth = ''
       this.params.MinStrenth = ''
-
-    console.log(this.params)
+      console.log(this.params)
+      await this.materialService.GetMaterials(this.params).then((res: any) => {
+        this.material = res.items
+        console.log(this.material)
+      })    
   }
   //#endregion
 

@@ -37,6 +37,7 @@ import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/p
 import { PageSystemManageComponent } from './page-system-manage/page-system-manage.component';
 import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
+import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { FormFactoryListComponent } from './form-factory-list/form-factory-list.
     PageSystemManageComponent,
     PageDisplayhomeComponent,
     FormFactoryListComponent,
+    FormTypicpartListComponent,
   ],
   imports: [
     BrowserModule,

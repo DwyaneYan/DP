@@ -49,6 +49,7 @@ Deletemanufac={
 }
 
 Updatefac={
+  id:"",
   name:"",
   address:"",
   telephone:"",

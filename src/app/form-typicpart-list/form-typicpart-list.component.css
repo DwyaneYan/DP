@@ -1,3 +1,15 @@
+.form{
+    float: left;
+    margin-left: 50px;
+}
+.block{
+    border: solid rgb(36, 136, 250) 5px;
+    height: 360px;
+    width: 880px;
+    margin: auto;
+    margin-top: 60px;
+    border-radius: 20px;
+}
 #wyyy{
     float: left;
     color: rgb(60, 113, 228);
@@ -18,24 +30,8 @@
     margin-top: 5%;
     border: solid 0.03em rgb(221, 220, 220);
 }
-.form{
-    float: left;
-    margin-left: 50px;
-}
-.block{
-    border: solid rgb(36, 136, 250) 5px;
-    height: 360px;
-    width: 880px;
-    margin: auto;
-    margin-top: 60px;
-    border-radius: 20px;
-}
 
-#manufactory{
-    padding-top: 50px;
-}
 #shuaxin{
     float: right;
     margin: 1.3% 1px;
 }
-
