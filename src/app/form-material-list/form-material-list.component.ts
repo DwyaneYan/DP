@@ -28,7 +28,8 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   ngOnChanges() {
     this.listOfAllData = [];
     // console.log(this.data);
-    this.data.forEach((val, i, array) =>{
+    this.data
+    .forEach((val, i, array) =>{
       this.listOfAllData.push({
         materialId: val.id,
         id: i,
