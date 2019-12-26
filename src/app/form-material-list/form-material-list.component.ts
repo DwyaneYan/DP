@@ -36,7 +36,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         manufacture: val.manufactoryName,
         thickness: val.model,
         typicalPart:val.typicalPartName,
-        appVehicle:'雅阁',
+        appVehicle:val.appliedVehicleType,
         date:val.date,
       });
     },
@@ -64,7 +64,7 @@ Allmaterial(){
           manufacture: val.manufactoryName,
           thickness: val.model,
           typicalPart:val.typicalPartName,
-          appVehicle:'雅阁',
+          appVehicle:val.appliedVehicleType,
           date:val.date,          
         })})
       }    
