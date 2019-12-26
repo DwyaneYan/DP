@@ -38,6 +38,7 @@ import { PageSystemManageComponent } from './page-system-manage/page-system-mana
 import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
 import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
+import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart
     PageDisplayhomeComponent,
     FormFactoryListComponent,
     FormTypicpartListComponent,
+    PageMaterialTrialComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,23 +16,30 @@ import { PageSystemManageComponent } from './page-system-manage/page-system-mana
 import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
 import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
+import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component'
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
   
+
+
+
   {
-    path: 'display-home', component: PageDisplayhomeComponent,
+    path: 'display-home/:materialId', component: PageDisplayhomeComponent,
     children: [
       { path: 'display-table', component: PageDisplayTableComponent },
       { path: 'display-picture', component: PageDisplayPictureComponent },
       { path: 'display-report', component: PageDisplayReportComponent },
       { path: 'display-typical-part', component: PageDisplayTypicalPartComponent },
-     { path: '', redirectTo: 'display-table', pathMatch: 'full'}
+      { path: '', redirectTo: 'display-table', pathMatch: 'full'}
     ]
   },
+
   
+
+
   { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
   { path: 'contrast', component:PageConstractComponent},
   { path: 'attribute-constract', component:PageAttributeConstractComponent},
@@ -41,6 +48,8 @@ const routes: Routes = [
   { path: 'system-manage', component:PageSystemManageComponent },
   { path: 'factory', component: FormFactoryListComponent },
   { path: 'typicalpart', component: FormTypicpartListComponent },
+  { path: 'material-trial', component: PageMaterialTrialComponent },
+
 ]
 
 @NgModule({
