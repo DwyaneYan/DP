@@ -60,7 +60,7 @@ Addmanufactory(){
 Updatefactory(){
   this.factoryService.Updatefactory(this.Updatemanufac);
 }
-public async deleteRow(i){
+ deleteRow(i){
  this.factoryService.Deletemanufactory({id:i});
 }
 Shuaxinfactory(){

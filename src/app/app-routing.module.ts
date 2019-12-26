@@ -16,7 +16,8 @@ import { PageSystemManageComponent } from './page-system-manage/page-system-mana
 import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
 import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
 import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
-import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component'
+import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
+import { FormMateriaListComponent } from './form-materia-list/form-materia-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'factory', component: FormFactoryListComponent },
   { path: 'typicalpart', component: FormTypicpartListComponent },
   { path: 'material-trial', component: PageMaterialTrialComponent },
+  { path: 'materialss', component: FormMateriaListComponent },
 
 ]
 
