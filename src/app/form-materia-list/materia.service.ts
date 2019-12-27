@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   })
   export class MateriaService {
  
-    constructor(public http: HttpClient
+    constructor(public http: HttpClient,
+     
     ) { }
 
 Addmaterial(material) {   
@@ -32,12 +33,14 @@ async Allmaterials()
     console.log(res)
 return res
   }
+  
   Deletematerial(i){
     let id=i.id
     let api = `http://localhost:60001/api/hangang/material/${id}`
     this.http.delete( api, i).subscribe((response) => {
       console.log(response);
-    })
-  }
-  
+    });
+
 }
+
+  }

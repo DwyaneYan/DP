@@ -1,5 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ExperimentalItemService } from './experimental-item.service'
+import { ActivatedRoute } from '@angular/router';
+interface ItemData {
+  materialId:any;
+  id: number;
+  name: string;
+  manufacture: string;
+  thickness: string;
+  typicalPart: string;
+  appVehicle:string;
+  date:string;
+}
 
 @Component({
   selector: 'app-form-experimental-item',
@@ -34,11 +45,14 @@ export class FormExperimentalItemComponent implements OnInit {
 
   constructor(
     private experimentalItem: ExperimentalItemService,
-  ) { }
+    private route: ActivatedRoute,
+
+  ) { } 
 
   ngOnInit() {
     // console.log(this.materialId)
     this.GetTrialItemByMaterialId(this.materialId)
+    this.experimentalItem.Getmaterial(this.materialId)
   }
 
   public async GetTrialItemByMaterialId(materialId){

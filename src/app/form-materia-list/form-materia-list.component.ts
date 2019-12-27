@@ -49,7 +49,8 @@ export class FormMateriaListComponent implements OnInit {
   manufactoryid:val.manufactoryId 
         })})
       }    
-      )
+      );
+      
   }
   Addmaterial={
     name:"",
@@ -85,7 +86,11 @@ export class FormMateriaListComponent implements OnInit {
   Shuaxinmaterial(){
     this.Allmaterial()
   }
+
   deleteRow(i){
-    this.MateriaService.Deletematerial({id:i});
+
+ this.MateriaService.Deletematerial({id:i});
+
   }
+
 }
