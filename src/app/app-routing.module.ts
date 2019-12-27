@@ -18,12 +18,14 @@ import { FormFactoryListComponent } from './form-factory-list/form-factory-list.
 import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
 import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
 import { FormMateriaListComponent } from './form-materia-list/form-materia-list.component';
+import { PageDisplayComponent } from './page-display/page-display.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
-  
+  { path: 'material', component: PageMaterialComponent},
+  { path: 'display/:materialId', component:PageDisplayComponent,},
 
 
 

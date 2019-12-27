@@ -266,20 +266,20 @@ export class PageMaterialComponent implements OnInit {
   public material = []  //存放查询的数据并传给材料列表
   public async filtrationMaterialType(childItem) {
     this.params.materialType = childItem.enum;
-    console.log(this.params)
+    // console.log(this.params)
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items
-      console.log(this.material)
+      // console.log(this.material)
     })    
   }
 
   //生产厂家
   public async filtrationManufacturers(item) {
     this.params.manufactoryId = item.id
-    console.log(this.params);
+    // console.log(this.params);
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items;
-      console.log(this.material);
+      // console.log(this.material);
  })
  }
   
@@ -311,10 +311,10 @@ export class PageMaterialComponent implements OnInit {
   public async filtrationStrength(item) {
     this.params.MinStrenth = item.min;
     this.params.MaxStrenth = item.max;
-    console.log(this.params);
+    // console.log(this.params);
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items;
-      console.log(this.material);
+      // console.log(this.material);
   })
   }
 
@@ -341,10 +341,10 @@ export class PageMaterialComponent implements OnInit {
       this.params.maxModel = ''
       this.params.MaxStrenth = ''
       this.params.MinStrenth = ''
-      console.log(this.params)
+      // console.log(this.params)
       await this.materialService.GetMaterials(this.params).then((res: any) => {
         this.material = res.items
-        console.log(this.material)
+        // console.log(this.material)
       })    
   }
   //#endregion

@@ -40,6 +40,10 @@ import { FormFactoryListComponent } from './form-factory-list/form-factory-list.
 import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
 import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
 import { FormMateriaListComponent } from './form-materia-list/form-materia-list.component';
+import { PageDisplayComponent } from './page-display/page-display.component';
+import { FormTrialDetailsComponent } from './form-trial-details/form-trial-details.component';
+import { DetailsDataComponent } from './form-trial-details/details-data/details-data.component';
+import { DetailsNavigateComponent } from './form-trial-details/details-navigate/details-navigate.component';
 
 
 @NgModule({
@@ -73,6 +77,10 @@ import { FormMateriaListComponent } from './form-materia-list/form-materia-list.
     FormTypicpartListComponent,
     PageMaterialTrialComponent,
     FormMateriaListComponent,
+    PageDisplayComponent,
+    FormTrialDetailsComponent,
+    DetailsDataComponent,
+    DetailsNavigateComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,8 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   ngOnChanges() {
     this.listOfAllData = [];
     // console.log(this.data);
-    this.data.forEach((val, i, array) =>{
+    this.data
+    .forEach((val, i, array) =>{
       this.listOfAllData.push({
         materialId: val.id,
         id: i,
@@ -36,7 +37,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         manufacture: val.manufactoryName,
         thickness: val.model,
         typicalPart:val.typicalPartName,
-        appVehicle:'雅阁',
+        appVehicle:val.appliedVehicleType,
         date:val.date,
       });
     },
@@ -64,7 +65,7 @@ Allmaterial(){
           manufacture: val.manufactoryName,
           thickness: val.model,
           typicalPart:val.typicalPartName,
-          appVehicle:'雅阁',
+          appVehicle:val.appliedVehicleType,
           date:val.date,          
         })})
       }    

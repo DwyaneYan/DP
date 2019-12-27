@@ -17,9 +17,9 @@ export class PageDisplayhomeComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.materialId = params.get('materialId');
+    this.materialId = params.get('materialId');
     })
-    // console.log(this.materialId);
+    console.log(this.materialId);
   }
 
 }
