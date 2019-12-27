@@ -9,6 +9,7 @@ import { ExperimentalItemService } from './experimental-item.service'
 export class FormExperimentalItemComponent implements OnInit {
 
   @Input() materialId
+  @Input() listTrial:any
 
   //查询表单  用于查该材料做了哪些试验,取出后填充页面左侧实验项目目录树
   public params = {
@@ -16,7 +17,7 @@ export class FormExperimentalItemComponent implements OnInit {
   }
 
   //查询结果  用于存放该材料做了哪些实验项目
-  public listTrial = []
+  // public listTrial = []
 
 
 
@@ -37,26 +38,14 @@ export class FormExperimentalItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.materialId)
-    this.GetTrialItemByMaterialId(this.materialId)
-
+    console.log(this.materialId)
+    // this.GetTrialItemByMaterialId(this.materialId)
+    // this.PutTrialItem()
 
     console.log(this.listTrial);
-  }
-
-  public pacpList = []    //理化性能
-  public processingList = []   //工艺性能
-
-  public async GetTrialItemByMaterialId(materialId) {
-    console.log(materialId);
-    this.params.Materiald = this.materialId;
-    await this.experimentalItem.GetTrialItemByMaterialId(this.params).then((res: any) => {
-      this.listTrial = res;
-      console.log(this.listTrial);
-    })
 
 
-    this.listTrial.forEach((val, i, array) => {
+    this.listTrial.forEach((val, i) => {
       console.log(val)
       // console.log(val.parentName)
       if (val.parentName == "理化性能") {
@@ -66,9 +55,24 @@ export class FormExperimentalItemComponent implements OnInit {
         this.processingList.push(val)
       }
     })
-    console.log(this.pacpList)
-    console.log(this.processingList)
   }
 
+  public pacpList = []    //理化性能
+  public processingList = []   //工艺性能
 
+  // public async GetTrialItemByMaterialId(materialId) {
+  //   console.log(materialId);
+  //   this.params.Materiald = this.materialId;
+  //   await this.experimentalItem.GetTrialItemByMaterialId(this.params).then((res: any) => {
+  //     this.listTrial = res;
+  //     console.log(this.listTrial);
+  //   })
+
+
+  public PutTrialItem (){
+
+    // console.log(this.pacpList)
+    // console.log(this.processingList)
+  }
+  
 }
