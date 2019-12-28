@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-form-trial-details',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormTrialDetailsComponent implements OnInit {
 
+  @Input() materialId
+  @Input() trialType
+
   constructor() { }
 
   ngOnInit() {
+    // console.log(this.materialId,this.trialType)
   }
 
 }

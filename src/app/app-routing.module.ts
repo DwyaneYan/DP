@@ -26,6 +26,8 @@ const routes: Routes = [
   { path: 'material', component: PageMaterialComponent},
   { path: 'material', component: PageMaterialComponent},
   { path: 'display/:materialId', component:PageDisplayComponent,},
+  { path: 'display/:materialId/:trialType', component:PageDisplayComponent,},
+
 
 
 
