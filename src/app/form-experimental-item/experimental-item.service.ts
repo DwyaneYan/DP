@@ -20,13 +20,5 @@ export class ExperimentalItemService {
     });
     return res;
   }
-  Getmaterial(id){
-    let api =`http://localhost:60001/api/hangang/material/${id}/dataExample`;
-    let res=this.http.get(api, id).toPromise()
-    .catch(err=>{
-      console.log(err)
-    });
-    console.log(res)
-  return res
-    }
+
 }

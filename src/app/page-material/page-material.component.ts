@@ -269,7 +269,7 @@ export class PageMaterialComponent implements OnInit {
     // console.log(this.params)
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items
-      // console.log(this.material)
+      console.log(this.material)
     })    
   }
 

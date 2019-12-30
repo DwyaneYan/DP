@@ -38,11 +38,32 @@ export class PageDisplayComponent implements OnInit {
     })
     // console.log(this.materialId);
     this.GetTrialItemByMaterialId(this.materialId)
-
+    this.Thematerial()
     // this.PutTrialItem()    
   }
 
-
+  public thematerial=[];
+  public mater=[]
+  ma={
+    id:""
+  }
+ Thematerial(){
+  this.ma.id=this.materialId
+    this.displayService.Getmaterial(this.ma).then((res: any) => {
+      this.thematerial = res.items;
+      console.log(this.thematerial)
+       this.thematerial.forEach((val, i, array) =>{
+        this.mater.push({
+          name: val.name,
+          manufacture: val.manufactoryName,
+          thickness: val.model,
+          typicalPart:val.typicalPartName,
+          date:val.date,          
+        })})
+      }   
+      )
+      console.log(this.mater)
+  }
 
   public async GetTrialItemByMaterialId(materialId) {
     console.log(materialId);

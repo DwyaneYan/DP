@@ -1,16 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ExperimentalItemService } from './experimental-item.service'
 import { ActivatedRoute } from '@angular/router';
-interface ItemData {
-  materialId:any;
-  id: number;
-  name: string;
-  manufacture: string;
-  thickness: string;
-  typicalPart: string;
-  appVehicle:string;
-  date:string;
-}
+
 
 @Component({
   selector: 'app-form-experimental-item',
@@ -21,6 +12,7 @@ export class FormExperimentalItemComponent implements OnInit {
 
   @Input() materialId
   @Input() listTrial:any
+  @Input() mater
 
   //查询表单  用于查该材料做了哪些试验,取出后填充页面左侧实验项目目录树
   public params = {
@@ -30,19 +22,6 @@ export class FormExperimentalItemComponent implements OnInit {
   //查询结果  用于存放该材料做了哪些实验项目
   // public listTrial = []
 
-
-
-  listOfData = [
-    {
-      key: '1',
-      trademark: 'DC01',
-      thickness: '1.2mm',
-      manufacturer: '邯钢',
-      standard: 'GB/288-2010',
-      date: '2018.5.12'
-
-    }
-  ];
 
   constructor(
     private experimentalItem: ExperimentalItemService,
@@ -54,10 +33,7 @@ export class FormExperimentalItemComponent implements OnInit {
     console.log(this.materialId)
     // this.GetTrialItemByMaterialId(this.materialId)
     // this.PutTrialItem()
-
     console.log(this.listTrial);
-
-
     this.listTrial.forEach((val, i) => {
       console.log(val)
       // console.log(val.parentName)
@@ -68,6 +44,7 @@ export class FormExperimentalItemComponent implements OnInit {
         this.processingList.push(val)
       }
     })
+
   }
 
   public pacpList = []    //理化性能
