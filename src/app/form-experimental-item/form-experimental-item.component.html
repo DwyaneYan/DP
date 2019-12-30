@@ -1,3 +1,5 @@
+<app-form-trial-details [materialId]="materialId" [trialType]="trialType"></app-form-trial-details>
+
 <div class="menu-table">
     <div class="left-menu">
         <ul nz-menu nzMode="inline">
@@ -8,12 +10,12 @@
             </li>
             <li nz-submenu nzTitle="理化性能" nzOpen="true">
                 <ul *ngFor="let item of pacpList">
-                    <li nz-menu-item>{{item.name}}</li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,item.trialType]" (click)="GiveParams(item.trialType)">{{item.name}}</a></li>
                 </ul>
             </li>
             <li nz-submenu nzTitle="工艺性能">
                 <ul *ngFor="let item of processingList">
-                    <li nz-menu-item>{{item.name}}</li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,item.trialType]" (click)="GiveParams(item.trialType)">{{item.name}}</a></li>
                 </ul>
             </li>
         </ul>

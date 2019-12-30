@@ -1,4 +1,31 @@
+<!-- <h2 style="position: absolute; left: 40%; top: 400PX; color: blue;">实验数据详情</h2> -->
 
+<div id="dataTable">
+    <nz-table  [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>屈服强度Rp(MPa)</th>
+            <th>抗拉强度Rm(MPa)</th>
+            <th>应变硬化指数(n)</th>
+            <th>断后伸长率A(％)</th>
+            <th>塑性应变比γ(%)</th>
+            <th>弹性模量E(MPa)</th>
+            <th>泊松比μ</th>
+            <th>最大力Fm(kN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ trialDataDetail[0].yieldStrength }}</td>
+            <td>{{ trialDataDetail[0].tensileStrength }}</td>
+            <td>{{ trialDataDetail[0].strainHardening }}</td>
+            <td>{{ trialDataDetail[0].elongation }}</td>
+            <td>{{ trialDataDetail[0].plasticStrainRatio }}</td>
+            <td>{{ trialDataDetail[0].modulusOfElasticity }}</td>
+            <td>{{ trialDataDetail[0].poissonRatio }}</td>
+            <td>{{ trialDataDetail[0].maximumForce }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
 
-
-<h2 style="position: absolute; left: 40%; top: 45%; color: blue;">实验数据详情</h2>
