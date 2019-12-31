@@ -1,7 +1,7 @@
 <!-- <h2 style="position: absolute; left: 40%; top: 400PX; color: blue;">实验数据详情</h2> -->
 
 <div id="dataTable">
-    <nz-table  [nzData]="listOfData">
+    <nz-table>
         <thead>
           <tr>
             <th>屈服强度Rp(MPa)</th>
@@ -15,15 +15,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{{ trialDataDetail[0].yieldStrength }}</td>
-            <td>{{ trialDataDetail[0].tensileStrength }}</td>
-            <td>{{ trialDataDetail[0].strainHardening }}</td>
-            <td>{{ trialDataDetail[0].elongation }}</td>
-            <td>{{ trialDataDetail[0].plasticStrainRatio }}</td>
-            <td>{{ trialDataDetail[0].modulusOfElasticity }}</td>
-            <td>{{ trialDataDetail[0].poissonRatio }}</td>
-            <td>{{ trialDataDetail[0].maximumForce }}</td>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.yieldStrength }}</td>
+            <td>{{ data.tensileStrength }}</td>
+            <td>{{ data.strainHardening }}</td>
+            <td>{{ data.elongation }}</td>
+            <td>{{ data.plasticStrainRatio }}</td>
+            <td>{{ data.modulusOfElasticity }}</td>
+            <td>{{ data.poissonRatio }}</td>
+            <td>{{ data.maximumForce }}</td>
           </tr>
         </tbody>
       </nz-table>
