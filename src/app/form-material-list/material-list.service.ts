@@ -4,11 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MaterialListService {
 
 
 
-  constructor(public http: HttpClient
+  constructor(public http: HttpClient,
+
   ) { }
 
   // 显示全部材料
@@ -23,6 +25,6 @@ export class MaterialListService {
 
  //返回请求到的数据(Promise对象)
  return res
-
   }
+
 }

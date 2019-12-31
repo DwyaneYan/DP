@@ -12,6 +12,12 @@ export class PageDisplayComponent implements OnInit {
   //材料id, 在进入展示页面时由材料首页传递进来
   public materialId
 
+  public getTrialParams={
+    Materiald:'',
+  }
+
+  public listTrial
+
   constructor(    
     private route: ActivatedRoute,
     private displayService: DisplayService,
@@ -21,6 +27,43 @@ export class PageDisplayComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
     this.materialId = params.get('materialId');
     })
+    // console.log(this.materialId);
+    this.GetTrialItemByMaterialId(this.materialId)
+    this.Thematerial()
+    // this.PutTrialItem()    
   }
+
+  public thematerial=[];
+  public mater=[]
+  ma={
+    id:""
+  }
+ Thematerial(){
+  this.ma.id=this.materialId
+    this.displayService.Getmaterial(this.ma).then((res: any) => {
+      this.thematerial = res.items;
+      console.log(this.thematerial)
+       this.thematerial.forEach((val, i, array) =>{
+        this.mater.push({
+          name: val.name,
+          manufacture: val.manufactoryName,
+          thickness: val.model,
+          typicalPart:val.typicalPartName,
+          date:val.date,          
+        })})
+      }   
+      )
+      console.log(this.mater)
+  }
+
+  public async GetTrialItemByMaterialId(materialId) {
+    console.log(materialId);
+    this.getTrialParams.Materiald = this.materialId;
+    await this.displayService.GetTrialItemByMaterialId(this.getTrialParams).then((res: any) => {
+      this.listTrial = res;
+      console.log(this.listTrial);
+    })
+  }
+  
 
 }
