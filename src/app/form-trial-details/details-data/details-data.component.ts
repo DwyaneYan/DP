@@ -11,10 +11,6 @@ export class DetailsDataComponent implements OnInit {
   @Input() trialType
 
 
-  public params = {
-    trialType:'',
-  }
-
   //存放查到的试验数据详情
   public trialDataDetail = [] 
 
@@ -57,11 +53,9 @@ export class DetailsDataComponent implements OnInit {
   }
 
   public async GetTrialDataDetails() {
-    this.params.trialType = this.trialType;
-    // console.log(this.params)
-    await this.dataDetailsService.GetTrialDataDetails(this.params,this.materialId).then((res: any) => {
+    await this.dataDetailsService.GetTrialDataDetails(this.materialId).then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
+      // console.log(this.trialDataDetail)
     })    
   }
 
