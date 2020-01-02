@@ -1,0 +1,34 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>试验名称</th>
+            <th>试验设备</th>
+            <th>溶液类别</th>
+            <th>试验时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.testName }}</td>
+            <td>{{ data.device }}</td>
+            <td>{{ data.liquorType }}</td>
+            <td>{{ data.date }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-table>
+        <thead>
+          <tr>
+            <th>应力（MPa）</th>
+            <th>开裂时间（h）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.stress }}</td>
+            <td>{{ data.hour }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

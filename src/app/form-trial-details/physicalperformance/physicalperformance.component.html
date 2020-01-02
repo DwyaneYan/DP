@@ -1,0 +1,50 @@
+<div id="dataTable">
+    <nz-table >
+        <thead>
+          <tr>
+            <th>维氏硬度（HV）</th>
+            <th>布氏硬度（HBW）</th>
+            <th>洛氏硬度（HRC）</th>
+            <th>密度ρ（g/cm3）</th>
+            <th>电阻率ρ（Ω·m）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.HV }}</td>
+            <td>{{ data.HBW }}</td>
+            <td>{{ data.HRC}}</td>
+            <td>{{ data.density}}</td>
+            <td>{{ data.resistivity}}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table >
+        <thead>
+          <tr>
+            <th>温度（℃）</th>
+            <th>热膨胀系数α（1/℃）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.temperatureRange}}</td>
+            <td>{{ data.thermalExpansion }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table >
+        <thead>
+          <tr>
+            <th>温度（℃）</th>
+            <th>导热系数λ（W/(cm゜C)）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.temperature}}</td>
+            <td>{{ data.thermalConductivity }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+</div>

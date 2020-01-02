@@ -1,0 +1,22 @@
+#dataTable{
+    position: absolute;
+    left:28%;
+    top: 160px;
+  
+}
+.table-borders {
+    width:200px;
+    height:70px;
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 6px;
+
+}
+.table-border  {
+    text-align:center;
+    padding:8px;
+    border-bottom: 1px solid rgb(225, 225, 225);
+}
+.wyyy {
+    text-align:center;
+    padding:8px;
+}

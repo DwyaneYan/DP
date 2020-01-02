@@ -1,0 +1,72 @@
+<div id="dataTable">
+    <table border="1 ">
+        <tr>
+            <td><div class="headerLeft">试验类型</div></td>
+            <td><div class="headerLeft"></div></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>焊机类别</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>焊机型号</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>电极头前端直径</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>电极压力</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>脉冲次数</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>预压时间</td>
+            <td></td>
+        </tr>        
+        <tr class="headerLeft">
+            <td>升压时间</td>
+            <td></td>
+        </tr>        
+        <tr class="headerLeft">
+            <td>最小焊接时间</td>
+            <td></td>
+        </tr>       
+         <tr class="headerLeft">
+            <td>中值焊接时间</td>
+            <td></td>
+        </tr>        
+        <tr class="headerLeft">
+            <td>最大焊接时间</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>保压时间</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>临界焊点直径</td>
+            <td></td>
+        </tr>
+    </table><br>
+        <nz-table >
+            <thead>
+              <tr>
+                <th>左边界电流（kA）</th>
+                <th>右边界电流（kA）</th>
+                <th>焊接时间(ms)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of trialDataDetail" >
+                <td>{{ data.leftBoundaryElectric }}</td>
+                <td>{{ data.rightBoundaryElectric }}</td>
+                <td>{{ data.weldingTimes}}</td>
+              </tr>
+            </tbody>        
+          </nz-table> 
+</div>

@@ -53,15 +53,15 @@ export class PageDisplayComponent implements OnInit {
         })})
       }   
       )
-      console.log(this.mater)
+
   }
 
   public async GetTrialItemByMaterialId(materialId) {
-    console.log(materialId);
+
     this.getTrialParams.Materiald = this.materialId;
     await this.displayService.GetTrialItemByMaterialId(this.getTrialParams).then((res: any) => {
       this.listTrial = res;
-      console.log(this.listTrial);
+
     })
   }
   

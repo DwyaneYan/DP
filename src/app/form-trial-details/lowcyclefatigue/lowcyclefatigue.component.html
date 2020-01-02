@@ -1,0 +1,96 @@
+<div id="dataTable">
+    <nz-table id="dataTabless" >
+        <thead>
+          <tr>
+            <th>循环应变比</th>
+            <th>是否使用引伸计</th>
+            <th>引伸计规格</th>
+            <th>表面质量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.cyclicStrainRatio }}</td>
+            <td>{{ data.useExtensometer }}</td>
+            <td>{{ data.extensometerGaugeDistance }}</td>
+            <td>{{ data.surfaceQuality }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+        <nz-table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>测试编号</th>
+              <th>总应变幅Δεt/2，mm/mm </th>
+              <th>塑性应变幅Δεp/2，mm/mm</th>
+              <th>弹性应变幅Δεe/2，mm/mm</th>
+              <th>失效循环数Nf，次</th>
+              <th>循环应力幅Δσ/2，MPa</th>
+              <th>试验频率Hz</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of trialDataDetail" >
+              <td>{{ data.serialNumber }}</td>
+              <td>{{ data.sampleCode }}</td>
+              <td>{{ data.totalStrainAmplitude }}</td>
+              <td>{{ data.plasticStrainAmplitude }}</td>
+              <td>{{ data.elasticStrainAmplitude }}</td>
+              <td>{{ data.failureCycleTimes }}</td>
+              <td>{{ data.cycleStressAmplitude }}</td>
+              <td>{{ data.testFrequency}}</td>
+            </tr>
+          </tbody>        
+        </nz-table> 
+        <nz-table id="dataTabless">
+            <thead>
+              <tr>
+                <th>循环强度系数Κ＇/MPa</th>
+                <th>循环应变硬化指数n＇</th>
+                <th>相关系数r </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of trialDataDetail" >
+                <td>{{ data.cyclicStrengthParameter }}</td>
+                <td>{{ data.cyclicStrainHardening }}</td>
+                <td>{{ data.relatedSressParameter }}</td>
+              </tr>
+            </tbody>        
+          </nz-table> 
+          <nz-table id="dataTabless">
+            <thead>
+              <tr>
+                <th>疲劳强度系数</th>
+                <th>疲劳强度指数</th>
+                <th>相关系数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of trialDataDetail" >
+                <td>{{ data.fatigueStrengthParameter}}</td>
+                <td>{{ data.fatigueStrength }}</td>
+                <td>{{ data.relatedLifeFatigueParameter}}</td>
+              </tr>
+            </tbody>        
+          </nz-table> 
+          <nz-table id="dataTabless">
+            <thead>
+              <tr>
+                <th>疲劳延性系数</th>
+                <th>疲劳延性指数</th>
+                <th>相关系数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of trialDataDetail" >
+                <td>{{ data.fatigueStrechParameter}}</td>
+                <td>{{ data.fatigueStrech }}</td>
+                <td>{{ data.relatedLifeStrechParameter}}</td>
+              </tr>
+            </tbody>        
+          </nz-table> 
+  
+  </div>
+  

@@ -1,0 +1,17 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>次应变</th>
+            <th>主应变</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.secondaryStrain }}</td>
+            <td>{{ data.mainStrain }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+</div>
