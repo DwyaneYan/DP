@@ -1,0 +1,34 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>BH值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.BH }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-table>
+        <thead>
+          <tr>
+            <th>烘烤温度及时间</th>
+            <th>Rt2.0(MPa</th>
+            <th>Rp0.2(MPa)</th>
+            <th>Rm(MPa)</th>
+            <th>BH2(MPa)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.temperatureTimes }}</td>
+            <td>{{ data.Rt }}</td>
+            <td>{{ data.Rp }}</td>
+            <td>{{ data.Rm }}</td>
+            <td>{{ data.BH2 }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

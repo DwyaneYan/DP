@@ -1,0 +1,36 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>面积（m2）</th>
+            <th>初始重量（g）</th>
+            <th>试验后重量（g）</th>
+            <th>膜重（g/mm2）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.area }}</td>
+            <td>{{ data.originalWeight }}</td>
+            <td>{{ data.afterWeight }}</td>
+            <td>{{ data.membraneWeight }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-table >
+        <thead>
+          <tr>
+            <th colspan="2">Ra（μm）</th>
+            <th colspan="2">RPC（个/cm）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.raOne }}</td>
+            <td>{{ data.raTwo }}</td>
+            <td>{{ data.rPCOne }}</td>
+            <td>{{ data.rPCTwo }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

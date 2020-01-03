@@ -30,17 +30,6 @@ export class FormExperimentalItemComponent implements OnInit {
   //用来给详情组件传递试验类型
   public trialType = 90
 
-  listOfData = [
-    {
-      key: '1',
-      trademark: 'DC01',
-      thickness: '1.2mm',
-      manufacturer: '邯钢',
-      standard: 'GB/288-2010',
-      date: '2018.5.12'
-
-    }
-  ];
 
   constructor(
     private experimentalItem: ExperimentalItemService,

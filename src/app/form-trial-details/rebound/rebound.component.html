@@ -1,0 +1,48 @@
+<div id="dataTable">
+    <table border="1 ">
+        <tr>
+            <td><div class="headerLeft">试验类型</div></td>
+            <td><div class="headerLeft"></div></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>弯曲角度</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>凸模圆角半径R</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>试样尺寸</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>试验速度</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>保持压力</td>
+            <td></td>
+        </tr>
+        <tr class="headerLeft">
+            <td>保持时间</td>
+            <td></td>
+        </tr>
+    </table>
+    <nz-table>
+        <thead>
+          <tr>
+            <th>凸模圆角半径R（mm）</th>
+            <th>弯曲角度（°）</th>
+            <th>回弹角度（°）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.punchFilletRadius }}</td>
+            <td>{{ data.bendingAngle }}</td>
+            <td>{{ data.reboundAngle }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

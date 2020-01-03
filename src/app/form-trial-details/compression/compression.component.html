@@ -1,0 +1,20 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>样件编号</th>
+            <th>抗压强度</th>
+            <th>规定非比例压缩强度</th>
+            <th>压缩弹性模量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.sampleCode }}</td>
+            <td>{{ data.compressiveStrength }}</td>
+            <td>{{ data.nonProportionalCompressStrenth }}</td>
+            <td>{{ data.compressOfElasticity }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
