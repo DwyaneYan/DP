@@ -64,6 +64,12 @@ import { FLDComponent } from './form-trial-details/fld/fld.component';
 import { ReboundComponent } from './form-trial-details/rebound/rebound.component';
 import { BakeHardeningComponent } from './form-trial-details/bake-hardening/bake-hardening.component';
 import { PaintingComponent } from './form-trial-details/painting/painting.component';
+import { StaticTensionHomeComponent } from './form-trial-details/static-tension-home/static-tension-home.component';
+import { StaticTensionTableComponent } from './form-trial-details/static-tension-home/static-tension-table/static-tension-table.component';
+import { StaticTensionPictureComponent } from './form-trial-details/static-tension-home/static-tension-picture/static-tension-picture.component';
+import { BendingHomeComponent } from './form-trial-details/bending-home/bending-home.component';
+import { BendingTableComponent } from './form-trial-details/bending-home/bending-table/bending-table.component';
+import { BendingPictureComponent } from './form-trial-details/bending-home/bending-picture/bending-picture.component';
 
 
 
@@ -122,6 +128,12 @@ import { PaintingComponent } from './form-trial-details/painting/painting.compon
     ReboundComponent,
     BakeHardeningComponent,
     PaintingComponent,
+    StaticTensionHomeComponent,
+    StaticTensionTableComponent,
+    StaticTensionPictureComponent,
+    BendingHomeComponent,
+    BendingTableComponent,
+    BendingPictureComponent,
 
   ],
   imports: [

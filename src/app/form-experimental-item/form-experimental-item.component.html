@@ -9,8 +9,9 @@
                 <nz-divider></nz-divider>
             </li>
             <li nz-submenu nzTitle="理化性能" nzOpen="true">
-                <ul *ngFor="let item of pacpList">
-                    <li nz-menu-item><a [routerLink]="['/display',materialId ,item.trialType]" (click)="GiveParams(item.trialType)">{{item.name}}</a></li>
+                <ul >
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'static-tension-home']">弯曲</a></li>
                 </ul>
             </li>
             <li nz-submenu nzTitle="工艺性能">

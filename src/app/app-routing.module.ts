@@ -19,6 +19,10 @@ import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart
 import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
 import { FormMateriaListComponent } from './form-materia-list/form-materia-list.component';
 import { PageDisplayComponent } from './page-display/page-display.component';
+import { StaticTensionHomeComponent } from './form-trial-details/static-tension-home/static-tension-home.component'
+import { StaticTensionTableComponent } from './form-trial-details/static-tension-home/static-tension-table/static-tension-table.component'
+import { StaticTensionPictureComponent } from './form-trial-details/static-tension-home/static-tension-picture/static-tension-picture.component'
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
@@ -26,23 +30,17 @@ const routes: Routes = [
   { path: 'material', component: PageMaterialComponent},
   { path: 'material', component: PageMaterialComponent},
   { path: 'display/:materialId', component:PageDisplayComponent,},
-  { path: 'display/:materialId/:trialType', component:PageDisplayComponent,},
-
-
-
-
-  {
-    path: 'display-home/:materialId', component: PageDisplayhomeComponent,
-    children: [
-      { path: 'display-table', component: PageDisplayTableComponent },
-      { path: 'display-picture', component: PageDisplayPictureComponent },
-      { path: 'display-report', component: PageDisplayReportComponent },
-      { path: 'display-typical-part', component: PageDisplayTypicalPartComponent },
-      { path: '', redirectTo: 'display-table', pathMatch: 'full'}
-    ]
+  // { path: 'display/:materialId/:trialType', component:PageDisplayComponent,},
+  { 
+    path: 'display/:materialId/static-tension-home', component: StaticTensionHomeComponent,
+    children:[
+      { path: 'table', component: StaticTensionTableComponent },
+      { path: 'picture', component: StaticTensionPictureComponent },
+      { path: '', redirectTo: 'table', pathMatch: 'full'}
+    ]  
   },
 
-  
+
 
 
   { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
