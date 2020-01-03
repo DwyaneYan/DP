@@ -49,16 +49,15 @@ export class FormExperimentalItemComponent implements OnInit {
   ) { } 
 
   ngOnInit() {
-    console.log(this.materialId)
+    // console.log(this.materialId)
     // this.GetTrialItemByMaterialId(this.materialId)
     // this.PutTrialItem()
-    console.log(this.listTrial);
-    this.GetTrialItemByMaterialId(this.materialId)
+    // console.log(this.listTrial);
+    this.GetTrialItemByMaterialId()
 }
 
-  public async GetTrialItemByMaterialId(materialId) {
-    this.params.Materiald = this.materialId;
-    await this.experimentalItem.GetTrialItemByMaterialId(this.params).then((res: any) => {
+  public async GetTrialItemByMaterialId() {    
+    await this.experimentalItem.GetTrialItemByMaterialId(this.materialId).then((res: any) => {
       this.listTrial = res;
     })
     // console.log(this.listTrial)
