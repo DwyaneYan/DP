@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BendingHomeComponent } from './bending-home.component';
+import { BaseInfoComponent } from './base-info.component';
 
-describe('BendingHomeComponent', () => {
-  let component: BendingHomeComponent;
-  let fixture: ComponentFixture<BendingHomeComponent>;
+describe('BaseInfoComponent', () => {
+  let component: BaseInfoComponent;
+  let fixture: ComponentFixture<BaseInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BendingHomeComponent ]
+      declarations: [ BaseInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BendingHomeComponent);
+    fixture = TestBed.createComponent(BaseInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

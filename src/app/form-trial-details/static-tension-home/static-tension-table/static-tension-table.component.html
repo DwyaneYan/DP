@@ -1,1 +1,28 @@
-<h1>static-tension-table works!</h1>
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>屈服强度Rp(MPa)</th>
+            <th>抗拉强度Rm(MPa)</th>
+            <th>应变硬化指数(n)</th>
+            <th>断后伸长率A(％)</th>
+            <th>塑性应变比γ(%)</th>
+            <th>弹性模量E(MPa)</th>
+            <th>泊松比μ</th>
+            <th>最大力Fm(kN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.yieldStrength }}</td>
+            <td>{{ data.tensileStrength }}</td>
+            <td>{{ data.strainHardening }}</td>
+            <td>{{ data.elongation }}</td>
+            <td>{{ data.plasticStrainRatio }}</td>
+            <td>{{ data.modulusOfElasticity }}</td>
+            <td>{{ data.poissonRatio }}</td>
+            <td>{{ data.maximumForce }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

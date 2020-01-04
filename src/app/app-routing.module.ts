@@ -22,6 +22,9 @@ import { PageDisplayComponent } from './page-display/page-display.component';
 import { StaticTensionHomeComponent } from './form-trial-details/static-tension-home/static-tension-home.component'
 import { StaticTensionTableComponent } from './form-trial-details/static-tension-home/static-tension-table/static-tension-table.component'
 import { StaticTensionPictureComponent } from './form-trial-details/static-tension-home/static-tension-picture/static-tension-picture.component'
+import { BendingComponent } from './form-trial-details/bending/bending.component';
+import { BendingTableComponent } from './form-trial-details/bending/bending-table/bending-table.component';
+import { BendingPictureComponent } from './form-trial-details/bending/bending-picture/bending-picture.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,12 +33,25 @@ const routes: Routes = [
   { path: 'material', component: PageMaterialComponent},
   { path: 'material', component: PageMaterialComponent},
   { path: 'display/:materialId', component:PageDisplayComponent,},
-  // { path: 'display/:materialId/:trialType', component:PageDisplayComponent,},
+
+  { path: 'display/:materialId', component:PageDisplayComponent,},
+
+
+
   { 
     path: 'display/:materialId/static-tension-home', component: StaticTensionHomeComponent,
     children:[
       { path: 'table', component: StaticTensionTableComponent },
       { path: 'picture', component: StaticTensionPictureComponent },
+      { path: '', redirectTo: 'table', pathMatch: 'full'}
+    ]  
+  },
+
+  { 
+    path: 'display/:materialId/bending', component: BendingComponent,
+    children:[
+      { path: 'table', component: BendingTableComponent },
+      { path: 'picture', component: BendingPictureComponent },
       { path: '', redirectTo: 'table', pathMatch: 'full'}
     ]  
   },

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailsNavigateComponent } from './details-navigate.component';
+import { BendingNavigateComponent } from './bending-navigate.component';
 
-describe('DetailsNavigateComponent', () => {
-  let component: DetailsNavigateComponent;
-  let fixture: ComponentFixture<DetailsNavigateComponent>;
+describe('BendingNavigateComponent', () => {
+  let component: BendingNavigateComponent;
+  let fixture: ComponentFixture<BendingNavigateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailsNavigateComponent ]
+      declarations: [ BendingNavigateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailsNavigateComponent);
+    fixture = TestBed.createComponent(BendingNavigateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
