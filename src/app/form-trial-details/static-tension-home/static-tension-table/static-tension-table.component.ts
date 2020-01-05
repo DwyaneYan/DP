@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-static-tension-table',
@@ -7,9 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaticTensionTableComponent implements OnInit {
 
-  constructor() { }
+  public materialId
+
+  //存放查到的静态拉伸详情
+  public trialDataDetail = [] 
+
+
+  constructor(
+    private route: ActivatedRoute,
+    public http: HttpClient,
+
+  ) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.materialId = params.get('materialId');
+      this.materialId = 'a24f1204-9d48-4b76-b623-87671a25f4ef'
+      })
+      // console.log(this.materialId)
+
+    this.GetTrialDataDetails()
+  }
+
+  public async GetTrialDataDetails() {
+    let materialId = this.materialId
+    let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetails/${materialId}`;
+    await this.http.get(api)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetail = res
+      // console.log(this.trialDataDetail)
+    })    
   }
 
 }

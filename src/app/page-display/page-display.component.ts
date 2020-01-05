@@ -42,7 +42,7 @@ export class PageDisplayComponent implements OnInit {
   this.ma.id=this.materialId
     this.displayService.Getmaterial(this.ma).then((res: any) => {
       this.thematerial = res.items;
-      console.log(this.thematerial)
+      // console.log(this.thematerial)
        this.thematerial.forEach((val, i, array) =>{
         this.mater.push({
           name: val.name,
