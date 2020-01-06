@@ -23,12 +23,9 @@ export class FormExperimentalItemComponent implements OnInit {
 
 
   //存放实验项目目录树中要展示的值
-  public pacpList = []    //理化性能
-  public processingList = []   //工艺性能
+
   public trialTypeList = [] //试验类型列表,用于标记路由
 
-  //用来给详情组件传递试验类型
-  public trialType = 90
 
 
   constructor(
@@ -50,26 +47,11 @@ export class FormExperimentalItemComponent implements OnInit {
     await this.experimentalItem.GetTrialItemByMaterialId(this.params).then((res: any) => {
       this.listTrial = res;
     })
-    // console.log(this.listTrial)
-    this.listTrial.forEach((val, i) => {
-      this.trialTypeList.push(val.trialType)
-      if (val.parentName == "理化性能") {
-        this.pacpList.push(val)
-      }
-      else {
-        this.processingList.push(val)
-      }      
+    this.listTrial.forEach((val) => {
+      this.trialTypeList.push( {
+        trialType:val.trialType         
     })
+  });console.log(this.trialTypeList)
 
-    // console.log(this.trialTypeList)
   }
-
-  public GiveParams(params){
-    this.trialType = params;
-  }
-
-
-
-
-
 }

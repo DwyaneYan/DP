@@ -4,3 +4,10 @@
     top: 160px;
   
 }
+table{
+    border:rgb(143, 141, 141) 3px;
+}
+#tr{
+    width:200px;
+    height:60px
+}

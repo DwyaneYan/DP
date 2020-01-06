@@ -27,10 +27,9 @@ export class PageDisplayComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
     this.materialId = params.get('materialId');
     })
-    // console.log(this.materialId);
+    console.log(this.materialId);
     this.GetTrialItemByMaterialId(this.materialId)
-    this.Thematerial()
-    // this.PutTrialItem()    
+    this.Thematerial() 
   }
 
   public thematerial=[];
@@ -42,7 +41,6 @@ export class PageDisplayComponent implements OnInit {
   this.ma.id=this.materialId
     this.displayService.Getmaterial(this.ma).then((res: any) => {
       this.thematerial = res.items;
-      console.log(this.thematerial)
        this.thematerial.forEach((val, i, array) =>{
         this.mater.push({
           name: val.name,
@@ -53,15 +51,11 @@ export class PageDisplayComponent implements OnInit {
         })})
       }   
       )
-
   }
-
   public async GetTrialItemByMaterialId(materialId) {
-
     this.getTrialParams.Materiald = this.materialId;
     await this.displayService.GetTrialItemByMaterialId(this.getTrialParams).then((res: any) => {
       this.listTrial = res;
-
     })
   }
   

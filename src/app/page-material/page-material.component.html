@@ -1,5 +1,4 @@
 <app-form-material-db-background></app-form-material-db-background>
-
 <div id="materialType">
     <div class="material-class" *ngFor="let item of materialType; index as typeIndex">
         <h4 class="class-name">{{item.name}}</h4>
@@ -8,10 +7,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 <div id="limit">
     <div class="row">
         生产厂家 :  
@@ -19,9 +14,7 @@
             <span class="limit-tag" (click)="filtrationManufacturers(item) " [class.selected]="params.manufactoryId == item.id"> {{item.name}} </span>
          </span>
     </div>
-
     <hr />
-
     <div class="row">
         型号规格 :
         <span *ngFor="let item of listModel">
@@ -30,12 +23,9 @@
         <span class="limit-tag">
             <input class="input-box" type="text" [(ngModel)]='params.minModel' (blur)="filtrationMinModel($event)" >~
             <input class="input-box" type="text" [(ngModel)]='params.maxModel' (blur)="filtrationMaxModel($event)">mm
-        </span>
-        
+        </span>       
     </div>
-
     <hr />
-
     <div class="row" >  
         屈服强度 :
         <span *ngFor="let item of listStrength ">
@@ -47,38 +37,22 @@
             <input class="input-box" type="text" [(ngModel)]='params.MinStrenth' (blur)="filtrationMinStrength($event)" >~
             <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth' (blur)="filtrationMaxStrength($event)">MPa
         </span>
-    </div>
-    
+    </div>    
     <hr />
-
     <button id="clear-btn" (click)="clear()">清除筛选</button>
-
 </div>
-
-
-
-
 <div id="list">
-
     <div id="title">
         <h3 id="cllb"> <strong>材料列表</strong></h3>
-
         <a routerLink="/material-floating-box">
             <div class="text">添加材料对比</div>
         </a>
-
         <div class="image"><img src="../../assets/images/add.png" alt=""></div>
-
         <div class="text">批量导出</div>
-
         <div class="image"><img src="../../assets/images/export.png" alt=""></div>
-
     </div>
-
     <hr class="solid-hr" />
-
     <div id="table">
         <app-form-material-list [data]="material"></app-form-material-list>
     </div>
-
 </div>

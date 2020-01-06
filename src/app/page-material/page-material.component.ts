@@ -159,12 +159,9 @@ export class PageMaterialComponent implements OnInit {
       }
 
     ]
-
   //#region 限制条件字段
-
   //厂家
   public listManufacturers = []
-
   //型号规格
   public listModel = [
     {
@@ -180,7 +177,6 @@ export class PageMaterialComponent implements OnInit {
       value: '2.0',
     },
   ]
-
   //屈服强度
   public listStrength = 
   [
@@ -241,7 +237,6 @@ export class PageMaterialComponent implements OnInit {
     MaxStrenth: "", //最大屈服强度
     MinStrenth: "", //最小屈服强度
   }
-
   constructor(
     private materialService: MaterialServiceService,    //实例化材料服务
     public http: HttpClient,
@@ -250,8 +245,6 @@ export class PageMaterialComponent implements OnInit {
   ngOnInit() {
     this.getGetManufacturers();
   }
-
-
   //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
   public async getGetManufacturers() {
     await this.materialService.GetManufacturers().then((res: any) => {
@@ -259,7 +252,6 @@ export class PageMaterialComponent implements OnInit {
       this.listManufacturers = res.items;
       // console.log(this.listManufacturers)
     });
-
   }
   //#region 获取筛选条件并 发送查询请求
   //材料分类  
