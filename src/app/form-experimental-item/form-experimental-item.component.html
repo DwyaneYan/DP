@@ -10,7 +10,7 @@
             </li>
             <li nz-submenu nzTitle="理化性能" >
                 <ul>
-                    <li nz-menu-item> <a [routerLink]="['/display',materialId,90]">静态拉伸</a></li>
+                    <li nz-menu-item> <a [routerLink]="['/display',materialId,'static-tension-home']">静态拉伸</a></li>
                 </ul>
                 <ul>
                     <li nz-menu-item>弯曲</li>
@@ -79,26 +79,5 @@
                 </ul>
             </li>
         </ul>
-    </div>
-    <div class="table-border">
-        <table >
-            <thead>
-                <tr class="tr1">
-                    <td>材料牌号</td>
-                    <td>厚度</td>
-                    <td>生产厂家</td>
-                    <td>送样日期</td>
-                </tr>
-
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of mater">
-                    <td>{{ data.name }}</td>
-                    <td>{{ data.thickness}}</td>
-                    <td>{{data.manufacture}}</td>
-                    <td>{{data.date}}</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

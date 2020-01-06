@@ -31,12 +31,7 @@ const routes: Routes = [
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
-  { path: 'material', component: PageMaterialComponent},
   { path: 'display/:materialId', component:PageDisplayComponent,},
-
-  { path: 'display/:materialId', component:PageDisplayComponent,},
-
-
 
   { 
     path: 'display/:materialId/static-tension-home', component: StaticTensionHomeComponent,
