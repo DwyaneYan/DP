@@ -10,36 +10,9 @@ export class DetailsDataComponent implements OnInit {
   @Input() materialId
   @Input() trialType
 
-
   //存放查到的试验数据详情
   public trialDataDetail = [] 
 
-
-  //#region 表格控件
-
-  listOfData = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
-  //#endregion
-  
-  
   constructor(
     private dataDetailsService: DetailsDataService,
   ) { }
@@ -47,9 +20,6 @@ export class DetailsDataComponent implements OnInit {
   ngOnInit() {
     // console.log(this.materialId,this.trialType)
     this.GetTrialDataDetails()
-
-
-
   }
 
   public async GetTrialDataDetails() {
@@ -58,9 +28,6 @@ export class DetailsDataComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
-
-  
-
 
 
 }

@@ -28,7 +28,6 @@ export class DisplayService {
     .catch(err=>{
       console.log(err)
     });
-    // console.log(res)
   return res
     }
   
