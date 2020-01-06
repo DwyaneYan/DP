@@ -25,7 +25,7 @@ export class StaticTensionTableComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.materialId = params.get('materialId');
-      this.materialId = 'a24f1204-9d48-4b76-b623-87671a25f4ef'
+      this.materialId = 'dab512c9-34b4-4c78-8e12-4a6459ed6c23'
       })
       // console.log(this.materialId)
 

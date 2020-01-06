@@ -39,7 +39,7 @@ export class BaseInfoComponent implements OnInit {
     .then((res:any)=>{
       this.baseInfo = res.items
     })
-    console.log(this.baseInfo)
+    // console.log(this.baseInfo)
     this.mater.push({
       name:this.baseInfo[0].name,
       manufacture:this.baseInfo[0].manufactoryName,
