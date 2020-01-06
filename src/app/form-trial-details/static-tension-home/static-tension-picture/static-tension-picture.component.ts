@@ -10,8 +10,11 @@ export class StaticTensionPictureComponent implements OnInit {
 
   materialId = 'dab512c9-34b4-4c78-8e12-4a6459ed6c23'
   trialDataDetail
-  public xCoordinate=[]
-  public yCoordinate=[]
+
+  public data=[]
+
+  //echarts绘图
+  options:any;
 
   constructor(
     public http: HttpClient,
@@ -38,9 +41,19 @@ export class StaticTensionPictureComponent implements OnInit {
     console.log(data)
 
       data.forEach((val, i) =>{
-      this.xCoordinate.push(val.stress);
-      this.yCoordinate.push(val.strain);
+      this.data.push([val.stress,val.strain]);
     })
-    console.log(this.xCoordinate,this.yCoordinate)
+    console.log(this.data)
+    this.options = {
+      xAxis: {},
+      yAxis: {},
+      series: [{
+          symbolSize: 20,
+          data: this.data,
+          type: 'line'
+      }]
+    };
+
   }
 }
+
