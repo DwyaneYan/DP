@@ -8,74 +8,32 @@
                 <div class="titlee"> <a routerLink='/material-trial'>实验项目</a> </div>
                 <nz-divider></nz-divider>
             </li>
-            <li nz-submenu nzTitle="理化性能" >
-                <ul>
-                    <li nz-menu-item> <a [routerLink]="['/display',materialId,'static-tension-home']">静态拉伸</a></li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>弯曲</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>压缩</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>高速拉伸</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>低周疲劳</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>高周疲劳</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>金相</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>物理性能</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>化学成分</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>禁用物质</li>
-                </ul>
-                <ul>
-                    <li nz-menu-item>表面性能</li>
+            <li nz-submenu nzTitle="理化性能" nzOpen="true">
+                <ul >
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">压缩</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">高速拉伸</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">低周疲劳</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">高周疲劳</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">金相</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">物理性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">化学成分</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">禁用物质</a></li>
                 </ul>
             </li>
             <li nz-submenu nzTitle="工艺性能">
-                <ul >                   
-                    <li nz-menu-item>抗凹性能</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>二次加工脆性</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>翻边扣合性能</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>焊接性能</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>铆接性能</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>胶结性能</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>氢致延迟开裂</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>成型极限</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>回弹性能</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>烘烤硬化</li>
-                </ul>
-                <ul >                   
-                    <li nz-menu-item>涂装性能</li>
+                <ul>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">抗凹性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">二次加工脆性</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">翻遍扣合性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">氢致延迟开裂</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">焊接性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">胶结性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">涂装性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">成型极限FLD</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">回弹性能</a></li>
+                    <li nz-menu-item><a [routerLink]="['/display',materialId ,'bending']">烘烤硬化</a></li>
                 </ul>
             </li>
         </ul>
