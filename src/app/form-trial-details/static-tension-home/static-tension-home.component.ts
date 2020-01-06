@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-bending',
-  templateUrl: './bending.component.html',
-  styleUrls: ['./bending.component.css']
+  selector: 'app-static-tension-home',
+  templateUrl: './static-tension-home.component.html',
+  styleUrls: ['./static-tension-home.component.css']
 })
-export class BendingComponent implements OnInit {
+export class StaticTensionHomeComponent implements OnInit {
 
   public materialId
 

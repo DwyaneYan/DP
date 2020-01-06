@@ -12,7 +12,7 @@ export class ExperimentalItemService {
 
   async GetTrialItemByMaterialId(params){
     // console.log(params)
-    let materialId = params.Materiald
+    let materialId = params
     let api = `http://localhost:60001/api/hangang/materialTrial/trialItemByMaterialId/${materialId}`
     let res = await this.http.get(api)
     .toPromise()

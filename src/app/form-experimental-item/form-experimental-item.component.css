@@ -35,29 +35,3 @@
     width: 15%;
 }
 
-.table-border {
-    height: 70px;
-    width: 80%;
-    border: 1px solid rgb(225, 225, 225);
-    border-radius: 6px;
-    position: absolute;
-    left: 17%;
-    top: 0px;
-}
-
-table {
-    color: rgb(138, 134, 134);
-    background-color: #ffffff;
-    width: 99.9%;
-    height: 90%;
-    font-size: 14px;
-    font-family: "Microsoft YaHei", Arial, Verdana;
-    line-height: 28px;
-    text-align: center;
-    border-collapse: collapse;
-    margin: 4px auto;
-}
-
-.tr1 {
-    border-bottom: 1px solid rgb(225, 225, 225);
-}

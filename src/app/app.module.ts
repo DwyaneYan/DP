@@ -26,7 +26,6 @@ import { FormNavigationComponent } from './form-navigation/form-navigation.compo
 import { FormMaterialDbBackgroundComponent } from './form-material-db-background/form-material-db-background.component';
 import { FormExperimentalItemComponent } from './form-experimental-item/form-experimental-item.component';
 import { FormMaterialListComponent } from './form-material-list/form-material-list.component';
-import { FormDisplayNavigationComponent } from './form-display-navigation/form-display-navigation.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormLoginDialogComponent } from './form-login-dialog/form-login-dialog.component';
 import { FormCascaderOptionComponent } from './form-cascader-option/form-cascader-option.component';
@@ -43,7 +42,6 @@ import { FormMateriaListComponent } from './form-materia-list/form-materia-list.
 import { PageDisplayComponent } from './page-display/page-display.component';
 import { FormTrialDetailsComponent } from './form-trial-details/form-trial-details.component';
 import { DetailsDataComponent } from './form-trial-details/details-data/details-data.component';
-import { DetailsNavigateComponent } from './form-trial-details/details-navigate/details-navigate.component';
 import { BendingComponent } from './form-trial-details/bending/bending.component';
 import { CompressionComponent } from './form-trial-details/compression/compression.component';
 import { HighspeedstrechComponent } from './form-trial-details/highspeedstrech/highspeedstrech.component';
@@ -64,6 +62,14 @@ import { FLDComponent } from './form-trial-details/fld/fld.component';
 import { ReboundComponent } from './form-trial-details/rebound/rebound.component';
 import { BakeHardeningComponent } from './form-trial-details/bake-hardening/bake-hardening.component';
 import { PaintingComponent } from './form-trial-details/painting/painting.component';
+import { StaticTensionHomeComponent } from './form-trial-details/static-tension-home/static-tension-home.component';
+import { StaticTensionTableComponent } from './form-trial-details/static-tension-home/static-tension-table/static-tension-table.component';
+import { StaticTensionPictureComponent } from './form-trial-details/static-tension-home/static-tension-picture/static-tension-picture.component';
+import { BendingTableComponent } from './form-trial-details/bending/bending-table/bending-table.component';
+import { BendingPictureComponent } from './form-trial-details/bending/bending-picture/bending-picture.component';
+import { StaticTensionNavigateComponent } from './form-trial-details/static-tension-home/static-tension-navigate/static-tension-navigate.component';
+import { BaseInfoComponent } from './form-trial-details/base-info/base-info.component';
+import { BendingNavigateComponent } from './form-trial-details/bending/bending-navigate/bending-navigate.component';
 
 
 
@@ -85,7 +91,6 @@ import { PaintingComponent } from './form-trial-details/painting/painting.compon
     FormMaterialDbBackgroundComponent,
     FormExperimentalItemComponent,
     FormMaterialListComponent,
-    FormDisplayNavigationComponent,
     FormLoginDialogComponent,
     FormCascaderOptionComponent,
     FormMaterialListFakeComponent,
@@ -101,7 +106,6 @@ import { PaintingComponent } from './form-trial-details/painting/painting.compon
     PageDisplayComponent,
     FormTrialDetailsComponent,
     DetailsDataComponent,
-    DetailsNavigateComponent,
     BendingComponent,
     CompressionComponent,
     HighspeedstrechComponent,
@@ -122,6 +126,14 @@ import { PaintingComponent } from './form-trial-details/painting/painting.compon
     ReboundComponent,
     BakeHardeningComponent,
     PaintingComponent,
+    StaticTensionHomeComponent,
+    StaticTensionTableComponent,
+    StaticTensionPictureComponent,
+    BendingTableComponent,
+    BendingPictureComponent,
+    StaticTensionNavigateComponent,
+    BaseInfoComponent,
+    BendingNavigateComponent,
 
   ],
   imports: [

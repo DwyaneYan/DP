@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailsNavigateComponent } from './details-navigate.component';
+import { StaticTensionHomeComponent } from './static-tension-home.component';
 
-describe('DetailsNavigateComponent', () => {
-  let component: DetailsNavigateComponent;
-  let fixture: ComponentFixture<DetailsNavigateComponent>;
+describe('StaticTensionHomeComponent', () => {
+  let component: StaticTensionHomeComponent;
+  let fixture: ComponentFixture<StaticTensionHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailsNavigateComponent ]
+      declarations: [ StaticTensionHomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailsNavigateComponent);
+    fixture = TestBed.createComponent(StaticTensionHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -48,6 +48,8 @@ export class PageDisplayComponent implements OnInit {
           thickness: val.model,
           typicalPart:val.typicalPartName,
           date:val.date,          
+
+    
         })})
       }   
       )
