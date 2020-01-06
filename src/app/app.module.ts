@@ -70,6 +70,7 @@ import { BendingPictureComponent } from './form-trial-details/bending/bending-pi
 import { StaticTensionNavigateComponent } from './form-trial-details/static-tension-home/static-tension-navigate/static-tension-navigate.component';
 import { BaseInfoComponent } from './form-trial-details/base-info/base-info.component';
 import { BendingNavigateComponent } from './form-trial-details/bending/bending-navigate/bending-navigate.component';
+import { BendingHomeComponent } from './form-trial-details/bending-home/bending-home.component';
 
 
 
@@ -134,6 +135,7 @@ import { BendingNavigateComponent } from './form-trial-details/bending/bending-n
     StaticTensionNavigateComponent,
     BaseInfoComponent,
     BendingNavigateComponent,
+    BendingHomeComponent,
 
   ],
   imports: [
