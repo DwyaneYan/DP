@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bending',
@@ -12,12 +12,13 @@ export class BendingComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.materialId = params.get('materialId');
-      })
+    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
   }
 
 }

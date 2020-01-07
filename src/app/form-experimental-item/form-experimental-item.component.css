@@ -1,6 +1,11 @@
 * {
     font-family: "Microsoft YaHei", Arial, Verdana;
 }
+.menu-table{
+    position: absolute;
+    left: 20px;
+    top: 30px;
+}
 
 [nz-menu] {
     width: 100%;

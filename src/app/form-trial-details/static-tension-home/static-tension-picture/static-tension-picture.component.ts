@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-static-tension-picture',
@@ -8,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class StaticTensionPictureComponent implements OnInit {
 
-  materialId = 'dab512c9-34b4-4c78-8e12-4a6459ed6c23'
+  materialId 
   trialDataDetail
 
   public data=[]
@@ -18,10 +19,15 @@ export class StaticTensionPictureComponent implements OnInit {
 
   constructor(
     public http: HttpClient,
+    private router: Router,
 
   ) { }
 
   ngOnInit() {
+    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
+    
     this.GetTrialDataDetails()
     
   }
@@ -38,12 +44,12 @@ export class StaticTensionPictureComponent implements OnInit {
   }
 
   public PlotPicture(data){
-    console.log(data)
+    // console.log(data)
 
       data.forEach((val, i) =>{
       this.data.push([val.stress,val.strain]);
     })
-    console.log(this.data)
+    // console.log(this.data)
     this.options = {
       xAxis: {},
       yAxis: {},

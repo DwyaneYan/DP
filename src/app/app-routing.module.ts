@@ -88,33 +88,46 @@ const routes: Routes = [
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
-  { path: 'display/:materialId', component:PageDisplayComponent},
 
-  { 
-    path: 'display/:materialId/static-tension-home', component: StaticTensionHomeComponent,
+  { path: 'display/:materialId', component:PageDisplayComponent,
     children:[
-      { path: 'table', component: StaticTensionTableComponent },
-      { path: 'picture', component: StaticTensionPictureComponent },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
 
-  { 
-    path: 'display/:materialId/bending', component: BendingComponent,
-    children:[
-      { path: 'table', component: BendingTableComponent },
-      { path: 'picture', component: BendingPictureComponent },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/compression', component:CompressionComponent,
-    children:[
-      { path: 'table', component: CompressionTableComponent },
-      { path: 'picture', component: CompressionPictureComponent  },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
+      {
+        path: 'static-tension-home', component: StaticTensionHomeComponent,
+        children:[
+          { path: 'table', component: StaticTensionTableComponent },
+          { path: 'picture', component: StaticTensionPictureComponent },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+
+      { 
+        path: 'bending', component: BendingComponent,
+        children:[
+          { path: 'table', component: BendingTableComponent },
+          { path: 'picture', component: BendingPictureComponent },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+
+      { 
+        path: 'compression', component:CompressionComponent,
+        children:[
+          { path: 'table', component: CompressionTableComponent },
+          { path: 'picture', component: CompressionPictureComponent  },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+
+
+      { path: '', redirectTo: 'static-tension-home', pathMatch: 'full'}
+
+  ]},
+
+  
+
+ 
+  
   { 
     path: 'display/:materialId/highspeedstrech', component:HighspeedstrechComponent,
     children:[

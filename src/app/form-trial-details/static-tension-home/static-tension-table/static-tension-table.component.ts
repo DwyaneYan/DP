@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-static-tension-table',
@@ -17,16 +16,14 @@ export class StaticTensionTableComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute,
     public http: HttpClient,
-
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.materialId = params.get('materialId');
-      this.materialId = 'dab512c9-34b4-4c78-8e12-4a6459ed6c23'
-      })
+    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
       // console.log(this.materialId)
 
     this.GetTrialDataDetails()
