@@ -1,20 +1,10 @@
-<div id="dataTable">
-    <nz-table>
-        <thead>
-          <tr>
-            <th>样件编号</th>
-            <th>抗压强度</th>
-            <th>规定非比例压缩强度</th>
-            <th>压缩弹性模量</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.sampleCode }}</td>
-            <td>{{ data.compressiveStrength }}</td>
-            <td>{{ data.nonProportionalCompressStrenth }}</td>
-            <td>{{ data.compressOfElasticity }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
-</div>
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<app-compression-navigate [materialId]="materialId"></app-compression-navigate>
+
+<app-base-info [materialId]="materialId"></app-base-info>
+
+<router-outlet></router-outlet>   
+
+<app-form-experimental-item [materialId]="materialId"></app-form-experimental-item>

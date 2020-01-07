@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ExperimentalItemService } from './experimental-item.service'
-import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -9,13 +9,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./form-experimental-item.component.css']
 })
 export class FormExperimentalItemComponent implements OnInit {
-
   @Input() materialId
-  @Input() mater
-
   constructor(
     private experimentalItem: ExperimentalItemService,
-    private route: ActivatedRoute,
+
 
   ) { } 
 

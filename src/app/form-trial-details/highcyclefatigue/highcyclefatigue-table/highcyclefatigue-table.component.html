@@ -1,0 +1,61 @@
+<div id="dataTable">
+    <nz-table >
+        <thead>
+          <tr>
+            <th>循环应力比</th>
+            <th>是否使用引伸计</th>
+            <th>引伸计规格</th>
+            <th>表面质量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.cyclicStressRatio }}</td>
+            <td>{{ data.useExtensometer }}</td>
+            <td>{{ data.extensometerGaugeDistance }}</td>
+            <td>{{ data.surfaceQuality }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>样件编号</th>
+            <th>最大应力/MPa</th>
+            <th>应力幅/MPa</th>
+            <th>循环次数/周次</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.serialNumber }}</td>
+            <td>{{ data.sampleCode }}</td>
+            <td>{{ data.maximumStress}}</td>
+            <td>{{ data.stressAmplitude}}</td>
+            <td>{{ data.testFrequency}}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table>
+        <thead>
+          <tr>
+            <th>参数a</th>
+            <th>参数b</th>
+            <th>相关系数</th>
+            <th>疲劳极限/MPa</th>
+            <th>标准偏差/MPa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.sNAParameter }}</td>
+            <td>{{ data.sNBParameter }}</td>
+            <td>{{ data.sNRelatedParameter}}</td>
+            <td>{{ data.fatigueLimitStrength}}</td>
+            <td>{{ data.standardDeviation}}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+</div>
+

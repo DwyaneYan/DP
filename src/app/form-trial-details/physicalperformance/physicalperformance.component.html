@@ -1,44 +1,10 @@
-<div id="dataTable">
-    <table border="" cellpadding="10px">
-          <tr>
-            <th id="tr">维氏硬度（HV）</th>
-            <td>444</td>
-          </tr>
-          <tr>
-            <th>布氏硬度（HV）</th>
-            <td>4</td>
-          </tr>
-          <tr>
-            <th>布氏硬度（HV）</th>
-            <td>4</td>
-          </tr>  
-        </table> <br>
-      <nz-table nzBordered>
-        <thead>
-          <tr>
-            <th>温度（℃）</th>
-            <th>热膨胀系数α（1/℃）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.temperatureRange}}</td>
-            <td>{{ data.thermalExpansion }}</td>
-          </tr>
-        </tbody>        
-      </nz-table> 
-      <nz-table >
-        <thead>
-          <tr>
-            <th>温度（℃）</th>
-            <th>导热系数λ（W/(cm゜C)）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.temperature}}</td>
-            <td>{{ data.thermalConductivity }}</td>
-          </tr>
-        </tbody>        
-      </nz-table> 
-</div>
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<app-physicalperformance-navigate [materialId]="materialId"></app-physicalperformance-navigate>
+
+<app-base-info [materialId]="materialId"></app-base-info>
+
+<router-outlet></router-outlet>   
+
+<app-form-experimental-item [materialId]="materialId"></app-form-experimental-item>
