@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-prohibited-substance',
   templateUrl: './prohibited-substance.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProhibitedSubstanceComponent implements OnInit {
 
-  constructor() { }
+  public materialId
+  constructor(    private route: ActivatedRoute,) { }
 
-  ngOnInit() {
+  ngOnInit() {    this.route.paramMap.subscribe(params => {
+    this.materialId = params.get('materialId');
+    })
   }
 
 }

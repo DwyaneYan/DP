@@ -1,16 +1,10 @@
-<div id="dataTable">
-    <nz-table>
-        <thead>
-          <tr>
-            <th>元素名称</th>
-            <th>含量</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.name }}</td>
-            <td>{{ data.contentRatio }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
-</div>
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<app-prohibited-substance-navigate [materialId]="materialId"></app-prohibited-substance-navigate>
+
+<app-base-info [materialId]="materialId"></app-base-info>
+
+<router-outlet></router-outlet>   
+
+<app-form-experimental-item [materialId]="materialId"></app-form-experimental-item>

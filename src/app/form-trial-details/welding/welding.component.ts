@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-welding',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welding.component.css']
 })
 export class WeldingComponent implements OnInit {
+  public materialId
 
-  constructor() { }
+  constructor(    private route: ActivatedRoute,) { }
 
-  ngOnInit() {
+  ngOnInit() {    this.route.paramMap.subscribe(params => {
+    this.materialId = params.get('materialId');
+    })
   }
 
 }

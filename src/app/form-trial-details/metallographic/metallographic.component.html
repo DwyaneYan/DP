@@ -1,20 +1,10 @@
-<div id="dataTable">
-    <nz-table >
-        <thead>
-          <tr>
-            <th>金相组织</th>
-            <th>非金属夹杂（级）</th>
-            <th>晶粒度（级）</th>
-            <th>脱碳层深度（mm)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.structure }}</td>
-            <td>{{ data.nonMetallicInclusionLevel }}</td>
-            <td>{{ data.grainSize}}</td>
-            <td>{{ data.depthDecarburization }}</td>
-          </tr>
-        </tbody>        
-      </nz-table> 
-</div>
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<app-metallographic-navigate [materialId]="materialId"></app-metallographic-navigate>
+
+<app-base-info [materialId]="materialId"></app-base-info>
+
+<router-outlet></router-outlet>   
+
+<app-form-experimental-item [materialId]="materialId"></app-form-experimental-item>

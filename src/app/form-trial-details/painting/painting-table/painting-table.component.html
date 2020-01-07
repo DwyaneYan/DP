@@ -1,0 +1,133 @@
+<div id="dataTable">
+    <nz-table >
+        <thead>
+          <tr>
+            <th>磷化膜结晶尺寸</th>
+            <th>磷化膜覆盖率</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.SizeText }}</td>
+            <td>{{ data.CoverRatio }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table >
+        <thead>
+          <tr>
+            <th>面积（m2）</th>
+            <th>初始重量（g）</th>
+            <th>试验后重量（g）</th>
+            <th>膜重（g/m2）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.Area }}</td>
+            <td>{{ data.OriginalWeight }}</td>
+            <td>{{ data.AfterWeight }}</td>
+            <td>{{ data.MembraneWeight }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table >
+        <thead>
+          <tr>
+            <th>Ip（s-1）</th>
+            <th>IH（s-1）</th>
+            <th>P比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.Ip }}</td>
+            <td>{{ data.IH }}</td>
+            <td>{{ data.Ratio }}</td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table >
+        <thead>
+          <tr>
+            <th colspan="3">电泳漆膜厚度（μm）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  >
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>        
+      </nz-table> 
+      <nz-table >
+        <thead>
+          <tr>
+            <th >电泳漆膜铅笔硬度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  >
+            <td></td>
+          </tr>
+        </tbody>        
+      </nz-table>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th colspan="3">Ra（μm）</th>
+            <th colspan="3">Rz（μm）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </nz-table><br><br>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th>抗石击性能</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  >
+            <td></td>
+          </tr>
+        </tbody>
+      </nz-table><br><br>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th colspan="3">附着力</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  >
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </nz-table><br><br><br>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false" >
+        <thead>
+          <tr>
+            <th colspan="3">耐湿热性能</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  >
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
+

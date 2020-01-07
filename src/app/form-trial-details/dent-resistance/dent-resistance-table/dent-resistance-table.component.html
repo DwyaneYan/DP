@@ -1,0 +1,34 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>初始刚度(N/mm)</th>
+            <th>0.1mm可见凹痕载荷(N)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.originalRigidity }}</td>
+            <td>{{ data.visibleDentLoad }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <br>
+      <div id="one">一次加载曲线</div><br><br><br>
+      <div id="one">循环加载曲线</div><br><br><br>
+      <div id="one">凹痕深度载荷曲线</div><br><br>
+      <nz-table>
+        <thead>
+          <tr>
+            <th>次应变</th>
+            <th>主应变</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.secondaryStrain }}</td>
+            <td>{{ data.mainStrain }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

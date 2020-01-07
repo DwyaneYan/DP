@@ -1,0 +1,60 @@
+<div id="dataTable">
+    <div class="table-borders">
+              <div class="table-border">取样方向</div>
+              <div class="wyyy" *ngFor="let data of trialDataDetail">{{ data.direction }}</div>
+            </div>
+        <br>
+        <nz-table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>测试指标</th>
+              <th>测试编号</th>
+              <th>样品真实厚度t/mm</th>
+              <th>标距段宽度w/mm</th>
+              <th>屈服强度(MPa)</th>
+              <th>抗拉强度(MPa)</th>
+              <th>断后伸长率(%)</th>
+              <th>拉伸速度(m/s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of trialDataDetail" >
+              <td>{{ data.serialNumber }}</td>
+              <td>{{ data.testTarget }}</td>
+              <td>{{ data.sampleCode }}</td>
+              <td>{{ data.thickness }}</td>
+              <td>{{ data.gaugeDistance }}</td>
+              <td>{{ data.yieldStrength }}</td>
+              <td>{{ data.tensileStrength }}</td>
+              <td>{{ data.elongation }}</td>
+              <td>{{ data.stretchingSpeed}}</td>
+            </tr>
+          </tbody>        
+        </nz-table> 
+        <br>
+        <nz-table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>工程应力</th>
+              <th>工程应变</th>
+              <th>真应力</th>
+              <th>真应变</th>
+              <th>真塑性应力</th>
+              <th>真塑性应变</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of trialDataDetail" >
+              <td>{{ data.serialNumber }}</td>
+              <td>{{ data.engineeringStress }}</td>
+              <td>{{ data.engineeringStrain }}</td>
+              <td>{{ data.realStress  }}</td>
+              <td>{{ data.realStrain }}</td>
+              <td>{{ data.realPlasticStress }}</td>
+              <td>{{ data.realPlasticStrain }}</td>
+            </tr>
+          </tbody>        
+        </nz-table> 
+  </div>

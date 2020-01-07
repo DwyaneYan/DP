@@ -1,23 +1,10 @@
-<div id="dataTable">
-    <nz-table>
-        <thead>
-          <tr>
-            <th>试验温度</th>
-            <th>1号杯</th>
-            <th>2号杯</th>
-            <th>3号杯</th>
-            <th>4号杯</th>
-            <th>5号杯</th>
-            <th>6号杯</th>
-            <th>7号杯</th>
-            <th>8号杯</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.name }}</td>
-            <td>{{ data.contentRatio }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
-</div>
+
+<app-form-material-db-background></app-form-material-db-background>
+
+<app-secondary-working-embrittlement-navigate [materialId]="materialId"></app-secondary-working-embrittlement-navigate>
+
+<app-base-info [materialId]="materialId"></app-base-info>
+
+<router-outlet></router-outlet>   
+
+<app-form-experimental-item [materialId]="materialId"></app-form-experimental-item>

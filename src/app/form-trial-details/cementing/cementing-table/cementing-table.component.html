@@ -1,0 +1,36 @@
+<div id="dataTable">
+    <nz-table>
+        <thead>
+          <tr>
+            <th>样件编号</th>
+            <th>样品长度</th>
+            <th>试样宽度</th>
+            <th>胶结宽度b(mm)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.sampleCode }}</td>
+            <td>{{ data.length }}</td>
+            <td>{{ data.width }}</td>
+            <td>{{ data.cementingWidth }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-table>
+        <thead>
+          <tr>
+            <th>样件编号</th>
+            <th>剪切强度Rp(MPa)</th>
+            <th>失效模式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trialDataDetail" >
+            <td>{{ data.sampleCode }}</td>
+            <td>{{ data.mPA }}</td>
+            <td>{{ data.failureMode }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
