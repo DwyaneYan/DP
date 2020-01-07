@@ -2,31 +2,31 @@
     <table border="1 ">
         <tr>
             <td><div class="headerLeft">试验类型</div></td>
-            <td><div class="headerLeft"></div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.punchFilletRadius }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>弯曲角度</td>
-            <td></td>
+        <tr >
+            <td><div class="headerLeft">弯曲角度</div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.bendingAngleRange }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>凸模圆角半径R</td>
-            <td></td>
+        <tr >
+            <td><div class="headerLeft">凸模圆角半径R</div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.punchFilletRadiusRange}}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>试样尺寸</td>
-            <td></td>
+        <tr >
+            <td><div class="headerLeft">试样尺寸</div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.sampleSize }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>试验速度</td>
-            <td></td>
+        <tr>
+            <td><div class="headerLeft">试验速度</div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.testSpeed }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>保持压力</td>
-            <td></td>
+        <tr>
+            <td><div class="headerLeft">保持压力</div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.holdStress }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>保持时间</td>
-            <td></td>
+        <tr >
+            <td><div class="headerLeft">保持时间</div></td>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.holdTimes}}</div></td>
         </tr>
     </table>
     <nz-table>
@@ -38,7 +38,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
+          <tr *ngFor="let data of trialDataDetails" >
             <td>{{ data.punchFilletRadius }}</td>
             <td>{{ data.bendingAngle }}</td>
             <td>{{ data.reboundAngle }}</td>

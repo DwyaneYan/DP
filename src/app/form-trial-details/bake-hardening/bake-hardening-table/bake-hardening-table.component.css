@@ -1,7 +1,10 @@
 #dataTable{
     position: absolute;
     left:30%;
-top:320px;
+    top: 160px;
     width: auto;
     
+}
+#dataTabless{
+    width:18%
 }

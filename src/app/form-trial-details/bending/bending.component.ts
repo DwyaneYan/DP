@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-bending',
@@ -11,7 +11,7 @@ export class BendingComponent implements OnInit {
   public materialId
 
   constructor(
-    private route: ActivatedRoute,
+   
     private router: Router,
   ) { }
 

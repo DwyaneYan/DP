@@ -91,7 +91,6 @@ const routes: Routes = [
 
   { path: 'display/:materialId', component:PageDisplayComponent,
     children:[
-
       {
         path: 'static-tension-home', component: StaticTensionHomeComponent,
         children:[
@@ -100,7 +99,6 @@ const routes: Routes = [
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
       },
-
       { 
         path: 'bending', component: BendingComponent,
         children:[
@@ -118,150 +116,153 @@ const routes: Routes = [
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
       },
-
-
+      { 
+        path: 'highspeedstrech', component:HighspeedstrechComponent,
+        children:[
+          { path: 'table', component: HighspeedstrechTableComponent},
+          { path: 'picture', component: HighspeedstrechPictureComponent   },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      }, 
+       { 
+        path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
+        children:[
+          { path: 'table', component:  LowcyclefatigueTableComponent},
+          { path: 'picture', component:  LowcyclefatiguePictureComponent    },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'highcyclefatigue', component:HighcyclefatigueComponent,
+        children:[
+          { path: 'table', component:  HighcyclefatigueTableComponent},
+          { path: 'picture', component:  HighcyclefatiguePictureComponent     },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'metallographic', component:MetallographicComponent,
+        children:[
+          { path: 'table', component:  MetallographicTableComponent },
+          { path: 'picture', component:  MetallographicPictureComponent     },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'physicalperformance', component: PhysicalperformanceComponent,
+        children:[
+          { path: 'table', component:  PhysicalperformanceTableComponent },
+          { path: 'picture', component:  PhysicalperformancePictureComponent     },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'chemicalelement', component:ChemicalelementComponent,
+        children:[
+          { path: 'table', component: ChemicalelementTableComponent},
+          { path: 'picture', component:  ChemicalelementPictureComponent    },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'prohibited-substance', component:ProhibitedSubstanceComponent,
+        children:[
+          { path: 'table', component: ProhibitedSubstanceTableComponent},
+          { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      }, 
+      { 
+        path: 'dent-resistance', component:DentResistanceComponent,
+        children:[
+          { path: 'table', component: DentResistanceTableComponent },
+          { path: 'picture', component:  DentResistancePictureComponent  },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
+        children:[
+          { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent},
+          { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'flanging-clasp', component:FlangingClaspComponent,
+        children:[
+          { path: 'table', component: FlangingClaspTableComponent},
+          { path: 'picture', component:  FlangingClaspPictureComponent   },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
+        children:[
+          { path: 'table', component: HydrogenInducedDelayedFractureTableComponent },
+          { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'welding', component:WeldingComponent,
+        children:[
+          { path: 'table', component: WeldingTableComponent },
+          { path: 'picture', component:  WeldingPictureComponent   },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'cementing', component:CementingComponent ,
+        children:[
+          { path: 'table', component:CementingTableComponent },
+          { path: 'picture', component:  CementingPictureComponent     },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'painting', component:PaintingComponent ,
+        children:[
+          { path: 'table', component:PaintingTableComponent},
+          { path: 'picture', component:  PaintingPictureComponent   },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'fld', component:FLDComponent ,
+        children:[
+          { path: 'table', component:FldTableComponent },
+          { path: 'picture', component:  FldPictureComponent     },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'rebound', component:ReboundComponent ,
+        children:[
+          { path: 'table', component:ReboundTableComponent },
+          { path: 'picture', component:  ReboundPictureComponent     },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'bake-hardening', component:BakeHardeningComponent  ,
+        children:[
+          { path: 'table', component: BakeHardeningTableComponent  },
+          { path: 'picture', component:  BakeHardeningPictureComponent  },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
+      { 
+        path: 'surface-property', component:SurfacePropertyComponent   ,
+        children:[
+          { path: 'table', component: SurfacePropertyTableComponent },
+          { path: 'picture', component:  SurfacePropertyPictureComponent  },
+          { path: '', redirectTo: 'table', pathMatch: 'full'}
+        ]  
+      },
       { path: '', redirectTo: 'static-tension-home', pathMatch: 'full'}
 
   ]},
-
-  
-
- 
-  
-  { 
-    path: 'display/:materialId/highspeedstrech', component:HighspeedstrechComponent,
-    children:[
-      { path: 'table', component: HighspeedstrechTableComponent},
-      { path: 'picture', component: HighspeedstrechPictureComponent   },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/lowcyclefatigue', component:LowcyclefatigueComponent,
-    children:[
-      { path: 'table', component:  LowcyclefatigueTableComponent},
-      { path: 'picture', component:  LowcyclefatiguePictureComponent    },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/highcyclefatigue', component:HighcyclefatigueComponent,
-    children:[
-      { path: 'table', component:  HighcyclefatigueTableComponent},
-      { path: 'picture', component:  HighcyclefatiguePictureComponent     },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/metallographic', component:MetallographicComponent,
-    children:[
-      { path: 'table', component:  MetallographicTableComponent },
-      { path: 'picture', component:  MetallographicPictureComponent     },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/physicalperformance', component: PhysicalperformanceComponent,
-    children:[
-      { path: 'table', component:  PhysicalperformanceTableComponent },
-      { path: 'picture', component:  PhysicalperformancePictureComponent     },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/chemicalelement', component:ChemicalelementComponent,
-    children:[
-      { path: 'table', component: ChemicalelementTableComponent},
-      { path: 'picture', component:  ChemicalelementPictureComponent    },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/prohibited-substance', component:ProhibitedSubstanceComponent,
-    children:[
-      { path: 'table', component: ProhibitedSubstanceTableComponent},
-      { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  }, { 
-    path: 'display/:materialId/dent-resistance', component:DentResistanceComponent,
-    children:[
-      { path: 'table', component: DentResistanceTableComponent },
-      { path: 'picture', component:  DentResistancePictureComponent  },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  }, { 
-    path: 'display/:materialId/secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
-    children:[
-      { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent},
-      { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  }, { 
-    path: 'display/:materialId/flanging-clasp', component:FlangingClaspComponent,
-    children:[
-      { path: 'table', component: FlangingClaspTableComponent},
-      { path: 'picture', component:  FlangingClaspPictureComponent   },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
-    children:[
-      { path: 'table', component: HydrogenInducedDelayedFractureTableComponent },
-      { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/welding', component:WeldingComponent,
-    children:[
-      { path: 'table', component: WeldingTableComponent },
-      { path: 'picture', component:  WeldingPictureComponent   },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/cementing', component:CementingComponent ,
-    children:[
-      { path: 'table', component:CementingTableComponent },
-      { path: 'picture', component:  CementingPictureComponent     },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/painting', component:PaintingComponent ,
-    children:[
-      { path: 'table', component:PaintingTableComponent},
-      { path: 'picture', component:  PaintingPictureComponent   },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/fld', component:FLDComponent ,
-    children:[
-      { path: 'table', component:FldTableComponent },
-      { path: 'picture', component:  FldPictureComponent     },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/cementing', component:ReboundComponent ,
-    children:[
-      { path: 'table', component:ReboundTableComponent },
-      { path: 'picture', component:  ReboundPictureComponent     },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },{ 
-    path: 'display/:materialId/bake-hardening', component:BakeHardeningComponent  ,
-    children:[
-      { path: 'table', component: BakeHardeningTableComponent  },
-      { path: 'picture', component:  BakeHardeningPictureComponent  },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
-  { 
-    path: 'display/:materialId/surface-property', component:SurfacePropertyComponent   ,
-    children:[
-      { path: 'table', component: SurfacePropertyTableComponent },
-      { path: 'picture', component:  SurfacePropertyPictureComponent  },
-      { path: '', redirectTo: 'table', pathMatch: 'full'}
-    ]  
-  },
 
   { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
   { path: 'contrast', component:PageConstractComponent},

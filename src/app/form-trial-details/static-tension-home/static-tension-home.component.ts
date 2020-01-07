@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-static-tension-home',
@@ -12,7 +12,7 @@ export class StaticTensionHomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+
   ) { }
 
   ngOnInit() {

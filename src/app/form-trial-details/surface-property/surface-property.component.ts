@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-surface-property',
   templateUrl: './surface-property.component.html',
@@ -7,11 +7,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SurfacePropertyComponent implements OnInit {
   public materialId
-  constructor(    private route: ActivatedRoute,) { }
 
-  ngOnInit() {    this.route.paramMap.subscribe(params => {
-    this.materialId = params.get('materialId');
-    })
+  constructor(
+    private router: Router,
+
+  ) { }
+
+  ngOnInit() {
+    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
+    // console.log(this.materialId)
   }
 
 }

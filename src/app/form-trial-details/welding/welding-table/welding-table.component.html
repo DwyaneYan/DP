@@ -1,56 +1,58 @@
 <div id="dataTable">
     <table border="1 ">
         <tr>
-            <td><div class="headerLeft">试验类型</div></td>
-            <td><div class="headerLeft"></div></td>
+            <th><div class="headerLeft">试验类型</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.testType }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>焊机类别</td>
-            <td></td>
+        <tr >
+            <th class="headerLeft">焊机类别</th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.welderType }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>焊机型号</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">焊机型号</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.welderMode }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>电极头前端直径</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">电极头前端直径</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.headDiameter  }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>电极压力</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">电极压力</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.electrodePressure   }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>脉冲次数</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">脉冲次数</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.pulseTimes    }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>预压时间</td>
-            <td></td>
+        <tr>
+            <th> <div class="headerLeft">预压时间</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.preloadingTimes  }}</div></td>
         </tr>        
-        <tr class="headerLeft">
-            <td>升压时间</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">升压时间</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.boostTimes }}</div></td>
         </tr>        
-        <tr class="headerLeft">
-            <td>最小焊接时间</td>
-            <td></td>
+        <tr>
+            <th><div class="headerLeft">最小焊接时间</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.minimumWeldingTimes }}</div></td>
         </tr>       
-         <tr class="headerLeft">
-            <td>中值焊接时间</td>
-            <td></td>
+         <tr >
+            <th><div class="headerLeft">中值焊接时间</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.middleWeldingTimes }}</div></td>
         </tr>        
-        <tr class="headerLeft">
-            <td>最大焊接时间</td>
-            <td></td>
+        <tr>
+            <th><div class="headerLeft">最大焊接时间</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.maxmumWeldingTimes }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>保压时间</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">保压时间</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data.holdingWeldingTimes }}</div></td>
         </tr>
-        <tr class="headerLeft">
-            <td>临界焊点直径</td>
-            <td></td>
+        <tr >
+            <th><div class="headerLeft">临界焊点直径</div></th>
+            <td><div class="headerLeft" *ngFor="let data of trialDataDetail">{{ data. criticalJointDiameter }}</div></td>
+        </tr>
+        <tr >
         </tr>
     </table><br>
         <nz-table >
@@ -62,7 +64,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of trialDataDetail" >
+              <tr *ngFor="let data of trialDataDetails" >
                 <td>{{ data.leftBoundaryElectric }}</td>
                 <td>{{ data.rightBoundaryElectric }}</td>
                 <td>{{ data.weldingTimes}}</td>

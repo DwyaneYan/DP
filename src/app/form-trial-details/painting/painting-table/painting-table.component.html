@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
+          <tr *ngFor="let data of trialDataDetails" >
             <td>{{ data.Area }}</td>
             <td>{{ data.OriginalWeight }}</td>
             <td>{{ data.AfterWeight }}</td>
@@ -40,7 +40,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
+          <tr *ngFor="let data of trialDataDetailss" >
             <td>{{ data.Ip }}</td>
             <td>{{ data.IH }}</td>
             <td>{{ data.Ratio }}</td>
@@ -54,10 +54,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr  *ngFor="let data of trialDataDetailsss">
+            <td>{{ data.pointThickOne  }}</td>
+            <td>{{ data.pointThickTwo}}</td>
+            <td>{{ data.pointThickThree }}</td>
           </tr>
         </tbody>        
       </nz-table> 
@@ -68,8 +68,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
+          <tr  *ngFor="let data of trialDataDetailssss" >
+            <td>{{ data.pointHardness  }}</td>
           </tr>
         </tbody>        
       </nz-table>
@@ -81,11 +81,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr  *ngFor="let data of trialDataDetailsssss" >
+            <td>{{ data.raOne }}</td>
+            <td>{{ data. raTwo  }}</td>
+            <td>{{ data.raThree  }}</td>
+            <td>{{ data.rzOne  }}</td>
+            <td>{{ data.rzTwo  }}</td>
+            <td>{{ data.rzThree  }}</td>
           </tr>
         </tbody>
       </nz-table><br><br>
@@ -96,8 +98,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
+          <tr *ngFor="let data of trialDataDetailssssss"  >
+            <td>{{ data. pointStrength }}</td>
           </tr>
         </tbody>
       </nz-table><br><br>
@@ -108,10 +110,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let data of trialDataDetailsssssss"   >
+            <td>{{ data. pointAdhesionOne  }}</td>
+            <td>{{ data. pointAdhesionTwo  }}</td>
+            <td>{{ data. pointAdhesionThree }}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -122,10 +124,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let data of trialDataDetailssssssss"  >
+            <td>{{ data. pointOne  }}</td>
+            <td>{{ data. pointTwo }}</td>
+            <td>{{ data. pointThree  }}</td>
           </tr>
         </tbody>
       </nz-table>

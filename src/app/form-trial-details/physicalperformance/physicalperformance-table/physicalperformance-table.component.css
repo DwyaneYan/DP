@@ -1,8 +1,9 @@
 #dataTable{
     position: absolute;
-    left:28%;
+    left:30%;
     top: 160px;
-  
+    width: auto;
+    
 }
 table{
     border:rgb(143, 141, 141) 3px;

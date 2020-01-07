@@ -1,16 +1,24 @@
 <div id="dataTable">
     <table border="" cellpadding="10px">
-          <tr>
+          <tr >
             <th id="tr">维氏硬度（HV）</th>
-            <td>444</td>
+            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.hV}}</td>
           </tr>
-          <tr>
-            <th>布氏硬度（HV）</th>
-            <td>4</td>
+          <tr >
+            <th id="tr">布氏硬度（HV）</th>
+            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.hBW}}</td>
           </tr>
-          <tr>
-            <th>布氏硬度（HV）</th>
-            <td>4</td>
+          <tr >
+            <th id="tr">洛氏硬度（HV）</th>
+            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.hRC}}</td>
+          </tr>  
+          <tr >
+            <th id="tr">密度ρ（g/cm3）</th>
+            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.density }}</td>
+          </tr>  
+          <tr >
+            <th id="tr"> 电阻率ρ（Ω·m）</th>
+            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.resistivity}}</td>
           </tr>  
         </table> <br>
       <nz-table nzBordered>
@@ -21,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
+          <tr *ngFor="let data of trialDataDetailss" >
             <td>{{ data.temperatureRange}}</td>
             <td>{{ data.thermalExpansion }}</td>
           </tr>
@@ -35,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of trialDataDetail" >
+          <tr *ngFor="let data of trialDataDetails" >
             <td>{{ data.temperature}}</td>
             <td>{{ data.thermalConductivity }}</td>
           </tr>

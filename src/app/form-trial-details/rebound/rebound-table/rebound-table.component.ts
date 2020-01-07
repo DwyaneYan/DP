@@ -1,15 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-rebound-table',
   templateUrl: './rebound-table.component.html',
   styleUrls: ['./rebound-table.component.css']
 })
 export class ReboundTableComponent implements OnInit {
-
-  constructor() { }
+  public materialId
+  trialDataDetail
+  trialDataDetails
+  constructor(  private router: Router,
+    public http: HttpClient,) { }
 
   ngOnInit() {
+    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
+    this.GetTrialDataDetails();
+    this.GetTrialDataDetailss();
   }
-
+  public async GetTrialDataDetails() {
+    let materialId = this.materialId
+    let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetails/${materialId}`;
+    await this.http.get(api)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetail = res
+      // console.log(this.trialDataDetail)
+    })    
+  }
+  public async GetTrialDataDetailss() {
+    let materialId = this.materialId
+    let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems/${materialId}`;
+    await this.http.get(api)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetails = res
+      // console.log(this.trialDataDetail)
+    })    
+  }
 }

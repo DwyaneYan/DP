@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welding',
@@ -9,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 export class WeldingComponent implements OnInit {
   public materialId
 
-  constructor(    private route: ActivatedRoute,) { }
+  constructor(     private router: Router,) { }
 
-  ngOnInit() {    this.route.paramMap.subscribe(params => {
-    this.materialId = params.get('materialId');
-    })
+  ngOnInit() {    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
+
   }
 
 }

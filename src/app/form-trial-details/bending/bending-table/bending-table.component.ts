@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http';
+import {Router } from '@angular/router';
 @Component({
   selector: 'app-bending-table',
   templateUrl: './bending-table.component.html',
@@ -13,12 +13,14 @@ export class BendingTableComponent implements OnInit {
 
   constructor(
     public http: HttpClient,
-
+    private router: Router,
   ) { }
 
   ngOnInit(   
   ) {
-    this.materialId = 'dab512c9-34b4-4c78-8e12-4a6459ed6c23'
+    this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
     this.GetTrialDataDetails()
   }
 

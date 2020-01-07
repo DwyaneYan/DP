@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router } from '@angular/router';
 @Component({
   selector: 'app-bake-hardening-picture',
   templateUrl: './bake-hardening-picture.component.html',
   styleUrls: ['./bake-hardening-picture.component.css']
 })
 export class BakeHardeningPictureComponent implements OnInit {
+  public materialId
+  constructor(private router: Router,) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {   this.materialId = this.router
+    .routerState.root.firstChild
+    .snapshot.paramMap.get('materialId');
   }
 
 }
