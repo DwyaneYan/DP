@@ -250,7 +250,10 @@ export class PageMaterialComponent implements OnInit {
   ) { }
   ngOnInit() {    
   this.route.paramMap.subscribe(param => {
-    this.params.Name = param.get('materialName');
+    let materialName = param.get('materialName');
+    if (materialName){ //从搜索跳转过来
+      this.params.Name = param.get('materialName');
+    }
     })
     console.log(this.params.Name);
     
