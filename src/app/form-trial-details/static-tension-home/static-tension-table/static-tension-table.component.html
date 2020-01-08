@@ -1,17 +1,17 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false">
-      <thead  >
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone"  nzBordered>
+      <thead >
         <tr>
-          <th id="head">样件编号</th>
-          <th id="head">标距</th>
-          <th id="head">引伸计标距</th>
-          <th id="head">规定非比例延伸率</th>
-          <th id="head">试样直径(mm)</th>
-          <th id="head">试样厚度a(mm)</th>
-          <th id="head">试样宽度b(mm)</th>
+          <th nzWidth="130px" id="head">样件编号</th>
+          <th nzWidth="100px" id="head">标距</th>
+          <th nzWidth="130px" id="head">引伸计标距</th>
+          <th nzWidth="180px" id="head">规定非比例延伸率</th>
+          <th nzWidth="100px" id="head">试样直径(mm)</th>
+          <th nzWidth="100px" id="head">试样厚度a(mm)</th>
+          <th  id="head">试样宽度b(mm)</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="head">
         <tr *ngFor="let data of trialDataDetail" >
           <td>{{ data.sampleCode }}</td>
           <td>{{ data.gaugeDistance }}</td>
@@ -22,22 +22,22 @@
           <td></td>
         </tr>
       </tbody>
-  </nz-table><br><br>
-<nz-table [nzData]=[{}] [nzFrontPagination]="false">
+  </nz-table><br><br><br><br>
+<nz-table [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="table">
 <thead >
           <tr>
-            <th>样件编号</th>
-            <th>屈服强度Rp(MPa)</th>
-            <th>抗拉强度Rm(MPa)</th>
-            <th>应变硬化指数(n)</th>
-            <th>断后伸长率A(％)</th>
-            <th>塑性应变比γ(%)</th>
-            <th>弹性模量E(MPa)</th>
-            <th>泊松比μ</th>
-            <th>最大力Fm(kN)</th>
+            <th nzWidth="130px" id="head">样件编号</th>
+            <th nzWidth="110px" id="head">屈服强度Rp(MPa)</th>
+            <th nzWidth="110px" id="head">抗拉强度Rm(MPa)</th>
+            <th nzWidth="110px" id="head">应变硬化指数(n)</th>
+            <th nzWidth="110px" id="head">断后伸长率A(％)</th>
+            <th nzWidth="110px" id="head">塑性应变比γ(%)</th>
+            <th nzWidth="110px" id="head">弹性模量E(MPa)</th>
+            <th nzWidth="90px" id="head">泊松比μ</th>
+            <th id="head" nzWidth="90px">最大力Fm(kN)</th>
           </tr>
         </thead>
-      <tbody>
+      <tbody id="head">
         <tr *ngFor="let data of trialDataDetail" >
           <td>{{ data.sampleCode }}</td>
           <td>{{ data.yieldStrength }}</td>

@@ -8,3 +8,11 @@
 #one{
     font-weight:bold
 }
+
+#head{
+    text-align:center;
+}
+#table{
+    width:350px
+}
+#tableone{width:240px}

@@ -1,19 +1,19 @@
 <div id="dataTable">
-    <nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered> 
         <thead>
           <tr>
-            <th>试验温度</th>
-            <th>1号杯</th>
-            <th>2号杯</th>
-            <th>3号杯</th>
-            <th>4号杯</th>
-            <th>5号杯</th>
-            <th>6号杯</th>
-            <th>7号杯</th>
-            <th>8号杯</th>
+            <th nzWidth="110px" id="head">试验温度</th>
+            <th nzWidth="100px" id="head">1号杯</th>
+            <th nzWidth="100px" id="head">2号杯</th>
+            <th nzWidth="100px" id="head">3号杯</th>
+            <th nzWidth="100px" id="head">4号杯</th>
+            <th nzWidth="100px" id="head">5号杯</th>
+            <th nzWidth="100px" id="head">6号杯</th>
+            <th nzWidth="100px" id="head">7号杯</th>
+            <th  id="head" nzWidth="100px">8号杯</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.name }}</td>
             <td>{{ data.contentRatio }}</td>

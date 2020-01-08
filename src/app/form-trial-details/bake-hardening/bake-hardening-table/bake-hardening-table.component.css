@@ -6,5 +6,11 @@
     
 }
 #dataTabless{
-    width:18%
+    width:120px
+}
+#head{
+    text-align:center;
+}
+#table{
+    width:750px
 }

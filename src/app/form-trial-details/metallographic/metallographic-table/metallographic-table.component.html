@@ -1,14 +1,14 @@
-<div id="dataTable">
-    <nz-table >
+<div id="dataTable" >
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
-            <th>金相组织</th>
-            <th>非金属夹杂（级）</th>
-            <th>晶粒度（级）</th>
-            <th>脱碳层深度（mm)</th>
+            <th nzWidth="150px" id="head">金相组织</th>
+            <th nzWidth="150px" id="head">非金属夹杂（级）</th>
+            <th nzWidth="150px" id="head">晶粒度（级）</th>
+            <th nzWidth="150px" id="head">脱碳层深度（mm)</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.structure }}</td>
             <td>{{ data.nonMetallicInclusionLevel }}</td>

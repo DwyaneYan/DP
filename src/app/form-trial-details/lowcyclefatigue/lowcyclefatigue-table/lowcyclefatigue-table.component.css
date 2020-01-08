@@ -5,6 +5,14 @@
     width: auto;
     
 }
-#dataTabless{
-    width:40%
+#table{
+    width:680px
 }
+#tableone{
+    width:870px
+}
+
+#head{
+    text-align:center;
+}
+#tabletwo{width:420px}

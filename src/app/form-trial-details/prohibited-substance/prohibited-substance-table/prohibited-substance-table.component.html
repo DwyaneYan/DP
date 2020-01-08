@@ -1,12 +1,12 @@
 <div id="dataTable">
-    <nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered id="table">
         <thead>
           <tr>
-            <th>元素名称</th>
-            <th>含量</th>
+            <th nzWidth="150px" id="head">元素名称</th>
+            <th nzWidth="150px" id="head">含量</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.name }}</td>
             <td>{{ data.contentRatio }}</td>

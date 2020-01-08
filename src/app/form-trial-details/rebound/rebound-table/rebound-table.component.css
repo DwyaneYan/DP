@@ -5,4 +5,12 @@
     width: auto;
     
 }
-.headerLeft { width:120px; height:30px;line-height:24px; text-align:center; }
+#head{
+    text-align:center;
+}
+#tableone{
+    width:350px
+}
+#tabletwo{
+    width:450px
+}

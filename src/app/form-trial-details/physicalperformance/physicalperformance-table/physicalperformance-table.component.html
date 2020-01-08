@@ -1,48 +1,46 @@
 <div id="dataTable">
-    <table border="" cellpadding="10px">
-          <tr >
-            <th id="tr">维氏硬度（HV）</th>
-            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.hV}}</td>
-          </tr>
-          <tr >
-            <th id="tr">布氏硬度（HV）</th>
-            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.hBW}}</td>
-          </tr>
-          <tr >
-            <th id="tr">洛氏硬度（HV）</th>
-            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.hRC}}</td>
-          </tr>  
-          <tr >
-            <th id="tr">密度ρ（g/cm3）</th>
-            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.density }}</td>
-          </tr>  
-          <tr >
-            <th id="tr"> 电阻率ρ（Ω·m）</th>
-            <td id="tr" *ngFor="let data of trialDataDetail">&nbsp;{{ data.resistivity}}</td>
-          </tr>  
-        </table> <br>
-      <nz-table nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
+    <thead>
+      <tr>
+        <th  nzWidth="150px" id="head">维氏硬度（HV）</th>
+        <th  nzWidth="150px" id="head">布氏硬度（HBW）</th>
+        <th  nzWidth="150px" id="head">洛氏硬度（HRC）</th>
+        <th  nzWidth="150px" id="head">密度ρ（g/cm3）</th>
+        <th  nzWidth="150px" id="head">电阻率ρ（Ω·m）</th>
+      </tr>
+    </thead>
+    <tbody id="head">
+      <tr *ngFor="let data of trialDataDetail" >
+        <td>{{ data.hV}}</td>
+        <td>{{ data.hBW}}</td>
+        <td>{{ data.hRC}}</td>
+        <td>{{ data.density }}</td>
+        <td>{{ data.resistivity}}</td>
+      </tr>
+    </tbody>        
+  </nz-table> <br> <br> <br>
+      <nz-table nzBordered [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo">
         <thead>
           <tr>
-            <th>温度（℃）</th>
-            <th>热膨胀系数α（1/℃）</th>
+            <th nzWidth="150px" id="head">温度（℃）</th>
+            <th nzWidth="220px" id="head">热膨胀系数α（1/℃）</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetailss" >
             <td>{{ data.temperatureRange}}</td>
             <td>{{ data.thermalExpansion }}</td>
           </tr>
         </tbody>        
-      </nz-table> 
-      <nz-table >
+      </nz-table> <br> <br> <br>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="tablethree">
         <thead>
           <tr>
-            <th>温度（℃）</th>
-            <th>导热系数λ（W/(cm゜C)）</th>
+            <th nzWidth="150px" id="head">温度（℃）</th>
+            <th nzWidth="220px" id="head">导热系数λ（W/(cm゜C)）</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetails" >
             <td>{{ data.temperature}}</td>
             <td>{{ data.thermalConductivity }}</td>

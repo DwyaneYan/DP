@@ -1,14 +1,14 @@
 <div id="dataTable">
-    <nz-table>
-        <thead>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered id="table">
+        <thead >
           <tr>
-            <th>样件编号</th>
-            <th>抗压强度</th>
-            <th>规定非比例压缩强度</th>
-            <th>压缩弹性模量</th>
+            <th nzWidth="150px" id="head">样件编号</th>
+            <th nzWidth="150px" id="head">抗压强度</th>
+            <th nzWidth="190px" id="head">规定非比例压缩强度</th>
+            <th nzWidth="150px" id="head">压缩弹性模量</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.sampleCode }}</td>
             <td>{{ data.compressiveStrength }}</td>

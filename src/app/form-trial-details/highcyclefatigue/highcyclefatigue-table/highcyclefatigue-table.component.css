@@ -3,5 +3,16 @@
     left:30%;
     top: 160px;
     width: auto;
+   
     
+}
+
+#head{
+    text-align:center;
+}
+#table{
+    width:600px
+}
+#tableone{
+    width:750px
 }

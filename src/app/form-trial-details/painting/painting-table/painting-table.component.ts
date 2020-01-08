@@ -60,7 +60,7 @@ export class PaintingTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetailss = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetailss)
     })    
   }
   public async GetTrialDataDetailssss() {

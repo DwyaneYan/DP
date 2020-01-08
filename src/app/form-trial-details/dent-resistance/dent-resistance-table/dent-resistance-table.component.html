@@ -1,30 +1,30 @@
 <div id="dataTable">
-    <nz-table>
+    <nz-table  nzBordered [nzData]=[{}] [nzFrontPagination]="false" id="table">
         <thead>
           <tr>
-            <th>初始刚度(N/mm)</th>
-            <th>0.1mm可见凹痕载荷(N)</th>
+            <th nzWidth="150px" id="head">初始刚度(N/mm)</th>
+            <th nzWidth="200px" id="head">0.1mm可见凹痕载荷(N)</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.originalRigidity }}</td>
             <td>{{ data.visibleDentLoad }}</td>
           </tr>
         </tbody>
-      </nz-table>
+      </nz-table><br><br><br>
       <br>
       <div id="one">一次加载曲线</div><br><br><br>
       <div id="one">循环加载曲线</div><br><br><br>
       <div id="one">凹痕深度载荷曲线</div><br><br>
-      <nz-table>
+      <nz-table nzBordered [nzData]=[{}] [nzFrontPagination]="false" id="tableone">
         <thead>
           <tr>
-            <th>次应变</th>
-            <th>主应变</th>
+            <th nzWidth="120px" id="head">次应变</th>
+            <th nzWidth="120px" id="head">主应变</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetails" >
             <td>{{ data.secondaryStrain }}</td>
             <td>{{ data.mainStrain }}</td>

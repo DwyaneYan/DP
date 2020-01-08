@@ -2,6 +2,10 @@
     position: absolute;
     left:30%;
     top: 160px;
-    width: auto;
-    
+}
+#head{
+    text-align:center;
+}
+#table{
+    width:640px
 }

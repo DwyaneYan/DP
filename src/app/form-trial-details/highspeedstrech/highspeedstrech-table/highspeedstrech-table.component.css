@@ -5,19 +5,12 @@
     width: auto;
     
 }
-.table-borders {
-    width:200px;
-    height:70px;
-    border: 1px solid rgb(225, 225, 225);
-    border-radius: 6px;
 
-}
-.table-border  {
+#head{
     text-align:center;
-    padding:8px;
-    border-bottom: 1px solid rgb(225, 225, 225);
 }
-.wyyy {
-    text-align:center;
-    padding:8px;
+#table{
+    width:940px
 }
+#tableone{width:150px}
+#tabletwo{width:1000px}

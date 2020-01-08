@@ -1,12 +1,12 @@
 <div id="dataTable">
-    <nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="table">
         <thead>
           <tr>
-            <th>次应变</th>
-            <th>主应变</th>
+            <th nzWidth="100px" id="head">次应变</th>
+            <th nzWidth="100px" id="head">主应变</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.secondaryStrain }}</td>
             <td>{{ data.mainStrain }}</td>
