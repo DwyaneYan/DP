@@ -12,8 +12,14 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   listOfDisplayData = [];
   listOfAllData = [];
   mapOfCheckedId: { [key: string]: boolean } = {};
+  public allmaterial=[]
+
   @Input() data = [];
-  constructor(private materiallistService: MaterialListService) { }
+  @Input() params ;
+
+  constructor(
+    private materiallistService: MaterialListService,
+    ) { }
 
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
@@ -34,26 +40,30 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     // console.log(this.listOfAllData)
     )
   }  
-public allmaterial=[]
+
 //#region 模块 
+
   ngOnInit(): void {
-this.Allmaterial()
+    this.Allmaterial()
   } 
 Allmaterial(){
-    this.materiallistService.AllMaterials().then((res: any) => {
-      this.allmaterial = res.items;
-      this.listOfAllData = [];
-       this.allmaterial.forEach((val, i) =>{
-        this.listOfAllData.push({
-          id: i,
-          materialId: val.id,
-          name: val.name,
-          manufacture: val.manufactoryName,
-          thickness: val.model,
-          typicalPart:val.typicalPartName,
-          appVehicle:val.appliedVehicleType,
-          date:val.date,          
-        })})
+    let params = this.params
+    console.log(params)
+    this.materiallistService.AllMaterials(params).then((res: any) => {
+    this.allmaterial = res.items;
+    console.log(this.allmaterial)
+    this.listOfAllData = [];
+    this.allmaterial.forEach((val, i) =>{
+    this.listOfAllData.push({
+      id: i,
+      materialId: val.id,
+      name: val.name,
+      manufacture: val.manufactoryName,
+      thickness: val.model,
+      typicalPart:val.typicalPartName,
+      appVehicle:val.appliedVehicleType,
+      date:val.date,          
+    })})
       }    
       )
   }

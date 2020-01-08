@@ -7,17 +7,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class MaterialListService {
 
-
-
   constructor(public http: HttpClient,
 
   ) { }
 
   // 显示全部材料
-  async AllMaterials()
+  async AllMaterials(params)
   {
     let api ="http://localhost:60001/api/hangang/material/materials";
-    let res=await this.http.get(api)
+    let res=await this.http.get(api,{params})
     .toPromise()
     .catch(err =>{
       console.log(err);

@@ -89,6 +89,9 @@ const routes: Routes = [
   { path: 'platform', component: PagePlatformComponent},
   { path: 'material', component: PageMaterialComponent},
 
+  //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
+  { path: 'material/:materialName', component: PageMaterialComponent},
+
   { path: 'display/:materialId', component:PageDisplayComponent,
     children:[
       {

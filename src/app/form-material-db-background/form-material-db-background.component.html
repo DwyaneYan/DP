@@ -5,10 +5,10 @@
 
     <div id="search-box">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="请输入要搜索的材料信息" [(ngModel)]="params.Name"/>
+            <input type="text" nz-input placeholder="请输入要搜索的材料信息" [(ngModel)]="materialName"/>
         </nz-input-group>
         <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large"  nzSearch (click)="SearchMaterialByName()">搜索</button>
+            <a [routerLink]="['/material', materialName]"><button nz-button nzType="primary" nzSize="large"  nzSearch >搜索</button></a>
         </ng-template>
     </div>
 </div>

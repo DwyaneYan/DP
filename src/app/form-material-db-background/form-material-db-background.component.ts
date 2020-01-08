@@ -8,13 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class FormMaterialDbBackgroundComponent implements OnInit {
 
-  //存放查询到的材料
-  materials
-
-  public params = {
-    Name: '', 
-  }
-
+  materialName='';
 
   constructor(
     public http: HttpClient,
@@ -23,16 +17,5 @@ export class FormMaterialDbBackgroundComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  public async SearchMaterialByName(){
-    let params = this.params
-    let api = "http://localhost:60001/api/hangang/material/materials";
-    await this.http.get(api, {params})
-    .toPromise()
-    .then((res:any) =>{
-      this.materials = res.items
-    })
-    console.log(this.materials)
-  }
-
+  
 }
