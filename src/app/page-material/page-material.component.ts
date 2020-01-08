@@ -3,6 +3,7 @@ import { Output, EventEmitter } from '@angular/core';
 import { MaterialServiceService } from './material-service.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormMaterialListComponent } from '../form-material-list/form-material-list.component';
+import { ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-page-material',
@@ -159,6 +160,8 @@ export class PageMaterialComponent implements OnInit {
       }
 
     ]
+
+
   //#region 限制条件字段
   //厂家
   public listManufacturers = []
@@ -226,8 +229,11 @@ export class PageMaterialComponent implements OnInit {
   ]
   //#endregion
 
+  public material = []  //存放查询的数据并传给材料列表
+
   //查询条件表单
   public params = {
+    Name:'',  //材料名称
     materialType: '',  //材料分类
     manufactoryId: '',  //生产厂家
     model: "",  //型号规格
@@ -240,11 +246,17 @@ export class PageMaterialComponent implements OnInit {
   constructor(
     private materialService: MaterialServiceService,    //实例化材料服务
     public http: HttpClient,
-
+    private route: ActivatedRoute,
   ) { }
-  ngOnInit() {
+  ngOnInit() {    
+  this.route.paramMap.subscribe(param => {
+    this.params.Name = param.get('materialName');
+    })
+    console.log(this.params.Name);
+    
     this.getGetManufacturers();
   }
+
   //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
   public async getGetManufacturers() {
     await this.materialService.GetManufacturers().then((res: any) => {
@@ -253,15 +265,16 @@ export class PageMaterialComponent implements OnInit {
       // console.log(this.listManufacturers)
     });
   }
+
   //#region 获取筛选条件并 发送查询请求
+
   //材料分类  
-  public material = []  //存放查询的数据并传给材料列表
   public async filtrationMaterialType(childItem) {
     this.params.materialType = childItem.enum;
     // console.log(this.params)
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items
-      console.log(this.material)
+      // console.log(this.material)
     })    
   }
 
@@ -326,7 +339,8 @@ export class PageMaterialComponent implements OnInit {
 
   //清楚筛选条件
   public async clear() {
-    this.params.materialType = '',
+      this.params.Name='',
+      this.params.materialType = '',
       this.params.manufactoryId = '',
       this.params.model = '',
       this.params.minModel = ''
