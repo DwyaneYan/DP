@@ -6,14 +6,16 @@
             <th nzWidth="150px" id="head">初始重量（g）</th>
             <th nzWidth="150px" id="head">试验后重量（g）</th>
             <th nzWidth="150px" id="head">膜重（g/mm2）</th>
+            <th nzWidth="130px" id="head">执行标准</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.area }}</td>
-            <td>{{ data.originalWeight }}</td>
-            <td>{{ data.afterWeight }}</td>
-            <td>{{ data.membraneWeight }}</td>
+            <td id="he">{{ data.area }}</td>
+            <td id="he">{{ data.originalWeight }}</td>
+            <td id="he">{{ data.afterWeight }}</td>
+            <td id="he">{{ data.membraneWeight }}</td>
+            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -24,12 +26,12 @@
             <th colspan="2"  id="head">RPC（个/cm）</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td >{{ data.raOne }}</td>
-            <td>{{ data.raTwo }}</td>
-            <td>{{ data.rPCOne }}</td>
-            <td>{{ data.rPCTwo }}</td>
+            <td id="he">{{ data.raOne }}</td>
+            <td id="he">{{ data.raTwo }}</td>
+            <td id="he">{{ data.rPCOne }}</td>
+            <td id="he">{{ data.rPCTwo }}</td>
           </tr>
         </tbody>
       </nz-table>

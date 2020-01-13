@@ -6,14 +6,16 @@
             <th nzWidth="150px" id="head">抗压强度</th>
             <th nzWidth="190px" id="head">规定非比例压缩强度</th>
             <th nzWidth="150px" id="head">压缩弹性模量</th>
+            <th nzWidth="150px" id="head">执行标准</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.sampleCode }}</td>
-            <td>{{ data.compressiveStrength }}</td>
-            <td>{{ data.nonProportionalCompressStrenth }}</td>
-            <td>{{ data.compressOfElasticity }}</td>
+            <td id="he">{{ data.sampleCode }}</td>
+            <td id="he">{{ data.compressiveStrength }}</td>
+            <td id="he">{{ data.nonProportionalCompressStrenth }}</td>
+            <td id="he">{{ data.compressOfElasticity }}</td>
+            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>
       </nz-table>

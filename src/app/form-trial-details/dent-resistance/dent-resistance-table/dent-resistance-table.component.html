@@ -4,12 +4,14 @@
           <tr>
             <th nzWidth="150px" id="head">初始刚度(N/mm)</th>
             <th nzWidth="200px" id="head">0.1mm可见凹痕载荷(N)</th>
+            <th nzWidth="130px" id="head">执行标准</th>
           </tr>
         </thead>
         <tbody id="head">
           <tr *ngFor="let data of trialDataDetail" >
             <td>{{ data.originalRigidity }}</td>
             <td>{{ data.visibleDentLoad }}</td>
+            <td>{{ data.standard}}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>

@@ -5,9 +5,13 @@
 
     
 }
-
 #head{
     text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
 }
-#tableone{width:840px}
+
+#tableone{width:990px}
 #table{width:970px}
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}

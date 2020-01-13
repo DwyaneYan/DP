@@ -6,14 +6,16 @@
             <th nzWidth="150px" id="head">非金属夹杂（级）</th>
             <th nzWidth="150px" id="head">晶粒度（级）</th>
             <th nzWidth="150px" id="head">脱碳层深度（mm)</th>
+            <th nzWidth="120px" id="head">执行标准</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.structure }}</td>
-            <td>{{ data.nonMetallicInclusionLevel }}</td>
-            <td>{{ data.grainSize}}</td>
-            <td>{{ data.depthDecarburization }}</td>
+            <td id="he">{{ data.structure }}</td>
+            <td  id="he">{{ data.nonMetallicInclusionLevel }}</td>
+            <td id="he">{{ data.grainSize}}</td>
+            <td id="he">{{ data.depthDecarburization }}</td>
+            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>        
       </nz-table> 

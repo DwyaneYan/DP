@@ -1,14 +1,15 @@
 <div class="table-border">
-    <table class="listOfData">
-        <thead>
+    <table >
+        <thead >
             <tr class="tr1">
-                <td>材料牌号</td>
-                <td>厚度</td>
-                <td>生产厂家</td>
-                <td>送样日期</td>
+                <th width="150px" >材料牌号</th>
+                <th width="150px">型号规格</th>
+                <th width="150px">生产厂家</th>
+                <th  width="250px">送样日期</th>
             </tr>
 
         </thead>
+
         <tbody>
             <tr *ngFor="let data of mater">
                 <td>{{ data.name }}</td>

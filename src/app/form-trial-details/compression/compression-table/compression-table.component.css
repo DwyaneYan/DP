@@ -5,7 +5,12 @@
 }
 #head{
     text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
 }
 #table{
-    width:640px
+    width:790px
 }
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}
+

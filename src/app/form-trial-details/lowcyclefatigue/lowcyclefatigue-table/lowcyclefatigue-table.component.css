@@ -6,7 +6,7 @@
     
 }
 #table{
-    width:680px
+    width:720px
 }
 #tableone{
     width:870px
@@ -14,5 +14,10 @@
 
 #head{
     text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
 }
 #tabletwo{width:420px}
+
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}

@@ -8,9 +8,14 @@
 
 #head{
     text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
+
 }
 #table{
     width:940px
 }
-#tableone{width:150px}
-#tabletwo{width:1000px}
+
+#tabletwo{width:1050px}
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}

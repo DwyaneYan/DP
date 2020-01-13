@@ -6,14 +6,16 @@
             <th  nzWidth="150px" id="head">是否使用引伸计</th>
             <th  nzWidth="150px" id="head">引伸计规格</th>
             <th  nzWidth="150px" id="head">表面质量</th>
+            <th nzWidth="120px" id="head">执行标准</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.cyclicStressRatio }}</td>
-            <td>{{ data.useExtensometer }}</td>
-            <td>{{ data.extensometerGaugeDistance }}</td>
-            <td>{{ data.surfaceQuality }}</td>
+            <td id="he">{{ data.cyclicStressRatio }}</td>
+            <td id="he">{{ data.useExtensometer }}</td>
+            <td id="he">{{ data.extensometerGaugeDistance }}</td>
+            <td id="he">{{ data.surfaceQuality }}</td>
+            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>        
       </nz-table> <br> <br> <br>
@@ -27,13 +29,13 @@
             <th nzWidth="150px" id="head">循环次数/周次</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td>{{ data.serialNumber }}</td>
-            <td>{{ data.sampleCode }}</td>
-            <td>{{ data.maximumStress}}</td>
-            <td>{{ data.stressAmplitude}}</td>
-            <td>{{ data.testFrequency}}</td>
+            <td id="he">{{ data.serialNumber }}</td>
+            <td id="he">{{ data.sampleCode }}</td>
+            <td id="he">{{ data.maximumStress}}</td>
+            <td id="he">{{ data.stressAmplitude}}</td>
+            <td id="he">{{ data.testFrequency}}</td>
           </tr>
         </tbody>        
       </nz-table> <br> <br> <br>
@@ -47,13 +49,13 @@
             <th nzWidth="150px" id="head">标准偏差/MPa</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.sNAParameter }}</td>
-            <td>{{ data.sNBParameter }}</td>
-            <td>{{ data.sNRelatedParameter}}</td>
-            <td>{{ data.fatigueLimitStrength}}</td>
-            <td>{{ data.standardDeviation}}</td>
+            <td id="he">{{ data.sNAParameter }}</td>
+            <td id="he">{{ data.sNBParameter }}</td>
+            <td id="he">{{ data.sNRelatedParameter}}</td>
+            <td id="he">{{ data.fatigueLimitStrength}}</td>
+            <td id="he">{{ data.standardDeviation}}</td>
           </tr>
         </tbody>        
       </nz-table> 

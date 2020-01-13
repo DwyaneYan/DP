@@ -5,13 +5,16 @@
     width: auto;
     
 }
-
 #head{
     text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
 }
 #table{
-    width:600px
+    width:730px
 }
 #tabletwo{
     width:520px
 }
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}

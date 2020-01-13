@@ -1,4 +1,16 @@
 <div id="dataTable" >
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo"  nzBordered>
+    <thead >
+      <tr>
+        <th nzWidth="130px" id="head">执行标准</th>
+      </tr>
+    </thead>
+    <tbody id="head">
+      <tr >
+        <td>{{ trialDataDetail[0].standard}}</td>
+      </tr>
+    </tbody>
+</nz-table><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
