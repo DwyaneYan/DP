@@ -1,7 +1,17 @@
 .head{
     text-align:center;
-    background-color:#CCFFFFFF;
+    background-color:rgba(107, 152, 248, 0.959);
     font-weight:bold;
+    color:white
  
 }
-.tr{text-align:center;}
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}
+.head1{
+        text-align:center;
+        background-color:rgba(107, 152, 248, 0.959);
+        font-weight:bold;
+        color:white
+     
+    }
