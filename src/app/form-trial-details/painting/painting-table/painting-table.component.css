@@ -7,6 +7,7 @@
 }
 #head{
     text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
 }
 #tableone{
     width:300px
@@ -30,3 +31,6 @@
     width:130px
 }
 #tabless{width:200px}
+#he{padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;}

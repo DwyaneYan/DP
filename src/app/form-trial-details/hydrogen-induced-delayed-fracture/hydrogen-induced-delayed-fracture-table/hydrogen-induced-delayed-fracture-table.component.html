@@ -1,16 +1,4 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo"  nzBordered>
-    <thead >
-      <tr>
-        <th nzWidth="130px" id="head">执行标准</th>
-      </tr>
-    </thead>
-    <tbody id="head">
-      <tr >
-        <td>{{ trialDataDetail[0].standard}}</td>
-      </tr>
-    </tbody>
-</nz-table><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
@@ -18,14 +6,16 @@
             <th nzWidth="150px" id="head">试验设备</th>
             <th nzWidth="150px" id="head">溶液类别</th>
             <th nzWidth="150px" id="head">试验时间</th>
+            <th nzWidth="130px" id="head">执行标准</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.testName }}</td>
-            <td>{{ data.device }}</td>
-            <td>{{ data.liquorType }}</td>
-            <td>{{ data.date }}</td>
+            <td id="he">{{ data.testName }}</td>
+            <td id="he">{{ data.device }}</td>
+            <td id="he">{{ data.liquorType }}</td>
+            <td id="he">{{ data.date }}</td>
+            <td id="he">{{data.standard}}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -36,10 +26,10 @@
             <th nzWidth="150px" id="head">开裂时间（h）</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td>{{ data.stress }}</td>
-            <td>{{ data.hour }}</td>
+            <td id="he">{{ data.stress }}</td>
+            <td id="he">{{ data.hour }}</td>
           </tr>
         </tbody>
       </nz-table>

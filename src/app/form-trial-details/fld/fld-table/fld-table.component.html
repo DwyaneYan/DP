@@ -5,9 +5,9 @@
         <th nzWidth="130px" id="head">执行标准</th>
       </tr>
     </thead>
-    <tbody id="head">
+    <tbody *ngFor="let data of trialDataDetails" >
       <tr >
-        <td>{{ trialDataDetail[0].standard}}</td>
+        <td id="he">{{ data.standard}}</td>
       </tr>
     </tbody>
 </nz-table><br><br>
@@ -18,10 +18,10 @@
             <th nzWidth="100px" id="head">主应变</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.secondaryStrain }}</td>
-            <td>{{ data.mainStrain }}</td>
+            <td id="he">{{ data.secondaryStrain }}</td>
+            <td id="he">{{ data.mainStrain }}</td>
           </tr>
         </tbody>
       </nz-table>

@@ -7,11 +7,11 @@
             <th nzWidth="130px" id="head">执行标准</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.originalRigidity }}</td>
-            <td>{{ data.visibleDentLoad }}</td>
-            <td>{{ data.standard}}</td>
+            <td id="he">{{ data.originalRigidity }}</td>
+            <td id="he">{{ data.visibleDentLoad }}</td>
+            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -26,10 +26,10 @@
             <th nzWidth="120px" id="head">主应变</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td>{{ data.secondaryStrain }}</td>
-            <td>{{ data.mainStrain }}</td>
+            <td id="he">{{ data.secondaryStrain }}</td>
+            <td id="he">{{ data.mainStrain }}</td>
           </tr>
         </tbody>
       </nz-table>

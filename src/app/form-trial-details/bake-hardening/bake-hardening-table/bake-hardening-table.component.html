@@ -5,9 +5,9 @@
         <th nzWidth="130px" id="head">执行标准</th>
       </tr>
     </thead>
-    <tbody id="head">
-      <tr >
-        <td>{{ trialDataDetail[0].standard}}</td>
+    <tbody >
+      <tr *ngFor="let data of trialDataDetail">
+        <td id="he">{{ data.standard}}</td>
       </tr>
     </tbody>
 </nz-table><br><br>
@@ -17,9 +17,9 @@
             <th id="head">BH值</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.bh }}</td>
+            <td id="he">{{ data.bh }}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -33,13 +33,13 @@
             <th nzWidth="150px" id="head">BH2(MPa)</th>
           </tr>
         </thead>
-        <tbody id="head">
+        <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td>{{ data.temperatureTimes }}</td>
-            <td>{{ data.rt }}</td>
-            <td>{{ data.rp }}</td>
-            <td>{{ data.rm }}</td>
-            <td>{{ data.bH2 }}</td>
+            <td id="he">{{ data.temperatureTimes }}</td>
+            <td id="he">{{ data.rt }}</td>
+            <td id="he">{{ data.rp }}</td>
+            <td id="he">{{ data.rm }}</td>
+            <td id="he">{{ data.bH2 }}</td>
           </tr>
         </tbody>
       </nz-table>

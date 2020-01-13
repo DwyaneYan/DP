@@ -17,6 +17,7 @@ export class PaintingTableComponent implements OnInit {
   trialDataDetailssssss
   trialDataDetailsssssss
   trialDataDetailssssssss
+  trialDataDetailsssssssss
   constructor( private router: Router,
     public http: HttpClient,) { }
 
@@ -32,6 +33,7 @@ export class PaintingTableComponent implements OnInit {
     this.GetTrialDataDetailsssssss();
     this.GetTrialDataDetailssssssss();
     this.GetTrialDataDetailsssssssss();
+    this.GetTrialDataDetailssssssssss();
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId
@@ -120,6 +122,16 @@ export class PaintingTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetailssssssss = res
+      // console.log(this.trialDataDetail)
+    })    
+  }
+  public async GetTrialDataDetailssssssssss() {
+    let materialId = this.materialId
+    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetails/${materialId}`;
+    await this.http.get(api)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetailsssssssss = res
       // console.log(this.trialDataDetail)
     })    
   }
