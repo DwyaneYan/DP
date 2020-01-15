@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HighcyclefatigueTableComponent implements OnInit {
   public materialId
-  trialDataDetail
-  trialDataDetails
+  trialDataDetail=[{}]
+  trialDataDetails=[{}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 
@@ -26,7 +26,7 @@ export class HighcyclefatigueTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
   }
   public async GetTrialDataDetailss() {
@@ -36,7 +36,7 @@ export class HighcyclefatigueTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetails)
     })    
   }
 }

@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaintingTableComponent implements OnInit {
   public materialId
-  trialDataDetail 
+  trialDataDetail =[{}]
   trialDataDetails 
   trialDataDetailss
   trialDataDetailsss

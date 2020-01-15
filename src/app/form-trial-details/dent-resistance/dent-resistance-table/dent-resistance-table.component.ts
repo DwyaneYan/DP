@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DentResistanceTableComponent implements OnInit {
   public materialId
-  trialDataDetail
-  trialDataDetails
+  trialDataDetail=[{}]
+
   constructor(private router: Router,
     public http: HttpClient,) { }
 
@@ -17,7 +17,7 @@ export class DentResistanceTableComponent implements OnInit {
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
     this.GetTrialDataDetails();
-    this.GetTrialDataDetailss();
+
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId
@@ -29,14 +29,5 @@ export class DentResistanceTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
-  public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/dentResistanceDataDetailLimitStrains/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
-    .then((res: any) => {
-      this.trialDataDetails = res
-      // console.log(this.trialDataDetail)
-    })    
-  }
+
 }

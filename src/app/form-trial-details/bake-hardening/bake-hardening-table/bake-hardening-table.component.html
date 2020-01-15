@@ -2,7 +2,7 @@
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tables"  nzBordered>
     <thead >
       <tr>
-        <th nzWidth="130px" id="head">执行标准</th>
+        <th nzWidth="200px" id="head">执行标准</th>
       </tr>
     </thead>
     <tbody >
@@ -11,18 +11,7 @@
       </tr>
     </tbody>
 </nz-table><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="dataTabless"  nzBordered>
-        <thead>
-          <tr>
-            <th id="head">BH值</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.bh }}</td>
-          </tr>
-        </tbody>
-      </nz-table><br><br><br>
+    
       <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table"  nzBordered>
         <thead>
           <tr>

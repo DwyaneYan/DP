@@ -12,10 +12,11 @@
     color:white
 }
 #table{
-    width:940px
+    width:930px
 }
 
-#tabletwo{width:1050px}
+#tabletwo{width:860px}
+#tabless{width:320px}
 #he{padding-top:8px;
     padding-bottom:8px;
     text-align:center;}

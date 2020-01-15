@@ -12,8 +12,7 @@ export class StaticTensionTableComponent implements OnInit {
   public materialId
 
   //存放查到的静态拉伸详情
-  public trialDataDetail = [] 
-
+  public trialDataDetail = [{}] 
 
   constructor(
     public http: HttpClient,
@@ -34,10 +33,11 @@ export class StaticTensionTableComponent implements OnInit {
     let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
-    .then((res: any) => {
-      this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
-    })    
+    .then((res: any) => {    
+  this.trialDataDetail = res
+      console.log(this.trialDataDetail)
+    })  
+
   }
 
 }

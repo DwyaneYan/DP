@@ -1,4 +1,16 @@
 <div id="dataTable">
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+    <thead >
+      <tr>
+        <th  id="head" nzWidth="200px">执行标准</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td id="he">{{trialDataDetailss[0].standard}}</td>
+      </tr>
+    </tbody>
+</nz-table><br><br><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
@@ -6,7 +18,6 @@
             <th nzWidth="150px" id="head">初始重量（g）</th>
             <th nzWidth="150px" id="head">试验后重量（g）</th>
             <th nzWidth="150px" id="head">膜重（g/mm2）</th>
-            <th nzWidth="130px" id="head">执行标准</th>
           </tr>
         </thead>
         <tbody >
@@ -15,7 +26,6 @@
             <td id="he">{{ data.originalWeight }}</td>
             <td id="he">{{ data.afterWeight }}</td>
             <td id="he">{{ data.membraneWeight }}</td>
-            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -30,8 +40,8 @@
           <tr *ngFor="let data of trialDataDetails" >
             <td id="he">{{ data.raOne }}</td>
             <td id="he">{{ data.raTwo }}</td>
-            <td id="he">{{ data.rPCOne }}</td>
-            <td id="he">{{ data.rPCTwo }}</td>
+            <td id="he">{{ data.rpcOne }}</td>
+            <td id="he">{{ data.rpcTwo }}</td>
           </tr>
         </tbody>
       </nz-table>

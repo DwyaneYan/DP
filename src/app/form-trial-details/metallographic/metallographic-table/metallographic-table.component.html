@@ -1,4 +1,16 @@
 <div id="dataTable" >
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+    <thead >
+      <tr>
+        <th  id="head" nzWidth="200px">执行标准</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td id="he">{{trialDataDetail[0].standard}}</td>
+      </tr>
+    </tbody>
+</nz-table><br><br><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
@@ -6,7 +18,6 @@
             <th nzWidth="150px" id="head">非金属夹杂（级）</th>
             <th nzWidth="150px" id="head">晶粒度（级）</th>
             <th nzWidth="150px" id="head">脱碳层深度（mm)</th>
-            <th nzWidth="120px" id="head">执行标准</th>
           </tr>
         </thead>
         <tbody >
@@ -15,7 +26,6 @@
             <td  id="he">{{ data.nonMetallicInclusionLevel }}</td>
             <td id="he">{{ data.grainSize}}</td>
             <td id="he">{{ data.depthDecarburization }}</td>
-            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>        
       </nz-table> 

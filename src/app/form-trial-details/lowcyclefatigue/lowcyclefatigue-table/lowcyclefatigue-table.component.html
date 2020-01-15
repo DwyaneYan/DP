@@ -1,4 +1,16 @@
 <div id="dataTable">
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+    <thead >
+      <tr>
+        <th  id="head" nzWidth="200px">执行标准</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td id="he">{{trialDataDetail[0].standard}}</td>
+      </tr>
+    </tbody>
+</nz-table><br><br><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
@@ -6,16 +18,14 @@
             <th nzWidth="150px" id="head">是否使用引伸计</th>
             <th nzWidth="150px" id="head">引伸计规格</th>
             <th nzWidth="150px" id="head">表面质量</th>
-            <th nzWidth="120px" id="head">执行标准</th>
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.cyclicStrainRatio }}</td>
-            <td id="he" >{{ data.useExtensometer }}</td>
-            <td id="he">{{ data.extensometerGaugeDistance }}</td>
-            <td id="he">{{ data.surfaceQuality }}</td>
-            <td id="he">{{ data.standard}}</td>
+          <tr  >
+            <td id="he">{{ trialDataDetail[0].cyclicStrainRatio }}</td>
+            <td id="he" >{{ trialDataDetail[0].useExtensometer }}</td>
+            <td id="he">{{ trialDataDetail[0].extensometerGaugeDistance }}</td>
+            <td id="he">{{ trialDataDetail[0].surfaceQuality }}</td>
           </tr>
         </tbody>        
       </nz-table><br> <br><br>
@@ -33,16 +43,16 @@
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor="let data of trialDataDetails" >
-              <td id="he" >{{ data.serialNumber }}</td>
-              <td id="he">{{ data.sampleCode }}</td>
+            <tr *ngFor="let data of trialDataDetails,let data1 of trialDataDetail" >
+              <td id="he">{{ data.serialNumber }}</td>
+              <td id="he">{{ data1.sampleCode }}</td>
               <td id="he">{{ data.totalStrainAmplitude }}</td>
               <td id="he">{{ data.plasticStrainAmplitude }}</td>
               <td id="he">{{ data.elasticStrainAmplitude }}</td>
               <td id="he">{{ data.failureCycleTimes }}</td>
               <td id="he">{{ data.cycleStressAmplitude }}</td>
               <td id="he">{{ data.testFrequency}}</td>
-            </tr>
+             </tr>
           </tbody>        
         </nz-table> <br><br><br>
         <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
@@ -54,10 +64,10 @@
               </tr>
             </thead>
             <tbody >
-              <tr *ngFor="let data of trialDataDetail" >
-                <td id="he">{{ data.cyclicStrengthParameter }}</td>
-                <td id="he">{{ data.cyclicStrainHardening }}</td>
-                <td id="he">{{ data.relatedSressParameter }}</td>
+              <tr  >
+                <td id="he">{{trialDataDetail[0].cyclicStrengthParameter }}</td>
+                <td id="he">{{trialDataDetail[0].cyclicStrainHardening }}</td>
+                <td id="he">{{ trialDataDetail[0].relatedSressParameter }}</td>
               </tr>
             </tbody>        
           </nz-table> <br><br><br>
@@ -70,10 +80,10 @@
               </tr>
             </thead>
             <tbody >
-              <tr *ngFor="let data of trialDataDetail" >
-                <td id="he">{{ data.fatigueStrengthParameter}}</td>
-                <td id="he">{{ data.fatigueStrength }}</td>
-                <td id="he">{{ data.relatedLifeFatigueParameter}}</td>
+              <tr >
+                <td id="he">{{ trialDataDetail[0].fatigueStrengthParameter}}</td>
+                <td id="he">{{ trialDataDetail[0].fatigueStrength }}</td>
+                <td id="he">{{ trialDataDetail[0].relatedLifeFatigueParameter}}</td>
               </tr>
             </tbody>        
           </nz-table> <br><br><br>
@@ -86,10 +96,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of trialDataDetail" >
-                <td id="he">{{ data.fatigueStrechParameter}}</td>
-                <td id="he">{{ data.fatigueStrech }}</td>
-                <td id="he">{{ data.relatedLifeStrechParameter}}</td>
+              <tr  >
+                <td id="he">{{ trialDataDetail[0].fatigueStrechParameter}}</td>
+                <td id="he">{{ trialDataDetail[0].fatigueStrech }}</td>
+                <td id="he">{{ trialDataDetail[0].relatedLifeStrechParameter}}</td>
               </tr>
             </tbody>        
           </nz-table> 

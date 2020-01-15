@@ -8,9 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PhysicalperformanceTableComponent implements OnInit {
   public materialId
-  trialDataDetail
-  trialDataDetails 
-  trialDataDetailss
+  trialDataDetail=[{}]
+  trialDataDetails=[{}]
+  trialDataDetailss=[{}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

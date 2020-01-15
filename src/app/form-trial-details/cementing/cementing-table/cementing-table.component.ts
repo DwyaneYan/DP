@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CementingTableComponent implements OnInit {
   public materialId
-  trialDataDetail
+  trialDataDetail=[{}]
   constructor( private router: Router,
     public http: HttpClient,) { }
 
