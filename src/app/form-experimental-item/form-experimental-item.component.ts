@@ -10,12 +10,22 @@ import { ExperimentalItemService } from './experimental-item.service'
 })
 export class FormExperimentalItemComponent implements OnInit {
   @Input() materialId
+  open={
+    sub1:true,
+    sub2:false
+  }
   constructor(
     private experimentalItem: ExperimentalItemService,
 
 
   ) { } 
-
+  openHandler(value) {
+    for (const key in this.open) {
+      if (key !== value) {
+        this.open[key] = false;
+      }
+    }
+  }
   ngOnInit() {
 
 }

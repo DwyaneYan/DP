@@ -8,7 +8,7 @@
                 <div class="titlee"> <a routerLink='/material-trial'>实验项目</a> </div>
                 <nz-divider></nz-divider>
             </li>
-            <li nz-submenu nzTitle="理化性能" nzOpen>
+            <li nz-submenu nzTitle="理化性能" nzOpen="open.sub1" (nzOpenChange)="openHandler('sub1')">
                 <ul >
                     <li nz-menu-item nzSelected nzMatchRouter><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
                     <li nz-menu-item nzMatchRouter><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
@@ -23,7 +23,7 @@
                     <li nz-menu-item nzMatchRouter><a [routerLink]="['/display',materialId ,'surface-property']">表面性能</a></li>
                 </ul>
             </li>
-            <li nz-submenu nzTitle="工艺性能" >
+            <li nz-submenu nzTitle="工艺性能" nzOpen="open.sub2" (nzOpenChange)="openHandler('sub2')">
                 <ul>
                     <li nz-menu-item nzMatchRouter><a [routerLink]="['/display',materialId ,'dent-resistance']">抗凹性能</a></li>
                     <li nz-menu-item nzMatchRouter><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
