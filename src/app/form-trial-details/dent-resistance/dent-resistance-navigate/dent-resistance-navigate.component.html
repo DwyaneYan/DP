@@ -1,15 +1,15 @@
 <ul nz-menu nzMode="horizontal">
 
-    <li nz-menu-item nzSelected style="margin-left:15%;">
+    <li nz-menu-item nzMatchRouter style="margin-left:15%;">
         <a [routerLink]="['/display', materialId, 'dent-resistance','table']">数据表</a> 
     </li>
-    <li nz-menu-item>
+    <li nz-menu-item nzMatchRouter>
         <a [routerLink]="['/display', materialId, 'dent-resistance','picture']">数据图</a>
     </li>
-    <li nz-menu-item>
+    <li nz-menu-item nzMatchRouter>
         <a [routerLink]="['/display', materialId, 'dent-resistance', 'report']">报告</a>
     </li>
-    <li nz-menu-item>
+    <li nz-menu-item nzMatchRouter>
         <a [routerLink]="['/display', materialId, 'dent-resistance', 'typical-part']">典型零部件</a>
     </li>
 </ul>
