@@ -49,7 +49,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   } 
 Allmaterial(){
     let params = this.params
-    console.log(params)
+    // console.log(params)
     this.materiallistService.AllMaterials(params).then((res: any) => {
     this.allmaterial = res.items;
     console.log(this.allmaterial)

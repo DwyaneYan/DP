@@ -34,8 +34,8 @@ export class StaticTensionTableComponent implements OnInit {
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {    
-  this.trialDataDetail = res
-      console.log(this.trialDataDetail)
+    this.trialDataDetail = res
+    console.log(this.trialDataDetail)
     })  
 
   }
