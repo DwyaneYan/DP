@@ -1,4 +1,16 @@
 <div id="dataTable">
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+    <thead >
+      <tr>
+        <th  id="head" nzWidth="200px">执行标准</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td id="he">{{trialDataDetail[0].standard}}</td>
+      </tr>
+    </tbody>
+</nz-table><br><br><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
@@ -6,16 +18,14 @@
             <th  nzWidth="150px" id="head">是否使用引伸计</th>
             <th  nzWidth="150px" id="head">引伸计规格</th>
             <th  nzWidth="150px" id="head">表面质量</th>
-            <th nzWidth="120px" id="head">执行标准</th>
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.cyclicStressRatio }}</td>
-            <td id="he">{{ data.useExtensometer }}</td>
-            <td id="he">{{ data.extensometerGaugeDistance }}</td>
-            <td id="he">{{ data.surfaceQuality }}</td>
-            <td id="he">{{ data.standard}}</td>
+          <tr  >
+            <td id="he">{{ trialDataDetail[0].cyclicStressRatio }}</td>
+            <td id="he">{{ trialDataDetail[0].useExtensometer }}</td>
+            <td id="he">{{ trialDataDetail[0].extensometerGaugeDistance }}</td>
+            <td id="he">{{ trialDataDetail[0].surfaceQuality }}</td>
           </tr>
         </tbody>        
       </nz-table> <br> <br> <br>
@@ -30,9 +40,9 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let data of trialDataDetails" >
+          <tr *ngFor="let data of trialDataDetails,let data1 of trialDataDetail" >
             <td id="he">{{ data.serialNumber }}</td>
-            <td id="he">{{ data.sampleCode }}</td>
+            <td id="he">{{ data1.sampleCode }}</td>
             <td id="he">{{ data.maximumStress}}</td>
             <td id="he">{{ data.stressAmplitude}}</td>
             <td id="he">{{ data.testFrequency}}</td>
@@ -50,12 +60,12 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.sNAParameter }}</td>
-            <td id="he">{{ data.sNBParameter }}</td>
-            <td id="he">{{ data.sNRelatedParameter}}</td>
-            <td id="he">{{ data.fatigueLimitStrength}}</td>
-            <td id="he">{{ data.standardDeviation}}</td>
+          <tr  >
+            <td id="he">{{ trialDataDetail[0].snaParameter }}</td>
+            <td id="he">{{ trialDataDetail[0].snbParameter }}</td>
+            <td id="he">{{ trialDataDetail[0].snRelatedParameter}}</td>
+            <td id="he">{{ trialDataDetail[0].fatigueLimitStrength}}</td>
+            <td id="he">{{ trialDataDetail[0].standardDeviation}}</td>
           </tr>
         </tbody>        
       </nz-table> 

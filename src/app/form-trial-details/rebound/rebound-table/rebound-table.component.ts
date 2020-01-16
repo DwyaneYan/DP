@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReboundTableComponent implements OnInit {
   public materialId
-  trialDataDetail
+  trialDataDetail=[{}]
   trialDataDetails
   constructor(  private router: Router,
     public http: HttpClient,) { }

@@ -9,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class SurfacePropertyTableComponent implements OnInit {
 
   public materialId
-  trialDataDetail
-  trialDataDetails
+  trialDataDetail=[{}]
+  trialDataDetails=[{}]
+  trialDataDetailss=[{}]
   constructor(
     private router: Router,
     public http: HttpClient,
@@ -23,6 +24,7 @@ export class SurfacePropertyTableComponent implements OnInit {
 
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
+    this.GetTrialDataDetailsss();
   }
 
   public async GetTrialDataDetails() {
@@ -41,6 +43,15 @@ export class SurfacePropertyTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
+    })    
+  }
+  public async GetTrialDataDetailsss() {
+    let materialId = this.materialId
+    let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyDataDetails/${materialId}`;
+    await this.http.get(api)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetailss = res
     })    
   }
 }

@@ -47,7 +47,7 @@ export class StaticTensionPictureComponent implements OnInit {
     // console.log(data)
 
       data.forEach((val, i) =>{
-      this.data.push([val.stress,val.strain]);
+      this.data.push([val.strain,val.stress]);
     })
     // console.log(this.data)
     this.options = {

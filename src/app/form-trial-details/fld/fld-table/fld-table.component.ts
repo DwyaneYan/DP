@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FldTableComponent implements OnInit {
   public materialId
-  trialDataDetail
-  trialDataDetails
+  trialDataDetail=[{}]
+  trialDataDetails=[{}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

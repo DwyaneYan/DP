@@ -9,7 +9,7 @@ import {Router } from '@angular/router';
 export class BendingTableComponent implements OnInit {
 
   materialId
-  trialDataDetail
+  trialDataDetail=[{}]
 
   constructor(
     public http: HttpClient,
@@ -31,7 +31,7 @@ export class BendingTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
   }
 }

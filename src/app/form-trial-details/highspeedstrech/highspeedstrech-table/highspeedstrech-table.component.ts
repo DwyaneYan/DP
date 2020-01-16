@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HighspeedstrechTableComponent implements OnInit {
   public materialId
-  trialDataDetail
-  trialDataDetails
+  trialDataDetail=[{}]
+  trialDataDetails=[{}]
   constructor(  private router: Router,
     public http: HttpClient,) { }
 
@@ -18,6 +18,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     .snapshot.paramMap.get('materialId');
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
+   
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId
@@ -26,7 +27,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
   }
   public async GetTrialDataDetailss() {
@@ -36,7 +37,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
   }
 

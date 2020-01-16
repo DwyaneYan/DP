@@ -1,4 +1,16 @@
 <div id="dataTable" >
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+    <thead >
+      <tr>
+        <th  id="head" nzWidth="200px">执行标准</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td id="he">{{trialDataDetail[0].standard}}</td>
+      </tr>
+    </tbody>
+</nz-table><br><br><br><br>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
         <thead>
           <tr>
@@ -6,7 +18,6 @@
             <th nzWidth="150px" id="head">样品长度</th>
             <th nzWidth="150px" id="head">试样宽度</th>
             <th nzWidth="150px" id="head">胶结宽度b(mm)</th>
-            <th nzWidth="130px" id="head">执行标准</th>
           </tr>
         </thead>
         <tbody>
@@ -15,7 +26,6 @@
             <td id="he">{{ data.length }}</td>
             <td id="he">{{ data.width }}</td>
             <td id="he">{{ data.cementingWidth }}</td>
-            <td id="he">{{ data.standard}}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
@@ -30,7 +40,7 @@
         <tbody >
           <tr *ngFor="let data of trialDataDetail" >
             <td id="he">{{ data.sampleCode }}</td>
-            <td id="he">{{ data.mPA }}</td>
+            <td id="he">{{ data.mpa }}</td>
             <td id="he">{{ data.failureMode }}</td>
           </tr>
         </tbody>
