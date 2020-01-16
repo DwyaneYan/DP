@@ -1,6 +1,10 @@
 .details{
     position: absolute;
-    top: 30%;
+    top: 27%;
     left: 30%;
+
+}
+#c{
+    float:left
 }
 
