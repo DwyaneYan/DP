@@ -255,8 +255,6 @@ export class PageMaterialComponent implements OnInit {
       this.params.Name = param.get('materialName');
     }
     })
-    console.log(this.params.Name);
-    
     this.getGetManufacturers();
   }
 
