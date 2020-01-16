@@ -9,7 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class MetallographicTableComponent implements OnInit {
   public materialId
   trialDataDetail
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     public http: HttpClient,) { }
 
   ngOnInit() {this.materialId = this.router
