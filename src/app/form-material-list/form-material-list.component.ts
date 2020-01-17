@@ -52,7 +52,7 @@ Allmaterial(){
     // console.log(params)
     this.materiallistService.AllMaterials(params).then((res: any) => {
     this.allmaterial = res.items;
-    console.log(this.allmaterial)
+    // console.log(this.allmaterial)
     this.listOfAllData = [];
     this.allmaterial.forEach((val, i) =>{
     this.listOfAllData.push({

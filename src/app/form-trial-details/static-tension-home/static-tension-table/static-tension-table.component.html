@@ -64,3 +64,178 @@
       </tbody>
     </nz-table>
 </div>
+
+<div id="dataImport">
+    <button nz-button nzType="primary" (click)="open()" id="drawerBtn">添加数据</button>
+    <nz-drawer
+      [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' }"
+      [nzWidth]="720"
+      [nzVisible]="visible"
+      nzTitle="添加试验数据"
+      (nzOnClose)="close()"
+    >
+      <form nz-form>
+        <div nz-row nzGutter="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>执行标准</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]='postParams.standard' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>序号</nz-form-label>
+                <nz-form-control>
+                  <input [(ngModel)]='postParams.serialNumber' [ngModelOptions]="{standalone: true}" nz-input placeholder="please enter " />
+                </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8">
+          <div nz-col nzSpan="12">
+              <nz-form-item>
+                  <nz-form-label>样件编号</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input [(ngModel)]='postParams.sampleCode' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                  </nz-form-control>
+              </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+              <nz-form-item>
+                  <nz-form-label>长度</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input [(ngModel)]='postParams.length' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                  </nz-form-control>
+              </nz-form-item>
+          </div>
+        </div>
+    <div nz-row nzGutter="8">
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>宽度</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]='postParams.width' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>厚度</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]='postParams.thickness' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+      </div>
+      <div nz-row nzGutter="8">
+          <div nz-col nzSpan="12">
+              <nz-form-item>
+                  <nz-form-label>直径</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input [(ngModel)]='postParams.diameter' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                  </nz-form-control>
+              </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+              <nz-form-item>
+                  <nz-form-label>引伸计标距</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input [(ngModel)]='postParams.gaugeDistance' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                  </nz-form-control>
+              </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>规定非比例延伸率</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]='postParams.nonProportionalExtendRatio' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>屈服强度Rp(MPa)</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]='postParams.yieldStrength' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8">
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label>抗拉强度Rm(MPa)</nz-form-label>
+                    <nz-form-control>
+                      <input nz-input [(ngModel)]='postParams.tensileStrength' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label>应变硬化指数(n)</nz-form-label>
+                    <nz-form-control>
+                      <input nz-input [(ngModel)]='postParams.strainHardening' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+          </div>
+          <div nz-row nzGutter="8">
+              <div nz-col nzSpan="12">
+                  <nz-form-item>
+                      <nz-form-label>断后伸长率A(％)</nz-form-label>
+                      <nz-form-control>
+                        <input nz-input [(ngModel)]='postParams.elongation' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                      </nz-form-control>
+                  </nz-form-item>
+              </div>
+              <div nz-col nzSpan="12">
+                  <nz-form-item>
+                      <nz-form-label>塑性应变比γ(%)</nz-form-label>
+                      <nz-form-control>
+                        <input nz-input [(ngModel)]='postParams.plasticStrainRatio' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                      </nz-form-control>
+                  </nz-form-item>
+              </div>
+            </div>
+        <div nz-row nzGutter="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>弹性模量E(MPa)</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]='postParams.modulusOfElasticity' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>泊松比μ</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]='postParams.poissonRatio' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-label>最大力Fm(kN)</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]='postParams.maximumForce' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        
+       
+      </form>
+      <div class="footer">
+        <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>取消</span></button>
+        <button type="button" (click)="PostTrialDataDetails()" class="ant-btn ant-btn-primary"><span>添加</span></button>
+      </div>
+    </nz-drawer>
+  
+</div>
