@@ -84,7 +84,7 @@ export class StaticTensionTableComponent implements OnInit {
       trialId:"fa3ea0e2-dcb9-47c8-ad60-e004f019963d"
     }
     let apiMaterialTrial = "http://localhost:60001/api/hangang/materialTrial/materialTrial"
-    await this.http.post(apiMaterialTrial,{paramsMaterialTrial})
+    await this.http.post(apiMaterialTrial,paramsMaterialTrial)
     .toPromise()
     .then((res:any)=>{
       this.materialTrialId = res
@@ -96,7 +96,7 @@ export class StaticTensionTableComponent implements OnInit {
       materialTrialId: this.materialTrialId,
     }
     let apiMaterialTrialData= "http://localhost:60001/api/hangang/materialTrialData/materialTrialData"
-    await this.http.post(apiMaterialTrialData,{paramsMaterialTrialData})
+    await this.http.post(apiMaterialTrialData,paramsMaterialTrialData)
     .toPromise()
     .then((res:any)=>{
       this.materialTrialDataId = res
@@ -129,7 +129,7 @@ export class StaticTensionTableComponent implements OnInit {
 
 
     let api = "http://localhost:60001/api/hangang/staticTensionDataDetail/staticTensionDataDetail"
-    await this.http.post(api, {params})
+    await this.http.post(api, params)
     .toPromise()
     .then((res:any)=>{
       this.materialTrialDataDetailId = res
