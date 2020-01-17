@@ -13,16 +13,15 @@ export class StaticTensionPictureComponent implements OnInit {
   materialId 
   trialDataDetail=[]
 
-
+  trialDataDetails=[]
   public listOfId = ["16c75e5c-75fd-4a0c-8a3c-ff5957303608","338679ba-3049-42ba-b7e8-c13cec76cdd2","dae51c76-d308-482f-a1f8-178a2c7f1a5f"]  //存放不同序号的id
   public dataList1=[]
   public dataList2=[]
   public dataList3=[]
 
   //echarts绘图
-  options1:any;
-  options2:any;
-  options3:any;
+  option:any;
+
 
   constructor(
     public http: HttpClient,
@@ -33,9 +32,15 @@ export class StaticTensionPictureComponent implements OnInit {
     this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
-    
+    let materialId = this.materialId
+    let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetails/${materialId}`;
+  this.http.get(api)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetails = res
+    }) 
     this.GetTrialDataDetails();    
-    console.log(this.listOfId)
+
   }
 
   public async GetTrialDataDetails() {
@@ -45,27 +50,36 @@ export class StaticTensionPictureComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
     }) 
-    this.PlotPicture(this.trialDataDetail)
+    console.log(this.trialDataDetails)   
+    let arry=[]
+    this.trialDataDetail.map(mapItem => {
+  if (arry.length == 0) {
+    arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
+  } else {
+     let res = arry.some(item=> {//判断相同staticTensionDataDetailId，有就添加到当前项
+      if (item.staticTensionDataDetailId == mapItem.staticTensionDataDetailId) {
+        item.List.push(mapItem)
+        return true
+      }
+    })
+    if (!res) {//如果没找相同staticTensionDataDetailId添加一个新对象
+      arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
     }
-
+  }
+}) 
+this.PlotPicture(arry[0].List)
+    }
+   
     public PlotPicture(data){
-      // console.log(data)  
-      data.forEach((val, i) =>{
-        if(val.staticTensionDataDetailId==this.listOfId[0]){
+      data.forEach((val, i) =>{    
           this.dataList1.push([val.strain,val.stress])
         }
-        else{
-          if (val.staticTensionDataDetailId==this.listOfId[1]) {
-            this.dataList2.push([val.strain,val.stress])
-          } else {
-            this.dataList3.push([val.strain,val.stress])
-          }
-        }
-      })
-
-      this.options1 = {
+        )
+      this.option = {
+        legend: {
+          data: [this.trialDataDetails[0].sampleCode,this.trialDataDetails[1].sampleCode,this.trialDataDetails[2].sampleCode]
+      },
         xAxis: {},
         yAxis: {},
         series: [{
@@ -74,26 +88,7 @@ export class StaticTensionPictureComponent implements OnInit {
             type: 'line'
         }]
       };
-    
-    this.options2 = {
-      xAxis: {},
-      yAxis: {},
-      series: [{
-          symbolSize: 20,
-          data: this.dataList2,
-          type: 'line'
-      }]
-    };
-  
-  this.options3 = {
-    xAxis: {},
-    yAxis: {},
-    series: [{
-        symbolSize: 20,
-        data: this.dataList3,
-        type: 'line'
-    }]
-  };
+
 }
 
   }
