@@ -24,7 +24,73 @@ export class MetallographicTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
+  }
+  visible = false;
+  public postParams = {
+    materialTrialDataId:'',
+    standard:'',
+    structure:'',
+    nonMetalliclnclusionLevel:'',
+    grainSize:'',
+    depthDecarburization:'',
+
+  }
+  open(): void {
+    this.visible = true;
+  }
+  close(): void {
+    this.visible = false;
+  }
+  materialTrialId
+  materialTrialDataId
+  materialTrialDataDetailId
+  public async PostTrialDataDetails(){   
+    //#region 得到materialTrialDataId: materialId+TrialId-->materialTrialId-->materialDataId      
+    ////materialId+TrialId-->materialTrialId
+    let paramsMaterialTrial={
+      materialId:this.materialId,
+      trialId:"73b1b822-689b-4e95-bd97-36e9eb395216"
+    }
+    let apiMaterialTrial = "http://localhost:60001/api/hangang/materialTrial/materialTrial"
+    await this.http.post(apiMaterialTrial,paramsMaterialTrial)
+    .toPromise()
+    .then((res:any)=>{
+      this.materialTrialId = res
+    })
+    console.log("materialTrialId:  "+this.materialTrialId)
+    ////materialId+TrialId-->materialTrialId
+    let paramsMaterialTrialData={
+      materialTrialId: this.materialTrialId,
+    }
+    let apiMaterialTrialData= "http://localhost:60001/api/hangang/materialTrialData/materialTrialData"
+    await this.http.post(apiMaterialTrialData,paramsMaterialTrialData)
+    .toPromise()
+    .then((res:any)=>{
+      this.materialTrialDataId = res
+    })
+    console.log("materialTrialDataId:  "+this.materialTrialDataId)
+    this.postParams.materialTrialDataId = this.materialTrialDataId;  //得到materialTrialDataId
+    //#endregion
+    console.log(this.postParams)
+    let params = {
+      materialTrialDataId:this.postParams.materialTrialDataId,
+      standard:this.postParams.standard,
+      structure: Number(this.postParams.structure),
+      nonMetalliclnclusionLevel:this.postParams.nonMetalliclnclusionLevel,
+      grainSize:Number(this.postParams.grainSize),
+      depthDecarburization:Number(this.postParams.depthDecarburization),
+    } 
+
+
+    let api = "http://localhost:60001/api/hangang/metallographicDataDetail/metallographicData"
+    await this.http.post(api, params)
+    .toPromise()
+    .then((res:any)=>{
+      this.materialTrialDataDetailId = res
+    })
+
+    console.log(this.materialTrialDataDetailId)
   }
 }

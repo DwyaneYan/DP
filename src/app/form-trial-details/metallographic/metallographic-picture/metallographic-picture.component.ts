@@ -45,5 +45,73 @@ export class MetallographicPictureComponent implements OnInit {
     this.ImgPathFour = this.ImgPathFour + this.trialDataDetail[0].id;   
     // console.log(this.ImgPath);
   }
+  visible = false;
+  public postParams = {
+    id:'',
+    materialTrialDataId:'',
+    standard:'',
+    structurePhoto:'',
+    nonMetallicInclusionLevelPhoto:'',
+    grainSizePhoto:'',
+    depthDecarburizationPhoto:'',
+  }
+  open(): void {
+    this.visible = true;
+  }
+  close(): void {
+    this.visible = false;
+  }
+  materialTrialId
+  materialTrialDataId
+  materialTrialDataDetailId
+  materialTrialDataIdjin
+  public async PostTrialDataDetails(){   
+    let paramsMaterialTrial={
+      materialId:this.materialId,
+      trialId:"73b1b822-689b-4e95-bd97-36e9eb395216"
+    }
+    let apiMaterialTrial = "http://localhost:60001/api/hangang/materialTrial/materialTrial"
+    await this.http.post(apiMaterialTrial,paramsMaterialTrial)
+    .toPromise()
+    .then((res:any)=>{
+      this.materialTrialId = res
+    })
+    let paramsMaterialTrialData={
+      materialTrialId: this.materialTrialId,
+    }
+    let apiMaterialTrialData= "http://localhost:60001/api/hangang/materialTrialData/materialTrialData"
+    await this.http.post(apiMaterialTrialData,paramsMaterialTrialData)
+    .toPromise()
+    .then((res:any)=>{
+      this.materialTrialDataId = res
+    })
+   let one={materialTrialDataId :this.materialTrialDataId.id,}
+   let apijin= "http://localhost:60001/api/hangang/metallographicDataDetail/metallographicData"
+   await this.http.post(apijin,one)
+   .toPromise()
+   .then((res:any)=>{
+     this.materialTrialDataIdjin = res
+     console.log(this.materialTrialDataIdjin.id)
+   })
+    let params = {
+      id:this.materialTrialDataIdjin.id,
+      materialTrialDataId:this.postParams.materialTrialDataId,
+      standard:this.postParams.standard,
+      structure: Number(this.postParams.structurePhoto),
+      nonMetalliclnclusionLevel: Number(this.postParams.nonMetallicInclusionLevelPhoto),
+      grainSize:Number(this.postParams.grainSizePhoto),
+      depthDecarburization:Number(this.postParams.depthDecarburizationPhoto),
+    } 
+    console.log(this.materialTrialDataIdjin.id)
+
+    let apio = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut"
+    await this.http.post(apio, params)
+    .toPromise()
+    .then((res:any)=>{
+      this.materialTrialDataDetailId = res
+    })
+
+    console.log(this.materialTrialDataDetailId)
+  }
 
 }

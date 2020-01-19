@@ -21,3 +21,20 @@
 #he{padding-top:8px;
     padding-bottom:8px;
     text-align:center;}
+    .footer {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        border-top: 1px solid rgb(232, 232, 232);
+        padding: 10px 16px;
+        text-align: right;
+        left: 0px;
+        background: #fff;
+        }
+    
+    /* 抽屉按钮 */
+    #drawerBtn{
+        position: absolute;
+        top: 50px;
+        left: 90%;
+    }
