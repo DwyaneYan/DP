@@ -38,8 +38,15 @@
             <nz-form-item>
                 <nz-form-label>金相组织</nz-form-label>
                 <nz-form-control>
+<<<<<<< HEAD
                     <nz-upload [nzAction]="img1"  [nzCustomRequest]="customReqone" [nzName]=structurePhoto nzListType="picture">
                         <button nz-button type="button"><i nz-icon nzType="upload"></i><span>上传</span></button>
+=======
+                    <nz-upload nzAction="http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id=cf83f1b4-081a-4785-bbfb-eb62bb4f2225"                       
+                      nzListType="picture" 
+                      [(nzFileList)]="structurePhoto">
+                    <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
+>>>>>>> 6e20b70d7cee30d05c14d8bb619ad258ee02122c
                     </nz-upload>
                 </nz-form-control>
             </nz-form-item>

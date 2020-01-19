@@ -43,6 +43,7 @@ export class MetallographicTableComponent implements OnInit {
   close(): void {
     this.visible = false;
   }
+
   materialTrialId
   materialTrialDataId
   materialTrialDataDetailId

@@ -19,10 +19,16 @@ export class MetallographicPictureComponent implements OnInit {
   ImgPathFour: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingFour?Id="
 img1: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id="
 
+  
   constructor(
     private router: Router,
     public http: HttpClient,    
     ) { }
+
+
+    /////////////////////////////////
+
+
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
