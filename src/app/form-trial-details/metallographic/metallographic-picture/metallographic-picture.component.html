@@ -32,23 +32,14 @@
   
     >
       <form nz-form>
-        <div nz-row nzGutter="8">
-          <div nz-col nzSpan="17">
-            <nz-form-item>
-              <nz-form-label>执行标准</nz-form-label>
-              <nz-form-control>
-                <input nz-input [(ngModel)]='postParams.standard' [ngModelOptions]="{standalone: true}" placeholder="please enter " />
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
+        
         <div nz-row nzGutter="8">
           <div nz-col nzSpan="17">
             <nz-form-item>
                 <nz-form-label>金相组织</nz-form-label>
                 <nz-form-control>
-                    <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" nzListType="picture" [(nzFileList)]="postParams.structurePhoto">
-                        <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
+                    <nz-upload [nzAction]="img1"  [nzCustomRequest]="customReqone" [nzName]=structurePhoto nzListType="picture">
+                        <button nz-button type="button"><i nz-icon nzType="upload"></i><span>上传</span></button>
                     </nz-upload>
                 </nz-form-control>
             </nz-form-item>
@@ -59,8 +50,8 @@
               <nz-form-item>
                   <nz-form-label>非金属夹杂</nz-form-label>
                   <nz-form-control>
-                    <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" nzListType="picture" [(nzFileList)]="postParams.nonMetallicInclusionLevelPhoto">
-                        <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
+                    <nz-upload [nzAction]="img1" nzListType="picture" nzName="nonMetallicInclusionLevelPhoto" [nzCustomRequest]="customReqtwo" >
+                        <button nz-button type="button"><i nz-icon nzType="upload"></i><span>Upload</span></button>
                     </nz-upload>
                   </nz-form-control>
               </nz-form-item>
@@ -71,8 +62,8 @@
               <nz-form-item>
                   <nz-form-label>晶粒度</nz-form-label>
                   <nz-form-control>
-                    <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" nzListType="picture" [(nzFileList)]="postParams.grainSizePhoto">
-                        <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
+                    <nz-upload [nzAction]="img1" nzListType="picture" nzName="grainSizePhoto" [nzCustomRequest]="customReqthree" >
+                        <button nz-button type="button"><i nz-icon nzType="upload"></i><span>Upload</span></button>
                     </nz-upload>
                   </nz-form-control>
               </nz-form-item>
@@ -83,8 +74,8 @@
             <nz-form-item>
                 <nz-form-label>脱碳层深度</nz-form-label>
                 <nz-form-control>
-                    <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" nzListType="picture" [(nzFileList)]="postParams.depthDecarburizationPhoto">
-                        <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
+                    <nz-upload [nzAction="img1" nzListType="picture" nzName="depthDecarburizationPhoto" [nzCustomRequest]="customReqfor" >
+                        <button nz-button type="button"><i nz-icon nzType="upload"></i><span>Upload</span></button>
                     </nz-upload>
                 </nz-form-control>
             </nz-form-item>
@@ -93,7 +84,7 @@
       </form>
       <div class="footer">
         <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>取消</span></button>
-        <button type="button" (click)="PostTrialDataDetails();close()" class="ant-btn ant-btn-primary"><span>添加</span></button>
+        <button type="button" (click)="close()" class="ant-btn ant-btn-primary"><span>添加</span></button>
       </div>
     </nz-drawer>
 </div>  

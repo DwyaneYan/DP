@@ -32,7 +32,7 @@ export class MetallographicTableComponent implements OnInit {
     materialTrialDataId:'',
     standard:'',
     structure:'',
-    nonMetalliclnclusionLevel:'',
+    nonMetallicInclusionLevel:'',
     grainSize:'',
     depthDecarburization:'',
 
@@ -77,8 +77,8 @@ export class MetallographicTableComponent implements OnInit {
     let params = {
       materialTrialDataId:this.postParams.materialTrialDataId,
       standard:this.postParams.standard,
-      structure: Number(this.postParams.structure),
-      nonMetalliclnclusionLevel:this.postParams.nonMetalliclnclusionLevel,
+      structure:this.postParams.structure,
+      nonMetallicInclusionLevel:this.postParams.nonMetallicInclusionLevel,
       grainSize:Number(this.postParams.grainSize),
       depthDecarburization:Number(this.postParams.depthDecarburization),
     } 

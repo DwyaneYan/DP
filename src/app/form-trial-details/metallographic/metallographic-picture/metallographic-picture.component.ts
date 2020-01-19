@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { UploadXHRArgs } from 'ng-zorro-antd';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-metallographic-picture',
   templateUrl: './metallographic-picture.component.html',
@@ -16,6 +17,7 @@ export class MetallographicPictureComponent implements OnInit {
   ImgPathTwo: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingTwo?Id="
   ImgPathThree: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingThree?Id="
   ImgPathFour: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingFour?Id="
+img1: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id="
 
   constructor(
     private router: Router,
@@ -36,82 +38,154 @@ export class MetallographicPictureComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
+      
     })   
+    console.log(this.trialDataDetail[0].id) 
     //拼接出完整的图片URL
     this.ImgPathOne = this.ImgPathOne + this.trialDataDetail[0].id;
     this.ImgPathTwo = this.ImgPathTwo + this.trialDataDetail[0].id;
     this.ImgPathThree = this.ImgPathThree + this.trialDataDetail[0].id;
     this.ImgPathFour = this.ImgPathFour + this.trialDataDetail[0].id;   
+   this.img1= this.img1+this.trialDataDetail[0].id
     // console.log(this.ImgPath);
   }
   visible = false;
-  public postParams = {
-    id:'',
-    materialTrialDataId:'',
-    standard:'',
-    structurePhoto:'',
-    nonMetallicInclusionLevelPhoto:'',
-    grainSizePhoto:'',
-    depthDecarburizationPhoto:'',
-  }
+
   open(): void {
     this.visible = true;
   }
   close(): void {
     this.visible = false;
   }
-  materialTrialId
-  materialTrialDataId
-  materialTrialDataDetailId
-  materialTrialDataIdjin
-  public async PostTrialDataDetails(){   
-    let paramsMaterialTrial={
-      materialId:this.materialId,
-      trialId:"73b1b822-689b-4e95-bd97-36e9eb395216"
-    }
-    let apiMaterialTrial = "http://localhost:60001/api/hangang/materialTrial/materialTrial"
-    await this.http.post(apiMaterialTrial,paramsMaterialTrial)
-    .toPromise()
-    .then((res:any)=>{
-      this.materialTrialId = res
-    })
-    let paramsMaterialTrialData={
-      materialTrialId: this.materialTrialId,
-    }
-    let apiMaterialTrialData= "http://localhost:60001/api/hangang/materialTrialData/materialTrialData"
-    await this.http.post(apiMaterialTrialData,paramsMaterialTrialData)
-    .toPromise()
-    .then((res:any)=>{
-      this.materialTrialDataId = res
-    })
-   let one={materialTrialDataId :this.materialTrialDataId.id,}
-   let apijin= "http://localhost:60001/api/hangang/metallographicDataDetail/metallographicData"
-   await this.http.post(apijin,one)
-   .toPromise()
-   .then((res:any)=>{
-     this.materialTrialDataIdjin = res
-     console.log(this.materialTrialDataIdjin.id)
-   })
-    let params = {
-      id:this.materialTrialDataIdjin.id,
-      materialTrialDataId:this.postParams.materialTrialDataId,
-      standard:this.postParams.standard,
-      structure: Number(this.postParams.structurePhoto),
-      nonMetalliclnclusionLevel: Number(this.postParams.nonMetallicInclusionLevelPhoto),
-      grainSize:Number(this.postParams.grainSizePhoto),
-      depthDecarburization:Number(this.postParams.depthDecarburizationPhoto),
-    } 
-    console.log(this.materialTrialDataIdjin.id)
 
-    let apio = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut"
-    await this.http.post(apio, params)
-    .toPromise()
-    .then((res:any)=>{
-      this.materialTrialDataDetailId = res
-    })
+ 
+  customReqone = (item: UploadXHRArgs) => {
 
-    console.log(this.materialTrialDataDetailId)
-  }
+    // 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    // tslint:disable-next-line:no-any
+    formData.append('structurePhoto', item.file as any);
+    const req = new HttpRequest('PUT', item.action!, formData, {
+      reportProgress: true,
+      withCredentials: true
+    });
+    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+    return this.http.request(req).subscribe(
+      (event: HttpEvent<{}>) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total! > 0) {
+            // tslint:disable-next-line:no-any
+            (event as any).percent = (event.loaded / event.total!) * 100;
+          }
+          // 处理上传进度条，必须指定 `percent` 属性来表示进度
+          item.onProgress!(event, item.file!);
+        } else if (event instanceof HttpResponse) {
+          // 处理成功
 
+          item.onSuccess!(event.body, item.file!, event);
+        }
+      },
+      err => {
+        // 处理失败
+        item.onError!(err, item.file!);
+      }
+    );
+
+  };
+  customReqtwo = (item: UploadXHRArgs) => {  
+    // 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    // tslint:disable-next-line:no-any
+    formData.append('nonMetallicInclusionLevelPhoto', item.file as any);
+    const req = new HttpRequest('PUT', item.action!, formData, {
+      reportProgress: true,
+      withCredentials: true
+    });
+    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+    return this.http.request(req).subscribe(
+      (event: HttpEvent<{}>) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total! > 0) {
+            // tslint:disable-next-line:no-any
+            (event as any).percent = (event.loaded / event.total!) * 100;
+          }
+          // 处理上传进度条，必须指定 `percent` 属性来表示进度
+          item.onProgress!(event, item.file!);
+        } else if (event instanceof HttpResponse) {
+          // 处理成功
+
+          item.onSuccess!(event.body, item.file!, event);
+        }
+      },
+      err => {
+        // 处理失败
+        item.onError!(err, item.file!);
+      }
+    );
+
+  };
+  customReqthree = (item: UploadXHRArgs) => {
+    // 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    // tslint:disable-next-line:no-any
+    formData.append('grainSizePhoto', item.file as any);
+    const req = new HttpRequest('PUT', item.action!, formData, {
+      reportProgress: true,
+      withCredentials: true
+    });
+    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+    return this.http.request(req).subscribe(
+      (event: HttpEvent<{}>) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total! > 0) {
+            // tslint:disable-next-line:no-any
+            (event as any).percent = (event.loaded / event.total!) * 100;
+          }
+          // 处理上传进度条，必须指定 `percent` 属性来表示进度
+          item.onProgress!(event, item.file!);
+        } else if (event instanceof HttpResponse) {
+          // 处理成功
+
+          item.onSuccess!(event.body, item.file!, event);
+        }
+      },
+      err => {
+        // 处理失败
+        item.onError!(err, item.file!);
+      }
+    );
+
+  };
+  customReqfor = (item: UploadXHRArgs) => {   
+    // 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    // tslint:disable-next-line:no-any
+    formData.append('depthDecarburizationPhoto', item.file as any);
+    const req = new HttpRequest('PUT', item.action!, formData, {
+      reportProgress: true,
+      withCredentials: true
+    });
+    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+    return this.http.request(req).subscribe(
+      (event: HttpEvent<{}>) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total! > 0) {
+            // tslint:disable-next-line:no-any
+            (event as any).percent = (event.loaded / event.total!) * 100;
+          }
+          // 处理上传进度条，必须指定 `percent` 属性来表示进度
+          item.onProgress!(event, item.file!);
+        } else if (event instanceof HttpResponse) {
+          // 处理成功
+
+          item.onSuccess!(event.body, item.file!, event);
+        }
+      },
+      err => {
+        // 处理失败
+        item.onError!(err, item.file!);
+      }
+    );
+
+  };
 }
