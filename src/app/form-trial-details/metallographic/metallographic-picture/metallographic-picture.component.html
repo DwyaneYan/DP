@@ -47,8 +47,10 @@
             <nz-form-item>
                 <nz-form-label>金相组织</nz-form-label>
                 <nz-form-control>
-                    <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" nzListType="picture" [(nzFileList)]="postParams.structurePhoto">
-                        <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
+                    <nz-upload nzAction="http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id=cf83f1b4-081a-4785-bbfb-eb62bb4f2225"                       
+                      nzListType="picture" 
+                      [(nzFileList)]="structurePhoto">
+                    <button nz-button><i nz-icon nzType="upload"></i><span>Upload</span></button>
                     </nz-upload>
                 </nz-form-control>
             </nz-form-item>
