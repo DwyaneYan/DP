@@ -17,7 +17,7 @@ export class MetallographicPictureComponent implements OnInit {
   ImgPathTwo: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingTwo?Id="
   ImgPathThree: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingThree?Id="
   ImgPathFour: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingFour?Id="
-img1: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id="
+  img1: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id="
 
   
   constructor(
@@ -46,13 +46,13 @@ img1: string = "http://localhost:60001/api/hangang/trialdatadetail/Metallographi
       this.trialDataDetail = res
       
     })   
-    console.log(this.trialDataDetail[0].id) 
+    console.log(this.trialDataDetail) 
     //拼接出完整的图片URL
     this.ImgPathOne = this.ImgPathOne + this.trialDataDetail[0].id;
     this.ImgPathTwo = this.ImgPathTwo + this.trialDataDetail[0].id;
     this.ImgPathThree = this.ImgPathThree + this.trialDataDetail[0].id;
     this.ImgPathFour = this.ImgPathFour + this.trialDataDetail[0].id;   
-   this.img1= this.img1+this.trialDataDetail[0].id
+    this.img1= this.img1+this.trialDataDetail[0].id
     // console.log(this.ImgPath);
   }
   visible = false;
