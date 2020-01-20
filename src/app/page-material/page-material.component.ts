@@ -177,7 +177,7 @@ export class PageMaterialComponent implements OnInit {
       value: '1.5',
     },
     {
-      value: '2.0',
+      value: '6.0',
     },
   ]
   //屈服强度

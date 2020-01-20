@@ -70,9 +70,7 @@ this.PlotPicture(arry[0].List)
         }
         )
       this.option = {
-        legend: {
-          data: [this.trialDataDetails[0].sampleCode,this.trialDataDetails[1].sampleCode,this.trialDataDetails[2].sampleCode]
-      },
+
         xAxis: {},
         yAxis: {},
         series: [{
