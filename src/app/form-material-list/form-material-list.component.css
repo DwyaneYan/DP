@@ -15,3 +15,44 @@
         color:white
      
     }
+.components-table-demo-control-bar{
+    position:relative;
+    left:72%;
+    top:12px
+}
+#xfk{
+background:-webkit-linear-gradient(bottom,white,lightblue,skyblue); 
+    position: fixed;
+    border-radius:8px;
+    
+top:30%;
+left:65%;
+width:420px
+
+}
+ul{
+    list-style-type: none;
+    padding-top:13px;
+    padding-left: 25px;
+    
+}
+li{
+    height:30px
+}
+#show{
+    background-color: blue;
+    color:white;
+    font-size: medium;
+}
+br{
+    color:blue
+}
+.lt{
+    display:inline-block;
+    width:120px;
+}
+button{
+    float:right;
+    margin-right:10px;
+    margin-bottom:10px
+}

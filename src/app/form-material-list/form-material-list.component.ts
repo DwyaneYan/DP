@@ -1,19 +1,22 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
 
+
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
   styleUrls: ['./form-material-list.component.css']
 })
 export class FormMaterialListComponent implements OnChanges, OnInit {
-  isAllDisplayDataChecked = false;
-  isIndeterminate = false;
-  listOfDisplayData = [];
+
   listOfAllData = [];
+  displayData=[];
+  checkList=[];
   mapOfCheckedId: { [key: string]: boolean } = {};
   public allmaterial=[]
-
+  checkbox = false;
+  allChecked = false;
+  indeterminate = false;
   @Input() data = [];
   @Input() params ;
 
@@ -40,12 +43,18 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     },
     // console.log(this.listOfAllData)
     )
+//     this.selectedData = [];
+// this.AllData.forEach(item => {
+//  this.selectedData.push(item.id);
+
   }  
+
 
 //#region 模块 
 
   ngOnInit(): void {
-    this.Allmaterial()
+    this.Allmaterial();
+  
   } 
 Allmaterial(){
     let params = this.params
@@ -72,18 +81,40 @@ Allmaterial(){
 
 
   currentPageDataChange($event): void {
-    this.listOfDisplayData = $event;
+    this.displayData = $event;
     this.refreshStatus();
   }
+  
+  
   refreshStatus(): void {
-    this.isAllDisplayDataChecked = this.listOfDisplayData.every(item => this.mapOfCheckedId[item.id]);
-    this.isIndeterminate =
-      this.listOfDisplayData.some(item => this.mapOfCheckedId[item.id]) && !this.isAllDisplayDataChecked;
+    const validData = this.displayData.filter(value => !value.disabled);
+  this.checkList=this.listOfAllData.filter(value => value.checked)
+    const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
+    const allUnChecked = validData.every(value => !value.checked);
+    this.allChecked = allChecked;
+    this.indeterminate = !allChecked && !allUnChecked;
   }
+  
   checkAll(value: boolean): void {
-    this.listOfDisplayData.forEach(item => (this.mapOfCheckedId[item.id] = value));
+ this.displayData.forEach(data => {
+      if (!data.disabled) {
+        data.checked = value;
+      }
+      
+    }
+    );
     this.refreshStatus();
+    
   }
   //#endregion
 
+shanchu(x){
+  for(var j=0;j<this.checkList.length;j++){
+    if(this.checkList[j].materialId == x){
+      this.checkList[j].checked = false;
+      this.checkList.splice(j,1)
+    }
+  }
+  console.log(this.checkList)
+}
 }
