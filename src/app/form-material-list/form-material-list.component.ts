@@ -1,15 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
-import * as $ from'jquery';
-interface ItemData {
-  name: string;
-  manufacture:string;
-  thickness: number;
-  checked: boolean;
-  expand: boolean;
-  description: string;
-  disabled?: boolean;
-}
+
+
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
