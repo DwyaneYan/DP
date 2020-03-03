@@ -8,7 +8,6 @@ import { PageDisplayPictureComponent } from './page-display-picture/page-display
 import { PageDisplayReportComponent } from './page-display-report/page-display-report.component';
 import { PageDisplayReportFsComponent } from './page-display-report-fs/page-display-report-fs.component';
 import { PageDisplayTypicalPartComponent } from './page-display-typical-part/page-display-typical-part.component';
-import { PageConstractComponent } from './page-constract/page-constract.component';
 import { PageAttributeConstractComponent } from './page-attribute-constract/page-attribute-constract.component';
 import { PageMaterialFakeComponent } from './page-material-fake/page-material-fake.component';
 import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/page-material-floating-box.component';
@@ -124,6 +123,7 @@ import { ReboundReportComponent } from './form-trial-details/rebound/rebound-rep
 import { ReboundTypicalPartComponent } from './form-trial-details/rebound/rebound-typical-part/rebound-typical-part.component';
 import { BakeHardeningReportComponent } from './form-trial-details/bake-hardening/bake-hardening-report/bake-hardening-report.component';
 import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-hardening/bake-hardening-typical-part/bake-hardening-typical-part.component';
+import { PageContrastComponent } from './page-contrast/page-contrast.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -353,7 +353,6 @@ const routes: Routes = [
   ]},
 
   { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
-  { path: 'contrast', component:PageConstractComponent},
   { path: 'attribute-constract', component:PageAttributeConstractComponent},
   { path: 'material-fake', component:PageMaterialFakeComponent},
   { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
@@ -362,7 +361,7 @@ const routes: Routes = [
   { path: 'typicalpart', component: FormTypicpartListComponent },
   { path: 'material-trial', component: PageMaterialTrialComponent },
   { path: 'materialss', component: FormMateriaListComponent },
-
+  { path: 'contrast', component: PageContrastComponent},
 ]
 
 @NgModule({

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageConstractComponent } from './page-constract.component';
+import { PageContrastComponent } from './page-contrast.component';
 
-describe('PageConstractComponent', () => {
-  let component: PageConstractComponent;
-  let fixture: ComponentFixture<PageConstractComponent>;
+describe('PageContrastComponent', () => {
+  let component: PageContrastComponent;
+  let fixture: ComponentFixture<PageContrastComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageConstractComponent ]
+      declarations: [ PageContrastComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageConstractComponent);
+    fixture = TestBed.createComponent(PageContrastComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
