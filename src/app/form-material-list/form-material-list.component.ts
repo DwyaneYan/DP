@@ -1,14 +1,12 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
 
-
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
   styleUrls: ['./form-material-list.component.css']
 })
 export class FormMaterialListComponent implements OnChanges, OnInit {
-
   listOfAllData = [];
   displayData=[];
   checkList=[];
@@ -99,8 +97,7 @@ Allmaterial(){
  this.displayData.forEach(data => {
       if (!data.disabled) {
         data.checked = value;
-      }
-      
+      }    
     }
     );
     this.refreshStatus();
