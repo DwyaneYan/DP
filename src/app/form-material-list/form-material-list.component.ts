@@ -86,7 +86,8 @@ Allmaterial(){
   
   refreshStatus(): void {
     const validData = this.displayData.filter(value => !value.disabled);
-  this.checkList=this.listOfAllData.filter(value => value.checked)
+    this.checkList=this.listOfAllData.filter(value => value.checked)    
+    console.log(this.checkList)
     const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
     const allUnChecked = validData.every(value => !value.checked);
     this.allChecked = allChecked;
@@ -94,7 +95,7 @@ Allmaterial(){
   }
   
   checkAll(value: boolean): void {
- this.displayData.forEach(data => {
+    this.displayData.forEach(data => {
       if (!data.disabled) {
         data.checked = value;
       }    

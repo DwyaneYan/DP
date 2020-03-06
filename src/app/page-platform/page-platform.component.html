@@ -104,7 +104,9 @@
         <div id="content2">
 
             <div class="material"  *ngFor="let material of materials" >
-                <div class="material-image"><img src="../../assets/images/DC01.png" alt="" width="100" height="100" ></div>
+                <a routerLink="/display/4e6f9024-aca4-4c5d-b1df-b48c9ba1d3eb/static-tension-home/table">
+                    <div class="material-image"><img src="../../assets/images/DC01.png" alt="" width="100" height="100" ></div>
+                </a>
                 <div class="material-info">
                     材料牌号: {{material.name}}<br/>
                     材料类型: {{material.class}}<br/>
