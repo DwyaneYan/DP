@@ -26,10 +26,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr >
-            <td><div>hangang</div></td>
+          <tr *ngFor="let data of listMaterials; let i=index" >
+            <td><div class="sta">{{name[i]}}</div>
+            <div class="sta">{{model[i]}}</div>
+          <div class="sta">{{manu[i]}}</div></td>
             <td><div></div></td>
-            <td><div></div></td>
+            <td><div>{{data.standard}}</div></td>
+            <td><div>{{data.yieldStrength}}</div></td>
+            <td><div>{{data.tensileStrength}}</div></td>
+            <td><div>{{data.strainHardening}}</div></td>
+            <td><div>{{data.elongation}}</div></td>
+            <td><div>{{data.plasticStrainRatio}}</div></td>
+            <td><div>{{data.modulusOfElasticity}}</div></td>
+            <td><div>{{data.poissonRatio}}</div></td>
+            <td><div>{{data.maximumForce}}</div></td>
           </tr>
         </tbody>
       </nz-table>
