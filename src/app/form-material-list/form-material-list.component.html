@@ -45,12 +45,12 @@
   </tr>
 </tbody>
 </nz-table>
-<div id="xfk">
+<div id="xfk" *ngIf="checkbox">
   <ul *ngIf="checkbox" >
     <li *ngFor="let data of checkList" ><span class="lt">{{ data.name }}</span><span class="lt">{{ data.manufacture }}</span>
       <span class="lt">{{ data.thickness }}</span><i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i></li>
   </ul>
-  <a routerLink="/contrast">
-    <button nz-button nzType="primary" *ngIf="checkbox"> 开始对比</button>
+  <a  [routerLink]="['/contrast', contrastID]">
+    <button nz-button nzType="primary" *ngIf="checkbox" (click)="select()"> 开始对比</button>
   </a> 
 </div>

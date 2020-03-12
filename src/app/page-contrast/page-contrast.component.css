@@ -1,0 +1,84 @@
+#con{
+    width:1000px;
+    margin:auto;
+    border:solid 1px grey;
+    margin-top:40px;
+    padding-top:20px;
+    overflow:auto;
+    height:1000px
+    
+}
+.ed{
+    float:right;
+    padding-right:8px
+    
+}
+.cd{
+    float:right;
+    padding-right:20px
+}
+
+#he{
+    border-bottom:solid 1px grey;
+    padding-bottom:8px
+}
+#mater{
+    padding-left:20px;
+}
+nz-table.vertical
+    {
+      -webkit-writing-mode: vertical-lr;
+      -moz-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+    }
+    nz-table.vertical th, nz-table.vertical td
+    {
+      width: 100px;
+      height:4px
+    }
+    nz-table.vertical div
+    {
+      width: 100px;
+      -webkit-writing-mode: horizontal-tb;
+      -moz-writing-mode: horizontal-tb;
+      -ms-writing-mode: lr-tb;
+      writing-mode: horizontal-tb;
+    }
+nz-table{
+    margin:30px 20px;
+}
+#info{
+    height:120px
+}
+#hide1{
+   float:left ;
+   color:blue;  
+}
+#hide2{
+    float:left ;
+    margin-top:13px;
+    margin-bottom:7px;
+width:110px
+ }
+ #hide3{
+    float:left ;
+    width:110px
+ }
+ #str{
+     border-right:none;
+     border-left:none;
+     background-color:white;
+     text-align:left;
+padding-top:5px;
+padding-bottom:5px;
+ }
+ .cell{
+     text-align:right;
+     width:110px;
+     padding-right:2px;
+     padding-top:7px;
+padding-bottom:7px;
+     
+ }
+

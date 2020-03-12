@@ -14,6 +14,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   public allmaterial=[]
   checkbox = false;
   allChecked = false;
+
   indeterminate = false;
   @Input() data = [];
   @Input() params ;
@@ -76,18 +77,17 @@ Allmaterial(){
       }    
       )
   }
-
-
   currentPageDataChange($event): void {
     this.displayData = $event;
     this.refreshStatus();
-  }
-  
-  
+  } 
+  contrasts=[];
+  contrastID
   refreshStatus(): void {
     const validData = this.displayData.filter(value => !value.disabled);
     this.checkList=this.listOfAllData.filter(value => value.checked)    
-    console.log(this.checkList)
+    console.log(this.checkList);
+   
     const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
     const allUnChecked = validData.every(value => !value.checked);
     this.allChecked = allChecked;
@@ -110,9 +110,15 @@ shanchu(x){
   for(var j=0;j<this.checkList.length;j++){
     if(this.checkList[j].materialId == x){
       this.checkList[j].checked = false;
-      this.checkList.splice(j,1)
-    }
-  }
-  console.log(this.checkList)
+      this.checkList.splice(j,1); 
+}
+}
+}
+select(){
+  for(var j=0;j<this.checkList.length;j++){     
+    this.contrasts +=this.checkList[j].materialId
+}
+console.log(this.contrasts)
+this.contrastID =   this.contrasts.toString();
 }
 }

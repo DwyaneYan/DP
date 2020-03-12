@@ -1,1 +1,36 @@
-<p>page-contrast works!</p>
+<app-form-material-db-background></app-form-material-db-background>
+<div id="con">
+    <div id="he">
+        <span id="mater">材料对比</span>
+        <nz-switch nzSize="small" [ngModel]="true" class="cd"></nz-switch>
+        <span class="ed">编辑模式</span>
+    </div>
+    <nz-table #borderedTable nzBordered  [nzData]="[{}]" [nzShowPagination]=false>
+        <thead>
+          <tr>
+            <th id="info">
+                <div id="hide1">材料信息</div>
+                <div id="hide2"><label nz-checkbox >隐藏空白项</label></div>
+                <div id="hide3"><label nz-checkbox >标示全部项</label></div>
+            </th>
+            <th id="str"><div >静态拉伸</div></th>
+            <th class="cell"><div >执行标准</div></th>
+            <th class="cell"><div>屈服强度</div></th>
+            <th class="cell"><div>抗拉强度</div></th>
+            <th class="cell"><div>应变硬化指数</div></th>
+            <th class="cell"><div>断后伸长率</div></th>
+            <th class="cell"><div>塑性应变比</div></th>
+            <th class="cell"><div>弹性模量</div></th>
+            <th class="cell"><div>泊松比</div></th>
+            <th class="cell"><div>最大力</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td><div>hangang</div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
