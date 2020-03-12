@@ -81,7 +81,7 @@ Allmaterial(){
     this.displayData = $event;
     this.refreshStatus();
   } 
-  contrasts=[];
+  contrasts=[]
   contrastID
   refreshStatus(): void {
     const validData = this.displayData.filter(value => !value.disabled);
@@ -116,9 +116,12 @@ shanchu(x){
 }
 select(){
   for(var j=0;j<this.checkList.length;j++){     
-    this.contrasts +=this.checkList[j].materialId
+    this.contrasts[j] =this.checkList[j].materialId 
 }
+console.log(typeof(this.contrasts))
+this.contrastID = this.contrasts.toString();
 console.log(this.contrasts)
-this.contrastID =   this.contrasts.toString();
+
+
 }
 }
