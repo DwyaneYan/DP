@@ -24,22 +24,21 @@ export class PageContrastComponent implements OnInit {
       $('nz-table').addClass('vertical').find('th, td').wrapInner('<div>');
       //$('table').addClass('vertical');//数字会变垂直，不能用
       this.contrastID = this.routerinfo.snapshot.params['contrastID']
-      console.log(this.contrastID)
+      // console.log(this.contrastID)
       this.array=this.contrastID.split(",");
-      console.log(this.array);
+      // console.log(this.array);
       this.getGetMaterialss()
       this.getGetMaterials();
       
   }
 
-  public async getGetMaterials() {     
-    for(var i=0;i<this.array.length;i++){
+  public async getGetMaterials() {        
     await this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
-      this.listMaterials[i] = res[i]; 
+      this.listMaterials= res; 
       console.log(this.listMaterials)
-    });
+    
+})
 }
-  }
   public async getGetMaterialss() {     
     for(var i=0;i<this.array.length;i++){
     await this.MaterialsContrastService.GetMaterialss(this.array[i]).then((res: any) => {
@@ -51,5 +50,11 @@ export class PageContrastComponent implements OnInit {
 }
   }
 
+del(i){
+  this.listMaterials.splice(i,1); 
+  this.name.splice(i,1);
+  this.model.splice(i,1);
+  this.manu.splice(i,1);
+}
 
 }

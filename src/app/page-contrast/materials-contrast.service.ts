@@ -18,8 +18,8 @@ export class MaterialsContrastService {
     let res= await this.http.get(api).toPromise().catch(err=>{
       console.log(err);        
     });
-    console.log(api) ;
-    console.log(res) 
+    // console.log(api) ;
+    // console.log(res) 
     return res;    
   }
 

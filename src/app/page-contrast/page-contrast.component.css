@@ -67,7 +67,7 @@ width:110px
  }
  #str{
      border-right:none;
-     border-left:none;
+    
      background-color:white;
      text-align:left;
 padding-top:5px;
@@ -77,10 +77,29 @@ padding-bottom:5px;
      text-align:right;
      width:110px;
      padding-right:2px;
-     padding-top:7px;
-padding-bottom:7px;
+     line-height:8px;
+     height:8px
      
  }
 .sta{
-    float:left
+    float:left;
+    text-align:center;
+    margin-left: 6px;
+    margin-top:5px
+}
+/* 改antd table的默认样式，鼠标放在行上的背景颜色为白色 */
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td { background: white; }
+.table{
+    line-height:8px;
+    height:8px
+}
+#i{
+    position:absolute;
+    top:6px;
+    right:6px
+}
+#posi{
+    position:relative;
+    top:0px;
+    right:0px
 }

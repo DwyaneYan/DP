@@ -5,15 +5,16 @@
         <nz-switch nzSize="small" [ngModel]="true" class="cd"></nz-switch>
         <span class="ed">编辑模式</span>
     </div>
-    <nz-table #borderedTable nzBordered  [nzData]="[{}]" [nzShowPagination]=false>
+    <nz-table #borderedTable nzBordered  [nzData]="[{}]" [nzShowPagination]=false
+>
         <thead>
-          <tr>
+          <tr >
             <th id="info">
                 <div id="hide1">材料信息</div>
                 <div id="hide2"><label nz-checkbox >隐藏空白项</label></div>
                 <div id="hide3"><label nz-checkbox >标示全部项</label></div>
             </th>
-            <th id="str"><div >静态拉伸</div></th>
+            <th id="str" ><div >静态拉伸</div></th>
             <th class="cell"><div >执行标准</div></th>
             <th class="cell"><div>屈服强度</div></th>
             <th class="cell"><div>抗拉强度</div></th>
@@ -25,21 +26,23 @@
             <th class="cell"><div>最大力</div></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           <tr *ngFor="let data of listMaterials; let i=index" >
-            <td><div class="sta">{{name[i]}}</div>
+            <td id="posi"><i nz-icon nzType="close" nzTheme="outline" id="i"
+               (click)="del(i)" ></i>
+              <div class="sta" >{{name[i]}}</div>
             <div class="sta">{{model[i]}}</div>
           <div class="sta">{{manu[i]}}</div></td>
-            <td><div></div></td>
-            <td><div>{{data.standard}}</div></td>
-            <td><div>{{data.yieldStrength}}</div></td>
-            <td><div>{{data.tensileStrength}}</div></td>
-            <td><div>{{data.strainHardening}}</div></td>
-            <td><div>{{data.elongation}}</div></td>
-            <td><div>{{data.plasticStrainRatio}}</div></td>
-            <td><div>{{data.modulusOfElasticity}}</div></td>
-            <td><div>{{data.poissonRatio}}</div></td>
-            <td><div>{{data.maximumForce}}</div></td>
+            <td  [attr.rowspan]="i === 0 ? listMaterials.length : 1" *ngIf="i == 0" ><div ></div></td>
+            <td class="table"><div>{{data.standard}}</div></td> 
+            <td class="table"><div>{{data.yieldStrength}}</div></td>
+            <td class="table"><div>{{data.tensileStrength}}</div></td>
+            <td class="table"><div>{{data.strainHardening}}</div></td>
+            <td class="table"><div>{{data.elongation}}</div></td>
+            <td class="table"><div>{{data.plasticStrainRatio}}</div></td>
+            <td class="table"><div>{{data.modulusOfElasticity}}</div></td>
+            <td class="table"><div>{{data.poissonRatio}}</div></td>
+            <td class="table"><div>{{data.maximumForce}}</div></td>
           </tr>
         </tbody>
       </nz-table>
