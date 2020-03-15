@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import {Router ,ActivatedRoute} from '@angular/router';
+import {Router ,ActivatedRoute,ParamMap} from '@angular/router';
+import { switchMap, } from 'rxjs/operators';
+import { of, } from 'rxjs';
 import {MaterialsContrastService} from './materials-contrast.service';
 
 @Component({
@@ -23,8 +25,9 @@ export class PageContrastComponent implements OnInit {
   ngOnInit() {  
       $('nz-table').addClass('vertical').find('th, td').wrapInner('<div>');
       //$('table').addClass('vertical');//数字会变垂直，不能用
+
       this.contrastID = this.routerinfo.snapshot.params['contrastID']
-      // console.log(this.contrastID)
+      console.log(this.contrastID)
       this.array=this.contrastID.split(",");
       // console.log(this.array);
       this.getGetMaterialss()
@@ -55,6 +58,7 @@ del(i){
   this.name.splice(i,1);
   this.model.splice(i,1);
   this.manu.splice(i,1);
+
 }
 
 }

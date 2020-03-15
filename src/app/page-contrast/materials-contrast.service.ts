@@ -19,7 +19,7 @@ export class MaterialsContrastService {
       console.log(err);        
     });
     // console.log(api) ;
-    // console.log(res) 
+    console.log(res) 
     return res;    
   }
 
