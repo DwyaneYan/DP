@@ -60,7 +60,7 @@
                         nzTitle="导入数据"
                         (nzOnCancel)="handleCancel()"
                         (nzOnOk)="handleOk()"
-                        [nzOkLoading]="isOkLoading"
+                        
                       >
                         <nz-input-group [nzSuffix]="suffixIconSearch">
                             <input type="text" nz-input placeholder="搜索实验项目" />
@@ -72,13 +72,15 @@
                           <div id="text-syxm">
                             <br/>
                             试验项目: 
-                            <app-form-cascader-option></app-form-cascader-option>
+                            <app-form-cascader-option (checkvalue)="check($event)"></app-form-cascader-option>
                           </div>
                           
                           <div id="text-xzwj">
                             <br/>
                             选择文件:
-                            <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/">
+                            <nz-upload [nzAction]="theurl" 
+                               nzMultiple [nzFileList]="FileList" [nzCustomRequest]="customReqone" 
+                             [nzLimit]="1" >
                                 <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                             </nz-upload>
                           </div>

@@ -70,7 +70,8 @@ export class MetallographicPictureComponent implements OnInit {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     // tslint:disable-next-line:no-any
-    formData.append('structurePhoto', item.file as any);
+    formData.append('file', item.file as any);
+    console.log(formData)
     const req = new HttpRequest('PUT', item.action!, formData, {
       reportProgress: true,
       withCredentials: true
