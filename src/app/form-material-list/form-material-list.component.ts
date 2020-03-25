@@ -1,18 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
 import * as $ from 'jquery';
-// export interface Data {
-//   id: number;
-//   materialId: string;
-//   name: string;
-//   manufacture: string;
-//   thickness: number;
-//   strength: number;
-//   typicalPart: string;
-//   appVehicle: string;
-//   date: string;
-//   disabled: boolean;
-// }
+
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
@@ -99,27 +88,7 @@ Allmaterial(){
     }
 }
   currentPageDataChange($event): void {
-//     this.displayData = $event;
-//     // this.refreshStatus();
-//     this.checkList=this.listOfAllData.filter(value => value.checked)  
-//   this.uncheckList=this.listOfAllData.filter(value => !value.checked) 
-//   this.uncheckList.forEach(value => value.checked=false)
-//   console.log(this.checkList);  
-//   console.log(this.uncheckList);
-//   this.al=this.checkList.concat(this.uncheckList);
-//   console.log(this.al); 
-//   this.al.sort(this.compare('id'))
-//   this.dis=[]
-// this.al.forEach(val=>this.dis.push(val.disabled))
-//   console.log(this.dis)
-// if(this.checkList.length>6){
-//   // this.dis=[]
-// let arr=[]
-//   this.listOfAllData.forEach(val=>arr.push(true))
-//   this.dis=this.dis.splice(6, this.dis.length).concat(arr);
-//   console.log(this.dis)
-// // }
-  // } 
+
 }
   contrasts=[]
   contrastID
@@ -131,36 +100,12 @@ dis=[]
   //   sessionStorage.setItem('list', 'JSON.stringify(this.listOfAllData)');
   //  sessionStorage.getItem('list') = sessionStorage.getItem('list')+','+JSON.stringify(this.listOfAllData);
   //   let arra3=JSON.parse( sessionStorage.getItem('list') )
-  
   this.checkList=this.listOfAllData.filter(value => value.checked)  
-  this.uncheckList=this.listOfAllData.filter(value => !value.checked) 
-  this.uncheckList.forEach(value => value.checked=false)
-  console.log(this.checkList);  
-  console.log(this.uncheckList);
-  // console.log(this.uncheckList);  
-  console.log(this.checkList.length);  
+  console.log(this.checkList.length); 
   if(this.checkList.length>6){
-    this.checkList.forEach(value => value.disabled=false)
-    console.log(this.checkList); 
-    this.uncheckList.forEach(value => value.disabled=true)
-    console.log(this.uncheckList); 
-    this.al=this.checkList.concat(this.uncheckList);
-    console.log(this.al); 
-    this.al.sort(this.compare('id'))
-    this.dis=[]
-this.al.forEach(val=>this.dis.push(val.disabled))
-    console.log(this.dis)
+this.disabled=true
+window.alert("最多7个")
   }
-  else{
-    this.checkList.forEach(value => value.disabled=false)
-    this.uncheckList.forEach(value => value.disabled=false)
-    this.al=this.checkList.concat(this.uncheckList);
-    this.al.sort(this.compare('id'))
-    this.dis=[]
-this.al.forEach(val=>this.dis.push(val.disabled))
-console.log(this.dis)
-  }
-
     // const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
     // const allUnChecked = validData.every(value => !value.checked);
     // this.allChecked = allChecked;
@@ -184,8 +129,11 @@ shanchu(x){
     if(this.checkList[j].materialId == x){
       this.checkList[j].checked = false;
       this.checkList.splice(j,1); 
+      this.disabled=false;
 }
+
 }
+
 }
 select(){
   for(var j=0;j<this.checkList.length;j++){     

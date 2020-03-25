@@ -28,8 +28,8 @@
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let data of rowSelectionTable.data; let i=index" >
-    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="dis[i]" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()" id="he" name="chk"
+  <tr *ngFor="let data of rowSelectionTable.data" >
+    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()" id="he" name="chk"
     ></td>
     <td id="he" >{{ data.name }}</td>
     <td id="he" >{{ data.manufacture }}</td>
@@ -46,7 +46,7 @@
   <ul  >
     <li *ngFor="let data of checkList" ><span class="lt">{{ data.name }}</span><span class="lt">{{ data.manufacture }}</span>
       <span class="lt">{{ data.thickness }}</span><i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i></li>
-  </ul>
+  </ul> 
   <a  [routerLink]="['/contrast']" [queryParams]="{materialids:contrastID}" target="_blank">
     <button nz-button nzType="primary"  (click)="select()" > 开始对比</button>
   </a> 
