@@ -361,7 +361,7 @@ const routes: Routes = [
   { path: 'typicalpart', component: FormTypicpartListComponent },
   { path: 'material-trial', component: PageMaterialTrialComponent },
   { path: 'materialss', component: FormMateriaListComponent },
-  { path: 'contrast/:contrastID', component: PageContrastComponent},
+  { path: 'contrast', component: PageContrastComponent},
 ]
 
 @NgModule({

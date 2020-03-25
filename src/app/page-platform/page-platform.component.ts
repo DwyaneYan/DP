@@ -10,7 +10,7 @@ import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 export class PagePlatformComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
-  theurl="http://localhost:60001/api/hangang/material/autoAdd"
+  theurl
   
  public materials=[
    {
@@ -38,7 +38,8 @@ export class PagePlatformComponent implements OnInit {
   FileList=[]
  handleOk() {
     this.isVisible = false;
-    this.FileList=[]      
+    this.FileList=[]  ;  
+
   }
 
   handleCancel(): void {
@@ -86,7 +87,7 @@ console.log(item.action!)
     }
 
   check(value){
-    this.theurl +=value
+    this.theurl="http://localhost:60001/api/hangang/material/autoAdd"+value
     console.log(this.theurl)//父指令通过绑定到这个属性来监听事件，并通过 $event 对象来访问载荷。
   }
 

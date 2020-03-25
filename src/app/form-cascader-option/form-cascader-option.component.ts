@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter,Input } from '@angular/core';
 import { NzCascaderOption } from 'ng-zorro-antd/cascader';
 
 const options = [
@@ -14,7 +14,7 @@ const options = [
       {
         value: 'Bending',
         label: '弯曲', 
-        isLeaf: true 
+        isLeaf: true  
           },
       {
         value: 'Compress',
@@ -129,6 +129,8 @@ const options = [
 })
 export class FormCascaderOptionComponent {
   nzOptions: NzCascaderOption[] = options;
+
+
 @Output()//与@input相反
 checkvalue = new EventEmitter<any>();//用属性checkvalue来存放自定义事件
   values: any[] = []; 

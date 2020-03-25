@@ -9,16 +9,13 @@
 <nz-table
 #rowSelectionTable
 [nzData]="listOfAllData"
-(nzCurrentPageDataChange)="currentPageDataChange($event)"  [nzShowSizeChanger]=false
+
+(nzPageIndexChange)="currentPageDataChange($event)" [nzShowSizeChanger]=false
 >
 <thead>
   <tr >
     <th nzWidth="4%"
-    nzShowCheckbox
     *ngIf="checkbox"
-    [(nzChecked)]="allChecked"
-    [nzIndeterminate]="indeterminate"
-    (nzCheckedChange)="checkAll($event)"
       class="head"></th>
     <th nzWidth="11%" class="head" ><a routerLink="/materialss" class="head1">材料名称</a></th>
     <th nzWidth="10%" class="head"><a routerLink="/factory" class="head1">生产厂家</a></th>
@@ -31,8 +28,8 @@
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let data of rowSelectionTable.data" >
-    <td nzShowCheckbox *ngIf="checkbox" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()" id="he" name="chk"
+  <tr *ngFor="let data of rowSelectionTable.data; let i=index" >
+    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="dis[i]" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()" id="he" name="chk"
     ></td>
     <td id="he" >{{ data.name }}</td>
     <td id="he" >{{ data.manufacture }}</td>
@@ -41,7 +38,7 @@
     <td id="he">{{ data.typicalPart }}</td>
     <td id="he">{{ data.appVehicle }}</td>
     <td id="he">{{ data.date }}</td>
-    <td id="he"><a [routerLink]="['/display', data.materialId]">查看</a></td>
+    <td id="he"><a [routerLink]="['/display', data.materialId]" target="_blank">查看</a></td>
   </tr>
 </tbody>
 </nz-table>
@@ -50,7 +47,7 @@
     <li *ngFor="let data of checkList" ><span class="lt">{{ data.name }}</span><span class="lt">{{ data.manufacture }}</span>
       <span class="lt">{{ data.thickness }}</span><i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i></li>
   </ul>
-  <a  [routerLink]="['/contrast', contrastID]">
+  <a  [routerLink]="['/contrast']" [queryParams]="{materialids:contrastID}" target="_blank">
     <button nz-button nzType="primary"  (click)="select()" > 开始对比</button>
   </a> 
 </div>

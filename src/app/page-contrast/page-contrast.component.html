@@ -24,6 +24,13 @@
             <th class="cell"><div>弹性模量</div></th>
             <th class="cell"><div>泊松比</div></th>
             <th class="cell"><div>最大力</div></th>
+            <th id="str" ><div >低周疲劳</div></th>
+            <th class="cell"><div>总应变幅</div></th>
+            <th class="cell"><div>塑性应变幅</div></th>
+            <th class="cell"><div>弹性应变幅</div></th>
+            <th class="cell"><div>失效循环数</div></th>
+            <th class="cell"><div>循环应力幅</div></th>
+            <th class="cell"><div>试验频率</div></th>
           </tr>
         </thead>
         <tbody >
@@ -46,4 +53,16 @@
           </tr>
         </tbody>
       </nz-table>
+    <div id="add"  (click)="showModal()" >
+      <i nz-icon nzType="plus" nzTheme="outline" id="tian"></i>
+      <div id="jia">添加</div>
+    </div>
+    
+    <div *ngIf="checkbox" id="xfk" name="checkbox" >
+<div id="tit">
+添加材料
+</div>
+<nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" 
+(ngModelChange)="onChanges($event)"></nz-cascader>
+    </div>
 </div>

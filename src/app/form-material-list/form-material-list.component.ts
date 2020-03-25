@@ -1,6 +1,18 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
-
+import * as $ from 'jquery';
+// export interface Data {
+//   id: number;
+//   materialId: string;
+//   name: string;
+//   manufacture: string;
+//   thickness: number;
+//   strength: number;
+//   typicalPart: string;
+//   appVehicle: string;
+//   date: string;
+//   disabled: boolean;
+// }
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
@@ -10,12 +22,11 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   listOfAllData = [];
   displayData=[];
   checkList=[];
-  mapOfCheckedId: { [key: string]: boolean } = {};
   public allmaterial=[]
   checkbox = false;
   allChecked = false;
-
   indeterminate = false;
+  disabled=false
   @Input() data = [];
   @Input() params ;
 
@@ -62,6 +73,7 @@ Allmaterial(){
     this.allmaterial = res.items;
     // console.log(this.allmaterial)
     this.listOfAllData = [];
+
     this.allmaterial.forEach((val, i) =>{
     this.listOfAllData.push({
       id: i,
@@ -76,24 +88,85 @@ Allmaterial(){
     })})
       }    
       )
-  }
-  currentPageDataChange($event): void {
-    this.displayData = $event;
-    this.refreshStatus();
-  } 
-  contrasts=[]
-  contrastID
-  refreshStatus(): void {
-    const validData = this.displayData.filter(value => !value.disabled);
-    this.checkList=this.listOfAllData.filter(value => value.checked)    
-    console.log(this.checkList);
-   
-    const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
-    const allUnChecked = validData.every(value => !value.checked);
-    this.allChecked = allChecked;
-    this.indeterminate = !allChecked && !allUnChecked;
+      
   }
   
+ compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}
+  currentPageDataChange($event): void {
+//     this.displayData = $event;
+//     // this.refreshStatus();
+//     this.checkList=this.listOfAllData.filter(value => value.checked)  
+//   this.uncheckList=this.listOfAllData.filter(value => !value.checked) 
+//   this.uncheckList.forEach(value => value.checked=false)
+//   console.log(this.checkList);  
+//   console.log(this.uncheckList);
+//   this.al=this.checkList.concat(this.uncheckList);
+//   console.log(this.al); 
+//   this.al.sort(this.compare('id'))
+//   this.dis=[]
+// this.al.forEach(val=>this.dis.push(val.disabled))
+//   console.log(this.dis)
+// if(this.checkList.length>6){
+//   // this.dis=[]
+// let arr=[]
+//   this.listOfAllData.forEach(val=>arr.push(true))
+//   this.dis=this.dis.splice(6, this.dis.length).concat(arr);
+//   console.log(this.dis)
+// // }
+  // } 
+}
+  contrasts=[]
+  contrastID
+  uncheckList
+al=[]
+dis=[]
+  refreshStatus(): void {
+    const validData = this.displayData.filter(value => !value.disabled);
+  //   sessionStorage.setItem('list', 'JSON.stringify(this.listOfAllData)');
+  //  sessionStorage.getItem('list') = sessionStorage.getItem('list')+','+JSON.stringify(this.listOfAllData);
+  //   let arra3=JSON.parse( sessionStorage.getItem('list') )
+  
+  this.checkList=this.listOfAllData.filter(value => value.checked)  
+  this.uncheckList=this.listOfAllData.filter(value => !value.checked) 
+  this.uncheckList.forEach(value => value.checked=false)
+  console.log(this.checkList);  
+  console.log(this.uncheckList);
+  // console.log(this.uncheckList);  
+  console.log(this.checkList.length);  
+  if(this.checkList.length>6){
+    this.checkList.forEach(value => value.disabled=false)
+    console.log(this.checkList); 
+    this.uncheckList.forEach(value => value.disabled=true)
+    console.log(this.uncheckList); 
+    this.al=this.checkList.concat(this.uncheckList);
+    console.log(this.al); 
+    this.al.sort(this.compare('id'))
+    this.dis=[]
+this.al.forEach(val=>this.dis.push(val.disabled))
+    console.log(this.dis)
+  }
+  else{
+    this.checkList.forEach(value => value.disabled=false)
+    this.uncheckList.forEach(value => value.disabled=false)
+    this.al=this.checkList.concat(this.uncheckList);
+    this.al.sort(this.compare('id'))
+    this.dis=[]
+this.al.forEach(val=>this.dis.push(val.disabled))
+console.log(this.dis)
+  }
+
+    // const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
+    // const allUnChecked = validData.every(value => !value.checked);
+    // this.allChecked = allChecked;
+    // this.indeterminate = !allChecked && !allUnChecked;
+  }
+
   checkAll(value: boolean): void {
     this.displayData.forEach(data => {
       if (!data.disabled) {
