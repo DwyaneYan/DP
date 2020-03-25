@@ -137,6 +137,6 @@ checkvalue = new EventEmitter<any>();//用属性checkvalue来存放自定义事�
 
   onChanges(values: string[]){
     this.checkvalue.emit(values[1]);//触发事件，并传入values[1]作为消息载荷。父指令通过绑定到这个属性来监听事件，并通过 $event 对象来访问载荷。
-
+console.log(values)
   }
 }

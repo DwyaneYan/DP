@@ -76,8 +76,9 @@ Allmaterial(){
       date:val.date,          
     })})
       }    
-      )
       
+      )
+
   }
   
  compare(property){
