@@ -50,6 +50,13 @@
             <td class="table"><div>{{data.modulusOfElasticity}}</div></td>
             <td class="table"><div>{{data.poissonRatio}}</div></td>
             <td class="table"><div>{{data.maximumForce}}</div></td>
+            <td  [attr.rowspan]="i === 0 ? listMaterials.length : 1" *ngIf="i == 0" ><div ></div></td>
+            <td class="table"><div>{{LowCycleFatigue[i].totalStrainAmplitude}}</div></td>
+            <td class="table"><div>{{LowCycleFatigue[i].plasticStrainAmplitude}}</div></td>
+            <td class="table"><div>{{LowCycleFatigue[i].elasticStrainAmplitude}}</div></td>
+            <td class="table"><div>{{LowCycleFatigue[i].failureCycleTimes}}</div></td>
+            <td class="table"><div>{{LowCycleFatigue[i].cycleStressAmplitude}}</div></td>
+            <td class="table"><div>{{LowCycleFatigue[i].testFrequency}}</div></td>
           </tr>
         </tbody>
       </nz-table>

@@ -30,6 +30,7 @@ limo=[]
 options
 one=[]
 addlist=[]
+LowCycleFatigue
   constructor( private router: Router,
     private routerinfo:ActivatedRoute,
     private MaterialsContrastService:MaterialsContrastService,
@@ -52,9 +53,14 @@ addlist=[]
   public async getGetMaterials() {        
   if(this.array.length>0) {await this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
       this.listMaterials= res; 
-      console.log(this.listMaterials)
-    
-})}
+      console.log(this.listMaterials)  
+})
+await this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
+  this.LowCycleFatigue= res; 
+  console.log(this.listMaterials)
+
+})
+}
 
 }
   public async getGetMaterialss() {     
