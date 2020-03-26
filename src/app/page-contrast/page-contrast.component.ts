@@ -45,6 +45,7 @@ one=[]
       this.getGetMaterialss()
       this.getGetMaterials();
       this.getGetManufacturers()
+      this.srry()
   }
 
   public async getGetMaterials() {        
@@ -65,61 +66,86 @@ one=[]
     });
 }
   }
-
+two=[]
+th=[]
+srry(){
+  for(let j=0;j<this.listManufacturers.length;j++) {    
+    this.nzOptions[j]=
+    {
+      value: this.listManufacturers[j].id,
+      label: this.listManufacturers[j].name, 
+  //     children:[
+  //       {value:this.li[y],
+  //     label:this.li[y],
+  // children:[{value:this.limo[w],
+  // label:this.limo[w],
+  // isLeaf: true 
+  //   }]}]
+  //  } )
+  // }}
+}
+this.pa.manufactoryId=this.listManufacturers[j].id
+this.MaterialsContrastService.GetMater(this.pa)
+.then((res: any) => {
+  // console.log(res);
+  this.listMa = res.items;
+console.log(this.listMa)
+this.listMa.forEach(val=>this.list.push(val.name))
+this.li=this.unique1(this.list)
+console.log(this.li)
+this.two[j]=[]
+for(let a=0;a<this.li.length;a++){
+this. two[j][a]={}
+this. two[j][a]={
+  value: this.li[a],
+  label: this.li[a],
+}
+}
+console.log(this.two[j]);
+//   this.nzOptions[j]=
+//   {
+//     value: this.listManufacturers[j].id,
+//     label: this.listManufacturers[j].name, 
+//     // children:this.two[j]  
+// //     children:[
+// //       {value:this.li[y],
+// //     label:this.li[y],
+// // children:[{value:this.limo[w],
+// // label:this.limo[w],
+// // isLeaf: true 
+// //   }]}]
+// //  } )
+// // }}
+// } 
+this.nzOptions[j].children=this.two[j]
+console.log(this.nzOptions);  
+ }) 
+    
+//  console.log(this.listMa)
+//  this.listMa.forEach(val=>this.list.push(val.name))
+//  this.li=this.unique1(this.list)
+//  console.log(this.li)
+//  console.log(this.li)
+//  let two=[]
+//  for(let a;a<this.li.length;a++){
+//    two.push({
+//      value: this.li[a],
+//      label: this.li[a],
+//    })
+//  }
+//  console.log(two);  
+//  this.nzOptions.forEach(val=>val.children=two)   
+//  this.nzOptions.forEach(val=>val.children.children=[])
+}
+console.log(this.nzOptions);  
+}
   showModal(){
     this.checkbox=true
     // for(let w=0;w<this.limo.length;w++){
       // for(let y=0;y<this.li.length;y++) {
-    for(let j=0;j<this.listManufacturers.length;j++) {     
-        this.nzOptions.push(
-        {
-          value: this.listManufacturers[j].id,
-          label: this.listManufacturers[j].name, 
-      //     children:[
-      //       {value:this.li[y],
-      //     label:this.li[y],
-      // children:[{value:this.limo[w],
-      // label:this.limo[w],
-      // isLeaf: true 
-      //   }]}]
-      //  } )
-      // }}
-    })
-    this.pa.manufactoryId=this.listManufacturers[j].id
-this.MaterialsContrastService.GetMater(this.pa)
- .then((res: any) => {
-      // console.log(res);
-      this.listMa = res.items;
-  console.log(this.listMa)
-  this.listMa.forEach(val=>this.list.push(val.name))
-  this.li=this.unique1(this.list)
-  console.log(this.li)
-  console.log(this.li)
-  let two=[]
-  for(let a;a<this.li.length;a++){
-    two.push({
-      value: this.li[a],
-      label: this.li[a],
-    })
-  }
-  console.log(two); 
-     })
-    //  console.log(this.listMa)
-    //  this.listMa.forEach(val=>this.list.push(val.name))
-    //  this.li=this.unique1(this.list)
-    //  console.log(this.li)
-    //  console.log(this.li)
-    //  let two=[]
-    //  for(let a;a<this.li.length;a++){
-    //    two.push({
-    //      value: this.li[a],
-    //      label: this.li[a],
-    //    })
-    //  }
-    //  console.log(two);  
-    //  this.nzOptions.forEach(val=>val.children=two)   
-    //  this.nzOptions.forEach(val=>val.children.children=[])
-  }}
+   
+  console.log(this.nzOptions);
+;}
   cac(){
     this.checkbox=false
   }
