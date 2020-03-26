@@ -29,6 +29,7 @@ listmodel=[]
 limo=[]
 options
 one=[]
+addlist=[]
   constructor( private router: Router,
     private routerinfo:ActivatedRoute,
     private MaterialsContrastService:MaterialsContrastService,
@@ -45,7 +46,7 @@ one=[]
       this.getGetMaterialss()
       this.getGetMaterials();
       this.getGetManufacturers()
-      this.srry()
+
   }
 
   public async getGetMaterials() {        
@@ -68,84 +69,70 @@ one=[]
   }
 two=[]
 th=[]
-srry(){
-  for(let j=0;j<this.listManufacturers.length;j++) {    
-    this.nzOptions[j]=
-    {
-      value: this.listManufacturers[j].id,
-      label: this.listManufacturers[j].name, 
-  //     children:[
-  //       {value:this.li[y],
-  //     label:this.li[y],
-  // children:[{value:this.limo[w],
-  // label:this.limo[w],
-  // isLeaf: true 
-  //   }]}]
-  //  } )
-  // }}
-}
-this.pa.manufactoryId=this.listManufacturers[j].id
-this.MaterialsContrastService.GetMater(this.pa)
-.then((res: any) => {
-  // console.log(res);
-  this.listMa = res.items;
-console.log(this.listMa)
-this.listMa.forEach(val=>this.list.push(val.name))
-this.li=this.unique1(this.list)
-console.log(this.li)
-this.two[j]=[]
-for(let a=0;a<this.li.length;a++){
-this. two[j][a]={}
-this. two[j][a]={
-  value: this.li[a],
-  label: this.li[a],
-}
-}
-console.log(this.two[j]);
-//   this.nzOptions[j]=
-//   {
-//     value: this.listManufacturers[j].id,
-//     label: this.listManufacturers[j].name, 
-//     // children:this.two[j]  
-// //     children:[
-// //       {value:this.li[y],
-// //     label:this.li[y],
-// // children:[{value:this.limo[w],
-// // label:this.limo[w],
-// // isLeaf: true 
-// //   }]}]
-// //  } )
-// // }}
-// } 
-this.nzOptions[j].children=this.two[j]
-console.log(this.nzOptions);  
- }) 
-    
-//  console.log(this.listMa)
-//  this.listMa.forEach(val=>this.list.push(val.name))
-//  this.li=this.unique1(this.list)
-//  console.log(this.li)
-//  console.log(this.li)
-//  let two=[]
-//  for(let a;a<this.li.length;a++){
-//    two.push({
-//      value: this.li[a],
-//      label: this.li[a],
-//    })
-//  }
-//  console.log(two);  
-//  this.nzOptions.forEach(val=>val.children=two)   
-//  this.nzOptions.forEach(val=>val.children.children=[])
-}
-console.log(this.nzOptions);  
-}
+listMath=[]
+lit=[]
   showModal(){
     this.checkbox=true
-    // for(let w=0;w<this.limo.length;w++){
-      // for(let y=0;y<this.li.length;y++) {
-   
+        for(let j=0;j<this.listManufacturers.length;j++) {    
+          this.nzOptions[j]=
+          {
+            value: this.listManufacturers[j].id,
+            label: this.listManufacturers[j].name, 
+      }
+      this.listMa[j]=[]
+      this.list[j]=[]
+      this.li[j]=[]
+    this.pa[j]={manufactoryId:''}
+ 
+      this.pa[j].manufactoryId=this.listManufacturers[j].id
+      this.MaterialsContrastService.GetMater(this.pa[j])
+      .then((res: any) => {
+        this.listMa[j]= res.items;
+      console.log(this.listMa[j])
+      this.listMa[j].forEach(val=>this.list[j].push(val.name))
+      this.li[j]=this.unique1(this.list[j])
+      console.log(this.li[j])   
+      this.th[j]=[]
+      this.listMath[j]=[]
+      this.lit[j]=[]
+      this.pas[j]=[]
+      this.limo[j]=[]
+      for(let a=0;a<this.li[j].length;a++){
+      this. two[j]=[]
+      this.listMath[j][a]=[]
+      this.lit[j][a]=[]
+      this.limo[j][a]=[]
+      this.pas[j][a]={manufactoryId:'',
+      Name:''}
+      this.pas[j][a].manufactoryId=this.listManufacturers[j].id
+      this.pas[j][a].Name=this.li[j][a]
+      this.MaterialsContrastService.GetMater(this.pas[j][a])
+      .then((res: any) => {
+        this.listMath[j][a] = res.items;
+        this.listMath[j][a].forEach(val=>this.lit[j][a].push(val.model))
+        this.limo[j][a]=this.unique1(this.lit[j][a])
+        this.th[j][a]=[]
+        for(let b=0;b<this.limo[j][a].length;b++){
+          this.th[j][a][b]={
+            value: this.limo[j][a][b],
+          label: this.limo[j][a][b],
+          isLeaf: true
+          }
+          
+        }
+        this. two[j][a]={
+          value: this.li[j][a],
+          label: this.li[j][a],
+          children:this.th[j][a]
+        }
+        this.nzOptions[j].children=this.two[j]
+      })     
+      }    
+       }) 
+      }
   console.log(this.nzOptions);
-;}
+  this.values=[]
+}
   cac(){
     this.checkbox=false
   }
@@ -166,7 +153,10 @@ public async getGetManufacturers() {
     // console.log(this.listManufacturers)
   });
 }
-pa={
+pa=[{manufactoryId: '', }]
+
+pas=[]
+pat={
   Name:'',  //材料名称
   materialType: '',  //材料分类
   manufactoryId: '',  //生产厂家
@@ -201,15 +191,25 @@ unique1(array){
   }
   return n;
  }
-//  onChanges(values: string[]){
-   
-  
-    
-//     this.listMa.forEach(val=>this.listmodel.push(val.model))
-   
-//     this.limo=this.unique1(this.listmodel)
-//     console.log(this.li)
-//     console.log(this.limo)
-//     // console.log(this.listManufacturers)
-//   });}
+ onChanges(values: string[]){
+    console.log(values)
+    // console.log(this.listManufacturers)
+    this.pat.manufactoryId=values[0]
+      this.pat.Name=values[1]
+      this.pat.model=values[2]
+    this.MaterialsContrastService.GetMater(this.pat)
+      .then((res: any) => {
+        this.addlist = res.items;   
+        console.log(this.addlist)   
+        this.array.push(this.addlist[0].id)
+        console.log(this.array)
+        this.getGetMaterialss()
+      this.getGetMaterials();
+      this.array.toString()
+      console.log(this.array)
+      window.history.pushState(null,null,`/contrast?materialids=${this.array}`);
+      })
+      this.checkbox=false
+      
+  }
 }

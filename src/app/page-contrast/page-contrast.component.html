@@ -53,7 +53,7 @@
           </tr>
         </tbody>
       </nz-table>
-    <div id="add"  (click)="showModal()" >
+    <div id="add"  (click)="showModal()" *ngIf="listMaterials.length  <7">
       <i nz-icon nzType="plus" nzTheme="outline" id="tian"></i>
       <div id="jia">添加</div>
     </div>
