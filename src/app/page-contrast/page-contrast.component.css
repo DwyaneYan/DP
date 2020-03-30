@@ -1,143 +1,140 @@
-#con{
-    width:1200px;
-    margin:auto;
-    border:solid 1px grey;
-    margin-top:40px;
-    padding-top:20px;
-    overflow:auto;
-    height:1000px
-    
+#con {
+  width: 1200px;
+  margin: auto;
+  border: solid 1px grey;
+  margin-top: 40px;
+  padding-top: 20px;
+  overflow: auto;
+  height: 1000px;
 }
-.ed{
-    float:right;
-    padding-right:8px
-    
+.ed {
+  float: right;
+  padding-right: 8px;
 }
-.cd{
-    float:right;
-    padding-right:20px
+.cd {
+  float: right;
+  padding-right: 20px;
 }
 
-#he{
-    border-bottom:solid 1px grey;
-    padding-bottom:8px
+#he {
+  border-bottom: solid 1px grey;
+  padding-bottom: 8px;
 }
-#mater{
-    padding-left:20px;
+#mater {
+  padding-left: 20px;
 }
-nz-table.vertical
-    {
-      -webkit-writing-mode: vertical-lr;
-      -moz-writing-mode: vertical-lr;
-      -ms-writing-mode: tb-lr;
-      writing-mode: vertical-lr;
-    }
-    nz-table.vertical th, nz-table.vertical td
-    {
-      width: 100px;
-      height:4px
-    }
-    nz-table.vertical div
-    {
-      width: 100px;
-      -webkit-writing-mode: horizontal-tb;
-      -moz-writing-mode: horizontal-tb;
-      -ms-writing-mode: lr-tb;
-      writing-mode: horizontal-tb;
-    }
-nz-table{
-    margin-top:30px;
-    margin-left:20px;
-    float:left
+nz-table.vertical {
+  -webkit-writing-mode: vertical-lr;
+  -moz-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
+  writing-mode: vertical-lr;
 }
-#info{
-    height:120px
+nz-table.vertical th,
+nz-table.vertical td {
+  width: 100px;
+  height: 4px;
 }
-#hide1{
-   float:left ;
-   color:blue;  
+nz-table.vertical div {
+  width: 100px;
+  -webkit-writing-mode: horizontal-tb;
+  -moz-writing-mode: horizontal-tb;
+  -ms-writing-mode: lr-tb;
+  writing-mode: horizontal-tb;
 }
-#hide2{
-    float:left ;
-    margin-top:13px;
-    margin-bottom:7px;
-width:110px
- }
- #hide3{
-    float:left ;
-    width:110px
- }
- #str{
-     border-right:none;
-    
-     background-color:white;
-     text-align:left;
-padding-top:5px;
-padding-bottom:5px;
- }
- .cell{
-     text-align:right;
-     width:110px;
-     padding-right:2px;
-     line-height:8px;
-     height:8px
-     
- }
-.sta{
-    float:left;
-    text-align:center;
-    margin-left: 6px;
-    margin-top:5px;
-    font-weight:bold
+nz-table {
+  margin-left: 20px;
+  /* float:left */
+}
+nz-table.borderedTable tr {
+  width: 143px;
+}
+#info {
+  height: 120px;
+}
+#hide1 {
+  float: left;
+  color: blue;
+}
+#hide2 {
+  float: left;
+  margin-top: 13px;
+  margin-bottom: 7px;
+  width: 110px;
+}
+#hide3 {
+  float: left;
+  width: 110px;
+}
+#str {
+  border-right: none;
+
+  background-color: white;
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.cell {
+  text-align: right;
+  width: 110px;
+  padding-right: 2px;
+  line-height: 8px;
+  height: 8px;
+}
+.sta {
+  float: left;
+  text-align: center;
+  margin-left: 6px;
+  margin-top: 5px;
+  font-weight: bold;
 }
 /* 改antd table的默认样式，鼠标放在行上的背景颜色为白色 */
-.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td { background: white; }
-.table{
-    line-height:8px;
-    height:8px
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+  background: white;
 }
-#i{
-    position:absolute;
-    top:6px;
-    right:6px
+.table {
+  line-height: 8px;
+  height: 8px;
 }
-#posi{
-    position:relative;
-    top:0px;
-    right:0px
+#i {
+  position: absolute;
+  top: 6px;
+  right: 6px;
 }
-#add{
+#posi {
+  position: relative;
+  top: 0px;
+  right: 0px;
+}
+#add {
+  border: 1px solid grey;
+  height: 120px;
 
-    border:1px solid grey;
-height:120px;
-
-    margin-top:30px;
-    float:left;
-
+  margin-top: 30px;
+  float: left;
 }
-#tian{
-    display:block;
-    margin:25px 10px;
+#tian {
+  display: block;
+  margin: 25px 10px;
 }
-#jia{
-margin:auto;
-width:30px;
+#jia {
+  margin: auto;
+  width: 30px;
 }
-#xfk{
-    width:400px;
-    height:200px;
-    border:1px solid rgb(204, 203, 203);
-    position:fixed;
-    top:100px;
-    right:100px;
-    background-color:white;
-    border-radius:10px;
+#xfk {
+  width: 400px;
+  height: 200px;
+  border: 1px solid rgb(204, 203, 203);
+  position: fixed;
+  top: 100px;
+  right: 100px;
+  background-color: white;
+  border-radius: 10px;
 }
-#tit{
-    font-size:15px;
-    font-weight:bold;
-    margin-top:15px;
-    padding-bottom:10px;
-    padding-left:20px;
-    border-bottom:1px solid rgb(173, 173, 173)
+#tit {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  border-bottom: 1px solid rgb(173, 173, 173);
 }

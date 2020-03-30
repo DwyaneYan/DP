@@ -10,6 +10,8 @@ export class LowcyclefatigueTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
   trialDataDetails=[{}]
+  table1=["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格",]
+  table2=["","","","","","","",]
   constructor( private router: Router,
     public http: HttpClient,) { }
 

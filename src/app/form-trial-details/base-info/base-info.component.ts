@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input , Output, EventEmitter} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -26,6 +26,7 @@ export class BaseInfoComponent implements OnInit {
   ngOnInit() {
     // console.log(this.materialId)
     this.GetBaseInfo()
+    
   }
 
   public async GetBaseInfo(){
@@ -46,6 +47,8 @@ export class BaseInfoComponent implements OnInit {
       thickness:this.baseInfo[0].model,
       date:this.baseInfo[0].date,
     })
+    this.checkvalue.emit(this.mater[0].name);
   }
-
+  @Output()//与@input相反
+  checkvalue = new EventEmitter<any>();
 }

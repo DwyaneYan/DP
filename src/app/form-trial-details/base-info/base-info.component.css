@@ -2,21 +2,50 @@
     position: absolute;
     left: 30%;
     top: 30px;
-    
 }
-#he{
+.he{
     text-align:center;
     background-color:rgba(107, 152, 248, 0.959);
-    color:white
+    color:white;
+    padding-top:8px;
+    padding-bottom:8px;
+    width:200px;
 }
-#he1{
+#one{
+    text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
+    color:white;
+    padding-top:8px;
+    padding-bottom:8px;
+    width:200px;
+    border-left:1px solid rgb(230, 229, 229);
+}
+#two{
+    text-align:center;
+    background-color:rgba(107, 152, 248, 0.959);
+    color:white;
+    padding-top:8px;
+    padding-bottom:8px;
+    width:200px;
+    border-right:1px solid rgb(230, 229, 229);
+}
+.he1{
     padding-top:8px;
     padding-bottom:8px;
     text-align:center;
-
+}
+#three{
+    padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;
+    border-left:1px solid rgb(230, 229, 229);
+}
+#for{
+    padding-top:8px;
+    padding-bottom:8px;
+    text-align:center;
+    border-right:1px solid rgb(230, 229, 229);
 }
 #tabletwo{
-    width:500px;
-    border:1px solid rgb(230, 229, 229);
-    border-radius:5px
+    width:800px;   
 }

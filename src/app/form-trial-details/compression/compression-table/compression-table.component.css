@@ -3,18 +3,23 @@
     left:30%;
     top: 160px;
 }
-#head{
+.one{
     text-align:center;
     background-color:rgba(107, 152, 248, 0.959);
-    color:white
-}
-#table{
-    width:640px
-}
-#tabless{
-    width:200px
-}
-#he{padding-top:8px;
+    color:white;
+    padding-top:8px;
     padding-bottom:8px;
-    text-align:center;}
+
+}
+.one1{
+    text-align:center;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+#tableone{
+    width:400px
+}
+#tabletwo{
+    width:1120px
+}
 

@@ -1,7 +1,7 @@
 
 <app-highspeedstrech-navigate [materialId]="materialId"></app-highspeedstrech-navigate>
 
-<app-base-info [materialId]="materialId"></app-base-info>
+<app-base-info [materialId]="materialId" (checkvalue)="check($event)"></app-base-info>
 
 <router-outlet></router-outlet>   
 

@@ -1,76 +1,130 @@
 <app-form-material-db-background></app-form-material-db-background>
-<div id="con">
+<div>
+  <ul
+    nz-menu
+    nzMode="inline"
+    class="navUl"
+    id="navList"
+    style="position: fixed;width:150px;z-index:999;"
+  >
+    <li
+      nz-menu-item
+      nz-tooltip
+      [nzTitle]="isCollapsed ? 'Navigation One' : ''"
+      *ngFor="let dataList of pageConfiguration"
+      [attr.data-id]="dataList.key"
+      (click)="clickNav(dataList.key)"
+    >
+      <span>{{ dataList.name }}</span>
+    </li>
+  </ul>
+  <div id="con">
     <div id="he">
-        <span id="mater">材料对比</span>
-        <nz-switch nzSize="small" [ngModel]="true" class="cd"></nz-switch>
-        <span class="ed">编辑模式</span>
+      <span id="mater">材料对比</span>
+      <nz-switch nzSize="small" [ngModel]="true" class="cd"></nz-switch>
+      <span class="ed">编辑模式</span>
     </div>
-    <nz-table #borderedTable nzBordered  [nzData]="[{}]" [nzShowPagination]=false
->
+    <div style="float: left;margin-top: 30px;">
+      <nz-table
+        class="borderedTable"
+        nzBordered
+        [nzData]="[{}]"
+        [nzShowPagination]="false"
+      >
         <thead>
-          <tr >
+          <tr>
             <th id="info">
-                <div id="hide1">材料信息</div>
-                <div id="hide2"><label nz-checkbox >隐藏空白项</label></div>
-                <div id="hide3"><label nz-checkbox >标示全部项</label></div>
+              <div id="hide1">材料信息</div>
+              <div id="hide2"></div>
+              <div id="hide3">
+                <label *ngFor="let field of fields">
+                  <label
+                    nz-checkbox
+                    [(nzChecked)]="field.checked"
+                    [(ngModel)]="field.checked"
+                    (ngModelChange)="refreshStatus(field.id, $event)"
+                    [id]="field.id"
+                    >{{ field.value }}</label
+                  >
+                </label>
+              </div>
             </th>
-            <th id="str" ><div >静态拉伸</div></th>
-            <th class="cell"><div >执行标准</div></th>
-            <th class="cell"><div>屈服强度</div></th>
-            <th class="cell"><div>抗拉强度</div></th>
-            <th class="cell"><div>应变硬化指数</div></th>
-            <th class="cell"><div>断后伸长率</div></th>
-            <th class="cell"><div>塑性应变比</div></th>
-            <th class="cell"><div>弹性模量</div></th>
-            <th class="cell"><div>泊松比</div></th>
-            <th class="cell"><div>最大力</div></th>
-            <th id="str" ><div >低周疲劳</div></th>
-            <th class="cell"><div>总应变幅</div></th>
-            <th class="cell"><div>塑性应变幅</div></th>
-            <th class="cell"><div>弹性应变幅</div></th>
-            <th class="cell"><div>失效循环数</div></th>
-            <th class="cell"><div>循环应力幅</div></th>
-            <th class="cell"><div>试验频率</div></th>
           </tr>
         </thead>
-        <tbody >
-          <tr *ngFor="let data of listMaterials; let i=index" >
-            <td id="posi"><i nz-icon nzType="close" nzTheme="outline" id="i"
-               (click)="del(i)" ></i>
-              <div class="sta" >{{name[i]}}</div>
-            <div class="sta">{{model[i]}}</div>
-          <div class="sta">{{manu[i]}}</div></td>
-            <td  [attr.rowspan]="i === 0 ? listMaterials.length : 1" *ngIf="i == 0" ><div ></div></td>
-            <td class="table"><div>{{data.standard}}</div></td> 
-            <td class="table"><div>{{data.yieldStrength}}</div></td>
-            <td class="table"><div>{{data.tensileStrength}}</div></td>
-            <td class="table"><div>{{data.strainHardening}}</div></td>
-            <td class="table"><div>{{data.elongation}}</div></td>
-            <td class="table"><div>{{data.plasticStrainRatio}}</div></td>
-            <td class="table"><div>{{data.modulusOfElasticity}}</div></td>
-            <td class="table"><div>{{data.poissonRatio}}</div></td>
-            <td class="table"><div>{{data.maximumForce}}</div></td>
-            <td  [attr.rowspan]="i === 0 ? listMaterials.length : 1" *ngIf="i == 0" ><div ></div></td>
-            <td class="table"><div>{{LowCycleFatigue[i].totalStrainAmplitude}}</div></td>
-            <td class="table"><div>{{LowCycleFatigue[i].plasticStrainAmplitude}}</div></td>
-            <td class="table"><div>{{LowCycleFatigue[i].elasticStrainAmplitude}}</div></td>
-            <td class="table"><div>{{LowCycleFatigue[i].failureCycleTimes}}</div></td>
-            <td class="table"><div>{{LowCycleFatigue[i].cycleStressAmplitude}}</div></td>
-            <td class="table"><div>{{LowCycleFatigue[i].testFrequency}}</div></td>
+        <tbody>
+          <tr *ngFor="let data of StaticTension; let i = index">
+            <td id="posi">
+              <i
+                nz-icon
+                nzType="close"
+                nzTheme="outline"
+                id="i"
+                (click)="del(i)"
+              ></i>
+              <div class="sta">{{ name[i] }}</div>
+              <div class="sta">{{ model[i] }}</div>
+              <div class="sta">{{ manu[i] }}</div>
+            </td>
           </tr>
         </tbody>
       </nz-table>
-    <div id="add"  (click)="showModal()" *ngIf="listMaterials.length  <7">
+      <div
+        *ngFor="let dataList of pageConfiguration; let i = index"
+        id="js-content"
+      >
+        <nz-table
+          class="borderedTable vertical js-content"
+          nzBordered
+          [id]="[dataList.key]"
+          [nzData]="[{}]"
+          [nzShowPagination]="false"
+          *ngIf="listItemBlank[dataList.key] == true"
+        >
+          <thead>
+            <tr style="width: 143px;">
+              <th id="str">
+                <div>{{ dataList.name }}</div>
+              </th>
+              <th class="cell" *ngFor="let dataDes of dataList.itemDes">
+                <div>{{ dataDes }}</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let data of this[dataList.key]; let i = index"
+              style="width: 143px;"
+            >
+              <td
+                [attr.rowspan]="i === 0 ? this[dataList.key].length : 1"
+                *ngIf="i == 0"
+              >
+                <div></div>
+              </td>
+
+              <td class="table" *ngFor="let item of dataList.item">
+                <div>{{ data[item] }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <div id="add" (click)="showModal()" *ngIf="StaticTension.length < 7">
       <i nz-icon nzType="plus" nzTheme="outline" id="tian"></i>
       <div id="jia">添加</div>
     </div>
-    
-    <div *ngIf="checkbox" id="xfk" name="checkbox" >
-      <i nz-icon nzType="close" nzTheme="outline" id='i' (click)="cac()" ></i>
-<div id="tit">
-添加材料
-</div>
-<nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" 
-(ngModelChange)="onChanges($event)"></nz-cascader>
+
+    <div *ngIf="checkbox" id="xfk" name="checkbox">
+      <i nz-icon nzType="close" nzTheme="outline" id="i" (click)="cac()"></i>
+      <div id="tit">
+        添加材料
+      </div>
+      <nz-cascader
+        [nzOptions]="nzOptions"
+        [(ngModel)]="values"
+        (ngModelChange)="onChanges($event)"
+      ></nz-cascader>
     </div>
+  </div>
 </div>

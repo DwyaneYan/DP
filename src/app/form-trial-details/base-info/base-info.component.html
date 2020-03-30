@@ -1,19 +1,19 @@
 <div class="table-border">
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" >
         <thead>
-          <tr>
-            <th width="100px" id="he">材料牌号</th>
-            <th width="100px" id="he">型号规格</th>
-            <th width="120px" id="he">生产厂家</th>
-            <th  width="180px" id="he">送样日期</th>
+          <tr >
+            <th id="one">材料牌号</th>
+            <th  class="he">型号规格(mm)</th>
+            <th  class="he">生产厂家</th>
+            <th   id="two">送样日期</th>
           </tr>
         </thead>
         <tbody >
-            <tr *ngFor="let data of mater">
-                <td id="he1">{{ data.name }}</td>
-                <td id="he1">{{ data.thickness}}</td>
-                <td id="he1">{{ data.manufacture}}</td>
-                <td id="he1">{{ data.date}}</td>
+            <tr *ngFor="let data of mater" >
+                <td id="three">{{ data.name }}</td>
+                <td class="he1">{{ data.thickness}}</td>
+                <td class="he1">{{ data.manufacture}}</td>
+                <td id="for">{{ data.date}}</td>
             </tr>
         </tbody>        
       </nz-table>

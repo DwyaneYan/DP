@@ -7,11 +7,15 @@ import { Router } from '@angular/router';
 })
 export class HighspeedstrechComponent implements OnInit {
   public materialId
+  name
   constructor(     private router: Router,) { }
 
   ngOnInit() {        this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
   }
-
+  check($event){
+this.name=$event
+console.log(this.name)
+  }
 }
