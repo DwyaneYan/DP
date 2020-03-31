@@ -1,31 +1,26 @@
 <div id="dataTable" >
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
     <thead >
       <tr>
-        <th  id="head" nzWidth="200px">执行标准</th>
+        <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
       </tr>
     </thead>
     <tbody>
       <tr >
-        <td id="he">{{trialDataDetail[0].standard}}</td>
+        <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
       </tr>
     </tbody>
 </nz-table><br><br><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
         <thead>
           <tr>
-            <th nzWidth="150px" id="head">金相组织</th>
-            <th nzWidth="150px" id="head">非金属夹杂（级）</th>
-            <th nzWidth="150px" id="head">晶粒度（级）</th>
-            <th nzWidth="150px" id="head">脱碳层深度（mm)</th>
+            <th nzWidth="150px"  class="one" *ngFor="let data of table[1].one">{{data}}</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.structure }}</td>
-            <td  id="he">{{ data.nonMetallicInclusionLevel }}</td>
-            <td id="he">{{ data.grainSize}}</td>
-            <td id="he">{{ data.depthDecarburization }}</td>
+            <td class="one1" *ngFor="let data1 of table[1].key">{{ data[data1]}}</td>
+
           </tr>
         </tbody>        
       </nz-table> 

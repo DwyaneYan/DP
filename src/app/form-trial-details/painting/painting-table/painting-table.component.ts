@@ -8,16 +8,63 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaintingTableComponent implements OnInit {
   public materialId
-  trialDataDetail =[{}]
-  trialDataDetails 
-  trialDataDetailss
-  trialDataDetailsss
-  trialDataDetailssss
-  trialDataDetailsssss
-  trialDataDetailssssss
-  trialDataDetailsssssss
-  trialDataDetailssssssss
-  trialDataDetailsssssssss
+  table=[{
+    table:'table1',
+    name:"trialDataDetailsssssssss",
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{table:'table1',
+  name:"trialDataDetail",
+  one:["磷化膜结晶尺寸","磷化膜覆盖率"],
+  key:["sizeText","coverRatio"]
+},
+{table:'table3',
+  name:"trialDataDetails",
+  one:["面积（m2）","初始重量（g）","试验后重量（g）","膜重（g/m2）"],
+  key:["area","originalWeight","afterWeight","membraneWeight"]
+},
+{table:'table4',
+  name:"trialDataDetailss",
+  one:["Ip（s-1）","IH（s-1）","P比"],
+  key:["Ip","IH","ratio"]
+},]
+table2=[{table:'table7',
+  name:"trialDataDetailsssss",
+  one:["Ra（μm）","Rz（μm）"],
+  key:["raOne","raTwo","raThree","rzOne","rzTwo","rzThree"]
+}]
+table1=[{table:'table5',
+name:"trialDataDetailsss",
+title:"电泳漆膜厚度（μm）",
+key:["pointThickOne","pointThickTwo","pointThickThree"]
+},{table:'table6',
+name:"trialDataDetailssss",
+title:"电泳漆膜铅笔硬度",
+key:["pointHardness"]
+},{table:'table6',
+name:"trialDataDetailssssss",
+title:"抗石击性能",
+key:["pointStrength"]
+},{table:'table5',
+name:"trialDataDetailsssssss",
+title:"附着力",
+key:["pointAdhesionOne","pointAdhesionTwo","pointAdhesionThree"]
+},{table:'table5',
+name:"trialDataDetailssssssss",
+title:"耐湿热性能",
+key:["pointOne","pointTwo","pointThree"]
+},]
+  trialDataDetail =[{}]  // 磷化膜
+  trialDataDetails   // 膜重
+  trialDataDetailss  // P比
+  trialDataDetailsss  // 电泳漆膜厚度
+  trialDataDetailssss  // 电泳漆膜硬度
+  trialDataDetailsssss  // 电泳漆膜粗糙度
+  trialDataDetailssssss  // 抗石击性能
+  trialDataDetailsssssss  // 附着力
+  trialDataDetailssssssss  // 耐湿热
+  trialDataDetailsssssssss  // detail表
   constructor( private router: Router,
     public http: HttpClient,) { }
 
@@ -35,6 +82,7 @@ export class PaintingTableComponent implements OnInit {
     this.GetTrialDataDetailsssssssss();
     this.GetTrialDataDetailssssssssss();
   }
+  // 磷化膜
   public async GetTrialDataDetails() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailPhosphatingItems/${materialId}`;
@@ -45,6 +93,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // 膜重
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailMembraneWeightItems/${materialId}`;
@@ -55,6 +104,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // P比
   public async GetTrialDataDetailsss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailPRatioItems/${materialId}`;
@@ -65,6 +115,7 @@ export class PaintingTableComponent implements OnInit {
       console.log(this.trialDataDetailss)
     })    
   }
+  // 电泳漆膜厚度
   public async GetTrialDataDetailssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailElectrophoreticItems/${materialId}`;
@@ -75,6 +126,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // 电泳漆膜硬度
   public async GetTrialDataDetailsssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailHardnessItems/${materialId}`;
@@ -85,6 +137,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // 电泳漆膜粗糙度
   public async GetTrialDataDetailssssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailRoughnessItems/${materialId}`;
@@ -95,6 +148,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // 抗石击性能
   public async GetTrialDataDetailsssssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailHitResistanceItems/${materialId}`;
@@ -105,6 +159,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // 附着力
   public async GetTrialDataDetailssssssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailAdhesionItems/${materialId}`;
@@ -115,6 +170,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // 耐湿热
   public async GetTrialDataDetailsssssssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailDampHeatItems/${materialId}`;
@@ -125,6 +181,7 @@ export class PaintingTableComponent implements OnInit {
       // console.log(this.trialDataDetail)
     })    
   }
+  // detail表
   public async GetTrialDataDetailssssssssss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetails/${materialId}`;

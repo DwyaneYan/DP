@@ -1,47 +1,37 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
     <thead >
       <tr>
-        <th  id="head" nzWidth="200px">执行标准</th>
+        <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
       </tr>
     </thead>
     <tbody>
       <tr >
-        <td id="he">{{trialDataDetailss[0].standard}}</td>
+        <td  class="one1" *ngFor="let data of table[0].key">{{trialDataDetailss[0]?trialDataDetailss[0][data]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
+</nz-table><br><br>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
         <thead>
           <tr>
-            <th nzWidth="150px" id="head">面积（m2）</th>
-            <th nzWidth="150px" id="head">初始重量（g）</th>
-            <th nzWidth="150px" id="head">试验后重量（g）</th>
-            <th nzWidth="150px" id="head">膜重（g/mm2）</th>
+            <th nzWidth="200px" class="one" *ngFor="let data of table[1].one">{{data}}</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.area }}</td>
-            <td id="he">{{ data.originalWeight }}</td>
-            <td id="he">{{ data.afterWeight }}</td>
-            <td id="he">{{ data.membraneWeight }}</td>
+            <td class="one1"  *ngFor="let data1 of table[1].key">{{ data[data1] }}</td>
           </tr>
         </tbody>
       </nz-table><br><br><br>
-      <nz-table  [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="tabletwo">
+      <nz-table  [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="table3">
         <thead>
           <tr>
-            <th colspan="2"  id="head">Ra（μm）</th>
-            <th colspan="2"  id="head">RPC（个/cm）</th>
+            <th colspan="2"  class="one" *ngFor="let data1 of table[2].one" nzWidth="200px">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td id="he">{{ data.raOne }}</td>
-            <td id="he">{{ data.raTwo }}</td>
-            <td id="he">{{ data.rpcOne }}</td>
-            <td id="he">{{ data.rpcTwo }}</td>
+            <td class="one1" *ngFor="let data1 of table[2].key">{{ data[data1] }}</td>
           </tr>
         </tbody>
       </nz-table>

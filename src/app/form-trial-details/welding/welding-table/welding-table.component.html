@@ -1,87 +1,26 @@
 <div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tables"  nzBordered>
+  <div id="tablewid">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
+    *ngFor="let data of table" nzBordered>
         <thead >
           <tr>
-            <th nzWidth="200px" id="head">执行标准</th>
+            <th nzWidth="200px" class="one"  *ngFor="let data1 of data.one">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let data of trialDataDetail">
-            <td id="he">{{ data.standard}}</td>
+          <tr >
+            <td class="one1" *ngFor="let data1 of data.key">{{ trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
           </tr>
         </tbody>
-    </nz-table><br><br>
-    <nz-table  id="tableone" nzBordered [nzData]=[{}] [nzFrontPagination]="false">
-        <tbody >
+    </nz-table></div><br>
+    <nz-table  id="table3" nzBordered [nzData]=[{}] [nzFrontPagination]="false">
+        <thead >
         <tr>
-            <td id="he" >试验类型</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.testType }}</td>
+            <th nzWidth="200px" class="one"  *ngFor="let data1 of table1[0].one">{{data1}}</th>
         </tr>
-        <tr >
-            <td id="he">焊机类别</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.welderType }}</td>
-        </tr>
-        <tr >
-            <td id="he" >焊机型号</td>
-            <td  *ngFor="let data of trialDataDetail"  id="he">{{ data.welderMode }} </td>
-        </tr>
-        <tr >
-            <td id="he">电极头前端直径</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.headDiameter  }}</td>
-        </tr>
-        <tr >
-            <td id="he">电极压力</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.electrodePressure   }}</td>
-        </tr>
-        <tr >
-            <td id="he">脉冲次数</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.pulseTimes    }}</td>
-        </tr>
-        <tr>
-            <td id="he">预压时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.preloadingTimes  }}</td>
-        </tr>        
-        <tr >
-            <td id="he">升压时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.boostTimes }}</td>
-        </tr>        
-        <tr>
-            <td id="he">最小焊接时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.minimumWeldingTimes }}</td>
-        </tr>       
-         <tr >
-            <td id="he">中值焊接时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.middleWeldingTimes }}</td>
-        </tr>        
-        <tr>
-            <td id="he">最大焊接时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.maxmumWeldingTimes }}</td>
-        </tr>
-        <tr >
-            <td id="he">保压时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.holdingWeldingTimes }}</td>
-        </tr>
-        <tr >
-            <td id="he">临界焊点直径</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data. criticalJointDiameter }}</td>
-        </tr>
-        <tr >
+</thead><tbody>
+        <tr *ngFor="let detail of trialDataDetails">
+            <td class="one1" *ngFor="let data1 of table1[0].key">{{detail[data1]}}</td>
         </tr></tbody>
-    </nz-table><br>
-        <nz-table  nzBordered [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo">
-            <thead>
-              <tr>
-                <th nzWidth="150px" id="head">左边界电流（kA）</th>
-                <th nzWidth="150px" id="head">右边界电流（kA）</th>
-                <th nzWidth="150px" id="head">焊接时间(ms)</th>
-              </tr>
-            </thead>
-            <tbody >
-              <tr *ngFor="let data of trialDataDetails" >
-                <td id="he">{{ data.leftBoundaryElectric }}</td>
-                <td id="he">{{ data.rightBoundaryElectric }}</td>
-                <td id="he">{{ data.weldingTimes}}</td>
-              </tr>
-            </tbody>        
           </nz-table> 
 </div>

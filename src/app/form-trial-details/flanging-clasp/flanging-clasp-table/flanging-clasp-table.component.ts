@@ -9,6 +9,16 @@ import { HttpClient } from '@angular/common/http';
 export class FlangingClaspTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
+  table=[{
+    table:"table1",
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{table:"table2",
+  one:["翻遍等级"],
+  key:["flangingLevel"]
+,
+}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

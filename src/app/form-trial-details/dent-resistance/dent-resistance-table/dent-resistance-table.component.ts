@@ -9,7 +9,16 @@ import { HttpClient } from '@angular/common/http';
 export class DentResistanceTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
-
+  table=[{
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{
+  one:["初始刚度(N/mm)","0.1mm可见凹痕载荷(N)"],
+  key:["originalRigidity","visibleDentLoad"]
+,
+},
+]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

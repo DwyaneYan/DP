@@ -22,4 +22,7 @@
 #tabletwo{
     width:1120px
 }
-
+#tablewid{
+    width:1060px;
+    overflow:auto
+}

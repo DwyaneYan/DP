@@ -9,6 +9,15 @@ import { HttpClient } from '@angular/common/http';
 export class MetallographicTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
+  table=[{
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{
+  one:["金相组织","非金属夹杂（级）","晶粒度（级）","脱碳层深度（mm)"],
+  key:["structure","nonMetallicInclusionLevel","grainSize","depthDecarburization"]
+,
+}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

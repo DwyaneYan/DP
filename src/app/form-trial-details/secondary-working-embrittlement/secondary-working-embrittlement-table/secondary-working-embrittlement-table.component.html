@@ -1,34 +1,27 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
     <thead >
       <tr>
-        <th  id="head" nzWidth="200px">执行标准</th>
+        <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one" >{{data}}</th>
       </tr>
     </thead>
     <tbody>
       <tr >
-        <td id="he">{{trialDataDetail[0].standard}}</td>
+        <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
       </tr>
     </tbody>
 </nz-table><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered> 
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered> 
         <thead>
           <tr>
-            <th nzWidth="110px" id="head">试验温度</th>
-            <th nzWidth="100px" id="head">1号杯</th>
-            <th nzWidth="100px" id="head">2号杯</th>
-            <th nzWidth="100px" id="head">3号杯</th>
-            <th nzWidth="100px" id="head">4号杯</th>
-            <th nzWidth="100px" id="head">5号杯</th>
-            <th nzWidth="100px" id="head">6号杯</th>
-            <th nzWidth="100px" id="head">7号杯</th>
-            <th  id="head" nzWidth="100px">8号杯</th>
+            <th nzWidth="120px" class="one" *ngFor="let data of table[1].one ">{{data}}</th>
+            <th nzWidth="120px" class="one" *ngFor="let data1 of serials">{{data1}}</th>
           </tr>
         </thead>
-        <tbody id="he">
-          <tr *ngFor="let data of trialDataDetail" >
-            <td>{{ data.temperature }}</td>
-            <td>{{ data.contentRatio }}</td>
+        <tbody >
+          <tr *ngFor="let detail of trialDataDetail;let i=index" >
+            <td class="one1" *ngFor="let data of table[1].key">{{ datail[data] }}</td>
+            <td class="one1" *ngFor="let data1 of this.serialss[i]">{{ data1 }}</td>
           </tr>
         </tbody>
       </nz-table>

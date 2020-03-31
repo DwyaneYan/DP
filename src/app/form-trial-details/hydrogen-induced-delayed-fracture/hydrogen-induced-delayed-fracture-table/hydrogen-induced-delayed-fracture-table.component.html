@@ -1,46 +1,27 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  nzBordered
+  *ngFor="let data of table">
     <thead >
       <tr>
-        <th  id="head" nzWidth="200px">执行标准</th>
+        <th class="one" nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
     <tbody>
       <tr >
-        <td id="he">{{trialDataDetail[0].standard}}</td>
+        <td class="one1" *ngFor="let data1 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
+</nz-table><br><br>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table3" nzBordered>
         <thead>
           <tr>
-            <th nzWidth="150px" id="head">试验名称</th>
-            <th nzWidth="150px" id="head">试验设备</th>
-            <th nzWidth="150px" id="head">溶液类别</th>
-            <th nzWidth="150px" id="head">试验时间</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.testName }}</td>
-            <td id="he">{{ data.device }}</td>
-            <td id="he">{{ data.liquorType }}</td>
-            <td id="he">{{ data.date }}</td>
-          </tr>
-        </tbody>
-      </nz-table><br><br><br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered id="tableone">
-        <thead>
-          <tr>
-            <th nzWidth="150px" id="head">应力（MPa）</th>
-            <th nzWidth="150px" id="head">开裂时间（h）</th>
+            <th nzWidth="200px" class="one" *ngFor="let data1 of table1[0].one">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td id="he">{{ data.stress }}</td>
-            <td id="he">{{ data.hour }}</td>
+            <td class="one1" *ngFor="let data1 of table1[0].key">{{ data[data1] }}</td>
           </tr>
         </tbody>
-      </nz-table>
+      </nz-table><br>
 </div>

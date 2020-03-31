@@ -1,147 +1,37 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  
+  *ngFor="let data of table" nzBordered >
     <thead >
       <tr>
-        <th nzWidth="200px" id="head">执行标准</th>
+        <th nzWidth="200px" class="one" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
-    <tbody  *ngFor="let data of trialDataDetailsssssssss">
-      <tr >
-        <td id="he">{{ data.standard}}</td>
+    <tbody  >
+      <tr *ngFor="let data2 of this[data.name]">
+        <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
       </tr>
     </tbody>
 </nz-table><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
+    *ngFor="let data of table2" nzBordered>
         <thead>
           <tr>
-            <th  nzWidth="150px" id="head">磷化膜结晶尺寸</th>
-            <th nzWidth="150px" id="head">磷化膜覆盖率</th>
+            <th colspan="3"  class="one" *ngFor="let data1 of data.one">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.sizeText }}</td>
-            <td id="he">{{ data.coverRatio }}</td>
+          <tr *ngFor="let data2 of this[data.name]" >
+            <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3] }}</td>
           </tr>
         </tbody>        
       </nz-table> <br> <br> <br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
-        <thead>
-          <tr>
-            <th nzWidth="120px" id="head">面积（m2）</th>
-            <th nzWidth="120px" id="head">初始重量（g）</th>
-            <th nzWidth="120px" id="head">试验后重量（g）</th>
-            <th nzWidth="120px" id="head">膜重（g/m2）</th>
-          </tr>
-        </thead>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
+      *ngFor="let data of table1" nzTitle="{{data.title}}" nzBordered>
         <tbody >
-          <tr *ngFor="let data of trialDataDetails" >
-            <td id="he">{{ data.area }}</td>
-            <td id="he">{{ data.originalWeight }}</td>
-            <td id="he">{{ data.afterWeight }}</td>
-            <td id="he">{{ data.membraneWeight }}</td>
+          <tr *ngFor="let data1 of this[data.name]" >
+            <td class="one1" *ngFor="let data2 of this[data.name]" nzWidth="150px">{{ data1[data2] }}</td>
           </tr>
         </tbody>        
-      </nz-table> <br> <br> <br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tablethree" nzBordered>
-        <thead>
-          <tr>
-            <th nzWidth="120px" id="head">Ip（s-1）</th>
-            <th nzWidth="120px" id="head">IH（s-1）</th>
-            <th nzWidth="120px" id="head">P比</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetailss" >
-            <td id="he">{{ data.ip }}</td>
-            <td id="he">{{ data.ih }}</td>
-            <td id="he">{{ data.ratio }}</td>
-          </tr>
-        </tbody>        
-      </nz-table> <br> <br> <br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tablefor" nzBordered>
-        <thead>
-          <tr>
-            <th colspan="3"  id="head">电泳漆膜厚度（μm）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr  *ngFor="let data of trialDataDetailsss">
-            <td  id="he">{{ data.pointThickOne  }}</td>
-            <td id="he">{{ data.pointThickTwo}}</td>
-            <td id="he">{{ data.pointThickThree }}</td>
-          </tr>
-        </tbody>        
-      </nz-table> <br> <br> <br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tablefive" nzBordered>
-        <thead>
-          <tr>
-            <th id="head">电泳漆膜铅笔硬度</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr  *ngFor="let data of trialDataDetailssss" >
-            <td id="he">{{ data.pointHardness  }}</td>
-          </tr>
-        </tbody>        
-      </nz-table><br> <br> <br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tablesix" nzBordered>
-        <thead>
-          <tr>
-            <th colspan="3" id="head">Ra（μm）</th>
-            <th colspan="3" id="head">Rz（μm）</th>
-          </tr>
-        </thead>
-        <tbody  >
-          <tr  *ngFor="let data of trialDataDetailsssss" >
-            <td id="he">{{ data.raOne }}</td>
-            <td id="he">{{ data. raTwo  }}</td>
-            <td id="he">{{ data.raThree  }}</td>
-            <td id="he">{{ data.rzOne  }}</td>
-            <td id="he">{{ data.rzTwo  }}</td>
-            <td id="he">{{ data.rzThree  }}</td>
-          </tr>
-        </tbody>
-      </nz-table><br><br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableseven" nzBordered>
-        <thead>
-          <tr>
-            <th id="head">抗石击性能</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let data of trialDataDetailssssss"  >
-            <td id="he">{{ data. pointStrength }}</td>
-          </tr>
-        </tbody>
-      </nz-table><br><br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tablefor" nzBordered>
-        <thead>
-          <tr>
-            <th colspan="3" id="head">附着力</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetailsssssss"   >
-            <td id="he">{{ data. pointAdhesionOne  }}</td>
-            <td id="he">{{ data. pointAdhesionTwo  }}</td>
-            <td id="he">{{ data. pointAdhesionThree }}</td>
-          </tr>
-        </tbody>
-      </nz-table><br><br><br>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tablefor" nzBordered>
-        <thead>
-          <tr>
-            <th colspan="3" id="head">耐湿热性能</th>
-          </tr>
-        </thead>
-        <tbody  >
-          <tr *ngFor="let data of trialDataDetailssssssss"  >
-            <td id="he">{{ data. pointOne  }}</td>
-            <td id="he">{{ data. pointTwo }}</td>
-            <td id="he" >{{ data. pointThree  }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
+      </nz-table> <br>
 </div>
 

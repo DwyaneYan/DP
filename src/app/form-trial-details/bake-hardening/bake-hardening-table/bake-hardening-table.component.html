@@ -1,36 +1,16 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tables"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
+  *ngFor="let data of table"  nzBordered>
     <thead >
       <tr>
-        <th nzWidth="200px" id="head">执行标准</th>
+        <th nzWidth="200px" class="one" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
     <tbody >
-      <tr *ngFor="let data of trialDataDetail">
-        <td id="he">{{ data.standard}}</td>
+      <tr *ngFor="let data2 of this[data.name]">
+        <td  class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
       </tr>
     </tbody>
-</nz-table><br><br>
-    
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table"  nzBordered>
-        <thead>
-          <tr>
-            <th nzWidth="150px" id="head">烘烤温度及时间</th>
-            <th nzWidth="150px" id="head">Rt2.0(MPa)</th>
-            <th nzWidth="150px" id="head">Rp0.2(MPa)</th>
-            <th nzWidth="150px" id="head">Rm(MPa)</th>
-            <th nzWidth="150px" id="head">BH2(MPa)</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let data of trialDataDetails" >
-            <td id="he">{{ data.temperatureTimes }}</td>
-            <td id="he">{{ data.rt }}</td>
-            <td id="he">{{ data.rp }}</td>
-            <td id="he">{{ data.rm }}</td>
-            <td id="he">{{ data.bH2 }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
+</nz-table>
 </div>
 

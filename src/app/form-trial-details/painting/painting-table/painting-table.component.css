@@ -5,33 +5,40 @@
     width: auto;
     
 }
-#head{
+.one{
     text-align:center;
     background-color:rgba(107, 152, 248, 0.959);
-    color:white
-}
-#tableone{
-    width:300px
-}
-#tabletwo{
-    width:480px
-}
-#tablethree{
-    width:360px
-}
-#tablefor{
-    width:360px
-}
-#tablefive{
-    width:100px
-}
-#tablesix{
-    width:600px
-}
-#tableseven{
-    width:130px
-}
-#tabless{width:200px}
-#he{padding-top:8px;
+    color:white;
+    padding-top:8px;
     padding-bottom:8px;
-    text-align:center;}
+
+}
+.one1{
+    text-align:center;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+#table1{
+    width:400px;
+    margin-top:30px
+}
+#table3{
+    width:800px;
+    margin-top:30px
+}
+#table4{
+    width:600px;
+    margin-top:30px
+}
+#table7{
+    width:900px;
+    margin-top:30px
+}
+#table5{
+    width:450px;
+    margin-top:30px
+}
+#table6{
+    width:150px;
+    margin-top:30px
+}

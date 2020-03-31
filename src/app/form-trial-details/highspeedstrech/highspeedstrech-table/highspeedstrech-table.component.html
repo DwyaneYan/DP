@@ -7,7 +7,7 @@
     </thead>
     <tbody>
       <tr >
-        <td class="one1" *ngFor="let data6 of  table6">{{trialDataDetail[0][data6]}}</td>
+        <td class="one1" *ngFor="let data6 of  table6">{{trialDataDetail[0]?trialDataDetail[0][data6]:''}}</td>
       </tr>
     </tbody>
 </nz-table><br><br><br><br>

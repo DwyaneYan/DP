@@ -5,20 +5,24 @@
     width: auto;
     
 }
-#head{
+.one{
     text-align:center;
     background-color:rgba(107, 152, 248, 0.959);
-    color:white
-}
-#table{
-    width:600px
-}
-#tabless{
-    width:200px
-}
-#tabletwo{
-    width:520px
-}
-#he{padding-top:8px;
+    color:white;
+    padding-top:8px;
     padding-bottom:8px;
-    text-align:center;}
+
+}
+.one1{
+    text-align:center;
+    padding-top:8px;
+    padding-bottom:8px;}
+#table1{
+    width:400px
+}
+#table2{
+    width:800px
+}
+#table3{
+    width:800px
+}

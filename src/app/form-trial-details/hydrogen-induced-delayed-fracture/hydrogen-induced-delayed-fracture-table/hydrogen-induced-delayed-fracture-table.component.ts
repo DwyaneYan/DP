@@ -10,6 +10,21 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
   trialDataDetails=[{}]
+  table=[{
+    table:"table1",
+    one:["执行标准"],
+    key:["standard"]
+},
+{table:"table2",
+  one:["氢脆试验项目","试验设备","溶液类别","试验时间","试验方法"],
+  key:["testName","device","liquorType","date","experimentalMethod"]
+,
+},]
+table1=[{
+  one:["弯曲跨度","弯曲应变","弯曲应力（MPa）","开裂时间（h）","是否开裂",],
+  key:["span","strain","stress","hour","remark"]
+},
+]
   constructor( private router: Router,
     public http: HttpClient,) { }
 

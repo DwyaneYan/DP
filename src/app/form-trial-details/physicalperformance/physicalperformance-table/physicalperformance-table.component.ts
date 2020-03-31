@@ -11,6 +11,27 @@ export class PhysicalperformanceTableComponent implements OnInit {
   trialDataDetail=[{}]
   trialDataDetails=[{}]
   trialDataDetailss=[{}]
+  table=[{
+    table:"table1",
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{table:"table2",
+  one:["维氏硬度（HV）","布氏硬度（HBW）","洛氏硬度（HRC）","密度ρ（g/cm3）","电阻率ρ（Ω·m）"],
+  key:["HV","HBW","HRC","density","resistivity"]
+,
+},]
+table1=[
+{
+  one:["温度（℃）","热膨胀系数α（1/℃）"],
+  key:["temperatureRange","thermalExpansion"]
+,
+},
+{
+  one:["温度（℃）","导热系数λ（W/(cm゜C)）"],
+  key:["temperature","thermalConductivity"]
+,
+},]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

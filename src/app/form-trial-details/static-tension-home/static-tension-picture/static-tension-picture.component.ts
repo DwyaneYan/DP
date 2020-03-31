@@ -10,7 +10,6 @@ export class StaticTensionPictureComponent implements OnInit {
   materialId 
   trialDataDetail=[]
   trialDataDetails=[]
-  public listOfId = ["16c75e5c-75fd-4a0c-8a3c-ff5957303608","338679ba-3049-42ba-b7e8-c13cec76cdd2","dae51c76-d308-482f-a1f8-178a2c7f1a5f"]  //存放不同序号的id
   public dataList1=[]
   public dataList2=[]
   public dataList3=[]
@@ -37,6 +36,7 @@ export class StaticTensionPictureComponent implements OnInit {
   }
 
   public async GetTrialDataDetails() {
+    let xData = [];
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetailStressStrains/${materialId}`;
     await this.http.get(api)
@@ -44,9 +44,9 @@ export class StaticTensionPictureComponent implements OnInit {
     .then((res: any) => {
       this.trialDataDetail = res
     }) 
-    console.log(this.trialDataDetails)   
     let arry=[]
     this.trialDataDetail.map(mapItem => {
+    xData.push(mapItem.strain * 1000);
   if (arry.length == 0) {
     arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
   } else {
@@ -60,25 +60,55 @@ export class StaticTensionPictureComponent implements OnInit {
       arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
     }
   }
+  
 }) 
-this.PlotPicture(arry[0].List)
-    }
-   
-    public PlotPicture(data){
-      data.forEach((val, i) =>{    
-          this.dataList1.push([val.strain,val.stress])
-        }
-        )
-      this.option = {
+for(let a=0;a<this.trialDataDetails.length;a++){
+  arry[a].sampleCode=this.trialDataDetails[a].sampleCode}
+console.log(arry)   
+  xData = [...new Set(xData)];
+    xData.sort((a, b) => {
+      return a - b;
+    });
+    this.PlotPicture(arry, xData);}
 
-        xAxis: {},
-        yAxis: {},
-        series: [{
-            symbolSize: 20,
-            data: this.dataList1,
-            type: 'line'
-        }]
-      };
+public PlotPicture(data, xData) {
+  // data.map(item => {
+  //   item.List.sort((a, b) => a.strain - b.strain);
+  // });
+  this.option = {
+    title: {
+      text: '工程应力应变'
+  },
+    xAxis: {
+      data: xData,
+      type: "category",
+      axisLabel: {
+        formatter: function(val) {
+          return val / 1000;
+        }
+      }
+    },
+    yAxis: {},
+    series: [],
+    legend:{data:[]}
+  };
+  let temp = [];
+  data.map(item => {
+    temp = [];
+    item.List.map(i => {
+      temp.push( ["i.strain*1000",i.stress]);
+    });
+
+    this.option.series.push({
+      symbolSize: 20,
+      data: temp,
+      type: "line",
+      name:item.sampleCode,
+      connectNulls: true
+    })
+    this.option.legend.data.push(item.sampleCode)
+  })
+  console.log(this.option.legend);  
 
 }
 

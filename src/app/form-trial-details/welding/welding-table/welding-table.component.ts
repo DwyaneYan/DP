@@ -10,6 +10,21 @@ export class WeldingTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
   trialDataDetails
+  table=[{
+    table:"table1",
+    one:["执行标准"],
+    key:["standard"]
+},
+{table:"table2",
+  one:["焊接试验类型","焊机类别","焊机型号","电极头前端直径(mm)","电极压力(kN)","脉冲次数","预压时间(ms)","升压时间(ms)","最小焊接时间(ms)","中值焊接时间(ms)","最大焊接时间(ms)","保压时间(ms)","临界焊点直径(mm)"],
+  key:["testType","welderType","welderMode","headDiameter","electrodePressure","pulseTimes","preloadingTimes","boostTimes","minimumWeldingTimes","middleWeldingTimes","maxmumWeldingTimes","holdingWeldingTimes","criticalJointDiameter",]
+,
+},]
+table1=[{
+  one:["焊接时间(ms)","左边界电流（kA）","右边界电流（kA）"],
+  key:["weldingTimes","leftBoundaryElectric","rightBoundaryElectric",]
+},
+]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

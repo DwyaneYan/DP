@@ -7,103 +7,51 @@
     </thead>
     <tbody>
       <tr >
-        <td class="one1">{{trialDataDetail[0].standard}}</td>
+        <td class="one1"  *ngFor="let data2 of table2" >{{trialDataDetail[0]?trialDataDetail[0][data2]:''}}</td>
       </tr>
     </tbody>
 </nz-table><br><br><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
+<div id="tablewid">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data3.table}}" nzBordered
+    *ngFor="let data3 of table3">
         <thead>
           <tr>
-            <th nzWidth="150px" id="head">循环应变比</th>
-            <th nzWidth="150px" id="head">是否使用引伸计</th>
-            <th nzWidth="150px" id="head">引伸计规格</th>
-            <th nzWidth="150px" id="head">表面质量</th>
+            <th nzWidth="200px" class="one"  *ngFor="let data31 of data3.one">{{data31}}</th>
           </tr>
         </thead>
         <tbody >
           <tr  >
-            <td id="he">{{ trialDataDetail[0].cyclicStrainRatio }}</td>
-            <td id="he" >{{ trialDataDetail[0].useExtensometer }}</td>
-            <td id="he">{{ trialDataDetail[0].extensometerGaugeDistance }}</td>
-            <td id="he">{{ trialDataDetail[0].surfaceQuality }}</td>
+            <td class="one1" *ngFor="let data32 of data3.key">{{trialDataDetail[0]?trialDataDetail[0][data32]:''}}</td>
           </tr>
-        </tbody>        
-      </nz-table><br> <br><br>
-        <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone" nzBordered>
+        </tbody>     
+      </nz-table><br>
+      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table3" nzBordered
+     >
           <thead>
             <tr>
-              <th nzWidth="90px" id="head">序号</th>
-              <th nzWidth="100px" id="head">测试编号</th>
-              <th nzWidth="100px" id="head">总应变幅Δεt/2，mm/mm </th>
-              <th nzWidth="120px" id="head">塑性应变幅Δεp/2，mm/mm</th>
-              <th nzWidth="120px" id="head">弹性应变幅Δεe/2，mm/mm</th>
-              <th nzWidth="120px" id="head">失效循环数Nf，次</th>
-              <th nzWidth="120px" id="head">循环应力幅Δσ/2，MPa</th>
-              <th id="head" nzWidth="100px">试验频率Hz</th>
+              <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[0].one">{{data41}}</th>
             </tr>
           </thead>
-          <tbody >
-            <tr *ngFor="let data of trialDataDetails,let data1 of trialDataDetail" >
-              <td id="he">{{ data.serialNumber }}</td>
-              <td id="he">{{ data1.sampleCode }}</td>
-              <td id="he">{{ data.totalStrainAmplitude }}</td>
-              <td id="he">{{ data.plasticStrainAmplitude }}</td>
-              <td id="he">{{ data.elasticStrainAmplitude }}</td>
-              <td id="he">{{ data.failureCycleTimes }}</td>
-              <td id="he">{{ data.cycleStressAmplitude }}</td>
-              <td id="he">{{ data.testFrequency}}</td>
-             </tr>
-          </tbody>        
-        </nz-table> <br><br><br>
-        <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
-            <thead>
-              <tr>
-                <th nzWidth="120px" id="head">循环强度系数Κ＇/MPa</th>
-                <th  nzWidth="200px" id="head">循环应变硬化指数n＇</th>
-                <th  nzWidth="100px" id="head">相关系数r </th>
-              </tr>
-            </thead>
-            <tbody >
-              <tr  >
-                <td id="he">{{trialDataDetail[0].cyclicStrengthParameter }}</td>
-                <td id="he">{{trialDataDetail[0].cyclicStrainHardening }}</td>
-                <td id="he">{{ trialDataDetail[0].relatedSressParameter }}</td>
-              </tr>
-            </tbody>        
-          </nz-table> <br><br><br>
-          <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
-            <thead>
-              <tr>
-                <th nzWidth="120px" id="head">疲劳强度系数</th>
-                <th nzWidth="200px" id="head">疲劳强度指数</th>
-                <th nzWidth="100px" id="head">相关系数</th>
-              </tr>
-            </thead>
-            <tbody >
-              <tr >
-                <td id="he">{{ trialDataDetail[0].fatigueStrengthParameter}}</td>
-                <td id="he">{{ trialDataDetail[0].fatigueStrength }}</td>
-                <td id="he">{{ trialDataDetail[0].relatedLifeFatigueParameter}}</td>
-              </tr>
-            </tbody>        
-          </nz-table> <br><br><br>
-          <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
-            <thead>
-              <tr>
-                <th nzWidth="120px" id="head">疲劳延性系数</th>
-                <th nzWidth="200px" id="head">疲劳延性指数</th>
-                <th nzWidth="100px" id="head">相关系数</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr  >
-                <td id="he">{{ trialDataDetail[0].fatigueStrechParameter}}</td>
-                <td id="he">{{ trialDataDetail[0].fatigueStrech }}</td>
-                <td id="he">{{ trialDataDetail[0].relatedLifeStrechParameter}}</td>
-              </tr>
-            </tbody>        
-          </nz-table> 
-  
+          <tbody *ngFor="let detail of  trialDataDetail ">
+            <tr *ngIf="detail.formTensileStrength!=null" >
+              <td class="one1" *ngFor="let data42 of table4[0].key">{{detail[data42]}}</td>
+            </tr>
+          </tbody>     
+        </nz-table><br>
+        <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table4" nzBordered
+        >
+             <thead>
+               <tr>
+                 <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[1].one">{{data41}}</th>
+               </tr>
+             </thead>
+             <tbody *ngFor="let detail of  trialDataDetail ">
+               <tr  >
+                 <td class="one1" *ngFor="let data42 of table4[1].key">{{detail[data42]}}</td>
+               </tr>
+             </tbody>     
+           </nz-table><br>
+    </div>
   </div>
   
 

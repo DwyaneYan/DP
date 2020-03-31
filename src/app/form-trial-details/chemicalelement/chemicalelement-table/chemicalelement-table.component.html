@@ -1,28 +1,15 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
     <thead >
       <tr>
-        <th  id="head" nzWidth="200px">执行标准</th>
+        <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
       </tr>
     </thead>
     <tbody>
       <tr >
-        <td id="he">{{trialDataDetail[0].standard}}</td>
+        <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
       </tr>
     </tbody>
 </nz-table><br><br><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table" nzBordered>
-        <thead >
-          <tr>
-            <th  nzWidth="150px" id="head">元素名称</th>
-            <th  nzWidth="150px" id="head">含量</th>
-          </tr>
-        </thead >
-        <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.name }}</td>
-            <td id="he">{{ data.contentRatio }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
+   
 </div>

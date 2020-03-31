@@ -10,6 +10,18 @@ export class FldTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
   trialDataDetails=[{}]
+  table=[{
+    table:"table1",
+    name:"trialDataDetails",
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{table:"table1",
+  name:"trialDataDetail",
+  one:["次应变","主应变"],
+  key:["secondaryStrain","mainStrain"]
+,
+}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

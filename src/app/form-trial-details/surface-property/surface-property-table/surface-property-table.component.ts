@@ -12,6 +12,20 @@ export class SurfacePropertyTableComponent implements OnInit {
   trialDataDetail=[{}]
   trialDataDetails=[{}]
   trialDataDetailss=[{}]
+  table=[{
+    one:["执行标准","试验设备"],
+    key:["standard","equipment",]
+},
+{
+  one:["面积（m2）","初始重量（g）","试验后重量（g）","膜重（g/mm2）"],
+  key:["area","originalWeight","afterWeight","membraneWeight"]
+,
+},
+{
+  one:["Ra（μm）","RPC（个/cm）"],
+  key:["raOne","raTwo","RPCOne","RPCTwo"]
+,
+}]
   constructor(
     private router: Router,
     public http: HttpClient,

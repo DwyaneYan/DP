@@ -10,8 +10,27 @@ export class LowcyclefatigueTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
   trialDataDetails=[{}]
-  table1=["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格",]
-  table2=["","","","","","","",]
+  table1=["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
+  table2=["standard","equipment","surfaceQuality","cyclicStrainRatio","extensometerGaugeDistance"]
+  table3=[{table:"table2",
+    one:["循环强度系数Κ＇/MPa","循环应变硬化指数n＇","相关系数r"],
+  key:["cyclicStrengthParameter","cyclicStrainHardening","relatedSressParameter"]},
+ {table:"table2",
+   one:["疲劳强度系数(MPa)","疲劳强度指数b＇","相关系数r"],
+key:["fatigueStrengthParameter","fatigueStrength","relatedLifeFatigueParameter"]},
+  {table:"table2",
+    one:["疲劳延性系数","疲劳延性指数c","相关系数r"],
+  key:["fatigueStrechParameter","fatigueStrech","relatedLifeStrechParameter"]
+},]
+table4=[
+{ table:"table3",
+one:["材料牌号","屈服强度Rp(MPa)","抗拉强度Rm(MPa)","断后伸长率A(％)"],
+key:["code","formYieldStrength","formTensileStrength","formModulusOfElasticity"]},
+{ table:"table4",
+one:["样件编号","总应变幅(Δεt/2，mm/mm)","塑性应变幅(Δεp/2，mm/mm)","弹性应变幅(Δεe/2，mm/mm)","失效循环数(Nf，次)","循环应力幅(Δσ/2，MPa)","试验频率(Hz)"],
+key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrainAmplitude","failureCycleTimes","cycleStressAmplitude","testFrequency"]}
+]
+
   constructor( private router: Router,
     public http: HttpClient,) { }
 

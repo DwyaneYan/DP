@@ -10,6 +10,18 @@ export class BakeHardeningTableComponent implements OnInit {
 public materialId
 trialDataDetail
 trialDataDetails
+table=[{
+  table:"table1",
+  name:"trialDataDetail",
+  one:["执行标准","试验设备"],
+  key:["standard","equipment",]
+},
+{table:"table2",
+name:"trialDataDetails",
+one:["烘烤温度及时间","Rt2.0(MPa)","Rp0.2(MPa)","Rm(MPa)","BH2(MPa)"],
+key:["temperatureTimes","Rt","Rp","Rm","BH2"]
+,
+}]
   constructor(private router: Router,
     public http: HttpClient,) { }
 

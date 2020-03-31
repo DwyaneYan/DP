@@ -1,62 +1,29 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tables"  nzBordered>
+  <div id="tablewid">
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"
+  *ngFor="let data of table"  nzBordered>
     <thead >
       <tr>
-        <th nzWidth="200px" id="head">执行标准</th>
+        <th nzWidth="200px" class="one" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
-    <tbody *ngFor="let data of trialDataDetail">
-      <tr id="he">
-        <td>{{ data.standard}}</td>
+    <tbody *ngFor="let data2 of this[data.name]">
+      <tr >
+        <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
       </tr>
     </tbody>
 </nz-table><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone" nzBordered>
-      <tbody >
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"
+    *ngFor="let data of table1" nzBordered>
+      <thead >
         <tr>
-            <td id="he">试验类型</td>
-            <td *ngFor="let data of trialDataDetail" id="he" >{{ data.punchFilletRadius }}</td>
+            <th class="one" *ngFor="let data1 of data.one;let i=index" [nzWidth]="data.width[i]">{{data1}}</th>
         </tr>
-        <tr >
-            <td id="he">弯曲角度</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.bendingAngleRange }}</td>
+        </thead><tbody>
+          <tr *ngFor="let data2 of this[data.name]">
+            <td class="one1" *ngFor="let data3 of data.key" >{{data2[data3]}}</td>
         </tr>
-        <tr >
-            <td id="he">凸模圆角半径R</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.punchFilletRadiusRange}}</td>
-        </tr>
-        <tr >
-            <td id="he">试样尺寸</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.sampleSize }}</td>
-        </tr>
-        <tr>
-            <td id="he">试验速度</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.testSpeed }}</td>
-        </tr>
-        <tr>
-            <td id="he">保持压力</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.holdStress }}</td>
-        </tr>
-        <tr >
-            <td id="he">保持时间</td>
-            <td *ngFor="let data of trialDataDetail" id="he">{{ data.holdTimes}}</td>
-        </tr></tbody>
-    </nz-table><br><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
-        <thead>
-          <tr>
-            <th nzWidth="150px" id="head">凸模圆角半径R（mm）</th>
-            <th nzWidth="150px" id="head">弯曲角度（°）</th>
-            <th nzWidth="150px" id="head">回弹角度（°）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of trialDataDetails" >
-            <td id="he">{{ data.punchFilletRadius }}</td>
-            <td id="he"> {{ data.bendingAngle }}</td>
-            <td id="he">{{ data.reboundAngle }}</td>
-          </tr>
         </tbody>
-      </nz-table>
+    </nz-table></div><br>
 </div>
 

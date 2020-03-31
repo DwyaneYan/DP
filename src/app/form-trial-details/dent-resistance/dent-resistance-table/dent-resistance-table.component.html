@@ -1,32 +1,15 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabless"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered *ngFor="let data of table">
     <thead >
       <tr>
-        <th  id="head" nzWidth="200px">执行标准</th>
+        <th class="one" nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr >
-        <td id="he">{{trialDataDetail[0].standard}}</td>
+      <tr *ngFor="let detail of trialDataDetail">
+        <td class="one1" *ngFor="let data1 of data.key">{{detail[data1]}}</td>
       </tr>
     </tbody>
 </nz-table><br><br><br><br>
-    <nz-table  nzBordered [nzData]=[{}] [nzFrontPagination]="false" id="table">
-        <thead>
-          <tr>
-            <th nzWidth="150px" id="head">初始刚度(N/mm)</th>
-            <th nzWidth="200px" id="head">0.1mm可见凹痕载荷(N)</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.originalRigidity }}</td>
-            <td id="he">{{ data.visibleDentLoad }}</td>
-          </tr>
-        </tbody>
-      </nz-table><br><br><br>
-      <br>
-      <div id="one">一次加载曲线</div><br><br><br>
-      <div id="one">循环加载曲线</div><br><br><br>
-      <div id="one">凹痕深度载荷曲线</div><br><br>
+
 </div>

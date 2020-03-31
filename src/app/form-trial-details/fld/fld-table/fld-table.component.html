@@ -1,29 +1,15 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
+  *ngFor="let data of table" nzBordered>
     <thead >
       <tr>
-        <th nzWidth="200px" id="head">执行标准</th>
+        <th nzWidth="200px" class="one" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
-    <tbody *ngFor="let data of trialDataDetails" >
+    <tbody *ngFor="let data2 of this[data.name]" >
       <tr >
-        <td id="he">{{ data.standard}}</td>
+        <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
       </tr>
     </tbody>
-</nz-table><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="table">
-        <thead>
-          <tr>
-            <th nzWidth="100px" id="head">次应变</th>
-            <th nzWidth="100px" id="head">主应变</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let data of trialDataDetail" >
-            <td id="he">{{ data.secondaryStrain }}</td>
-            <td id="he">{{ data.mainStrain }}</td>
-          </tr>
-        </tbody>
-      </nz-table>
-
+</nz-table>
 </div>
