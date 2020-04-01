@@ -14,7 +14,7 @@ export class CompressionTableComponent implements OnInit {
   ]
   table2=['样件编号','试样宽','试样厚','试样直径','试样长度','抗压强度(MPa)','规定非比例压缩强度(MPa)','压缩弹性模量(MPa)']
   table3=['sampleCode','width','thickness','diameter','length','compressiveStrength','nonProportionalCompressStrenth','compressOfElasticity']
-  table4=['180px','100px','100px','100px','100px','180px','180px','180px']
+  table4=['150px','100px','100px','100px','100px','150px','150px','150px']
   table5=["standard","equipment"]
   constructor(    private router: Router,
     public http: HttpClient,) { }

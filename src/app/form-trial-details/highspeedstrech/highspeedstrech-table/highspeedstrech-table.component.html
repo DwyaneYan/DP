@@ -18,9 +18,9 @@
 
             </tr>
           </thead>
-          <tbody >
-            <tr *ngFor="let detail of  trialDataDetail">
-              <td class="one1" >{{ name }}</td>
+          <tbody *ngFor="let detail of  two;index as i">
+            <tr  >
+              <td class="one1" rowspan="two.length" *ngIf="i==0">{{ mater[0] }}</td>
               <td class="one1" *ngFor="let data3 of  table3">{{ detail[data3] }}</td>
             </tr>
           </tbody>        
@@ -34,8 +34,8 @@
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor="let detail of trialDataDetail" >
-              <td  class="one1" *ngFor="let data5 of  table5">{{detail[data5]}}</td>
+            <tr *ngFor="let details of one" >
+              <td  class="one1" *ngFor="let data5 of  table5">{{details[data5]}}</td>
             </tr>
           </tbody>        
         </nz-table> 

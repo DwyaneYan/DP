@@ -15,6 +15,7 @@ export class StaticTensionPictureComponent implements OnInit {
   public dataList3=[]
   //echarts绘图
   option:any;
+  options2
   constructor(
     public http: HttpClient,
     private router: Router,
@@ -45,8 +46,10 @@ export class StaticTensionPictureComponent implements OnInit {
       this.trialDataDetail = res
     }) 
     let arry=[]
+    let xData2=[]
     this.trialDataDetail.map(mapItem => {
-    xData.push(mapItem.strain * 1000);
+    xData.push((mapItem.strain * 1000).toFixed(4));
+    xData2.push((mapItem.realStrain * 1000).toFixed(4));
   if (arry.length == 0) {
     arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
   } else {
@@ -64,53 +67,134 @@ export class StaticTensionPictureComponent implements OnInit {
 }) 
 for(let a=0;a<this.trialDataDetails.length;a++){
   arry[a].sampleCode=this.trialDataDetails[a].sampleCode}
-console.log(arry)   
+console.log(arry)  
+console.log(this.trialDataDetails)    
   xData = [...new Set(xData)];
+  xData2 = [...new Set(xData2)];
     xData.sort((a, b) => {
-      return a - b;
+      return Number(a) - Number(b);
     });
-    this.PlotPicture(arry, xData);}
+    xData2.sort((a, b) => {
+      return Number(a) - Number(b);
+    });
+    this.PlotPicture(arry, xData,xData2);}
 
-public PlotPicture(data, xData) {
+public PlotPicture(data, xData,xData2) {
   // data.map(item => {
   //   item.List.sort((a, b) => a.strain - b.strain);
   // });
   this.option = {
     title: {
       text: '工程应力应变'
+  },    
+  tooltip: {
+    trigger: 'axis',
+    backgroundColor: "white",
+    formatter:function (params) { //在此处直接用 formatter 属性
+      console.log(params)  // 打印数据
+      let b=[]
+      let index = [];
+      let colorList = [];
+        params.forEach(val=>{b.push((val.data)[1]);index.push(val['seriesName']);colorList.push(val['color'])})
+        let  text=""
+        for(let c=0;c<b.length;c++){
+          text+=index[c] +' '+'<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;'+
+          'border: solid 1px;border-color:'+colorList[c]+'"></span>'+" : "+ b[c]+ "<br/>"
+        }
+        return `  <div style="color: black;">应变：${((params[0].axisValueLabel)/1000).toFixed(4)}</div>   
+        <div style="color: black;">应力：<br/><a style="color: black;">${text}</a></div>  
+           `
+      }
   },
     xAxis: {
       data: xData,
       type: "category",
       axisLabel: {
         formatter: function(val) {
-          return val / 1000;
+          return (val / 1000).toFixed(4);
         }
       }
     },
     yAxis: {},
     series: [],
-    legend:{data:[]}
+    legend:{data:[],
+      orient:'vertical',
+      x: 'right',}
   };
   let temp = [];
   data.map(item => {
     temp = [];
     item.List.map(i => {
-      temp.push( ["i.strain*1000",i.stress]);
+      temp.push( [(i.strain*1000).toFixed(4),i.stress]);
     });
-
+    temp.sort((a,b)=>{return Number(a[0])-Number(b[0])});
     this.option.series.push({
-      symbolSize: 20,
+      symbolSize: 5,
       data: temp,
+      type: "line",
+      name:item.sampleCode,
+
+    })
+    console.log(temp); 
+    this.option.legend.data.push(item.sampleCode)
+  })
+ 
+ this. options2 = {
+    title: {
+      text: '真应力应变'
+  },    tooltip: {
+    trigger: 'axis',
+    backgroundColor: "white",
+    formatter:function (params) { //在此处直接用 formatter 属性
+      console.log(params)  // 打印数据
+      let b=[]
+      let index = [];
+      let colorList = [];
+        params.forEach(val=>{b.push((val.data)[1]);index.push(val['seriesName']);colorList.push(val['color'])})
+        let  text=""
+        for(let c=0;c<b.length;c++){
+          text+=index[c] +' '+'<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;'+
+          'border: solid 1px;border-color:'+colorList[c]+'"></span>'+" : "+ b[c]+ "<br/>"
+        }
+        return `  <div style="color: black;">真应变：${((params[0].axisValueLabel)/1000).toFixed(4)}</div>   
+        <div style="color: black;">真应力：<br/><a style="color: black;">${text}</a></div>  
+           `
+      }
+},
+    xAxis: {
+      data: xData2,
+      type: "category",
+      axisLabel: {
+        formatter: function(val) {
+          return (val / 1000).toFixed(4);
+        }
+      }
+    },
+    yAxis: {},
+    series: [],
+    legend:{data:[],
+      orient:'vertical',
+      x: 'right',}
+  };
+  let temp2 = [];
+  data.map(item => {
+    temp2 = [];
+    item.List.map(i => {
+      temp2.push( [(i.realStrain*1000).toFixed(4),i.realStress]);
+    });
+    temp2.sort((a,b)=>{return Number(a[0])-Number(b[0])});
+    this.options2.series.push({
+      symbolSize: 5,
+      data: temp2,
       type: "line",
       name:item.sampleCode,
       connectNulls: true
     })
-    this.option.legend.data.push(item.sampleCode)
+    console.log(temp2); 
+    this.options2.legend.data.push(item.sampleCode)
   })
-  console.log(this.option.legend);  
+};
 
-}
 
   }
 

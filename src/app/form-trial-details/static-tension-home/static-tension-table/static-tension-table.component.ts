@@ -13,7 +13,6 @@ export class StaticTensionTableComponent implements OnInit {
 
   //存放查到的静态拉伸详情
   public trialDataDetail = [{}] 
-
   visible = false;
 
   //添加数据表单
