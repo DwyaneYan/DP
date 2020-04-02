@@ -96,17 +96,24 @@ Allmaterial(){
   uncheckList
 al=[]
 dis=[]
-  refreshStatus(): void {
+  refreshStatus(val,id): void {
+    debugger;
     const validData = this.displayData.filter(value => !value.disabled);
   //   sessionStorage.setItem('list', 'JSON.stringify(this.listOfAllData)');
   //  sessionStorage.getItem('list') = sessionStorage.getItem('list')+','+JSON.stringify(this.listOfAllData);
   //   let arra3=JSON.parse( sessionStorage.getItem('list') )
-  this.checkList=this.listOfAllData.filter(value => value.checked)  
-  console.log(this.checkList.length); 
-  if(this.checkList.length>6){
-this.disabled=true
-window.alert("最多7个")
+  if(val){
+    this.checkList = this.checkList.concat(this.listOfAllData.filter(value => value.checked)) 
+    this.checkList = [...new Set(this.checkList)]; 
+    console.log(this.checkList.length); 
+    if(this.checkList.length>6){
+      this.disabled=true
+      window.alert("最多7个")
+    }
+  }else{
+    this.checkList = this.checkList.filter(value => {return value.id!==id})
   }
+  
     // const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
     // const allUnChecked = validData.every(value => !value.checked);
     // this.allChecked = allChecked;
@@ -120,7 +127,7 @@ window.alert("最多7个")
       }    
     }
     );
-    this.refreshStatus();
+    this.refreshStatus(value,'-1');
     
   }
   //#endregion

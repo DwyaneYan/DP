@@ -11,7 +11,7 @@
       </tr>
     </tbody>
 </nz-table><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2"  nzTitle="镀层重量" nzBordered>
         <thead>
           <tr>
             <th nzWidth="200px" class="one" *ngFor="let data of table[1].one">{{data}}</th>
@@ -23,7 +23,7 @@
           </tr>
         </tbody>
       </nz-table><br><br><br>
-      <nz-table  [nzData]=[{}] [nzFrontPagination]="false"  nzBordered id="table3">
+      <nz-table  [nzData]=[{}] [nzFrontPagination]="false" nzTitle="镀层粗糙度"  nzBordered id="table3">
         <thead>
           <tr>
             <th colspan="2"  class="one" *ngFor="let data1 of table[2].one" nzWidth="200px">{{data1}}</th>

@@ -56,19 +56,19 @@ export class HighspeedstrechPictureComponent implements OnInit {
     xData2.push((mapItem.realStrain * 1000).toFixed(4));})
 
     this.classitem(arr2,this.trialDataDetail) //工程应力应变、真应力应变
-for(let a=0;a<this.trialDataDetails.length;a++){
-  arr2[a].sampleCode=this.trialDataDetails[a].sampleCode;
-  arr2[a].testTarget=this.trialDataDetails[a].testTarget;
-  arr1[a].sampleCode=this.trialDataDetails[a].sampleCode;
-  arr1[a].testTarget=this.trialDataDetails[a].testTarget}
-console.log(arry)  
-console.log(this.trialDataDetails)    
-  xData = [...new Set(xData)];
-  xData2 = [...new Set(xData2)];
-  xData3= [...new Set(xData3)];
-    xData.sort((a, b) => {
-      return Number(a) - Number(b);
-    });
+    for(let a=0;a<this.trialDataDetails.length;a++){
+    arr2[a].sampleCode=this.trialDataDetails[a].sampleCode;
+    arr2[a].testTarget=this.trialDataDetails[a].testTarget;
+    arr1[a].sampleCode=this.trialDataDetails[a].sampleCode;
+    arr1[a].testTarget=this.trialDataDetails[a].testTarget}
+  console.log(arry)  
+  console.log(this.trialDataDetails)    
+    xData = [...new Set(xData)];
+    xData2 = [...new Set(xData2)];
+    xData3= [...new Set(xData3)];
+      xData.sort((a, b) => {
+        return Number(a) - Number(b);
+      });
     xData2.sort((a, b) => {
       return Number(a) - Number(b);
     }); 

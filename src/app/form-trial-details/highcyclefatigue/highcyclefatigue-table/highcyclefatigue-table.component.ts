@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class HighcyclefatigueTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
+  baseInfo=[]
+  mater=[]
   trialDataDetails=[{}]
   table=[{table:"table1",
   one:["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应力比","是否使用引伸计，引伸计规格(mm)",],
@@ -31,7 +33,20 @@ key:["sampleCode","maximumStress","stressAmplitude","testFrequency"]}
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
     this.GetTrialDataDetails();
-    this.GetTrialDataDetailss()
+    this.GetTrialDataDetailss();
+    this.GetBaseInfo(this.materialId)
+  }
+  public async GetBaseInfo(p){
+    let api = "http://localhost:60001/api/hangang/material/materials?Id=";
+    await this.http.get(api+p)
+    .toPromise()
+    .then((res:any)=>{
+      this.baseInfo = res.items
+    })
+    // console.log(this.baseInfo)
+    this.mater.push(
+      this.baseInfo[0].name,
+    )
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId

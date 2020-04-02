@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let detail of trialDataDetailss" >
+          <tr *ngFor="let detail of this[data.table]" >
             <td class="one1" *ngFor="let data1 of data.key">{{ detail[data1]}}</td>
           </tr>
         </tbody>        

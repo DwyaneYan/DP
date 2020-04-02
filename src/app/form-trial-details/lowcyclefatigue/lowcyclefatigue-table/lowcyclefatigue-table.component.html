@@ -32,8 +32,9 @@
               <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[0].one">{{data41}}</th>
             </tr>
           </thead>
-          <tbody *ngFor="let detail of  trialDataDetail ">
-            <tr *ngIf="detail.formTensileStrength!=null" >
+          <tbody *ngFor="let detail of  trialDataDetail;index as i ">
+            <tr >
+              <td class="one1" rowspan="trialDataDetail.length" *ngIf="i==0">{{mater[0]}}</td>
               <td class="one1" *ngFor="let data42 of table4[0].key">{{detail[data42]}}</td>
             </tr>
           </tbody>     
@@ -45,7 +46,7 @@
                  <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[1].one">{{data41}}</th>
                </tr>
              </thead>
-             <tbody *ngFor="let detail of  trialDataDetail ">
+             <tbody *ngFor="let detail of  trialDataDetails ">
                <tr  >
                  <td class="one1" *ngFor="let data42 of table4[1].key">{{detail[data42]}}</td>
                </tr>

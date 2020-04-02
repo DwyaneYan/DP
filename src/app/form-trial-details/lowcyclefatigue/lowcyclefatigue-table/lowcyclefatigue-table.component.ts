@@ -8,8 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LowcyclefatigueTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
+  trialDataDetail=[]
+  mater=[]
   trialDataDetails=[{}]
+  baseInfo=[]
   table1=["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
   table2=["standard","equipment","surfaceQuality","cyclicStrainRatio","extensometerGaugeDistance"]
   table3=[{table:"table2",
@@ -25,7 +27,7 @@ key:["fatigueStrengthParameter","fatigueStrength","relatedLifeFatigueParameter"]
 table4=[
 { table:"table3",
 one:["材料牌号","屈服强度Rp(MPa)","抗拉强度Rm(MPa)","断后伸长率A(％)"],
-key:["code","formYieldStrength","formTensileStrength","formModulusOfElasticity"]},
+key:["formYieldStrength","formTensileStrength","formModulusOfElasticity"]},
 { table:"table4",
 one:["样件编号","总应变幅(Δεt/2，mm/mm)","塑性应变幅(Δεp/2，mm/mm)","弹性应变幅(Δεe/2，mm/mm)","失效循环数(Nf，次)","循环应力幅(Δσ/2，MPa)","试验频率(Hz)"],
 key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrainAmplitude","failureCycleTimes","cycleStressAmplitude","testFrequency"]}
@@ -39,6 +41,19 @@ key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrain
     .snapshot.paramMap.get('materialId');
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
+    this.GetBaseInfo(this.materialId)
+  }
+  public async GetBaseInfo(p){
+    let api = "http://localhost:60001/api/hangang/material/materials?Id=";
+    await this.http.get(api+p)
+    .toPromise()
+    .then((res:any)=>{
+      this.baseInfo = res.items
+    })
+    // console.log(this.baseInfo)
+    this.mater.push(
+      this.baseInfo[0].name,
+    )
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId

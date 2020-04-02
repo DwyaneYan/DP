@@ -10,6 +10,20 @@
         <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br><br><br>
+</nz-table><br><br>
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2"  nzBordered>
+  <thead >
+    <tr>
+      <th  class="one" nzWidth="120px" >样件编号</th>
+      <th  class="one" nzWidth="90px" *ngFor="let data of arry2">{{data}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detail of arry3;let i=index">
+      <td class="one1" >{{arry5[i]}}</td>
+      <td class="one1" *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
+    </tr>
+  </tbody>
+</nz-table><br><br>
    
 </div>

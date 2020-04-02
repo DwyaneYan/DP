@@ -29,7 +29,7 @@
 </thead>
 <tbody>
   <tr *ngFor="let data of rowSelectionTable.data" >
-    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()" id="he" name="chk"
+    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.id)" id="he" name="chk"
     ></td>
     <td id="he" >{{ data.name }}</td>
     <td id="he" >{{ data.manufacture }}</td>

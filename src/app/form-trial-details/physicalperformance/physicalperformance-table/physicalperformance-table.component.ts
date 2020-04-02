@@ -23,11 +23,12 @@ export class PhysicalperformanceTableComponent implements OnInit {
 },]
 table1=[
 {
+  table:"trialDataDetailss",
   one:["温度（℃）","热膨胀系数α（1/℃）"],
   key:["temperatureRange","thermalExpansion"]
 ,
 },
-{
+{table:"trialDataDetails",
   one:["温度（℃）","导热系数λ（W/(cm゜C)）"],
   key:["temperature","thermalConductivity"]
 ,
@@ -52,6 +53,7 @@ table1=[
       // console.log(this.trialDataDetail)
     })    
   }
+  // 导热系数
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetailThermalConductivitys/${materialId}`;
@@ -62,6 +64,7 @@ table1=[
       // console.log(this.trialDataDetail)
     })    
   }
+  // 热膨胀系数
   public async GetTrialDataDetailsss() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetailThermalExpansions/${materialId}`;

@@ -62,25 +62,25 @@
                         (nzOnOk)="handleOk()"
                         
                       >
-                        <nz-input-group [nzSuffix]="suffixIconSearch">
-                            <input type="text" nz-input placeholder="搜索实验项目" />
+                        <!-- <nz-input-group [nzSuffix]="suffixIconSearch"> -->
+                            <!-- <input type="text" nz-input placeholder="搜索实验项目" />
                           </nz-input-group>
                           <ng-template #suffixIconSearch>
                             <i nz-icon nzType="search"></i>
-                          </ng-template>
+                          </ng-template> -->
 
-                          <div id="text-syxm">
+                          <!-- <div id="text-syxm">
                             <br/>
                             试验项目: 
                             <app-form-cascader-option (checkvalue)="check($event)" ></app-form-cascader-option>
-                          </div>
+                          </div> -->
                           
                           <div id="text-xzwj">
                             <br/>
                             选择文件:
-                            <nz-upload [nzAction]="theurl" 
-                               nzMultiple [nzFileList]="FileList" [nzCustomRequest]="customReqone" 
-                             [nzLimit]="1" >
+                            <nz-upload nzAction="http://localhost:60001/api/hangang/material/autoAddTestItem" nzDirectory='true'
+                               [nzCustomRequest]="customReqone" [nzFileList]="FileList"
+                              >
                                 <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                             </nz-upload>
                           </div>

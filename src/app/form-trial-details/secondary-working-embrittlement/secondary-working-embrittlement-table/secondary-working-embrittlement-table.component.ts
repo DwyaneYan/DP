@@ -10,9 +10,15 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   public materialId
   trialDataDetail=[{}]
   trialDataDetails
+  arry1=[]
+  arry2=[]
+  arry3=[]
+  arry4=[]
+  arry5=[]
   serial=[]
-  serials=[]
+  serials=[]//去重后的杯子编号
   serialss=[]
+  serialsss
   table=[{
     one:["执行标准","试验设备"],
     key:["standard","equipment",]
@@ -50,13 +56,15 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
     .then((res: any) => {
       this.trialDataDetails = res
       // console.log(this.trialDataDetail)
-      for(let a=0;a<this.trialDataDetails.length;a++){
-        this.serial.push(this.trialDataDetails[a].serialNumber)
-      }
-      this.serials=this.unique1(this.serial)
+
+      this.trialDataDetails.forEach(val=>{this.arry1.push(val.serialNumber);
+        this.arry4.push(val.temperature);})
+      this.serials=this.unique1(this.arry1)
+      this.serialsss=this.unique1(this.arry4)
       for(let b=0;b<this.trialDataDetails.length/this.serials.length;b++){      
+        this.serialss[b]=[]
         for(let c=b*this.serials.length;c<(b+1)*this.serials.length;c++){
-          this.serialss[b].push(this.trialDataDetails[c].expansionType);
+          this.serialss[b].push(this.trialDataDetails[c]);
         }
       }
     })    
