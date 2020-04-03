@@ -40,7 +40,7 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/bendingDataDetails/${materialId}`;
+    let api =`http://localhost:60001/api/hangang/materialTrial/secondaryWorkingEmbrittlementDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {
@@ -61,12 +61,13 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
         this.arry4.push(val.temperature);})
       this.serials=this.unique1(this.arry1)
       this.serialsss=this.unique1(this.arry4)
-      for(let b=0;b<this.trialDataDetails.length/this.serials.length;b++){      
-        this.serialss[b]=[]
-        for(let c=b*this.serials.length;c<(b+1)*this.serials.length;c++){
-          this.serialss[b].push(this.trialDataDetails[c]);
-        }
-      }
+
+        for(let d=0;d<this.serialsss.length;d++){
+          this.serialss[d]=[]
+        for(let c=d;c<this.trialDataDetails.length;c+=this.trialDataDetails.length/this.serials.length){
+          this.serialss[d].push(this.trialDataDetails[c]);
+        }}
+      
     })    
   }
   unique1(array) {

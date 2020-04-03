@@ -10,6 +10,7 @@ export class LowcyclefatigueTableComponent implements OnInit {
   public materialId
   trialDataDetail=[]
   mater=[]
+  two=[]
   trialDataDetails=[{}]
   baseInfo=[]
   table1=["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
@@ -63,7 +64,12 @@ key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrain
     .then((res: any) => {
       this.trialDataDetail = res
       console.log(this.trialDataDetail)
-    })    
+      for(let a=1;a<this.trialDataDetail.length;a++)   {
+        this.two.push(this.trialDataDetail[a])
+      }
+    }) 
+    console.log(this.two)
+    
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
@@ -72,7 +78,7 @@ key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrain
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetails)
     })    
   }
 }

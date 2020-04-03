@@ -1,5 +1,6 @@
-<!-- <div id="c"><h1>金相组织</h1>
-    <img class="img" [src]="ImgPathOne" alt="" height="400" width="400">  &nbsp;  &nbsp;
-    <br>
-    <br>
-    </div> -->
+<div id="all">
+<div id="c" *ngFor="let data of ImgPathOne;let i=index">
+    <h1>{{this.filess[i]}}</h1>
+    <img class="img" [src]="data" alt="" height="400" width="400"> 
+</div>
+</div>

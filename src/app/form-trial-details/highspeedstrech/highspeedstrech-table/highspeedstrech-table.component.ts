@@ -13,6 +13,7 @@ export class HighspeedstrechTableComponent implements OnInit {
   baseInfo
   one=[]
   two=[]
+  three=[]
   mater=[]
   table1=["执行标准","试验设备","取样方向",]
   table2=["材料牌号","屈服强度Rp(MPa)","抗拉强度Rm(MPa)","断后伸长率A(％)","弹性模量E(MPa)",]
@@ -55,6 +56,9 @@ export class HighspeedstrechTableComponent implements OnInit {
       for(let a=0;a<this.trialDataDetail.length;a++)
 {if(this.trialDataDetail[a].formElongation=null){this.one.push(this.trialDataDetail[a])}
   {this.two.push(this.trialDataDetail[a])}}
+  for(let a=1;a<this.one.length;a++){
+    this.three.push(this.one[a])
+  }
     })    
   }
   public async GetTrialDataDetailss() {

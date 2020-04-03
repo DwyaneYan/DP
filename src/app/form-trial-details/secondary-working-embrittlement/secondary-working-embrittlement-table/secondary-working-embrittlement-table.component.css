@@ -24,3 +24,6 @@
 /* #table2{
     width:400px
 } */
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+    background: white;
+  }

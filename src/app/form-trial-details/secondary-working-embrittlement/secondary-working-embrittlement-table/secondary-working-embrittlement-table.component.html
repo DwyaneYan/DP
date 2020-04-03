@@ -14,15 +14,15 @@
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered> 
         <thead>
           <tr>
-            <th nzWidth="120px" class="one" *ngFor="let data of table[1].one ">{{data}}</th>
-            <th nzWidth="120px" class="one" >SWET(℃)</th>
+            <th nzWidth="110px" class="one" *ngFor="let data of table[1].one ">{{data}}</th>
+            <th nzWidth="100px" class="one" >SWET(℃)</th>
             <th nzWidth="120px" class="one" *ngFor="let data1 of serials">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let detail of serialss;let i=index" >
             <td class="one1" >{{ serialsss[i] }}</td>
-            <td class="one1" rowspan="serialss.length" *ngIf="i==0">{{ trialDataDetails[0]?.swet }}</td>
+            <td class="one1" [attr.rowspan]="i === 0 ? serialss.length : 1"  *ngIf="i==0">{{ trialDataDetails[0]?.swet }}</td>
             <td class="one1" *ngFor="let data1 of detail">{{ data1?.expansionType }}</td>
           </tr>
         </tbody>

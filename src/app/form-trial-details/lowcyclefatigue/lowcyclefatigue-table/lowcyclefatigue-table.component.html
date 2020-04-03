@@ -10,7 +10,7 @@
         <td class="one1"  *ngFor="let data2 of table2" >{{trialDataDetail[0]?trialDataDetail[0][data2]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br><br><br>
+</nz-table><br><br>
 <div id="tablewid">
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data3.table}}" nzBordered
     *ngFor="let data3 of table3">
@@ -32,9 +32,9 @@
               <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[0].one">{{data41}}</th>
             </tr>
           </thead>
-          <tbody *ngFor="let detail of  trialDataDetail;index as i ">
-            <tr >
-              <td class="one1" rowspan="trialDataDetail.length" *ngIf="i==0">{{mater[0]}}</td>
+          <tbody >
+            <tr *ngFor="let detail of two;let i=index ">
+              <td class="one1" [attr.rowspan]="i === 0 ? two.length : 1"  *ngIf="i==0">{{mater[0]}}</td>
               <td class="one1" *ngFor="let data42 of table4[0].key">{{detail[data42]}}</td>
             </tr>
           </tbody>     

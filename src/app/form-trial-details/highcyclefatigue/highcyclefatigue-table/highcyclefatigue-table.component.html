@@ -32,9 +32,9 @@
       <th class="one" nzWidth="200px" *ngFor="let data1 of table[2].one">{{data1}}</th>
     </tr>
   </thead>
-  <tbody *ngFor="let data5 of trialDataDetail;let i=index" >
-    <tr  >
-      <td class="one1" rowspan="trialDataDetail.length" *ngIf="i==0">{{mater[0]}}</td>
+  <tbody  >
+    <tr *ngFor="let data5 of two;let i=index" >
+      <td class="one1" [attr.rowspan]="i === 0 ? two.length : 1"  *ngIf="i==0">{{mater[0]}}</td>
       <td class="one1" *ngFor="let data1 of table[2].key">{{data5[data1]}}</td>
     </tr>
   </tbody>
