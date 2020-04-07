@@ -70,7 +70,7 @@ table5=["standard","equipment","gaugeDistance"]
     .toPromise()
     .then((res: any) => {    
     this.trialDataDetail = res
-    console.log(this.trialDataDetail)
+    // console.log(this.trialDataDetail)
     }) 
   }
 
