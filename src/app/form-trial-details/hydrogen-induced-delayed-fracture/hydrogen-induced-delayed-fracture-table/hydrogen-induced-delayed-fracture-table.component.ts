@@ -17,7 +17,7 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
 },
 {table:"table2",
   one:["氢脆试验项目","试验设备","溶液类别","试验时间","试验方法"],
-  key:["testName","device","liquorType","date","experimentalMethod"]
+  key:["testName","equipment","liquorType","testTime","testMethod"]
 ,
 },]
 table1=[{
@@ -42,7 +42,7 @@ table1=[{
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
   }
   public async GetTrialDataDetailss() {

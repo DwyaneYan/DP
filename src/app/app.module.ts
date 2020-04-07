@@ -170,6 +170,7 @@ import { ReboundTypicalPartComponent } from './form-trial-details/rebound/reboun
 import { BakeHardeningReportComponent } from './form-trial-details/bake-hardening/bake-hardening-report/bake-hardening-report.component';
 import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-hardening/bake-hardening-typical-part/bake-hardening-typical-part.component';
 import { PageContrastComponent } from './page-contrast/page-contrast.component';
+import { AppFormPictureComponent } from './app-form-picture/app-form-picture.component';
 
 
 
@@ -368,7 +369,8 @@ import { PageContrastComponent } from './page-contrast/page-contrast.component';
     ReboundTypicalPartComponent,
     BakeHardeningReportComponent,
     BakeHardeningTypicalPartComponent,
-    PageContrastComponent
+    PageContrastComponent,
+    AppFormPictureComponent
 
 
 

@@ -23,7 +23,7 @@ export class SurfacePropertyTableComponent implements OnInit {
 },
 {
   one:["Ra（μm）","RPC（个/cm）"],
-  key:["raOne","raTwo","RPCOne","RPCTwo"]
+  key:["raOne","raTwo","rpcOne","rpcTwo"]
 ,
 }]
   constructor(
@@ -48,6 +48,7 @@ export class SurfacePropertyTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
+      console.log(this.trialDataDetail)
     })    
   }
   public async GetTrialDataDetailss() {
@@ -57,6 +58,7 @@ export class SurfacePropertyTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
+      console.log(this.trialDataDetails)
     })    
   }
   public async GetTrialDataDetailsss() {
@@ -65,7 +67,8 @@ export class SurfacePropertyTableComponent implements OnInit {
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {
-      this.trialDataDetailss = res
+      this.trialDataDetailss = res;
+      console.log(this.trialDataDetailss)
     })    
   }
 }

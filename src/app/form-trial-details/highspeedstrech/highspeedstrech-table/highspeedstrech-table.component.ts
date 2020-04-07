@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HighspeedstrechTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{formElongation:''}]
+  trialDataDetail=[]
   trialDataDetails=[{}]
   baseInfo
   one=[]
@@ -53,12 +53,10 @@ export class HighspeedstrechTableComponent implements OnInit {
     .then((res: any) => {
       this.trialDataDetail = res
       console.log(this.trialDataDetail)
-      for(let a=0;a<this.trialDataDetail.length;a++)
-{if(this.trialDataDetail[a].formElongation=null){this.one.push(this.trialDataDetail[a])}
-  {this.two.push(this.trialDataDetail[a])}}
-  for(let a=1;a<this.one.length;a++){
-    this.three.push(this.one[a])
-  }
+      for(let a=0;a<(this.trialDataDetail.length-1);a++)
+{this.two.push(this.trialDataDetail[a])
+}
+this.one.push(this.trialDataDetail[this.trialDataDetail.length-1])
     })    
   }
   public async GetTrialDataDetailss() {
@@ -68,7 +66,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      console.log(this.trialDataDetail)
+      console.log(this.trialDataDetails)
     })    
   }
 

@@ -37,14 +37,14 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
   name:"trialDataDetailss",
   width:["150px","150px","150px","80px","80px","80px","80px","80px","80px","100px"],
   one:["方向（沿轧向或者垂直轧向）","弯曲角度（°）","厚度","R=t","1.5t","1.67t","2t","2.3t","2.67t","最小弯曲角度"],
-  key:["direction","bendingAngle","thickness","Rt1","Rt2","Rt3","Rt4","Rt5","Rt6","RtMin"]
+  key:["direction","bendingAngle","thickness","rt1","rt2","rt3","rt4","rt5","rt6","rtMin"]
 ,
 },
 {table:"table5",
   name:"trialDataDetailsss",
   width:["150px","150px","100px","100px","100px","100px"],
   one:["方向（沿轧向或者垂直轧向）","厚度 t/mm","R/t=0.5","R/t=1","R/t=1.5","R/t=2"],
-  key:["direction","thickness","Rt1","Rt2","Rt3","Rt4"]
+  key:["direction","thickness","rt1","rt2","rt3","rt4"]
 ,
 }]
   constructor(  private router: Router,
@@ -76,7 +76,7 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      // console.log(this.trialDataDetail)
+      // console.log(this.trialDataDetails)
     })    
   }
   public async GetTrialDataDetailsss() {
@@ -86,7 +86,7 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
     .toPromise()
     .then((res: any) => {
       this.trialDataDetailss = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetailss)
     })    
   }
   public async GetTrialDataDetailssss() {
@@ -96,7 +96,7 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
     .toPromise()
     .then((res: any) => {
       this.trialDataDetailsss = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetailsss)
     })    
   }
 }
