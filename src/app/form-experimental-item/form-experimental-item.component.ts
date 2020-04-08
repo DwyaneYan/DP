@@ -51,11 +51,11 @@ public async GetTrials(materialId){
   await this.experimentalItemService.GetTrials(materialId).then((res:any) => {
     this.trials = res
   })
-console.log(this.trials)
+// console.log(this.trials)
 this.trials.forEach((val,i,array) => {
   this.trialName.push(val.name)
 });
-console.log(this.trialName)
+// console.log(this.trialName)
 this.staticTension = this.trialName.includes("静态拉伸1")
 this.compress = this.trialName.includes("压缩1")
 this.highspeedTension = this.trialName.includes("高速拉伸1")
@@ -77,8 +77,6 @@ this.tuzhuangxn = this.trialName.includes("涂装性能1")
 this.FLD = this.trialName.includes("成型极限1")
 this.huitanxn = this.trialName.includes("回弹性能1")
 this.hongkaoyh = this.trialName.includes("烘烤硬化1")
-console.log(this.bend,this.chemical)
+// console.log(this.bend,this.chemical)
 }
-
-
 }

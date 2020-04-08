@@ -83,10 +83,17 @@
           <thead>
             <tr style="width: 143px;">
               <th id="str">
-                <div>{{ dataList.name }}</div>
+                <div>{{ dataList.name }}
+                </div>
               </th>
-              <th class="cell" *ngFor="let dataDes of dataList.itemDes">
-                <div>{{ dataDes }}</div>
+              <th class="cell" *ngFor="let dataDes of dataList.itemDes;let i = index;">
+                <div>
+                  <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{ dataDes }}</span>
+                  <ng-template #titleTemplate>
+                    <span *ngIf="dataList.name == '静态拉伸'"><a (click)="contrastStaticTension(dataList.item[i],dataDes)">对比</a></span>
+                    <span *ngIf="dataList.name == '低周疲劳'"><a (click)="contrastLowCycleFatigue(dataList.item[i],dataDes)">对比</a></span>
+                  </ng-template>
+                </div>
               </th>
             </tr>
           </thead>
@@ -110,7 +117,7 @@
         </nz-table>
       </div>
     </div>
-    <div id="add" (click)="showModal()" *ngIf="StaticTension.length < 7">
+    <div id="add" (click)="showModal()" *ngIf="StaticTension.length<7">
       <i nz-icon nzType="plus" nzTheme="outline" id="tian"></i>
       <div id="jia">添加</div>
     </div>
@@ -128,3 +135,9 @@
     </div>
   </div>
 </div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+      <div 
+        echarts
+        [options]="options"
+        style="height: 400px;position: relative;"></div>
+    </nz-modal>
