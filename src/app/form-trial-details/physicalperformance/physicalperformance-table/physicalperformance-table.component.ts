@@ -18,7 +18,7 @@ export class PhysicalperformanceTableComponent implements OnInit {
 },
 {table:"table2",
   one:["维氏硬度（HV）","布氏硬度（HBW）","洛氏硬度（HRC）","密度ρ（g/cm3）","电阻率ρ（Ω·m）"],
-  key:["HV","HBW","HRC","density","resistivity"]
+  key:["hv","hbw","hrc","density","resistivity"]
 ,
 },]
 table1=[
@@ -50,7 +50,7 @@ table1=[
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetail)
     })    
   }
   // 导热系数

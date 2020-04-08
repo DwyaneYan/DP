@@ -15,6 +15,7 @@ export class ChemicalelementTableComponent implements OnInit {
  arry3=[]
  arry4=[]
  arry5=[]//去重后的样件编号
+ arry6=[]
   table=[{
     table:"table1",
     one:["执行标准","试验设备"],
@@ -41,21 +42,20 @@ export class ChemicalelementTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // for(let a=0;a<this.trialDataDetail.length;a++){
-      //   this.trialDataDetail[a].
-      // }
-
+console.log(this.trialDataDetail)
       this.trialDataDetail.forEach(val=>{this.arry1.push(val.element);
         this.arry4.push(val.sampleCode);})
       this.arry2=this.unique1(this.arry1)
       this.arry5=this.unique1(this.arry4)
-      for(let b=0;b<this.trialDataDetail.length/this.arry2.length;b++){  
-        this.arry3[b] =[]
-        for(let c=b*this.arry2.length;c<(b+1)*this.arry2.length;c++){
-      this.arry3[b].push(this.trialDataDetail[c]);
-        }
+      console.log(this.arry5)
+      for(let a=0;a<this.arry5.length;a++){
+        this.arry3[a]=[]
+      for(let b=a;b<this.trialDataDetail.length;b+=this.arry5.length){       
+      this.arry3[a].push(this.trialDataDetail[b]);
+      }}
+      for(let a = 0;a<this.trialDataDetail.length;a+=this.arry5.length){
+this.arry6.push(this.trialDataDetail[a])
       }
-      // console.log(this.trialDataDetail)
     }) 
   }
   unique1(array) {

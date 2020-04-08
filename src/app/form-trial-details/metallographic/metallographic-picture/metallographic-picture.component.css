@@ -1,27 +1,10 @@
-.details{
-    position: absolute;
-    top: 27%;
-    left: 30%;
-
-}
 #c{
-    float:left
+    margin-top:30px
 }
-.footer {
+#all{
     position: absolute;
-    bottom: 0px;
-    width: 100%;
-    border-top: 1px solid rgb(232, 232, 232);
-    padding: 10px 16px;
-    text-align: right;
-    left: 0px;
-    background: #fff;
-    }
+    left:35%;
+    top: 160px;
+    width: auto;
 
-/* 抽屉按钮 */
-#drawerBtn{
-    position: absolute;
-    top: 50px;
-    left: 90%;
 }
-

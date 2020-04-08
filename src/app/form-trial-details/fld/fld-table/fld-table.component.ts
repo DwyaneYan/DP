@@ -13,13 +13,15 @@ export class FldTableComponent implements OnInit {
   table=[{
     table:"table1",
     name:"trialDataDetails",
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构","执行标准","试验设备","试验方法"],
+    width:["200px","200px","200px","300px",],
+    key:["testOrganization","standard","equipment","testMethod"]
 },
-{table:"table1",
+{table:"table2",
   name:"trialDataDetail",
-  one:["次应变","主应变"],
-  key:["secondaryStrain","mainStrain"]
+  one:["试样宽度/mm","次应变","主应变"],
+  width:["200px","200px","200px"],
+  key:["specimenWidth","secondaryStrain","mainStrain"]
 ,
 }]
   constructor(private router: Router,

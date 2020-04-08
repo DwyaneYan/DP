@@ -13,8 +13,8 @@ export class LowcyclefatigueTableComponent implements OnInit {
   two=[]
   trialDataDetails=[{}]
   baseInfo=[]
-  table1=["执行标准","试验设备","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
-  table2=["standard","equipment","surfaceQuality","cyclicStrainRatio","extensometerGaugeDistance"]
+  table1=["测试机构","执行标准","试验设备","试验方法","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
+  table2=["testOrganization","standard","equipment","testMethod","surfaceQuality","cyclicStrainRatio","extensometerGaugeDistance"]
   table3=[{table:"table2",
     one:["循环强度系数Κ＇/MPa","循环应变硬化指数n＇","相关系数r"],
   key:["cyclicStrengthParameter","cyclicStrainHardening","relatedSressParameter"]},

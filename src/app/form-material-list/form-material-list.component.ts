@@ -33,7 +33,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         id: i,
         name: val.name,
         manufacture: val.manufactoryName,
-        thickness: val.model,
+        thickness: val.minModel,
         strength:val.strength,
         typicalPart:val.typicalPartName,
         appVehicle:val.appliedVehicleType,

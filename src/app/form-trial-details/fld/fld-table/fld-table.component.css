@@ -1,6 +1,6 @@
 #dataTable{
     position: absolute;
-    left:30%;
+    left:25%;
     top: 160px;
     width: auto;
     
@@ -19,6 +19,10 @@
     padding-bottom:8px;
 }
 #table1{
-    width:400px;
-    margin-top:30px
+    width:900px;
+}
+#table2{
+    width:600px;
+    margin-top:30px;
+    margin-bottom:30px
 }

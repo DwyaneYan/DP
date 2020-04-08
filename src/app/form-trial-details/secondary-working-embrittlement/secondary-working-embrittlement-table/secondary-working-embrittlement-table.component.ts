@@ -20,8 +20,8 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   serialss=[]
   serialsss
   table=[{
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构","执行标准","试验设备"],
+    key:["testOrganization","standard","equipment",]
 },
 {
   one:["试验温度℃"],

@@ -14,6 +14,7 @@ export class MetallographicTableComponent implements OnInit {
     key:["standard","equipment",]
 },
 {
+  width:["150px","200px","150px","150px"],
   one:["金相组织","非金属夹杂（级）","晶粒度（级）","脱碳层深度（mm)"],
   key:["structure","nonMetallicInclusionLevel","grainSize","depthDecarburization"]
 ,

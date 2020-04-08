@@ -3,7 +3,7 @@
   *ngFor="let data of table" nzBordered>
     <thead >
       <tr>
-        <th nzWidth="200px" class="one" *ngFor="let data1 of data.one">{{data1}}</th>
+        <th [nzWidth]="data.width[i]" class="one" *ngFor="let data1 of data.one;let i=index">{{data1}}</th>
       </tr>
     </thead>
     <tbody *ngFor="let data2 of this[data.name]" >

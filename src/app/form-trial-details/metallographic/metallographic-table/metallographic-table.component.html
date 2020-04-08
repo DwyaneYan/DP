@@ -14,7 +14,7 @@
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
         <thead>
           <tr>
-            <th nzWidth="150px"  class="one" *ngFor="let data of table[1].one">{{data}}</th>
+            <th [nzWidth]="table[1].width[i]"  class="one" *ngFor="let data of table[1].one;let i=index">{{data}}</th>
           </tr>
         </thead>
         <tbody >

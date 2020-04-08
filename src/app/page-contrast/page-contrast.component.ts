@@ -114,6 +114,7 @@ export class PageContrastComponent implements OnInit {
     if(this.array.length>0) {
       await this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
       this.StaticTension= res; 
+      console.log(this.StaticTension)
 });
     await this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
     this.LowCycleFatigue= res; 

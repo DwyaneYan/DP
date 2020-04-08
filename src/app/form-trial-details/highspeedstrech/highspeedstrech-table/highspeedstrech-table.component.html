@@ -10,7 +10,7 @@
         <td class="one1" *ngFor="let data6 of  table6">{{one[0]?one[0][data6]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br><br><br>
+</nz-table>
         <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
           <thead>
             <tr>
@@ -23,8 +23,8 @@
               <td class="one1" *ngFor="let data3 of  table3">{{ detail[data3] }}</td>
             </tr>
           </tbody>        
-        </nz-table> <br><br><br>
-        <br>
+        </nz-table> 
+   
         <div id="tablewid">
         <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table3" nzBordered>
           <thead>
@@ -33,10 +33,10 @@
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor="let details of three" >
+            <tr *ngFor="let details of one" >
               <td  class="one1" *ngFor="let data5 of  table5">{{details[data5]}}</td>
             </tr>
           </tbody>        
-        </nz-table> 
-      </div>
+        </nz-table>
+      </div> <br>
   </div>

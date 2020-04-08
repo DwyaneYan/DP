@@ -1,3 +1,13 @@
-<div echarts [options]="options" style="height: 400px; width: 50%; position: absolute; left: 28%; top: 150px;"></div>
-<div echarts [options]="option2" style="height: 400px; width: 50%; position: absolute; left: 28%; top: 600px;"></div>
-<div echarts [options]="option3" style="height: 400px; width: 50%; position: absolute; left: 28%; top: 1050px;"></div>
+<div id="all">
+
+    <div id="c" *ngFor="let data of ImgPathOne;let i=index">
+        <h1>{{this.a2[i]}}</h1>
+        <img class="img"  alt="" height="300" width="300" [src]="data"> 
+    </div>
+
+    <div echarts [options]="option1" style="height: 400px;width:1000px;clear:both;margin-top:30px"></div>
+    <div echarts [options]="option2" style="height: 400px;width:1000px;clear:both;margin-top:30px"></div>
+    <div echarts [options]="option3" style="height: 400px;width:1000px;clear:both;margin-top:30px"></div>
+    </div>
+    
+

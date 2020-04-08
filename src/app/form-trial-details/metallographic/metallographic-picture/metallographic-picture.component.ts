@@ -10,25 +10,17 @@ import { forkJoin } from 'rxjs';
 })
 export class MetallographicPictureComponent implements OnInit {
   public materialId
-
+  file=[]
   trialDataDetail  //存放请求到的试验结果
-
-  ImgPathOne: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingOne?Id="
-  ImgPathTwo: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingTwo?Id="
-  ImgPathThree: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingThree?Id="
-  ImgPathFour: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentLoadingFour?Id="
-  img1: string = "http://localhost:60001/api/hangang/trialdatadetail/MetallographicDataDetailDocumentPut?Id="
-
-  
+  files
+  filess=[]
+  a1
+  a2=[]
+  ImgPathOne=[]
   constructor(
     private router: Router,
     public http: HttpClient,    
     ) { }
-
-
-    /////////////////////////////////
-
-
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
@@ -47,152 +39,23 @@ export class MetallographicPictureComponent implements OnInit {
       
     })   
     console.log(this.trialDataDetail) 
-    //拼接出完整的图片URL
-    this.ImgPathOne = this.ImgPathOne + this.trialDataDetail[0].id;
-    this.ImgPathTwo = this.ImgPathTwo + this.trialDataDetail[0].id;
-    this.ImgPathThree = this.ImgPathThree + this.trialDataDetail[0].id;
-    this.ImgPathFour = this.ImgPathFour + this.trialDataDetail[0].id;   
-    this.img1= this.img1+this.trialDataDetail[0].id
-    // console.log(this.ImgPath);
+    this.file.push(this.trialDataDetail[0].fileString)
+this.files=this.fenge(this.file,";")
+        for(let a=0;a<(this.files.length-1);a++){
+this.filess.push(this.files[a])
+    }
+    this.a1=this.fenge(this.filess,/[_.]/)
+    for(let a=1;a<this.a1.length;a+=2){
+this.a2.push(this.a1[a])
+    }
+for(let a=0;a<this.filess.length;a++){
+  let picture=this.filess[a]
+  this.ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
+}   
   }
-  visible = false;
-
-  open(): void {
-    this.visible = true;
+  fenge(arry,p){
+    let arry1=arry.toString().split(p)
+    return arry1
   }
-  close(): void {
-    this.visible = false;
-  }
-
  
-  customReqone = (item: UploadXHRArgs) => {
-
-    // 构建一个 FormData 对象，用于存储文件或其他参数
-    const formData = new FormData();
-    // tslint:disable-next-line:no-any
-    formData.append('file', item.file as any);
-    console.log(formData)
-    const req = new HttpRequest('PUT', item.action!, formData, {
-      reportProgress: true,
-      withCredentials: true
-    });
-    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-    return this.http.request(req).subscribe(
-      (event: HttpEvent<{}>) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if (event.total! > 0) {
-            // tslint:disable-next-line:no-any
-            (event as any).percent = (event.loaded / event.total!) * 100;
-          }
-          // 处理上传进度条，必须指定 `percent` 属性来表示进度
-          item.onProgress!(event, item.file!);
-        } else if (event instanceof HttpResponse) {
-          // 处理成功
-
-          item.onSuccess!(event.body, item.file!, event);
-        }
-      },
-      err => {
-        // 处理失败
-        item.onError!(err, item.file!);
-      }
-    );
-
-  };
-  customReqtwo = (item: UploadXHRArgs) => {  
-    // 构建一个 FormData 对象，用于存储文件或其他参数
-    const formData = new FormData();
-    // tslint:disable-next-line:no-any
-    formData.append('nonMetallicInclusionLevelPhoto', item.file as any);
-    const req = new HttpRequest('PUT', item.action!, formData, {
-      reportProgress: true,
-      withCredentials: true
-    });
-    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-    return this.http.request(req).subscribe(
-      (event: HttpEvent<{}>) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if (event.total! > 0) {
-            // tslint:disable-next-line:no-any
-            (event as any).percent = (event.loaded / event.total!) * 100;
-          }
-          // 处理上传进度条，必须指定 `percent` 属性来表示进度
-          item.onProgress!(event, item.file!);
-        } else if (event instanceof HttpResponse) {
-          // 处理成功
-
-          item.onSuccess!(event.body, item.file!, event);
-        }
-      },
-      err => {
-        // 处理失败
-        item.onError!(err, item.file!);
-      }
-    );
-
-  };
-  customReqthree = (item: UploadXHRArgs) => {
-    // 构建一个 FormData 对象，用于存储文件或其他参数
-    const formData = new FormData();
-    // tslint:disable-next-line:no-any
-    formData.append('grainSizePhoto', item.file as any);
-    const req = new HttpRequest('PUT', item.action!, formData, {
-      reportProgress: true,
-      withCredentials: true
-    });
-    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-    return this.http.request(req).subscribe(
-      (event: HttpEvent<{}>) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if (event.total! > 0) {
-            // tslint:disable-next-line:no-any
-            (event as any).percent = (event.loaded / event.total!) * 100;
-          }
-          // 处理上传进度条，必须指定 `percent` 属性来表示进度
-          item.onProgress!(event, item.file!);
-        } else if (event instanceof HttpResponse) {
-          // 处理成功
-
-          item.onSuccess!(event.body, item.file!, event);
-        }
-      },
-      err => {
-        // 处理失败
-        item.onError!(err, item.file!);
-      }
-    );
-
-  };
-  customReqfor = (item: UploadXHRArgs) => {   
-    // 构建一个 FormData 对象，用于存储文件或其他参数
-    const formData = new FormData();
-    // tslint:disable-next-line:no-any
-    formData.append('depthDecarburizationPhoto', item.file as any);
-    const req = new HttpRequest('PUT', item.action!, formData, {
-      reportProgress: true,
-      withCredentials: true
-    });
-    // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-    return this.http.request(req).subscribe(
-      (event: HttpEvent<{}>) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if (event.total! > 0) {
-            // tslint:disable-next-line:no-any
-            (event as any).percent = (event.loaded / event.total!) * 100;
-          }
-          // 处理上传进度条，必须指定 `percent` 属性来表示进度
-          item.onProgress!(event, item.file!);
-        } else if (event instanceof HttpResponse) {
-          // 处理成功
-
-          item.onSuccess!(event.body, item.file!, event);
-        }
-      },
-      err => {
-        // 处理失败
-        item.onError!(err, item.file!);
-      }
-    );
-
-  };
 }

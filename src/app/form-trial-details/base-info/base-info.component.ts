@@ -44,7 +44,7 @@ export class BaseInfoComponent implements OnInit {
     this.mater.push({
       name:this.baseInfo[0].name,
       manufacture:this.baseInfo[0].manufactoryName,
-      thickness:this.baseInfo[0].model,
+      thickness:this.baseInfo[0].minModel,
       date:this.baseInfo[0].date,
     })
     this.checkvalue.emit(this.mater[0].name);

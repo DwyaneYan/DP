@@ -10,7 +10,7 @@
         <td  class="one1" *ngFor="let data of table[0].key">{{trialDataDetailss[0]?trialDataDetailss[0][data]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br>
+</nz-table>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2"  nzTitle="镀层重量" nzBordered>
         <thead>
           <tr>
@@ -22,7 +22,7 @@
             <td class="one1"  *ngFor="let data1 of table[1].key">{{ data[data1] }}</td>
           </tr>
         </tbody>
-      </nz-table><br><br><br>
+      </nz-table>
       <nz-table  [nzData]=[{}] [nzFrontPagination]="false" nzTitle="镀层粗糙度"  nzBordered id="table3">
         <thead>
           <tr>
