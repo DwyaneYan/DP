@@ -15,11 +15,10 @@
           <thead>
             <tr>
               <th nzWidth="150px"class="one" *ngFor="let data2 of  table2">{{data2}}</th>
-
             </tr>
           </thead>
-          <tbody *ngFor="let detail of  two;index as i">
-            <tr  >
+          <tbody >
+            <tr  *ngFor="let detail of  two;index as i">
               <td class="one1" [attr.rowspan]="i === 0 ? two.length : 1"  *ngIf="i==0">{{ mater[0] }}</td>
               <td class="one1" *ngFor="let data3 of  table3">{{ detail[data3] }}</td>
             </tr>
