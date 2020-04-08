@@ -13,14 +13,18 @@ import { connectableObservableDescriptor } from "rxjs/internal/observable/Connec
 export class PageContrastComponent implements OnInit {
   StaticTension=[]//静态拉伸
   LowCycleFatigue = [];//低周疲劳
-  listItem = { StaticTension: true ,
+  listItem = { 
+    StaticTension: true ,
     LowCycleFatigue: true ,}; // true表示有数据可不被隐藏
-  listItemBlank = { StaticTension: true,
+  listItemBlank = { 
+    StaticTension: true,
     LowCycleFatigue: true , };
-  listItemOr = { StaticTension: true ,
+  listItemOr = { 
+    StaticTension: true ,
     LowCycleFatigue: true ,};
-  listArr = [["StaticTension", "yieldStrength"],
-  ["LowCycleFatigue", "totalStrainAmplitude"]];
+  listArr = [
+    ["StaticTension", "yieldStrength"],
+    ["LowCycleFatigue", "totalStrainAmplitude"]];
   pageConfiguration = [
     {
       name: "静态拉伸",
@@ -70,6 +74,7 @@ export class PageContrastComponent implements OnInit {
     }
   ];
 
+
   fields = [
     { key: "hide", value: "隐藏空白项", checked: false, id: "hideItem" },
     { key: "show", value: "标示全部项", checked: true, id: "showItem" }
@@ -89,6 +94,11 @@ export class PageContrastComponent implements OnInit {
   options;
   one = [];
   addlist = [];
+
+  visible = false;
+  isVisible =false;
+  options2;
+
   constructor(
     private router: Router,
     private routerinfo: ActivatedRoute,
@@ -388,4 +398,66 @@ export class PageContrastComponent implements OnInit {
     });
     this.checkbox = false;
   }
+
+  open(): void {
+    this.visible = true;
+  }
+  close(): void {
+    this.visible = false;
+  }
+
+  contrastStaticTension(param,des){
+    // console.log(this.StaticTension)
+      let data = [];
+      let xData = [];
+      this.StaticTension.forEach((iterator,i,array) => {
+        data.push(iterator[param]);
+        xData.push(this.name[i])
+      })
+    this.PlotPicture(data, xData, des);
+  }
+  contrastLowCycleFatigue(param,des){
+    // console.log(this.StaticTension)
+      let data = [];
+      let xData = [];
+      this.LowCycleFatigue.forEach((iterator,i,array) => {
+        data.push(iterator[param]);
+        xData.push(this.name[i])
+      })
+    this.PlotPicture(data, xData, des);
+  }
+
+  public PlotPicture(data, xData, des) {
+        this.isVisible = true;
+        this.options = {
+          title: {
+            text: des,
+            x: "center",
+            y: "top"
+          },
+          xAxis: {
+            type: "category",
+            data: xData
+          },
+          yAxis: {
+            type: "value"
+          },
+          series: [
+            {
+              data: data,
+              type: "line"
+            }
+          ]
+        };
+      }
+    
+  handleOk(): void {
+      console.log("Button ok clicked!");
+      this.isVisible = false;
+    }
+    
+  handleCancel(): void {
+      console.log("Button cancel clicked!");
+      this.isVisible = false;
+    }
 }

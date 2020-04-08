@@ -15,7 +15,14 @@
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
         <thead>
           <tr >
-            <th [nzWidth]="table4[i]" class='one' *ngFor="let data2 of table2;let i=index">{{data2}}</th>
+            <th [nzWidth]="table4[i]" class='one' *ngFor="let data2 of table2;let i=index">
+              <span *ngIf="('sampleCode,width,thickness,diameter,length,span').indexOf(table3[i]) == -1; else other_content"><span nz-tooltip [nzTooltipTitle]="titleTemplate"> {{ data2 }} </span>
+              <ng-template #titleTemplate>
+                <a (click)="contrastTable(table3[i], data2)">对比</a>
+              </ng-template>
+            </span>
+              <ng-template #other_content><span #other_content> {{data2}} </span> </ng-template>              
+            </th>
           </tr>
         </thead>
         <tbody >
@@ -26,3 +33,11 @@
       </nz-table>
     </div>
 </div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+      <div
+        echarts
+        [options]="options"
+        style="height: 400px;position: relative;"
+      ></div>
+    </nz-modal>
