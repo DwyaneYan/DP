@@ -77,6 +77,7 @@ this.PlotPicture(this.data, this.xData)
   }
   public PlotPicture(data, xData) {
     this.options = {
+      width:"400",
       title: {
           text: '恒弯曲加载氢脆实验结果'
            },    

@@ -21,9 +21,13 @@
 #table1{
     width:600px
 }
-/* #table2{
-    width:400px
-} */
+#table2{
+   margin-top:30px
+}
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
     background: white;
   }
+  #tablewid{
+    width:1100px;
+    overflow:auto
+}

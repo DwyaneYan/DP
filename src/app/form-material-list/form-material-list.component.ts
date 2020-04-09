@@ -27,7 +27,8 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   ngOnChanges() {
     this.listOfAllData = [];
     this.data
-    .forEach((val, i) =>{
+    .forEach((val, i) =>{    
+      if(val.maxModel==null){
       this.listOfAllData.push({
         materialId: val.id,
         id: i,
@@ -38,15 +39,27 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         typicalPart:val.typicalPartName,
         appVehicle:val.appliedVehicleType,
         date:val.date,
-      });
-    },
+      });}
+     else{
+        this.listOfAllData.push({
+          materialId: val.id,
+          id: i,
+          name: val.name,
+          manufacture: val.manufactoryName,
+          thickness: val.minModel+"-"+val.maxModel,
+          strength:val.strength,
+          typicalPart:val.typicalPartName,
+          appVehicle:val.appliedVehicleType,
+          date:val.date,
+        });
+     }
+      })
+  
     // console.log(this.listOfAllData)
-    )
+  }
 //     this.selectedData = [];
 // this.AllData.forEach(item => {
 //  this.selectedData.push(item.id);
-
-  }  
 
 
 //#region 模块 
@@ -62,19 +75,33 @@ Allmaterial(){
     this.allmaterial = res.items;
     // console.log(this.allmaterial)
     this.listOfAllData = [];
-
     this.allmaterial.forEach((val, i) =>{
+      if(val.maxModel==null){
     this.listOfAllData.push({
       id: i,
       materialId: val.id,
       name: val.name,
       manufacture: val.manufactoryName,
-      thickness: val.model,
+      thickness: val.minModel,
       strength:val.strength,
       typicalPart:val.typicalPartName,
       appVehicle:val.appliedVehicleType,
       date:val.date,          
-    })})
+    })}
+    else{
+      this.listOfAllData.push({
+        id: i,
+        materialId: val.id,
+        name: val.name,
+        manufacture: val.manufactoryName,
+        thickness: val.minModel+"-"+val.maxModel,
+        strength:val.strength,
+        typicalPart:val.typicalPartName,
+        appVehicle:val.appliedVehicleType,
+        date:val.date,          
+      })
+    }
+  })
       }    
       
       )

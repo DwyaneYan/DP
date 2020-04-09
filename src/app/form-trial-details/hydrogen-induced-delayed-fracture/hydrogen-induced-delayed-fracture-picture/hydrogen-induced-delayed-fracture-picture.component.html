@@ -3,8 +3,8 @@
 <div id="all">
     <div id="c" *ngFor="let data of ImgPathOne;let i=index">
         <h1>{{this.a2[i]}}</h1>
-        <img class="img" [src]="data" alt="" height="400" width="400"> 
+        <img class="img" [src]="data" alt="" height="300" width="300"> 
     </div>
+    <div echarts [options]="options" style="height: 400px; width:600px;clear:both;margin-top:30px"></div>
     </div>
     
-<div echarts [options]="options" style="height: 400px; width: 68%; position: absolute; left: 28%; top: 690px;"></div>

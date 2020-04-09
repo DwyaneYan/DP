@@ -11,7 +11,7 @@
         <td class="one1" *ngFor="let data1 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br>
+</nz-table>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table3" nzBordered>
         <thead>
           <tr>
@@ -23,5 +23,5 @@
             <td class="one1" *ngFor="let data1 of table1[0].key">{{ data[data1] }}</td>
           </tr>
         </tbody>
-      </nz-table><br>
+      </nz-table>
 </div>

@@ -12,8 +12,8 @@ export class WeldingTableComponent implements OnInit {
   trialDataDetails
   table=[{
     table:"table1",
-    one:["执行标准"],
-    key:["standard"]
+    one:["测试机构","执行标准"],
+    key:["testOrganization","standard"]
 },
 {table:"table2",
   one:["焊接试验类型","焊机类别","焊机型号","电极头前端直径(mm)","电极压力(kN)","脉冲次数","预压时间(ms)","升压时间(ms)","最小焊接时间(ms)","中值焊接时间(ms)","最大焊接时间(ms)","保压时间(ms)","临界焊点直径(mm)"],
@@ -21,8 +21,8 @@ export class WeldingTableComponent implements OnInit {
 ,
 },]
 table1=[{
-  one:["焊接时间(ms)","左边界电流（kA）","右边界电流（kA）"],
-  key:["weldingTimes","leftBoundaryElectric","rightBoundaryElectric",]
+  one:["焊接时间(ms)","左边界电流（kA）","右边界电流（kA）","焊接电流区间(kA)"],
+  key:["weldingTimes","leftBoundaryElectric","rightBoundaryElectric","weldingCurrentInterval"]
 },
 ]
   constructor(private router: Router,

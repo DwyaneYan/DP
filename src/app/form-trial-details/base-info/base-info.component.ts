@@ -38,15 +38,27 @@ export class BaseInfoComponent implements OnInit {
     await this.http.get(api,{params})
     .toPromise()
     .then((res:any)=>{
-      this.baseInfo = res.items
+      this.baseInfo = res.items;
+      console.log(this.baseInfo)
     })
+    if(this.baseInfo[0].maxModel!=null){
+      this.mater.push({
+        name:this.baseInfo[0].name,
+        manufacture:this.baseInfo[0].manufactoryName,
+        thickness:this.baseInfo[0].minModel+"-"+this.baseInfo[0].maxModel,
+        date:this.baseInfo[0].date,
+      })
+
+    }else{
+      this.mater.push({
+        name:this.baseInfo[0].name,
+        manufacture:this.baseInfo[0].manufactoryName,
+        thickness:this.baseInfo[0].minModel,
+        date:this.baseInfo[0].date,
+      })
+    }
     // console.log(this.baseInfo)
-    this.mater.push({
-      name:this.baseInfo[0].name,
-      manufacture:this.baseInfo[0].manufactoryName,
-      thickness:this.baseInfo[0].minModel,
-      date:this.baseInfo[0].date,
-    })
+    
     this.checkvalue.emit(this.mater[0].name);
   }
   @Output()//与@input相反

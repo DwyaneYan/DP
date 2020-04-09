@@ -15,8 +15,8 @@ export class ReboundTableComponent implements OnInit {
   table=[{
     table:"table1",
     name:"trialDataDetail",
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构","执行标准","试验设备","试验方法"],
+    key:["testOrganization","standard","equipment","testMethod"]
 },
 
 ]

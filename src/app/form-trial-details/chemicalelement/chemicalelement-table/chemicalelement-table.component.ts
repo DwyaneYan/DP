@@ -18,8 +18,8 @@ export class ChemicalelementTableComponent implements OnInit {
  arry6=[]
   table=[{
     table:"table1",
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构","执行标准","试验设备","试验方法"],
+    key:["testOrganization","standard","equipment","testMethod"]
 },
 {
   table:"table2",

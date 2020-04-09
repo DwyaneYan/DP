@@ -10,7 +10,8 @@
         <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br>
+</nz-table>
+<div id="tablewid">
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered> 
         <thead>
           <tr>
@@ -26,6 +27,6 @@
             <td class="one1" *ngFor="let data1 of detail">{{ data1?.expansionType }}</td>
           </tr>
         </tbody>
-      </nz-table><br>
+      </nz-table></div><br>
 </div>
 

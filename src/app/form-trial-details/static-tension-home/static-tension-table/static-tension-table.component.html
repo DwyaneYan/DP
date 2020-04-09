@@ -11,7 +11,7 @@
         <td class="one1" *ngFor="let data5 of table5">{{trialDataDetail[0]?trialDataDetail[0][data5]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br>
+</nz-table>
 <div id="tablewid">
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone"  nzBordered>
       <thead >
@@ -27,12 +27,15 @@
         </tr>
       </thead>
       <tbody>
+        <tr  *ngFor="let details of trialDataDetails">
+          <td class="one1"  *ngFor="let data4 of table4">{{ details[data4] }}</td>
+        </tr>
         <tr  *ngFor="let detail of trialDataDetail">
           <td class="one1"  *ngFor="let data4 of table4">{{ detail[data4] }}</td>
         </tr>
       </tbody>
   </nz-table>
-</div>
+</div><br>
 </div>
 
 <div id="dataImport">

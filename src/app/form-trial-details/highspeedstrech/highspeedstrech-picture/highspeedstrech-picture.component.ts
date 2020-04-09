@@ -9,6 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class HighspeedstrechPictureComponent implements OnInit {
   public materialId
   trialDataDetail
+  trialDataDetailss
+  three=[]
+  four=[]
   public data=[]
   option1
   option2
@@ -20,6 +23,7 @@ export class HighspeedstrechPictureComponent implements OnInit {
   a2=[]
   filess=[]
   option3
+  option4
   file=[]
   trialDataDetails
   //echarts绘图
@@ -48,6 +52,9 @@ this.two.push(this.trialDataDetail[a])
 }
 else{this.one.push(this.trialDataDetail[a])}
 }
+this.one.map(val=>this.three.push(val.testTarget))
+this.four=this.unique1(this.three)
+console.log(this.four)
 this.file.push(this.one[0].fileString)
 this.files=this.fenge(this.file,";")
         for(let a=0;a<(this.files.length-1);a++){
@@ -64,6 +71,7 @@ for(let a=0;a<this.filess.length;a++){
     })  
   
   }
+
   fenge(arry,p){
     let arry1=arry.toString().split(p)
     return arry1
@@ -77,26 +85,42 @@ for(let a=0;a<this.filess.length;a++){
     .then((res: any) => {
       this.trialDataDetails = res;     
     }) 
+    let api1=`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrainExtends/${materialId}`;
+    await this.http.get(api1)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetailss = res
+         }) 
+         let xData4=[] 
     let xData2=[]
     let xData3=[]
     let xData=[]
     let arr2=[]
+    let arr3=[]
     arr2=this.classitem(this.trialDataDetails) ;//工程应力应变、真应力应变
+    arr3=this.classitem(this.trialDataDetailss) ;//延伸到1
+    console.log(arr3)
     console.log(arr2)  
-    console.log(this.trialDataDetail)
+    console.log(this.trialDataDetailss)
     for(let a=0;a<this.one.length;a++){
         arr2[a].sampleCode=this.one[a].sampleCode;
         arr2[a].testTarget=this.one[a].testTarget;
     }
+    for(let a=0;a<this.four.length;a++){
+      arr3[a].testTarget=this.four[a].testTarget;
+  }
     this.trialDataDetails.map(mapItem => {
       xData.push((mapItem.engineeringStrain * 10000).toFixed(4));
       xData2.push((mapItem.realStrain * 10000).toFixed(4));
       xData3.push((mapItem.realPlasticStrain * 10000).toFixed(4));
       })
-   
+      this.trialDataDetailss.map(mapItem => {
+        xData4.push((mapItem.realPlasticStrainExtend * 10000).toFixed(4));
+        })
     xData = [...new Set(xData)];
     xData2 = [...new Set(xData2)];
     xData3= [...new Set(xData3)];
+    xData4= [...new Set(xData4)];
       xData.sort((a, b) => {
         return Number(a) - Number(b);
       });
@@ -106,11 +130,15 @@ for(let a=0;a<this.filess.length;a++){
     xData3.sort((a, b) => {
       return Number(a) - Number(b);
     }); 
+    xData4.sort((a, b) => {
+      return Number(a) - Number(b);
+    }); 
     // this.PlotPicture(arr2, xData,xData2,xData3)
     this.option1=this.classdata('工程应力工程应变','工程应变','工程应力',xData,arr2,"engineeringStrain",'engineeringStress');
     this.option2=this.classdata('真应力真应变','真应变','真应力',xData2,arr2,"realStrain",'realStress');
     this.option3=this.classdata('真塑性应变真应力','真塑性应变','真应力',xData3,arr2,"realPlasticStrain",'realPlasticStress');
-  console.log(this.option1)
+    this.option4=this.classdata('真塑性应变真应力延伸到1','真塑性应变','真应力',xData4,arr3,"realPlasticStrainExtend",'realPlasticStressExtend');
+  console.log(this.option4)
   }
 classdata(name,p1,p2,da,datas,p3,p4){
   let option = {
@@ -162,13 +190,25 @@ classdata(name,p1,p2,da,datas,p3,p4){
       temp2.push( [(i[p3]*10000).toFixed(4),i[p4]]);
     });
     temp2.sort((a,b)=>{return Number(a[0])-Number(b[0])});
+    if(name=="真塑性应变真应力延伸到1"){
     option.series.push({
       symbolSize: 5,
       data: temp2,
       type: "line",
-      name:item.sampleCode+"-"+item.testTarget,
+      name:item.testTarget,
     })
-    option.legend.data.push(item.sampleCode+"-"+item.testTarget)
+    option.legend.data.push(item.testTarget);
+    
+  }
+    else{
+      option.series.push({
+        symbolSize: 5,
+        data: temp2,
+        type: "line",
+        name:item.sampleCode+"-"+item.testTarget,
+      })
+      option.legend.data.push(item.sampleCode+"-"+item.testTarget)
+    }
   })
   return option;
 }
@@ -207,5 +247,14 @@ classdata(name,p1,p2,da,datas,p3,p4){
   //               }
   //           }
   //       }
-      
+  unique1(array) {
+    var n = []; //一个新的临时数组
+    //遍历当前数组
+    for (var i = 0; i < array.length; i++) {
+      //如果当前数组的第i已经保存进了临时数组，那么跳过，
+      //否则把当前项push到临时数组里面
+      if (n.indexOf(array[i]) == -1) n.push(array[i]);
+    }
+    return n;
+  } 
 }

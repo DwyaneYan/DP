@@ -50,6 +50,7 @@ this.GetTrialDataDetailss()
     //   item.List.sort((a, b) => a.strain - b.strain);
     // });
     this.option = {
+      width:'400',
       title: {
         text: '可焊电流窗口'
     }, 
