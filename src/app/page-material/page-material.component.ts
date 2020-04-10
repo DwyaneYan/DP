@@ -291,7 +291,7 @@ export class PageMaterialComponent implements OnInit {
   
   //型号规格
   public async  filtrationModel(item) {
-    this.params.model = item.value
+    this.params.minModel = item.value
     // console.log(this.params);
     await this.materialService.GetMaterials(this.params).then((res: any) => {
       this.material = res.items;

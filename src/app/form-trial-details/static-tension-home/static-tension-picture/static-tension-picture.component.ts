@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class StaticTensionPictureComponent implements OnInit {
   materialId 
+  one=[]
   trialDataDetail=[]
   trialDataDetails=[]
   public dataList1=[]
@@ -32,6 +33,7 @@ export class StaticTensionPictureComponent implements OnInit {
     .then((res: any) => {
       this.trialDataDetails = res
     }) 
+
     this.GetTrialDataDetails();    
 
   }
@@ -48,8 +50,8 @@ export class StaticTensionPictureComponent implements OnInit {
     let arry=[]
     let xData2=[]
     this.trialDataDetail.map(mapItem => {
-    xData.push((mapItem.strain * 1000).toFixed(4));
-    xData2.push((mapItem.realStrain * 1000).toFixed(4));
+    xData.push((mapItem.strain * 10000).toFixed(7));
+    xData2.push((mapItem.realStrain * 10000).toFixed(7));
   if (arry.length == 0) {
     arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
   } else {
@@ -62,13 +64,16 @@ export class StaticTensionPictureComponent implements OnInit {
     if (!res) {//如果没找相同staticTensionDataDetailId添加一个新对象
       arry.push({ staticTensionDataDetailId: mapItem.staticTensionDataDetailId, List: [mapItem] })
     }
-  }
-  
+  } 
 }) 
+
 for(let a=0;a<this.trialDataDetails.length;a++){
-  arry[a].sampleCode=this.trialDataDetails[a].sampleCode}
-console.log(arry)  
-console.log(this.trialDataDetails)    
+  if(this.trialDataDetails[a].sampleCode!="小批量数据"){
+this.one.push(this.trialDataDetails[a])
+  }}
+  for(let a=0;a<this.one.length;a++){
+  arry[a].sampleCode=this.one[a].sampleCode;
+  arry[a].direction=this.one[a].direction} 
   xData = [...new Set(xData)];
   xData2 = [...new Set(xData2)];
     xData.sort((a, b) => {
@@ -77,71 +82,15 @@ console.log(this.trialDataDetails)
     xData2.sort((a, b) => {
       return Number(a) - Number(b);
     });
-    this.PlotPicture(arry, xData,xData2);}
+  this.option=this.classdata("工程应力应变数据对","应变","应力",xData,arry,"strain","stress")
+  this.options2=this.classdata("真应力应变数据对","真应变","真应力",xData2,arry,"realStrain","realStress")
+}
 
-public PlotPicture(data, xData,xData2) {
-  // data.map(item => {
-  //   item.List.sort((a, b) => a.strain - b.strain);
-  // });
-  this.option = {
+classdata(name,p1,p2,da,datas,p3,p4){
+  let option = {
+    width:'550',
     title: {
-      text: '工程应力应变'
-  },    
-  tooltip: {
-    trigger: 'axis',
-    backgroundColor: "white",
-    formatter:function (params) { //在此处直接用 formatter 属性
-      console.log(params)  // 打印数据
-      let b=[]
-      let index = [];
-      let colorList = [];
-        params.forEach(val=>{b.push((val.data)[1]);index.push(val['seriesName']);colorList.push(val['color'])})
-        let  text=""
-        for(let c=0;c<b.length;c++){
-          text+=index[c] +' '+'<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;'+
-          'border: solid 1px;border-color:'+colorList[c]+'"></span>'+" : "+ b[c]+ "<br/>"
-        }
-        return `  <div style="color: black;">应变：${((params[0].axisValueLabel)/1000).toFixed(4)}</div>   
-        <div style="color: black;">应力：<br/><a style="color: black;">${text}</a></div>  
-           `
-      }
-  },
-    xAxis: {
-      data: xData,
-      type: "category",
-      axisLabel: {
-        formatter: function(val) {
-          return (val / 1000).toFixed(4);
-        }
-      }
-    },
-    yAxis: {},
-    series: [],
-    legend:{data:[],
-      orient:'vertical',
-      x: 'right',}
-  };
-  let temp = [];
-  data.map(item => {
-    temp = [];
-    item.List.map(i => {
-      temp.push( [(i.strain*1000).toFixed(4),i.stress]);
-    });
-    temp.sort((a,b)=>{return Number(a[0])-Number(b[0])});
-    this.option.series.push({
-      symbolSize: 5,
-      data: temp,
-      type: "line",
-      name:item.sampleCode,
-
-    })
-    console.log(temp); 
-    this.option.legend.data.push(item.sampleCode)
-  })
- 
- this. options2 = {
-    title: {
-      text: '真应力应变'
+      text: name
   },    tooltip: {
     trigger: 'axis',
     backgroundColor: "white",
@@ -156,17 +105,17 @@ public PlotPicture(data, xData,xData2) {
           text+=index[c] +' '+'<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;'+
           'border: solid 1px;border-color:'+colorList[c]+'"></span>'+" : "+ b[c]+ "<br/>"
         }
-        return `  <div style="color: black;">真应变：${((params[0].axisValueLabel)/1000).toFixed(4)}</div>   
-        <div style="color: black;">真应力：<br/><a style="color: black;">${text}</a></div>  
+        return `  <div style="color: black;">${p1}：${((params[0].axisValueLabel)/10000).toFixed(7)}</div>   
+        <div style="color: black;">${p2}：<br/><a style="color: black;">${text}</a></div>  
            `
       }
 },
     xAxis: {
-      data: xData2,
+      data: da,
       type: "category",
       axisLabel: {
         formatter: function(val) {
-          return (val / 1000).toFixed(4);
+          return (val / 10000).toFixed(7);
         }
       }
     },
@@ -174,27 +123,40 @@ public PlotPicture(data, xData,xData2) {
     series: [],
     legend:{data:[],
       orient:'vertical',
-      x: 'right',}
+      left:'700',
+     top:'30',
+    height:"200",
+    
+ }
   };
   let temp2 = [];
-  data.map(item => {
+  datas.map(item => {
     temp2 = [];
     item.List.map(i => {
-      temp2.push( [(i.realStrain*1000).toFixed(4),i.realStress]);
+      temp2.push( [(i[p3]*10000).toFixed(7),i[p4]]);
     });
     temp2.sort((a,b)=>{return Number(a[0])-Number(b[0])});
-    this.options2.series.push({
+    if(name=="真塑性应变真应力延伸到1" || name=="真塑性应变真应力")
+    {
+      option.series.push({
+        symbolSize: 5,
+        data: temp2,
+        type: "line",
+        name:item.highSpeedStrechDataDetailId,
+      })
+      option.legend.data.push(item.highSpeedStrechDataDetailId)
+    }else{
+    option.series.push({
       symbolSize: 5,
       data: temp2,
       type: "line",
-      name:item.sampleCode,
-      connectNulls: true
+      name:item.sampleCode+"-"+item.direction,
     })
-    console.log(temp2); 
-    this.options2.legend.data.push(item.sampleCode)
+    option.legend.data.push(item.sampleCode+"-"+item.direction);}
+   
   })
-};
-
+  return option;
+}
 
   }
 

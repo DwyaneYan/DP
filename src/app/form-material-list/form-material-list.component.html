@@ -9,34 +9,33 @@
 <nz-table
 #rowSelectionTable
 [nzData]="listOfAllData"
-
-(nzPageIndexChange)="currentPageDataChange($event)" [nzShowSizeChanger]=false
+ [nzShowSizeChanger]=false
 >
 <thead>
   <tr >
     <th nzWidth="4%"
     *ngIf="checkbox"
       class="head"></th>
-    <th nzWidth="11%" class="head" ><a routerLink="/materialss" class="head1">材料名称</a></th>
-    <th nzWidth="10%" class="head"><a routerLink="/factory" class="head1">生产厂家</a></th>
-    <th nzWidth="10%" class="head">型号规格</th>
-    <th nzWidth="10%" class="head">屈服强度</th>
-    <th nzWidth="14%" class="head"><a routerLink="/typicalpart" class="head1">典型零件</a></th>
-    <th nzWidth="13%" class="head">应用车型</th>
-    <th nzWidth="19%" class="head">送样日期</th>
+    <th nzWidth="15%" class="head" ><a routerLink="/materialss" class="head1">材料名称</a></th>
+    <th nzWidth="15%" class="head"><a routerLink="/factory" class="head1">生产厂家</a></th>
+    <th nzWidth="15%" class="head">型号规格</th>
+    <th nzWidth="15%" class="head">卷号</th>
+    <!-- <th nzWidth="14%" class="head"><a routerLink="/typicalpart" class="head1">典型零件</a></th>
+    <th nzWidth="13%" class="head">应用车型</th> -->
+    <th nzWidth="25%" class="head">检测日期</th>
     <th nzWidth="7%" class="head">操作</th>
   </tr>
 </thead>
 <tbody>
   <tr *ngFor="let data of rowSelectionTable.data" >
-    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.id)" id="he" name="chk"
+    <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.materialId)" id="he" name="chk"
     ></td>
     <td id="he" >{{ data.name }}</td>
     <td id="he" >{{ data.manufacture }}</td>
     <td id="he" >{{ data.thickness }}</td>
-    <td id="he">{{ data.strength }}</td>
-    <td id="he">{{ data.typicalPart }}</td>
-    <td id="he">{{ data.appVehicle }}</td>
+    <td id="he">{{ data.reelNumber }}</td>
+    <!-- <td id="he">{{ data.typicalPart }}</td>
+    <td id="he">{{ data.appVehicle }}</td> -->
     <td id="he">{{ data.date }}</td>
     <td id="he"><a [routerLink]="['/display', data.materialId]" target="_blank">查看</a></td>
   </tr>

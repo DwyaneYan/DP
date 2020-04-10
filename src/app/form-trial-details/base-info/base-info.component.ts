@@ -44,17 +44,19 @@ export class BaseInfoComponent implements OnInit {
     if(this.baseInfo[0].maxModel!=null){
       this.mater.push({
         name:this.baseInfo[0].name,
+        reelNumber:this.baseInfo[0].reelNumber,
         manufacture:this.baseInfo[0].manufactoryName,
         thickness:this.baseInfo[0].minModel+"-"+this.baseInfo[0].maxModel,
-        date:this.baseInfo[0].date,
+        date:this.baseInfo[0].date+'-'+this.baseInfo[0].dateEnd,
       })
 
     }else{
       this.mater.push({
         name:this.baseInfo[0].name,
+        reelNumber:this.baseInfo[0].reelNumber,
         manufacture:this.baseInfo[0].manufactoryName,
         thickness:this.baseInfo[0].minModel,
-        date:this.baseInfo[0].date,
+        date:this.baseInfo[0].date+'-'+this.baseInfo[0].dateEnd,
       })
     }
     // console.log(this.baseInfo)

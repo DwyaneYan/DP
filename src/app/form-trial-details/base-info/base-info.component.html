@@ -3,14 +3,16 @@
         <thead>
           <tr >
             <th id="one">材料牌号</th>
+            <th  class="he">卷号</th>
             <th  class="he">型号规格(mm)</th>
             <th  class="he">生产厂家</th>
-            <th   id="two">送样日期</th>
+            <th   id="two">检测日期</th>
           </tr>
         </thead>
         <tbody >
             <tr *ngFor="let data of mater" >
                 <td id="three">{{ data.name }}</td>
+                <td class="he1">{{ data.reelNumber}}</td>
                 <td class="he1">{{ data.thickness}}</td>
                 <td class="he1">{{ data.manufacture}}</td>
                 <td id="for">{{ data.date}}</td>

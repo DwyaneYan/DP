@@ -21,6 +21,7 @@ export class HighspeedstrechPictureComponent implements OnInit {
   files
   a1
   a2=[]
+five=[]
   filess=[]
   option3
   option4
@@ -54,7 +55,9 @@ else{this.one.push(this.trialDataDetail[a])}
 }
 this.one.map(val=>this.three.push(val.testTarget))
 this.four=this.unique1(this.three)
-console.log(this.four)
+
+// this.four.map(val=>this.five.push({testTarget:'val'}))
+// console.log(this.four)
 this.file.push(this.one[0].fileString)
 this.files=this.fenge(this.file,";")
         for(let a=0;a<(this.files.length-1);a++){
@@ -97,25 +100,28 @@ for(let a=0;a<this.filess.length;a++){
     let xData=[]
     let arr2=[]
     let arr3=[]
-    arr2=this.classitem(this.trialDataDetails) ;//工程应力应变、真应力应变
-    arr3=this.classitem(this.trialDataDetailss) ;//延伸到1
+debugger
+    arr2=this.classitem(this.trialDataDetails,"highSpeedStrechDataDetailId") ;//工程应力应变、真应力应变
+    arr3=this.classitem(this.trialDataDetailss,'realPlasticTestTarget') ;//延伸到1
     console.log(arr3)
     console.log(arr2)  
-    console.log(this.trialDataDetailss)
+
     for(let a=0;a<this.one.length;a++){
         arr2[a].sampleCode=this.one[a].sampleCode;
         arr2[a].testTarget=this.one[a].testTarget;
     }
-    for(let a=0;a<this.four.length;a++){
-      arr3[a].testTarget=this.four[a].testTarget;
-  }
+  //   for(let a=0;a<this.four.length;a++){
+  //     arr3[a].testTarget=this.four[a];
+  // }
+
+  // console.log(arr3)
     this.trialDataDetails.map(mapItem => {
       xData.push((mapItem.engineeringStrain * 10000).toFixed(4));
-      xData2.push((mapItem.realStrain * 10000).toFixed(4));
-      xData3.push((mapItem.realPlasticStrain * 10000).toFixed(4));
+      xData2.push((mapItem.realStrain * 10000).toFixed(4));  
       })
       this.trialDataDetailss.map(mapItem => {
         xData4.push((mapItem.realPlasticStrainExtend * 10000).toFixed(4));
+        xData3.push((mapItem.realPlasticStrainHalf * 10000).toFixed(4));
         })
     xData = [...new Set(xData)];
     xData2 = [...new Set(xData2)];
@@ -136,7 +142,7 @@ for(let a=0;a<this.filess.length;a++){
     // this.PlotPicture(arr2, xData,xData2,xData3)
     this.option1=this.classdata('工程应力工程应变','工程应变','工程应力',xData,arr2,"engineeringStrain",'engineeringStress');
     this.option2=this.classdata('真应力真应变','真应变','真应力',xData2,arr2,"realStrain",'realStress');
-    this.option3=this.classdata('真塑性应变真应力','真塑性应变','真应力',xData3,arr2,"realPlasticStrain",'realPlasticStress');
+    this.option3=this.classdata('真塑性应变真应力','真塑性应变','真应力',xData3,arr3,"realPlasticStrainHalf",'realPlasticStressHalf');
     this.option4=this.classdata('真塑性应变真应力延伸到1','真塑性应变','真应力',xData4,arr3,"realPlasticStrainExtend",'realPlasticStressExtend');
   console.log(this.option4)
   }
@@ -177,7 +183,7 @@ classdata(name,p1,p2,da,datas,p3,p4){
     series: [],
     legend:{data:[],
       orient:'vertical',
-      right:'30',
+      left:'700',
      top:'30',
     height:"200",
     
@@ -190,42 +196,42 @@ classdata(name,p1,p2,da,datas,p3,p4){
       temp2.push( [(i[p3]*10000).toFixed(4),i[p4]]);
     });
     temp2.sort((a,b)=>{return Number(a[0])-Number(b[0])});
-    if(name=="真塑性应变真应力延伸到1"){
-    option.series.push({
-      symbolSize: 5,
-      data: temp2,
-      type: "line",
-      name:item.testTarget,
-    })
-    option.legend.data.push(item.testTarget);
-    
-  }
-    else{
+    debugger
+    if(name=="真塑性应变真应力延伸到1" || name=="真塑性应变真应力")
+    {
       option.series.push({
         symbolSize: 5,
         data: temp2,
         type: "line",
-        name:item.sampleCode+"-"+item.testTarget,
+        name:item.highSpeedStrechDataDetailId,
       })
-      option.legend.data.push(item.sampleCode+"-"+item.testTarget)
-    }
+      option.legend.data.push(item.highSpeedStrechDataDetailId)
+    }else{
+    option.series.push({
+      symbolSize: 5,
+      data: temp2,
+      type: "line",
+      name:item.sampleCode+"-"+item.testTarget,
+    })
+    option.legend.data.push(item.sampleCode+"-"+item.testTarget);}
+   
   })
   return option;
 }
-  classitem(arry1){
+  classitem(arry1,p){
     let arry=[]
     arry1.map(mapItem=>{
     if (arry.length == 0) {
-      arry.push({ highSpeedStrechDataDetailId: mapItem.highSpeedStrechDataDetailId, List: [mapItem] })
+      arry.push({highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
     } else {
        let res = arry.some(item=> {//判断相同highSpeedStrechDataDetailId，有就添加到当前项
-        if (item.highSpeedStrechDataDetailId == mapItem.highSpeedStrechDataDetailId) {
+        if (item.highSpeedStrechDataDetailId == mapItem[p]) {
           item.List.push(mapItem)
           return true
         }
       })
       if (!res) {//如果没找相同highSpeedStrechDataDetailId添加一个新对象
-        arry.push({ highSpeedStrechDataDetailId: mapItem.highSpeedStrechDataDetailId, List: [mapItem] })
+        arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
       }
     } })
     return arry

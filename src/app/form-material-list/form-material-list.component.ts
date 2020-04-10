@@ -16,157 +16,76 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   allChecked = false;
   indeterminate = false;
   disabled=false
+  aaaaaa
   @Input() data = [];
   @Input() params ;
-
   constructor(
     private materiallistService: MaterialListService,
     ) { }
-
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
-    this.listOfAllData = [];
-    this.data
-    .forEach((val, i) =>{    
-      if(val.maxModel==null){
-      this.listOfAllData.push({
-        materialId: val.id,
-        id: i,
-        name: val.name,
-        manufacture: val.manufactoryName,
-        thickness: val.minModel,
-        strength:val.strength,
-        typicalPart:val.typicalPartName,
-        appVehicle:val.appliedVehicleType,
-        date:val.date,
-      });}
-     else{
-        this.listOfAllData.push({
-          materialId: val.id,
-          id: i,
-          name: val.name,
-          manufacture: val.manufactoryName,
-          thickness: val.minModel+"-"+val.maxModel,
-          strength:val.strength,
-          typicalPart:val.typicalPartName,
-          appVehicle:val.appliedVehicleType,
-          date:val.date,
+    this.listOfAllData= this.pushdata(this.data)
+    if(this.checkList.length!=0){
+      for (const iterator of this.checkList) {
+        this.listOfAllData.map((item)=>{
+          if(item.materialId == iterator.materialId){
+            item.checked=true;
+          }
         });
-     }
-      })
-  
-    // console.log(this.listOfAllData)
+      }
+    }
   }
-//     this.selectedData = [];
-// this.AllData.forEach(item => {
-//  this.selectedData.push(item.id);
-
-
-//#region 模块 
+  //#region 模块 
 
   ngOnInit(): void {
-    this.Allmaterial();
-  
+      this.Allmaterial();
+      
   } 
 Allmaterial(){
     let params = this.params
-    // console.log(params)
     this.materiallistService.AllMaterials(params).then((res: any) => {
     this.allmaterial = res.items;
-    // console.log(this.allmaterial)
-    this.listOfAllData = [];
-    this.allmaterial.forEach((val, i) =>{
-      if(val.maxModel==null){
-    this.listOfAllData.push({
-      id: i,
-      materialId: val.id,
-      name: val.name,
-      manufacture: val.manufactoryName,
-      thickness: val.minModel,
-      strength:val.strength,
-      typicalPart:val.typicalPartName,
-      appVehicle:val.appliedVehicleType,
-      date:val.date,          
-    })}
-    else{
-      this.listOfAllData.push({
-        id: i,
-        materialId: val.id,
-        name: val.name,
-        manufacture: val.manufactoryName,
-        thickness: val.minModel+"-"+val.maxModel,
-        strength:val.strength,
-        typicalPart:val.typicalPartName,
-        appVehicle:val.appliedVehicleType,
-        date:val.date,          
-      })
-    }
+    this.listOfAllData= this.pushdata(this.allmaterial)
   })
       }    
-      
-      )
 
-  }
-  
- compare(property){
-    return function(a,b){
-        var value1 = a[property];
-        var value2 = b[property];
-        return value1 - value2;
-    }
-}
-  currentPageDataChange($event): void {
-
-}
   contrasts=[]
   contrastID
   uncheckList
 al=[]
 dis=[]
+temp
   refreshStatus(val,id): void {
-    debugger;
-    const validData = this.displayData.filter(value => !value.disabled);
-  //   sessionStorage.setItem('list', 'JSON.stringify(this.listOfAllData)');
-  //  sessionStorage.getItem('list') = sessionStorage.getItem('list')+','+JSON.stringify(this.listOfAllData);
-  //   let arra3=JSON.parse( sessionStorage.getItem('list') )
   if(val){
-    this.checkList = this.checkList.concat(this.listOfAllData.filter(value => value.checked)) 
-    this.checkList = [...new Set(this.checkList)]; 
+    this. temp = this.listOfAllData.filter(value => value.checked); 
+    for (const iterator of this.temp) {
+      if(JSON.stringify(this.checkList).indexOf(JSON.stringify(iterator))==-1){
+        this.checkList.push(iterator)
+      }
+    }
     console.log(this.checkList.length); 
     if(this.checkList.length>6){
       this.disabled=true
       window.alert("最多7个")
     }
   }else{
-    this.checkList = this.checkList.filter(value => {return value.id!==id})
+    this.checkList = this.checkList.filter(value => {return value.materialId!==id})
   }
-  
-    // const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
-    // const allUnChecked = validData.every(value => !value.checked);
-    // this.allChecked = allChecked;
-    // this.indeterminate = !allChecked && !allUnChecked;
   }
+  // #endregionf
 
-  checkAll(value: boolean): void {
-    this.displayData.forEach(data => {
-      if (!data.disabled) {
-        data.checked = value;
-      }    
-    }
-    );
-    this.refreshStatus(value,'-1');
-    
-  }
-  //#endregion
 
 shanchu(x){
   for(var j=0;j<this.checkList.length;j++){
     if(this.checkList[j].materialId == x){
-      this.checkList[j].checked = false;
       this.checkList.splice(j,1); 
       this.disabled=false;
 }
-
+for( const vari of this.listOfAllData){
+  if(vari.materialId==x){
+    vari.checked=false
+  }
+}
 }
 
 }
@@ -174,10 +93,37 @@ select(){
   for(var j=0;j<this.checkList.length;j++){     
     this.contrasts[j] =this.checkList[j].materialId 
 }
-console.log(typeof(this.contrasts))
 this.contrastID = this.contrasts.toString();
-console.log(this.contrasts)
-
-
+} 
+pushdata(arr1){
+  let arr2=[]
+arr1
+.forEach((val, i) =>{    
+  if(val.maxModel==null){
+arr2.push({
+    materialId: val.id,
+    name: val.name,
+    manufacture: val.manufactoryName,
+    thickness: val.minModel,
+    reelNumber:val.reelNumber,
+    typicalPart:val.typicalPartName,
+    appVehicle:val.appliedVehicleType,
+    date:val.date+'-'+val.dateEnd,
+  });}
+ else{
+   arr2.push({
+      materialId: val.id,
+      name: val.name,
+      manufacture: val.manufactoryName,
+      thickness: val.minModel+"-"+val.maxModel,
+      strength:val.strength,
+      typicalPart:val.typicalPartName,
+      appVehicle:val.appliedVehicleType,
+      date:val.date+'-'+val.dateEnd,
+    });
+ }
+  })
+  return arr2
 }
+
 }
