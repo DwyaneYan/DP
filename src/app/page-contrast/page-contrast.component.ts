@@ -13,18 +13,23 @@ import { connectableObservableDescriptor } from "rxjs/internal/observable/Connec
 export class PageContrastComponent implements OnInit {
   StaticTension=[]//静态拉伸
   LowCycleFatigue = [];//低周疲劳
+  ChemicalElement=[];//化学成分
   listItem = { 
     StaticTension: true ,
-    LowCycleFatigue: true ,}; // true表示有数据可不被隐藏
+    LowCycleFatigue: true ,
+    ChemicalElement:true}; // true表示有数据可不被隐藏
   listItemBlank = { 
     StaticTension: true,
-    LowCycleFatigue: true , };
+    LowCycleFatigue: true ,
+    ChemicalElement:true };
   listItemOr = { 
     StaticTension: true ,
-    LowCycleFatigue: true ,};
+    LowCycleFatigue: true ,
+    ChemicalElement:true};
   listArr = [
     ["StaticTension", "yieldStrength"],
-    ["LowCycleFatigue", "totalStrainAmplitude"]];
+    ["LowCycleFatigue", "totalStrainAmplitude"],
+    ["ChemicalElement","contentRatioC"]];
   pageConfiguration = [
     {
       name: "静态拉伸",
@@ -70,6 +75,26 @@ export class PageContrastComponent implements OnInit {
         "failureCycleTimes",
         "cycleStressAmplitude",
         "testFrequency",
+      ]
+    },
+    {
+      name: "化学成分",
+      key: "ChemicalElement",
+      itemDes: [
+        "C",
+        "Si",
+        "Mn",
+        "P",
+        "S",
+        "AlS",
+      ],
+      item: [
+        "contentRatioC",
+        "contentRatioSi",
+        "contentRatioMn",
+        "contentRatioP",
+        "contentRatioS",
+        "contentRatioAlS",
       ]
     }
   ];
@@ -128,18 +153,26 @@ export class PageContrastComponent implements OnInit {
 });
     await this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
     this.LowCycleFatigue= res; 
+});
+
+await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) => {
+  this.ChemicalElement= res;
+
 })
-}
     this.changeStatus(this.listArr);
 
-  }
+  }}
   public async getGetMaterialss() {
     for (var i = 0; i < this.array.length; i++) {
       await this.MaterialsContrastService.GetMaterialss(this.array[i]).then(
         (res: any) => {
-          this.name[i] = res.items[0].name; ;
-          this.model[i] = res.items[0].model;
+          this.name[i] = res.items[0].name; 
           this.manu[i] = res.items[0].manufactoryName;
+          if(res.items[0].maxModel==null){  
+          this.model[i] = res.items[0].minModel;}
+          else{
+          this.model[i] = res.items[0].minModel+'-'+res.items[0].maxModel;
+          }
         }
       );
     }
@@ -236,8 +269,10 @@ export class PageContrastComponent implements OnInit {
           this.MaterialsContrastService.GetMater(this.pas[j][a]).then(
             (res: any) => {
               this.listMath[j][a] = res.items;
-              this.listMath[j][a].forEach(val =>
-                this.lit[j][a].push(val.model)
+              
+              this.listMath[j][a].forEach(val =>{
+                if(val.maxModel==null){this.lit[j][a].push(val.minModel)}
+              else{this.lit[j][a].push(val.minModel+'-'+val.maxModel)}}
               );
               this.limo[j][a] = this.unique1(this.lit[j][a]);
               this.th[j][a] = [];
@@ -311,8 +346,9 @@ export class PageContrastComponent implements OnInit {
     this.name.splice(i, 1);
     this.model.splice(i, 1);
     this.manu.splice(i, 1);
-
+debugger
     this.array.splice(i, 1).toString();
+
     this.changeStatus(this.listArr);
     console.log(this.array);
     window.history.pushState(null, null, `/contrast?materialids=${this.array}`);
@@ -378,10 +414,17 @@ export class PageContrastComponent implements OnInit {
   }
   onChanges(values: string[]) {
     console.log(values);
-    // console.log(this.listManufacturers)
+    let one=[]
     this.pat.manufactoryId = values[0];
     this.pat.Name = values[1];
-    this.pat.model = values[2];
+    // console.log(this.listManufacturers)
+    if(typeof(values[2])=="number"){
+    this.pat.minModel = values[2];}
+    else{
+    one=this.fenge(values[2],"-");
+    this.pat.minModel = one[0];
+    this.pat.maxModel = one[1];
+    }
     this.MaterialsContrastService.GetMater(this.pat).then((res: any) => {
       this.addlist = res.items;
       console.log(this.addlist);
@@ -406,7 +449,10 @@ export class PageContrastComponent implements OnInit {
   close(): void {
     this.visible = false;
   }
-
+  fenge(arry,p){
+    let arry1=arry.toString().split(p)
+    return arry1
+  }
   contrastStaticTension(param,des){
     // console.log(this.StaticTension)
       let data = [];

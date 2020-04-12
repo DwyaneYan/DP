@@ -106,8 +106,8 @@ arr2.push({
     manufacture: val.manufactoryName,
     thickness: val.minModel,
     reelNumber:val.reelNumber,
-    typicalPart:val.typicalPartName,
-    appVehicle:val.appliedVehicleType,
+    // typicalPart:val.typicalPartName,
+    // appVehicle:val.appliedVehicleType,
     date:val.date+'-'+val.dateEnd,
   });}
  else{
@@ -116,9 +116,10 @@ arr2.push({
       name: val.name,
       manufacture: val.manufactoryName,
       thickness: val.minModel+"-"+val.maxModel,
-      strength:val.strength,
-      typicalPart:val.typicalPartName,
-      appVehicle:val.appliedVehicleType,
+      reelNumber:val.reelNumber,
+      // strength:val.strength,
+      // typicalPart:val.typicalPartName,
+      // appVehicle:val.appliedVehicleType,
       date:val.date+'-'+val.dateEnd,
     });
  }
