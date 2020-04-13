@@ -39,7 +39,7 @@ export class BaseInfoComponent implements OnInit {
     .toPromise()
     .then((res:any)=>{
       this.baseInfo = res.items;
-      console.log(this.baseInfo)
+      // console.log(this.baseInfo)
     })
     if(this.baseInfo[0].maxModel!=null){
       this.mater.push({

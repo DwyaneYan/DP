@@ -23,7 +23,50 @@ export class HighspeedstrechTableComponent implements OnInit {
   width=["120px","150px","180px","180px","180px","180px","180px","150px"]
   table5=["testTarget","sampleCode","thickness","gaugeDistance","yieldStrength","tensileStrength","elongation","stretchingSpeed"]
   table6=["standard","testOrganization","equipment","testMethod","direction"]
-    constructor(  private router: Router,
+  
+  isVisible = false;
+  options;
+  
+  contrastTable(params, des) {
+      let data = [];
+      let xData = [];
+      for (const iterator of this.trialDataDetail) {
+        data.push(iterator[params]);
+        xData.push(iterator['sampleCode']);    
+      }
+      this.PlotPicture(data, xData,des);
+    }
+    handleOk(): void {
+      this.isVisible = false;
+    }
+  
+  handleCancel(): void {
+      this.isVisible = false;
+    }
+  public PlotPicture(data, xData, des) {
+        this.isVisible = true;
+        this.options = {
+          title: {
+            text: des,
+            x: "center",
+            y: "top"
+          },
+          xAxis: {
+            type: "category",
+            data: xData
+          },
+          yAxis: {
+            type: "value"
+          },
+          series: [
+            {
+              data: data,
+              type: "line"
+            }
+          ]
+        };
+      }
+  constructor(  private router: Router,
     public http: HttpClient,) { }
 
   ngOnInit() { this.materialId = this.router
@@ -32,6 +75,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     this.GetTrialDataDetails();
     this.GetBaseInfo(this.materialId)
   }
+
   public async GetBaseInfo(p){
     let api = "http://localhost:60001/api/hangang/material/materials?Id=";
     await this.http.get(api+p)

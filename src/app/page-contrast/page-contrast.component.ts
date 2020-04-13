@@ -453,11 +453,11 @@ debugger
     let arry1=arry.toString().split(p)
     return arry1
   }
-  contrastStaticTension(param,des){
+  contrastStaticTension(param,des,trialType){
     // console.log(this.StaticTension)
       let data = [];
       let xData = [];
-      this.StaticTension.forEach((iterator,i,array) => {
+      this[trialType].forEach((iterator,i,array) => {
         data.push(iterator[param]);
         xData.push(this.name[i])
       })

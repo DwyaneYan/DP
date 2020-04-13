@@ -90,8 +90,7 @@
                 <div>
                   <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{ dataDes }}</span>
                   <ng-template #titleTemplate>
-                    <span *ngIf="dataList.name == '静态拉伸'"><a (click)="contrastStaticTension(dataList.item[i],dataDes)">对比</a></span>
-                    <span *ngIf="dataList.name == '低周疲劳'"><a (click)="contrastLowCycleFatigue(dataList.item[i],dataDes)">对比</a></span>
+                    <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
                   </ng-template>
                 </div>
               </th>
