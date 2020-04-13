@@ -16,7 +16,12 @@
   <thead >
     <tr>
       <th  class="one" nzWidth="120px" >样件编号</th>
-      <th  class="one" nzWidth="90px" *ngFor="let data of arry2">{{data}}</th>
+      <th  class="one" nzWidth="90px" *ngFor="let data of arry2,let i = index">
+        <span nz-tooltip [nzTooltipTitle]=" titleTemplate">{{data}}</span>
+        <ng-template #titleTemplate>
+          <a (click)="contrastTable(data)">对比</a>
+        </ng-template>        
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -32,3 +37,11 @@
 </nz-table>
 </div><br>
 </div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+    <div
+      echarts
+      [options]="options"
+      style="height: 400px;position: relative;"     
+    ></div>
+  </nz-modal>

@@ -40,7 +40,7 @@ export class BaseInfoComponent implements OnInit {
     .then((res:any)=>{
       debugger
       this.baseInfo = res.items;
-      console.log(this.baseInfo)
+      // console.log(this.baseInfo)
     })
     let d1=[]
     let d2=[]
