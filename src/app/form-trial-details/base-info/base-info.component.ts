@@ -38,16 +38,28 @@ export class BaseInfoComponent implements OnInit {
     await this.http.get(api,{params})
     .toPromise()
     .then((res:any)=>{
+      debugger
       this.baseInfo = res.items;
       console.log(this.baseInfo)
     })
+    let d1=[]
+    let d2=[]
+    if(this.baseInfo[0].date!=null){
+      d1=(this.baseInfo[0].date).split("T");
+      }
+     else{
+     d1.push("");
+     }
+     if(this.baseInfo[0].dateEnd!=null){
+      d2=(this.baseInfo[0].dateEnd).split("T");
+     }else{  d2.push("")}
     if(this.baseInfo[0].maxModel!=null){
       this.mater.push({
         name:this.baseInfo[0].name,
         reelNumber:this.baseInfo[0].reelNumber,
         manufacture:this.baseInfo[0].manufactoryName,
         thickness:this.baseInfo[0].minModel+"-"+this.baseInfo[0].maxModel,
-        date:this.baseInfo[0].date+'-'+this.baseInfo[0].dateEnd,
+        date:d1[0]+'——'+d2[0],
       })
 
     }else{
@@ -56,7 +68,7 @@ export class BaseInfoComponent implements OnInit {
         reelNumber:this.baseInfo[0].reelNumber,
         manufacture:this.baseInfo[0].manufactoryName,
         thickness:this.baseInfo[0].minModel,
-        date:this.baseInfo[0].date+'-'+this.baseInfo[0].dateEnd,
+        date:d1[0]+'——'+d2[0],
       })
     }
     // console.log(this.baseInfo)

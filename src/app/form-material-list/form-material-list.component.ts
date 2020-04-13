@@ -97,8 +97,17 @@ this.contrastID = this.contrasts.toString();
 } 
 pushdata(arr1){
   let arr2=[]
+  let d1=[]
+  let d2=[]
 arr1
-.forEach((val, i) =>{    
+.forEach((val) =>{   
+  if(val.date!=null&&val.dateEnd!=null){
+ d1=(val.date).split("T");
+ d2=(val.dateEnd).split("T");}
+else{
+d1.push("");
+d2.push("")
+}
   if(val.maxModel==null){
 arr2.push({
     materialId: val.id,
@@ -108,7 +117,7 @@ arr2.push({
     reelNumber:val.reelNumber,
     // typicalPart:val.typicalPartName,
     // appVehicle:val.appliedVehicleType,
-    date:val.date+'-'+val.dateEnd,
+    date:d1[0]+'——'+d2[0],
   });}
  else{
    arr2.push({
@@ -120,7 +129,7 @@ arr2.push({
       // strength:val.strength,
       // typicalPart:val.typicalPartName,
       // appVehicle:val.appliedVehicleType,
-      date:val.date+'-'+val.dateEnd,
+      date:d1[0]+'——'+d2[0],
     });
  }
   })

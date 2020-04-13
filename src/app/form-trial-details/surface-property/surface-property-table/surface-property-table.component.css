@@ -2,8 +2,6 @@
     position: absolute;
     left:25%;
     top: 160px;
-    width: auto;
-    
 }
 .one{
     text-align:center;
@@ -11,21 +9,22 @@
     color:white;
     padding-top:8px;
     padding-bottom:8px;
-
 }
 .one1{
     text-align:center;
     padding-top:8px;
     padding-bottom:8px;}
-#table1{
-    width:400px
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+    background: white;
+  }
+  #dataTable /deep/.ant-table-scroll table {
+    width: auto;
+    min-width: unset;
 }
-#table2{
-    width:800px;
-    margin-top:30px
+#dataTable /deep/.ant-table-scroll table{
+    width: auto;
+    min-width: unset;
 }
-#table3{
-    width:800px;
-    margin-top:30px;
-    margin-bottom:30px
+ #dataTable /deep/.ant-table-fixed{
+    min-width: unset;
 }

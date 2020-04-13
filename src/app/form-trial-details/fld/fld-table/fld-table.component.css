@@ -26,3 +26,14 @@
     margin-top:30px;
     margin-bottom:30px
 }
+#dataTable /deep/.ant-table-scroll table {
+    width: auto;
+    min-width: unset;
+}
+#dataTable /deep/.ant-table-scroll table{
+    width: auto;
+    min-width: unset;
+}
+ #dataTable /deep/.ant-table-fixed{
+    min-width: unset;
+}

@@ -16,8 +16,8 @@
     <th nzWidth="4%"
     *ngIf="checkbox"
       class="head"></th>
-    <th nzWidth="15%" class="head" ><a routerLink="/materialss" class="head1">材料名称</a></th>
-    <th nzWidth="15%" class="head"><a routerLink="/factory" class="head1">生产厂家</a></th>
+    <th nzWidth="15%" class="head" ><a routerLink="/materialss" class="head">材料名称</a></th>
+    <th nzWidth="15%" class="head"><a routerLink="/factory" class="head">生产厂家</a></th>
     <th nzWidth="15%" class="head">型号规格</th>
     <th nzWidth="15%" class="head">卷号</th>
     <!-- <th nzWidth="14%" class="head"><a routerLink="/typicalpart" class="head1">典型零件</a></th>
@@ -30,14 +30,14 @@
   <tr *ngFor="let data of rowSelectionTable.data" >
     <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.materialId)" id="he" name="chk"
     ></td>
-    <td id="he" >{{ data.name }}</td>
-    <td id="he" >{{ data.manufacture }}</td>
-    <td id="he" >{{ data.thickness }}</td>
-    <td id="he">{{ data.reelNumber }}</td>
+    <td class="he" >{{ data.name }}</td>
+    <td class="he" >{{ data.manufacture }}</td>
+    <td class="he" >{{ data.thickness }}</td>
+    <td class="he">{{ data.reelNumber }}</td>
     <!-- <td id="he">{{ data.typicalPart }}</td>
     <td id="he">{{ data.appVehicle }}</td> -->
-    <td id="he">{{ data.date }}</td>
-    <td id="he"><a [routerLink]="['/display', data.materialId]" target="_blank">查看</a></td>
+    <td class="he">{{ data.date }}</td>
+    <td class="he"><a [routerLink]="['/display', data.materialId]" target="_blank">查看</a></td>
   </tr>
 </tbody>
 </nz-table>

@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
-  trialDataDetails
+  trialDataDetail=[]
+  trialDataDetails=[]
   arry1=[]
   arry2=[]
   arry3=[]
@@ -20,8 +20,8 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   serialss=[]
   serialsss
   table=[{
-    one:["测试机构","执行标准","试验设备"],
-    key:["testOrganization","standard","equipment",]
+    one:["测试机构","执行标准","试验设备","试验方法"],
+    key:["testOrganization","standard","equipment","testMethod"]
 },
 {
   one:["试验温度℃"],

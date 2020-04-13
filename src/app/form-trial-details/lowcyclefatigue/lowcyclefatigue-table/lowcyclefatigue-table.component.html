@@ -1,6 +1,6 @@
 <div id="dataTable">
-  <div id="tablewid">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false"   nzBordered style="width: 1100px;"
+  [nzScroll]="{ x: '1400px' }">
     <thead >
       <tr>
         <th class="one" nzWidth="200px" *ngFor="let data1 of table1" >{{data1}}</th>
@@ -12,9 +12,8 @@
       </tr>
     </tbody>
 </nz-table>
-  </div>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data3.table}}" nzBordered
-    *ngFor="let data3 of table3">
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width: 1100px;margin-top:30px" nzBordered
+    *ngFor="let data3 of table3" [nzScroll]="{ x: '600px' }">
         <thead>
           <tr>
             <th nzWidth="200px" class="one"  *ngFor="let data31 of data3.one">{{data31}}</th>
@@ -26,8 +25,8 @@
           </tr>
         </tbody>     
       </nz-table>
-      <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table3" nzBordered
-     >
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width: 1100px;margin-top:30px" 
+[nzScroll]="{ x: '800px' }" nzBordered>
           <thead>
             <tr>
               <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[0].one">{{data41}}</th>
@@ -40,9 +39,8 @@
             </tr>
           </tbody>     
         </nz-table>
-        <div id="tablewid">
-        <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table4" nzBordered
-        >
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width: 1100px;margin-top:30px;margin-bottom:30px" 
+  nzBordered [nzScroll]="{ x: '1400px' }" >
              <thead>
                <tr>
                  <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[1].one">{{data41}}</th>
@@ -54,7 +52,6 @@
                </tr>
              </tbody>     
            </nz-table>
-    </div><br>
   </div>
   
 

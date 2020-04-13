@@ -346,7 +346,7 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
     this.name.splice(i, 1);
     this.model.splice(i, 1);
     this.manu.splice(i, 1);
-debugger
+
     this.array.splice(i, 1).toString();
 
     this.changeStatus(this.listArr);
