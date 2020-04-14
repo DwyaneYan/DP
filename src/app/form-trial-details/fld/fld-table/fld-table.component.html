@@ -8,7 +8,7 @@
     </thead>
     <tbody *ngFor="let data2 of this[data.name]" >
       <tr >
-        <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
+        <td class="one1"  nzBreakWord  *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
       </tr>
     </tbody>
 </nz-table>

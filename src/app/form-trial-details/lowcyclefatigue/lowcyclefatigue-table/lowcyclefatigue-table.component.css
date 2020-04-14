@@ -18,17 +18,18 @@
     padding-top:8px;
     padding-bottom:8px;
 }
-#dataTable /deep/.ant-table-scroll table {
+/* #dataTable /deep/.ant-table-scroll table {
     width: auto;
     min-width: unset;
 }
-#dataTable /deep/.ant-table-scroll table{
-    width: auto;
-    min-width: unset;
-}
+
  #dataTable /deep/.ant-table-fixed{
     min-width: unset;
-}
+} */
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
     background: white;
   }
+
+  #dataTable /deep/.ant-table-fixed{
+    min-width: unset;
+}

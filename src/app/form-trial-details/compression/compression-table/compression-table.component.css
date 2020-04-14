@@ -26,3 +26,7 @@
     width:1060px;
     overflow:auto
 }
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+    background: white;
+  }
+

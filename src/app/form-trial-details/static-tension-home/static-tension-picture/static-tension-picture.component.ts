@@ -67,10 +67,9 @@ export class StaticTensionPictureComponent implements OnInit {
   } 
 }) 
 
-for(let a=0;a<this.trialDataDetails.length;a++){
-  if(this.trialDataDetails[a].sampleCode!="小批量数据"){
+for(let a=25;a<this.trialDataDetails.length;a++){
 this.one.push(this.trialDataDetails[a])
-  }}
+  }
   for(let a=0;a<this.one.length;a++){
   arry[a].sampleCode=this.one[a].sampleCode;
   arry[a].direction=this.one[a].direction} 

@@ -18,8 +18,8 @@ export class ChemicalelementTableComponent implements OnInit {
  arry6=[]
   table=[{
     table:"table1",
-    one:["执行标准","测试机构","试验设备","试验方法"],
-    key:["standard","testOrganization","equipment","testMethod"]
+    one:["测试机构","执行标准","试验设备","试验方法"],
+    key:["testOrganization","standard","equipment","testMethod"]
   },
   {
   table:"table2",
@@ -29,6 +29,7 @@ export class ChemicalelementTableComponent implements OnInit {
 ]
 isVisible =false;
 options;
+
 contrastTable(params) {
       let data = [];
       let xData = [];
@@ -85,11 +86,11 @@ contrastTable(params) {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-// console.log(this.trialDataDetail)
       this.trialDataDetail.forEach(val=>{this.arry1.push(val.element);
         this.arry4.push(val.sampleCode);})
       this.arry2=this.unique1(this.arry1)
       this.arry5=this.unique1(this.arry4)
+      document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (120+this.arry2.length*90) +"px";
       // console.log(this.arry5)
       for(let a=0;a<this.arry5.length;a++){
         this.arry3[a]=[]

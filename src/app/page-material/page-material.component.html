@@ -1,9 +1,9 @@
 <app-form-material-db-background></app-form-material-db-background>
 <div id="materialType">
-    <div class="material-class" *ngFor="let item of materialType; index as typeIndex">
+    <div [class]="item.class" *ngFor="let item of materialType;let i=index">
         <h4 class="class-name">{{item.name}}</h4>
-        <div class="tag-area" *ngFor="let childItem of item.children">
-            <span class="tag" (click)="filtrationMaterialType(childItem)" [class.selected]="params.materialType == childItem.enum">{{childItem.name}}</span>
+        <div class="tag-area" *ngFor="let childItem of item.children" (click)="filtrationMaterialType(childItem)" [class.selected]="params.materialType == childItem.enum">
+            {{childItem.name}}
         </div>
     </div>
 </div>

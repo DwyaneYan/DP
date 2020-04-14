@@ -1,6 +1,6 @@
 <div id="dataTable">
   <nz-table [nzData]=[{}] 
-   [nzFrontPagination]="false" nzBordered id="ta">
+   [nzFrontPagination]="false" nzBordered style="width:1000px">
     <thead >
       <tr >
         <th  nzWidth="200px" class="one" *ngFor="let data1 of table1">{{data1}}</th>
@@ -12,8 +12,8 @@
       </tr>
     </tbody>
 </nz-table>
-<div id="tablewid">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width:1100px;margin-top:30px;margin-bottom:30px  " 
+  [nzScroll]="{x: '2470px', y: '600px' }" nzBordered>
       <thead >
         <tr >
           <th [nzWidth]="table3[i]" class="one" *ngFor="let data2 of table2;let i = index">
@@ -29,15 +29,16 @@
       </thead>
       <tbody>
         <tr  *ngFor="let details of trialDataDetails">
-          <td class="one1"  *ngFor="let data4 of table4">{{ details[data4] }}</td>
+          <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ details[data4] }}</td>
         </tr>
         <tr  *ngFor="let detail of trialDataDetail">
-          <td class="one1"  *ngFor="let data4 of table4">{{ detail[data4] }}</td>
+          <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
         </tr>
+        
       </tbody>
   </nz-table>
-</div><br>
 </div>
+
 
 <nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
     <div

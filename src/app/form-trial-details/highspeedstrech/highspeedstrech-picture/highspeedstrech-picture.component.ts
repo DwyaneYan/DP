@@ -151,7 +151,8 @@ classdata(name,p1,p2,da,datas,p3,p4){
     width:'550',
     title: {
       text: name
-  },    tooltip: {
+        },   
+   tooltip: {
     trigger: 'axis',
     backgroundColor: "white",
     formatter:function (params) { //在此处直接用 formatter 属性
@@ -169,7 +170,7 @@ classdata(name,p1,p2,da,datas,p3,p4){
         <div style="color: black;">${p2}：<br/><a style="color: black;">${text}</a></div>  
            `
       }
-},
+      },
     xAxis: {
       data: da,
       type: "category",

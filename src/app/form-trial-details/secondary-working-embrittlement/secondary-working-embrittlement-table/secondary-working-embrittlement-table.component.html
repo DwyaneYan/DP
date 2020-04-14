@@ -1,5 +1,5 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width:800px"  nzBordered>
     <thead >
       <tr>
         <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one" >{{data}}</th>
@@ -11,13 +11,13 @@
       </tr>
     </tbody>
 </nz-table>
-<div id="tablewid">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered> 
+
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox" style="max-width:1100px;overflow: auto;margin-top:30px;margin-bottom:30px" nzBordered> 
         <thead>
           <tr>
             <th nzWidth="110px" class="one" *ngFor="let data of table[1].one ">{{data}}</th>
             <th nzWidth="100px" class="one" >SWET(℃)</th>
-            <th nzWidth="120px" class="one" *ngFor="let data1 of serials">{{data1}}</th>
+            <th nzWidth="110px" class="one" *ngFor="let data1 of serials">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
@@ -27,6 +27,6 @@
             <td class="one1" *ngFor="let data1 of detail">{{ data1?.expansionType }}</td>
           </tr>
         </tbody>
-      </nz-table></div><br>
+      </nz-table>
 </div>
 

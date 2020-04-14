@@ -35,6 +35,8 @@ export class FldPictureComponent implements OnInit {
   }
   public PlotPicture(data, xData) {
     this.options = {
+      width:'550',
+
       title: {
           text: 'FLD'
            },    
@@ -56,9 +58,10 @@ export class FldPictureComponent implements OnInit {
           formatter: function(val) {
             return (val / 1000).toFixed(4);
           }
-        }
+        },
+        name:"次应变"
       },
-      yAxis: {},
+      yAxis: {name:'主应变'},
       series: [{
         data: data,
         symbolSize: 5,
@@ -66,22 +69,6 @@ export class FldPictureComponent implements OnInit {
       }],
 
     };
-    // let temp = [];
-    // data.map(item => {
-    //   temp = [];
-    //   item.List.map(i => {
-    //     temp.push( [(i.strain*1000).toFixed(4),i.stress]);
-    //   });
-    //   temp.sort((a,b)=>{return Number(a[0])-Number(b[0])});
-    //   this.option.series.push({
-    //     symbolSize: 5,
-    //     data: temp,
-    //     type: "line",
-    //     name:item.sampleCode,
-  
-    //   })
-    //   console.log(temp); 
-    //   this.option.legend.data.push(item.sampleCode)
-    // })
+
   }
 }

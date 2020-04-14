@@ -15,34 +15,9 @@
     padding-top:8px;
     padding-bottom:8px;
 }
-#ta{
-    width:1000px
-}
-#tableone{
-    width:2470px;
-    margin-top:30px;
- 
-}    
-#tablewid{
-    width:1100px;
-    overflow:auto
-}
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+    background: white;
+  }
 
 
-.footer {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    border-top: 1px solid rgb(232, 232, 232);
-    padding: 10px 16px;
-    text-align: right;
-    left: 0px;
-    background: #fff;
-    }
 
-/* 抽屉按钮 */
-#drawerBtn{
-    position: absolute;
-    top: 50px;
-    left: 90%;
-}

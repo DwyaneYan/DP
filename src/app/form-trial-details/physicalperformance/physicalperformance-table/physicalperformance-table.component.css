@@ -30,3 +30,6 @@
     width:400px;
     margin-top:30px
 }
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+    background: white;
+  }
