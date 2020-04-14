@@ -17,6 +17,7 @@ export class PageMaterialComponent implements OnInit {
     [
       //冷轧
       {
+        class:"material-class",
         value: "10",
         name: "冷轧",
         children: [
@@ -27,6 +28,10 @@ export class PageMaterialComponent implements OnInit {
           {
             enum: '30',
             name: '高强IF钢'
+          },
+          {
+            enum: '100',
+            name: 'IF钢'
           },
           {
             enum: '40',
@@ -52,15 +57,12 @@ export class PageMaterialComponent implements OnInit {
             enum: '90',
             name: '增强成形性双相钢'
           },
-          {
-            enum: '100',
-            name: 'IF钢'
-          }
+
         ]
       },
 
       //镀锌
-      {
+      {class:"material-class",
         enum: "110",
         name: "镀锌",
         children: [
@@ -71,6 +73,10 @@ export class PageMaterialComponent implements OnInit {
           {
             enum: '130',
             name: '高强IF钢'
+          },    
+          {
+            enum: '170',
+            name: 'IF钢'
           },
           {
             enum: '140',
@@ -85,10 +91,6 @@ export class PageMaterialComponent implements OnInit {
             name: '双相钢'
           },
           {
-            enum: '170',
-            name: 'IF钢'
-          },
-          {
             enum: '175',
             name: '增强成形性双相钢'
           }
@@ -96,7 +98,7 @@ export class PageMaterialComponent implements OnInit {
       },
 
       //热轧
-      {
+      {class:"material-class",
         enum: "180",
         name: "热轧",
         children: [
@@ -109,13 +111,14 @@ export class PageMaterialComponent implements OnInit {
             name: 'SAPH系列'
           },
           {
-            enum: '210',
-            name: 'QStE结构钢系列'
-          },
-          {
             enum: '220',
             name: '大梁钢'
           },
+          {
+            enum: '210',
+            name: 'QStE结构钢系列'
+          },
+ 
           {
             enum: '230',
             name: '车轮钢轧'
@@ -136,13 +139,17 @@ export class PageMaterialComponent implements OnInit {
       },
 
       //中板
-      {
+      {class:"material-class1",
         enum: "270",
         name: "中板",
         children: [
           {
             enum: '275',
             name: '大梁钢'
+          },
+          {
+            enum: '300',
+            name: '自卸车厢体用耐磨钢'
           },
           {
             enum: '280',
@@ -152,10 +159,7 @@ export class PageMaterialComponent implements OnInit {
             enum: '290',
             name: '车桥钢'
           },
-          {
-            enum: '300',
-            name: '自卸车厢体用耐磨钢'
-          },
+
         ]
       }
 

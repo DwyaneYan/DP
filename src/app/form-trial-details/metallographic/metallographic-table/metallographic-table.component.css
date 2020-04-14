@@ -42,3 +42,7 @@
         top: 50px;
         left: 90%;
     }
+    .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+        background: white;
+      }
+    

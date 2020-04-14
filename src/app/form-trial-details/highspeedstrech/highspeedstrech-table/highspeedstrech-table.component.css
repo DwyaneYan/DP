@@ -14,38 +14,12 @@
     padding-bottom:8px;
 
 }
-/* #table1{
-    width:1000px
-}
-#table2{
-    width:1050px;
-    margin-top:30px
-}
-#table3{
-    width:1320px;
-    margin-top:30px
-} */
+
 .one1{
     text-align:center;
     padding-top:8px;
     padding-bottom:8px;
 }
-/* #tablewid{
-    width:1100px;
-    overflow:auto
-} */
-.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
-    background: white;
-  }
-  #dataTable /deep/.ant-table-scroll table {
-    width: auto;
-    min-width: unset;
-}
-#dataTable /deep/.ant-table-scroll table{
-    width: auto;
-    min-width: unset;
-}
- #dataTable /deep/.ant-table-fixed{
-    min-width: unset;
-}
+
+
 

@@ -1,5 +1,5 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width:800px"  nzBordered>
     <thead >
       <tr>
         <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
@@ -11,11 +11,12 @@
       </tr>
     </tbody>
 </nz-table>
-<div id="tablewid">
-<nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2"  nzBordered>
+
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox" style="max-width:1100px;overflow: auto;;margin-top:30px;margin-bottom:30px"
+nzBordered [nzScroll]="{ y: '600px' }">
   <thead >
     <tr>
-      <th  class="one" nzWidth="120px" >样件编号</th>
+      <th   class="one" nzWidth="120px" >样件编号</th>
       <th  class="one" nzWidth="90px" *ngFor="let data of arry2,let i = index">
         <span nz-tooltip [nzTooltipTitle]=" titleTemplate">{{data}}</span>
         <ng-template #titleTemplate>
@@ -24,18 +25,17 @@
       </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody> 
     <tr >
-      <td class="one1" >要求值</td>
-      <td class="one1" *ngFor="let detail1 of arry6">{{detail1?.requirement}}</td>
+      <td nzBreakWord class="one1" >要求值</td>
+      <td nzBreakWord class="one1" *ngFor="let detail1 of arry6">{{detail1?.requirement}}</td>
     </tr>
     <tr *ngFor="let detail of arry3;let i=index">
-      <td class="one1" >{{arry5[i]}}</td>
-      <td class="one1" *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
+      <td nzBreakWord class="one1" >{{arry5[i]}}</td>
+      <td nzBreakWord class="one1" *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
     </tr>
   </tbody>
 </nz-table>
-</div><br>
 </div>
 
 <nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
