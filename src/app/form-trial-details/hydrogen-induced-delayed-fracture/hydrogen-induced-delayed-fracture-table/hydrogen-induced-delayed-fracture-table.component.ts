@@ -21,7 +21,7 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
 ,
 },]
 table1=[{
-  one:["弯曲跨度","弯曲应变","弯曲应力（MPa）","开裂时间（h）","是否开裂",],
+  one:["弯曲跨度","弯曲应变","弯曲应力（MPa）","试验时间（h）","试验结果（300小时浸泡开裂：是/否）",],
   key:["span","strain","stress","hour","remark"]
 },
 ]

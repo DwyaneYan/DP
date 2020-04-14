@@ -12,7 +12,7 @@ export class StaticTensionTableComponent implements OnInit {
   public materialId
   trialDataDetails
   //存放查到的试验数据详情
-  public trialDataDetail = [{}] 
+  public trialDataDetail = [] 
   visible = false;
 
   //添加数据表单
@@ -36,11 +36,11 @@ export class StaticTensionTableComponent implements OnInit {
     poissonRatio:0,
     maximumForce:0,
   }
-table1=['执行标准','测试机构','试验设备','试验方法','标距(mm)']
-table2=['位置','方向','试样厚度a(mm)','屈服强度Rp(MPa)','抗拉强度Rm(MPa)','应变硬化指数(n)','断后伸长率A(％)','塑性应变比γ(%)','弹性模量E(MPa)','泊松比μ','最大力Fm(kN)','烘烤硬化值(BH)','180°弯曲试验(弯曲压头直径D)','V型冲击试验温度(℃)','V型冲击试验吸收能量(KV2/J)']
+table1=['测试机构','执行标准','试验设备','试验方法','标距(mm)']
+table2=["位置",'方向','试样厚度a(mm)','屈服强度Rp(MPa)','抗拉强度Rm(MPa)','应变硬化指数(n)','断后伸长率A(％)','塑性应变比γ(%)','弹性模量E(MPa)','泊松比μ','最大力Fm(kN)','烘烤硬化值(BH)','180°弯曲试验(弯曲压头直径D)','V型冲击试验温度(℃)','V型冲击试验吸收能量(KV2/J)']
 table3=['130px','130px','130px','180px','180px','180px','180px','180px','180px','100px','180px','180px','180px','180px','180px']
-table4=['sampleCode','direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
-table5=["standard","testOrganization","equipment","testMethod","gaugeDistance"]
+table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
+table5=["testOrganization","standard","equipment","testMethod","gaugeDistance"]
 isVisible =false;
 options;
   //抽屉
@@ -116,7 +116,33 @@ options;
     this.trialDataDetail = res
     console.log(this.trialDataDetail)
     }) 
+//     for(let a=0;a<25;a++){
+//       this.chongqing.push(this.trialDataDetail[a])
+//     }
+// for(let a=25;a<this.trialDataDetail.length;a++){
+//     this.sichuan.push(this.trialDataDetail[a])
+// }
+// this.shanghai=this.classitem(this.sichuan,"sampleCode")
+
   }
+  // classitem(arry1,p){
+  //   let arry=[]
+  //   arry1.map(mapItem=>{
+  //   if (arry.length == 0) {
+  //     arry.push({highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
+  //   } else {
+  //      let res = arry.some(item=> {//判断相同highSpeedStrechDataDetailId，有就添加到当前项
+  //       if (item.highSpeedStrechDataDetailId == mapItem[p]) {
+  //         item.List.push(mapItem)
+  //         return true
+  //       }
+  //     })
+  //     if (!res) {//如果没找相同highSpeedStrechDataDetailId添加一个新对象
+  //       arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
+  //     }
+  //   } })
+  //   return arry
+  // }
   public async GetTrialDataDetail() {
     let materialId = this.materialId
     let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetailRequirements/${materialId}`;

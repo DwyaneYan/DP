@@ -35,6 +35,7 @@ export class FldPictureComponent implements OnInit {
   }
   public PlotPicture(data, xData) {
     this.options = {
+      width:'550',
       title: {
           text: 'FLD'
            },    
@@ -56,9 +57,10 @@ export class FldPictureComponent implements OnInit {
           formatter: function(val) {
             return (val / 1000).toFixed(4);
           }
-        }
+        },
+        name:"次应变"
       },
-      yAxis: {},
+      yAxis: {name:'主应变'},
       series: [{
         data: data,
         symbolSize: 5,

@@ -29,11 +29,12 @@
       </thead>
       <tbody>
         <tr  *ngFor="let details of trialDataDetails">
-          <td class="one1"  *ngFor="let data4 of table4">{{ details[data4] }}</td>
+          <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ details[data4] }}</td>
         </tr>
         <tr  *ngFor="let detail of trialDataDetail">
-          <td class="one1"  *ngFor="let data4 of table4">{{ detail[data4] }}</td>
+          <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
         </tr>
+        
       </tbody>
   </nz-table>
 </div><br>
