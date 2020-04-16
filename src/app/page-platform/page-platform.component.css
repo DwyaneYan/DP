@@ -81,5 +81,9 @@ hr{
     margin-left: 10%;
 
 }
+div /deep/.ant-card-head{
+    font-size: 18px;
+    font-weight:500
+}
 
 

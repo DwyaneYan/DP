@@ -1,49 +1,27 @@
-<div id="navigate-bar">
 
-    <div id="logo">
-      <a routerLink='/platform'><img src="../../assets/images/logo.png" alt=""  id="navigate-bar-logo" ></a>
-    </div>
+    <ul id="one">
+      <li class="cq1"><a routerLink='/platform'><img src="../../assets/images/logo.png" alt=""  ></a></li>
+      <li class="cq3"><h2>邯钢汽车用钢数据信息化平台 </h2></li>
+      <li class="cq2"><a routerLink="/material" style="color:white;font-size:17px;">首页</a></li>
+      <li class="cq"><a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca" style="color:white;font-size:17px;">整车模型</a></li>
+      <li class="cq"><a href="http://yx2605166.china-g.com/" style="color:white; font-size:17px;">联系我们</a></li>
+      <li class="cq6">帮助</li> 
+      <li class="cq4">
+        <img  src="../../assets/images/user.png" alt="" >
+        <button nz-button nz-dropdown [nzDropdownMenu]="menu" [nzGhost]="true" [nzBlock]="true" >系统管理员<i nz-icon nzType="down"></i></button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>
+              <a>个人信息</a>
+            </li>
+            <li nz-menu-item>
+              <a>修改密码</a>
+            </li>
+            <li nz-menu-item>
+              <a routerLink="/login">注销</a>
+            </li>
+          </ul>
+        </nz-dropdown-menu></li>
+        <li class="cq5"><a routerLink="/system-manage" style="color:white">系统管理&nbsp;&nbsp;|</a></li>
+    </ul>
   
-    <div id="title" > 
-        <h2>邯钢汽车用钢数据信息化平台 </h2>
-    </div>
-  
-    <div id="nav-text">
-      <div id="shouye" class="nav" style="margin-left: 150px;">
-        <a routerLink="/material">首页</a> 
-      </div>
-      <div class="nav">
-          <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">整车模型</a>
-      </div>
-      <div class="nav">
-          <a href="http://yx2605166.china-g.com/">联系我们</a>
-      </div>
-      <div class="nav">
-        帮助
-      </div>
-    </div>
-  
-    <div id="user">
-      <div id="admin" class="right-content">
-        <button nz-button nz-dropdown [nzDropdownMenu]="menu" [nzGhost]="true" [nzBlock]="true" style="border: none; padding-bottom:7px ; padding-left: 0px;">系统管理员<i nz-icon nzType="down"></i></button>
-          <nz-dropdown-menu #menu="nzDropdownMenu">
-            <ul nz-menu>
-              <li nz-menu-item>
-                <a>个人信息</a>
-              </li>
-              <li nz-menu-item>
-                <a>修改密码</a>
-              </li>
-              <li nz-menu-item>
-                <a routerLink="/login">注销</a>
-              </li>
-            </ul>
-          </nz-dropdown-menu>
-      </div>
-          
-      <div id="user-image" class="right-content"><img src="../../assets/images/user.png" alt=""></div>
-      
-      <div id="manage" class="right-content"><a routerLink="/system-manage">系统管理</a> &nbsp;&nbsp;|  </div>
-    </div>
-  
-  </div>

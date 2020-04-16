@@ -1,48 +1,68 @@
 
-#navigate-bar{
-    height: 46px;
-    width: 100%;
-    background-color: black;
-    color: white;
-}
-
-h2{
-    color: white;
-}
-
-#logo, #title, #nav-text, .nav{
-    float: left;
-}
-
-#user{
-    float: right;
-}
-
-#logo{
-    margin-left: 1%;
-}
-
-#title{
-    margin-left: 1.5%;
-    margin-top: 8px;
-}
-
-#nav-text{
-    margin-left: 5%;
-    
-}
-
-.nav{
-    float: left;
-    margin-left: 50px;
-    margin-top: 12px;
-    font-size: medium ;
-}
-
-.right-content{
-        float: right;
-        margin-right: 10px;
-        margin-top: 10px;
+#one{
+        list-style-type: none;
+        margin: 0;
+        padding: 8px;
+        overflow: hidden;
+        background-color: #333;
+        height:62px
+        
     } 
+.cq1{
+        float:left;
+        margin-right:15px;
+    }
+.cq3{
+        float:left;
+    }
+h2{
+        margin:0px;
+        padding:7.4px 0px;
+        color:white
+    }
+.cq2{
+        margin-left:12%;
+        float:left;
+        padding:10.6px 0px;
+
+    }
+.cq{
+        float:left;
+        margin-left:5%; 
+        padding:10.6px 0px;
+    }
+.cq4{
+        float:right;
+        margin-right:3%;
+        position:relative;
+        left:0px;    
+
+        padding:10.5px 0px;
+        width:120px
+    }
+
+button{
+        position: absolute;
+        border:none;
+        height:25px;
+        width:90px;
+        padding:0px;
+        left:30px;
+        color:white
+    }
+.cq5{
+    float:right;
+    margin-right:20px;
+    padding:12.6px 0px;
+    color:white;
+
+    }
+.cq6{
+    float:left;
+    margin-left:5%; 
+    color:white;
+    font-size:17px;
+    padding:10.6px 0px;
+}
 
 
