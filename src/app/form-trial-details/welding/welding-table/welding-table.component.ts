@@ -8,14 +8,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WeldingTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
+  trialDataDetail=[]
   trialDataDetails
   table=[{
     table:"table1",
-    one:["测试机构","执行标准","试验方法"],
-    key:["testOrganization","standard","testMethod"]
+    nzScroll: {x: '1000px' },
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","testMethod"]
 },
 {table:"table2",
+nzScroll: {x: '2600px' },
   one:["焊接试验类型","焊机类别","焊机型号","电极头前端直径(mm)","电极压力(kN)","脉冲次数","预压时间(ms)","升压时间(ms)","最小焊接时间(ms)","中值焊接时间(ms)","最大焊接时间(ms)","保压时间(ms)","临界焊点直径(mm)"],
   key:["testType","welderType","welderMode","headDiameter","electrodePressure","pulseTimes","preloadingTimes","boostTimes","minimumWeldingTimes","middleWeldingTimes","maxmumWeldingTimes","holdingWeldingTimes","criticalJointDiameter",]
 ,
@@ -43,7 +45,10 @@ table1=[{
     .then((res: any) => {
       this.trialDataDetail = res
       // console.log(this.trialDataDetail)
-    })    
+    })   
+    this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+    this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
+  
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId

@@ -81,14 +81,16 @@
           *ngIf="listItemBlank[dataList.key] == true"
         >
           <thead>
-            <tr style="width: 143px;">
-              <th id="str">
-                <div>{{ dataList.name }}
+            <tr >
+              <th id="str" nzWidth="173px" style="height:30px;padding-top: 5px;
+              padding-bottom: 5px;">
+                <div style="width:141px;text-align: left;">{{ dataList.name }}
                 </div>
               </th>
-              <th class="cell" *ngFor="let dataDes of dataList.itemDes;let i = index;">
+              <th  *ngFor="let dataDes of dataList.itemDes;let i = index;" nzAlign="right" nzWidth="173px">
                 <div>
-                  <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{ dataDes }}</span>
+                  <span *ngIf="dataDes.length>=15 else elseBlock" nz-tooltip [nzTooltipTitle]="titleTemplate" style="display:inline-block;width:141px;">{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
+                  <ng-template #elseBlock><span nz-tooltip [nzTooltipTitle]="titleTemplate" style="display:inline-block;width:141px;">{{ dataDes}}</span></ng-template>
                   <ng-template #titleTemplate>
                     <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
                   </ng-template>
@@ -102,6 +104,7 @@
               style="width: 143px;"
             >
               <td
+              nzBreakWord
                 [attr.rowspan]="i === 0 ? this[dataList.key].length : 1"
                 *ngIf="i == 0"
               >
@@ -109,7 +112,10 @@
               </td>
 
               <td class="table" *ngFor="let item of dataList.item">
-                <div>{{ data[item] }}</div>
+                <div style="width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;" [title]="data[item]">{{ data[item] }}</div>
               </td>
             </tr>
           </tbody>

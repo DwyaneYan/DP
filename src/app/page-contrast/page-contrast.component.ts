@@ -36,14 +36,15 @@ export class PageContrastComponent implements OnInit {
       key: "StaticTension",
       itemDes: [
         "执行标准",
-        "屈服强度",
-        "抗拉强度",
-        "应变硬化指数",
-        "断后伸长率",
-        "塑性应变比",
-        "弹性模量",
-        "泊松比",
-        "最大力"
+        "屈服强度RP0.2(MPa)",
+        "抗拉强度Rm(MPa)",
+        "断后伸长率A(％)",
+        "应变硬化指数(n90)",
+        "塑性应变比γ(%)",
+        "弹性模量E(MPa)",
+        "泊松比μ",
+        "最大力Fm(kN)",
+        "烘烤硬化值(BH)",
       ],
       item: [
         "standard",
@@ -54,19 +55,20 @@ export class PageContrastComponent implements OnInit {
         "plasticStrainRatio",
         "modulusOfElasticity",
         "poissonRatio",
-        "maximumForce"
+        "maximumForce",
+        "bhValue"
       ]
     },
     {
       name: "低周疲劳",
       key: "LowCycleFatigue",
       itemDes: [
-        "总应变幅",
-        "塑性应变幅",
-        "弹性应变幅",
-        "失效循环数",
-        "循环应力幅",
-        "试验频率",
+        "总应变幅(Δεt/2，mm/mm)",
+        "塑性应变幅(Δεp/2，mm/mm)",
+        "弹性应变幅(Δεe/2，mm/mm)",
+        "失效循环数(Nf，次)",
+        "循环应力幅(Δσ/2，MPa)",
+        "试验频率(Hz)",
       ],
       item: [
         "totalStrainAmplitude",
@@ -86,15 +88,13 @@ export class PageContrastComponent implements OnInit {
         "Mn",
         "P",
         "S",
-        "AlS",
       ],
       item: [
         "contentRatioC",
         "contentRatioSi",
         "contentRatioMn",
         "contentRatioP",
-        "contentRatioS",
-        "contentRatioAlS",
+        "contentRatioS"
       ]
     }
   ];

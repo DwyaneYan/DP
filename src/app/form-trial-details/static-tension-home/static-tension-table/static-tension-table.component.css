@@ -9,6 +9,8 @@
     color:white;
     padding-top:8px;
     padding-bottom:8px;
+    padding-right:0px;
+    padding-left:0px
 }
 .one1{
     text-align:center;
@@ -18,6 +20,23 @@
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
     background: white;
   }
-
+ #one .one /deep/.ng-star-inserted>span{
+     display:block;
+     /* padding-top: 30px;
+     padding-bottom: 30px;
+     height:23px; */
+     height:41.6px;
+     /* padding-top: 10px;
+     padding-bottom: 10px; */
+     /* line-height:41.6px; */
+     text-align:center;
+    
+ }
+#one .one /deep/ .ant-table-header-column{
+    height:41.6px;
+}
+/* #one .one /deep/.ng-star-inserted{
+    height:unset;
+} */
 
 

@@ -8,12 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
-  trialDataDetails=[{}]
+  trialDataDetail=[]
+  trialDataDetails=[]
   table=[{
     table:"table1",
-    one:["测试机构","执行标准"],
-    key:["testOrganization","standard"]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准"],
+    key:["testOrganization","dates","dateEnds","standard"]
 },
 {table:"table2",
   one:["氢脆试验项目","试验设备","溶液类别","试验时间","试验方法"],
@@ -42,8 +42,9 @@ table1=[{
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
     })    
+    this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+    this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId

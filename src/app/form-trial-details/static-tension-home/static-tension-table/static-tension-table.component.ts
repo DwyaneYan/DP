@@ -36,11 +36,11 @@ export class StaticTensionTableComponent implements OnInit {
     poissonRatio:0,
     maximumForce:0,
   }
-table1=['测试机构','执行标准','试验设备','试验方法','标距(mm)']
+table1=['测试机构','开始检测日期','检测结束日期','执行标准','试验设备','试验方法','标距(mm)']
 table2=["位置",'方向','试样厚度a(mm)','屈服强度Rp(MPa)','抗拉强度Rm(MPa)','应变硬化指数(n)','断后伸长率A(％)','塑性应变比γ(%)','弹性模量E(MPa)','泊松比μ','最大力Fm(kN)','烘烤硬化值(BH)','180°弯曲试验(弯曲压头直径D)','V型冲击试验温度(℃)','V型冲击试验吸收能量(KV2/J)']
-table3=['130px','130px','130px','180px','180px','180px','180px','180px','180px','100px','180px','180px','180px','180px','180px']
+table3=['130px','130px','150px','150px','150px','150px','150px','150px','150px','100px','150px','150px','150px','150px','150px']
 table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
-table5=["testOrganization","standard","equipment","testMethod","gaugeDistance"]
+table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod","gaugeDistance"]
 isVisible =false;
 options;
   //抽屉
@@ -116,13 +116,8 @@ options;
     this.trialDataDetail = res
     console.log(this.trialDataDetail)
     }) 
-//     for(let a=0;a<25;a++){
-//       this.chongqing.push(this.trialDataDetail[a])
-//     }
-// for(let a=25;a<this.trialDataDetail.length;a++){
-//     this.sichuan.push(this.trialDataDetail[a])
-// }
-// this.shanghai=this.classitem(this.sichuan,"sampleCode")
+  this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+  this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
 
   }
   // classitem(arry1,p){

@@ -8,8 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChemicalelementTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{element:'',
-  sampleCode:''}]
+  trialDataDetail=[]
  arry1=[]
  arry2=[]//去重后的元素符号
  arry3=[]
@@ -18,8 +17,8 @@ export class ChemicalelementTableComponent implements OnInit {
  arry6=[]
   table=[{
     table:"table1",
-    one:["测试机构","执行标准","试验设备","试验方法"],
-    key:["testOrganization","standard","equipment","testMethod"]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
   },
   {
   table:"table2",
@@ -86,12 +85,13 @@ contrastTable(params) {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
+      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
       this.trialDataDetail.forEach(val=>{this.arry1.push(val.element);
         this.arry4.push(val.sampleCode);})
       this.arry2=this.unique1(this.arry1)
       this.arry5=this.unique1(this.arry4)
       document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (120+this.arry2.length*90) +"px";
-      // console.log(this.arry5)
       for(let a=0;a<this.arry5.length;a++){
         this.arry3[a]=[]
       for(let b=a;b<this.trialDataDetail.length;b+=this.arry5.length){       

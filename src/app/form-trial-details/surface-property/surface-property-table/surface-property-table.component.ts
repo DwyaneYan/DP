@@ -14,8 +14,8 @@ export class SurfacePropertyTableComponent implements OnInit {
   trialDataDetailss=[]
   trialDataDetailsss=[]
   table=[{
-    one:["测试机构","执行标准","试验设备","试验方法","表面性能试验项目","表面质量等级(FD;FC;FB)"],
-    key:["testOrganization","standard","equipment","testMethod","testItem",'surfaceQualityGrade']
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法","表面性能试验项目","表面质量等级(FD;FC;FB)"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod","testItem",'surfaceQualityGrade']
 },
 {
   one:["面积（m2）","初始重量（g）","试验后重量（g）","膜重（g/mm2）",'重量要求（g/m2）'],
@@ -103,7 +103,9 @@ this.one=this.classitem(this.trialDataDetails,"position")
       debugger
       this.trialDataDetailss = res;
       console.log(this.trialDataDetailss)
-    })    
+    })
+    this.trialDataDetailss[0].dates= this.trialDataDetailss[0].dates.split("T")[0];
+    this.trialDataDetailss[0].dateEnds= this.trialDataDetailss[0].dateEnds.split("T")[0];    
   }
   classitem(arry1,p){
     let arry=[]

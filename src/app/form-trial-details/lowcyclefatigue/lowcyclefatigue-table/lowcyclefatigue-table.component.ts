@@ -13,8 +13,8 @@ export class LowcyclefatigueTableComponent implements OnInit {
   two=[]
   trialDataDetails=[{}]
   baseInfo=[]
-  table1=["测试机构","执行标准","试验设备","试验方法","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
-  table2=["testOrganization","standard","equipment","testMethod","surfaceQuality","cyclicStrainRatio","extensometerGaugeDistance"]
+  table1=["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法","表面质量（特别差的需专门注明）","循环应变比","是否使用引伸计，引伸计规格(mm)",]
+  table2=["testOrganization","dates","dateEnds","standard","equipment","testMethod","surfaceQuality","cyclicStrainRatio","extensometerGaugeDistance"]
   table3=[{
     one:["循环强度系数Κ＇/MPa","循环应变硬化指数n＇","相关系数r"],
   key:["cyclicStrengthParameter","cyclicStrainHardening","relatedSressParameter"]},
@@ -63,12 +63,12 @@ key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrain
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
       for(let a=1;a<this.trialDataDetail.length;a++)   {
         this.two.push(this.trialDataDetail[a])
       }
     }) 
-    console.log(this.two)
+    this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+    this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
     
   }
   public async GetTrialDataDetailss() {

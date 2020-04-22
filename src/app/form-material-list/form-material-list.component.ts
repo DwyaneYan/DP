@@ -97,41 +97,28 @@ this.contrastID = this.contrasts.toString();
 } 
 pushdata(arr1){
   let arr2=[]
-  let d1=[]
-  let d2=[]
+//   let d1=[]
+//   let d2=[]
 arr1
 .forEach((val) =>{   
-  if(val.date!=null&&val.dateEnd!=null){
- d1=(val.date).split("T");
- d2=(val.dateEnd).split("T");}
-else{
-d1.push("");
-d2.push("")
-}
-  if(val.maxModel==null){
+//   if(val.date!=null&&val.dateEnd!=null){
+//  d1=(val.date).split("T");
+//  d2=(val.dateEnd).split("T");}
+// else{
+// d1.push("");
+// d2.push("")
+// }
+
 arr2.push({
     materialId: val.id,
     name: val.name,
     manufacture: val.manufactoryName,
-    thickness: val.minModel,
+    thickness: val.model,
     reelNumber:val.reelNumber,
-    // typicalPart:val.typicalPartName,
-    // appVehicle:val.appliedVehicleType,
-    date:d1[0]+'——'+d2[0],
-  });}
- else{
-   arr2.push({
-      materialId: val.id,
-      name: val.name,
-      manufacture: val.manufactoryName,
-      thickness: val.minModel+"-"+val.maxModel,
-      reelNumber:val.reelNumber,
-      // strength:val.strength,
-      // typicalPart:val.typicalPartName,
-      // appVehicle:val.appliedVehicleType,
-      date:d1[0]+'——'+d2[0],
-    });
- }
+    model:val.strength,
+    // date:d1[0]+'——'+d2[0],
+  });
+
   })
   return arr2
 }

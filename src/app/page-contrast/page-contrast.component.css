@@ -31,15 +31,18 @@ nz-table.vertical {
 }
 nz-table.vertical th,
 nz-table.vertical td {
-  width: 100px;
+  width: 143px;
   height: 4px;
 }
 nz-table.vertical div {
-  width: 100px;
+  /* width: 100px; */
   -webkit-writing-mode: horizontal-tb;
   -moz-writing-mode: horizontal-tb;
   -ms-writing-mode: lr-tb;
   writing-mode: horizontal-tb;
+}
+nz-table.vertical div.sta{
+  width: 100px;
 }
 nz-table {
   margin-left: 20px;
@@ -63,21 +66,22 @@ nz-table.borderedTable tr {
 }
 #hide3 {
   float: left;
-  width: 110px;
+  width: 140px;
 }
 #str {
   border-right: none;
 
   background-color: white;
-  text-align: left;
-  padding-top: 5px;
-  padding-bottom: 5px;
+
 }
+/* #con /deep/ #str>span{
+  position: absolute;
+  left:15px;
+} */
 .cell {
   text-align: right;
-  width: 110px;
+  width: 173px;
   padding-right: 2px;
-  line-height: 8px;
   height: 8px;
 }
 .sta {
@@ -91,10 +95,10 @@ nz-table.borderedTable tr {
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
   background: white;
 }
-.table {
+/* .table {
   line-height: 8px;
   height: 8px;
-}
+} */
 #i {
   position: absolute;
   top: 6px;

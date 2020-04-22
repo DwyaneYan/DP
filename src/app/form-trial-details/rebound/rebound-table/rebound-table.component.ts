@@ -8,20 +8,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReboundTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
-  trialDataDetails
-  trialDataDetailss
-  trialDataDetailsss
+  trialDataDetail=[]
+  trialDataDetails=[]
+  trialDataDetailss=[]
+  trialDataDetailsss=[]
   table=[{
     table:"table1",
     name:"trialDataDetail",
-    one:["测试机构","执行标准","试验设备","试验方法"],
-    key:["testOrganization","standard","equipment","testMethod"]
+    nzScroll:{x: '1200px' },
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
 },
 
 ]
 table1=[{table:"table2",
 name:"trialDataDetail",
+nzScroll:{x: '1050px' },
 width:["150px","150px","150px","150px","150px","150px","150px"],
 one:["回弹试验类型","弯曲角度","凸模圆角半径R","试样尺寸","试验速度（mm/min）","保持压力（kN)","保持时间(s)"],
 key:["testType","bendingAngleRange","punchFilletRadiusRange","sampleSize","testSpeed","holdStress","holdTimes"]
@@ -29,12 +31,14 @@ key:["testType","bendingAngleRange","punchFilletRadiusRange","sampleSize","testS
 },{table:"table3",
 width:["150px","150px","150px","150px","150px","150px"],
 name:"trialDataDetails",
+nzScroll:{x: '900px' },
 one:["方向（沿轧向或者垂直轧向）","厚度 t/mm","凸模圆角半径","弯曲角度α/°","测量角度α1/°","回弹角α'/°"],
 key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle","reboundAngle"]
 ,
 },
 {table:"table4",
   name:"trialDataDetailss",
+  nzScroll:{x: '1030px' },
   width:["150px","150px","150px","80px","80px","80px","80px","80px","80px","100px"],
   one:["方向（沿轧向或者垂直轧向）","弯曲角度（°）","厚度","R=t","1.5t","1.67t","2t","2.3t","2.67t","最小弯曲角度"],
   key:["direction","bendingAngle","thickness","rt1","rt2","rt3","rt4","rt5","rt6","rtMin"]
@@ -43,6 +47,7 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
 {table:"table5",
   name:"trialDataDetailsss",
   width:["150px","150px","100px","100px","100px","100px"],
+  nzScroll:{x: '700px' },
   one:["方向（沿轧向或者垂直轧向）","厚度 t/mm","R/t=0.5","R/t=1","R/t=1.5","R/t=2"],
   key:["direction","thickness","rt1","rt2","rt3","rt4"]
 ,
@@ -67,7 +72,10 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
     .then((res: any) => {
       this.trialDataDetail = res
       // console.log(this.trialDataDetail)
-    })    
+    })  
+    this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+    this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
+  
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId

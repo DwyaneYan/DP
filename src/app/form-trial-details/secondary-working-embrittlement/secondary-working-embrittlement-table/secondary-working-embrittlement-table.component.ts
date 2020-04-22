@@ -20,8 +20,8 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   serialss=[]
   serialsss
   table=[{
-    one:["测试机构","执行标准","试验设备","试验方法"],
-    key:["testOrganization","standard","equipment","testMethod"]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
 },
 {
   one:["试验温度℃"],
@@ -45,7 +45,10 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
     .then((res: any) => {
       this.trialDataDetail = res
       // console.log(this.trialDataDetail)
-    })    
+    }) 
+    this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+    this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
+  
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
