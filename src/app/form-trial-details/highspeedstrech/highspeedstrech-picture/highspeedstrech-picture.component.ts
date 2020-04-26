@@ -100,7 +100,6 @@ for(let a=0;a<this.filess.length;a++){
     let xData=[]
     let arr2=[]
     let arr3=[]
-debugger
     arr2=this.classitem(this.trialDataDetails,"highSpeedStrechDataDetailId") ;//工程应力应变、真应力应变
     arr3=this.classitem(this.trialDataDetailss,'realPlasticTestTarget') ;//延伸到1
     console.log(arr3)
@@ -197,7 +196,6 @@ classdata(name,p1,p2,da,datas,p3,p4){
       temp2.push( [(i[p3]*10000).toFixed(4),i[p4]]);
     });
     temp2.sort((a,b)=>{return Number(a[0])-Number(b[0])});
-    debugger
     if(name=="真塑性应变真应力延伸到1" || name=="真塑性应变真应力")
     {
       option.series.push({

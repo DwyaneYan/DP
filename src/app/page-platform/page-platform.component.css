@@ -1,7 +1,7 @@
 
 
 
-#zhengche, #material-model{
+#zhengche{
     color: #000000;
     background-color: #ffffff;
     height: 220px;
@@ -16,7 +16,21 @@
     box-shadow: 0em 0em 0.5em 0 rgb(187, 187, 187);
     padding: 0px;
 }
+#material-model{
+    width: 1000px;
+    height:auto;
+    color: #000000;
+    margin: 20px auto;
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    border: 0.5px solid #969393;
+    border-radius: 5px;
+    border: solid transparent;
+    box-shadow: 0em 0em 0.5em 0 rgb(187, 187, 187);
+    overflow:auto;
+    overflow-y:hidden
 
+}
 #search-box, #text,#msearch-box, #mtext, #search-box2, #import{
     float: right;
 }
@@ -55,9 +69,6 @@ hr{
     margin-right: 4%;
 }
 
-.import{
-    float: right;
-}
 
 #search-box2{
     float: right;
@@ -74,12 +85,22 @@ hr{
     box-shadow: inset 0em 0em 0.3em 0 rgb(187, 187, 187);
     margin-left: 20px;
     padding-top: 20px;
+    margin-bottom:20px;
+    margin-top:15px;
 }
-
-.material-image, .material-info{
-    float: left;
-    margin-left: 10%;
-
+:host ::ng-deep .avatar-uploader > .ant-upload {
+    width: 110px;
+    height: 110px;
+    margin-left:15px
+  }
+ .material-info{
+    /* float: right; */
+    margin-right: 2%;
+    margin-left:20px;
+    width:150px;
+    /* position:relative;
+    top:-115px */
+    display:inline-block;
 }
 div /deep/.ant-card-head{
     font-size: 18px;

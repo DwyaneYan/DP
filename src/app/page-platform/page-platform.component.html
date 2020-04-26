@@ -1,6 +1,5 @@
+<app-form-navigation></app-form-navigation>
 <div id="background">
-
-    <app-form-navigation></app-form-navigation>
 
     <!--整车模块-->
     <div id="zhengche-module">
@@ -46,12 +45,9 @@
 
     <!--材料库模块-->
     <div id="material-model">
-
-        <div id="title2">
             <div id="cailiaoku"><a routerLink="/material" style="color:black;font-weight:500 ;font-size:18px ">材料库</a></div>
-
-            <div id="import">                
-                <div class="import">
+            <div id="import">    
+                <img src="../../assets/images/import-data.png" alt="">       
                     <button nz-button nzType="primary" (click)="showModal()" style="background-color: transparent; color: #1D8CE0; border:none; padding-left: 5px;">
                         <span>导入数据</span>
                       </button>
@@ -84,46 +80,40 @@
                                 <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                             </nz-upload>
                           </div>
-
                       </nz-modal>
-                </div>
-                <div class="import"><img src="../../assets/images/import-data.png" alt="import-data"></div>
             </div>
-
-            <div id="search-box2">
-                <nz-input-group [nzSuffix]="suffixIconSearch">
-                        <input type="text" nz-input placeholder="搜索材料" />
-                    </nz-input-group>
-                    <ng-template #suffixIconSearch>
-                        <i nz-icon nzType="search"></i>
-                </ng-template>
-            </div>
-           
+            <div id="import" style="margin-right:1%">
+                <button nz-button [nzType]="'primary'" (click)="showModal1()" style="background-color: white;border: none;color: #1D8CE0;"><span>编辑</span></button>
+      <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <nz-cascader
+        [nzOptions]="nzOptions"
+        [(ngModel)]="values"
+        (ngModelChange)="onChanges($event)" 
+        nzPlaceHolder="添加推荐材料"></nz-cascader>
+        <nz-upload
+        [nzAction]="maUrl"
+        [nzCustomRequest]="customReq"
+        (nzChange)="handleChange($event)"
+      >
+       &nbsp;&nbsp;&nbsp; <button nz-button><i nz-icon nzType="upload"></i>上传图片</button>
+      </nz-upload>
+      </nz-modal>
+                
         </div>
-
         <hr/>
-
-        <div id="content2">
-
-            <div class="material"  *ngFor="let material of materials" >
-                <a routerLink="/display/4e6f9024-aca4-4c5d-b1df-b48c9ba1d3eb/static-tension-home/table">
-                    <div class="material-image"><img src="../../assets/images/DC01.png" alt="" width="100" height="100" ></div>
-                </a>
-                <div class="material-info">
-                    材料牌号: {{material.name}}<br/>
-                    材料类型: {{material.class}}<br/>
-                    生产厂家: {{material.fac}}<br/>
-                    型号规格: {{material.model}}
-                </div>
-            </div>
-
-
-
+        <div class="material"  *ngFor="let material of addlist" >
+              <a [routerLink]="['/display', material.materialId]">
+              <img  [src]="material.avatarUrl" style="width: 100px;height:110px;position:relative;top:-35px;margin-left:20px" />
+              </a>
+              <div class="material-info" >
+                     材料牌号: {{material.name}}<br/>
+                    生产厂家: {{material.manufactory}}<br/>
+                    型号规格: {{material.model}}<br/>
+                    卷号: {{material.reelNumber}}
+              </div>
         </div>
+
 
     </div>
-    
-
-    
 
 </div>

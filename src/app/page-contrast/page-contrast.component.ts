@@ -167,13 +167,8 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
       await this.MaterialsContrastService.GetMaterialss(this.array[i]).then(
         (res: any) => {
           this.name[i] = res.items[0].name; 
-          this.manu[i] = res.items[0].manufactoryName;
-          if(res.items[0].maxModel==null){  
-          this.model[i] = res.items[0].minModel;}
-          else{
-          this.model[i] = res.items[0].minModel+'-'+res.items[0].maxModel;
-          }
-        }
+          this.manu[i] = res.items[0].manufactoryName;          
+          this.model[i] = res.items[0].model;}
       );
     }
   }
@@ -234,6 +229,11 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
     var _id = document.getElementById(value);
     window.scrollTo(0, _id.offsetTop);
   }
+  three
+d =[]
+e =[]
+f =[]
+g=[]
   showModal() {
     this.checkbox = true;
     for (let j = 0; j < this.listManufacturers.length; j++) {
@@ -243,52 +243,76 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
       };
       this.listMa[j] = [];
       this.list[j] = [];
-      this.li[j] = [];
+      this.li[j] = [];//每个厂家的牌号
       this.pa[j] = { manufactoryId: "" };
-
       this.pa[j].manufactoryId = this.listManufacturers[j].id;
       this.MaterialsContrastService.GetMater(this.pa[j]).then((res: any) => {
         this.listMa[j] = res.items;
-        console.log(this.listMa[j]);
         this.listMa[j].forEach(val => this.list[j].push(val.name));
-        this.li[j] = this.unique1(this.list[j]);
-        console.log(this.li[j]);
+        this.li[j] = this.unique1(this.list[j]);//每个厂家的牌号
         this.th[j] = [];
         this.listMath[j] = [];
         this.lit[j] = [];
         this.pas[j] = [];
-        this.limo[j] = [];
+        this.limo[j] = [];//每个牌号的型号规格
+        this.d[j]=[]
+        this.e[j]=[]
+        this.f[j]=[]
+        this.g[j]=[] 
         for (let a = 0; a < this.li[j].length; a++) {
           this.two[j] = [];
           this.listMath[j][a] = [];
           this.lit[j][a] = [];
-          this.limo[j][a] = [];
+          this.limo[j][a] = [];//每个牌号的型号规格
+          this.d[j][a]=[]
+        this.e[j][a]=[]
+        this.f[j][a]=[]
+        this.g[j][a]=[]
           this.pas[j][a] = { manufactoryId: "", Name: "" };
           this.pas[j][a].manufactoryId = this.listManufacturers[j].id;
           this.pas[j][a].Name = this.li[j][a];
           this.MaterialsContrastService.GetMater(this.pas[j][a]).then(
             (res: any) => {
-              this.listMath[j][a] = res.items;
-              
+              this.listMath[j][a] = res.items;             
               this.listMath[j][a].forEach(val =>{
-                if(val.maxModel==null){this.lit[j][a].push(val.minModel)}
-              else{this.lit[j][a].push(val.minModel+'-'+val.maxModel)}}
+               this.lit[j][a].push(val.model)}
               );
-              this.limo[j][a] = this.unique1(this.lit[j][a]);
-              this.th[j][a] = [];
+              this.limo[j][a] = this.unique1(this.lit[j][a]);   //每个牌号的型号规格         
+             this.th[j][a] = [];
               for (let b = 0; b < this.limo[j][a].length; b++) {
-                this.th[j][a][b] = {
-                  value: this.limo[j][a][b],
-                  label: this.limo[j][a][b],
-                  isLeaf: true
-                };
-              }
+                this.f[j][a][b]=[]
+                this.e[j][a][b]=[]
+                this.g[j][a][b]=[]
+                this.d[j][a][b]={ manufactoryId: "", Name: "" ,model:2};
+                this.d[j][a][b].manufactoryId = this.listManufacturers[j].id;
+                this.d[j][a][b].Name = this.li[j][a];
+                this.d[j][a][b].model = this.limo[j][a][b];
+              this.MaterialsContrastService.GetMater(this.d[j][a][b]).then((res: any) => {
+                this.e[j][a][b] = res.items;
+                this.e[j][a][b].forEach(val =>{
+                  this.f[j][a][b].push(val.reelNumber)}
+                 );
+for(let x=0;x<this.f[j][a][b].length;x++){
+  this.g[j][a][b][x]={
+    value: this.f[j][a][b][x],
+    label: this.f[j][a][b][x],
+    isLeaf: true
+  };
+}
+this.th[j][a][b] = {
+  value: this.limo[j][a][b],
+  label: this.limo[j][a][b],
+  children:this.g[j][a][b] ,
+};
+
               this.two[j][a] = {
                 value: this.li[j][a],
                 label: this.li[j][a],
                 children: this.th[j][a]
               };
               this.nzOptions[j].children = this.two[j];
+            })
+            }
             }
           );
         }
@@ -330,7 +354,7 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
     this.checkbox = false;
   }
   showo(value) {
-    debugger;
+
   }
   hideItem() {
     this.listItemBlank = this.listItem;
@@ -414,26 +438,15 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
   }
   onChanges(values: string[]) {
     console.log(values);
-    let one=[]
     this.pat.manufactoryId = values[0];
     this.pat.Name = values[1];
-    // console.log(this.listManufacturers)
-    if(typeof(values[2])=="number"){
-    this.pat.minModel = values[2];}
-    else{
-    one=this.fenge(values[2],"-");
-    this.pat.minModel = one[0];
-    this.pat.maxModel = one[1];
-    }
+    this.pat.model = values[2];
     this.MaterialsContrastService.GetMater(this.pat).then((res: any) => {
       this.addlist = res.items;
-      console.log(this.addlist);
       this.array.push(this.addlist[0].id);
-      console.log(this.array);
       this.getGetMaterialss();
       this.getGetMaterials();
       this.array.toString();
-      console.log(this.array);
       window.history.pushState(
         null,
         null,
@@ -454,7 +467,7 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
     return arry1
   }
   contrastStaticTension(param,des,trialType){
-    // console.log(this.StaticTension)
+   
       let data = [];
       let xData = [];
       this[trialType].forEach((iterator,i,array) => {
@@ -464,7 +477,7 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
     this.PlotPicture(data, xData, des);
   }
   contrastLowCycleFatigue(param,des){
-    // console.log(this.StaticTension)
+
       let data = [];
       let xData = [];
       this.LowCycleFatigue.forEach((iterator,i,array) => {

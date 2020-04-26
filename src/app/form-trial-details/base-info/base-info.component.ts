@@ -38,7 +38,6 @@ export class BaseInfoComponent implements OnInit {
     await this.http.get(api,{params})
     .toPromise()
     .then((res:any)=>{
-      debugger
       this.baseInfo = res.items;
       // console.log(this.baseInfo)
     })
