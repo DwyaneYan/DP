@@ -33,7 +33,49 @@ key:["formYieldStrength","formTensileStrength","formModulusOfElasticity"]},
 one:["样件编号","总应变幅(Δεt/2，mm/mm)","塑性应变幅(Δεp/2，mm/mm)","弹性应变幅(Δεe/2，mm/mm)","失效循环数(Nf，次)","循环应力幅(Δσ/2，MPa)","试验频率(Hz)"],
 key:["sampleCode","totalStrainAmplitude","plasticStrainAmplitude","elasticStrainAmplitude","failureCycleTimes","cycleStressAmplitude","testFrequency"]}
 ]
-
+isVisible =false;
+options;
+contrastTable(params, des) {
+      let data = [];
+      let xData = [];
+      for (const iterator of this.trialDataDetails) {
+        data.push(iterator[params]);
+        xData.push(iterator['sampleCode']);    
+      }
+      this.PlotPicture(data, xData,des);
+    }
+    handleOk(): void {
+      console.log("Button ok clicked!");
+      this.isVisible = false;
+    }
+  
+  handleCancel(): void {
+      console.log("Button cancel clicked!");
+      this.isVisible = false;
+    }
+    public PlotPicture(data, xData, des) {
+      this.isVisible = true;
+      this.options = {
+        title: {
+          text: des,
+          x: "center",
+          y: "top"
+        },
+        xAxis: {
+          type: "category",
+          data: xData
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: data,
+            type: "line"
+          }
+        ]
+      };
+    }
   constructor( private router: Router,
     public http: HttpClient,) { }
 
