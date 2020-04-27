@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class FldReportComponent implements OnInit {
   materialId
   trialDataDetails=[]
-  trialDataDetail
+
   constructor(
     private router: Router,
     public http: HttpClient,
@@ -32,7 +32,7 @@ export class FldReportComponent implements OnInit {
       this.trialDataDetails = res
       var p= this.trialDataDetails[0].fileKey.slice(0,this.trialDataDetails[0].fileKey.length-1)      
      var b=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${p}`
-     console.log(pdf.embed(b, "#pdf1"))
+     pdf.embed(b, "#pdf1")
     })  
 
   }
