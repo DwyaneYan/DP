@@ -43,7 +43,15 @@
   nzBordered [nzScroll]="{ x: '1400px',y:'600px' }" >
              <thead>
                <tr>
-                 <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[1].one">{{data41}}</th>
+                 <th nzWidth="200px" class="one"  *ngFor="let data41 of table4[1].one; let i = index">
+                  <span *ngIf="('sampleCode').indexOf(table4[1].key[i]) == -1; else other_content">
+                    <span nz-tooltip [nzTooltipTitle]="titleTemplate" >{{data41}}</span>
+                    <ng-template #titleTemplate>
+                      <a (click)="contrastTable(table4[1].key[i], data41)">对比</a>
+                    </ng-template>
+                  </span>
+                  <ng-template #other_content><span #other_content>{{data41}}</span></ng-template>
+                  </th>
                </tr>
              </thead>
              <tbody *ngFor="let detail of  trialDataDetails ">
@@ -54,4 +62,10 @@
            </nz-table>
   </div>
   
-
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+        <div
+          echarts
+          [options]="options"
+          style="height: 400px;position: relative;"
+        ></div>
+      </nz-modal>
