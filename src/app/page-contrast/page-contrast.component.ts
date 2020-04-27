@@ -138,7 +138,9 @@ export class PageContrastComponent implements OnInit {
       .wrapInner("<div>");
     //$('table').addClass('vertical');//数字会变垂直，不能用
     this.contrastID = this.routerinfo.snapshot.queryParams["materialids"];
-    this.array = this.contrastID.split(",");
+    if(this.contrastID.length>0){
+    this.array = this.contrastID.split(",");}
+    else{this.array=[]}
     this.getGetMaterialss();
     this.getGetMaterials();
     this.getGetManufacturers();
@@ -146,10 +148,10 @@ export class PageContrastComponent implements OnInit {
   }
 // 请求对比数据
   public async getGetMaterials() {
-    if(this.array.length>0) {
+    if(this.array.length!=0) {
       await this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
       this.StaticTension= res; 
-      console.log(this.StaticTension)
+      console.log(this.array.length,this.StaticTension)
 });
     await this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
     this.LowCycleFatigue= res; 
@@ -161,7 +163,13 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
 })
     this.changeStatus(this.listArr);
 
-  }}
+  }
+  else{
+    this.StaticTension=[]
+    console.log(this.array,this.StaticTension.length)
+  }
+
+}
   public async getGetMaterialss() {
     for (var i = 0; i < this.array.length; i++) {
       await this.MaterialsContrastService.GetMaterialss(this.array[i]).then(
