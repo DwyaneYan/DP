@@ -87,6 +87,7 @@ hr{
     padding-top: 20px;
     margin-bottom:20px;
     margin-top:15px;
+    position:relative;
 }
 :host ::ng-deep .avatar-uploader > .ant-upload {
     width: 110px;

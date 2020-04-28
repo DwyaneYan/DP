@@ -10,31 +10,31 @@
             </li>
             <li nz-submenu nzTitle="理化性能" nzOpen>
                 <ul >
-                    <li nz-menu-item nzSelected nzMatchRouter *ngIf = "staticTension" routerLinkActive="ant-menu-item-selected"s><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
-                    <li nz-menu-item nzMatchRouter *ngIf = "bend"><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "compress"><a [routerLink]="['/display',materialId ,'compression']">压缩</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "highspeedTension"><a [routerLink]="['/display',materialId ,'highspeedstrech']">高速拉伸</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "dizhoupilao"><a [routerLink]="['/display',materialId ,'lowcyclefatigue']">低周疲劳</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue']">高周疲劳</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "jinxiang"><a [routerLink]="['/display',materialId ,'metallographic']">金相</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "wulixingneng"><a [routerLink]="['/display',materialId ,'physicalperformance']">物理性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "chemical"><a [routerLink]="['/display',materialId ,'chemicalelement']">化学成分</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "jinyongwuzhi"><a [routerLink]="['/display',materialId ,'prohibited-substance']">禁用物质</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "biaomianxn"><a [routerLink]="['/display',materialId ,'surface-property']">表面性能</a></li>
+                    <li nz-menu-item  nzMatchRouter *ngIf = "staticTension" routerLinkActive="ant-menu-item-selected"s><a [routerLink]="['/display',materialId ,'static-tension-home','table']">静态拉伸</a></li>.
+                    <li nz-menu-item nzMatchRouter *ngIf = "bend"><a [routerLink]="['/display',materialId ,'bending','table']">弯曲</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "compress"><a [routerLink]="['/display',materialId ,'compression','table']">压缩</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "highspeedTension"><a [routerLink]="['/display',materialId ,'highspeedstrech','table']">高速拉伸</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "dizhoupilao"><a [routerLink]="['/display',materialId ,'lowcyclefatigue','table']">低周疲劳</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue','table']">高周疲劳</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "jinxiang"><a [routerLink]="['/display',materialId ,'metallographic','table']">金相</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "wulixingneng"><a [routerLink]="['/display',materialId ,'physicalperformance','table']">物理性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "chemical"><a [routerLink]="['/display',materialId ,'chemicalelement','table']">化学成分</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "jinyongwuzhi"><a [routerLink]="['/display',materialId ,'prohibited-substance','table']">禁用物质</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "biaomianxn"><a [routerLink]="['/display',materialId ,'surface-property','table']">表面性能</a></li>
                 </ul>
             </li>
             <li nz-submenu nzTitle="工艺性能" nzOpen>
                 <ul >
-                    <li nz-menu-item nzMatchRouter *ngIf = "kangAoxn"><a [routerLink]="['/display',materialId ,'dent-resistance']" >抗凹性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "fanbiankouhexn"><a [routerLink]="['/display',materialId ,'flanging-clasp']">翻边扣合性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture']">氢致延迟开裂</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "hanjiexn"><a [routerLink]="['/display',materialId ,'welding']">焊接性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "jiaojiexn"><a [routerLink]="['/display',materialId ,'cementing']">胶结性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "tuzhuangxn"><a [routerLink]="['/display',materialId ,'painting']">涂装性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "FLD"><a [routerLink]="['/display',materialId ,'fld']">成型极限FLD</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "huitanxn"><a [routerLink]="['/display',materialId ,'rebound']">回弹性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "hongkaoyh"><a [routerLink]="['/display',materialId ,'bake-hardening']">烘烤硬化</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "kangAoxn"><a [routerLink]="['/display',materialId ,'dent-resistance','table']" >抗凹性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement','table']">二次加工脆性</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "fanbiankouhexn"><a [routerLink]="['/display',materialId ,'flanging-clasp','table']">翻边扣合性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture','table']">氢致延迟开裂</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "hanjiexn"><a [routerLink]="['/display',materialId ,'welding','table']">焊接性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "jiaojiexn"><a [routerLink]="['/display',materialId ,'cementing','table']">胶结性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "tuzhuangxn"><a [routerLink]="['/display',materialId ,'painting','table']">涂装性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "FLD"><a [routerLink]="['/display',materialId ,'fld','table']">成型极限FLD</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "huitanxn"><a [routerLink]="['/display',materialId ,'rebound','table']">回弹性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "hongkaoyh"><a [routerLink]="['/display',materialId ,'bake-hardening','table']">烘烤硬化</a></li>
                 </ul>
             </li>
         </ul>

@@ -41,4 +41,12 @@ export class PlatformService {
     });
     return res;
   }
+  async shanchutj(p)
+  {
+    let api=`http://localhost:60001/api/hangang/material/${p}/materialRecommendations`
+    let res= await this.http.delete(api,p).toPromise().catch(err=>{
+      console.log(err);
+    });
+    return res;
+  }
 }
