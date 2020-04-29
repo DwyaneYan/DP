@@ -51,11 +51,9 @@ public async GetTrials(materialId){
   await this.experimentalItemService.GetTrials(materialId).then((res:any) => {
     this.trials = res
   })
-// console.log(this.trials)
 this.trials.forEach((val,i,array) => {
   this.trialName.push(val.name)
 });
-// console.log(this.trialName)
 this.staticTension = this.trialName.includes("静态拉伸")
 this.compress = this.trialName.includes("压缩")
 this.highspeedTension = this.trialName.includes("高速拉伸")

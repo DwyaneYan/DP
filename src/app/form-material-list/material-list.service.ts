@@ -24,5 +24,15 @@ export class MaterialListService {
  //返回请求到的数据(Promise对象)
  return res
   }
-
+  async GetTrials(params)
+  {
+    let MaterialId = params
+    let api = `http://localhost:60001/api/hangang/materialTrial/trialItemByMaterialId/${MaterialId}`;
+    let res = await this.http.get(api)
+    .toPromise()
+    .catch(err =>{
+      console.log(err);
+    })
+    return res;
+  }
 }

@@ -348,7 +348,7 @@ const routes: Routes = [
         ]  
       },
  
-      { path: '', redirectTo: 'static-tension-home', pathMatch: 'full'}
+      // { path: '', redirectTo: '/static-tension-home', pathMatch: 'full'}
 
   ]},
 
@@ -364,8 +364,15 @@ const routes: Routes = [
   { path: 'contrast', component: PageContrastComponent},
 ]
 
+
+
+
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],  //初始化路由器,并让它开始监听浏览器中的地址变化
   exports: [ RouterModule ],  //导出 RouterModule 让路由器的相关指令可以在 AppModule 中的组件中使用。
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+
+
+ }

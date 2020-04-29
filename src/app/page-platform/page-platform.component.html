@@ -58,24 +58,11 @@
                         (nzOnOk)="handleOk()"
                         
                       >
-                        <!-- <nz-input-group [nzSuffix]="suffixIconSearch"> -->
-                            <!-- <input type="text" nz-input placeholder="搜索实验项目" />
-                          </nz-input-group>
-                          <ng-template #suffixIconSearch>
-                            <i nz-icon nzType="search"></i>
-                          </ng-template> -->
-
-                          <!-- <div id="text-syxm">
-                            <br/>
-                            试验项目: 
-                            <app-form-cascader-option (checkvalue)="check($event)" ></app-form-cascader-option>
-                          </div> -->
-                          
                           <div id="text-xzwj">
                             <br/>
                             选择文件:
                             <nz-upload nzAction="http://localhost:60001/api/hangang/material/autoAddTestItem" nzDirectory='true'
-                               [nzCustomRequest]="customReqone" [nzFileList]="FileList"
+                               [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)"
                               >
                                 <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                             </nz-upload>
@@ -83,7 +70,7 @@
                       </nz-modal>
             </div>
             <div id="import" style="margin-right:1%">
-                <button nz-button [nzType]="'primary'" (click)="showModal1()" style="background-color: white;border: none;color: #1D8CE0;"><span>编辑</span></button>
+                <button nz-button [nzType]="'primary'" (click)="showModal1()" style="background-color: white;border: none;color: #1D8CE0;"><span>添加推荐材料</span></button>
       <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
       <nz-cascader
         [nzOptions]="nzOptions"
@@ -93,16 +80,20 @@
         <nz-upload
         [nzAction]="maUrl"
         [nzCustomRequest]="customReq"
-        (nzChange)="handleChange($event)"
+        (nzChange)="handleChange1($event)" 
+        [nzFileList]="FileList"
       >
-       &nbsp;&nbsp;&nbsp; <button nz-button><i nz-icon nzType="upload"></i>上传图片</button>
+       &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon nzType="upload"></i>上传材料图片</button>
       </nz-upload>
-      </nz-modal>
-                
+      </nz-modal>               
         </div>
+        <div id="import" style="margin-right:1%;margin-top:13px">
+          <span style="color: #1D8CE0;">删除推荐材料</span> &nbsp;<nz-switch [(ngModel)]="showcan"></nz-switch>
+  </div>
         <hr/>
         <div class="material"  *ngFor="let material of addlist" >
-              <a [routerLink]="['/display', material.materialId]">
+          <i nz-icon nzType="close" nzTheme="outline" style="position:absolute;right:3px" *ngIf="showcan" (click)="shanchutj(material.id)"></i>
+              <a [routerLink]="material.routerLink1">
               <img  [src]="material.avatarUrl" style="width: 100px;height:110px;position:relative;top:-35px;margin-left:20px" />
               </a>
               <div class="material-info" >

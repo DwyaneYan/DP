@@ -1,6 +1,6 @@
 
   <form nz-form nzLayout="inline" class="components-table-demo-control-bar">
-  <nz-form-item style="position:relative;left:30px">
+  <nz-form-item style="position:relative;left:10px">
   <nz-form-label ><label >对比</label></nz-form-label>
   <nz-form-control><nz-switch [(ngModel)]="checkbox" name="checkbox"></nz-switch></nz-form-control>            
 </nz-form-item>
@@ -36,7 +36,7 @@
     <td class="he" nzBreakWord>{{ data.thickness }}</td>
     <td class="he" nzBreakWord>{{ data.reelNumber }}</td>
     <td class="he" nzBreakWord>{{ data.model }}</td>
-    <td class="he"><a [routerLink]="['/display', data.materialId]" target="_blank">查看</a></td>
+    <td class="he"><a [routerLink]="data.routerLink1" target="_blank">查看</a></td>
   </tr>
 </tbody>
 </nz-table>

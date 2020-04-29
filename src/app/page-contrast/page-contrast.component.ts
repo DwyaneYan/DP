@@ -138,7 +138,9 @@ export class PageContrastComponent implements OnInit {
       .wrapInner("<div>");
     //$('table').addClass('vertical');//数字会变垂直，不能用
     this.contrastID = this.routerinfo.snapshot.queryParams["materialids"];
-    this.array = this.contrastID.split(",");
+    if(this.contrastID.length>0){
+    this.array = this.contrastID.split(",");}
+    else{this.array=[]}
     this.getGetMaterialss();
     this.getGetMaterials();
     this.getGetManufacturers();
@@ -146,10 +148,10 @@ export class PageContrastComponent implements OnInit {
   }
 // 请求对比数据
   public async getGetMaterials() {
-    if(this.array.length>0) {
+    if(this.array.length!=0) {
       await this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
       this.StaticTension= res; 
-      console.log(this.StaticTension)
+      console.log(this.array.length,this.StaticTension)
 });
     await this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
     this.LowCycleFatigue= res; 
@@ -161,14 +163,24 @@ await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) 
 })
     this.changeStatus(this.listArr);
 
-  }}
+  }
+  else{
+    this.StaticTension=[]
+    console.log(this.array,this.StaticTension.length)
+  }
+
+}
+reelNumber=[]
   public async getGetMaterialss() {
     for (var i = 0; i < this.array.length; i++) {
       await this.MaterialsContrastService.GetMaterialss(this.array[i]).then(
         (res: any) => {
+          console.log(res.items)
           this.name[i] = res.items[0].name; 
           this.manu[i] = res.items[0].manufactoryName;          
-          this.model[i] = res.items[0].model;}
+          this.model[i] = res.items[0].model;
+          this.reelNumber[i]=res.items[0].reelNumber
+        }
       );
     }
   }
@@ -292,6 +304,7 @@ g=[]
                 this.e[j][a][b].forEach(val =>{
                   this.f[j][a][b].push(val.reelNumber)}
                  );
+                 this.f[j][a][b]=this.unique1(this.f[j][a][b])
 for(let x=0;x<this.f[j][a][b].length;x++){
   this.g[j][a][b][x]={
     value: this.f[j][a][b][x],
@@ -370,7 +383,7 @@ this.th[j][a][b] = {
     this.name.splice(i, 1);
     this.model.splice(i, 1);
     this.manu.splice(i, 1);
-
+    this.reelNumber.splice(i, 1);
     this.array.splice(i, 1).toString();
 
     this.changeStatus(this.listArr);
@@ -410,7 +423,8 @@ this.th[j][a][b] = {
     minModel: "", //最小型号规格
     Strength: "",
     MaxStrenth: "", //最大屈服强度
-    MinStrenth: "" //最小屈服强度
+    MinStrenth: "" ,//最小屈服强度
+    ReelNumber:''
   };
   public async getGetMa() {
     await this.MaterialsContrastService.GetMater(this.pa).then((res: any) => {
@@ -420,8 +434,7 @@ this.th[j][a][b] = {
       this.listMa.forEach(val => this.listmodel.push(val.model));
       this.li = this.unique1(this.list);
       this.limo = this.unique1(this.listmodel);
-      console.log(this.li);
-      console.log(this.limo);
+      
       // console.log(this.listManufacturers)
     });
   }
@@ -441,6 +454,7 @@ this.th[j][a][b] = {
     this.pat.manufactoryId = values[0];
     this.pat.Name = values[1];
     this.pat.model = values[2];
+    this.pat.ReelNumber =values[3];
     this.MaterialsContrastService.GetMater(this.pat).then((res: any) => {
       this.addlist = res.items;
       this.array.push(this.addlist[0].id);

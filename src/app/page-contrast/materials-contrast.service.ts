@@ -24,13 +24,14 @@ export class MaterialsContrastService {
     return res;    
   }
 
-else{
+else {
   let api = "http://localhost:60001/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
   let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
     console.log(err);
   });
   return res;
 }
+
   }
   async GetMaterialss(params)
   {
@@ -79,13 +80,14 @@ else{
     return res;    
   }
 
-else{
+  else {
   let api = "http://localhost:60001/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
   let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
     console.log(err);
   });
   return res;
 }
+
 }
 //化学成分对比
 async ChemicalElement(array)
@@ -105,12 +107,13 @@ async ChemicalElement(array)
   return res;    
 }
 
-else{
+else {
 let api = "http://localhost:60001/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
 let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
   console.log(err);
 });
 return res;
 }
+
 }
 }

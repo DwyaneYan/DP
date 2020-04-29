@@ -3,8 +3,10 @@ import {PlatformService} from './platform.service';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Observable, Observer } from 'rxjs';
-import * as $ from 'jquery';
+import { MaterialListService } from '../form-material-list/material-list.service'
+// import { Observable, Observer } from 'rxjs';
+// import { UploadChangeParam } from 'ng-zorro-antd/upload';
+// import * as $ from 'jquery';
 @Component({
   selector: 'app-page-platform',
   templateUrl: './page-platform.component.html',
@@ -13,7 +15,6 @@ import * as $ from 'jquery';
 export class PagePlatformComponent implements OnInit {
   avatarUrl
   maUrl
-  loading = false;
   isVisible = false;
   isVisible1 = false;
   isOkLoading = false;
@@ -38,6 +39,16 @@ pas=[]
   reelNumber:''}
   addlist=[]
   addid
+  showi=false
+  showcan=false
+  // canceltj(){
+  //   this.showcan = true;
+  // }
+  shanchutj(p){
+this.PlatformService.shanchutj(p).then((res: any) => {
+  this.showma()})
+
+  }
   showModal(): void {
     this.isVisible = true;
 
@@ -45,12 +56,14 @@ pas=[]
   showModal1(): void {
 
     this.isVisible1 = true;
+    this.op();
   }
   FileList=[]
  handleOk() {
     this.isVisible = false;
     this.FileList=[]  ;  
 this.isVisible1 =false;
+this.showi=false
   }
 
   handleCancel(): void {
@@ -58,6 +71,7 @@ this.isVisible1 =false;
     this.isVisible1 = false;
   }
   constructor(private PlatformService:PlatformService,
+    private MaterialListService:MaterialListService,
     public http: HttpClient,
     private msg: NzMessageService ) { }
     d =[]
@@ -65,7 +79,7 @@ this.isVisible1 =false;
     f =[]
     g=[]
   ngOnInit() {  
-    this.op();
+
     this.showma();
   }
 op(){
@@ -128,6 +142,7 @@ op(){
                 this.e[j][a][b].forEach(val =>{
                   this.f[j][a][b].push(val.reelNumber)}
                  );
+                 this.f[j][a][b]=this.unique1(this.f[j][a][b]);
 for(let x=0;x<this.f[j][a][b].length;x++){
   this.g[j][a][b][x]={
     value: this.f[j][a][b][x],
@@ -172,6 +187,8 @@ customReq = (item: UploadXHRArgs) => {
     reportProgress: true,
     withCredentials: true
   });
+  console.log(this.addlist)
+  
   // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
   return this.http.request(req).subscribe(
     (event: HttpEvent<{}>) => {
@@ -194,7 +211,7 @@ customReq = (item: UploadXHRArgs) => {
       // 处理失败
       item.onError!(err, item.file!);
     }
-  );
+  )
 };
 formData =new FormData();
 formDataList = []
@@ -260,7 +277,7 @@ showma(){
       {
       val.fileString=val.fileString.slice(0,val.fileString.length-1);
         val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` })
-      console.log(this.addlist)
+        this.luyou(this.addlist)     
 });
 }
 
@@ -287,30 +304,186 @@ showma(){
     this.pat.reelNumber = values[3];
     this.PlatformService.GetMater(this.pat).then((res: any) => {
       this.addid=res.items[0].id
+
       this.PlatformService.ADDManufacturers(this.addid).then((res: any) => {
         this.PlatformService.showMaterials().then((res: any) => {
-           this.addlist=res;        
+           this.addlist=res; 
+           this.addlist.map(val=>{ val.fileString=val.fileString.slice(0,val.fileString.length-1);;
+            val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`})        
+           this.luyou(this.addlist)       
           this.maUrl=`http://localhost:60001/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
        });
       })
 
     })
 this.values=[]
+this.showi=true
   }
-
-
-  // handleChange(info: { Photo: UploadFile }): void {
-  //           //    this.addlist.forEach(val=>
-  //           // val.url=`http://localhost:60001/api/hangang/MaterialPicturePut?Id=${val.materialId}`)    
-  //   // this.avatarUrl=1
-  //   this.PlatformService.showMaterials().then((res: any) => {
-  //     this.addlist=res;
-  //     this.addlist.forEach(val=>{
-  //       val.fileString=val.fileString.slice(0,val.fileString.length-1);
-  //       val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` }) ;
-  //       // console.log(this.addlist)
-  // });
-    // }
-  
+  handleChange(info: { file: UploadFile }): void { 
+    console.log(info.file)
+    switch (info.file.status) {
+      // case 'uploading':      
+      //   break;
+      case 'done':
+        // Get this url from response in real world.
+        // this.getBase64(info.input!.originFileObj!, (img: string) => {
+        //   this.loading = false;
+        //   this.avatarUrl = img;
+        // });
+        // window.alert("文件上传成功")
+        this.msg.success("文件上传成功");
+        break;
+      case 'error':
+        this.msg.error('Network error');
+        break;
+    }
+  }
+  handleChange1(info: { file: UploadFile }): void { 
+    switch (info.file.status) {
+      // case 'uploading':      
+      //   break;
+      case 'done':
+        // Get this url from response in real world.
+        // this.getBase64(info.input!.originFileObj!, (img: string) => {
+        //   this.loading = false;
+        //   this.avatarUrl = img;
+        // });
+        // window.alert("图片上传成功，请刷新页面")
+        this.msg.success("图片上传成功");
+        break;
+      case 'error':
+        this.msg.error('Network error');
+        break;
+    }
+ this.showma()
+  }
+  // handleChange1(info: UploadChangeParam): void {
+  //   if (info.file.status !== 'uploading') {
+  //     console.log(info.file, info.fileList);
+  //   }
+  //   if (info.file.status == 'done') {
+  //     this.msg.success(`${info.file.name} file uploaded successfully`);
+  //   } else if (info.file.status == 'error') {
+  //     this.msg.error(`${info.file.name} file upload failed.`);
+  //   }
+  // }
+  public trials
+  public trialName=[]
+  public staticTension
+  public compress
+  public highspeedTension
+  public dizhoupilao
+  public gaozhoupilao
+  public jinxiang
+  public wulixingneng
+  public jinyongwuzhi
+  public biaomianxn
+  public bend
+  public chemical
+  public kangAoxn
+  public ercijiagongcx
+  public fanbiankouhexn
+  public qingzhiyanchikl
+  public hanjiexn
+  public jiaojiexn
+  public tuzhuangxn
+  public FLD
+  public huitanxn
+  public hongkaoyh
+  luyou(listOfAllData){
+    listOfAllData.forEach(data=>
+      {  this.MaterialListService.GetTrials(data.materialId).then((res:any) => {
+        this.trials = res
+        this.trials.forEach((val,i,array) => {
+          this.trialName.push(val.name)
+        });
+    this.staticTension = this.trialName.includes("静态拉伸")
+    this.compress = this.trialName.includes("压缩")
+    this.highspeedTension = this.trialName.includes("高速拉伸")
+    this.dizhoupilao = this.trialName.includes("低周疲劳")
+    this.gaozhoupilao = this.trialName.includes("高周疲劳")
+    this.jinxiang = this.trialName.includes("金相")
+    this.wulixingneng = this.trialName.includes("物理性能")
+    this.jinyongwuzhi = this.trialName.includes("禁用物质")
+    this.biaomianxn = this.trialName.includes("表面性能")
+    this.bend = this.trialName.includes("弯曲")
+    this.chemical =  this.trialName.includes("化学成分")
+    this.kangAoxn = this.trialName.includes("抗凹性能")
+    this.ercijiagongcx = this.trialName.includes("二次加工脆性")
+    this.fanbiankouhexn = this.trialName.includes("翻边扣合性能")
+    this.qingzhiyanchikl = this.trialName.includes("氢致延迟开裂")
+    this.hanjiexn = this.trialName.includes("焊接性能")
+    this.jiaojiexn = this.trialName.includes("胶结性能")
+    this.tuzhuangxn = this.trialName.includes("涂装性能")
+    this.FLD = this.trialName.includes("成型极限")
+    this.huitanxn = this.trialName.includes("回弹性能")
+    this.hongkaoyh = this.trialName.includes("烘烤硬化")
+    if(this.staticTension){
+      data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
+      else if(this.bend){
+       data.routerLink1=[`/display/${data.materialId}/bending/table`]
+      }
+      else if(this.compress){
+       data.routerLink1=[`/display/${data.materialId}/compression/table`]
+      }
+      else if(this.highspeedTension){
+       data.routerLink1=[`/display/${data.materialId}/highspeedstrech/table`]
+      }
+      else if(this.dizhoupilao){
+       data.routerLink1=[`/display/${data.materialId}/lowcyclefatigue/table`]
+      }
+      else if(this.gaozhoupilao){
+       data.routerLink1=[`/display/${data.materialId}/highcyclefatigue/table`]
+      }
+      else if(this.jinxiang){
+       data.routerLink1=[`/display/${data.materialId}/metallographic/table`]
+      }
+      else if(this.wulixingneng){
+       data.routerLink1=[`/display/${data.materialId}/physicalperformance/table`]
+      }
+      else if(this.chemical){
+       data.routerLink1=[`/display/${data.materialId}/chemicalelement/table`]
+      }
+      else if(this.jinyongwuzhi){
+       data.routerLink1=[`/display/${data.materialId}/prohibited-substance/table`]
+      }
+      else if(this.biaomianxn){
+       data.routerLink1=[`/display/${data.materialId}/surface-property/table`]
+      }  
+      else if(this.kangAoxn){
+       data.routerLink1=[`/display/${data.materialId}/dent-resistance/table`]
+      }
+      else if(this.ercijiagongcx){
+       data.routerLink1=[`/display/${data.materialId}/secondary-working-embrittlement/table`]
+      }
+      else if(this.fanbiankouhexn){
+       data.routerLink1=[`/display/${data.materialId}/flanging-clasp/table`]
+      }
+      else if(this.qingzhiyanchikl){
+       data.routerLink1=[`/display/${data.materialId}/hydrogen-induced-delayed-fracture/table`]
+      }
+      else if(this.hanjiexn){
+       data.routerLink1=[`/display/${data.materialId}/welding/table`]
+      }
+      else if(this.jiaojiexn){
+       data.routerLink1=[`/display/${data.materialId}/cementing/table`]
+      }
+      else if(this.tuzhuangxn){
+       data.routerLink1=[`/display/${data.materialId}/painting/table`]
+      }
+      else if(this.FLD){
+       data.routerLink1=[`/display/${data.materialId}/fld/table`]
+      }
+      else if(this.huitanxn){
+       data.routerLink1=[`/display/${data.materialId}/rebound/table`]
+      }
+      else {
+       data.routerLink1=[`/display/${data.materialId}/bake-hardening/table`]
+      } 
+      this.trialName=[]
+      })
+      
+       })
+  }
 
 }
