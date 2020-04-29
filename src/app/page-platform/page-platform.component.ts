@@ -4,9 +4,9 @@ import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from 
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { MaterialListService } from '../form-material-list/material-list.service'
-import { Observable, Observer } from 'rxjs';
-import { UploadChangeParam } from 'ng-zorro-antd/upload';
-import * as $ from 'jquery';
+// import { Observable, Observer } from 'rxjs';
+// import { UploadChangeParam } from 'ng-zorro-antd/upload';
+// import * as $ from 'jquery';
 @Component({
   selector: 'app-page-platform',
   templateUrl: './page-platform.component.html',
@@ -56,6 +56,7 @@ this.PlatformService.shanchutj(p).then((res: any) => {
   showModal1(): void {
 
     this.isVisible1 = true;
+    this.op();
   }
   FileList=[]
  handleOk() {
@@ -78,7 +79,7 @@ this.showi=false
     f =[]
     g=[]
   ngOnInit() {  
-    this.op();
+
     this.showma();
   }
 op(){
