@@ -33,8 +33,10 @@ contrastTable(params) {
       let data = [];
       let xData = [];
       console.log(this.arry3);
+      console.log(this.arry6);
+
       this.arry3.forEach((val,i,array) => {
-        data.push(val[params]);
+        data.push(val.filter((item)=>{return item.element == params})[0].contentRatio);
         xData.push(this.arry5[i]);
       })
       
@@ -85,8 +87,8 @@ contrastTable(params) {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
-      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
+      // this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      // this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
       this.trialDataDetail.forEach(val=>{this.arry1.push(val.element);
         this.arry4.push(val.sampleCode);})
       this.arry2=this.unique1(this.arry1)
