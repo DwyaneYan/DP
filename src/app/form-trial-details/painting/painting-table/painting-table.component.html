@@ -1,5 +1,5 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  [nzScroll]="data.nzScroll"
   *ngFor="let data of table" nzBordered >
     <thead >
       <tr>
@@ -11,8 +11,8 @@
         <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
       </tr>
     </tbody>
-</nz-table><br><br>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
+</nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" [nzWidthConfig]="data.width"
     *ngFor="let data of table2" nzBordered>
         <thead>
           <tr>
@@ -24,14 +24,15 @@
             <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3] }}</td>
           </tr>
         </tbody>        
-      </nz-table> <br> <br> <br>
+      </nz-table>
       <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" 
       *ngFor="let data of table1" nzTitle="{{data.title}}" nzBordered>
         <tbody >
-          <tr *ngFor="let data1 of this[data.name]" >
-            <td class="one1" *ngFor="let data2 of this[data.name]" nzWidth="150px">{{ data1[data2] }}</td>
+          <tr  >
+            <td class="one1"  nzWidth="150px" 
+            *ngFor="let data1 of this[data.name]">{{ data1[data.key] }}</td>
           </tr>
         </tbody>        
-      </nz-table> <br>
+      </nz-table> 
 </div>
 

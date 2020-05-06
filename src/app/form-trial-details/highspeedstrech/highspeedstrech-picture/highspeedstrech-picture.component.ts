@@ -46,7 +46,6 @@ five=[]
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
       for(let a=0;a<this.trialDataDetail.length;a++)
 {if(this.trialDataDetail[a].standard==null){
 this.two.push(this.trialDataDetail[a])
@@ -55,9 +54,6 @@ else{this.one.push(this.trialDataDetail[a])}
 }
 this.one.map(val=>this.three.push(val.testTarget))
 this.four=this.unique1(this.three)
-
-// this.four.map(val=>this.five.push({testTarget:'val'}))
-// console.log(this.four)
 this.file.push(this.one[0].fileString)
 this.files=this.fenge(this.file,";")
         for(let a=0;a<(this.files.length-1);a++){

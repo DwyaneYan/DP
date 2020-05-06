@@ -54,9 +54,10 @@ export class FldTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
+      this.trialDataDetails[0].dates= this.trialDataDetails[0].dates.split("T")[0];
+      this.trialDataDetails[0].dateEnds= this.trialDataDetails[0].dateEnds.split("T")[0];  
       // console.log(this.trialDataDetail)
     })  
-    this.trialDataDetails[0].dates= this.trialDataDetails[0].dates.split("T")[0];
-    this.trialDataDetails[0].dateEnds= this.trialDataDetails[0].dateEnds.split("T")[0];  
+
   }
 }

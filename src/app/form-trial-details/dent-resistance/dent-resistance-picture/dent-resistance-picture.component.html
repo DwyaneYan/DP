@@ -1,1 +1,9 @@
-<p>dent-resistance-picture works!</p>
+
+
+<div id="all">
+
+    <div id="c" *ngFor="let data of ImgPathOne;let i=index">
+        <h1>{{this.four[i]}}</h1>
+        <img class="img"  alt="" height="300" width="300" [src]="data"> 
+    </div>
+</div>

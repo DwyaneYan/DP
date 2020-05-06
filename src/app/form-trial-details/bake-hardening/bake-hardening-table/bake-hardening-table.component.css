@@ -1,6 +1,6 @@
 #dataTable{
     position: absolute;
-    left:30%;
+    left:25%;
     top: 160px;
     width: auto;
     
@@ -19,12 +19,12 @@
     padding-bottom:8px;
 }
 #table1{
-    width:400px;
-    margin-top:30px
+    width:1100px;
 }
 #table2{
     width:1000px;
-    margin-top:30px
+    margin-top:30px;
+    margin-bottom:30px
 }
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
     background: white;

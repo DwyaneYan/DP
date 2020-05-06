@@ -1,5 +1,5 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone"  nzBordered>
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tableone"  nzBordered [nzScroll]=" {x: '1200px' }">
     <thead >
       <tr>
       <th  class="one" nzWidth="200px" *ngFor="let data1 of table1">{{data1}}</th>
@@ -10,8 +10,7 @@
         <td class="one1" *ngFor="let data5 of table5">{{trialDataDetail[0]?trialDataDetail[0][data5]:''}}</td>
       </tr>
     </tbody>
-</nz-table><br><br><br><br>
-<div id="tablewid">
+</nz-table>
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo" nzBordered>
         <thead>
           <tr >
@@ -31,7 +30,7 @@
           </tr>
         </tbody>
       </nz-table>
-    </div>
+   
 </div>
 
 <nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">

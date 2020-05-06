@@ -13,13 +13,15 @@ trialDataDetails
 table=[{
   table:"table1",
   name:"trialDataDetail",
-  one:["执行标准","试验设备"],
-  key:["standard","equipment",]
+  one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+  key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
+  nzScroll :{x: '1200px' }
 },
 {table:"table2",
 name:"trialDataDetails",
 one:["烘烤温度及时间","Rt2.0(MPa)","Rp0.2(MPa)","Rm(MPa)","BH2(MPa)"],
-key:["temperatureTimes","Rt","Rp","Rm","BH2"]
+key:["temperatureTimes","rt","rp","rm","bH2"],
+nzScroll :{x: '1000px' }
 ,
 }]
   constructor(private router: Router,
@@ -38,7 +40,8 @@ key:["temperatureTimes","Rt","Rp","Rm","BH2"]
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];  
     })    
   }
   public async GetTrialDataDetailss() {
@@ -48,7 +51,7 @@ key:["temperatureTimes","Rt","Rp","Rm","BH2"]
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      // console.log(this.trialDataDetail)
+      console.log(this.trialDataDetails)
     })    
   }
 }

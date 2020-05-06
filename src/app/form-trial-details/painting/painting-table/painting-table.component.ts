@@ -11,50 +11,63 @@ export class PaintingTableComponent implements OnInit {
   table=[{
     table:'table1',
     name:"trialDataDetailsssssssss",
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
+    nzScroll :{x: '1200px' }
 },
-{table:'table1',
+{table:'table2',
   name:"trialDataDetail",
   one:["磷化膜结晶尺寸","磷化膜覆盖率"],
-  key:["sizeText","coverRatio"]
+  key:["sizeText","coverRatio"],
+  nzScroll :{x: '400px' }
 },
 {table:'table3',
   name:"trialDataDetails",
   one:["面积（m2）","初始重量（g）","试验后重量（g）","膜重（g/m2）"],
-  key:["area","originalWeight","afterWeight","membraneWeight"]
+  key:["area","originalWeight","afterWeight","membraneWeight"],
+  nzScroll :{x: '800px' }
 },
 {table:'table4',
   name:"trialDataDetailss",
   one:["Ip（s-1）","IH（s-1）","P比"],
-  key:["Ip","IH","ratio"]
+  key:["Ip","IH","ratio"],
+  nzScroll :{x: '600px' }
 },]
 table2=[{table:'table7',
   name:"trialDataDetailsssss",
   one:["Ra（μm）","Rz（μm）"],
-  key:["raOne","raTwo","raThree","rzOne","rzTwo","rzThree"]
-}]
-table1=[{table:'table5',
+  key:["raOne","raTwo","raThree","rzOne","rzTwo","rzThree"],
+  width:['120px', '120px','120px','120px','120px','120px']
+},
+{table:'table5',
 name:"trialDataDetailsss",
 title:"电泳漆膜厚度（μm）",
-key:["pointThickOne","pointThickTwo","pointThickThree"]
-},{table:'table6',
+key:["pointThickOne","pointThickTwo","pointThickThree"],
+width:['120px', '120px','120px']
+},
+{table:'table5',
+name:"trialDataDetailsssssss",
+title:"附着力",
+key:["pointAdhesionOne","pointAdhesionTwo","pointAdhesionThree"],
+width:['120px', '120px','120px']
+},
+{table:'table5',
+name:"trialDataDetailssssssss",
+title:"耐湿热性能",
+key:["pointOne","pointTwo","pointThree"],
+width:['120px', '120px','120px']
+},
+]
+table1=[{table:'table6',
 name:"trialDataDetailssss",
 title:"电泳漆膜铅笔硬度",
-key:["pointHardness"]
+key:"pointHardness"
 },{table:'table6',
 name:"trialDataDetailssssss",
 title:"抗石击性能",
-key:["pointStrength"]
-},{table:'table5',
-name:"trialDataDetailsssssss",
-title:"附着力",
-key:["pointAdhesionOne","pointAdhesionTwo","pointAdhesionThree"]
-},{table:'table5',
-name:"trialDataDetailssssssss",
-title:"耐湿热性能",
-key:["pointOne","pointTwo","pointThree"]
-},]
+key:"pointStrength"
+}]
+
   trialDataDetail =[{}]  // 磷化膜
   trialDataDetails   // 膜重
   trialDataDetailss  // P比

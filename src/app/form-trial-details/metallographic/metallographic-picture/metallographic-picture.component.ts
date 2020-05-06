@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
-import { UploadXHRArgs } from 'ng-zorro-antd';
-import { forkJoin } from 'rxjs';
+import {Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-metallographic-picture',
   templateUrl: './metallographic-picture.component.html',
@@ -11,7 +9,7 @@ import { forkJoin } from 'rxjs';
 export class MetallographicPictureComponent implements OnInit {
   public materialId
   file=[]
-  trialDataDetail  //存放请求到的试验结果
+  trialDataDetail=[]  //存放请求到的试验结果
   files
   filess=[]
   a1
@@ -38,7 +36,6 @@ export class MetallographicPictureComponent implements OnInit {
       this.trialDataDetail = res
       
     })   
-    console.log(this.trialDataDetail) 
     this.file.push(this.trialDataDetail[0].fileString)
 this.files=this.fenge(this.file,";")
         for(let a=0;a<(this.files.length-1);a++){

@@ -1,5 +1,5 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  nzBordered
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  nzBordered [nzScroll]="data.nzScroll"
   *ngFor="let data of table">
     <thead >
       <tr>

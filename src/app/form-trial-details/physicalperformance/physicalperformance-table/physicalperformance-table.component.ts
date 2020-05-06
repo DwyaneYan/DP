@@ -8,17 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PhysicalperformanceTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
-  trialDataDetails=[{}]
-  trialDataDetailss=[{}]
+  trialDataDetail=[]
+  trialDataDetails=[]
+  trialDataDetailss=[]
   table=[{
     table:"table1",
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
+    nzScroll :{x: '1200px' }
 },
 {table:"table2",
   one:["维氏硬度（HV）","布氏硬度（HBW）","洛氏硬度（HRC）","密度ρ（g/cm3）","电阻率ρ（Ω·m）"],
-  key:["hv","hbw","hrc","density","resistivity"]
+  key:["hv","hbw","hrc","density","resistivity"],
+  nzScroll :{x: '1000px' }
 ,
 },]
 table1=[
@@ -50,7 +52,8 @@ table1=[
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
+      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
     })    
   }
   // 导热系数

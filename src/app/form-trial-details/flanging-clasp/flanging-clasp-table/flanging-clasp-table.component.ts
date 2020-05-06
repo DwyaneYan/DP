@@ -8,15 +8,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FlangingClaspTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
+  trialDataDetail=[]
   table=[{
     table:"table1",
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
+    nzScroll :{x: '1200px' }
 },
 {table:"table2",
   one:["翻遍等级"],
-  key:["flangingLevel"]
+  key:["flangingLevel"],
+  nzScroll :{x: '200px' }
 ,
 }]
   constructor(private router: Router,
@@ -34,7 +36,8 @@ export class FlangingClaspTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      // console.log(this.trialDataDetail)
+      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];  
     })    
   }
 }

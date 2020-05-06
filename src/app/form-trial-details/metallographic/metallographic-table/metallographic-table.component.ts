@@ -8,10 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MetallographicTableComponent implements OnInit {
   public materialId
-  trialDataDetail=[{}]
+  trialDataDetail=[]
   table=[{
-    one:["执行标准","试验设备"],
-    key:["standard","equipment",]
+    one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
+    key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
 },
 {
   width:["150px","200px","150px","150px"],
@@ -34,74 +34,9 @@ export class MetallographicTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
+      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];  
     })    
   }
-  visible = false;
-  public postParams = {
-    materialTrialDataId:'',
-    standard:'',
-    structure:'',
-    nonMetallicInclusionLevel:'',
-    grainSize:'',
-    depthDecarburization:'',
-
-  }
-  open(): void {
-    this.visible = true;
-  }
-  close(): void {
-    this.visible = false;
-  }
-
-  materialTrialId
-  materialTrialDataId
-  materialTrialDataDetailId
-  public async PostTrialDataDetails(){   
-    //#region 得到materialTrialDataId: materialId+TrialId-->materialTrialId-->materialDataId      
-    ////materialId+TrialId-->materialTrialId
-    let paramsMaterialTrial={
-      materialId:this.materialId,
-      trialId:"73b1b822-689b-4e95-bd97-36e9eb395216"
-    }
-    let apiMaterialTrial = "http://localhost:60001/api/hangang/materialTrial/materialTrial"
-    await this.http.post(apiMaterialTrial,paramsMaterialTrial)
-    .toPromise()
-    .then((res:any)=>{
-      this.materialTrialId = res
-    })
-    console.log("materialTrialId:  "+this.materialTrialId)
-    ////materialId+TrialId-->materialTrialId
-    let paramsMaterialTrialData={
-      materialTrialId: this.materialTrialId,
-    }
-    let apiMaterialTrialData= "http://localhost:60001/api/hangang/materialTrialData/materialTrialData"
-    await this.http.post(apiMaterialTrialData,paramsMaterialTrialData)
-    .toPromise()
-    .then((res:any)=>{
-      this.materialTrialDataId = res
-    })
-    console.log("materialTrialDataId:  "+this.materialTrialDataId)
-    this.postParams.materialTrialDataId = this.materialTrialDataId;  //得到materialTrialDataId
-    //#endregion
-    console.log(this.postParams)
-    let params = {
-      materialTrialDataId:this.postParams.materialTrialDataId,
-      standard:this.postParams.standard,
-      structure:this.postParams.structure,
-      nonMetallicInclusionLevel:this.postParams.nonMetallicInclusionLevel,
-      grainSize:Number(this.postParams.grainSize),
-      depthDecarburization:Number(this.postParams.depthDecarburization),
-    } 
-
-
-    let api = "http://localhost:60001/api/hangang/metallographicDataDetail/metallographicData"
-    await this.http.post(api, params)
-    .toPromise()
-    .then((res:any)=>{
-      this.materialTrialDataDetailId = res
-    })
-
-    console.log(this.materialTrialDataDetailId)
-  }
+  
 }
