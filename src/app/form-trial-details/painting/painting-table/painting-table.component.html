@@ -12,7 +12,7 @@
       </tr>
     </tbody>
 </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" [nzWidthConfig]="data.width"
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" [nzWidthConfig]="data.width" nzTitle="{{data.title}}"
     *ngFor="let data of table2" nzBordered>
         <thead>
           <tr>

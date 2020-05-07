@@ -30,11 +30,12 @@ export class PaintingTableComponent implements OnInit {
 {table:'table4',
   name:"trialDataDetailss",
   one:["Ip（s-1）","IH（s-1）","P比"],
-  key:["Ip","IH","ratio"],
+  key:["ip","ih","ratio"],
   nzScroll :{x: '600px' }
 },]
 table2=[{table:'table7',
   name:"trialDataDetailsssss",
+  title:"电泳漆膜粗糙度",
   one:["Ra（μm）","Rz（μm）"],
   key:["raOne","raTwo","raThree","rzOne","rzTwo","rzThree"],
   width:['120px', '120px','120px','120px','120px','120px']
