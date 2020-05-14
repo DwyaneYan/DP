@@ -17,6 +17,8 @@
                     <li nz-menu-item nzMatchRouter *ngIf = "chemical"><a [routerLink]="['/display',materialId ,'chemicalelement']">化学成分</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "jinyongwuzhi"><a [routerLink]="['/display',materialId ,'prohibited-substance']">禁用物质</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "biaomianxn"><a [routerLink]="['/display',materialId ,'surface-property']">表面性能</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "hongkaoyh"><a [routerLink]="['/display',materialId ,'bake-hardening']">烘烤硬化</a></li>
+
                 </ul>
             </li>
             <li nz-submenu nzTitle="应用数据" nzOpen>
@@ -36,7 +38,6 @@
                     <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture']">氢致延迟开裂</a></li>
    
-                    <li nz-menu-item nzMatchRouter *ngIf = "hongkaoyh"><a [routerLink]="['/display',materialId ,'bake-hardening']">烘烤硬化</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "highspeedTension"><a [routerLink]="['/display',materialId ,'highspeedstrech']">高速拉伸</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "dizhoupilao"><a [routerLink]="['/display',materialId ,'lowcyclefatigue']">低周疲劳</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue']">高周疲劳</a></li>
@@ -92,6 +93,7 @@
         [nzAction]="maUrl1"
         (nzChange)="handleChange($event)"        
         [nzDisabled]='button'
+        (click)='createBasicMessage()'
       >
       <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
 </nz-upload>
@@ -100,6 +102,7 @@
 [nzAction]="maUrl2"
 (nzChange)="handleChange($event)"
         [nzDisabled]='button'
+        (click)='createBasicMessage()'
       >
       <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
 </nz-upload>

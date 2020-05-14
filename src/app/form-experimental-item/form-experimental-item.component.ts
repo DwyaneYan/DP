@@ -273,4 +273,8 @@ customRequestOne= (item: UploadXHRArgs) => {
   resetForm(e: MouseEvent): void {
     e.preventDefault();
     this.profileForm.reset();}
+    createBasicMessage(): void {
+if(this.button==true){
+      this.msg.info('请先提交');}
+    }
 }
