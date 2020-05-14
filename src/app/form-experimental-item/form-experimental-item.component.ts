@@ -1,8 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ExperimentalItemService } from './experimental-item.service'
-
-
-
+import { NzMessageService } from 'ng-zorro-antd/message';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
+// import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-form-experimental-item',
   templateUrl: './form-experimental-item.component.html',
@@ -10,7 +15,24 @@ import { ExperimentalItemService } from './experimental-item.service'
 })
 export class FormExperimentalItemComponent implements OnInit {
   @Input() materialId
-
+  profileForm = this.fb.group({
+    carName: ['', Validators.required],
+    jiankuang: [''],
+    lingjian: [''],
+    yaoqiu: [''],
+   
+  });
+  // profileForm:FormGroup
+carid//此id
+  isVisible = false;
+  id=[]//所有id
+  car=[] //查到的应用案例车型
+  nzCustomRequestOne
+  nzCustomRequestTwo
+  maUrl1
+  maUrl2
+  button=true
+  // validateForm!: FormGroup;
   public trials
   public trialName=[]
   public staticTension
@@ -38,13 +60,19 @@ export class FormExperimentalItemComponent implements OnInit {
 
   constructor(
     private experimentalItemService: ExperimentalItemService,
-
+    private fb: FormBuilder,
+    public http: HttpClient,
+    private msg: NzMessageService 
 
   ) { } 
 
   ngOnInit() {
     this.GetTrials(this.materialId)
-    
+    // this.validateForm = this.fb.group({
+    //   vehicleType: [null, [Validators.required]],
+    // });
+    this.getCar()
+
 }
 
 public async GetTrials(materialId){
@@ -77,4 +105,172 @@ this.huitanxn = this.trialName.includes("回弹性能")
 this.hongkaoyh = this.trialName.includes("烘烤硬化")
 // console.log(this.bend,this.chemical)
 }
+
+handleCancel(): void {
+  this.profileForm.reset();
+  this.isVisible = false;
+  this.button=true
+}
+
+
+cars=[]
+public async getCar(){
+  let api=`http://localhost:60001/api/hangang/materialTrial/applicationCaseByMaterialId/${this.materialId}`
+  await this.http.get(api)
+ .toPromise()
+ .then((res: any) => {
+   this.cars = res
+   for(let a=0;a<this.cars.length;a++){
+    this.car[a]=this.cars[a].vehicleType
+    this.id.push(this.cars[a].id)
+   }
+   console.log( this.id)
+ })
+}
+formData =new FormData();
+formDataList = []
+returnFalse =false
+customRequestOne= (item: UploadXHRArgs) => {
+        this.formData.append('photo',item.file as any);
+        this.formDataList.push(item);    
+  console.log(item.action!)
+      // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+      return  setTimeout(() => {
+        const req = new HttpRequest('PUT', item.action!, this.formData, {
+          reportProgress: true,
+          withCredentials: true
+        });
+        if(this.returnFalse == false){
+          this.http.request(req).subscribe(
+            (event: HttpEvent<{}>) => {
+              if (event.type === HttpEventType.UploadProgress) {
+                if (event.total! > 0) {
+                  // tslint:disable-next-line:no-any
+                  (event as any).percent = (event.loaded / event.total!) * 100;
+                }
+                // 处理上传进度条，必须指定 `percent` 属性来表示进度
+                for (const item of this.formDataList) {
+                item.onProgress!(event, item.file!);
+                  
+                }
+              } else if (event instanceof HttpResponse) {
+                // 处理成功
+                this.returnFalse = false;
+                for (const item of this.formDataList) {
+                  item.onSuccess!(event.body, item.file!, event);
+  
+                    
+                  }
+                  this.formData = new FormData();
+                  this.formDataList=[];
+              }
+             },
+            err => {
+              // 处理失败
+              this.returnFalse = false;
+              for (const item of this.formDataList) {
+                item.onError!(err, item.file!);
+              }
+              this.formData = new FormData();
+              this.formDataList=[];
+            }
+            
+          )
+          this.returnFalse = true;
+  
+        }  
+      }, 100);
+      }
+  customRequestTwo= (item: UploadXHRArgs) => {
+          this.formData.append('document',item.file as any);
+          this.formDataList.push(item);    
+    console.log(item.action!)
+        // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+        return  setTimeout(() => {
+          const req = new HttpRequest('PUT', item.action!, this.formData, {
+            reportProgress: true,
+            withCredentials: true
+          });
+          if(this.returnFalse == false){
+            this.http.request(req).subscribe(
+              (event: HttpEvent<{}>) => {
+                if (event.type === HttpEventType.UploadProgress) {
+                  if (event.total! > 0) {
+                    // tslint:disable-next-line:no-any
+                    (event as any).percent = (event.loaded / event.total!) * 100;
+                  }
+                  // 处理上传进度条，必须指定 `percent` 属性来表示进度
+                  for (const item of this.formDataList) {
+                  item.onProgress!(event, item.file!);
+                    
+                  }
+                } else if (event instanceof HttpResponse) {
+                  // 处理成功
+                  this.returnFalse = false;
+                  for (const item of this.formDataList) {
+                    item.onSuccess!(event.body, item.file!, event);
+    
+                      
+                    }
+                    this.formData = new FormData();
+                    this.formDataList=[];
+                }
+               },
+              err => {
+                // 处理失败
+                this.returnFalse = false;
+                for (const item of this.formDataList) {
+                  item.onError!(err, item.file!);
+                }
+                this.formData = new FormData();
+                this.formDataList=[];
+              }
+              
+            )
+            this.returnFalse = true;
+    
+          }  
+        }, 100);
+        }
+  handleChange(info: { file: UploadFile }): void { 
+    console.log(info.file)
+    switch (info.file.status) {
+      // case 'uploading':      
+      //   break;
+      case 'done':
+        // Get this url from response in real world.
+        // this.getBase64(info.input!.originFileObj!, (img: string) => {
+        //   this.loading = false;
+        //   this.avatarUrl = img;
+        // });
+        // window.alert("文件上传成功")
+        this.msg.success("图片上传成功");
+        break;
+      case 'error':
+        this.msg.error('Network error');
+        break;
+    }
+  }
+  submitForm(value): void {
+    let form={materialId:this.materialId,
+      vehicleType:value.carName,
+      breif:value.jiankuang,
+      suppliedPart:value.lingjian,
+      requirement:value.yaoqiu}
+    let api ='http://localhost:60001/api/hangang/materialTrial/applicationCase';
+    this.http.post(api,form)
+.toPromise()
+ .then((res: any) => {
+  this.id = []
+  this.carid=res
+  this.button=false
+  this.getCar()
+  this.maUrl1=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.carid}`
+  this.maUrl2=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.carid}`
+ })
+//  this.profileForm.reset()
+  }
+  resetForm(e: MouseEvent): void {
+    e.preventDefault();
+    this.profileForm.reset();}
 }

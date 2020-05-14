@@ -124,7 +124,7 @@ import { ReboundTypicalPartComponent } from './form-trial-details/rebound/reboun
 import { BakeHardeningReportComponent } from './form-trial-details/bake-hardening/bake-hardening-report/bake-hardening-report.component';
 import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-hardening/bake-hardening-typical-part/bake-hardening-typical-part.component';
 import { PageContrastComponent } from './page-contrast/page-contrast.component'
-
+import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
@@ -347,8 +347,11 @@ const routes: Routes = [
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
       },
- 
-      // { path: '', redirectTo: '/static-tension-home', pathMatch: 'full'}
+      { 
+        path: 'applications/:car', component:ApplicationsComponent   ,
+        
+      },
+  
 
   ]},
 

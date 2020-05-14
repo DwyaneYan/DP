@@ -89,6 +89,7 @@ for(let a=0;a<this.filess.length;a++){
     .toPromise()
     .then((res: any) => {
       this.trialDataDetailss = res
+      console.log(this.trialDataDetailss)
          }) 
          let xData4=[] 
     let xData2=[]

@@ -13,6 +13,8 @@ export class StaticTensionTableComponent implements OnInit {
   trialDataDetails
   //存放查到的试验数据详情
   public trialDataDetail = [] 
+  trialDataDetail1=[]
+  trialDataDetail2=[]
   visible = false;
 
   //添加数据表单
@@ -42,6 +44,7 @@ table3=['130px','130px','150px','150px','150px','150px','150px','150px','150px',
 table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
 table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod","gaugeDistance"]
 isVisible =false;
+data=["trialDataDetail1","trialDataDetail2"]
 options;
   //抽屉
   open(): void {
@@ -118,7 +121,8 @@ options;
     }) 
   this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
   this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
-
+  this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
+  this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
   }
   // classitem(arry1,p){
   //   let arry=[]
@@ -145,7 +149,7 @@ options;
     .toPromise()
     .then((res: any) => {    
     this.trialDataDetails = res
-    console.log(this.trialDataDetail)
+
     }) 
   }
 }

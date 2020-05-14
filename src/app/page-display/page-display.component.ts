@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DisplayService } from './display.service'
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { switchMap} from 'rxjs/operators';
+import { of } from "rxjs"
 @Component({
   selector: 'app-page-display',
   templateUrl: './page-display.component.html',
   styleUrls: ['./page-display.component.css']
 })
 export class PageDisplayComponent implements OnInit {
-
   //材料id, 在进入展示页面时由材料首页传递进来
   public materialId
   constructor(    
@@ -22,8 +23,8 @@ export class PageDisplayComponent implements OnInit {
     })
     // console.log(this.materialId);
     this.Thematerial() 
-  }
 
+  }
   public thematerial=[];
   public mater=[]
   ma={

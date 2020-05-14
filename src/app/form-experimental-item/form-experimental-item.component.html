@@ -8,14 +8,10 @@
                 <div class="titlee"> <a routerLink='/material-trial' style="color:black ;font-weight:500">实验项目</a> </div>
                 <nz-divider></nz-divider>
             </li>
-            <li nz-submenu nzTitle="理化性能" nzOpen>
+            <li nz-submenu nzTitle="基础数据" nzOpen>
                 <ul >
                     <li nz-menu-item  nzMatchRouter *ngIf = "staticTension" routerLinkActive="ant-menu-item-selected"s><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
-                    <li nz-menu-item nzMatchRouter *ngIf = "bend"><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "compress"><a [routerLink]="['/display',materialId ,'compression']">压缩</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "highspeedTension"><a [routerLink]="['/display',materialId ,'highspeedstrech']">高速拉伸</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "dizhoupilao"><a [routerLink]="['/display',materialId ,'lowcyclefatigue']">低周疲劳</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue']">高周疲劳</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "jinxiang"><a [routerLink]="['/display',materialId ,'metallographic']">金相</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "wulixingneng"><a [routerLink]="['/display',materialId ,'physicalperformance']">物理性能</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "chemical"><a [routerLink]="['/display',materialId ,'chemicalelement']">化学成分</a></li>
@@ -23,20 +19,90 @@
                     <li nz-menu-item nzMatchRouter *ngIf = "biaomianxn"><a [routerLink]="['/display',materialId ,'surface-property']">表面性能</a></li>
                 </ul>
             </li>
-            <li nz-submenu nzTitle="工艺性能" nzOpen>
+            <li nz-submenu nzTitle="应用数据" nzOpen>
                 <ul >
+                    <li nz-menu-item nzMatchRouter *ngIf = "bend"><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "FLD"><a [routerLink]="['/display',materialId ,'fld']">成型极限FLD</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "kangAoxn"><a [routerLink]="['/display',materialId ,'dent-resistance']" >抗凹性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "fanbiankouhexn"><a [routerLink]="['/display',materialId ,'flanging-clasp']">翻边扣合性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture']">氢致延迟开裂</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "hanjiexn"><a [routerLink]="['/display',materialId ,'welding']">焊接性能</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "jiaojiexn"><a [routerLink]="['/display',materialId ,'cementing']">胶结性能</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "tuzhuangxn"><a [routerLink]="['/display',materialId ,'painting']">涂装性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "FLD"><a [routerLink]="['/display',materialId ,'fld']">成型极限FLD</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "huitanxn"><a [routerLink]="['/display',materialId ,'rebound']">回弹性能</a></li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="服役数据" nzOpen>
+                <ul >
+                    <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture']">氢致延迟开裂</a></li>
+   
                     <li nz-menu-item nzMatchRouter *ngIf = "hongkaoyh"><a [routerLink]="['/display',materialId ,'bake-hardening']">烘烤硬化</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "highspeedTension"><a [routerLink]="['/display',materialId ,'highspeedstrech']">高速拉伸</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "dizhoupilao"><a [routerLink]="['/display',materialId ,'lowcyclefatigue']">低周疲劳</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue']">高周疲劳</a></li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="应用案例" >
+                <ul >
+                    <li nz-menu-item><div style="text-decoration: underline;" (click)='isVisible = true;'>添加车型</div></li>
+                    <li nz-menu-item *ngFor="let data of car;let i= index" nzMatchRouter><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
                 </ul>
             </li>
         </ul>
     </div>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="添加车型" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()"
+   >
+    <form nz-form  [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="carName">车型名称</nz-form-label>
+            <nz-form-control nzErrorTip="请输入车型名称" [nzSm]="14" [nzXs]="24" >
+               <input formControlName="carName" nz-input placeholder="车型名称" />
+    </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="jiankuang">简况</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <textarea rows="4" nz-input formControlName="jiankuang"></textarea>
+</nz-form-control>
+</nz-form-item>
+<nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="lingjian">供货零件名称</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea rows="4" nz-input formControlName="lingjian"></textarea>
+</nz-form-control>
+</nz-form-item>
+<nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="yaoqiu">要求</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea rows="4" nz-input formControlName="yaoqiu"></textarea>
+</nz-form-control>
+</nz-form-item>
+<nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!profileForm.valid">提交</button>
+      <button nz-button (click)="resetForm($event)" style="margin-left:25px">Reset</button>
+    </nz-form-control>
+  </nz-form-item>
+    
+    </form>
+    <div style='width:110px;margin:auto;margin-top:20px'>
+
+        <nz-upload
+        [nzCustomRequest]='customRequestOne'
+        [nzAction]="maUrl1"
+        (nzChange)="handleChange($event)"        
+        [nzDisabled]='button'
+      >
+      <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
+</nz-upload>
+<nz-upload id='file'
+[nzCustomRequest]='customRequestTwo'
+[nzAction]="maUrl2"
+(nzChange)="handleChange($event)"
+        [nzDisabled]='button'
+      >
+      <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
+</nz-upload>
+    </div>
+      </nz-modal>
 </div>

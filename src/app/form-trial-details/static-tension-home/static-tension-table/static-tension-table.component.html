@@ -13,7 +13,7 @@
     </tbody>
 </nz-table>
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width:1100px;margin-top:30px;margin-bottom:30px; " 
-  [nzScroll]="{x: '2160px', y: '600px' }" nzBordered id="one">
+  [nzScroll]="{x: '2160px', y: '600px' }" nzBordered id="one"  *ngFor="let value of data;let i = index">
       <thead >
         <tr >
           <th [nzWidth]="table3[i]" class="one" *ngFor="let data2 of table2;let i = index" style="height:58px">
@@ -27,15 +27,21 @@
            </th>
         </tr>
       </thead>
-      <tbody>
-        <tr  *ngFor="let details of trialDataDetails">
+      <tbody *ngIf="i==0;else elseBlock">
+        <tr  *ngFor="let details of trialDataDetails" >
           <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ details[data4] }}</td>
         </tr>
-        <tr  *ngFor="let detail of trialDataDetail">
+        <tr  *ngFor="let detail of this[value]">
           <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
-        </tr>
-        
+        </tr>       
       </tbody>
+      <ng-template #elseBlock>
+        <tbody>
+          <tr  *ngFor="let detail of this[value]">
+            <td class="one1"  *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
+          </tr>       
+        </tbody>
+      </ng-template>
   </nz-table>
 </div>
 

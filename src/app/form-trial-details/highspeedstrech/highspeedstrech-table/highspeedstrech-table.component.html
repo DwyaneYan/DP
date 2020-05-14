@@ -27,7 +27,7 @@
           </tbody>        
         </nz-table> 
         <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '600px' }"
-        style="width: 1100px;margin-top:30px;margin-bottom:30px" nzBordered>
+        style="width: 1100px;margin-top:30px" nzBordered>
           <thead>
             <tr>
               <th [nzWidth]="width[i]" class="one" *ngFor="let data4 of  table4;let i=index">
@@ -47,6 +47,25 @@
             </tr>
           </tbody>        
         </nz-table>
+        <div id="srcoll">
+        <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{y: '600px' }" class='tablebox'
+        nzBordered [nzWidthConfig]='nzWidthConfig4'>
+          <thead>
+            <tr>
+              <th rowspan="2" class="one" nzBreakWord>True plastic strain</th>
+               <th class="one" [attr.colspan]="speeds.length" nzBreakWord>True stress/Mpa</th>                         
+            </tr>
+            <tr>
+              <th  class="one" *ngFor="let data5 of  speeds" nzBreakWord>{{data5}}</th>                     
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let details of strainData;let i=index" >
+              <td  class="one1" nzBreakWord>{{details}}</td>
+              <td  class="one1" *ngFor="let data of stress[i];let b=index" nzBreakWord>{{data}}</td>
+            </tr>
+          </tbody>        
+        </nz-table></div>
 
   </div>
   <nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">

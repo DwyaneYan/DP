@@ -10,8 +10,8 @@ import { NzTreeHigherOrderServiceToken } from 'ng-zorro-antd';
 export class HighspeedstrechTableComponent implements OnInit {
   public materialId
   trialDataDetail=[]
-  trialDataDetails=[{}]
   baseInfo
+  trialDataDetailss=[]
   one=[]
   two=[]
   three=[]
@@ -73,7 +73,8 @@ export class HighspeedstrechTableComponent implements OnInit {
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
     this.GetTrialDataDetails();
-    this.GetBaseInfo(this.materialId)
+    this.GetBaseInfo(this.materialId);
+    this.GetTrialDataDetailss()
   }
 
   public async GetBaseInfo(p){
@@ -108,6 +109,78 @@ this.one[0].dateEnds= this.one[0].dateEnds.split("T")[0];
     })  
   
   }
-
-
+  speeds=[]
+  strainData=[]
+  stress=[]
+  nzWidthConfig4=[]
+  nzScroll4={}
+  public async GetTrialDataDetailss() {
+    let materialId = this.materialId
+    let api1=`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrainExtends/${materialId}`;
+    await this.http.get(api1)
+    .toPromise()
+    .then((res: any) => {
+      this.trialDataDetailss = res
+      let speed=[]
+         this.trialDataDetailss.map(val=>speed.push(val.realPlasticTestTarget))        
+         this.speeds=this.unique1(speed)
+         for(let c=1;c<this.speeds.length+1;c++){
+          this.nzWidthConfig4[0]='130px'
+          this.nzWidthConfig4[c]='110px'
+         }
+         let ele=document.getElementsByClassName('tablebox')[0] as HTMLElement
+         ele.style.width = (this.speeds.length*110+130) +"px";
+        
+         let arr3=[]
+         let strain=[]
+         arr3=this.classitem(this.trialDataDetailss,'realPlasticTestTarget') ;//延伸到1 
+         arr3[0].List.map(val=>strain.push(val.realPlasticStrainHalf))       
+         console.log(strain) 
+         this.strainData=this.notempty(strain)
+       for(let b=0;b<this.strainData.length;b++){
+       this.stress[b]=[]
+       for(let a=b;a<this.trialDataDetailss.length;a+=this.trialDataDetailss.length/arr3.length){
+        this.stress[b].push(this.trialDataDetailss[a].realPlasticStressHalf)
+       }
+        }
+         })
+         }
+classitem(arry1,p){
+let arry=[]
+arry1.map(mapItem=>{
+if (arry.length == 0) {
+  arry.push({highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
+} else {
+    let res = arry.some(item=> {//判断相同highSpeedStrechDataDetailId，有就添加到当前项
+    if (item.highSpeedStrechDataDetailId == mapItem[p]) {
+      item.List.push(mapItem)
+      return true
+    }
+  })
+  if (!res) {//如果没找相同highSpeedStrechDataDetailId添加一个新对象
+    arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
+  }
+} })
+return arry
+}
+unique1(array) {
+  var n = []; //一个新的临时数组
+  //遍历当前数组
+  for (var i = 0; i < array.length; i++) {
+    //如果当前数组的第i已经保存进了临时数组，那么跳过，
+    //否则把当前项push到临时数组里面
+    if (n.indexOf(array[i]) == -1) n.push(array[i]);
+  }
+  return n;
+}
+notempty(a) {
+  var arr = [];
+  a.map(function(val, index) {
+      //过滤规则为，不为空串、不为null、不为undefined，也可自行修改
+      if (val !== "" && val != undefined) {
+          arr.push(val);
+      }
+  });
+  return arr;
+}
 }

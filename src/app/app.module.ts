@@ -171,7 +171,8 @@ import { BakeHardeningReportComponent } from './form-trial-details/bake-hardenin
 import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-hardening/bake-hardening-typical-part/bake-hardening-typical-part.component';
 import { PageContrastComponent } from './page-contrast/page-contrast.component';
 import { AppFormPictureComponent } from './app-form-picture/app-form-picture.component';
-
+import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -370,7 +371,8 @@ import { AppFormPictureComponent } from './app-form-picture/app-form-picture.com
     BakeHardeningReportComponent,
     BakeHardeningTypicalPartComponent,
     PageContrastComponent,
-    AppFormPictureComponent
+    AppFormPictureComponent,
+    ApplicationsComponent
 
 
 
