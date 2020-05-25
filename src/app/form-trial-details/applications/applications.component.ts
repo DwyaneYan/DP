@@ -24,6 +24,7 @@ ImgPathOne=[]
   requirement//要求
   photo//图片
   file//文件
+
   constructor( private route: ActivatedRoute,
     private router: Router,
     public http: HttpClient,
@@ -33,8 +34,23 @@ ImgPathOne=[]
     this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
-    // this.car = this.route.snapshot.paramMap.get('car');
-  
+    // this.car = this.route.snapshot.paramMap.get('car');  
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => of(params.get('car'))
+      )).subscribe((data) => {
+        this.getform(data)
+        this.car=data
+        console.log(this.car)
+        this.arr1=[];
+        this.ImgPathOne=[]
+        this.file=' '
+        
+        this.getBrief(data)
+
+      });
+
+  }
+  getCar(){
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => of(params.get('car'))
       )).subscribe((data) => {
@@ -43,20 +59,9 @@ ImgPathOne=[]
         this.ImgPathOne=[]
         this.file=' '
         this.getBrief(data)
-        // console.log(this.car);
-      });
-      // console.log(this.car);
-      // this.getBrief()
-  }
-  // handleOk(): void {
-  //   console.log('Button ok clicked!');
-  //   this.isVisible = false;
-  // }
 
-  // handleCancel(): void {
-  //   console.log('Button cancel clicked!');
-  //   this.isVisible = false;
-  // }
+      });
+  }
 
 public  async getBrief(p){
   let api =`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`;
@@ -89,14 +94,7 @@ for(let d=0;d<a.length;d++){
 
   })
 }
-// public  async addBrief(){
-//   let materialId = this.materialId
-//   let api ='http://localhost:60001/api/hangang/materialTrial/applicationCase';
-//   await this.http.post(api,materialId)
-//   .toPromise()
-//   .then((res: any) => {
-//     this.id = res})
-// }
+
 fenge(arry,p){
   let arry1=arry.toString().split(p)
   return arry1
@@ -115,5 +113,23 @@ confirm(): void {
   .toPromise()
   .then((res: any) => {})
     })
+}
+getshow(event){
+  this.isVisible=event
+}
+form
+public async getform(p){
+  let api=`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`
+  await this.http.get(api)
+ .toPromise()
+ .then((res: any) => {
+   this.form = res
+console.log(this.form)
+ })
+}
+bianji(){
+  this.isVisible=true
+ 
+ 
 }
 }

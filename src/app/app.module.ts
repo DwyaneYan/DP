@@ -172,6 +172,8 @@ import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-har
 import { PageContrastComponent } from './page-contrast/page-contrast.component';
 import { AppFormPictureComponent } from './app-form-picture/app-form-picture.component';
 import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
+import { FormAddCarComponent } from './form-add-car/form-add-car.component';
+import { FormModifyCarComponent } from './form-modify-car/form-modify-car.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -372,7 +374,9 @@ import { ApplicationsComponent } from './form-trial-details/applications/applica
     BakeHardeningTypicalPartComponent,
     PageContrastComponent,
     AppFormPictureComponent,
-    ApplicationsComponent
+    ApplicationsComponent,
+    FormAddCarComponent,
+    FormModifyCarComponent
 
 
 

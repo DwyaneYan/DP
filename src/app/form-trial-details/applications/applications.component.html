@@ -1,12 +1,6 @@
 <app-base-info [materialId]="materialId"></app-base-info>
 <div id="dataTable">
-  <a
-  nz-popconfirm
-  nzPopconfirmTitle="确定删除此车型?"
-  nzPopconfirmPlacement="bottom"
-  (nzOnConfirm)="confirm()"
-  (nzOnCancel)="cancel()"
-  >Delete</a>
+
 <h2 >简况:</h2>
 <p>{{breif}}</p>
 <h2 >供货零件名称:</h2>
@@ -17,7 +11,17 @@
   <h1>{{this.arr1[i]}}</h1>
   <img class="img"  alt="" height="300" width="300" [src]="data"> 
 </div>
-<div id="pdf1" style="height:1500px" *ngIf='file'>
+<div id="pdf1" style="height:1500px;clear:both" *ngIf='file'>
 </div>
 
+<a
+nz-popconfirm
+nzPopconfirmTitle="确定删除此车型?"
+nzPopconfirmPlacement="bottom"
+(nzOnConfirm)="confirm()"
+(nzOnCancel)="cancel()"
+>删除</a>
+<div  (click)='bianji()' style="clear:both">编辑</div>
+<app-form-modify-car *ngIf="isVisible"
+[isVisible]='isVisible' [car]="car"  [form] ='form' (outer)="getCar()"  (outer1)="getshow($event)"></app-form-modify-car>
 </div>

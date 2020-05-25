@@ -45,13 +45,13 @@
             </li>
             <li nz-submenu nzTitle="应用案例" >
                 <ul >
-                    <li nz-menu-item><div style="text-decoration: underline;" (click)='isVisible = true;'>添加车型</div></li>
+                    <li nz-menu-item><div style="text-decoration: underline;" (click)='show()'>添加车型</div></li>
                     <li nz-menu-item *ngFor="let data of car;let i= index" nzMatchRouter><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
                 </ul>
             </li>
         </ul>
     </div>
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="添加车型" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()"
+    <!-- <nz-modal [(nzVisible)]="isVisible" nzTitle="添加车型" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()"
    >
     <form nz-form  [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
         <nz-form-item>
@@ -79,14 +79,14 @@
 </nz-form-control>
 </nz-form-item>
 <nz-form-item>
-    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+    <nz-form-control [nzOffset]="4" [nzSpan]="10">
       <button nz-button nzType="primary" [disabled]="!profileForm.valid">提交</button>
-      <button nz-button (click)="resetForm($event)" style="margin-left:25px">Reset</button>
+      <button nz-button (click)="resetForm($event)" style="margin-left:20px">重置</button>
     </nz-form-control>
   </nz-form-item>
     
     </form>
-    <div style='width:110px;margin:auto;margin-top:20px'>
+
 
         <nz-upload
         [nzCustomRequest]='customRequestOne'
@@ -94,18 +94,21 @@
         (nzChange)="handleChange($event)"        
         [nzDisabled]='button'
         (click)='createBasicMessage()'
+    
       >
       <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
 </nz-upload>
 <nz-upload id='file'
+
 [nzCustomRequest]='customRequestTwo'
 [nzAction]="maUrl2"
-(nzChange)="handleChange($event)"
+(nzChange)="handleChange1($event)"
         [nzDisabled]='button'
         (click)='createBasicMessage()'
       >
       <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
 </nz-upload>
-    </div>
-      </nz-modal>
+
+      </nz-modal> -->
+      <app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar2($event)" (outer1)="getCar1($event)"></app-form-add-car>
 </div>

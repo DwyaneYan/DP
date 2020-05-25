@@ -1,0 +1,13 @@
+form{
+    margin-top:60px
+}
+nz-upload{
+    float:left;
+    margin-left:20px;
+    position: relative;
+    top: -60px;
+    left:210px
+}
+.last /deep/ .ant-form-item-control{
+    left:40px
+}
