@@ -59,7 +59,7 @@ ImgPathOne=[]
         this.ImgPathOne=[]
         this.file=' '
         this.getBrief(data)
-
+this.getform(data)
       });
   }
 
