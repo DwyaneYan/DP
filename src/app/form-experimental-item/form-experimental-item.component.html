@@ -47,6 +47,7 @@
                 <ul >
                     <li nz-menu-item><div style="text-decoration: underline;" (click)='show()'>添加车型</div></li>
                     <li nz-menu-item *ngFor="let data of car;let i= index" nzMatchRouter><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
+                    <li nz-menu-item  nzMatchRouter><a [routerLink]="['/display',materialId ,'simulationCard']">仿真卡片</a></li>
                 </ul>
             </li>
         </ul>

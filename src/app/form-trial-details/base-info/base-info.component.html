@@ -5,16 +5,18 @@
             <th id="one">材料牌号</th>
             <th  class="he">卷号</th>
             <th  class="he">型号规格(mm)</th>
-            <th   id="two">生产厂家</th>
+            <th   class="he">生产厂家</th>
+            <th   id="two">材料标准</th>
             <!-- <th   id="two">检测日期</th> -->
           </tr>
         </thead>
         <tbody >
-            <tr *ngFor="let data of mater" >
+            <tr *ngFor="let data of baseInfo" >
                 <td id="three">{{ data.name }}</td>
                 <td class="he1">{{ data.reelNumber}}</td>
-                <td class="he1">{{ data.thickness}}</td>
-                <td id="for">{{ data.manufacture}}</td>
+                <td class="he1">{{ data.model}}</td>
+                <td class="he1">{{ data.manufactoryName}}</td>
+                <td id="for">{{ data.materialStandard}}</td>
                 <!-- <td id="for">{{ data.date}}</td> -->
             </tr>
         </tbody>        

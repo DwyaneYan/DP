@@ -122,7 +122,10 @@ public async getCar(){
    this.cars = res
    for(let a=0;a<this.cars.length;a++){
     this.car[a]=this.cars[a].vehicleType
-    this.id.push(this.cars[a].id)
+    this.id[a]=this.cars[a].id
+
+    // this.id=[]
+    // this.id.push(this.cars[a].id)
    }
    console.log( this.id)
  })

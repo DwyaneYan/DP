@@ -125,6 +125,8 @@ import { BakeHardeningReportComponent } from './form-trial-details/bake-hardenin
 import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-hardening/bake-hardening-typical-part/bake-hardening-typical-part.component';
 import { PageContrastComponent } from './page-contrast/page-contrast.component'
 import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
+import { SimulationCardComponent } from './simulation-card/simulation-card.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
@@ -349,6 +351,10 @@ const routes: Routes = [
       },
       { 
         path: 'applications/:car', component:ApplicationsComponent   ,
+        
+      },
+      { 
+        path: 'simulationCard', component:SimulationCardComponent   ,
         
       },
   

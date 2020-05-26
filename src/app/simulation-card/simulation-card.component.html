@@ -1,0 +1,18 @@
+
+<app-base-info [materialId]="materialId"></app-base-info>
+<div id="dataTable">
+<nz-upload
+[nzCustomRequest]='customRequestOne'
+[nzAction]="maUrl"
+(nzChange)="handleChange($event)"        
+[nzFileList]="nzFileList"
+>
+<button nz-button ><i nz-icon nzType="upload" ></i>上传仿真卡片</button>
+</nz-upload>
+<h2 style="float:left;margin-top:20px">点击下载文件:</h2>
+<div style="float:left;margin-left:25px;margin-top:10px">
+<div *ngFor="let data of material;let i=index" (click)="download(data,one[i])"  style="margin-top:15px">
+{{data}}
+</div>
+</div>
+</div>

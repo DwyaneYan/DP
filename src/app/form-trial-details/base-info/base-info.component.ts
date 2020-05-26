@@ -53,18 +53,19 @@ export class BaseInfoComponent implements OnInit {
     //   d2=(this.baseInfo[0].dateEnd).split("T");
     //  }else{  d2.push("")}
 
-      this.mater.push({
-        name:this.baseInfo[0].name,
-        reelNumber:this.baseInfo[0].reelNumber,
-        manufacture:this.baseInfo[0].manufactoryName,
-        thickness:this.baseInfo[0].model,
-        // date:d1[0]+'——'+d2[0],
-      })
+      // this.mater.push({
+      //   name:this.baseInfo[0].name,
+      //   reelNumber:this.baseInfo[0].reelNumber,
+      //   manufacture:this.baseInfo[0].manufactoryName,
+      //   thickness:this.baseInfo[0].model,
+      //   materialStandard:this.baseInfo[0].materialStandard,
+      //   // date:d1[0]+'——'+d2[0],
+      // })
 
 
     // console.log(this.baseInfo)
     
-    this.checkvalue.emit(this.mater[0].name);
+    this.checkvalue.emit(this.baseInfo[0].name);
   }
   @Output()//与@input相反
   checkvalue = new EventEmitter<any>();

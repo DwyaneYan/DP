@@ -174,6 +174,7 @@ import { AppFormPictureComponent } from './app-form-picture/app-form-picture.com
 import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
 import { FormAddCarComponent } from './form-add-car/form-add-car.component';
 import { FormModifyCarComponent } from './form-modify-car/form-modify-car.component';
+import { SimulationCardComponent } from './simulation-card/simulation-card.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -376,7 +377,8 @@ import { FormModifyCarComponent } from './form-modify-car/form-modify-car.compon
     AppFormPictureComponent,
     ApplicationsComponent,
     FormAddCarComponent,
-    FormModifyCarComponent
+    FormModifyCarComponent,
+    SimulationCardComponent
 
 
 
