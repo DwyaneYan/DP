@@ -140,7 +140,7 @@ console.log(two)
       })
   }
   ajax(url, callback, options) {
-    window.URL = window.URL || window.webkitURL
+    window.URL = window.URL   
     var xhr = new XMLHttpRequest()
     xhr.open('get', url, true)
     if (options.responseType) {
