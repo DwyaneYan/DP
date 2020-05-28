@@ -134,13 +134,14 @@ console.log(two)
       this.ajax(url, function(xhr) {
           //var filename = 'xxx' + url.replace(/(.*\.)/, '') // 自定义文件名+后缀
           var filename = p
+
           that.downloadFile(xhr.response, filename)
       }, {
           responseType: 'blob'
       })
   }
   ajax(url, callback, options) {
-    window.URL = window.URL || window.webkitURL
+  //  window.URL = window.URL || window.webkitURL
     var xhr = new XMLHttpRequest()
     xhr.open('get', url, true)
     if (options.responseType) {
