@@ -3,5 +3,9 @@ nz-upload{
     margin-left:20px;
     position: relative;
     top: -60px;
-    left:210px
+    left:210px;
+
 }
+ .ant-upload-list-item-info {
+    width:100px
+} 

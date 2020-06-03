@@ -37,7 +37,7 @@
      [nzCustomRequest]='customRequestOne'
      [nzAction]="maUrl1"
      (nzChange)="handleChange($event)"        
-
+     [nzBeforeUpload]="formAddCarComponent.beforeUpload1"
    >
    <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
 </nz-upload>
@@ -46,7 +46,7 @@
 [nzCustomRequest]='customRequestTwo'
 [nzAction]="maUrl2"
 (nzChange)="handleChange1($event)"
-
+[nzBeforeUpload]="formAddCarComponent.beforeUpload2"
    >
    <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
 </nz-upload>

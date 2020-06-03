@@ -96,7 +96,6 @@ export class HighspeedstrechTableComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      console.log(this.trialDataDetail)
       for(let a=0;a<this.trialDataDetail.length;a++)
 {if(this.trialDataDetail[a].standard==null){
 this.two.push(this.trialDataDetail[a])
@@ -105,7 +104,7 @@ else{this.one.push(this.trialDataDetail[a])}
 }
 this.one[0].dates= this.one[0].dates.split("T")[0];
 this.one[0].dateEnds= this.one[0].dateEnds.split("T")[0];
-
+console.log(this.one[0])
     })  
   
   }

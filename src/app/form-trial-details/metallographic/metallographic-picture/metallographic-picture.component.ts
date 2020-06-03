@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 @Component({
   selector: 'app-metallographic-picture',
   templateUrl: './metallographic-picture.component.html',
   styleUrls: ['./metallographic-picture.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class MetallographicPictureComponent implements OnInit {
   public materialId
@@ -15,6 +20,7 @@ export class MetallographicPictureComponent implements OnInit {
   a1
   a2=[]
   ImgPathOne=[]
+  name=[]
   constructor(
     private router: Router,
     public http: HttpClient,    
@@ -34,25 +40,49 @@ export class MetallographicPictureComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      
+      this.name=this.getname(this.trialDataDetail[0].fileString).afterName
+      this.ImgPathOne=this.getname(this.trialDataDetail[0].fileString).ImgPathOne
     })   
-    this.file.push(this.trialDataDetail[0].fileString)
-this.files=this.fenge(this.file,";")
-        for(let a=0;a<(this.files.length-1);a++){
-this.filess.push(this.files[a])
-    }
-    this.a1=this.fenge(this.filess,/[_.]/)
-    for(let a=1;a<this.a1.length;a+=2){
-this.a2.push(this.a1[a])
-    }
-for(let a=0;a<this.filess.length;a++){
-  let picture=this.filess[a]
-  this.ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
-}   
   }
-  fenge(arry,p){
-    let arry1=arry.toString().split(p)
-    return arry1
-  }
+
  
+
+//获取图片名
+  getname(allName){
+    var afterName=[]
+    var ImgPathOne=[]
+    if(allName){
+    let one=allName.split(";")
+ one.pop()
+ let two=[]
+        let length=one.length
+        for(let a=0;a<length;a++){
+          let pattern = /\.{1}[a-z]{1,}$/;
+          if (pattern.exec(one[a]) !== null) {
+            two.push(one[a].slice(0, pattern.exec(one[a]).index));
+        } else {
+          two.push(one[a]);
+    
+        }
+
+}
+//two是文件名
+
+let z=two.length
+
+for(let a=0;a<z;a++)
+{
+ let d= two[a].indexOf("_")
+ afterName.push(two[a].slice(d+1))
+}
+//this.material是处理后的文件名
+
+for(let a=0;a<length;a++){
+  let picture=one[a]
+  ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
+} 
+
+  }
+  return {afterName,ImgPathOne}
+}
 }

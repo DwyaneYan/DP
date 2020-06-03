@@ -1,11 +1,14 @@
 import { Component, OnInit ,Input,Output,EventEmitter,OnChanges,SimpleChanges} from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
+import { Observable, Observer } from 'rxjs';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
-
+import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-form-add-car',
   templateUrl: './form-add-car.component.html',
@@ -17,7 +20,8 @@ export class FormAddCarComponent implements OnInit,OnChanges {
   @Output() private outer=new EventEmitter<string>();
   @Output() private outer1=new EventEmitter<string>();
   button=true
-
+  nzFileList=[]
+  nzFileList1=[]
   car=[] 
   constructor(private fb: FormBuilder,
     public http: HttpClient,
@@ -154,6 +158,7 @@ returnFalse =false
         case 'done':
   
           this.msg.success("图片上传成功");
+          this.nzFileList=[]
           break;
         case 'error':
           this.msg.error('Network error');
@@ -167,6 +172,7 @@ returnFalse =false
         case 'done':
   
           this.msg.success("文件上传成功");
+          this.nzFileList1=[]
           break;
         case 'error':
           this.msg.error('Network error');
@@ -219,4 +225,31 @@ createBasicMessage(): void {
   }
 }
 
+//限制上传的图片格式
+beforeUpload1 = (file: UploadFile, _fileList: UploadFile[]) => {
+  return new Observable((observer: Observer<boolean>) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      this.msg.error('只能上传JPG和PNG');
+      observer.complete();
+      return;
+    }
+    observer.next(isJpgOrPng );
+    observer.complete();
+  });
+};
+//限制文件上传格式
+beforeUpload2 = (file: UploadFile, _fileList: UploadFile[]) => {
+ //console.log(file.type)
+  return new Observable((observer: Observer<boolean>) => {
+    const isJpgOrPng = file.type === 'application/pdf' ;
+    if (!isJpgOrPng) {
+      this.msg.error('只能上传pdf');
+      observer.complete();
+      return;
+    }
+    observer.next(isJpgOrPng );
+    observer.complete();
+  });
+};
 }

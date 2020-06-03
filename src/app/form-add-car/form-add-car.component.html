@@ -35,13 +35,14 @@
  </form>
 
 
-     <nz-upload
+     <nz-upload 
      [nzCustomRequest]='customRequestOne'
      [nzAction]="maUrl1"
      (nzChange)="handleChange($event)"        
      [nzDisabled]='button'
      (click)='createBasicMessage()'
- 
+     [(nzFileList)]="nzFileList"
+     [nzBeforeUpload]="beforeUpload1"
    >
    <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
 </nz-upload>
@@ -52,6 +53,8 @@
 (nzChange)="handleChange1($event)"
      [nzDisabled]='button'
      (click)='createBasicMessage()'
+     [(nzFileList)]="nzFileList1"
+     [nzBeforeUpload]="beforeUpload2"
    >
    <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
 </nz-upload>

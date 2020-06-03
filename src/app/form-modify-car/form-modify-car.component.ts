@@ -1,6 +1,6 @@
 import { Component, OnInit ,Input,Output,EventEmitter,OnChanges,SimpleChanges} from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
+import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { of } from "rxjs";
@@ -21,9 +21,12 @@ export class FormModifyCarComponent implements OnInit {
  value=''
   constructor(private fb: FormBuilder,
     public http: HttpClient,
-    private msg: NzMessageService) { }
+    private msg: NzMessageService,
+    private formAddCarComponent: FormAddCarComponent,
+    ) { }
 
   ngOnInit() {
+   console.log(this.formAddCarComponent.beforeUpload1)
     this.profileForm = this.fb.group({
       // carName: ['', Validators.required],
       jiankuang: [this.form.breif],

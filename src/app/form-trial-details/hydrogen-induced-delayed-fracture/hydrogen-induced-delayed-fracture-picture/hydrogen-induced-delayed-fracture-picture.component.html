@@ -2,7 +2,7 @@
 
 <div id="all">
     <div id="c" *ngFor="let data of ImgPathOne;let i=index">
-        <h1>{{this.a2[i]}}</h1>
+        <h1>{{this.name[i]}}</h1>
         <img class="img" [src]="data" alt="" height="300" width="300"> 
     </div>
     <div echarts [options]="options" style="height: 400px; width:600px;clear:both;padding-top:30px"></div>

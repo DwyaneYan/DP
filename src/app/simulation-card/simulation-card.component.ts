@@ -17,7 +17,8 @@ export class SimulationCardComponent implements OnInit {
     
   materialId
   maUrl
-  nzFileList
+  
+  nzFileList: UploadFile[] = [];
   material=[]
   href
   ngOnInit() {
@@ -102,16 +103,31 @@ formData =new FormData();
       this.http.get(api).toPromise()
       .then((res: any) => {
        this.one=res.items[0].fileKey.split(";")
-        this.one.pop()
-        let two=this.one.toString().split(/[_,]/)
-        let length=two.length
-        this.material=[]
-for(let a=1;a<length;a+=2){
+        this.one.pop()//this.one得到文件全名
+        console.log(this.one)
+        let two=[]
+        let length=this.one.length
+        for(let a=0;a<length;a++){
+          let pattern = /\.{1}[a-z]{1,}$/;
+          if (pattern.exec(this.one[a]) !== null) {
+            two.push(this.one[a].slice(0, pattern.exec(this.one[a]).index));
+        } else {
+          two.push( this.one[a]);
+    
+        }
 
-this.material.push(two[a])
 }
+//two是文件名
 console.log(two)
-        console.log(this.material)
+let z=two.length
+ this.material=[]
+for(let a=0;a<z;a++)
+{
+ let d= two[a].indexOf("_")
+ this.material.push(two[a].slice(d+1))
+}
+//this.material是处理后的文件名
+console.log(this.material)
 })
     }
 
@@ -153,5 +169,14 @@ console.log(two)
         }
     }
     xhr.send()
+}
+
+cancel(): void {
+  // this.msg.info('click cancel');
+}
+
+confirm(a,b): void {
+  this.download(a,b)
+  // this.msg.info('click confirm');
 }
   } 

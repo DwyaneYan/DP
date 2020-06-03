@@ -203,6 +203,8 @@ key:"pointStrength"
     .toPromise()
     .then((res: any) => {
       this.trialDataDetailsssssssss = res
+      this.trialDataDetailsssssssss[0].dates= this.trialDataDetailsssssssss[0].dates.split("T")[0];
+      this.trialDataDetailsssssssss[0].dateEnds= this.trialDataDetailsssssssss[0].dateEnds.split("T")[0]; 
       // console.log(this.trialDataDetail)
     })    
   }

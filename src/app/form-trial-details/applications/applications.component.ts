@@ -8,6 +8,7 @@ import { switchMap} from 'rxjs/operators';
 import { of } from "rxjs"
 import pdf from 'pdfobject'
 import { NzMessageService } from 'ng-zorro-antd/message';
+//import { FormModifyCarComponent } from 'src/app/form-modify-car/form-modify-car.component';
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
@@ -76,9 +77,10 @@ this.file=res.fileKey;
 console.log(res)
 if(res.fileKey){
 let files=this.file.slice(0,this.file.length-1)
-console.log(this.file.length-1)
+console.log(files)
 let b=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
-     pdf.embed(b, "#pdf1")}
+     pdf.embed(b, "#pdf1")
+}
 if(this.photo){
 let a=this.photo.split(";")
 a.pop();

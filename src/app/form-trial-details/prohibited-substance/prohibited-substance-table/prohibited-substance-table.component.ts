@@ -47,6 +47,7 @@ export class ProhibitedSubstanceTableComponent implements OnInit {
       this.trialDataDetail.forEach(val=>{this.arry1.push(val.element);
         this.arry4.push(val.sampleCode);})
       this.arry2=this.unique1(this.arry1)
+      console.log(this.arry2)
       this.arry5=this.unique1(this.arry4)
       document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (120+this.arry2.length*90) +"px";
       for(let b=0;b<this.trialDataDetail.length/this.arry2.length;b++){  

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import pdf from 'pdfobject'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MetallographicReportComponent } from 'src/app/form-trial-details/metallographic/metallographic-report/metallographic-report.component';
+
 @Component({
   selector: 'app-chemicalelement-report',
   templateUrl: './chemicalelement-report.component.html',
@@ -13,6 +15,8 @@ export class ChemicalelementReportComponent implements OnInit {
   constructor(
     private router: Router,
     public http: HttpClient,
+    public MetallographicReportComponent: MetallographicReportComponent,
+
   ) { }
 
   ngOnInit() {
@@ -29,9 +33,7 @@ export class ChemicalelementReportComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      var p= this.trialDataDetails[0].fileKey.slice(0,this.trialDataDetails[0].fileKey.length-1)      
-     var b=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${p}`
-     pdf.embed(b, "#pdf1")
+      this.MetallographicReportComponent.common(this.trialDataDetails[0].fileKey)
     })  
 
   }

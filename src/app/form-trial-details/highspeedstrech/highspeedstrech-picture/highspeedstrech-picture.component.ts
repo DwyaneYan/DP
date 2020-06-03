@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MetallographicPictureComponent } from 'src/app/form-trial-details/metallographic/metallographic-picture/metallographic-picture.component';
+
 @Component({
   selector: 'app-highspeedstrech-picture',
   templateUrl: './highspeedstrech-picture.component.html',
@@ -18,19 +20,16 @@ export class HighspeedstrechPictureComponent implements OnInit {
   one=[]
   two=[]
   ImgPathOne=[]
-  files
-  a1
-  a2=[]
-five=[]
-  filess=[]
   option3
   option4
-  file=[]
+name=[]
   trialDataDetails
   //echarts绘图
   options:any;
   constructor( private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public MetallographicPictureComponent: MetallographicPictureComponent,
+    ) { }
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
@@ -54,27 +53,13 @@ else{this.one.push(this.trialDataDetail[a])}
 }
 this.one.map(val=>this.three.push(val.testTarget))
 this.four=this.unique1(this.three)
-this.file.push(this.one[0].fileString)
-this.files=this.fenge(this.file,";")
-        for(let a=0;a<(this.files.length-1);a++){
-this.filess.push(this.files[a])
-    }
-    this.a1=this.fenge(this.filess,/[_.]/)
-    for(let a=1;a<this.a1.length;a+=2){
-this.a2.push(this.a1[a])
-    }
-for(let a=0;a<this.filess.length;a++){
-  let picture=this.filess[a]
-  this.ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
-}
+
+this.name= this.MetallographicPictureComponent.getname(this.one[0].fileString).afterName
+this.ImgPathOne=this.MetallographicPictureComponent.getname(this.one[0].fileString).ImgPathOne
     })  
   
   }
 
-  fenge(arry,p){
-    let arry1=arry.toString().split(p)
-    return arry1
-  }
 
   public async GetTrialDataDetails() {
     let materialId = this.materialId

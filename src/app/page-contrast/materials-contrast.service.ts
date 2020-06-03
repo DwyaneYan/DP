@@ -21,7 +21,7 @@ export class MaterialsContrastService {
     });
     // console.log(api) ;
     console.log(res) 
-    return res;    
+    return res;    //res是一个promise对象
   }
 
 else {

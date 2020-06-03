@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MetallographicPictureComponent } from 'src/app/form-trial-details/metallographic/metallographic-picture/metallographic-picture.component';
+
 @Component({
   selector: 'app-dent-resistance-picture',
   templateUrl: './dent-resistance-picture.component.html',
@@ -9,13 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class DentResistancePictureComponent implements OnInit {
   public materialId
   trialDataDetail=[]
-  one=[]
-  two=[]
-  three=[]
-  four=[]
+name=[]
   ImgPathOne=[]
   constructor(private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public MetallographicPictureComponent: MetallographicPictureComponent,
+    ) { }
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
@@ -24,25 +25,17 @@ export class DentResistancePictureComponent implements OnInit {
   }
   public async GetTrialDataDetails() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/cementingDataDetails/${materialId}`;
+    let api =`http://localhost:60001/api/hangang/materialTrial/dentResistanceDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {
       this.trialDataDetail = res
-      this.one=this.trialDataDetail[0].fileString.split(";")
-    let a=this.one.length
-    for(let b=0;b<a-1;b++){
-this.two.push(this.one[b])
-    }
-    this.three=this.two.toString().split(/[_.]/)
-    let d=this.three.length
-    for(let f=1;f<d;f+=2){
-this.four.push(this.three[f])
-    }
-for(let c=0;c<this.two.length;c++){
-  let picture=this.two[c]
-  this.ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
-}
+      console.log(this.trialDataDetail)
+      this.name= this.MetallographicPictureComponent.getname(this.trialDataDetail[0].fileString).afterName
+      this.ImgPathOne=this.MetallographicPictureComponent.getname(this.trialDataDetail[0].fileString).ImgPathOne
+      console.log(this.ImgPathOne)
+      console.log(this.name)
+      
     }) 
     
   }

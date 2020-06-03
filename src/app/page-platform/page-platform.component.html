@@ -4,20 +4,20 @@
     <!--整车模块-->
     <div id="zhengche-module">
         <div id="zhengche">
-                <nz-card style="width:995px;  margin:auto;"  nzTitle="全部车型" [nzExtra]="extraTemplate" [nzBordered]="false">
+                <nz-card   nzTitle="全部车型" [nzExtra]="extraTemplate" [nzBordered]="false">
                     
                     <div id="jiaoche">
                         <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">
-                            <img src="../../assets/images/jiaoche.png" alt="" width="90" height="54"> 轿车</a>
+                            <img src="../../assets/images/jiaoche.png" alt="" width="130" height="64"> 轿车</a>
                         
                     </div>
 
                     <div id="suv">
-                        <img src="../../assets/images/suv.png" alt="" width="99" height="64"> SUV
+                        <img src="../../assets/images/suv.png" alt="" width="130" height="64"> SUV
                     </div>
                         
                     <div id="shangyongche">
-                        <img src="../../assets/images/shangyongche.png" alt="" width="90" height="64"> 商用车
+                        <img src="../../assets/images/shangyongche.png" alt="" width="130" height="64"> 商用车
                      </div>
 
                 </nz-card>
@@ -82,6 +82,7 @@
         [nzCustomRequest]="customReq"
         (nzChange)="handleChange1($event)" 
         [nzFileList]="FileList"
+        [nzBeforeUpload]="FormAddCarComponent.beforeUpload1" 
       >
        &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon nzType="upload"></i>上传材料图片</button>
       </nz-upload>
@@ -94,7 +95,7 @@
         <div class="material"  *ngFor="let material of addlist" >
           <i nz-icon nzType="close" nzTheme="outline" style="position:absolute;right:3px" *ngIf="showcan" (click)="shanchutj(material.id)"></i>
               <a [routerLink]="material.routerLink1">
-              <img  [src]="material.avatarUrl" style="width: 100px;height:110px;position:relative;top:-35px;margin-left:20px" />
+              <img  [src]="material.avatarUrl" style="width: 100px;height:110px;position:absolute;margin-left:20px" />
               </a>
               <div class="material-info" >
                      材料牌号: {{material.name}}<br/>

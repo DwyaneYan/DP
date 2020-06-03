@@ -4,6 +4,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from 
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { MaterialListService } from '../form-material-list/material-list.service'
+import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
 // import { Observable, Observer } from 'rxjs';
 // import { UploadChangeParam } from 'ng-zorro-antd/upload';
 // import * as $ from 'jquery';
@@ -64,16 +65,20 @@ this.PlatformService.shanchutj(p).then((res: any) => {
     this.FileList=[]  ;  
 this.isVisible1 =false;
 this.showi=false
+
   }
 
   handleCancel(): void {
     this.isVisible = false;
     this.isVisible1 = false;
+    this.showi=false
+    this.FileList=[]  ;  
   }
   constructor(private PlatformService:PlatformService,
     private MaterialListService:MaterialListService,
     public http: HttpClient,
-    private msg: NzMessageService ) { }
+    private msg: NzMessageService,
+    private FormAddCarComponent: FormAddCarComponent ) { }
     d =[]
     e =[]
     f =[]
@@ -274,9 +279,13 @@ showma(){
  this.PlatformService.showMaterials().then((res: any) => {
     this.addlist=res;
     this.addlist.forEach(val=>
-      {
+      {if(val.fileString){
       val.fileString=val.fileString.slice(0,val.fileString.length-1);
-        val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` })
+        val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` }
+        else{
+          val.avatarUrl=''
+        }
+      })
         this.luyou(this.addlist)     
 });
 }
@@ -302,15 +311,29 @@ showma(){
     this.pat.name = values[1];
     this.pat.model = values[2];
     this.pat.reelNumber = values[3];
+    //查询材料
     this.PlatformService.GetMater(this.pat).then((res: any) => {
       this.addid=res.items[0].id
-
+      console.log(this.addid)
+      //根据材料id添加到推荐表
       this.PlatformService.ADDManufacturers(this.addid).then((res: any) => {
+        //添加后查询所有推荐材料
         this.PlatformService.showMaterials().then((res: any) => {
            this.addlist=res; 
-           this.addlist.map(val=>{ val.fileString=val.fileString.slice(0,val.fileString.length-1);;
-            val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`})        
+           this.addlist.map(val=>
+            {if(val.fileString){ 
+             val.fileString=val.fileString.slice(0,val.fileString.length-1);//获取推荐材料的图片名
+            val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`
+          }
+          else{
+            val.avatarUrl=''
+          }
+        }
+          )        
            this.luyou(this.addlist)       
+          //  console.log(this.addid)
+          //  console.log(this.addlist)
+          //根据材料id添加推荐材料图片
           this.maUrl=`http://localhost:60001/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
        });
       })

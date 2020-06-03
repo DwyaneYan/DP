@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import pdf from 'pdfobject'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MetallographicReportComponent } from 'src/app/form-trial-details/metallographic/metallographic-report/metallographic-report.component';
+
 @Component({
   selector: 'app-highspeedstrech-report',
   templateUrl: './highspeedstrech-report.component.html',
@@ -10,11 +12,13 @@ import { HttpClient } from '@angular/common/http';
 export class HighspeedstrechReportComponent implements OnInit {
 
   materialId
-  trialDataDetails=[]
-  trialDataDetail
+  trialDataDetails
+
   constructor(
     private router: Router,
     public http: HttpClient,
+    public MetallographicReportComponent: MetallographicReportComponent,
+
   ) { }
 
   ngOnInit() {
@@ -36,9 +40,8 @@ export class HighspeedstrechReportComponent implements OnInit {
       {if(this.trialDataDetails[a].standard!=null){
     this.one.push(this.trialDataDetails[a])}
       }
-      var p= this.one[0].fileKey.slice(0,this.one[0].fileKey.length-1)      
-     var b=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${p}`
-     pdf.embed(b, "#pdf1")
+      this.MetallographicReportComponent.common(this.trialDataDetails[0].fileKey)
+
     })  
 
   }
