@@ -3,18 +3,21 @@ import { ExperimentalItemService } from './experimental-item.service'
 // import { NzMessageService } from 'ng-zorro-antd/message';
 // // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-// import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
-// import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
-// // import { FormGroup, FormControl } from '@angular/forms';
-// import { Validators } from '@angular/forms';
-// import { FormBuilder } from '@angular/forms';
+import { Test } from 'src/testData';
+import { Injectable } from '@angular/core';
+
 @Component({
   selector: 'app-form-experimental-item',
   templateUrl: './form-experimental-item.component.html',
   styleUrls: ['./form-experimental-item.component.css']
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class FormExperimentalItemComponent implements OnInit {
   @Input() materialId
+testData=Test
+
   // profileForm = this.fb.group({
   //   carName: ['', Validators.required],
   //   jiankuang: [''],
@@ -72,6 +75,8 @@ carid//此id
     //   vehicleType: [null, [Validators.required]],
     // });
     this.getCar()
+    console.log(this.testData[0])
+    //console.log(__dirname)
 
 }
 
@@ -144,170 +149,49 @@ show(){this.isVisible = true;}
 formData =new FormData();
 formDataList = []
 returnFalse =false
-// customRequestOne= (item: UploadXHRArgs) => {
-//         this.formData.append('photo',item.file as any);
-//         this.formDataList.push(item);    
-//   console.log(item.action!)
-//       // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-//       return  setTimeout(() => {
-//         const req = new HttpRequest('PUT', item.action!, this.formData, {
-//           reportProgress: true,
-//           withCredentials: true
-//         });
-//         if(this.returnFalse == false){
-//           this.http.request(req).subscribe(
-//             (event: HttpEvent<{}>) => {
-//               if (event.type === HttpEventType.UploadProgress) {
-//                 if (event.total! > 0) {
-//                   // tslint:disable-next-line:no-any
-//                   (event as any).percent = (event.loaded / event.total!) * 100;
-//                 }
-//                 // 处理上传进度条，必须指定 `percent` 属性来表示进度
-//                 for (const item of this.formDataList) {
-//                 item.onProgress!(event, item.file!);
-//                   
-//                 }
-//               } else if (event instanceof HttpResponse) {
-//                 // 处理成功
-//                 this.returnFalse = false;
-//                 for (const item of this.formDataList) {
-//                   item.onSuccess!(event.body, item.file!, event);
-  
-//                     
-//                   }
-//                   this.formData = new FormData();
-//                   this.formDataList=[];
-//               }
-//              },
-//             err => {
-//               // 处理失败
-//               this.returnFalse = false;
-//               for (const item of this.formDataList) {
-//                 item.onError!(err, item.file!);
-//               }
-//               this.formData = new FormData();
-//               this.formDataList=[];
-//             }
-//             
-//           )
-//           this.returnFalse = true;
-  
-//         }  
-//       }, 100);
-//       }
-//   customRequestTwo= (item: UploadXHRArgs) => {
-//           this.formData.append('document',item.file as any);
-//           this.formDataList.push(item);    
-//     console.log(item.action!)
-//         // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-//         return  setTimeout(() => {
-//           const req = new HttpRequest('PUT', item.action!, this.formData, {
-//             reportProgress: true,
-//             withCredentials: true
-//           });
-//           if(this.returnFalse == false){
-//             this.http.request(req).subscribe(
-//               (event: HttpEvent<{}>) => {
-//                 if (event.type === HttpEventType.UploadProgress) {
-//                   if (event.total! > 0) {
-//                     // tslint:disable-next-line:no-any
-//                     (event as any).percent = (event.loaded / event.total!) * 100;
-//                   }
-//                   // 处理上传进度条，必须指定 `percent` 属性来表示进度
-//                   for (const item of this.formDataList) {
-//                   item.onProgress!(event, item.file!);
-//                     
-//                   }
-//                 } else if (event instanceof HttpResponse) {
-//                   // 处理成功
-//                   this.returnFalse = false;
-//                   for (const item of this.formDataList) {
-//                     item.onSuccess!(event.body, item.file!, event);
-    
-//                       
-//                     }
-//                     this.formData = new FormData();
-//                     this.formDataList=[];
-//                 }
-//                },
-//               err => {
-//                 // 处理失败
-//                 this.returnFalse = false;
-//                 for (const item of this.formDataList) {
-//                   item.onError!(err, item.file!);
-//                 }
-//                 this.formData = new FormData();
-//                 this.formDataList=[];
-//               }
-//               
-//             )
-//             this.returnFalse = true;
-    
-//           }  
-//         }, 100);
-//         }
-//   handleChange(info: { file: UploadFile }): void { 
-//     console.log(info.file)
-//     switch (info.file.status) {
+//权限目录
+quanxian(p):Boolean{
+  let length=this.testData[0].data[0].children.length
+  let arr=[]
+  for(let a=0;a<length;a++){
+    arr.push(this.testData[0].data[0].children[a].meta.title)
+  }
+  if(arr.indexOf(`${p}`)==-1){
+    return false
+  }
+  else{
+    return true
+  }
+}
+//权限菜单
+menu(p):Boolean{
+  let length1=this.testData[0].data[0].children.length
+let arr=[]
+let one
 
-//       case 'done':
+  for(let a=0;a<length1;a++){
+    if(this.testData[0].data[0].children[a].children){
+       one=this.testData[0].data[0].children[a].children.length    
+      for(let b=0;b<one;b++){
+        arr.push(this.testData[0].data[0].children[a].children[b].meta.title)
+      }}
+  }
 
-//         this.msg.success("图片上传成功");
-//         break;
-//       case 'error':
-//         this.msg.error('Network error');
-//         break;
-//     }
-//   }
-//   handleChange1(info: { file: UploadFile }): void { 
-//     console.log(info.file)
-//     switch (info.file.status) {
+  if(arr.indexOf(`${p}`)==-1){
+    return false
+  }
+  else{
+    return true
+  }
+}
+//按钮权限
+button(p):Boolean{
+  if(this.testData[1].permissions.indexOf(`${p}`)==-1){
+    return false
+  }
+  else{
+    return true
+  }
 
-//       case 'done':
-
-//         this.msg.success("文件上传成功");
-//         break;
-//       case 'error':
-//         this.msg.error('Network error');
-//         break;
-//     }
-//   }
-//   submitForm(value): void {
-
-//       let api=`http://localhost:60001/api/hangang/materialTrial/applicationCaseByInput?MaterialId=${this.materialId}&VehicleType=${value.carName}`
-//       this.http.get(api).toPromise()
-//       .then((res: any) => {
-//         if(res.length==0){
-   
-//     let form={materialId:this.materialId,
-//       vehicleType:value.carName,
-//       breif:value.jiankuang,
-//       suppliedPart:value.lingjian,
-//       requirement:value.yaoqiu}
-//     let api ='http://localhost:60001/api/hangang/materialTrial/applicationCase';
-//     this.http.post(api,form)
-// .toPromise()
-//  .then((res: any) => {
-//   this.id = []
-//   this.carid=res
-//   this.button=false
-//   this.getCar()
-//   this.maUrl1=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.carid}`
-//   this.maUrl2=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.carid}`
-//   this.msg.info('已提交')
-
-//  })}
-// else{
-//   this.msg.info('车型已存在，请添加其他车型')
-
-// }})
-// //  this.profileForm.reset()
-//   }
-//   resetForm(e: MouseEvent): void {
-//     e.preventDefault();
-//     this.profileForm.reset();}
-//     createBasicMessage(): void {
-// if(this.button==true){
-//       this.msg.info('请先提交');}
-//     }
+}
 }

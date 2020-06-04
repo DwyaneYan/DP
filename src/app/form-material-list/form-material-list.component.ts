@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
 import * as $ from 'jquery';
+import { Test } from 'src/testData';
+import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 
 @Component({
   selector: 'app-form-material-list',
@@ -45,6 +47,8 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   public hongkaoyh
   constructor(
     private materiallistService: MaterialListService,
+    private FormExperimentalItemComponent: FormExperimentalItemComponent,
+
     ) { }
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
@@ -94,68 +98,69 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     this.FLD = this.trialName.includes("成型极限")
     this.huitanxn = this.trialName.includes("回弹性能")
     this.hongkaoyh = this.trialName.includes("烘烤硬化")
-    if(this.staticTension){
+    if(this.staticTension&&this.FormExperimentalItemComponent.menu("静态拉伸")){
       data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
-      else if(this.bend){
+      else if(this.compress&&this.FormExperimentalItemComponent.menu("压缩")){
+        data.routerLink1=[`/display/${data.materialId}/compression/table`]
+       }
+       else if(this.jinxiang&&this.FormExperimentalItemComponent.menu("金相")){
+        data.routerLink1=[`/display/${data.materialId}/metallographic/table`]
+       }
+       else if(this.wulixingneng&&this.FormExperimentalItemComponent.menu("物理性能")){
+        data.routerLink1=[`/display/${data.materialId}/physicalperformance/table`]
+       }
+       else if(this.chemical&&this.FormExperimentalItemComponent.menu("化学成分")){
+        data.routerLink1=[`/display/${data.materialId}/chemicalelement/table`]
+       }
+       else if(this.jinyongwuzhi&&this.FormExperimentalItemComponent.menu("禁用物质")){
+        data.routerLink1=[`/display/${data.materialId}/prohibited-substance/table`]
+       }
+       else if(this.biaomianxn&&this.FormExperimentalItemComponent.menu("表面性能")){
+        data.routerLink1=[`/display/${data.materialId}/surface-property/table`]
+       }  
+       else if(this.hongkaoyh&&this.FormExperimentalItemComponent.menu("烘烤硬化")){
+        data.routerLink1=[`/display/${data.materialId}/bake-hardening/table`]
+       }
+      else if(this.bend&&this.FormExperimentalItemComponent.menu("弯曲")){
        data.routerLink1=[`/display/${data.materialId}/bending/table`]
       }
-      else if(this.compress){
-       data.routerLink1=[`/display/${data.materialId}/compression/table`]
-      }
-      else if(this.highspeedTension){
+      else if(this.FLD&&this.FormExperimentalItemComponent.menu("成型极限FLD")){
+        data.routerLink1=[`/display/${data.materialId}/fld/table`]
+       }
+       else if(this.kangAoxn&&this.FormExperimentalItemComponent.menu("抗凹性能")){
+        data.routerLink1=[`/display/${data.materialId}/dent-resistance/table`]
+       }
+       else if(this.fanbiankouhexn&&this.FormExperimentalItemComponent.menu("翻遍扣合性能")){
+        data.routerLink1=[`/display/${data.materialId}/flanging-clasp/table`]
+       }
+       else if(this.hanjiexn&&this.FormExperimentalItemComponent.menu("焊接性能")){
+        data.routerLink1=[`/display/${data.materialId}/welding/table`]
+       }
+       else if(this.jiaojiexn&&this.FormExperimentalItemComponent.menu("胶结性能")){
+        data.routerLink1=[`/display/${data.materialId}/cementing/table`]
+       }
+       else if(this.tuzhuangxn&&this.FormExperimentalItemComponent.menu("涂装性能")){
+        data.routerLink1=[`/display/${data.materialId}/painting/table`]
+       }
+       else if(this.huitanxn&&this.FormExperimentalItemComponent.menu("回弹性能")){
+        data.routerLink1=[`/display/${data.materialId}/rebound/table`]
+       }
+       else if(this.ercijiagongcx&&this.FormExperimentalItemComponent.menu("二次加工脆性")){
+        data.routerLink1=[`/display/${data.materialId}/secondary-working-embrittlement/table`]
+       }
+       else if(this.qingzhiyanchikl&&this.FormExperimentalItemComponent.menu("氢致延迟开裂")){
+        data.routerLink1=[`/display/${data.materialId}/hydrogen-induced-delayed-fracture/table`]
+       }
+      else if(this.highspeedTension&&this.FormExperimentalItemComponent.menu("高速拉伸")){
        data.routerLink1=[`/display/${data.materialId}/highspeedstrech/table`]
       }
-      else if(this.dizhoupilao){
+      else if(this.dizhoupilao&&this.FormExperimentalItemComponent.menu("低周疲劳")){
        data.routerLink1=[`/display/${data.materialId}/lowcyclefatigue/table`]
       }
-      else if(this.gaozhoupilao){
+      else if(this.gaozhoupilao&&this.FormExperimentalItemComponent.menu("高周疲劳")){
        data.routerLink1=[`/display/${data.materialId}/highcyclefatigue/table`]
       }
-      else if(this.jinxiang){
-       data.routerLink1=[`/display/${data.materialId}/metallographic/table`]
-      }
-      else if(this.wulixingneng){
-       data.routerLink1=[`/display/${data.materialId}/physicalperformance/table`]
-      }
-      else if(this.chemical){
-       data.routerLink1=[`/display/${data.materialId}/chemicalelement/table`]
-      }
-      else if(this.jinyongwuzhi){
-       data.routerLink1=[`/display/${data.materialId}/prohibited-substance/table`]
-      }
-      else if(this.biaomianxn){
-       data.routerLink1=[`/display/${data.materialId}/surface-property/table`]
-      }  
-      else if(this.kangAoxn){
-       data.routerLink1=[`/display/${data.materialId}/dent-resistance/table`]
-      }
-      else if(this.ercijiagongcx){
-       data.routerLink1=[`/display/${data.materialId}/secondary-working-embrittlement/table`]
-      }
-      else if(this.fanbiankouhexn){
-       data.routerLink1=[`/display/${data.materialId}/flanging-clasp/table`]
-      }
-      else if(this.qingzhiyanchikl){
-       data.routerLink1=[`/display/${data.materialId}/hydrogen-induced-delayed-fracture/table`]
-      }
-      else if(this.hanjiexn){
-       data.routerLink1=[`/display/${data.materialId}/welding/table`]
-      }
-      else if(this.jiaojiexn){
-       data.routerLink1=[`/display/${data.materialId}/cementing/table`]
-      }
-      else if(this.tuzhuangxn){
-       data.routerLink1=[`/display/${data.materialId}/painting/table`]
-      }
-      else if(this.FLD){
-       data.routerLink1=[`/display/${data.materialId}/fld/table`]
-      }
-      else if(this.huitanxn){
-       data.routerLink1=[`/display/${data.materialId}/rebound/table`]
-      }
-      else {
-       data.routerLink1=[`/display/${data.materialId}/bake-hardening/table`]
-      } 
+
       this.trialName=[]
       })
       

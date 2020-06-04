@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Test } from 'src/testData';
 
 @Component({
   selector: 'app-static-tension-table',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./static-tension-table.component.css']
 })
 export class StaticTensionTableComponent implements OnInit {
-
+testData=Test
   public materialId
   trialDataDetails
   //存放查到的试验数据详情
@@ -105,7 +106,7 @@ options;
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
       // console.log(this.materialId)
-
+console.log(this.testData[0].data[0])
     this.GetTrialDataDetails();
     this.GetTrialDataDetail();
   }

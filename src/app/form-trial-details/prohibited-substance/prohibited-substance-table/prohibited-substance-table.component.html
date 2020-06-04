@@ -16,16 +16,16 @@
       <thead >
         <tr>
           <th  class="one" nzWidth="120px" >样件编号</th>
-          <th  class="one" nzWidth="90px" *ngFor="let data of arry2">{{data}}</th>
+          <th  class="one" nzWidth="90px" *ngFor="let data of ys">{{data}}</th>
         </tr>
       </thead>
       <tbody>
         <tr >
           <td class="one1" nzBreakWord>要求值</td>
-          <td class="one1"  nzBreakWord *ngFor="let detail1 of arry6">{{detail1?.requirement}}</td>
+          <td class="one1"  nzBreakWord *ngFor="let detail1 of arr3">{{detail1}}</td>
         </tr>
-        <tr *ngFor="let detail of arry3;let i=index">
-          <td nzBreakWord class="one1" >{{arry5[i]}}</td>
+        <tr *ngFor="let detail of last;let i=index">
+          <td nzBreakWord class="one1" >{{bh[i]}}</td>
           <td nzBreakWord class="one1" *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
         </tr>
       </tbody>
