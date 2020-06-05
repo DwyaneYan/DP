@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap} from 'rxjs/operators';
+import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
+
 // import { Observable } from 'rxjs/observable';
 // import { of } from 'rxjs/observable/of';
 // import { Observable} from "rxjs";
 import { of } from "rxjs"
+import { SimulationCardComponent } from "src/app/simulation-card/simulation-card.component"
+
 import pdf from 'pdfobject'
 import { NzMessageService } from 'ng-zorro-antd/message';
 //import { FormModifyCarComponent } from 'src/app/form-modify-car/form-modify-car.component';
@@ -16,6 +20,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class ApplicationsComponent implements OnInit {
   isVisible = false;
+  isVisibless=false//导出应用案例
+  isVisiblessde=false
   breif//简况
   arr1=[]
 ImgPathOne=[]
@@ -29,7 +35,11 @@ ImgPathOne=[]
   constructor( private route: ActivatedRoute,
     private router: Router,
     public http: HttpClient,
-    private nzMessageService: NzMessageService) { }
+    private nzMessageService: NzMessageService,
+    private SimulationCardComponent: SimulationCardComponent,
+    private FormExperimentalItemComponent: FormExperimentalItemComponent
+
+    ) { }
   materialId
   ngOnInit() {
     this.materialId = this.router
@@ -132,6 +142,41 @@ console.log(this.form)
 bianji(){
   this.isVisible=true
  
- 
 }
+showModal() {
+  this.isVisibless = true;
+}
+handleOk(): void {
+
+  this.isVisibless = false;
+let url=` http://localhost:60001/api/hangang/ApplicationCaseExportOne?id=${this.materialId}`
+  this.SimulationCardComponent.download("应用案例.xls",url)
+
+}
+
+handleCancel(): void {
+
+  this.isVisibless = false;
+}
+
+
+showModalde(){
+  this.isVisiblessde=true
+}
+handleCancelde(){
+  this.isVisiblessde=false
+}
+handleOkde(){
+  this.isVisiblessde=false
+  this.route.paramMap.pipe(
+    switchMap((params: ParamMap) => of(params.get('car'))
+    )).subscribe((data) => {
+      let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
+      this.http.delete(api)
+  .toPromise()
+  .then()
+    })
+    this.nzMessageService.info('车型已删除,请刷新页面');
+}
+
 }

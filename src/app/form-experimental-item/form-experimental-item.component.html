@@ -21,7 +21,7 @@
 
                 </ul>
             </li>
-            <li nz-submenu nzTitle="应用数据" nzOpen *ngIf="quanxian('应用数据')==true">
+            <li nz-submenu nzTitle="应用数据" nzOpen *ngIf="quanxian('应用数据')">
                 <ul >
                     <li nz-menu-item nzMatchRouter *ngIf = "bend"><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "FLD"><a [routerLink]="['/display',materialId ,'fld']">成型极限FLD</a></li>
@@ -33,7 +33,7 @@
                     <li nz-menu-item nzMatchRouter *ngIf = "huitanxn"><a [routerLink]="['/display',materialId ,'rebound']">回弹性能</a></li>
                 </ul>
             </li>
-            <li nz-submenu nzTitle="服役数据" nzOpen *ngIf="quanxian('服役数据')==true">
+            <li nz-submenu nzTitle="服役数据" nzOpen *ngIf="quanxian('服役数据')">
                 <ul >
                     <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
                     <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture']">氢致延迟开裂</a></li>
@@ -43,14 +43,16 @@
                     <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue']">高周疲劳</a></li>
                 </ul>
             </li>
-            <li nz-submenu nzTitle="应用案例" *ngIf="quanxian('应用案例')==true">
+            <li nz-submenu nzTitle="应用案例" >
                 <ul >
-                    <li nz-menu-item nzDisabled style="cursor:pointer"><div style="text-decoration: underline;" (click)='show()'>添加车型</div></li>
-                    <li nz-menu-item *ngFor="let data of car;let i= index" nzMatchRouter><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
-                    <!-- <li nz-menu-item  nzMatchRouter><a [routerLink]="['/display',materialId ,'simulationCard']">仿真卡片</a></li> -->
+                    <li nz-menu-item nzDisabled style="cursor:pointer" *ngIf="button('add')"><div style="text-decoration: underline;" (click)='show()'>添加车型</div></li>
+                    <ng-template ngFor let-data [ngForOf]="car">
+                    
+                    <li nz-menu-item *ngIf="button('get')" nzMatchRouter ><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
+                </ng-template>
                 </ul>
             </li>
-            <li nz-menu-item  nzMatchRouter *ngIf="quanxian('仿真卡片')==true"><a [routerLink]="['/display',materialId ,'simulationCard']">仿真卡片</a> </li>
+            <li nz-menu-item  nzMatchRouter *ngIf="quanxian('仿真卡片')"><a [routerLink]="['/display',materialId ,'simulationCard']">仿真卡片</a> </li>
         </ul>
     </div>
 

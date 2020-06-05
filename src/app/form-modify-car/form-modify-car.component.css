@@ -11,3 +11,6 @@ nz-upload{
 .last /deep/ .ant-form-item-control{
     left:40px
 }
+nz-upload /deep/.ant-upload-list-item-info {
+    width:100px
+} 

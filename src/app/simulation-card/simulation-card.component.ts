@@ -3,7 +3,12 @@ import { Router} from '@angular/router';
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Injectable } from '@angular/core';
+import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-simulation-card',
   templateUrl: './simulation-card.component.html',
@@ -13,7 +18,9 @@ export class SimulationCardComponent implements OnInit {
 
   constructor( private router: Router,
     public http: HttpClient,
-    private msg: NzMessageService) { }
+    private msg: NzMessageService,
+    private FormExperimentalItemComponent: FormExperimentalItemComponent
+    ) { }
     
   materialId
   maUrl
@@ -98,11 +105,12 @@ formData =new FormData();
       }
     }
     one
+    three=[]
     getmaterial() {
       let api=`http://localhost:60001/api/hangang/material/materials?Id=${this.materialId}`
       this.http.get(api).toPromise()
       .then((res: any) => {
-       this.one=res.items[0].fileKey.split(";")
+      if(res.items[0].fileKey) {this.one=res.items[0].fileKey.split(";")
         this.one.pop()//this.one得到文件全名
         console.log(this.one)
         let two=[]
@@ -120,19 +128,27 @@ formData =new FormData();
 //two是文件名
 console.log(two)
 let z=two.length
+let x=this.one.length
  this.material=[]
+ this.three=[]
+ for(let a=0;a<x;a++)
+{
+ let d= this.one[a].indexOf("_")
+ this.three.push(this.one[a].slice(d+1))
+}
+
 for(let a=0;a<z;a++)
 {
  let d= two[a].indexOf("_")
  this.material.push(two[a].slice(d+1))
 }
 //this.material是处理后的文件名
-console.log(this.material)
-})
+
+}})
     }
 
 
-    //文件下载
+    //根据文件流下载文件
     downloadFile(content,data){
       var a = document.createElement('a')
       var blob = new Blob([content])
@@ -144,12 +160,12 @@ console.log(this.material)
 //window.location.href=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${data}`
 
     }
-    download(p,data) {
-      var url = `http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${data}` // demo图片
+    download(p,url) {
+     // var url = `http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${data}` // demo图片
       let that=this
-      this.ajax(url, function(xhr) {
+      this.ajax(url, function(xhr) {//url是文件流地址
           //var filename = 'xxx' + url.replace(/(.*\.)/, '') // 自定义文件名+后缀
-          var filename = p
+          var filename = p//p参数是文件名,注意加上后缀名
 
           that.downloadFile(xhr.response, filename)
       }, {
@@ -176,7 +192,8 @@ cancel(): void {
 }
 
 confirm(a,b): void {
-  this.download(a,b)
+ let  url = `http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${b}` // demo图片
+  this.download(a,url)
   // this.msg.info('click confirm');
 }
   } 

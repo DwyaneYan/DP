@@ -230,6 +230,7 @@ returnFalse =false
 customReqone = (item: UploadXHRArgs) => {
       // 构建一个 FormData 对象，用于存储文件或其他参数
       // tslint:disable-next-line:no-any   
+
         this.formData.append('input',item.file as any);
         this.formDataList.push(item);    
   console.log(item.action!)

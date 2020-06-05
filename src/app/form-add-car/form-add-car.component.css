@@ -6,6 +6,6 @@ nz-upload{
     left:210px;
 
 }
- .ant-upload-list-item-info {
+nz-upload /deep/.ant-upload-list-item-info {
     width:100px
 } 

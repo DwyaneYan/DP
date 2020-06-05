@@ -8,19 +8,32 @@
 [(nzFileList)]="nzFileList"
 
 >
-<button nz-button ><i nz-icon nzType="upload" ></i>上传仿真卡片</button>
+<button nz-button ><i nz-icon nzType="upload" *ngIf="FormExperimentalItemComponent.button('uploadCard')"></i>上传仿真卡片</button>
 </nz-upload>
 <h2 style="float:left;margin-top:20px">点击下载文件:</h2>
 <div style="float:left;margin-left:25px;margin-top:10px">
-<div *ngFor="let data of material;let i=index"   style="margin-top:15px">
+    <ng-template ngFor let-data [ngForOf]="material" let-i="index">
+  <div *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock"   style="margin-top:15px">
     <a
     nz-popconfirm
     nzPopconfirmTitle="是否下载文件?"
     nzPopconfirmPlacement="bottom"
-    (nzOnConfirm)="confirm(data,one[i])"
+    (nzOnConfirm)="confirm(three[i],one[i])"
     (nzOnCancel)="cancel()"
     >
 {{data}}</a>
-</div>
+</div> 
+<ng-template #elseBlock>{{data}}</ng-template>
+    </ng-template>
+<!-- <div *ngFor="let data of material;let i=index"   style="margin-top:15px">
+    <a
+    nz-popconfirm
+    nzPopconfirmTitle="是否下载文件?"
+    nzPopconfirmPlacement="bottom"
+    (nzOnConfirm)="confirm(one[i])"
+    (nzOnCancel)="cancel()"
+    >
+{{data}}</a>
+</div> -->
 </div>
 </div>

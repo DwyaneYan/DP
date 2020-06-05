@@ -50,6 +50,7 @@ ngOnChanges(changes: SimpleChanges) {
 formDataList = []
 returnFalse =false
   customRequestOne= (item: UploadXHRArgs) => {
+    // this.nzFileList=[]
           this.formData.append('photo',item.file as any);
           this.formDataList.push(item);    
     console.log(item.action!)
@@ -158,7 +159,7 @@ returnFalse =false
         case 'done':
   
           this.msg.success("图片上传成功");
-          this.nzFileList=[]
+          // this.nzFileList=[]
           break;
         case 'error':
           this.msg.error('Network error');
@@ -172,7 +173,7 @@ returnFalse =false
         case 'done':
   
           this.msg.success("文件上传成功");
-          this.nzFileList1=[]
+          // this.nzFileList1=[]
           break;
         case 'error':
           this.msg.error('Network error');
