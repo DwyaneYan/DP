@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 })
 export class DentResistanceComponent implements OnInit {
   public materialId
+  name="dent-resistance"
+  p1='kaxn1'
+  p2='kaxn2'
+  p3='kaxn3'
   constructor(private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

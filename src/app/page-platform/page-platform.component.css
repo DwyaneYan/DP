@@ -74,7 +74,9 @@ hr{
     margin-top: 0.8%;
     margin-right: 1%;
 }
-
+nz-switch /deep/ button{
+    height: 20.8px;
+}
 .material{
     float: left;
     height: 140px;

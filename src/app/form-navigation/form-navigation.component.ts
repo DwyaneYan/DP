@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 
 @Component({
   selector: 'app-form-navigation',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormNavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private FormExperimentalItemComponent: FormExperimentalItemComponent,
+  ) { }
 
   ngOnInit() {
   }

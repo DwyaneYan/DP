@@ -6,7 +6,11 @@ import {Router } from '@angular/router';
   styleUrls: ['./bake-hardening.component.css']
 })
 export class BakeHardeningComponent implements OnInit {
-public materialId
+  public materialId
+  name="bake-hardening"
+  p1='hkyh1'
+  p2='hkyh2'
+  p3='hkyh3'
   constructor(private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

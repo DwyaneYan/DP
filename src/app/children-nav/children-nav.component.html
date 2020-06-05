@@ -1,0 +1,16 @@
+<ul nz-menu nzMode="horizontal">
+
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button(p1)">
+        <a [routerLink]="['/display', materialId, name,'table']">数据表</a> 
+    </li>
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button(p2)">
+        <a [routerLink]="['/display', materialId, name,'picture']">数据图</a>
+    </li>
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button(p3)">
+        <a [routerLink]="['/display', materialId, name,'report']">报告</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/display', materialId, name, 'typical-part']">典型零部件</a>
+    </li>
+</ul>
+

@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 })
 export class SecondaryWorkingEmbrittlementComponent implements OnInit {
   public materialId
+  name="secondary-working-embrittlement"
+  p1='ecjgcx1'
+  p2='ecjgcx2'
+  p3='ecjgcx3'
   constructor(   private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

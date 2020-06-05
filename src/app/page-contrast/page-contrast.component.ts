@@ -355,13 +355,7 @@ this.th[j][a][b] = {
         data.checked = false;
       }
     });
-    // debugger;
-    // this.fields.forEach(data => {
-    //   if (data.checked === true) {
-    //     this.list.push(data.value);
-    //   }
-    // });
-    // console.log("---------", this.list);
+
   }
   cac() {
     this.checkbox = false;

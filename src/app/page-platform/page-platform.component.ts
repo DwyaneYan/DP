@@ -5,6 +5,9 @@ import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { MaterialListService } from '../form-material-list/material-list.service'
 import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
+import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
+
+//import { Test } from "src/testData"
 // import { Observable, Observer } from 'rxjs';
 // import { UploadChangeParam } from 'ng-zorro-antd/upload';
 // import * as $ from 'jquery';
@@ -78,7 +81,9 @@ this.showi=false
     private MaterialListService:MaterialListService,
     public http: HttpClient,
     private msg: NzMessageService,
-    private FormAddCarComponent: FormAddCarComponent ) { }
+    private FormAddCarComponent: FormAddCarComponent,
+    private FormExperimentalItemComponent: FormExperimentalItemComponent,
+     ) { }
     d =[]
     e =[]
     f =[]
@@ -86,6 +91,7 @@ this.showi=false
   ngOnInit() {  
 
     this.showma();
+
   }
 op(){
   this.PlatformService.GetManufacturers().then((res: any) => {

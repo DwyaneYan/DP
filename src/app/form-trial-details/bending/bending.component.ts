@@ -9,7 +9,10 @@ import {Router } from '@angular/router';
 export class BendingComponent implements OnInit {
 
   public materialId
-
+  name="bending"
+  p1='wq1'
+  p2='wq2'
+  p3='wq3'
   constructor(
    
     private router: Router,

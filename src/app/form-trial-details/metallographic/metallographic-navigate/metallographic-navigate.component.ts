@@ -1,4 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
+import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 
 @Component({
   selector: 'app-metallographic-navigate',
@@ -7,7 +8,9 @@ import { Component, OnInit , Input} from '@angular/core';
 })
 export class MetallographicNavigateComponent implements OnInit {
   @Input() materialId
-  constructor() { }
+  constructor(
+    private FormExperimentalItemComponent: FormExperimentalItemComponent,
+    ) { }
 
   ngOnInit() {
   }

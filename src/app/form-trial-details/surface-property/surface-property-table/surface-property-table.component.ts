@@ -100,7 +100,7 @@ this.one=this.classitem(this.trialDataDetails,"position")
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {
-      debugger
+
       this.trialDataDetailss = res;
       console.log(this.trialDataDetailss)
     })

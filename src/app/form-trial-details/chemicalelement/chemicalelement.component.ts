@@ -7,6 +7,10 @@ import {Router } from '@angular/router';
 })
 export class ChemicalelementComponent implements OnInit {
   public materialId
+  name="chemicalelement"
+  p1='hxcf1'
+  p2='hxcf2'
+  p3='hxcf3'
   constructor(   private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

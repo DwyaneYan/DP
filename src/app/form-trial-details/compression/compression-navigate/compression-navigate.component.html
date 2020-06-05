@@ -1,12 +1,12 @@
 <ul nz-menu nzMode="horizontal">
 
-    <li nz-menu-item nzMatchRouter style="margin-left:15%;">
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button('ys1')">
         <a [routerLink]="['/display', materialId, 'compression','table']">数据表</a> 
     </li>
-    <li nz-menu-item nzMatchRouter>
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button('ys2')">
         <a [routerLink]="['/display', materialId, 'compression','picture']">数据图</a>
     </li>
-    <li nz-menu-item nzMatchRouter>
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button('ys3')">
         <a [routerLink]="['/display', materialId, 'compression','report']">报告</a>
     </li>
     <li nz-menu-item nzMatchRouter>

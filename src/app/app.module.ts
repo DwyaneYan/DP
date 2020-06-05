@@ -175,6 +175,7 @@ import { ApplicationsComponent } from './form-trial-details/applications/applica
 import { FormAddCarComponent } from './form-add-car/form-add-car.component';
 import { FormModifyCarComponent } from './form-modify-car/form-modify-car.component';
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
+import { ChildrenNavComponent } from './children-nav/children-nav.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -378,7 +379,8 @@ import { SimulationCardComponent } from './simulation-card/simulation-card.compo
     ApplicationsComponent,
     FormAddCarComponent,
     FormModifyCarComponent,
-    SimulationCardComponent
+    SimulationCardComponent,
+    ChildrenNavComponent
 
 
 

@@ -187,7 +187,7 @@ for(let a=0;a<length5;a++){
 
   //对象数组按某个属性值分组
   groupBy(array, f) {
-    debugger;
+
     var groups = {};
     array.forEach(function (o) {
         var group = JSON.stringify(f(o));

@@ -18,10 +18,10 @@
               <a>修改密码</a>
             </li>
             <li nz-menu-item>
-              <a routerLink="/login">注销</a>
+              <a routerLink="/login">退出登录</a>
             </li>
           </ul>
         </nz-dropdown-menu></li>
-        <li class="cq5"><a routerLink="/system-manage" style="color:white">系统管理&nbsp;&nbsp;|</a></li>
+      <li class="cq5" *ngIf="FormExperimentalItemComponent.button('system1')"><a routerLink="/system-manage" style="color:white">系统管理&nbsp;&nbsp;|</a></li>
     </ul>
   

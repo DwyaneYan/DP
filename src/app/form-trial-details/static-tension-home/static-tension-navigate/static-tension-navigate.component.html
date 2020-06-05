@@ -1,12 +1,12 @@
 <ul nz-menu nzMode="horizontal" >
 
-    <li nz-menu-item nzMatchRouter  style="margin-left:15%;">
+    <li nz-menu-item nzMatchRouter   *ngIf="FormExperimentalItemComponent.button('jtls1')">
         <a [routerLink]="['/display', materialId, 'static-tension-home','table']">数据表</a> 
     </li>
-    <li nz-menu-item nzMatchRouter>
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button('jtls2')">
         <a [routerLink]="['/display', materialId, 'static-tension-home','picture']">数据图</a>
     </li>
-    <li nz-menu-item nzMatchRouter>
+    <li nz-menu-item nzMatchRouter *ngIf="FormExperimentalItemComponent.button('jtls3')">
         <a [routerLink]="['/display', materialId, 'static-tension-home','report']">报告</a>
     </li>
     <li nz-menu-item nzMatchRouter>

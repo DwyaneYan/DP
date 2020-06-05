@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
 })
 export class WeldingComponent implements OnInit {
   public materialId
-
+  name="welding"
+  p1='hjxn1'
+  p2='hjxn2'
+  p3='hjxn3'
   constructor(     private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

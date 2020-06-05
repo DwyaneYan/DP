@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 })
 export class FlangingClaspComponent implements OnInit {
   public materialId
+  name="flanging-clasp"
+  p1='fbkh1'
+  p2='fbkh2'
+  p3='fbkh3'
   constructor( private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

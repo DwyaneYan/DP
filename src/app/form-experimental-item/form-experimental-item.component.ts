@@ -75,7 +75,7 @@ carid//此id
     //   vehicleType: [null, [Validators.required]],
     // });
     this.getCar()
-    console.log(this.testData[0])
+    console.log(this.testData[0].data[0])
     //console.log(__dirname)
 
 }

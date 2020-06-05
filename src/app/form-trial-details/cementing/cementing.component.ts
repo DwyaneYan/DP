@@ -7,6 +7,10 @@ import {Router } from '@angular/router';
 })
 export class CementingComponent implements OnInit {
   public materialId
+  name="cementing"
+  p1='jjxn1'
+  p2='jjxn2'
+  p3='jjxn3'
   constructor(  private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router
