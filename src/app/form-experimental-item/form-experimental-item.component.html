@@ -46,7 +46,7 @@
             <li nz-submenu nzTitle="应用案例" >
                 <ul >
                     <li nz-menu-item nzDisabled style="cursor:pointer" *ngIf="button('add')"><div style="text-decoration: underline;" (click)='show()'>添加车型</div></li>
-                    <ng-template ngFor let-data [ngForOf]="car">
+                    <ng-template ngFor let-data [ngForOf]="car" let-i="index">
                     
                     <li nz-menu-item *ngIf="button('get')" nzMatchRouter ><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
                 </ng-template>

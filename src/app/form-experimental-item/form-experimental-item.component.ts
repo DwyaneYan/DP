@@ -132,7 +132,9 @@ public async getCar(){
     // this.id=[]
     // this.id.push(this.cars[a].id)
    }
+   console.log( this.car)
    console.log( this.id)
+
  })
 
 

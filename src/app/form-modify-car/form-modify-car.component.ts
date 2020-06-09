@@ -27,6 +27,8 @@ export class FormModifyCarComponent implements OnInit {
 
   ngOnInit() {
    console.log(this.formAddCarComponent.beforeUpload1)
+   console.log(this.form)
+
     this.profileForm = this.fb.group({
       // carName: ['', Validators.required],
       jiankuang: [this.form.breif],
