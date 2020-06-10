@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-painting-table',
   templateUrl: './painting-table.component.html',
@@ -80,7 +82,10 @@ key:"pointStrength"
   trialDataDetailssssssss  // 耐湿热
   trialDataDetailsssssssss  // detail表
   constructor( private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+
+    ) { }
 
   ngOnInit() {this.materialId = this.router
     .routerState.root.firstChild
@@ -98,10 +103,9 @@ key:"pointStrength"
   }
   // 磷化膜
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailPhosphatingItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailPhosphatingItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailPhosphatingItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       // console.log(this.trialDataDetail)
@@ -109,10 +113,9 @@ key:"pointStrength"
   }
   // 膜重
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailMembraneWeightItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailMembraneWeightItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailMembraneWeightItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
       // console.log(this.trialDataDetail)
@@ -120,10 +123,9 @@ key:"pointStrength"
   }
   // P比
   public async GetTrialDataDetailsss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailPRatioItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailPRatioItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailPRatioItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetailss = res
       console.log(this.trialDataDetailss)
@@ -131,10 +133,9 @@ key:"pointStrength"
   }
   // 电泳漆膜厚度
   public async GetTrialDataDetailssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailElectrophoreticItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailElectrophoreticItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailElectrophoreticItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetailsss = res
       // console.log(this.trialDataDetail)
@@ -142,10 +143,9 @@ key:"pointStrength"
   }
   // 电泳漆膜硬度
   public async GetTrialDataDetailsssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailHardnessItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailHardnessItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailHardnessItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetailssss = res
       // console.log(this.trialDataDetail)
@@ -153,10 +153,9 @@ key:"pointStrength"
   }
   // 电泳漆膜粗糙度
   public async GetTrialDataDetailssssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailRoughnessItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailRoughnessItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailRoughnessItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetailsssss = res
       // console.log(this.trialDataDetail)
@@ -164,10 +163,9 @@ key:"pointStrength"
   }
   // 抗石击性能
   public async GetTrialDataDetailsssssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailHitResistanceItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailHitResistanceItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailHitResistanceItems( this.materialId)
     .then((res: any) => {
       this.trialDataDetailssssss = res
       // console.log(this.trialDataDetail)
@@ -175,10 +173,9 @@ key:"pointStrength"
   }
   // 附着力
   public async GetTrialDataDetailssssssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailAdhesionItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailAdhesionItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailAdhesionItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetailsssssss = res
       // console.log(this.trialDataDetail)
@@ -186,10 +183,9 @@ key:"pointStrength"
   }
   // 耐湿热
   public async GetTrialDataDetailsssssssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailDampHeatItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetailDampHeatItems/${materialId}`;
+    await this.ApiService.getPaintingDataDetailDampHeatItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetailssssssss = res
       // console.log(this.trialDataDetail)
@@ -197,10 +193,9 @@ key:"pointStrength"
   }
   // detail表
   public async GetTrialDataDetailssssssssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/paintingDataDetails/${materialId}`;
+    await this.ApiService.getPaintingDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetailsssssssss = res
       this.trialDataDetailsssssssss[0].dates= this.trialDataDetailsssssssss[0].dates.split("T")[0];

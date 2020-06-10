@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Test } from 'src/testData';
+import { ApiService } from 'src/app/api.service';
+
 
 @Component({
   selector: 'app-static-tension-table',
@@ -54,10 +56,10 @@ options;
   close(): void {
     this.visible = false;
   }
-  contrastTable(params, des) {
+  contrastTable(params, des,c) {
         let data = [];
         let xData = [];
-        for (const iterator of this.trialDataDetail) {
+        for (const iterator of c) {
           data.push(iterator[params]);
           xData.push(iterator['sampleCode']);    
         }
@@ -67,6 +69,8 @@ options;
         console.log("Button ok clicked!");
         this.isVisible = false;
       }
+
+
     
     handleCancel(): void {
         console.log("Button cancel clicked!");
@@ -99,6 +103,8 @@ options;
   constructor(
     public http: HttpClient,
     private router: Router,
+    private ApiService: ApiService,
+
   ) { }
 
   ngOnInit() {
@@ -112,10 +118,9 @@ console.log(this.testData[0].data[0])
   }
 
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    //let materialId = this.materialId
+    //let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetails/${materialId}`;
+    await this.ApiService.getStaticTensionDataDetails(this.materialId)
     .then((res: any) => {    
     this.trialDataDetail = res
     console.log(this.trialDataDetail)
@@ -125,29 +130,11 @@ console.log(this.testData[0].data[0])
   this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
   this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
   }
-  // classitem(arry1,p){
-  //   let arry=[]
-  //   arry1.map(mapItem=>{
-  //   if (arry.length == 0) {
-  //     arry.push({highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
-  //   } else {
-  //      let res = arry.some(item=> {//判断相同highSpeedStrechDataDetailId，有就添加到当前项
-  //       if (item.highSpeedStrechDataDetailId == mapItem[p]) {
-  //         item.List.push(mapItem)
-  //         return true
-  //       }
-  //     })
-  //     if (!res) {//如果没找相同highSpeedStrechDataDetailId添加一个新对象
-  //       arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] })
-  //     }
-  //   } })
-  //   return arry
-  // }
+  
   public async GetTrialDataDetail() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetailRequirements/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetailRequirements/${materialId}`;
+    await this.ApiService.getStaticTensionDataDetailRequirements(this.materialId)
     .then((res: any) => {    
     this.trialDataDetails = res
 

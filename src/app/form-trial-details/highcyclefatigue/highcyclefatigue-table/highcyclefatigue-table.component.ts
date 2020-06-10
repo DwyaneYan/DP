@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-highcyclefatigue-table',
   templateUrl: './highcyclefatigue-table.component.html',
@@ -29,7 +31,9 @@ one:["样件编号","最大应力/MPa","应力幅/MPa","循环次数/周次"],
 key:["itemSampleCode","maximumStress","stressAmplitude","testFrequency"]}
 ]
   constructor(private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    private ApiService: ApiService,
+    ) { }
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
@@ -39,9 +43,8 @@ key:["itemSampleCode","maximumStress","stressAmplitude","testFrequency"]}
     this.GetBaseInfo(this.materialId)
   }
   public async GetBaseInfo(p){
-    let api = "http://localhost:60001/api/hangang/material/materials?Id=";
-    await this.http.get(api+p)
-    .toPromise()
+    let param={id:`${p}`}
+    await this.ApiService.GetMater(param)
     .then((res:any)=>{
       this.baseInfo = res.items
     })
@@ -51,10 +54,9 @@ key:["itemSampleCode","maximumStress","stressAmplitude","testFrequency"]}
     )
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/highCycleFatigueDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/highCycleFatigueDataDetails/${materialId}`;
+    await this.ApiService.getHighCycleFatigueDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       for(let a=1;a<this.trialDataDetail.length;a++)   {
@@ -65,10 +67,8 @@ key:["itemSampleCode","maximumStress","stressAmplitude","testFrequency"]}
     })    
   }
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/highCycleFatigueDataDetailItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+  
+    await this.ApiService.getHighCycleFatigueDataDetailItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
       console.log(this.trialDataDetails)

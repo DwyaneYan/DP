@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {PlatformService} from './platform.service';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { MaterialListService } from '../form-material-list/material-list.service'
+import { FormMaterialListComponent } from '../form-material-list/form-material-list.component'
+
 import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
 import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 
-//import { Test } from "src/testData"
-// import { Observable, Observer } from 'rxjs';
-// import { UploadChangeParam } from 'ng-zorro-antd/upload';
-// import * as $ from 'jquery';
+import { Injectable } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
+
+
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-page-platform',
   templateUrl: './page-platform.component.html',
@@ -49,7 +52,7 @@ pas=[]
   //   this.showcan = true;
   // }
   shanchutj(p){
-this.PlatformService.shanchutj(p).then((res: any) => {
+this.ApiService.shanchutj(p).then((res: any) => {
   this.showma()})
 
   }
@@ -77,24 +80,33 @@ this.showi=false
     this.showi=false
     this.FileList=[]  ;  
   }
-  constructor(private PlatformService:PlatformService,
-    private MaterialListService:MaterialListService,
+  constructor(
+    private FormMaterialListComponent:FormMaterialListComponent,
+
     public http: HttpClient,
     private msg: NzMessageService,
     private FormAddCarComponent: FormAddCarComponent,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
+    private ApiService: ApiService,
+
      ) { }
     d =[]
     e =[]
     f =[]
     g=[]
+    public  token
   ngOnInit() {  
+    // this.token=/token=([^=&]*)/.exec(location.href)[1]
+console.log(this.token)
+// this.PlatformService.getInfo(this.token).then(res=>
+//   {
+//   console.log(res)})
 
     this.showma();
 
   }
 op(){
-  this.PlatformService.GetManufacturers().then((res: any) => {
+  this.ApiService.GetManufacturers().then((res: any) => {
     this.listManufacturers = res.items;
     let temp = [];
     for (let j = 0; j < this.listManufacturers.length; j++) {
@@ -107,10 +119,13 @@ op(){
       this.li[j] = [];//每个厂家的牌号
       this.pa[j] = { manufactoryId: "" };
       this.pa[j].manufactoryId = this.listManufacturers[j].id;
-      this.PlatformService.GetMater(this.pa[j]).then((res: any) => {
+      console.log(this.pa[j])
+      this.ApiService.GetMater(this.pa[j]).then((res: any) => {
+        console.log(this.pa[j])
         this.listMa[j] = res.items;
         this.listMa[j].forEach(val => this.list[j].push(val.name));
         this.li[j] = this.unique1(this.list[j]);//每个厂家的牌号
+        console.log(res)
         this.th[j] = [];
         this.listMath[j] = [];
         this.lit[j] = [];
@@ -132,7 +147,7 @@ op(){
           this.pas[j][a] = { manufactoryId: "", Name: "" };
           this.pas[j][a].manufactoryId = this.listManufacturers[j].id;
           this.pas[j][a].Name = this.li[j][a];
-          this.PlatformService.GetMater(this.pas[j][a]).then(
+          this.ApiService.GetMater(this.pas[j][a]).then(
             (res: any) => {
               this.listMath[j][a] = res.items;             
               this.listMath[j][a].forEach(val =>{
@@ -148,7 +163,7 @@ op(){
                 this.d[j][a][b].manufactoryId = this.listManufacturers[j].id;
                 this.d[j][a][b].Name = this.li[j][a];
                 this.d[j][a][b].model = this.limo[j][a][b];
-              this.PlatformService.GetMater(this.d[j][a][b]).then((res: any) => {
+              this.ApiService.GetMater(this.d[j][a][b]).then((res: any) => {
                 this.e[j][a][b] = res.items;
                 this.e[j][a][b].forEach(val =>{
                   this.f[j][a][b].push(val.reelNumber)}
@@ -283,17 +298,17 @@ customReqone = (item: UploadXHRArgs) => {
       }
   
 showma(){
- this.PlatformService.showMaterials().then((res: any) => {
+ this.ApiService.showMaterials().then((res: any) => {
     this.addlist=res;
     this.addlist.forEach(val=>
       {if(val.fileString){
       val.fileString=val.fileString.slice(0,val.fileString.length-1);
-        val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` }
+        val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` }
         else{
           val.avatarUrl=''
         }
       })
-        this.luyou(this.addlist)     
+        this.FormMaterialListComponent.luyou(this.addlist)     
 });
 }
 
@@ -307,10 +322,7 @@ showma(){
       }
       return n;
     }
-  // check(value){
-  //   this.theurl="http://localhost:60001/api/hangang/material/autoAdd"+value
-  //   console.log(this.theurl)//父指令通过绑定到这个属性来监听事件，并通过 $event 对象来访问载荷。
-  // }
+
 
 
   onChanges(values: any): void {
@@ -319,29 +331,29 @@ showma(){
     this.pat.model = values[2];
     this.pat.reelNumber = values[3];
     //查询材料
-    this.PlatformService.GetMater(this.pat).then((res: any) => {
+    this.ApiService.GetMater(this.pat).then((res: any) => {
       this.addid=res.items[0].id
       console.log(this.addid)
       //根据材料id添加到推荐表
-      this.PlatformService.ADDManufacturers(this.addid).then((res: any) => {
+      this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
         //添加后查询所有推荐材料
-        this.PlatformService.showMaterials().then((res: any) => {
+        this.ApiService.showMaterials().then((res: any) => {
            this.addlist=res; 
            this.addlist.map(val=>
             {if(val.fileString){ 
              val.fileString=val.fileString.slice(0,val.fileString.length-1);//获取推荐材料的图片名
-            val.avatarUrl=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`
+            val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`
           }
           else{
             val.avatarUrl=''
           }
         }
           )        
-           this.luyou(this.addlist)       
+           this.FormMaterialListComponent.luyou(this.addlist)       
           //  console.log(this.addid)
           //  console.log(this.addlist)
           //根据材料id添加推荐材料图片
-          this.maUrl=`http://localhost:60001/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
+          this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
        });
       })
 
@@ -387,133 +399,8 @@ this.showi=true
     }
  this.showma()
   }
-  // handleChange1(info: UploadChangeParam): void {
-  //   if (info.file.status !== 'uploading') {
-  //     console.log(info.file, info.fileList);
-  //   }
-  //   if (info.file.status == 'done') {
-  //     this.msg.success(`${info.file.name} file uploaded successfully`);
-  //   } else if (info.file.status == 'error') {
-  //     this.msg.error(`${info.file.name} file upload failed.`);
-  //   }
-  // }
-  public trials
-  public trialName=[]
-  public staticTension
-  public compress
-  public highspeedTension
-  public dizhoupilao
-  public gaozhoupilao
-  public jinxiang
-  public wulixingneng
-  public jinyongwuzhi
-  public biaomianxn
-  public bend
-  public chemical
-  public kangAoxn
-  public ercijiagongcx
-  public fanbiankouhexn
-  public qingzhiyanchikl
-  public hanjiexn
-  public jiaojiexn
-  public tuzhuangxn
-  public FLD
-  public huitanxn
-  public hongkaoyh
-  luyou(listOfAllData){
-    listOfAllData.forEach(data=>
-      {  this.MaterialListService.GetTrials(data.materialId).then((res:any) => {
-        this.trials = res
-        this.trials.forEach((val,i,array) => {
-          this.trialName.push(val.name)
-        });
-    this.staticTension = this.trialName.includes("静态拉伸")
-    this.compress = this.trialName.includes("压缩")
-    this.highspeedTension = this.trialName.includes("高速拉伸")
-    this.dizhoupilao = this.trialName.includes("低周疲劳")
-    this.gaozhoupilao = this.trialName.includes("高周疲劳")
-    this.jinxiang = this.trialName.includes("金相")
-    this.wulixingneng = this.trialName.includes("物理性能")
-    this.jinyongwuzhi = this.trialName.includes("禁用物质")
-    this.biaomianxn = this.trialName.includes("表面性能")
-    this.bend = this.trialName.includes("弯曲")
-    this.chemical =  this.trialName.includes("化学成分")
-    this.kangAoxn = this.trialName.includes("抗凹性能")
-    this.ercijiagongcx = this.trialName.includes("二次加工脆性")
-    this.fanbiankouhexn = this.trialName.includes("翻边扣合性能")
-    this.qingzhiyanchikl = this.trialName.includes("氢致延迟开裂")
-    this.hanjiexn = this.trialName.includes("焊接性能")
-    this.jiaojiexn = this.trialName.includes("胶结性能")
-    this.tuzhuangxn = this.trialName.includes("涂装性能")
-    this.FLD = this.trialName.includes("成型极限")
-    this.huitanxn = this.trialName.includes("回弹性能")
-    this.hongkaoyh = this.trialName.includes("烘烤硬化")
-    if(this.staticTension){
-      data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
-      else if(this.bend){
-       data.routerLink1=[`/display/${data.materialId}/bending/table`]
-      }
-      else if(this.compress){
-       data.routerLink1=[`/display/${data.materialId}/compression/table`]
-      }
-      else if(this.highspeedTension){
-       data.routerLink1=[`/display/${data.materialId}/highspeedstrech/table`]
-      }
-      else if(this.dizhoupilao){
-       data.routerLink1=[`/display/${data.materialId}/lowcyclefatigue/table`]
-      }
-      else if(this.gaozhoupilao){
-       data.routerLink1=[`/display/${data.materialId}/highcyclefatigue/table`]
-      }
-      else if(this.jinxiang){
-       data.routerLink1=[`/display/${data.materialId}/metallographic/table`]
-      }
-      else if(this.wulixingneng){
-       data.routerLink1=[`/display/${data.materialId}/physicalperformance/table`]
-      }
-      else if(this.chemical){
-       data.routerLink1=[`/display/${data.materialId}/chemicalelement/table`]
-      }
-      else if(this.jinyongwuzhi){
-       data.routerLink1=[`/display/${data.materialId}/prohibited-substance/table`]
-      }
-      else if(this.biaomianxn){
-       data.routerLink1=[`/display/${data.materialId}/surface-property/table`]
-      }  
-      else if(this.kangAoxn){
-       data.routerLink1=[`/display/${data.materialId}/dent-resistance/table`]
-      }
-      else if(this.ercijiagongcx){
-       data.routerLink1=[`/display/${data.materialId}/secondary-working-embrittlement/table`]
-      }
-      else if(this.fanbiankouhexn){
-       data.routerLink1=[`/display/${data.materialId}/flanging-clasp/table`]
-      }
-      else if(this.qingzhiyanchikl){
-       data.routerLink1=[`/display/${data.materialId}/hydrogen-induced-delayed-fracture/table`]
-      }
-      else if(this.hanjiexn){
-       data.routerLink1=[`/display/${data.materialId}/welding/table`]
-      }
-      else if(this.jiaojiexn){
-       data.routerLink1=[`/display/${data.materialId}/cementing/table`]
-      }
-      else if(this.tuzhuangxn){
-       data.routerLink1=[`/display/${data.materialId}/painting/table`]
-      }
-      else if(this.FLD){
-       data.routerLink1=[`/display/${data.materialId}/fld/table`]
-      }
-      else if(this.huitanxn){
-       data.routerLink1=[`/display/${data.materialId}/rebound/table`]
-      }
-      else {
-       data.routerLink1=[`/display/${data.materialId}/bake-hardening/table`]
-      } 
-      this.trialName=[]
-      })
-      
-       })
-  }
+
+  
 
 }
+

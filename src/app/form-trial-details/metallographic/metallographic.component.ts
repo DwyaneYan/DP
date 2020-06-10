@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 })
 export class MetallographicComponent implements OnInit {
   public materialId
+  name="metallographic"
+  p1='jx1'
+  p2='jx2'
+  p3='jx3'
   constructor( private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

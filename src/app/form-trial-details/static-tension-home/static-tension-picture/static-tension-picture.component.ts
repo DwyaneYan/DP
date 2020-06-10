@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-static-tension-picture',
   templateUrl: './static-tension-picture.component.html',
@@ -20,16 +22,15 @@ export class StaticTensionPictureComponent implements OnInit {
   constructor(
     public http: HttpClient,
     private router: Router,
+    private ApiService: ApiService,
+    
   ) { }
 
   ngOnInit() {
     this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetails/${materialId}`;
-  this.http.get(api)
-    .toPromise()
+  this.ApiService.getStaticTensionDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
     }) 
@@ -40,10 +41,7 @@ export class StaticTensionPictureComponent implements OnInit {
 
   public async GetTrialDataDetails() {
     let xData = [];
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/staticTensionDataDetailStressStrains/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    await this.ApiService.getStaticTensionDataDetailStressStrains(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
     }) 

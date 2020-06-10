@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-surface-property-table',
   templateUrl: './surface-property-table.component.html',
@@ -34,6 +36,8 @@ export class SurfacePropertyTableComponent implements OnInit {
   constructor(
     private router: Router,
     public http: HttpClient,
+    public ApiService: ApiService,
+
   ) { }
 
   ngOnInit() {
@@ -48,10 +52,9 @@ export class SurfacePropertyTableComponent implements OnInit {
   }
 //镀层重量
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyCoatingWeights/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyCoatingWeights/${materialId}`;
+    await this.ApiService.getSurfacePropertyCoatingWeights(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       console.log(this.trialDataDetail)
@@ -69,10 +72,9 @@ export class SurfacePropertyTableComponent implements OnInit {
   belowPeakDensity=[]
   //粗糙度和峰值密度
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyRoughnessAndPeakDensity/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyRoughnessAndPeakDensity/${materialId}`;
+    await this.ApiService.getRoughnessAndPeakDensity(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res;
       this.c=this.trialDataDetails.length;
@@ -95,10 +97,9 @@ this.one=this.classitem(this.trialDataDetails,"position")
   }
   // detail数据
   public async GetTrialDataDetailsss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyDataDetails/${materialId}`;
+    await this.ApiService.getSurfacePropertyDataDetails(this.materialId)
     .then((res: any) => {
 
       this.trialDataDetailss = res;
@@ -130,10 +131,9 @@ this.one=this.classitem(this.trialDataDetails,"position")
   edgeThickness2=[]
   edgeThickness3=[]
   public async GetTrialDataDetailssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertySizeTolerance/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertySizeTolerance/${materialId}`;
+    await this.ApiService.getSizeTolerance( this.materialId)
     .then((res: any) => {
       this.trialDataDetailsss = res;
       this.d=this.trialDataDetailsss.length;

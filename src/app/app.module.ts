@@ -127,7 +127,6 @@ import { BakeHardeningTableComponent } from './form-trial-details/bake-hardening
 import { SurfacePropertyPictureComponent,} from './form-trial-details/surface-property/surface-property-picture/surface-property-picture.component';
 import { SurfacePropertyNavigateComponent} from './form-trial-details/surface-property/surface-property-navigate/surface-property-navigate.component';
 import { SurfacePropertyTableComponent } from './form-trial-details/surface-property/surface-property-table/surface-property-table.component';
-import { StaticTensionReportComponent } from './form-trial-details/static-tension-home/static-tension-report/static-tension-report.component';
 import { StaticTensionTypicalPartComponent } from './form-trial-details/static-tension-home/static-tension-typical-part/static-tension-typical-part.component';
 import { BendingReportComponent } from './form-trial-details/bending/bending-report/bending-report.component';
 import { BendingTypicalPartComponent } from './form-trial-details/bending/bending-typical-part/bending-typical-part.component';
@@ -176,6 +175,7 @@ import { FormAddCarComponent } from './form-add-car/form-add-car.component';
 import { FormModifyCarComponent } from './form-modify-car/form-modify-car.component';
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
 import { ChildrenNavComponent } from './children-nav/children-nav.component';
+import { ReportComponent } from './report/report.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -332,7 +332,6 @@ import { ChildrenNavComponent } from './children-nav/children-nav.component';
     SurfacePropertyPictureComponent,
     SurfacePropertyTableComponent,
     SurfacePropertyNavigateComponent,
-    StaticTensionReportComponent,
     StaticTensionTypicalPartComponent,
     BendingReportComponent,
     BendingTypicalPartComponent,
@@ -380,7 +379,8 @@ import { ChildrenNavComponent } from './children-nav/children-nav.component';
     FormAddCarComponent,
     FormModifyCarComponent,
     SimulationCardComponent,
-    ChildrenNavComponent
+    ChildrenNavComponent,
+    ReportComponent
 
 
 

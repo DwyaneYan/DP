@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-cementing-table',
   templateUrl: './cementing-table.component.html',
@@ -20,7 +22,9 @@ one:["样件编号","样品长度(mm)","试样宽度(mm)","胶结宽度b(mm)","�
 key:["sampleCode","length","width","cementingWidth","mpa","failureMode"]
 }]
   constructor( private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+    ) { }
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
@@ -28,10 +32,9 @@ key:["sampleCode","length","width","cementingWidth","mpa","failureMode"]
     this.GetTrialDataDetails()
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/cementingDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/cementingDataDetails/${materialId}`;
+    await this.ApiService.getCementingDataDetails( this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       console.log(this.trialDataDetail)

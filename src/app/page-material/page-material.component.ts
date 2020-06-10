@@ -4,6 +4,7 @@ import { MaterialServiceService } from './material-service.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormMaterialListComponent } from '../form-material-list/form-material-list.component';
 import { ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-page-material',
@@ -251,6 +252,8 @@ export class PageMaterialComponent implements OnInit {
     private materialService: MaterialServiceService,    //实例化材料服务
     public http: HttpClient,
     private route: ActivatedRoute,
+    private ApiService: ApiService,
+
   ) { }
   ngOnInit() {    
   this.route.paramMap.subscribe(param => {
@@ -264,7 +267,7 @@ export class PageMaterialComponent implements OnInit {
 
   //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
   public async getGetManufacturers() {
-    await this.materialService.GetManufacturers().then((res: any) => {
+    await this.ApiService.GetManufacturers().then((res: any) => {
       // console.log(res);
       this.listManufacturers = res.items;
       // console.log(this.listManufacturers)
@@ -277,7 +280,7 @@ export class PageMaterialComponent implements OnInit {
   public async filtrationMaterialType(childItem) {
     this.params.materialType = childItem.enum;
     // console.log(this.params)
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items
       // console.log(this.material)
     })    
@@ -287,7 +290,7 @@ export class PageMaterialComponent implements OnInit {
   public async filtrationManufacturers(item) {
     this.params.manufactoryId = item.id
     // console.log(this.params);
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
  })
@@ -297,7 +300,7 @@ export class PageMaterialComponent implements OnInit {
   public async  filtrationModel(item) {
     this.params.model = item.value
     // console.log(this.params);
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
  })
@@ -305,14 +308,14 @@ export class PageMaterialComponent implements OnInit {
 
   public async filtrationMinModel(e: any) {
     this.params.model = "";
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
     })
   }
 
   public async filtrationMaxModel(e: any) {
     this.params.model = "";
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
     })
   }
@@ -322,7 +325,7 @@ export class PageMaterialComponent implements OnInit {
     this.params.MinStrenth = item.min;
     this.params.MaxStrenth = item.max;
     // console.log(this.params);
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
   })
@@ -330,14 +333,14 @@ export class PageMaterialComponent implements OnInit {
 
   public async filtrationMinStrength(e: any) {
     this.params.Strength = "";
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
     })
   }
 
   public async filtrationMaxStrength(e: any) {
     this.params.Strength = "";
-    await this.materialService.GetMaterials(this.params).then((res: any) => {
+    await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
     })
   }
@@ -353,7 +356,7 @@ export class PageMaterialComponent implements OnInit {
       this.params.MaxStrenth = ''
       this.params.MinStrenth = ''
       // console.log(this.params)
-      await this.materialService.GetMaterials(this.params).then((res: any) => {
+      await this.ApiService.GetMater(this.params).then((res: any) => {
         this.material = res.items
         // console.log(this.material)
       })    

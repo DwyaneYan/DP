@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-metallographic-picture',
@@ -23,7 +24,9 @@ export class MetallographicPictureComponent implements OnInit {
   name=[]
   constructor(
     private router: Router,
-    public http: HttpClient,    
+    public http: HttpClient,   
+    public ApiService: ApiService,
+
     ) { }
 
   ngOnInit() { this.materialId = this.router
@@ -34,14 +37,14 @@ export class MetallographicPictureComponent implements OnInit {
   }
 
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/metallographicDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/metallographicDataDetails/${materialId}`;
+    await this.ApiService.getMetallographicDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       this.name=this.getname(this.trialDataDetail[0].fileString).afterName
       this.ImgPathOne=this.getname(this.trialDataDetail[0].fileString).ImgPathOne
+      console.log(this.ImgPathOne)
     })   
   }
 
@@ -79,7 +82,7 @@ for(let a=0;a<z;a++)
 
 for(let a=0;a<length;a++){
   let picture=one[a]
-  ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
+  ImgPathOne.push(`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
 } 
 
   }

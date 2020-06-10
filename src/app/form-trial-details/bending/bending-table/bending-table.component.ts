@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-bending-table',
@@ -30,6 +31,8 @@ export class BendingTableComponent implements OnInit {
   constructor(
     public http: HttpClient,
     private router: Router,
+    private ApiService: ApiService,
+
   ) { }
 
   ngOnInit(   
@@ -41,10 +44,9 @@ export class BendingTableComponent implements OnInit {
   }
 
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/bendingDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/bendingDataDetails/${materialId}`;
+    await this.ApiService.getBendingDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];

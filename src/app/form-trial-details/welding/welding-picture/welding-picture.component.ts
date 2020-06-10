@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-welding-picture',
   templateUrl: './welding-picture.component.html',
@@ -14,7 +16,9 @@ export class WeldingPictureComponent implements OnInit {
   xData2=[]
   xData=[]
   constructor(private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    private ApiService: ApiService,
+    ) { }
 
   ngOnInit() {this.materialId = this.router
     .routerState.root.firstChild
@@ -22,10 +26,9 @@ export class WeldingPictureComponent implements OnInit {
 this.GetTrialDataDetailss()
   }
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/weldingDataDetailItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/weldingDataDetailItems/${materialId}`;
+    await this.ApiService.getWeldingDataDetailItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
       // console.log(this.trialDataDetail)

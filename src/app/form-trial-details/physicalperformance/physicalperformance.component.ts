@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 })
 export class PhysicalperformanceComponent implements OnInit {
   public materialId
+  name="physicalperformance"
+  p1='wlxn1'
+  p2='wlxn2'
+  p3='wlxn3'
   constructor(  private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

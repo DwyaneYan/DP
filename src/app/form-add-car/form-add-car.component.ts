@@ -185,7 +185,7 @@ returnFalse =false
     maUrl1
     maUrl2
 submitForm(value): void {
-  let api=`http://localhost:60001/api/hangang/materialTrial/applicationCaseByInput?MaterialId=${this.materialId}&VehicleType=${value.carName}`
+  let api=`/api/hangang/materialTrial/applicationCaseByInput?MaterialId=${this.materialId}&VehicleType=${value.carName}`
   this.http.get(api).toPromise()
   .then((res: any) => {
       if(res.length==0){
@@ -195,7 +195,7 @@ submitForm(value): void {
       breif:value.jiankuang,
       suppliedPart:value.lingjian,
       requirement:value.yaoqiu}
-    let api ='http://localhost:60001/api/hangang/materialTrial/applicationCase';
+    let api ='/api/hangang/materialTrial/applicationCase';
     this.http.post(api,form)
 .toPromise()
  .then((res: any) => {
@@ -203,8 +203,8 @@ submitForm(value): void {
   this.carid=res
   this.button=false
   // this.getCar()
-  this.maUrl1=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.carid}`
-  this.maUrl2=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.carid}`
+  this.maUrl1=`/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.carid}`
+  this.maUrl2=`/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.carid}`
   this.msg.info('已提交')
   this.outer.emit(this.carid)
  })}

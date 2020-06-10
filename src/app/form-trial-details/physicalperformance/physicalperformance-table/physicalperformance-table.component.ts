@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-physicalperformance-table',
   templateUrl: './physicalperformance-table.component.html',
@@ -36,7 +38,10 @@ table1=[
 ,
 },]
   constructor(private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+
+    ) { }
 
   ngOnInit() {this.materialId = this.router
     .routerState.root.firstChild
@@ -46,10 +51,7 @@ table1=[
     this.GetTrialDataDetailsss();
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    await this.ApiService.getPhysicalPerformanceDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
@@ -58,10 +60,9 @@ table1=[
   }
   // 导热系数
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetailThermalConductivitys/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetailThermalConductivitys/${materialId}`;
+    await this.ApiService.getThermalConductivitys(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
       // console.log(this.trialDataDetail)
@@ -69,10 +70,9 @@ table1=[
   }
   // 热膨胀系数
   public async GetTrialDataDetailsss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetailThermalExpansions/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetailThermalExpansions/${materialId}`;
+    await this.ApiService.getThermalExpansions(this.materialId)
     .then((res: any) => {
       this.trialDataDetailss = res
       // console.log(this.trialDataDetail)

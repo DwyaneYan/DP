@@ -1,5 +1,6 @@
 import { Component, OnInit, Input , Output, EventEmitter} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-base-info',
@@ -20,6 +21,7 @@ export class BaseInfoComponent implements OnInit {
 
   constructor(
     public http: HttpClient,
+    private ApiService: ApiService,
 
   ) { }
 
@@ -34,36 +36,13 @@ export class BaseInfoComponent implements OnInit {
       Id: '', 
     }
     params.Id = this.materialId
-    let api = "http://localhost:60001/api/hangang/material/materials";
-    await this.http.get(api,{params})
-    .toPromise()
+   // let api = "http://localhost:60001/api/hangang/material/materials";
+    await this.ApiService.GetMater(params)
     .then((res:any)=>{
       this.baseInfo = res.items;
       // console.log(this.baseInfo)
     })
-    // let d1=[]
-    // let d2=[]
-    // if(this.baseInfo[0].date!=null){
-    //   d1=(this.baseInfo[0].date).split("T");
-    //   }
-    //  else{
-    //  d1.push("");
-    //  }
-    //  if(this.baseInfo[0].dateEnd!=null){
-    //   d2=(this.baseInfo[0].dateEnd).split("T");
-    //  }else{  d2.push("")}
 
-      // this.mater.push({
-      //   name:this.baseInfo[0].name,
-      //   reelNumber:this.baseInfo[0].reelNumber,
-      //   manufacture:this.baseInfo[0].manufactoryName,
-      //   thickness:this.baseInfo[0].model,
-      //   materialStandard:this.baseInfo[0].materialStandard,
-      //   // date:d1[0]+'——'+d2[0],
-      // })
-
-
-    // console.log(this.baseInfo)
     
     this.checkvalue.emit(this.baseInfo[0].name);
   }

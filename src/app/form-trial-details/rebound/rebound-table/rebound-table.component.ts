@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-rebound-table',
   templateUrl: './rebound-table.component.html',
@@ -53,7 +55,9 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
 ,
 }]
   constructor(  private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+    ) { }
 
   ngOnInit() {
     this.materialId = this.router
@@ -65,10 +69,9 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
     this.GetTrialDataDetailssss();
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetails/${materialId}`;
+    await this.ApiService.getReboundDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       // console.log(this.trialDataDetail)
@@ -78,30 +81,28 @@ key:["direction","thickness","punchFilletRadius","bendingAngle","measuringAngle"
   
   }
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems/${materialId}`;
+    await this.ApiService.getReboundDataDetailItems(this.materialId)
+
     .then((res: any) => {
       this.trialDataDetails = res
       // console.log(this.trialDataDetails)
     })    
   }
   public async GetTrialDataDetailsss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems2/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems2/${materialId}`;
+    await this.ApiService.getReboundDataDetailItems2(this.materialId)
     .then((res: any) => {
       this.trialDataDetailss = res
       console.log(this.trialDataDetailss)
     })    
   }
   public async GetTrialDataDetailssss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems3/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems3/${materialId}`;
+    await this.ApiService.getReboundDataDetailItems3(this.materialId)
     .then((res: any) => {
       this.trialDataDetailsss = res
       console.log(this.trialDataDetailsss)

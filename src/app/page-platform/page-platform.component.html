@@ -45,7 +45,7 @@
 
     <!--材料库模块-->
     <div id="material-model">
-            <div id="cailiaoku"><a routerLink="/material" style="color:black;font-weight:500 ;font-size:18px ">材料库</a></div>
+            <div id="cailiaoku" style="color:black;font-weight:500 ;font-size:18px "><a routerLink="/material" >材料库</a></div>
             <div id="import" style="margin-right:1%;margin-top: 13px" *ngIf="FormExperimentalItemComponent.button('postData')">    
                 <img src="../../assets/images/import-data.png" alt="">       
                     <div (click)="showModal()" style="color: #1D8CE0;  padding-left: 5px;display:inline-block"  >
@@ -61,7 +61,7 @@
                           <div id="text-xzwj">
                             <br/>
                             选择文件:
-                            <nz-upload nzAction="http://localhost:60001/api/hangang/material/autoAddTestItem" nzDirectory='true'
+                            <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
                                [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)"
                               >
                                 <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>

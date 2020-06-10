@@ -38,9 +38,11 @@ export class HighspeedstrechReportComponent implements OnInit {
       this.trialDataDetails = res
       for(let a=0;a<this.trialDataDetails.length;a++)
       {if(this.trialDataDetails[a].standard!=null){
-    this.one.push(this.trialDataDetails[a])}
+    this.one.push(this.trialDataDetails[a])
+
+  }
       }
-      this.MetallographicReportComponent.common(this.trialDataDetails[0].fileKey)
+      this.MetallographicReportComponent.common(this.one[0].fileKey)
 
     })  
 

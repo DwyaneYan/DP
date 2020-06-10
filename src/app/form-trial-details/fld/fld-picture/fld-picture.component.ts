@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-fld-picture',
   templateUrl: './fld-picture.component.html',
@@ -13,7 +15,9 @@ export class FldPictureComponent implements OnInit {
   trialDataDetail
   options
   constructor(private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+    ) { }
 
   ngOnInit() {  this.materialId = this.router
     .routerState.root.firstChild
@@ -22,10 +26,9 @@ export class FldPictureComponent implements OnInit {
 
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/fLDDataDetailItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/fLDDataDetailItems/${materialId}`;
+    await this.ApiService.getFLDDataDetailItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
     })  

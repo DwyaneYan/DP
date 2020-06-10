@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap} from 'rxjs/operators';
 import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
+import { ApiService } from 'src/app/api.service';
 
 // import { Observable } from 'rxjs/observable';
 // import { of } from 'rxjs/observable/of';
@@ -37,7 +38,8 @@ ImgPathOne=[]
     public http: HttpClient,
     private nzMessageService: NzMessageService,
     private SimulationCardComponent: SimulationCardComponent,
-    private FormExperimentalItemComponent: FormExperimentalItemComponent
+    private FormExperimentalItemComponent: FormExperimentalItemComponent,
+    public ApiService: ApiService,
 
     ) { }
   materialId
@@ -75,9 +77,8 @@ this.getform(data)
   }
 
 public  async getBrief(p){
-  let api =`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`;
-  await this.http.get(api)
-  .toPromise()
+  // let api =`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`;
+  await this.ApiService.getApplicationCaseById(p)
   .then((res: any) => {
     this.breif = res.breif,
     this.suppliedPart=res.suppliedPart;
@@ -88,7 +89,7 @@ console.log(res)
 if(res.fileKey){
 let files=this.file.slice(0,this.file.length-1)
 console.log(files)
-let b=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
+let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
      pdf.embed(b, "#pdf1")
 }
 if(this.photo){
@@ -101,7 +102,7 @@ for(let c=1;c<b.length;c+=2){
 }
 for(let d=0;d<a.length;d++){  
    let picture=a[d]
-  this.ImgPathOne.push(`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
+  this.ImgPathOne.push(`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
 }}
 
   })
@@ -115,14 +116,13 @@ cancel(): void {
   // this.nzMessageService.info('click cancel');
 }
 
-confirm(): void {
+ confirm(){
   this.nzMessageService.info('车型已删除,请刷新');
   this.route.paramMap.pipe(
     switchMap((params: ParamMap) => of(params.get('car'))
     )).subscribe((data) => {
-      let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
-      this.http.delete(api)
-  .toPromise()
+      // let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
+  this.ApiService. getApplicationCase(data)
   .then((res: any) => {})
     })
 }
@@ -131,9 +131,8 @@ getshow(event){
 }
 form
 public async getform(p){
-  let api=`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`
-  await this.http.get(api)
- .toPromise()
+  //let api=`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`
+ await this.ApiService.getApplicationCaseById(p)
  .then((res: any) => {
    this.form = res
 console.log(this.form)
@@ -149,7 +148,7 @@ showModal() {
 handleOk(): void {
 
   this.isVisibless = false;
-let url=` http://localhost:60001/api/hangang/ApplicationCaseExportOne?id=${this.materialId}`
+let url=` /api/hangang/ApplicationCaseExportOne?id=${this.materialId}`
   this.SimulationCardComponent.download("应用案例.xls",url)
 
 }
@@ -171,9 +170,8 @@ handleOkde(){
   this.route.paramMap.pipe(
     switchMap((params: ParamMap) => of(params.get('car'))
     )).subscribe((data) => {
-      let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
-      this.http.delete(api)
-  .toPromise()
+      //let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
+      this.ApiService. getApplicationCase(data)
   .then()
     })
     this.nzMessageService.info('车型已删除,请刷新页面');

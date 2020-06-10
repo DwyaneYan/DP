@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-lowcyclefatigue-table',
   templateUrl: './lowcyclefatigue-table.component.html',
@@ -77,7 +79,9 @@ contrastTable(params, des) {
       };
     }
   constructor( private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    private ApiService: ApiService,
+    ) { }
 
   ngOnInit() {this.materialId = this.router
     .routerState.root.firstChild
@@ -87,9 +91,9 @@ contrastTable(params, des) {
     this.GetBaseInfo(this.materialId)
   }
   public async GetBaseInfo(p){
-    let api = "http://localhost:60001/api/hangang/material/materials?Id=";
-    await this.http.get(api+p)
-    .toPromise()
+    let param={id:`${p}`}
+    //let api = "http://localhost:60001/api/hangang/material/materials?Id=";
+    await this.ApiService.GetMater(param)
     .then((res:any)=>{
       this.baseInfo = res.items
     })
@@ -99,10 +103,9 @@ contrastTable(params, des) {
     )
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetails/${materialId}`;
+    await this.ApiService.getLowCycleFatigueDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       for(let a=1;a<this.trialDataDetail.length;a++)   {
@@ -114,10 +117,9 @@ contrastTable(params, des) {
     
   }
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetailItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetailItems/${materialId}`;
+    await this.ApiService.getLowCycleFatigueDataDetailItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
       console.log(this.trialDataDetails)

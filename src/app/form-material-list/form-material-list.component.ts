@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MaterialListService } from './material-list.service'
-import * as $ from 'jquery';
-import { Test } from 'src/testData';
-import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
+import { Injectable } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
+import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
@@ -48,6 +51,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   constructor(
     private materiallistService: MaterialListService,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
+    private ApiService: ApiService,
 
     ) { }
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
@@ -72,7 +76,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   } 
   luyou(listOfAllData){
     listOfAllData.forEach(data=>
-      {  this.materiallistService.GetTrials(data.materialId).then((res:any) => {
+      {  this.ApiService.GetTrials(data.materialId).then((res:any) => {
         this.trials = res
         this.trials.forEach((val,i,array) => {
           this.trialName.push(val.name)
@@ -168,7 +172,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   }
 Allmaterial(){
     let params = this.params
-    this.materiallistService.AllMaterials(params).then((res: any) => {
+    this.ApiService.GetMater(params).then((res: any) => {
     this.allmaterial = res.items;
     this.listOfAllData= this.pushdata(this.allmaterial)
    this.luyou(this.listOfAllData)

@@ -11,7 +11,7 @@ export class MaterialsContrastService {
   {
     if(array.length>1){
       var api
-      api = "http://localhost:60001/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
+      api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
     api +=array[0];
     for(var j=1;j<array.length;j++){   
     api+="&ids="+array[j]
@@ -25,7 +25,7 @@ export class MaterialsContrastService {
   }
 
 else {
-  let api = "http://localhost:60001/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
+  let api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
   let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
     console.log(err);
   });
@@ -35,7 +35,7 @@ else {
   }
   async GetMaterialss(params)
   {
-    let api ="http://localhost:60001/api/hangang/material/materials?Id=";
+    let api ="/api/hangang/material/materials?Id=";
     let res= await this.http.get(api+params)
     .toPromise()
     .catch(err =>{
@@ -45,7 +45,7 @@ else {
   }
   async GetManufacturers()
   {
-    let api = "http://localhost:60001/api/hangang/manufactory/manufactories";
+    let api = "/api/hangang/manufactory/manufactories";
     let res= await this.http.get(api).toPromise().catch(err=>{
       console.log(err);
     });
@@ -54,7 +54,7 @@ else {
 
   async GetMater(params)
   {
-    let api ="http://localhost:60001/api/hangang/material/materials";
+    let api ="/api/hangang/material/materials";
     let res= await this.http.get(api, {params})
     .toPromise()
     .catch(err =>{
@@ -67,7 +67,7 @@ else {
   {
     if(array.length>1){
       var api
-      api = "http://localhost:60001/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
+      api = "/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
     api +=array[0];
     for(var j=1;j<array.length;j++){   
     api+="&ids="+array[j]
@@ -81,7 +81,7 @@ else {
   }
 
   else {
-  let api = "http://localhost:60001/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
+  let api = "/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
   let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
     console.log(err);
   });
@@ -94,7 +94,7 @@ async ChemicalElement(array)
 {
   if(array.length>1){
     var api
-    api = "http://localhost:60001/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
+    api = "/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
   api +=array[0];
   for(var j=1;j<array.length;j++){   
   api+="&ids="+array[j]
@@ -108,7 +108,7 @@ async ChemicalElement(array)
 }
 
 else {
-let api = "http://localhost:60001/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
+let api = "/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
 let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
   console.log(err);
 });

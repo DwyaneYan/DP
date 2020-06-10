@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-bake-hardening-table',
   templateUrl: './bake-hardening-table.component.html',
@@ -25,7 +27,10 @@ nzScroll :{x: '1000px' }
 ,
 }]
   constructor(private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+
+    ) { }
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
@@ -34,10 +39,9 @@ nzScroll :{x: '1000px' }
     this.GetTrialDataDetailss();
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetails/${materialId}`;
+    await this.ApiService.getBakeHardeningDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
@@ -45,10 +49,9 @@ nzScroll :{x: '1000px' }
     })    
   }
   public async GetTrialDataDetailss() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetailItems/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetailItems/${materialId}`;
+    await this.ApiService.getBakeHardeningDataDetailItems(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
       console.log(this.trialDataDetails)

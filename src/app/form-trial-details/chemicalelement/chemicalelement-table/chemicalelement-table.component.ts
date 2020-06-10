@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
+
 @Component({
   selector: 'app-chemicalelement-table',
   templateUrl: './chemicalelement-table.component.html',
@@ -80,7 +82,10 @@ contrastTable(params) {
       };
     }
   constructor( private router: Router,
-    public http: HttpClient,) { }
+    public http: HttpClient,
+    public ApiService: ApiService,
+
+    ) { }
 
   ngOnInit() { this.materialId = this.router
     .routerState.root.firstChild
@@ -88,18 +93,14 @@ contrastTable(params) {
     this.GetTrialDataDetails()
   }
   public async GetTrialDataDetails() {
-    let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/chemicalElementDataDetails/${materialId}`;
-    await this.http.get(api)
-    .toPromise()
+    // let materialId = this.materialId
+    // let api =`http://localhost:60001/api/hangang/materialTrial/chemicalElementDataDetails/${materialId}`;
+    await this.ApiService.getChemicalElementDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
       this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
       this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
-      // this.trialDataDetail.forEach(val=>{this.arry1.push(val.element);
-      //   this.arry4.push(val.sampleCode);})
-      // this.arry2=this.unique1(this.arry1)
-      // this.arry5=this.unique1(this.arry4)
+
       document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (120+this.arry2.length*90) +"px";
       let groupCode=this.groupBy( this.trialDataDetail,function (item) {
         return [item.name + item.element];

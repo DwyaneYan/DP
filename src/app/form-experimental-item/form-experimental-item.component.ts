@@ -5,6 +5,7 @@ import { ExperimentalItemService } from './experimental-item.service'
 import { HttpClient } from '@angular/common/http';
 import { Test } from 'src/testData';
 import { Injectable } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-form-experimental-item',
@@ -65,23 +66,23 @@ carid//此id
     private experimentalItemService: ExperimentalItemService,
     // private fb: FormBuilder,
     public http: HttpClient,
+    public ApiService: ApiService,
+
     // private msg: NzMessageService 
 
   ) { } 
 
   ngOnInit() {
     this.GetTrials(this.materialId)
-    // this.validateForm = this.fb.group({
-    //   vehicleType: [null, [Validators.required]],
-    // });
+
     this.getCar()
     console.log(this.testData[0].data[0])
-    //console.log(__dirname)
+
 
 }
 
 public async GetTrials(materialId){
-  await this.experimentalItemService.GetTrials(materialId).then((res:any) => {
+  await this.ApiService.GetTrials(materialId).then((res:any) => {
     this.trials = res
   })
 this.trials.forEach((val,i,array) => {
@@ -111,26 +112,15 @@ this.hongkaoyh = this.trialName.includes("烘烤硬化")
 // console.log(this.bend,this.chemical)
 }
 
-// handleCancel(): void {
-//   this.profileForm.reset();
-//   this.isVisible = false;
-//   this.button=true
-// }
-
 
 cars=[]
 public async getCar(){
-  let api=`http://localhost:60001/api/hangang/materialTrial/applicationCaseByMaterialId/${this.materialId}`
-  await this.http.get(api)
- .toPromise()
- .then((res: any) => {
+
+  await this.ApiService.getCar(this.materialId).then((res: any) => {
    this.cars = res
    for(let a=0;a<this.cars.length;a++){
     this.car[a]=this.cars[a].vehicleType
     this.id[a]=this.cars[a].id
-
-    // this.id=[]
-    // this.id.push(this.cars[a].id)
    }
    console.log( this.car)
    console.log( this.id)

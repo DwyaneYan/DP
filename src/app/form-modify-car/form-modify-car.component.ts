@@ -37,8 +37,8 @@ export class FormModifyCarComponent implements OnInit {
       
       })
       this.value=this.form.vehicleType
-      this.maUrl1=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.car}`
-      this.maUrl2=`http://localhost:60001/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.car}`
+      this.maUrl1=`/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.car}`
+      this.maUrl2=`/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.car}`
     // this.getCar()
 console.log(this.form)
     // let observable = of(this.car);
@@ -198,7 +198,7 @@ submitForm(value): void {
     breif:value.jiankuang,
     suppliedPart:value.lingjian,
     requirement:value.yaoqiu}
-  let api=`http://localhost:60001/api/hangang/materialTrial/applicationCase`
+  let api=`/api/hangang/materialTrial/applicationCase`
   this.http.put(api,form).toPromise()
   .then((res: any) => {
   // this.button=false

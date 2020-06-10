@@ -20,12 +20,13 @@
             <span *ngIf="('sampleCode,direction').indexOf(table4[i]) == -1;else other_content">
               <span nz-tooltip [nzTooltipTitle]="titleTemplate" >{{ data2 }}</span>
             <ng-template #titleTemplate>
-              <a (click)="contrastTable(table4[i], data2)">对比</a>
+              <a (click)="contrastTable(table4[i], data2,this[value])">对比</a>
             </ng-template>
           </span>
           <ng-template #other_content><span #other_content>{{ data2 }}</span></ng-template>
            </th>
         </tr>
+
       </thead>
       <tbody *ngIf="i==0;else elseBlock">
         <tr  *ngFor="let details of trialDataDetails" >

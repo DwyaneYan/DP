@@ -81,7 +81,6 @@ import { BakeHardeningTableComponent } from './form-trial-details/bake-hardening
 import { SurfacePropertyComponent } from './form-trial-details/surface-property/surface-property.component';
 import { SurfacePropertyTableComponent } from './form-trial-details/surface-property/surface-property-table/surface-property-table.component';
 import { SurfacePropertyPictureComponent,} from './form-trial-details/surface-property/surface-property-picture/surface-property-picture.component';
-import { StaticTensionReportComponent } from './form-trial-details/static-tension-home/static-tension-report/static-tension-report.component';
 import { StaticTensionTypicalPartComponent } from './form-trial-details/static-tension-home/static-tension-typical-part/static-tension-typical-part.component';
 import { BendingReportComponent } from './form-trial-details/bending/bending-report/bending-report.component';
 import { BendingTypicalPartComponent } from './form-trial-details/bending/bending-typical-part/bending-typical-part.component';
@@ -126,6 +125,7 @@ import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-har
 import { PageContrastComponent } from './page-contrast/page-contrast.component'
 import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -143,7 +143,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: StaticTensionTableComponent },
           { path: 'picture', component: StaticTensionPictureComponent },
-          { path: 'report', component:StaticTensionReportComponent},
+          { path: 'report', component:ReportComponent},
           { path: 'typical-part', component:StaticTensionTypicalPartComponent},
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -153,7 +153,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: BendingTableComponent },
           { path: 'picture', component: BendingPictureComponent },
-          { path: 'report', component:BendingReportComponent  },
+          { path: 'report', component:ReportComponent  },
           { path: 'typical-part', component: BendingTypicalPartComponent },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -164,7 +164,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: CompressionTableComponent },
           { path: 'picture', component: CompressionPictureComponent  },
-          { path: 'report', component: CompressionReportComponent  },
+          { path: 'report', component: ReportComponent  },
           { path: 'typical-part', component: CompressionTypicalPartComponent  },
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -174,7 +174,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: HighspeedstrechTableComponent},
           { path: 'picture', component: HighspeedstrechPictureComponent   },
-          { path: 'report', component: HighspeedstrechReportComponent   },
+          { path: 'report', component: ReportComponent   },
           { path: 'typical-part', component: HighspeedstrechTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -184,7 +184,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:  LowcyclefatigueTableComponent},
           { path: 'picture', component:  LowcyclefatiguePictureComponent    },
-          { path: 'report', component:  LowcyclefatigueReportComponent    },
+          { path: 'report', component:  ReportComponent    },
           { path: 'typical-part', component:  LowcyclefatigueTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -194,7 +194,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:  HighcyclefatigueTableComponent},
           { path: 'picture', component:  HighcyclefatiguePictureComponent     },
-          { path: 'report', component:  HighcyclefatigueReportComponent     },
+          { path: 'report', component:  ReportComponent     },
           { path: 'typical-part', component:  HighcyclefatigueTypicalPartComponent     },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -204,7 +204,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:  MetallographicTableComponent },
           { path: 'picture', component:  MetallographicPictureComponent     },
-          { path: 'report', component:  MetallographicReportComponent    },
+          { path: 'report', component:  ReportComponent    },
           { path: 'typical-part', component:  MetallographicTypicalPartComponent     },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -214,7 +214,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:  PhysicalperformanceTableComponent },
           { path: 'picture', component:  PhysicalperformancePictureComponent     },
-          { path: 'report', component:  PhysicalperformanceReportComponent      },
+          { path: 'report', component:  ReportComponent      },
           { path: 'typical-part', component:  PhysicalperformanceTypicalPartComponent     },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -224,7 +224,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: ChemicalelementTableComponent},
           { path: 'picture', component:  ChemicalelementPictureComponent    },
-          { path: 'report', component:  ChemicalelementReportComponent    },
+          { path: 'report', component:  ReportComponent    },
           { path: 'typical-part', component:  ChemicalelementTypicalPartComponent    },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -234,7 +234,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: ProhibitedSubstanceTableComponent},
           { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
-          { path: 'report', component:  ProhibitedSubstanceReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  ProhibitedSubstanceTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -244,7 +244,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: DentResistanceTableComponent },
           { path: 'picture', component:  DentResistancePictureComponent  },
-          { path: 'report', component:  DentResistanceReportComponent  },
+          { path: 'report', component:  ReportComponent  },
           { path: 'typical-part', component:  DentResistanceTypicalPartComponent  },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -254,7 +254,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent},
           { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
-          { path: 'report', component:   SecondaryWorkingEmbrittlementReportComponent   },
+          { path: 'report', component:   ReportComponent   },
           { path: 'typical-part', component:  SecondaryWorkingEmbrittlementTypicalPartComponent    },
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -264,7 +264,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: FlangingClaspTableComponent},
           { path: 'picture', component:  FlangingClaspPictureComponent   },
-          { path: 'report', component:  FlangingClaspReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  FlangingClaspTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -274,7 +274,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: HydrogenInducedDelayedFractureTableComponent },
           { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
-          { path: 'report', component: HydrogenInducedDelayedFractureReportComponent  },
+          { path: 'report', component: ReportComponent  },
           { path: 'typical-part', component: HydrogenInducedDelayedFractureTypicalPartComponent  },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -284,7 +284,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: WeldingTableComponent },
           { path: 'picture', component:  WeldingPictureComponent   },
-          { path: 'report', component:  WeldingReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  WeldingTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -294,7 +294,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:CementingTableComponent },
           { path: 'picture', component:  CementingPictureComponent     },
-          { path: 'report', component:  CementingReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  CementingTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -304,7 +304,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:PaintingTableComponent},
           { path: 'picture', component:  PaintingPictureComponent   },
-          { path: 'report', component:  PaintingReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  PaintingTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -314,7 +314,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:FldTableComponent },
           { path: 'picture', component:  FldPictureComponent     },
-          { path: 'report', component:  FldReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  FldTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -324,7 +324,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component:ReboundTableComponent },
           { path: 'picture', component:  ReboundPictureComponent     },
-          { path: 'report', component:  ReboundReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  ReboundTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -334,7 +334,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: BakeHardeningTableComponent  },
           { path: 'picture', component:  BakeHardeningPictureComponent  },
-          { path: 'report', component:  BakeHardeningReportComponent   },
+          { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  BakeHardeningTypicalPartComponent   },
            { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
@@ -344,7 +344,7 @@ const routes: Routes = [
         children:[
           { path: 'table', component: SurfacePropertyTableComponent },
           { path: 'picture', component:  SurfacePropertyPictureComponent  },
-          { path: 'report', component:  SurfacePropertyReportComponent  },
+          { path: 'report', component:  ReportComponent  },
           { path: 'typical-part', component:  SurfacePropertyTypicalPartComponent  },
           { path: '', redirectTo: 'table', pathMatch: 'full'}
         ]  
