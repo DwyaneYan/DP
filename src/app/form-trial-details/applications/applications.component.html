@@ -21,7 +21,7 @@
 
 
 <app-form-modify-car *ngIf="isVisible"
-[isVisible]='isVisible' [car]="car"  [form] ='form' (outer)="getCar()"  (outer1)="getshow($event)"></app-form-modify-car>
+[isVisible]='isVisible' [car]="car"  [form] ='form' (outer)="getCar()" [mater]="materialId"  (outer1)="getshow($event)"></app-form-modify-car>
 <nz-modal [(nzVisible)]="isVisibless" nzTitle="警告" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
   <nz-alert nzType="warning" nzMessage="是否确认导出所有应用案例?" nzShowIcon></nz-alert>

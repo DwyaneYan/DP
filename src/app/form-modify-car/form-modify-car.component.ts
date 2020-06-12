@@ -15,6 +15,7 @@ export class FormModifyCarComponent implements OnInit {
   @Input() isVisible
   @Input() car
   @Input() form
+  @Input()mater
   @Output() private outer=new EventEmitter<string>();
   @Output() private outer1=new EventEmitter<string>();
 
@@ -195,6 +196,7 @@ formData =new FormData();
 submitForm(value): void {
   let form={id:this.car,
     vehicleType:this.value,
+    materialId:this.mater,
     breif:value.jiankuang,
     suppliedPart:value.lingjian,
     requirement:value.yaoqiu}
