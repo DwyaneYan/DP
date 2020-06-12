@@ -176,6 +176,8 @@ import { FormModifyCarComponent } from './form-modify-car/form-modify-car.compon
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
 import { ChildrenNavComponent } from './children-nav/children-nav.component';
 import { ReportComponent } from './report/report.component';
+import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -380,13 +382,15 @@ import { ReportComponent } from './report/report.component';
     FormModifyCarComponent,
     SimulationCardComponent,
     ChildrenNavComponent,
-    ReportComponent
+    ReportComponent,
+    LoginComponent
 
 
 
 
   ],
   imports: [
+    
     BrowserModule,
     NgZorroAntdModule,
     FormsModule,
@@ -397,8 +401,9 @@ import { ReportComponent } from './report/report.component';
     NgZorroAntdModule,
     AppRoutingModule,
     NgxEchartsModule,
+   
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, CookieService  ,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

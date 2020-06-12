@@ -94,15 +94,17 @@ this.showi=false
     e =[]
     f =[]
     g=[]
-    public  token
+   
+
   ngOnInit() {  
+    // this.permissions =window.sessionStorage.getItem("permissions")
+    // this.data=window.sessionStorage.getItem("data")
     // this.token=/token=([^=&]*)/.exec(location.href)[1]
-console.log(this.token)
-// this.PlatformService.getInfo(this.token).then(res=>
-//   {
-//   console.log(res)})
+// console.log(this.token)
+
 
     this.showma();
+   
 
   }
 op(){

@@ -3,7 +3,7 @@ import { ExperimentalItemService } from './experimental-item.service'
 // import { NzMessageService } from 'ng-zorro-antd/message';
 // // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Test } from 'src/testData';
+// import { Test } from 'src/testData';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
@@ -17,7 +17,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class FormExperimentalItemComponent implements OnInit {
   @Input() materialId
-testData=Test
+// testData=Test
 
   // profileForm = this.fb.group({
   //   carName: ['', Validators.required],
@@ -71,14 +71,16 @@ carid//此id
     // private msg: NzMessageService 
 
   ) { } 
-
+  permissions
+  data
   ngOnInit() {
     this.GetTrials(this.materialId)
 
     this.getCar()
-    console.log(this.testData[0].data[0])
-
-
+  
+    this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+    this.data=JSON.parse(window.sessionStorage.getItem("data"))
+    console.log(this.permissions )
 }
 
 public async GetTrials(materialId){
@@ -143,10 +145,11 @@ formDataList = []
 returnFalse =false
 //权限目录
 quanxian(p):Boolean{
-  let length=this.testData[0].data[0].children.length
+  this.data=JSON.parse(window.sessionStorage.getItem("data"))
+  let length=this.data.data[0].children.length
   let arr=[]
   for(let a=0;a<length;a++){
-    arr.push(this.testData[0].data[0].children[a].meta.title)
+    arr.push(this.data.data[0].children[a].meta.title)
   }
   if(arr.indexOf(`${p}`)==-1){
     return false
@@ -157,15 +160,16 @@ quanxian(p):Boolean{
 }
 //权限菜单
 menu(p):Boolean{
-  let length1=this.testData[0].data[0].children.length
+  this.data=JSON.parse(window.sessionStorage.getItem("data"))
+  let length1=this.data.data[0].children.length
 let arr=[]
 let one
 
   for(let a=0;a<length1;a++){
-    if(this.testData[0].data[0].children[a].children){
-       one=this.testData[0].data[0].children[a].children.length    
+    if(this.data.data[0].children[a].children){
+       one=this.data.data[0].children[a].children.length    
       for(let b=0;b<one;b++){
-        arr.push(this.testData[0].data[0].children[a].children[b].meta.title)
+        arr.push(this.data.data[0].children[a].children[b].meta.title)
       }}
   }
 
@@ -178,7 +182,9 @@ let one
 }
 //按钮权限
 button(p):Boolean{
-  if(this.testData[1].permissions.indexOf(`${p}`)==-1){
+  this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+console.log(this.permissions)
+  if(this.permissions .permissions.indexOf(`${p}`)==-1){
     return false
   }
   else{

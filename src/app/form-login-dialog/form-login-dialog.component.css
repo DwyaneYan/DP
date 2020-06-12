@@ -1,4 +1,4 @@
-.login-form {
+/* .login-form {
   max-width: 300px;
 }
 
@@ -9,4 +9,7 @@
 .login-form-button {
   width: 100%;
 }
-    
+     */
+nz-form-control /deep/ .ant-form-item-control{
+line-height:20px
+     }

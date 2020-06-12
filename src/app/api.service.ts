@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -11,14 +12,10 @@ import { HttpParams } from '@angular/common/http';
 export class ApiService {
 
   constructor(public http: HttpClient,
+    private cookies: CookieService,
+
     ) { }
-    // httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Authorization': 'my-auth-token',
-    //      //'host':'172.20.10.5:60001'
-    //   }),
-    //   param: {}  
-    // };
+
 
 //在材料表筛选材料
 async GetMater(params){
@@ -48,19 +45,19 @@ async GetMater(params){
     return res;
   }
 //在若以登陆后带上token跳到邯钢平台首页，在进入邯钢平台首页时用token获取若以的接口
-  async getInfo(token)
-  {
+  // async getInfo(token)
+  // {
 
-    let api = `http://172.20.10.7:81/dev-api/getInfo`;
-    let options={headers:new HttpHeaders({
-          'Authorization': `${token}`
-        })}
-    let res= await this.http.get(api,options
-      ).toPromise().catch(err=>{
-      console.log(err);
-    });
-    return res;
-  }
+  //   let api = `http://172.20.10.7:81/dev-api/getInfo`;
+  //   let options={headers:new HttpHeaders({
+  //         'Authorization': `${token}`
+  //       })}
+  //   let res= await this.http.get(api,options
+  //     ).toPromise().catch(err=>{
+  //     console.log(err);
+  //   });
+  //   return res;
+  // }
 //查询所有推荐材料
   async showMaterials()
   {
@@ -616,6 +613,67 @@ async getApplicationCaseById(p){
 async getApplicationCase(p){
   let api=`/api/hangang/materialTrial/${p}/applicationCase`
   let res= await this.http.delete(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+
+//获取验证码
+async getCodeImg(){
+  let api=`/dev-api/captchaImage`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+Tokenkey="Admin-Token"
+getToken(){
+  return this.cookies.get(this.Tokenkey)
+}
+setToken(token){
+  return this.cookies.set(this.Tokenkey,token)
+}
+removeToken(){
+  return this.cookies.delete(this.Tokenkey)
+}
+
+//登录方法
+async login(username,password,code,uuid){
+  let api=`/dev-api/login`
+  let data={username,password,code,uuid}
+  let res= await this.http.post(api,data)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+
+    httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer' + ' '+this.getToken(),
+         //'host':'172.20.10.5:60001'
+      }),
+      param: {}  
+    };
+//获取用户详细信息
+async getInfo(){
+  let api=`/dev-api/getInfo`
+  let res= await this.http.get(api,this.httpOptions)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取路由
+async getRouters(){
+  let api=`/dev-api/getRouters`
+  let res= await this.http.get(api,this.httpOptions)
   .toPromise()
   .catch(err =>{
    console.log(err);

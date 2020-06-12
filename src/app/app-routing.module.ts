@@ -126,17 +126,17 @@ import { PageContrastComponent } from './page-contrast/page-contrast.component'
 import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
 import { ReportComponent } from './report/report.component';
-
+import { LoginGuardService } from './login-guard.service'
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: PageLoginComponent},
-  { path: 'platform', component: PagePlatformComponent},
-  { path: 'material', component: PageMaterialComponent},
+  { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
+  { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
 
   //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
-  { path: 'material/:materialName', component: PageMaterialComponent},
+  { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
 
-  { path: 'display/:materialId', component:PageDisplayComponent,
+  { path: 'display/:materialId', component:PageDisplayComponent,canActivate: [LoginGuardService],
     children:[
       {
         path: 'static-tension-home', component: StaticTensionHomeComponent,
@@ -370,7 +370,7 @@ const routes: Routes = [
   { path: 'typicalpart', component: FormTypicpartListComponent },
   { path: 'material-trial', component: PageMaterialTrialComponent },
   { path: 'materialss', component: FormMateriaListComponent },
-  { path: 'contrast', component: PageContrastComponent},
+  { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
 ]
 
 
