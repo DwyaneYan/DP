@@ -27,27 +27,27 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   @Input() params ;
   public trials
   public trialName=[]
-  public staticTension
-  public compress
-  public highspeedTension
-  public dizhoupilao
-  public gaozhoupilao
-  public jinxiang
-  public wulixingneng
-  public jinyongwuzhi
-  public biaomianxn
-  public bend
-  public chemical
-  public kangAoxn
-  public ercijiagongcx
-  public fanbiankouhexn
-  public qingzhiyanchikl
-  public hanjiexn
-  public jiaojiexn
-  public tuzhuangxn
-  public FLD
-  public huitanxn
-  public hongkaoyh
+  // public staticTension
+  // public compress
+  // public highspeedTension
+  // public dizhoupilao
+  // public gaozhoupilao
+  // public jinxiang
+  // public wulixingneng
+  // public jinyongwuzhi
+  // public biaomianxn
+  // public bend
+  // public chemical
+  // public kangAoxn
+  // public ercijiagongcx
+  // public fanbiankouhexn
+  // public qingzhiyanchikl
+  // public hanjiexn
+  // public jiaojiexn
+  // public tuzhuangxn
+  // public FLD
+  // public huitanxn
+  // public hongkaoyh
   constructor(
     private materiallistService: MaterialListService,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
@@ -74,96 +74,164 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
       this.Allmaterial();
       
   } 
+ menu=[{name:"静态拉伸",children:['jtls1','jtls2','jtls3'],luyou:'static-tension-home'},
+  {name:"压缩",children:['ys1','ys2','ys3'],luyou:"compression"},
+  {name:"金相",children:['jx1','jx2','jx3'],luyou:"metallographic"},
+  {name:"物理性能",children:['wlxn1','wlxn2','wlxn3'],luyou:"physicalperformance"},
+  {name:"化学成分",children:['hxcf1','hxcf2','hxcf3'],luyou:'chemicalelement'},
+  {name:"禁用物质",children:['jywz1','jywz2','jywz3'],luyou:'prohibited-substance'},
+  {name:"表面性能",children:['bmxn1','bmxn2','bmxn3'],luyou:'surface-property'},
+  {name:"烘烤硬化",children:['hkyh1','hkyh2','hkyh3'],luyou:'bake-hardening'},
+  {name:"弯曲",children:['wq1','wq2','wq3'],luyou:'bending'},
+  {name:"成型极限FLD",children:['fld1','fld2','fld3'],luyou:'fld'},
+  {name:"抗凹性能",children:['kaxn1','kaxn2','kaxn3'],luyou:'dent-resistance'},
+{name: "翻边扣合性能",chidlren:['fbkh','fbkh2','fbkh3'],luyou:'flanging-clasp'},
+{name:"焊接性能",children:['hjxn1','hjxn2','hjxn3'],luyou:'welding'},
+{name:"胶结性能",children:['jjxn1','jjxn2','jjxn3'],luyou:'cementing'},
+{name:"涂装性能",children:['tzxn1','tzxn2','tzxn3'],luyou:'painting'},
+{name:"回弹性能",children:['htxn1','htxn2','htxn3'],luyou:'rebound'},
+{name:"二次加工脆性",children:['ecjgcx1','ecjgcx2','ecjgcx3'],luyou:'secondary-working-embrittlement'},
+{name:"氢致延迟开裂",children:['qzyckl1','qzyckl2','qzyckl3'],luyou:'hydrogen-induced-delayed-fracture'},
+{name:"高速拉伸",children:['gsls1','gsls2','gsls3'],luyou:'highspeedstrech' },
+{name:"低周疲劳",children:['dzpl1','dzpl2','dzpl3'],luyou:'lowcyclefatigue'},
+{name:"高周疲劳",children:['gzpl1','gzpl2','gzpl3'],luyou:'highcyclefatigue'}]
+
   luyou(listOfAllData){
     listOfAllData.forEach(data=>
-      {  this.ApiService.GetTrials(data.materialId).then((res:any) => {
+      {  
+        this.ApiService.GetTrials(data.materialId).then((res:any) => {
         this.trials = res
         this.trials.forEach((val,i,array) => {
           this.trialName.push(val.name)
         });
-    this.staticTension = this.trialName.includes("静态拉伸")
-    this.compress = this.trialName.includes("压缩")
-    this.highspeedTension = this.trialName.includes("高速拉伸")
-    this.dizhoupilao = this.trialName.includes("低周疲劳")
-    this.gaozhoupilao = this.trialName.includes("高周疲劳")
-    this.jinxiang = this.trialName.includes("金相")
-    this.wulixingneng = this.trialName.includes("物理性能")
-    this.jinyongwuzhi = this.trialName.includes("禁用物质")
-    this.biaomianxn = this.trialName.includes("表面性能")
-    this.bend = this.trialName.includes("弯曲")
-    this.chemical =  this.trialName.includes("化学成分")
-    this.kangAoxn = this.trialName.includes("抗凹性能")
-    this.ercijiagongcx = this.trialName.includes("二次加工脆性")
-    this.fanbiankouhexn = this.trialName.includes("翻边扣合性能")
-    this.qingzhiyanchikl = this.trialName.includes("氢致延迟开裂")
-    this.hanjiexn = this.trialName.includes("焊接性能")
-    this.jiaojiexn = this.trialName.includes("胶结性能")
-    this.tuzhuangxn = this.trialName.includes("涂装性能")
-    this.FLD = this.trialName.includes("成型极限")
-    this.huitanxn = this.trialName.includes("回弹性能")
-    this.hongkaoyh = this.trialName.includes("烘烤硬化")
-    if(this.staticTension&&this.FormExperimentalItemComponent.menu("静态拉伸")){
-      data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
-      else if(this.compress&&this.FormExperimentalItemComponent.menu("压缩")){
-        data.routerLink1=[`/display/${data.materialId}/compression/table`]
-       }
-       else if(this.jinxiang&&this.FormExperimentalItemComponent.menu("金相")){
-        data.routerLink1=[`/display/${data.materialId}/metallographic/table`]
-       }
-       else if(this.wulixingneng&&this.FormExperimentalItemComponent.menu("物理性能")){
-        data.routerLink1=[`/display/${data.materialId}/physicalperformance/table`]
-       }
-       else if(this.chemical&&this.FormExperimentalItemComponent.menu("化学成分")){
-        data.routerLink1=[`/display/${data.materialId}/chemicalelement/table`]
-       }
-       else if(this.jinyongwuzhi&&this.FormExperimentalItemComponent.menu("禁用物质")){
-        data.routerLink1=[`/display/${data.materialId}/prohibited-substance/table`]
-       }
-       else if(this.biaomianxn&&this.FormExperimentalItemComponent.menu("表面性能")){
-        data.routerLink1=[`/display/${data.materialId}/surface-property/table`]
-       }  
-       else if(this.hongkaoyh&&this.FormExperimentalItemComponent.menu("烘烤硬化")){
-        data.routerLink1=[`/display/${data.materialId}/bake-hardening/table`]
-       }
-      else if(this.bend&&this.FormExperimentalItemComponent.menu("弯曲")){
-       data.routerLink1=[`/display/${data.materialId}/bending/table`]
+        let arr=[this.trialName.includes("静态拉伸"),
+        this.trialName.includes("压缩"),
+        this.trialName.includes("金相"),
+        this.trialName.includes("物理性能"),
+        this.trialName.includes("化学成分"),
+        this.trialName.includes("禁用物质"),
+        this.trialName.includes("表面性能"),
+        this.trialName.includes("烘烤硬化"),
+        this.trialName.includes("弯曲"),
+        this.trialName.includes("成型极限"),
+        this.trialName.includes("抗凹性能"),
+        this.trialName.includes("翻边扣合性能"),
+        this.trialName.includes("焊接性能"),
+        this.trialName.includes("胶结性能"),
+        this.trialName.includes("涂装性能"),
+        this.trialName.includes("回弹性能"),
+        this.trialName.includes("二次加工脆性"),
+        this.trialName.includes("氢致延迟开裂"),
+        this.trialName.includes("高速拉伸"),
+        this.trialName.includes("低周疲劳"),
+        this.trialName.includes("高周疲劳")
+      ]
+    // this.staticTension = 
+    // this.compress = this.trialName.includes("压缩")
+    // this.highspeedTension = this.trialName.includes("高速拉伸")
+    // this.dizhoupilao = this.trialName.includes("低周疲劳")
+    // this.gaozhoupilao = this.trialName.includes("高周疲劳")
+    // this.jinxiang = this.trialName.includes("金相")
+    // this.wulixingneng = this.trialName.includes("物理性能")
+    // this.jinyongwuzhi = this.trialName.includes("禁用物质")
+    // this.biaomianxn = this.trialName.includes("表面性能")
+    // this.bend = this.trialName.includes("弯曲")
+    // this.chemical =  this.trialName.includes("化学成分")
+    // this.kangAoxn = this.trialName.includes("抗凹性能")
+    // this.ercijiagongcx = this.trialName.includes("二次加工脆性")
+    // this.fanbiankouhexn = this.trialName.includes("翻边扣合性能")
+    // this.qingzhiyanchikl = this.trialName.includes("氢致延迟开裂")
+    // this.hanjiexn = this.trialName.includes("焊接性能")
+    // this.jiaojiexn = this.trialName.includes("胶结性能")
+    // this.tuzhuangxn = this.trialName.includes("涂装性能")
+    // this.FLD = this.trialName.includes("成型极限")
+    // this.huitanxn = this.trialName.includes("回弹性能")
+    // this.hongkaoyh = this.trialName.includes("烘烤硬化")
+  
+  //   if(this.staticTension&&this.FormExperimentalItemComponent.menu("静态拉伸")){
+  //     if(this.FormExperimentalItemComponent.button("jtls1")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
+  //  else if(this.FormExperimentalItemComponent.button("jtls2")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/picture`]}
+  //  else if(this.FormExperimentalItemComponent.button("jtls3")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/report`]}
+  //   else{data.routerLink1=[`/display/${data.materialId}/static-tension-home/typical-part`]}
+    
+  //   }
+    let length=this.menu.length
+    for(let a=0;a<length;a++){
+      if(arr[a]&&this.FormExperimentalItemComponent.menu(this.menu[a].name)){
+        if(this.FormExperimentalItemComponent.button(this.menu[a].children[1])){data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
+   else if(this.FormExperimentalItemComponent.button(this.menu[a].children[2])){data.routerLink1=[`/display/${data.materialId}/static-tension-home/picture`]}
+   else if(this.FormExperimentalItemComponent.button(this.menu[a].children[3])){data.routerLink1=[`/display/${data.materialId}/static-tension-home/report`]}
+    else{data.routerLink1=[`/display/${data.materialId}/${this.menu[a].luyou}/typical-part`]}
+    break
       }
-      else if(this.FLD&&this.FormExperimentalItemComponent.menu("成型极限FLD")){
-        data.routerLink1=[`/display/${data.materialId}/fld/table`]
-       }
-       else if(this.kangAoxn&&this.FormExperimentalItemComponent.menu("抗凹性能")){
-        data.routerLink1=[`/display/${data.materialId}/dent-resistance/table`]
-       }
-       else if(this.fanbiankouhexn&&this.FormExperimentalItemComponent.menu("翻遍扣合性能")){
-        data.routerLink1=[`/display/${data.materialId}/flanging-clasp/table`]
-       }
-       else if(this.hanjiexn&&this.FormExperimentalItemComponent.menu("焊接性能")){
-        data.routerLink1=[`/display/${data.materialId}/welding/table`]
-       }
-       else if(this.jiaojiexn&&this.FormExperimentalItemComponent.menu("胶结性能")){
-        data.routerLink1=[`/display/${data.materialId}/cementing/table`]
-       }
-       else if(this.tuzhuangxn&&this.FormExperimentalItemComponent.menu("涂装性能")){
-        data.routerLink1=[`/display/${data.materialId}/painting/table`]
-       }
-       else if(this.huitanxn&&this.FormExperimentalItemComponent.menu("回弹性能")){
-        data.routerLink1=[`/display/${data.materialId}/rebound/table`]
-       }
-       else if(this.ercijiagongcx&&this.FormExperimentalItemComponent.menu("二次加工脆性")){
-        data.routerLink1=[`/display/${data.materialId}/secondary-working-embrittlement/table`]
-       }
-       else if(this.qingzhiyanchikl&&this.FormExperimentalItemComponent.menu("氢致延迟开裂")){
-        data.routerLink1=[`/display/${data.materialId}/hydrogen-induced-delayed-fracture/table`]
-       }
-      else if(this.highspeedTension&&this.FormExperimentalItemComponent.menu("高速拉伸")){
-       data.routerLink1=[`/display/${data.materialId}/highspeedstrech/table`]
-      }
-      else if(this.dizhoupilao&&this.FormExperimentalItemComponent.menu("低周疲劳")){
-       data.routerLink1=[`/display/${data.materialId}/lowcyclefatigue/table`]
-      }
-      else if(this.gaozhoupilao&&this.FormExperimentalItemComponent.menu("高周疲劳")){
-       data.routerLink1=[`/display/${data.materialId}/highcyclefatigue/table`]
-      }
+    }
+
+
+
+      // else if(this.compress&&this.FormExperimentalItemComponent.menu("压缩")){
+      //   if(this.FormExperimentalItemComponent.button("ys1")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
+      //   else if(this.FormExperimentalItemComponent.button("jtls2")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/picture`]}
+      //   else if(this.FormExperimentalItemComponent.button("jtls3")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/report`]}
+      //    else{data.routerLink1=[`/display/${data.materialId}/static-tension-home/typical-part`]}
+      //   //data.routerLink1=[`/display/${data.materialId}/compression/table`]
+      //  }
+      //  else if(this.jinxiang&&this.FormExperimentalItemComponent.menu("金相")){
+      //   data.routerLink1=[`/display/${data.materialId}/metallographic/table`]
+      //  }
+      //  else if(this.wulixingneng&&this.FormExperimentalItemComponent.menu("物理性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/physicalperformance/table`]
+      //  }
+      //  else if(this.chemical&&this.FormExperimentalItemComponent.menu("化学成分")){
+      //   data.routerLink1=[`/display/${data.materialId}/chemicalelement/table`]
+      //  }
+      //  else if(this.jinyongwuzhi&&this.FormExperimentalItemComponent.menu("禁用物质")){
+      //   data.routerLink1=[`/display/${data.materialId}/prohibited-substance/table`]
+      //  }
+      //  else if(this.biaomianxn&&this.FormExperimentalItemComponent.menu("表面性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/surface-property/table`]
+      //  }  
+      //  else if(this.hongkaoyh&&this.FormExperimentalItemComponent.menu("烘烤硬化")){
+      //   data.routerLink1=[`/display/${data.materialId}/bake-hardening/table`]
+      //  }
+      // else if(this.bend&&this.FormExperimentalItemComponent.menu("弯曲")){
+      //  data.routerLink1=[`/display/${data.materialId}/bending/table`]
+      // }
+      // else if(this.FLD&&this.FormExperimentalItemComponent.menu("成型极限FLD")){
+      //   data.routerLink1=[`/display/${data.materialId}/fld/table`]
+      //  }
+      //  else if(this.kangAoxn&&this.FormExperimentalItemComponent.menu("抗凹性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/dent-resistance/table`]
+      //  }
+      //  else if(this.fanbiankouhexn&&this.FormExperimentalItemComponent.menu("翻遍扣合性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/flanging-clasp/table`]
+      //  }
+      //  else if(this.hanjiexn&&this.FormExperimentalItemComponent.menu("焊接性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/welding/table`]
+      //  }
+      //  else if(this.jiaojiexn&&this.FormExperimentalItemComponent.menu("胶结性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/cementing/table`]
+      //  }
+      //  else if(this.tuzhuangxn&&this.FormExperimentalItemComponent.menu("涂装性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/painting/table`]
+      //  }
+      //  else if(this.huitanxn&&this.FormExperimentalItemComponent.menu("回弹性能")){
+      //   data.routerLink1=[`/display/${data.materialId}/rebound/table`]
+      //  }
+      //  else if(this.ercijiagongcx&&this.FormExperimentalItemComponent.menu("二次加工脆性")){
+      //   data.routerLink1=[`/display/${data.materialId}/secondary-working-embrittlement/table`]
+      //  }
+      //  else if(this.qingzhiyanchikl&&this.FormExperimentalItemComponent.menu("氢致延迟开裂")){
+      //   data.routerLink1=[`/display/${data.materialId}/hydrogen-induced-delayed-fracture/table`]
+      //  }
+      // else if(this.highspeedTension&&this.FormExperimentalItemComponent.menu("高速拉伸")){
+      //  data.routerLink1=[`/display/${data.materialId}/highspeedstrech/table`]
+      // }
+      // else if(this.dizhoupilao&&this.FormExperimentalItemComponent.menu("低周疲劳")){
+      //  data.routerLink1=[`/display/${data.materialId}/lowcyclefatigue/table`]
+      // }
+      // else if(this.gaozhoupilao&&this.FormExperimentalItemComponent.menu("高周疲劳")){
+      //  data.routerLink1=[`/display/${data.materialId}/highcyclefatigue/table`]
+      // }
 
       this.trialName=[]
       })

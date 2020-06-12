@@ -145,7 +145,7 @@ const routes: Routes = [
           { path: 'picture', component: StaticTensionPictureComponent },
           { path: 'report', component:ReportComponent},
           { path: 'typical-part', component:StaticTensionTypicalPartComponent},
-          { path: '', redirectTo: 'table', pathMatch: 'full'}
+
         ]  
       },
       { 
@@ -155,7 +155,7 @@ const routes: Routes = [
           { path: 'picture', component: BendingPictureComponent },
           { path: 'report', component:ReportComponent  },
           { path: 'typical-part', component: BendingTypicalPartComponent },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
 
@@ -166,7 +166,7 @@ const routes: Routes = [
           { path: 'picture', component: CompressionPictureComponent  },
           { path: 'report', component: ReportComponent  },
           { path: 'typical-part', component: CompressionTypicalPartComponent  },
-          { path: '', redirectTo: 'table', pathMatch: 'full'}
+         
         ]  
       },
       { 
@@ -176,7 +176,7 @@ const routes: Routes = [
           { path: 'picture', component: HighspeedstrechPictureComponent   },
           { path: 'report', component: ReportComponent   },
           { path: 'typical-part', component: HighspeedstrechTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       }, 
        { 
@@ -186,7 +186,7 @@ const routes: Routes = [
           { path: 'picture', component:  LowcyclefatiguePictureComponent    },
           { path: 'report', component:  ReportComponent    },
           { path: 'typical-part', component:  LowcyclefatigueTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+           
         ]  
       },
       { 
@@ -196,7 +196,7 @@ const routes: Routes = [
           { path: 'picture', component:  HighcyclefatiguePictureComponent     },
           { path: 'report', component:  ReportComponent     },
           { path: 'typical-part', component:  HighcyclefatigueTypicalPartComponent     },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -206,7 +206,7 @@ const routes: Routes = [
           { path: 'picture', component:  MetallographicPictureComponent     },
           { path: 'report', component:  ReportComponent    },
           { path: 'typical-part', component:  MetallographicTypicalPartComponent     },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -216,7 +216,7 @@ const routes: Routes = [
           { path: 'picture', component:  PhysicalperformancePictureComponent     },
           { path: 'report', component:  ReportComponent      },
           { path: 'typical-part', component:  PhysicalperformanceTypicalPartComponent     },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+           
         ]  
       },
       { 
@@ -226,7 +226,7 @@ const routes: Routes = [
           { path: 'picture', component:  ChemicalelementPictureComponent    },
           { path: 'report', component:  ReportComponent    },
           { path: 'typical-part', component:  ChemicalelementTypicalPartComponent    },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -236,7 +236,7 @@ const routes: Routes = [
           { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  ProhibitedSubstanceTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+           
         ]  
       }, 
       { 
@@ -246,7 +246,7 @@ const routes: Routes = [
           { path: 'picture', component:  DentResistancePictureComponent  },
           { path: 'report', component:  ReportComponent  },
           { path: 'typical-part', component:  DentResistanceTypicalPartComponent  },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -256,7 +256,7 @@ const routes: Routes = [
           { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
           { path: 'report', component:   ReportComponent   },
           { path: 'typical-part', component:  SecondaryWorkingEmbrittlementTypicalPartComponent    },
-          { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -266,7 +266,7 @@ const routes: Routes = [
           { path: 'picture', component:  FlangingClaspPictureComponent   },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  FlangingClaspTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+           
         ]  
       },
       { 
@@ -276,7 +276,7 @@ const routes: Routes = [
           { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
           { path: 'report', component: ReportComponent  },
           { path: 'typical-part', component: HydrogenInducedDelayedFractureTypicalPartComponent  },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -286,7 +286,7 @@ const routes: Routes = [
           { path: 'picture', component:  WeldingPictureComponent   },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  WeldingTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+         
         ]  
       },
       { 
@@ -296,7 +296,7 @@ const routes: Routes = [
           { path: 'picture', component:  CementingPictureComponent     },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  CementingTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+           
         ]  
       },
       { 
@@ -306,7 +306,7 @@ const routes: Routes = [
           { path: 'picture', component:  PaintingPictureComponent   },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  PaintingTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -316,7 +316,7 @@ const routes: Routes = [
           { path: 'picture', component:  FldPictureComponent     },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  FldTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -326,7 +326,7 @@ const routes: Routes = [
           { path: 'picture', component:  ReboundPictureComponent     },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  ReboundTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+         
         ]  
       },
       { 
@@ -336,7 +336,7 @@ const routes: Routes = [
           { path: 'picture', component:  BakeHardeningPictureComponent  },
           { path: 'report', component:  ReportComponent   },
           { path: 'typical-part', component:  BakeHardeningTypicalPartComponent   },
-           { path: '', redirectTo: 'table', pathMatch: 'full'}
+          
         ]  
       },
       { 
@@ -346,7 +346,7 @@ const routes: Routes = [
           { path: 'picture', component:  SurfacePropertyPictureComponent  },
           { path: 'report', component:  ReportComponent  },
           { path: 'typical-part', component:  SurfacePropertyTypicalPartComponent  },
-          { path: '', redirectTo: 'table', pathMatch: 'full'}
+         
         ]  
       },
       { 

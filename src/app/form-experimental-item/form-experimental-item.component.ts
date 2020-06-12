@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 // import { Test } from 'src/testData';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-
+import { FormMaterialListComponent }from'../form-material-list/form-material-list.component'
 @Component({
   selector: 'app-form-experimental-item',
   templateUrl: './form-experimental-item.component.html',
@@ -67,7 +67,7 @@ carid//此id
     // private fb: FormBuilder,
     public http: HttpClient,
     public ApiService: ApiService,
-
+//public FormMaterialListComponent:FormMaterialListComponent
     // private msg: NzMessageService 
 
   ) { } 
@@ -83,7 +83,7 @@ carid//此id
     console.log(this.permissions )
 }
 
-public async GetTrials(materialId){
+ async GetTrials(materialId){
   await this.ApiService.GetTrials(materialId).then((res:any) => {
     this.trials = res
   })
