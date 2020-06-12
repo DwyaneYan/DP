@@ -11,8 +11,8 @@ export class LoginGuardService {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let isLogin: boolean;
     // 判断用户是否登入
-    const user = this.ApiService.getToken()
-    if (user=== '') {
+    const user = sessionStorage.getItem("token")
+    if (!user) {
         isLogin = false;
         // 未登入跳转到登入界面
         this.router.navigateByUrl('/login');

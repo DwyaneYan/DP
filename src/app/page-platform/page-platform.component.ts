@@ -3,6 +3,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from 
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormMaterialListComponent } from '../form-material-list/form-material-list.component'
+import { HttpHeaders } from '@angular/common/http';
 
 import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
 import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
@@ -82,7 +83,7 @@ this.showi=false
   }
   constructor(
     private FormMaterialListComponent:FormMaterialListComponent,
-
+//public HttpHeaders:HttpHeaders,
     public http: HttpClient,
     private msg: NzMessageService,
     private FormAddCarComponent: FormAddCarComponent,
@@ -97,12 +98,23 @@ this.showi=false
    
 
   ngOnInit() {  
-    // this.permissions =window.sessionStorage.getItem("permissions")
-    // this.data=window.sessionStorage.getItem("data")
-    // this.token=/token=([^=&]*)/.exec(location.href)[1]
-// console.log(this.token)
 
+//   let httpOptions = {
+//       headers: new HttpHeaders({
+//         'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
+//          //'host':'172.20.10.5:60001'
+//       }),
+//       param: {}  
+//     };
 
+// this.ApiService.getInfo(httpOptions).then((res:any)=>{
+//   //if(res.msg!="操作成功"){}
+// window.sessionStorage.setItem('permissions',  JSON.stringify(res)); 
+// console.log(res)
+// })
+// this.ApiService.getRouters(httpOptions).then((res:any)=>{
+//   window.sessionStorage.setItem('data',  JSON.stringify(res)); 
+//      })
     this.showma();
    
 

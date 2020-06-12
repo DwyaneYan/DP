@@ -128,7 +128,7 @@ import { SimulationCardComponent } from './simulation-card/simulation-card.compo
 import { ReportComponent } from './report/report.component';
 import { LoginGuardService } from './login-guard.service'
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/platform' ,pathMatch: 'full',},
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
   { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},

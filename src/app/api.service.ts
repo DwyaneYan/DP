@@ -653,17 +653,17 @@ async login(username,password,code,uuid){
  return res;
 }
 
-    httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer' + ' '+this.getToken(),
-         //'host':'172.20.10.5:60001'
-      }),
-      param: {}  
-    };
+    // httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
+    //      //'host':'172.20.10.5:60001'
+    //   }),
+    //   param: {}  
+    // };
 //获取用户详细信息
-async getInfo(){
+async getInfo(p){
   let api=`/dev-api/getInfo`
-  let res= await this.http.get(api,this.httpOptions)
+  let res= await this.http.get(api,p)
   .toPromise()
   .catch(err =>{
    console.log(err);
@@ -671,9 +671,9 @@ async getInfo(){
  return res;
 }
 //获取路由
-async getRouters(){
+async getRouters(p){
   let api=`/dev-api/getRouters`
-  let res= await this.http.get(api,this.httpOptions)
+  let res= await this.http.get(api,p)
   .toPromise()
   .catch(err =>{
    console.log(err);

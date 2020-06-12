@@ -78,8 +78,8 @@ carid//此id
 
     this.getCar()
   
-    this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-    this.data=JSON.parse(window.sessionStorage.getItem("data"))
+    // this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+    // this.data=JSON.parse(window.sessionStorage.getItem("data"))
     console.log(this.permissions )
 }
 

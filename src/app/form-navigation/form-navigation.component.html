@@ -17,11 +17,19 @@
             <li nz-menu-item>
               <a>修改密码</a>
             </li> -->
-            <li nz-menu-item>
-              <a routerLink="/login">退出登录</a>
+            <li nz-menu-item (click)="out()">
+             退出登录
             </li>
           </ul>
         </nz-dropdown-menu></li>
-      <li class="cq5" *ngIf="system"><a [href]='href' style="color:white" target="_blank">系统管理&nbsp;&nbsp;|</a></li>
+      <li class="cq5" *ngIf="system" (click)="getinfo()">
+        <a [href]='href' style="color:white" target="_blank"  *ngIf="!isVisible; else elseBlock">系统管理&nbsp;&nbsp;|</a>
+        <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template>
+      </li>
     </ul>
+
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="系统提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+    nzOkText="重新登录">
+      <p>登录状态已过期，您可以继续留在该页面，或者重新登录</p>
+    </nz-modal>
   

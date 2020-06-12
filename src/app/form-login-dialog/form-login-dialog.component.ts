@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router} from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-login-dialog',
@@ -47,9 +48,24 @@ if(res.code==500){
   this.message.create("error", res.msg);
 }
 else{
-this.ApiService.setToken(res.token)
+// this.ApiService.setToken(res.token)
+sessionStorage.setItem("token",res.token)
+let httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer' + ' '+res.token,
+  }),
+ 
+};
+this.ApiService.getInfo(httpOptions).then((res:any)=>{
+window.sessionStorage.setItem('permissions',  JSON.stringify(res)); 
+this.ApiService.getRouters(httpOptions).then((res:any)=>{
+  window.sessionStorage.setItem('data',  JSON.stringify(res)); 
+  this.router.navigateByUrl('platform'); 
+   })
+console.log(res)
+})
 
-  this.router.navigateByUrl('platform');}
+}
 // let storage = window.sessionStorage;  
 //     storage.setItem('token', this.token); 
   })
