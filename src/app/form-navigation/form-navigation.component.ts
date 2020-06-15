@@ -73,7 +73,8 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
 
   out(){
   sessionStorage.removeItem("token")
-  // this.router.navigateByUrl('platform'); 
-  location.reload()
+  this.ApiService.logout()
+ this.router.navigateByUrl('login'); 
+//location.reload()
   }
 }

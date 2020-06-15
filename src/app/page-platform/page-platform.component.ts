@@ -310,7 +310,7 @@ customReqone = (item: UploadXHRArgs) => {
         }  
       }, 100);
       }
-  
+  arr=[]
 showma(){
  this.ApiService.showMaterials().then((res: any) => {
     this.addlist=res;
@@ -322,7 +322,7 @@ showma(){
           val.avatarUrl=''
         }
       })
-        this.FormMaterialListComponent.luyou(this.addlist)     
+        this.FormMaterialListComponent.luyou(this.addlist,this.arr)     
 });
 }
 
@@ -363,7 +363,7 @@ showma(){
           }
         }
           )        
-           this.FormMaterialListComponent.luyou(this.addlist)       
+           this.FormMaterialListComponent.luyou(this.addlist,this.arr)       
           //  console.log(this.addid)
           //  console.log(this.addlist)
           //根据材料id添加推荐材料图片

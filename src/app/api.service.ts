@@ -680,4 +680,15 @@ async getRouters(p){
  })
  return res;
 }
+//退出方法
+async logout(){
+  let api=`/dev-api/logout`
+  let res= await this.http.post(api,{})
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+
 }

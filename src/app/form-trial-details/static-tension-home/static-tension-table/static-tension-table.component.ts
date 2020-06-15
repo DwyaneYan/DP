@@ -125,8 +125,8 @@ console.log(this.testData[0].data[0])
     this.trialDataDetail = res
     console.log(this.trialDataDetail)
     }) 
-  this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
-  this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];
+  this.trialDataDetail[0].dates= this.trialDataDetail[0].dates?this.trialDataDetail[0].dates.split("T")[0]:'';
+  this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds?this.trialDataDetail[0].dateEnds.split("T")[0]:'';
   this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
   this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
   }

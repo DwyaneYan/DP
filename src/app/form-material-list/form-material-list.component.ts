@@ -57,7 +57,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
     this.listOfAllData= this.pushdata(this.data)
-    this.luyou(this.listOfAllData)
+    this.luyou(this.listOfAllData,this.arr)
     if(this.checkList.length!=0){
       for (const iterator of this.checkList) {
         this.listOfAllData.map((item)=>{
@@ -85,7 +85,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   {name:"弯曲",children:['wq1','wq2','wq3'],luyou:'bending'},
   {name:"成型极限FLD",children:['fld1','fld2','fld3'],luyou:'fld'},
   {name:"抗凹性能",children:['kaxn1','kaxn2','kaxn3'],luyou:'dent-resistance'},
-{name: "翻边扣合性能",chidlren:['fbkh','fbkh2','fbkh3'],luyou:'flanging-clasp'},
+{name: "翻边扣合性能",children:['fbkh','fbkh2','fbkh3'],luyou:'flanging-clasp'},
 {name:"焊接性能",children:['hjxn1','hjxn2','hjxn3'],luyou:'welding'},
 {name:"胶结性能",children:['jjxn1','jjxn2','jjxn3'],luyou:'cementing'},
 {name:"涂装性能",children:['tzxn1','tzxn2','tzxn3'],luyou:'painting'},
@@ -96,7 +96,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
 {name:"低周疲劳",children:['dzpl1','dzpl2','dzpl3'],luyou:'lowcyclefatigue'},
 {name:"高周疲劳",children:['gzpl1','gzpl2','gzpl3'],luyou:'highcyclefatigue'}]
 
-  luyou(listOfAllData){
+  luyou(listOfAllData,arr){
     listOfAllData.forEach(data=>
       {  
         this.ApiService.GetTrials(data.materialId).then((res:any) => {
@@ -104,7 +104,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         this.trials.forEach((val,i,array) => {
           this.trialName.push(val.name)
         });
-        let arr=[this.trialName.includes("静态拉伸"),
+         arr=[this.trialName.includes("静态拉伸"),
         this.trialName.includes("压缩"),
         this.trialName.includes("金相"),
         this.trialName.includes("物理性能"),
@@ -158,9 +158,9 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     let length=this.menu.length
     for(let a=0;a<length;a++){
       if(arr[a]&&this.FormExperimentalItemComponent.menu(this.menu[a].name)){
-        if(this.FormExperimentalItemComponent.button(this.menu[a].children[1])){data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
-   else if(this.FormExperimentalItemComponent.button(this.menu[a].children[2])){data.routerLink1=[`/display/${data.materialId}/static-tension-home/picture`]}
-   else if(this.FormExperimentalItemComponent.button(this.menu[a].children[3])){data.routerLink1=[`/display/${data.materialId}/static-tension-home/report`]}
+        if(this.FormExperimentalItemComponent.button(this.menu[a].children[0])){data.routerLink1=[`/display/${data.materialId}/${this.menu[a].luyou}/table`]}
+   else if(this.FormExperimentalItemComponent.button(this.menu[a].children[1])){data.routerLink1=[`/display/${data.materialId}/${this.menu[a].luyou}/picture`]}
+   else if(this.FormExperimentalItemComponent.button(this.menu[a].children[2])){data.routerLink1=[`/display/${data.materialId}/${this.menu[a].luyou}/report`]}
     else{data.routerLink1=[`/display/${data.materialId}/${this.menu[a].luyou}/typical-part`]}
     break
       }
@@ -238,12 +238,13 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
       
        })
   }
+  arr=[]
 Allmaterial(){
     let params = this.params
     this.ApiService.GetMater(params).then((res: any) => {
     this.allmaterial = res.items;
     this.listOfAllData= this.pushdata(this.allmaterial)
-   this.luyou(this.listOfAllData)
+   this.luyou(this.listOfAllData,this.arr)
   })
       }    
     

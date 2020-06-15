@@ -2,9 +2,9 @@
 <div id="dataTable">
   <button nz-button nzType="primary" (click)='showModalde()' style="background-color: #ffa4a4;border-color: #ffa4a4;margin-right: 15px;margin-bottom:10px" *ngIf="FormExperimentalItemComponent.button('delete')"><i nz-icon nzType="delete" nzTheme="outline"></i>删除</button>
 
-  <button nz-button nzType="primary" (click)='bianji()' style="background-color: #89e7b3;border-color: #89e7b3;margin-right: 15px;"><i nz-icon nzType="edit" nzTheme="outline" *ngIf="FormExperimentalItemComponent.button('put')"></i>修改</button>
+  <button nz-button nzType="primary" (click)='bianji()' style="background-color: #89e7b3;border-color: #89e7b3;margin-right: 15px;" *ngIf="FormExperimentalItemComponent.button('put')"><i nz-icon nzType="edit" nzTheme="outline" ></i>修改</button>
   
-  <button nz-button nzType="primary" (click)="showModal()" style="background-color: #FFBA00;border-color: #FFBA00;"><i nz-icon nzType="vertical-align-bottom" nzTheme="outline" ></i>导出</button>
+  <button nz-button nzType="primary" (click)="showModal()" style="background-color: #FFBA00;border-color: #FFBA00;" *ngIf="FormExperimentalItemComponent.button('out')"><i nz-icon nzType="vertical-align-bottom" nzTheme="outline" ></i>导出</button>
 <h2 >简况:</h2>
 <p>{{breif}}</p>
 <h2 >供货零件名称:</h2>
