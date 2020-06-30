@@ -14,7 +14,7 @@ export class ExperimentalItemService {
   async GetTrials(params)
   {
     let MaterialId = params
-    let api = `http://localhost:60001/api/hangang/materialTrial/trialItemByMaterialId/${MaterialId}`;
+    let api = `/api/hangang/materialTrial/trialItemByMaterialId/${MaterialId}`;
     let res = await this.http.get(api)
     .toPromise()
     .catch(err =>{

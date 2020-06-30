@@ -13,7 +13,7 @@ export class DisplayService {
 
   async GetTrialItemByMaterialId(params){
     // console.log(params)
-    let api = "http://localhost:60001/api/hangang/materialTrial/trialItemByMaterialId/"
+    let api = "/api/hangang/materialTrial/trialItemByMaterialId/"
     let res = await this.http.get(api+params.Materiald)
     .toPromise()
     .catch(err=>{
@@ -23,7 +23,7 @@ export class DisplayService {
   }
 
   Getmaterial(p){
-    let api ="http://localhost:60001/api/hangang/material/materials?Id=";
+    let api ="/api/hangang/material/materials?Id=";
     let res=this.http.get(api+p.id).toPromise()
     .catch(err=>{
       console.log(err)

@@ -1,42 +1,49 @@
-#dataTable{
+#dataTable {
     position: absolute;
-    left:25%;
-    top: 160px;
-    width: auto;
-    
+    left: 22%;
+    top: 180px;
+    width: 75%;
 }
-.one{
-    text-align:center;
-    background-color:rgba(107, 152, 248, 0.959);
-    color:white;
-    padding-top:8px;
-    padding-bottom:8px;
 
+.one {
+    text-align: center;
+    background-color: rgba(107, 152, 248, 0.959);
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
-.one1{
-    text-align:center;
-    padding-top:8px;
-    padding-bottom:8px;
+
+.one1 {
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
-#tableone{
+
+
+/* #tableone{
     width:1100px
+} */
+
+#tabletwo {
+    width: 1060px;
+    margin-top: 30px;
+    margin-bottom: 30px
 }
-#tabletwo{
-    width:1060px;
-    margin-top:30px;
-    margin-bottom:30px
+
+#tablewid {
+    width: 1060px;
+    overflow: auto
 }
-#tablewid{
-    width:1060px;
-    overflow:auto
-}
+
 
 /* 抽屉按钮 */
-#drawerBtn{
+
+#drawerBtn {
     position: absolute;
     top: 50px;
     left: 90%;
 }
-.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+
+.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
     background: white;
-  }
+}

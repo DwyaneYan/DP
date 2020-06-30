@@ -30,7 +30,7 @@ export class SecondaryWorkingEmbrittlementReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/secondaryWorkingEmbrittlementDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/secondaryWorkingEmbrittlementDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

@@ -3,8 +3,13 @@ import * as $ from "jquery";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap, map } from "rxjs/operators";
 import { of } from "rxjs";
+import { Injectable } from '@angular/core';
+
 import { MaterialsContrastService } from "./materials-contrast.service";
 import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: "app-page-contrast",
   templateUrl: "./page-contrast.component.html",
@@ -432,7 +437,7 @@ this.th[j][a][b] = {
       // console.log(this.listManufacturers)
     });
   }
-  // 数组去重
+  // 字符串数组去重
   unique1(array) {
     var n = []; //一个新的临时数组
     //遍历当前数组

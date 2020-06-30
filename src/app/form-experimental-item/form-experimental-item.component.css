@@ -1,11 +1,13 @@
 * {
     font-family: "Microsoft YaHei", Arial, Verdana;
 }
-.menu-table{
+
+
+/* .menu-table {
     position: absolute;
     left: -90px;
     top: 30px;
-}
+} */
 
 [nz-menu] {
     width: 100%;
@@ -25,32 +27,39 @@
     margin-left: 10px;
     position: absolute;
     top: 17px;
-    color:black ;
-    font-weight:500
+    color: black;
+    font-weight: 500
 }
 
 .menu-table {
     position: relative;
-    width: 70%;
-    margin: 30px auto;
+    left: 7%;
+    width: 10%;
+    padding-top: 80px;
+    /* width: 70%; */
+    /* margin: 30px auto; */
     color: rgb(138, 134, 134);
 }
 
 .left-menu {
     position: relative;
-    width: 15%;
-height:auto
+    height: auto
 }
+
+
 /* .car{
     float:left
 } */
+
+
 /* #file /deep/ button{
     margin-left:20px
 } */
-nz-upload{
-    float:left;
-    margin-left:20px;
+
+nz-upload {
+    float: left;
+    margin-left: 20px;
     position: relative;
     top: -60px;
-    left:210px
+    left: 210px
 }

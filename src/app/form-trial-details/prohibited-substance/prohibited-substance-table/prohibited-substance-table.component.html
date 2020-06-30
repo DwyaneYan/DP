@@ -1,34 +1,32 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1"  nzBordered  [nzScroll]="{x: '1200px' }">
-    <thead >
-      <tr>
-        <th class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr >
-        <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
-      </tr>
-    </tbody>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1" nzBordered [nzScroll]="{x: '1200px' }">
+        <thead>
+            <tr>
+                <th class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
+            </tr>
+        </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false"   nzBordered class="tablebox"
-    style="max-width:1100px;overflow: auto;;margin-top:30px;margin-bottom:30px" [nzScroll]="{ y: '600px' }">
-      <thead >
-        <tr>
-          <th  class="one" nzWidth="120px" >样件编号</th>
-          <th  class="one" nzWidth="90px" *ngFor="let data of ys">{{data}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr >
-          <td class="one1" nzBreakWord>要求值</td>
-          <td class="one1"  nzBreakWord *ngFor="let detail1 of arr3">{{detail1}}</td>
-        </tr>
-        <tr *ngFor="let detail of last;let i=index">
-          <td nzBreakWord class="one1" >{{bh[i]}}</td>
-          <td nzBreakWord class="one1" *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
-        </tr>
-      </tbody>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="tablebox" style="overflow: auto;;margin-top:30px;margin-bottom:30px" [nzScroll]="{ y: '600px' }">
+        <thead>
+            <tr>
+                <th class="one" nzWidth="120px">样件编号</th>
+                <th class="one" nzWidth="90px" *ngFor="let data of ys">{{data}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="one1" nzBreakWord>要求值</td>
+                <td class="one1" nzBreakWord *ngFor="let detail1 of arr3">{{detail1}}</td>
+            </tr>
+            <tr *ngFor="let detail of last;let i=index">
+                <td nzBreakWord class="one1">{{bh[i]}}</td>
+                <td nzBreakWord class="one1" *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
+            </tr>
+        </tbody>
     </nz-table>
 </div>
-

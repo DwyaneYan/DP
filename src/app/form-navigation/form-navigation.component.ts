@@ -37,7 +37,7 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
               this.system = false
             }
    this.token= sessionStorage.getItem("token")
-   this.href=`http://10.130.53.4:81/index?token=${this.token}`
+   this.href=`http://10.130.53.6:80/index?token=${this.token}`
     
   }
   isVisible=false

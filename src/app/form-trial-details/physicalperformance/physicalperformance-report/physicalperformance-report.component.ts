@@ -29,7 +29,7 @@ export class PhysicalperformanceReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/physicalPerformanceDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/physicalPerformanceDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

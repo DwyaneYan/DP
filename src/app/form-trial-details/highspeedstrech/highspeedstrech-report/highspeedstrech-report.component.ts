@@ -31,7 +31,7 @@ export class HighspeedstrechReportComponent implements OnInit {
   one=[]
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/highSpeedStrechDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

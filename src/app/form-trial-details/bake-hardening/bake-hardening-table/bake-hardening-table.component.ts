@@ -17,14 +17,14 @@ table=[{
   name:"trialDataDetail",
   one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
   key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
-  nzScroll :{x: '1200px' }
+ 
 },
 {table:"table2",
 name:"trialDataDetails",
 one:["烘烤温度及时间","Rt2.0(MPa)","Rp0.2(MPa)","Rm(MPa)","BH2(MPa)"],
 key:["temperatureTimes","rt","rp","rm","bH2"],
-nzScroll :{x: '1000px' }
-,
+//nzScroll :{x: '1000px' }
+
 }]
   constructor(private router: Router,
     public http: HttpClient,

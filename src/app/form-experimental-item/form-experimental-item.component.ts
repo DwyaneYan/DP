@@ -254,7 +254,7 @@ quanxian(p):Boolean{
 //权限菜单
 menu(p):Boolean{
   this.data=JSON.parse(window.sessionStorage.getItem("data"))
-  console.log(this.data)
+  //console.log(this.data)
   let length1=this.data.data[0].children.length
 let arr=[]
 let one

@@ -1,16 +1,14 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" [nzScroll]="data.nzScroll"
-  *ngFor="let data of table"  nzBordered>
-    <thead >
-      <tr>
-        <th nzWidth="200px" class="one" *ngFor="let data1 of data.one">{{data1}}</th>
-      </tr>
-    </thead>
-    <tbody >
-      <tr *ngFor="let data2 of this[data.name]">
-        <td  class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
-      </tr>
-    </tbody>
-</nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [id]="data.table" [nzScroll]="data.nzScroll" *ngFor="let data of table" nzBordered>
+        <thead>
+            <tr>
+                <th class="one" *ngFor="let data1 of data.one">{{data1}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data2 of this[data.name]">
+                <td class="one1" *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
 </div>
-

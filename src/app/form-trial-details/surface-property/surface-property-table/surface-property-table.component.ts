@@ -64,7 +64,7 @@ export class SurfacePropertyTableComponent implements OnInit {
   two=[]//每个位置的数据个数
   three=[]
   c=0
-  widthConfig1 = ['150px', '100px','100px','100px','100px']
+  widthConfig1 = ['150px', '150px','150px','150px','150px']
   widthConfig = ['100px', '180px', '120px', '120px', '120px','120px', '120px', '120px','120px','120px','120px'];
   aboveRoughness=[]
   abovePeakDensity=[]

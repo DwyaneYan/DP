@@ -29,7 +29,7 @@ export class BakeHardeningReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/bakeHardeningDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

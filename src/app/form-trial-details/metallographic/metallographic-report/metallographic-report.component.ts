@@ -29,7 +29,7 @@ export class MetallographicReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/metallographicDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/metallographicDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {
@@ -42,7 +42,7 @@ export class MetallographicReportComponent implements OnInit {
 common(a){
   if(a){
     let p= a.slice(0,a.length-1)      
-   let b=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${p}`
+   let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${p}`
    pdf.embed(b, "#pdf1")}
 }
 }

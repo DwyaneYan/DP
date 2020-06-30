@@ -1,11 +1,11 @@
 {
-  "/api": {
-    "target": "http://localhost:60001",
-    "secure": false
-  },
-  "/dev-api": {
-    "target": "http://10.130.53.4:81",
-    "secure": false,
-    "rewrite":""
-  }
+    "/api": {
+        "target": "http://localhost:60001",
+        "secure": false
+    },
+    "/dev-api": {
+        "target": "http://10.130.53.6:80",
+        "secure": false,
+        "rewrite": ""
+    }
 }

@@ -5,6 +5,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from 
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Injectable } from '@angular/core';
 import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
+import { PageContrastComponent } from 'src/app/page-contrast/page-contrast.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class SimulationCardComponent implements OnInit {
   constructor( private router: Router,
     public http: HttpClient,
     private msg: NzMessageService,
-    private FormExperimentalItemComponent: FormExperimentalItemComponent
+    private FormExperimentalItemComponent: FormExperimentalItemComponent,
+    private PageContrastComponent: PageContrastComponent
+
     ) { }
     
   materialId
@@ -32,7 +35,7 @@ export class SimulationCardComponent implements OnInit {
     this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
-    this.maUrl=`http://localhost:60001/api/hangang/trialdatadetail/MaterialDocumentPut?Id=${this.materialId}`
+    this.maUrl=`/api/hangang/trialdatadetail/MaterialDocumentPut?Id=${this.materialId}`
     this.getmaterial() 
   }
   formDataList = []
@@ -94,7 +97,10 @@ formData =new FormData();
       switch (info.file.status) {
   
         case 'done':
-  
+  this.hz=[]
+  this.after=[]
+  this.three=[]
+  this.data=[]
           this.msg.success("文件上传成功");
           this.nzFileList=[]
           this.getmaterial() 
@@ -106,45 +112,80 @@ formData =new FormData();
     }
     one
     three=[]
+    two=[]
+    data=[]
+    hz=[]
+    after=[]
+    rea=[]
     getmaterial() {
-      let api=`http://localhost:60001/api/hangang/material/materials?Id=${this.materialId}`
+      let api=`/api/hangang/material/materials?Id=${this.materialId}`
       this.http.get(api).toPromise()
       .then((res: any) => {
       if(res.items[0].fileKey) {this.one=res.items[0].fileKey.split(";")
         this.one.pop()//this.one得到文件全名
-        console.log(this.one)
-        let two=[]
-        let length=this.one.length
-        for(let a=0;a<length;a++){
-          let pattern = /\.{1}[a-z]{1,}$/;
-          if (pattern.exec(this.one[a]) !== null) {
-            two.push(this.one[a].slice(0, pattern.exec(this.one[a]).index));
-        } else {
-          two.push( this.one[a]);
-    
-        }
 
-}
-//two是文件名
-console.log(two)
-let z=two.length
-let x=this.one.length
- this.material=[]
- this.three=[]
+//         console.log(this.one)
+//         //let two=[]
+//         let length=this.one.length
+//         for(let a=0;a<length;a++){
+//           let pattern = /\.{1}[a-z]{1,}$/;
+//           if (pattern.exec(this.one[a]) !== null) {
+//            this. two.push(this.one[a].slice(0, pattern.exec(this.one[a]).index));
+//         } else {
+//          this.two.push( this.one[a]);
+    
+//         }
+
+// }
+// //two是文件名
+// console.log(this.two)
+// let z=this.two.length
+ let x=this.one.length
+//  this.material=[]
+//  this.three=[]
+let sc=[] 
+//let data=[]
  for(let a=0;a<x;a++)
 {
  let d= this.one[a].indexOf("_")
+ let f=this.one[a].lastIndexOf(".")
  this.three.push(this.one[a].slice(d+1))
-}
+ //console.log(this.one[a])
+ let arr1=[]
+//sc.push(this.one[a].slice(f+1))
+ if(!this.data[this.one[a].slice(f+1)]){
+   let arr=[]
+  
+  // console.log(arr1)
+   arr1.push(this.one[a])
+   //console.log(arr1)
 
-for(let a=0;a<z;a++)
-{
- let d= two[a].indexOf("_")
- this.material.push(two[a].slice(d+1))
-}
-//this.material是处理后的文件名
+   arr.push(this.three[a])
+   this.rea[this.one[a].slice(f+1)] = arr1
+   this.data[this.one[a].slice(f+1)] = arr
+ }else{
+  this. data[this.one[a].slice(f+1)].push(this.three[a])
+  this. rea[this.one[a].slice(f+1)].push(this.one[a])
 
-}})
+ }
+ this.hz.push(this.one[a].slice(f+1))
+}
+this.after=this.PageContrastComponent.unique1(this.hz)
+console.log(this.rea)
+console.log(this.after)
+// for(let i=0;i<x;i++)
+// {
+
+// }
+// for(let a=0;a<z;a++)
+// {
+//  let d= this.two[a].indexOf("_")
+//  this.material.push(this.two[a].slice(d+1))
+// }
+// //this.material是处理后的文件名
+
+}
+})
     }
 
 
@@ -192,7 +233,7 @@ cancel(): void {
 }
 
 confirm(a,b): void {
- let  url = `http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${b}` // demo图片
+ let  url = `/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${b}` // demo图片
   this.download(a,url)
   // this.msg.info('click confirm');
 }

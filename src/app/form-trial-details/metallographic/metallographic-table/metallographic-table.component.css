@@ -1,50 +1,56 @@
-#dataTable{
+#dataTable {
     position: absolute;
-    left:25%;
-    top: 160px;
-    width: auto;
-    
+    left: 22%;
+    top: 180px;
+    width: 75%;
 }
 
-.one{
-    text-align:center;
-    background-color:rgba(107, 152, 248, 0.959);
-    color:white;
-    padding-top:8px;
-    padding-bottom:8px;
+.one {
+    text-align: center;
+    background-color: rgba(107, 152, 248, 0.959);
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
 
+.one1 {
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
-.one1{
-    text-align:center;
-    padding-top:8px;
-    padding-bottom:8px;
+
+
+/* 
+#table1 {
+    width: 1100px
+} */
+
+#table2 {
+    width: 650px;
+    margin-top: 30px;
+    margin-bottom: 30px
 }
-#table1{
-    width:1100px
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border-top: 1px solid rgb(232, 232, 232);
+    padding: 10px 16px;
+    text-align: right;
+    left: 0px;
+    background: #fff;
 }
-#table2{
-    width:650px;
-    margin-top:30px;
-    margin-bottom:30px
+
+
+/* 抽屉按钮 */
+
+#drawerBtn {
+    position: absolute;
+    top: 50px;
+    left: 90%;
 }
-    .footer {
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-        border-top: 1px solid rgb(232, 232, 232);
-        padding: 10px 16px;
-        text-align: right;
-        left: 0px;
-        background: #fff;
-        }
-    
-    /* 抽屉按钮 */
-    #drawerBtn{
-        position: absolute;
-        top: 50px;
-        left: 90%;
-    }
-    .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
-        background: white;
-      }
-    
+
+.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
+    background: white;
+}

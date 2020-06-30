@@ -64,7 +64,7 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
       this.trialDataDetails.forEach(val=>{this.arry1.push(val.serialNumber);
         this.arry4.push(val.temperature);})
       this.serials=this.unique1(this.arry1)
-    document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (210+this.serials.length*110) +"px";
+    document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (210+this.serials.length*120) +"px";
 
       this.serialsss=this.unique1(this.arry4)
 

@@ -29,7 +29,7 @@ export class ProhibitedSubstanceReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/prohibitedSubstanceDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/prohibitedSubstanceDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

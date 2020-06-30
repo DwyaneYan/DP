@@ -29,7 +29,7 @@ export class DentResistanceReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/dentResistanceDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/dentResistanceDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

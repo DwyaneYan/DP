@@ -1,31 +1,20 @@
-
-<app-base-info [materialId]="materialId"></app-base-info>
+<app-base-info [materialId]="materialId">
+</app-base-info>
 <div id="dataTable">
-<nz-upload
-[nzCustomRequest]='customRequestOne'
-[nzAction]="maUrl"
-(nzChange)="handleChange($event)"        
-[(nzFileList)]="nzFileList"
-
->
-<button nz-button *ngIf="FormExperimentalItemComponent.button('uploadCard')"><i nz-icon nzType="upload" ></i>上传仿真卡片</button>
-</nz-upload>
-<h2 style="float:left;margin-top:20px">点击下载文件:</h2>
-<div style="float:left;margin-left:25px;margin-top:10px">
-    <ng-template ngFor let-data [ngForOf]="material" let-i="index">
-  <div *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock"   style="margin-top:15px">
-    <a
-    nz-popconfirm
-    nzPopconfirmTitle="是否下载文件?"
-    nzPopconfirmPlacement="bottom"
-    (nzOnConfirm)="confirm(three[i],one[i])"
-    (nzOnCancel)="cancel()"
-    >
-{{data}}</a>
-</div>
-<ng-template #elseBlock>{{data}}<br><br></ng-template>
-    </ng-template>
-<!-- <div *ngFor="let data of material;let i=index"   style="margin-top:15px">
+    <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)" [(nzFileList)]="nzFileList">
+        <button nz-button *ngIf="FormExperimentalItemComponent.button('uploadCard')"><i nz-icon nzType="upload" ></i>上传仿真卡片</button>
+    </nz-upload>
+    <h2 style="margin-top:20px">点击下载文件:</h2>
+    <div style="float:left;margin-left:50px;margin-top:10px;width:250px;height:350px;overflow:auto" *ngFor="let item of after">
+        <h3>{{item}}</h3>
+        <ng-template ngFor let-data1 [ngForOf]="data[item]" let-i="index">
+            <div *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock" style="margin-top:15px">
+                <a nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
+{{data1}}</a>
+            </div>
+            <ng-template #elseBlock>{{data1}}<br><br></ng-template>
+        </ng-template>
+        <!-- <div *ngFor="let data of material;let i=index"   style="margin-top:15px">
     <a
     nz-popconfirm
     nzPopconfirmTitle="是否下载文件?"
@@ -35,5 +24,5 @@
     >
 {{data}}</a>
 </div> -->
-</div>
+    </div>
 </div>

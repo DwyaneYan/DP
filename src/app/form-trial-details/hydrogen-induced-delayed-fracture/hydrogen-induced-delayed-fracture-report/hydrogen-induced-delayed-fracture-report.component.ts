@@ -29,7 +29,7 @@ export class HydrogenInducedDelayedFractureReportComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     let materialId = this.materialId
-    let api =`http://localhost:60001/api/hangang/materialTrial/hydrogenInducedDelayedFractureDataDetails/${materialId}`;
+    let api =`/api/hangang/materialTrial/hydrogenInducedDelayedFractureDataDetails/${materialId}`;
     await this.http.get(api)
     .toPromise()
     .then((res: any) => {

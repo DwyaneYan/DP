@@ -1,77 +1,72 @@
 <div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}"
-  style="width: 1100px;"  nzBordered>
-    <thead >
-      <tr>
-        <th  class="one" nzWidth="200px" *ngFor="let data1 of  table1">{{data1}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr >
-        <td class="one1" *ngFor="let data6 of  table6">{{one[0]?one[0][data6]:''}}</td>
-      </tr>
-    </tbody>
-</nz-table>
-        <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width: 1050px;margin-top:30px"
- nzBordered>
-          <thead>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
+        <thead>
             <tr>
-              <th nzWidth="150px"class="one" *ngFor="let data2 of  table2">{{data2}}</th>
+                <th class="one" nzWidth="200px" *ngFor="let data1 of  table1">{{data1}}</th>
             </tr>
-          </thead>
-          <tbody >
-            <tr  *ngFor="let detail of  two;index as i">
-              <td class="one1" [attr.rowspan]="i === 0 ? two.length : 1"  *ngIf="i==0">{{ mater[0] }}</td>
-              <td class="one1" *ngFor="let data3 of  table3">{{ detail[data3] }}</td>
-            </tr>
-          </tbody>        
-        </nz-table> 
-        <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '600px' }"
-        style="width: 1100px;margin-top:30px" nzBordered>
-          <thead>
+        </thead>
+        <tbody>
             <tr>
-              <th [nzWidth]="width[i]" class="one" *ngFor="let data4 of  table4;let i=index">
-                <span *ngIf="('sampleCode,testTarget,thickness,gaugeDistance').indexOf(table5[i]) == -1; else other_content">
-                  <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data4}}</span> 
-                   <ng-template #titleTemplate>
-                      <a (click)="contrastTable(table5[i], data4)">对比</a>
-                    </ng-template>
-              </span> 
-              <ng-template #other_content><span #other_content>{{data4}}</span></ng-template>
-              </th>              
+                <td class="one1" *ngFor="let data6 of  table6">{{one[0]?one[0][data6]:''}}</td>
             </tr>
-          </thead>
-          <tbody >
-            <tr *ngFor="let details of one" >
-              <td  class="one1" *ngFor="let data5 of  table5">{{details[data5]}}</td>
-            </tr>
-          </tbody>        
-        </nz-table>
-        <div id="srcoll">
-        <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{y: '600px' }" class='tablebox'
-        nzBordered [nzWidthConfig]='nzWidthConfig4'>
-          <thead>
+        </tbody>
+    </nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px" nzBordered>
+        <thead>
             <tr>
-              <th rowspan="2" class="one" nzBreakWord>True plastic strain</th>
-               <th class="one" [attr.colspan]="speeds.length" nzBreakWord>True stress/Mpa</th>                         
+                <th nzWidth="150px" class="one" *ngFor="let data2 of  table2">{{data2}}</th>
             </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detail of  two;index as i">
+                <td class="one1" [attr.rowspan]="i === 0 ? two.length : 1" *ngIf="i==0">{{ mater[0] }}</td>
+                <td class="one1" *ngFor="let data3 of  table3">{{ detail[data3] }}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '700px' }" style="margin-top:30px" nzBordered>
+        <thead>
             <tr>
-              <th  class="one" *ngFor="let data5 of  speeds" nzBreakWord>{{data5}}</th>                     
-            </tr>
-          </thead>
-          <tbody >
-            <tr *ngFor="let details of strainData;let i=index" >
-              <td  class="one1" nzBreakWord>{{details}}</td>
-              <td  class="one1" *ngFor="let data of stress[i];let b=index" nzBreakWord>{{data}}</td>
-            </tr>
-          </tbody>        
-        </nz-table></div>
+                <th [nzWidth]="width[i]" class="one" *ngFor="let data4 of  table4;let i=index">
+                    <span *ngIf="('sampleCode,testTarget,thickness,gaugeDistance').indexOf(table5[i]) == -1; else other_content">
+                  <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data4}}</span>
+                    <ng-template #titleTemplate>
 
-  </div>
-  <nz-modal [(nzVisible)]="isVisible" nzTitle="对比" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
-    <div
-      echarts
-      [options]="options"
-      style="height: 400px;position: relative;"
-    ></div>
-  </nz-modal>
+                        <a (click)="contrastTable(table5[i], data4)">对比</a>
+                            </ng-template>
+                            </span>
+                            <ng-template #other_content><span #other_content>{{data4}}</span></ng-template>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let details of one">
+                <td class="one1" *ngFor="let data5 of  table5">{{details[data5]}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px;margin-bottom:30px" [nzScroll]="nzScrolls" class='tablebox' nzBordered [nzWidthConfig]='nzWidthConfig4'>
+        <thead>
+            <tr>
+                <th rowspan="2" class="one" nzBreakWord>True plastic strain</th>
+                <th class="one" [attr.colspan]="speeds.length" nzBreakWord>True stress/Mpa</th>
+            </tr>
+            <tr>
+                <th class="one" *ngFor="let data5 of  speeds" nzBreakWord>{{data5}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let details of strainData;let i=index">
+                <td class="one1" nzBreakWord>{{details}}</td>
+                <td class="one1" *ngFor="let data of stress[i];let b=index" nzBreakWord>{{data}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+
+</div>
+<nz-modal [(nzVisible)]="isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+
+    <div       echarts       [options]="options"       style="height: 400px;position: relative;"     ></div>
+    </nz-modal>

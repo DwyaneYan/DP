@@ -116,6 +116,7 @@ console.log(this.one[0])
   stress=[]
   nzWidthConfig4=[]
   nzScroll4={}
+  nzScrolls={}
   public async GetTrialDataDetailss() {
     // let materialId = this.materialId
     // let api1=`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrainExtends/${materialId}`;
@@ -129,8 +130,9 @@ console.log(this.one[0])
           this.nzWidthConfig4[0]='130px'
           this.nzWidthConfig4[c]='110px'
          }
-         let ele=document.getElementsByClassName('tablebox')[0] as HTMLElement
-         ele.style.width = (this.speeds.length*110+130) +"px";
+         this.nzScrolls={y:'700px',x:(this.speeds.length*110+130) +"px"}
+        //  let ele=document.getElementsByClassName('tablebox')[0] as HTMLElement
+        //  ele.style.width = (this.speeds.length*110+130) +"px";
         
          let arr3=[]
          let strain=[]

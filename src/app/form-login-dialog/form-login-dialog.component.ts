@@ -45,7 +45,8 @@ code,
 uuid).then((res:any)=>{
 // this.token=res.token
 if(res.code==500){
-  this.message.create("error", res.msg);
+  this.message.create("error", "认证失败，无法访问系统");
+  this.getCode()
 }
 else{
 // this.ApiService.setToken(res.token)

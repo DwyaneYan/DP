@@ -1,51 +1,60 @@
 .table-border {
     position: absolute;
-    left: 25%;
-    top: 30px;
+    left: 22%;
+    top: 80px;
+    width: 60%
 }
-.he{
-    text-align:center;
-    background-color:rgba(107, 152, 248, 0.959);
-    color:white;
-    padding-top:8px;
-    padding-bottom:8px;
-    width:200px;
+
+.he {
+    text-align: center;
+    background-color: rgba(107, 152, 248, 0.959);
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 20%;
 }
-#one{
-    text-align:center;
-    background-color:rgba(107, 152, 248, 0.959);
-    color:white;
-    padding-top:8px;
-    padding-bottom:8px;
-    width:200px;
-    border-left:1px solid rgb(230, 229, 229);
+
+#one {
+    text-align: center;
+    background-color: rgba(107, 152, 248, 0.959);
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 20%;
+    border-left: 1px solid rgb(230, 229, 229);
 }
-#two{
-    text-align:center;
-    background-color:rgba(107, 152, 248, 0.959);
-    color:white;
-    padding-top:8px;
-    padding-bottom:8px;
-    width:200px;
-    border-right:1px solid rgb(230, 229, 229);
+
+#two {
+    text-align: center;
+    background-color: rgba(107, 152, 248, 0.959);
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 20%;
+    border-right: 1px solid rgb(230, 229, 229);
 }
-.he1{
-    padding-top:8px;
-    padding-bottom:8px;
-    text-align:center;
+
+.he1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
 }
-#three{
-    padding-top:8px;
-    padding-bottom:8px;
-    text-align:center;
-    border-left:1px solid rgb(230, 229, 229);
+
+#three {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    border-left: 1px solid rgb(230, 229, 229);
 }
-#for{
-    padding-top:8px;
-    padding-bottom:8px;
-    text-align:center;
-    border-right:1px solid rgb(230, 229, 229);
+
+#for {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    border-right: 1px solid rgb(230, 229, 229);
 }
-#tabletwo{
-    width:800px;   
-}
+
+
+/* #tabletwo {
+    width: 800px;
+} */
