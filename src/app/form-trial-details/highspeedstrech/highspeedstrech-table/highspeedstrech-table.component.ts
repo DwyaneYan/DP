@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NzTreeHigherOrderServiceToken } from 'ng-zorro-antd';
 import { ApiService } from 'src/app/api.service';
+import { GaussService } from 'src/app/gauss.service';
 
 @Component({
   selector: 'app-highspeedstrech-table',
@@ -26,51 +27,66 @@ export class HighspeedstrechTableComponent implements OnInit {
   table5=["testTarget","sampleCode","thickness","gaugeDistance","yieldStrength","tensileStrength","elongation","stretchingSpeed"]
   table6=["testOrganization","dates","dateEnds","standard","equipment","testMethod","direction"]
   
-  isVisible = false;
-  options;
-  
-  contrastTable(params, des) {
+  // isVisible = false;
+  // options;
+  options={options:{}};
+isVisible = {isVisible :false}
+  contrastTable(params, des,one) {
       let data = [];
+  console.log(data)
       let xData = [];
-      for (const iterator of this.trialDataDetail) {
+      for (const iterator of one) {
         data.push(iterator[params]);
         xData.push(iterator['sampleCode']);    
       }
-      this.PlotPicture(data, xData,des);
+  let gauss=this.GaussService.gauss(data)
+  let hist=this.GaussService.hist(data)
+  let xAll = (gauss.x).concat(hist.pxLast)
+   xAll.sort((a, b) => {
+    return Number(a) - Number(b);
+  });
+  console.log(gauss,hist)
+  // this.PlotPicture(gauss.y,xAll,des,hist.data1,gauss.xGauss);
+  this.GaussService.PlotPicture(gauss.y,xAll,des,hist.data1,gauss.xGauss,this.isVisible,this.options)
+  console.log(this.isVisible.isVisible,this.options.options )
+  //
+  //     this.PlotPicture(data, xData,des);
     }
     handleOk(): void {
-      this.isVisible = false;
+      this.isVisible.isVisible  = false;
     }
   
   handleCancel(): void {
-      this.isVisible = false;
+      this.isVisible.isVisible  = false;
     }
-  public PlotPicture(data, xData, des) {
-        this.isVisible = true;
-        this.options = {
-          title: {
-            text: des,
-            x: "center",
-            y: "top"
-          },
-          xAxis: {
-            type: "category",
-            data: xData
-          },
-          yAxis: {
-            type: "value"
-          },
-          series: [
-            {
-              data: data,
-              type: "line"
-            }
-          ]
-        };
-      }
+  // public PlotPicture(data, xData, des) {
+  //       this.isVisible = true;
+  //       this.options = {
+  //         title: {
+  //           text: des,
+  //           x: "center",
+  //           y: "top"
+  //         },
+  //         xAxis: {
+  //           type: "category",
+  //           data: xData
+  //         },
+  //         yAxis: {
+  //           type: "value"
+  //         },
+  //         series: [
+  //           {
+  //             data: data,
+  //             type: "line"
+  //           }
+  //         ]
+  //       };
+  //     }
   constructor(  private router: Router,
     public http: HttpClient,
     private ApiService: ApiService,
+    private GaussService: GaussService,
+
     ) { }
 
   ngOnInit() { this.materialId = this.router

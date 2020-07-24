@@ -127,6 +127,8 @@ import { ApplicationsComponent } from './form-trial-details/applications/applica
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
 import { ReportComponent } from './report/report.component';
 import { LoginGuardService } from './login-guard.service'
+import { Page404Component } from './page404/page404.component'
+
 const routes: Routes = [
   { path: '', redirectTo: '/platform' ,pathMatch: 'full',},
   { path: 'login', component: PageLoginComponent},
@@ -371,6 +373,10 @@ const routes: Routes = [
   { path: 'material-trial', component: PageMaterialTrialComponent },
   { path: 'materialss', component: FormMateriaListComponent },
   { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
+  { path: '404', component: Page404Component },
+  { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
+
+
 ]
 
 

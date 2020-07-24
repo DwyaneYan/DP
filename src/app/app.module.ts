@@ -178,6 +178,7 @@ import { ChildrenNavComponent } from './children-nav/children-nav.component';
 import { ReportComponent } from './report/report.component';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { Page404Component } from './page404/page404.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -383,7 +384,8 @@ import { CookieService } from 'ngx-cookie-service';
     SimulationCardComponent,
     ChildrenNavComponent,
     ReportComponent,
-    LoginComponent
+    LoginComponent,
+    Page404Component
 
 
 

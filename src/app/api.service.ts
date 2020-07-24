@@ -690,5 +690,115 @@ async logout(){
  })
  return res;
 }
+//返回K文件流
+// async outPutK(id){
+//   let api=`/api/hangang/trialdatadetail/OutputKfile?documentName=${id}`
+//   let res= await this.http.get(api)
+//   .toPromise()
+//   .catch(err =>{
+//    console.log(err);
+//  })
+//  return res;
+// }
+
+//获取Type12材料卡片名称
+async getCardType12(id){
+  let api=`/api/hangang/materialTrial/type12CardInfo/${id}`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取Type15材料卡片名称
+async getCardType15(p){
+  //查询参数
+  let parmas = {params:p}
+  let api=`/api/hangang/materialTrial/type15CardInfo`
+  let res= await this.http.get(api,parmas)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取Type24静态拉伸材料卡片名称
+async getCardType24S(p){
+  //查询参数
+  // let parmas = {params:p}
+  let api=`/api/hangang/materialTrial/materialCardStaticTensionInfo/${p}`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取Type24高速拉伸材料卡片名称
+async getCardType24H(p){
+  //查询参数
+  // let parmas = {params:p}
+  let api=`/api/hangang/materialTrial/materialCardInfo/${p}`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取Type39材料卡片名称
+async getCardType39(p){
+  //查询参数
+   let parmas = {params:p}
+  let api=`/api/hangang/materialTrial/type39CardInfo`
+  let res= await this.http.get(api,p)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取Type81材料卡片名称
+async getCardType81(p){
+  //查询参数
+  //  let parmas = {params:p}
+  let api=`/api/hangang/materialTrial/type81CardInfo/${p}`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//获取Type100材料卡片名称
+async getCardType100(p){
+  //查询参数
+  //  let parmas = {params:p}
+  let api=`/api/hangang/materialTrial/type100CardInfo/${p}`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//请求头
+  httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
+      })
+    };
+// 查询用户个人信息,在请求头上要添加token
+async  getUserProfile() {
+  let api=`/dev-api/system/user/profile`
+  let res= await this.http.get(api,this.httpOptions)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
 
 }
+

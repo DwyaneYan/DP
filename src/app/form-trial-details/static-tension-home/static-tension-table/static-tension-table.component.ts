@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Test } from 'src/testData';
 import { ApiService } from 'src/app/api.service';
-
+import * as math from "mathjs"
+import { GaussService } from 'src/app/gauss.service';
 
 @Component({
   selector: 'app-static-tension-table',
@@ -19,6 +20,7 @@ testData=Test
   trialDataDetail1=[]
   trialDataDetail2=[]
   visible = false;
+  length = 0
 
   //添加数据表单
   public postParams = {
@@ -46,9 +48,10 @@ table2=["位置",'方向','试样厚度a(mm)','屈服强度Rp(MPa)','抗拉强�
 table3=['130px','130px','150px','150px','150px','150px','150px','150px','150px','100px','150px','150px','150px','150px','150px']
 table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
 table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod","gaugeDistance"]
-isVisible =false;
+// isVisible =false;
+isVisible = {isVisible :false}
 data=["trialDataDetail1","trialDataDetail2"]
-options;
+options={options:{}};
   //抽屉
   open(): void {
     this.visible = true;
@@ -63,47 +66,160 @@ options;
           data.push(iterator[params]);
           xData.push(iterator['sampleCode']);    
         }
-        this.PlotPicture(data, xData,des);
-      }
-      handleOk(): void {
-        console.log("Button ok clicked!");
-        this.isVisible = false;
-      }
+  //   //均值全都保留四位小数
+  //  let mean = Number((data.reduce(this.sum)/data.length).toFixed(4))
+  //  //标准差
+  //  let deviations = data.map(x=>{ return x-mean})
+  //  let stddev = Number(math.sqrt(deviations.map(this.square).reduce(this.sum)/(data.length-1)).toFixed(4))
+  //  //最大值
+  //  let max = math.max.apply(null,data)
+  //  //最小值
+  //  let min = math.min.apply(null,data)
+  //  //置信区间
+  //  this.length = data.length
+  //  let xp = this.generaterArray(mean-3*stddev,mean+3*stddev,6*stddev/data.length)
+  //  //正态分布图的横坐标
+  //  let x = xp.map(val=>Number(val.toFixed(4)))
+  //  let probability = this.generaterArray(mean-3*stddev,mean+3*stddev,6*stddev/data.length)
+  //  let px = probability.map(val=>Number(val.toFixed(4)))
+  //  console.log(x.length,px)
+  //  //求概率
+  //  let lengthPx = px.length
+  //  let arrP = new Array(lengthPx-1)
+  //  //概率分布图的横坐标
+  //  let pxLast = new Array(lengthPx-1)
+  //  let arr = []
+  //  //概率分布图的横纵坐标
+  //  let data1 =  new Array(lengthPx-1)
+  //  for(let a=0;a<lengthPx-1;a++){
+  //   for(let b=0;b<this.length;b++){
+  //       if(px[a] <= data[b] && data[b]<= px[a+1]){
+  //        arr.push(data[b])
+  //       }
+  //   }
+  //       arrP[a] = arr.length/this.length
+  //       pxLast[a]= (px[a] + px[a+1])/2
+  //       data1[a]=[ pxLast[a],arrP[a]]
+  //       arr = []
+  //  }
+  //  let xAll = x.concat(pxLast)
+  //  xAll.sort((a, b) => {
+  //   return Number(a) - Number(b);
+  // });
+  //  console.log(arrP,pxLast,data1,xAll)
+
+  // //  console.log( max,min,mean-3*stddev,mean+3*stddev,xp,stddev)
+  // //正太分布图的纵坐标
+  //  let y = xp.map(val=>this.gaussFunc(val,mean,stddev))
+  //  let xGauss = x.map((val,index)=>{
+  //    return [val,y[index]]
+  //  })
+  //  console.log(xp,y,pxLast,arrP)
+  let gauss=this.GaussService.gauss(data)
+  let hist=this.GaussService.hist(data)
+  let xAll = (gauss.x).concat(hist.pxLast)
+   xAll.sort((a, b) => {
+    return Number(a) - Number(b);
+  });
+  console.log(gauss,hist)
+  // this.PlotPicture(gauss.y,xAll,des,hist.data1,gauss.xGauss);
+  this.GaussService.PlotPicture(gauss.y,xAll,des,hist.data1,gauss.xGauss,this.isVisible,this.options)
+  console.log(this.isVisible.isVisible,this.options.options )
+  }
+    //生成置信区间数组
+    generaterArray(min,max,step){
+      //  let len = Math.abs(max - min);
+      //  if(len <= 0) return [];
+  //    let arr = new Array(a);
+  let arr = []
+      // let arr = []
+      // let length = a
+      // let cNum = min;
+      // let cIndex = 0;
+      for(let b=0; ;b++){
+        arr.push(min);
+        min += step
+        if(min>=max)break
+      }
+      return arr
+      console.log(arr)
+      // function addArr(index,val){
+      //     if(cNum >= min && cNum <= max){
+      //         arr[index] = cNum;
+      //         cNum += step;
+      //         cIndex++;
+      //         addArr(cIndex,cNum)
+             
+      //     }
+      // }
+      // addArr(cIndex,cNum);
+      // return arr.filter(item => item%step == 0);
+  }
+
+    //高斯函数算正太分布的概率密度
+    gaussFunc(x,mean,sigma){
+     return  math.exp(-((x-mean)**2)/(2*sigma**2))/(sigma*math.sqrt(2*math.pi))
+
+    }
+    //求和函数
+    sum(x,y){
+      return x+y
+    }
+    //数组中每个元素的平方
+    square(x){
+      return x*x
+    }
+  handleOk(): void {
+    console.log("Button ok clicked!");
+    this.isVisible.isVisible  = false;
+  }
 
 
     
     handleCancel(): void {
         console.log("Button cancel clicked!");
-        this.isVisible = false;
+        this.isVisible.isVisible  = false;
       }
-      public PlotPicture(data, xData, des) {
-        this.isVisible = true;
-        this.options = {
-          title: {
-            text: des,
-            x: "center",
-            y: "top"
-          },
-          xAxis: {
-            type: "category",
-            data: xData
-          },
-          yAxis: {
-            type: "value"
-          },
-          series: [
-            {
-              data: data,
-              type: "line"
-            }
-          ]
-        };
-      }
+    //   public PlotPicture(data, xData, des,data1,data2) {
+    //     this.isVisible = true;
+    //     this.options = {
+    //       title: {
+    //         text: des,
+    //         x: "center",
+    //         y: "top"
+    //       },
+    //       xAxis: {
+    //         type: "value",
+    //          //data: xData
+    //          scale:true
+    //       },
+    //       yAxis: {
+    //         type: "value"
+    //       },
+    //       series: [
+    //   //正态曲线
+    //         {
+    //           data:data2,
+    //           type: "line",
+    //           smooth:true,
+        
+    //         },
+    // //概率分布条形图
+    // {
+    //             data: data1,
+    //             type: "bar",
+         
+    //           }
+    //       ]
+    //     };
+    //   }
+    
   
   constructor(
     public http: HttpClient,
     private router: Router,
     private ApiService: ApiService,
+    private GaussService: GaussService,
 
   ) { }
 

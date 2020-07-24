@@ -4,7 +4,7 @@
         "secure": false
     },
     "/dev-api": {
-        "target": "http://10.130.53.6:80",
+        "target": "http://10.130.53.6:81",
         "secure": false,
         "rewrite": ""
     }

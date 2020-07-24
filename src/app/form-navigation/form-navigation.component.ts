@@ -31,13 +31,14 @@ token=''
 //     this.ApiService.getInfo(httpOptions).then((res:any)=>{
 // console.log( res.roles)
 let res=JSON.parse(sessionStorage.getItem("permissions"))
-      if(res.roles.indexOf('admin')!=-1){
+      if(res.roles.indexOf('wy')!=-1){
         this.system=true
             }else{
               this.system = false
             }
    this.token= sessionStorage.getItem("token")
-   this.href=`http://10.130.53.6:80/index?token=${this.token}`
+   this.href=`http://10.130.53.6:81/usermanage?token=${this.token}`
+  //  this.ApiService.getUserProfile().then(res=>console.log(res))
     
   }
   isVisible=false

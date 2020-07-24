@@ -1,144 +1,170 @@
 #con {
-  width: 1200px;
-  margin: auto;
-  border: solid 1px grey;
-  margin-top: 40px;
-  padding-top: 20px;
-  overflow: auto;
+    width: 75%;
+    margin: auto;
+    border: solid 1px grey;
+    margin-top: 40px;
+    padding-top: 20px;
+    overflow: auto;
+}
 
-}
 .ed {
-  float: right;
-  padding-right: 8px;
+    float: right;
+    padding-right: 8px;
 }
+
 .cd {
-  float: right;
-  padding-right: 20px;
+    float: right;
+    padding-right: 20px;
 }
 
 #he {
-  border-bottom: solid 1px grey;
-  padding-bottom: 8px;
+    border-bottom: solid 1px grey;
+    padding-bottom: 8px;
 }
+
 #mater {
-  padding-left: 20px;
+    padding-left: 20px;
 }
+
 nz-table.vertical {
-  -webkit-writing-mode: vertical-lr;
-  -moz-writing-mode: vertical-lr;
-  -ms-writing-mode: tb-lr;
-  writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    writing-mode: vertical-lr;
 }
+
 nz-table.vertical th,
 nz-table.vertical td {
-  width: 143px;
-  height: 4px;
+    width: 143px;
+    height: 4px;
 }
+
 nz-table.vertical div {
-  /* width: 100px; */
-  -webkit-writing-mode: horizontal-tb;
-  -moz-writing-mode: horizontal-tb;
-  -ms-writing-mode: lr-tb;
-  writing-mode: horizontal-tb;
+    /* width: 100px; */
+    -webkit-writing-mode: horizontal-tb;
+    -moz-writing-mode: horizontal-tb;
+    -ms-writing-mode: lr-tb;
+    writing-mode: horizontal-tb;
 }
-nz-table.vertical div.sta{
-  width: 100px;
+
+nz-table.vertical div.sta {
+    width: 100px;
 }
+
 nz-table {
-  margin-left: 20px;
-  /* float:left */
+    margin-left: 20px;
+    /* float:left */
 }
+
 nz-table.borderedTable tr {
-  width: 143px;
+    width: 143px;
 }
+
 #info {
-  height: 130px;
+    height: 130px;
 }
+
 #hide1 {
-  float: left;
-  color: blue;
+    float: left;
+    color: blue;
 }
+
 #hide2 {
-  float: left;
-  margin-top: 13px;
-  margin-bottom: 7px;
-  width: 110px;
+    float: left;
+    margin-top: 13px;
+    margin-bottom: 7px;
+    width: 110px;
 }
+
 #hide3 {
-  float: left;
-  width: 140px;
+    float: left;
+    width: 140px;
 }
+
 #str {
-  border-right: none;
-
-  background-color: white;
-
+    border-right: none;
+    background-color: white;
 }
+
+
 /* #con /deep/ #str>span{
   position: absolute;
   left:15px;
 } */
+
 .cell {
-  text-align: right;
-  width: 173px;
-  padding-right: 2px;
-  height: 8px;
+    text-align: right;
+    width: 173px;
+    padding-right: 2px;
+    height: 8px;
 }
+
 .sta {
-  float: left;
-  text-align: center;
-  margin-left: 6px;
-  margin-top: 2px;
-  font-weight: bold;
+    float: left;
+    text-align: center;
+    margin-left: 6px;
+    margin-top: 2px;
+    font-weight: bold;
 }
+
+
 /* 改antd table的默认样式，鼠标放在行上的背景颜色为白色 */
-.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
-  background: white;
+
+.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
+    background: white;
 }
+
+
 /* .table {
   line-height: 8px;
   height: 8px;
 } */
-#i {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-}
-#posi {
-  position: relative;
-  top: 0px;
-  right: 0px;
-}
-#add {
-  border: 1px solid grey;
-  height: 120px;
 
-  margin-top: 30px;
-  float: left;
+#i {
+    position: absolute;
+    top: 6px;
+    right: 6px;
 }
+
+#posi {
+    position: relative;
+    top: 0px;
+    right: 0px;
+}
+
+#add {
+    border: 1px solid grey;
+    height: 120px;
+    margin-top: 30px;
+    float: left;
+}
+
 #tian {
-  display: block;
-  margin: 25px 10px;
+    display: block;
+    margin: 25px 10px;
 }
+
 #jia {
-  margin: auto;
-  width: 30px;
+    margin: auto;
+    width: 30px;
 }
+
 #xfk {
-  width: 400px;
-  height: 200px;
-  border: 1px solid rgb(204, 203, 203);
-  position: fixed;
-  top: 100px;
-  right: 100px;
-  background-color: white;
-  border-radius: 10px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgb(204, 203, 203);
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    background-color: white;
+    border-radius: 10px;
 }
+
 #tit {
-  font-size: 15px;
-  font-weight: bold;
-  margin-top: 15px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  border-bottom: 1px solid rgb(173, 173, 173);
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(173, 173, 173);
 }

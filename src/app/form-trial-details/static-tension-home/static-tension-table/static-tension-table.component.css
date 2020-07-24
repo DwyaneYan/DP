@@ -45,3 +45,7 @@
 /* #one .one /deep/.ng-star-inserted{
     height:unset;
 } */
+
+nz-modal /deep/ .ant-modal-content {
+    width: 600px
+}
