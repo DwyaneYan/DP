@@ -26,8 +26,8 @@
             </ul>
         </nz-dropdown-menu>
     </li>
-    <li class="cq5" *ngIf="system" (click)="getinfo()">
-        <a [href]='href' style="color:white" target="_blank" *ngIf="!isVisible; else elseBlock">系统管理&nbsp;&nbsp;|</a>
+    <li class="cq5" *ngIf="system">
+        <a style="color:white" target="_blank" (click)="checkToken()">系统管理&nbsp;&nbsp;|</a>
         <!-- <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template> -->
     </li>
 </ul>

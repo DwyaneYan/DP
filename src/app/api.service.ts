@@ -622,7 +622,7 @@ async getApplicationCase(p){
 
 //获取验证码
 async getCodeImg(){
-  let api=`/dev-api/captchaImage`
+  let api=`/devhg-api/captchaImage`
   let res= await this.http.get(api)
   .toPromise()
   .catch(err =>{
@@ -643,7 +643,7 @@ removeToken(){
 
 //登录方法
 async login(username,password,code,uuid){
-  let api=`/dev-api/login`
+  let api=`/devhg-api/login`
   let data={username,password,code,uuid}
   let res= await this.http.post(api,data)
   .toPromise()
@@ -662,7 +662,7 @@ async login(username,password,code,uuid){
     // };
 //获取用户详细信息
 async getInfo(p){
-  let api=`/dev-api/getInfo`
+  let api=`/devhg-api/getInfo`
   let res= await this.http.get(api,p)
   .toPromise()
   .catch(err =>{
@@ -672,7 +672,7 @@ async getInfo(p){
 }
 //获取路由
 async getRouters(p){
-  let api=`/dev-api/getRouters`
+  let api=`/devhg-api/getRouters`
   let res= await this.http.get(api,p)
   .toPromise()
   .catch(err =>{
@@ -682,7 +682,7 @@ async getRouters(p){
 }
 //退出方法
 async logout(){
-  let api=`/dev-api/logout`
+  let api=`/devhg-api/logout`
   let res= await this.http.post(api,{})
   .toPromise()
   .catch(err =>{
@@ -791,7 +791,7 @@ async getCardType100(p){
     };
 // 查询用户个人信息,在请求头上要添加token
 async  getUserProfile() {
-  let api=`/dev-api/system/user/profile`
+  let api=`/devhg-api/system/user/profile`
   let res= await this.http.get(api,this.httpOptions)
   .toPromise()
   .catch(err =>{
