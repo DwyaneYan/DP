@@ -179,6 +179,7 @@ import { ReportComponent } from './report/report.component';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { Page404Component } from './page404/page404.component';
+import { TypicalPartComponent } from './typical-part/typical-part.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -385,7 +386,8 @@ import { Page404Component } from './page404/page404.component';
     ChildrenNavComponent,
     ReportComponent,
     LoginComponent,
-    Page404Component
+    Page404Component,
+    TypicalPartComponent
 
 
 

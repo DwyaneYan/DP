@@ -128,6 +128,7 @@ import { SimulationCardComponent } from './simulation-card/simulation-card.compo
 import { ReportComponent } from './report/report.component';
 import { LoginGuardService } from './login-guard.service'
 import { Page404Component } from './page404/page404.component'
+import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/platform' ,pathMatch: 'full',},
@@ -146,7 +147,7 @@ const routes: Routes = [
           { path: 'table', component: StaticTensionTableComponent },
           { path: 'picture', component: StaticTensionPictureComponent },
           { path: 'report', component:ReportComponent},
-          { path: 'typical-part', component:StaticTensionTypicalPartComponent},
+          { path: 'typical-part', component:TypicalPartComponent},
 
         ]  
       },
@@ -156,7 +157,7 @@ const routes: Routes = [
           { path: 'table', component: BendingTableComponent },
           { path: 'picture', component: BendingPictureComponent },
           { path: 'report', component:ReportComponent  },
-          { path: 'typical-part', component: BendingTypicalPartComponent },
+          { path: 'typical-part', component: TypicalPartComponent },
           
         ]  
       },
@@ -167,7 +168,7 @@ const routes: Routes = [
           { path: 'table', component: CompressionTableComponent },
           { path: 'picture', component: CompressionPictureComponent  },
           { path: 'report', component: ReportComponent  },
-          { path: 'typical-part', component: CompressionTypicalPartComponent  },
+          { path: 'typical-part', component: TypicalPartComponent },
          
         ]  
       },
@@ -177,7 +178,7 @@ const routes: Routes = [
           { path: 'table', component: HighspeedstrechTableComponent},
           { path: 'picture', component: HighspeedstrechPictureComponent   },
           { path: 'report', component: ReportComponent   },
-          { path: 'typical-part', component: HighspeedstrechTypicalPartComponent   },
+          { path: 'typical-part', component:TypicalPartComponent   },
           
         ]  
       }, 
@@ -187,7 +188,7 @@ const routes: Routes = [
           { path: 'table', component:  LowcyclefatigueTableComponent},
           { path: 'picture', component:  LowcyclefatiguePictureComponent    },
           { path: 'report', component:  ReportComponent    },
-          { path: 'typical-part', component:  LowcyclefatigueTypicalPartComponent   },
+          { path: 'typical-part', component: TypicalPartComponent  },
            
         ]  
       },
@@ -197,7 +198,7 @@ const routes: Routes = [
           { path: 'table', component:  HighcyclefatigueTableComponent},
           { path: 'picture', component:  HighcyclefatiguePictureComponent     },
           { path: 'report', component:  ReportComponent     },
-          { path: 'typical-part', component:  HighcyclefatigueTypicalPartComponent     },
+          { path: 'typical-part', component: TypicalPartComponent    },
           
         ]  
       },
@@ -207,7 +208,7 @@ const routes: Routes = [
           { path: 'table', component:  MetallographicTableComponent },
           { path: 'picture', component:  MetallographicPictureComponent     },
           { path: 'report', component:  ReportComponent    },
-          { path: 'typical-part', component:  MetallographicTypicalPartComponent     },
+          { path: 'typical-part', component: TypicalPartComponent   },
           
         ]  
       },
@@ -217,7 +218,7 @@ const routes: Routes = [
           { path: 'table', component:  PhysicalperformanceTableComponent },
           { path: 'picture', component:  PhysicalperformancePictureComponent     },
           { path: 'report', component:  ReportComponent      },
-          { path: 'typical-part', component:  PhysicalperformanceTypicalPartComponent     },
+          { path: 'typical-part', component:  TypicalPartComponent   },
            
         ]  
       },
@@ -227,7 +228,7 @@ const routes: Routes = [
           { path: 'table', component: ChemicalelementTableComponent},
           { path: 'picture', component:  ChemicalelementPictureComponent    },
           { path: 'report', component:  ReportComponent    },
-          { path: 'typical-part', component:  ChemicalelementTypicalPartComponent    },
+          { path: 'typical-part', component:  TypicalPartComponent  },
           
         ]  
       },
@@ -237,7 +238,7 @@ const routes: Routes = [
           { path: 'table', component: ProhibitedSubstanceTableComponent},
           { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  ProhibitedSubstanceTypicalPartComponent   },
+          { path: 'typical-part', component:  TypicalPartComponent  },
            
         ]  
       }, 
@@ -247,7 +248,7 @@ const routes: Routes = [
           { path: 'table', component: DentResistanceTableComponent },
           { path: 'picture', component:  DentResistancePictureComponent  },
           { path: 'report', component:  ReportComponent  },
-          { path: 'typical-part', component:  DentResistanceTypicalPartComponent  },
+          { path: 'typical-part', component: TypicalPartComponent },
           
         ]  
       },
@@ -257,7 +258,7 @@ const routes: Routes = [
           { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent},
           { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
           { path: 'report', component:   ReportComponent   },
-          { path: 'typical-part', component:  SecondaryWorkingEmbrittlementTypicalPartComponent    },
+          { path: 'typical-part', component: TypicalPartComponent   },
           
         ]  
       },
@@ -267,7 +268,7 @@ const routes: Routes = [
           { path: 'table', component: FlangingClaspTableComponent},
           { path: 'picture', component:  FlangingClaspPictureComponent   },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  FlangingClaspTypicalPartComponent   },
+          { path: 'typical-part', component:  TypicalPartComponent  },
            
         ]  
       },
@@ -277,7 +278,7 @@ const routes: Routes = [
           { path: 'table', component: HydrogenInducedDelayedFractureTableComponent },
           { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
           { path: 'report', component: ReportComponent  },
-          { path: 'typical-part', component: HydrogenInducedDelayedFractureTypicalPartComponent  },
+          { path: 'typical-part', component:TypicalPartComponent },
           
         ]  
       },
@@ -287,7 +288,7 @@ const routes: Routes = [
           { path: 'table', component: WeldingTableComponent },
           { path: 'picture', component:  WeldingPictureComponent   },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  WeldingTypicalPartComponent   },
+          { path: 'typical-part', component:  TypicalPartComponent  },
          
         ]  
       },
@@ -297,7 +298,7 @@ const routes: Routes = [
           { path: 'table', component:CementingTableComponent },
           { path: 'picture', component:  CementingPictureComponent     },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  CementingTypicalPartComponent   },
+          { path: 'typical-part', component: TypicalPartComponent  },
            
         ]  
       },
@@ -307,7 +308,7 @@ const routes: Routes = [
           { path: 'table', component:PaintingTableComponent},
           { path: 'picture', component:  PaintingPictureComponent   },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  PaintingTypicalPartComponent   },
+          { path: 'typical-part', component:  TypicalPartComponent   },
           
         ]  
       },
@@ -317,7 +318,7 @@ const routes: Routes = [
           { path: 'table', component:FldTableComponent },
           { path: 'picture', component:  FldPictureComponent     },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  FldTypicalPartComponent   },
+          { path: 'typical-part', component:  TypicalPartComponent  },
           
         ]  
       },
@@ -327,7 +328,7 @@ const routes: Routes = [
           { path: 'table', component:ReboundTableComponent },
           { path: 'picture', component:  ReboundPictureComponent     },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  ReboundTypicalPartComponent   },
+          { path: 'typical-part', component: TypicalPartComponent },
          
         ]  
       },
@@ -337,7 +338,7 @@ const routes: Routes = [
           { path: 'table', component: BakeHardeningTableComponent  },
           { path: 'picture', component:  BakeHardeningPictureComponent  },
           { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  BakeHardeningTypicalPartComponent   },
+          { path: 'typical-part', component: TypicalPartComponent  },
           
         ]  
       },
@@ -347,7 +348,7 @@ const routes: Routes = [
           { path: 'table', component: SurfacePropertyTableComponent },
           { path: 'picture', component:  SurfacePropertyPictureComponent  },
           { path: 'report', component:  ReportComponent  },
-          { path: 'typical-part', component:  SurfacePropertyTypicalPartComponent  },
+          { path: 'typical-part', component: TypicalPartComponent },
          
         ]  
       },
@@ -385,6 +386,7 @@ const routes: Routes = [
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],  //初始化路由器,并让它开始监听浏览器中的地址变化
   exports: [ RouterModule ],  //导出 RouterModule 让路由器的相关指令可以在 AppModule 中的组件中使用。
+  providers: [LoginGuardService]
 })
 export class AppRoutingModule {
 
