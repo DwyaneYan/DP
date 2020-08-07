@@ -53,8 +53,9 @@
             </div>
             <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
                 <div id="text-xzwj">
-                    <br/> 选择文件:
-                    <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true' [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
+                    <br /> 选择文件:
+                    <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
+                        [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
                         <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                     </nz-upload>
                 </div>
@@ -63,8 +64,10 @@
         <div id="import" *ngIf="FormExperimentalItemComponent.button('addtj')">
             <div (click)="showModal1()"><span>添加推荐材料</span></div>
             <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-                <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
-                <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)" [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
+                <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"
+                    nzPlaceHolder="添加推荐材料"></nz-cascader>
+                <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)"
+                    [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
                     &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon nzType="upload"></i>上传材料图片</button>
                 </nz-upload>
             </nz-modal>
@@ -73,14 +76,16 @@
             <span>删除推荐材料</span> &nbsp;
             <nz-switch [(ngModel)]="showcan"></nz-switch>
         </div>
-        <hr/>
+        <hr />
         <div class="material" *ngFor="let material of addlist">
-            <i nz-icon nzType="close" nzTheme="outline" style="position:absolute;right:3px" *ngIf="showcan" (click)="shanchutj(material.id)"></i>
+            <i nz-icon nzType="close" nzTheme="outline" style="position:absolute;right:3px" *ngIf="showcan"
+                (click)="shanchutj(material.id)"></i>
             <a [routerLink]="material.routerLink1">
                 <img [src]="material.avatarUrl" style="width: 100px;height:110px;position:absolute;margin-left:20px" />
             </a>
             <div class="material-info">
-                材料牌号: {{material.name}}<br/> 生产厂家: {{material.manufactory}}<br/> 型号规格: {{material.model}}<br/> 卷号: {{material.reelNumber}}
+                材料牌号: {{material.name}}<br /> 生产厂家: {{material.manufactory}}<br /> 型号规格: {{material.model}}<br /> 卷号:
+                {{material.reelNumber}}
             </div>
         </div>
 
