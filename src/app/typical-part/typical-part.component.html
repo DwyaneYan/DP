@@ -1,3 +1,7 @@
 <div id="content">
-    <button nz-button nzType="primary" (click)="goVim()">Primary</button>
+    <button nz-button nzType="primary" (click)="goVim()">跳转</button>
+    <button nz-button nzType="primary" (click)="openDialog()" style="margin-left:30px">绑定零件</button>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="绑定零件" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"></nz-cascader>
+    </nz-modal>
 </div>

@@ -799,6 +799,40 @@ async  getUserProfile() {
  })
  return res;
 }
+//获取所有零件信息
+async getAllPart(){
+  let api = `/api/hangang/material/typicalPart`
+  let res= await this.http.get(api)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//绑定材料和零件
+async bindMater(a,b){
+  let api = `/api/hangang/material/partsMaterialId`
+  let body = {
+    directoryId:a,
+    materialId:b
+  }
+  let res= await this.http.put(api,body)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
+//根据材料id查询本条材料绑定的哪个零件
+async getPart(materialId){
+  let api = `/api/hangang/material/hanGangToVIMOperation/${materialId}`
+  let res= await this.http.post(api,{})
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
 
 }
 
