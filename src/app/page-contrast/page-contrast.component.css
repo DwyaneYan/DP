@@ -1,12 +1,25 @@
-#con {
-    width: 75%;
-    margin: auto;
-    border: solid 1px grey;
-    margin-top: 40px;
-    padding-top: 20px;
-    overflow: auto;
+.compare-box {
+    padding: 30px 40px;
+    background-color: #fff;
+    margin-top: -40px;
+    border-radius: 5px;
 }
-
+.compare-top .title{
+    font-size: 22px;
+    color: #222;
+}
+.nav-list{
+    position: fixed;
+    z-index:999;
+    left:200px;
+    top: 50%;
+    margin-top:-100px;
+    width: 120px;
+}
+.compare-table{
+    margin-top: 25px;
+    display: inline-block;
+}
 .ed {
     float: right;
     padding-right: 8px;
@@ -21,11 +34,6 @@
     border-bottom: solid 1px grey;
     padding-bottom: 8px;
 }
-
-#mater {
-    padding-left: 20px;
-}
-
 nz-table.vertical {
     -webkit-writing-mode: vertical-lr;
     -moz-writing-mode: vertical-lr;
@@ -50,12 +58,6 @@ nz-table.vertical div {
 nz-table.vertical div.sta {
     width: 100px;
 }
-
-nz-table {
-    margin-left: 20px;
-    /* float:left */
-}
-
 nz-table.borderedTable tr {
     width: 143px;
 }
