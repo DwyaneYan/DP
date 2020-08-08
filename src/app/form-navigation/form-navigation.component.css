@@ -16,7 +16,6 @@
 }
 .navigation-list{
     list-style: none;
-    text-align: right;
     flex: 1;
 }
 .navigation-list .navigation-item{
@@ -30,6 +29,9 @@
 }
 .navigation-list .navigation-item .user{
     margin-right: 10px;
+}
+.navigation-list .navigation-item:last-child{
+    float:right;
 }
 .cdk-overlay-pane{
     width: 98px !important;

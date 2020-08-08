@@ -12,12 +12,12 @@
             </li>
             <li class="navigation-item">
                 <a href="http://yx2605166.china-g.com/">联系我们</a></li>
-            <li class="navigation-item">帮助</li>
-
+            <li class="navigation-item"><a href="javascript;">帮助</a></li>
+            <li class="navigation-item" *ngIf="system">
+                <a target="_blank" (click)="checkToken()">系统管理</a>
+                <!-- <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template> -->
+            </li>
             <li class="navigation-item">
-                <a target="_blank" (click)="checkToken()" *ngIf="system">
-                    系统管理&nbsp;&nbsp;|
-                </a>
                 <img class="user" src=" ../../assets/images/user.png" alt="" />
                 <a nz-dropdown [nzDropdownMenu]="menu">
                     admin,系统管理员
@@ -35,12 +35,7 @@
                     </ul>
                 </nz-dropdown-menu>
             </li>
-            <!--<li class="navigation-item" *ngIf="system">
-                <a target="_blank" (click)="checkToken()" *ngIf="system">
-                    系统管理&nbsp;&nbsp;|
-                </a>
-                 <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template>
-            </li> -->
+
         </ul>
     </div>
     <!-- 登录过期提示框 START -->
