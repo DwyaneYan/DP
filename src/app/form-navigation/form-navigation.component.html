@@ -1,37 +1,52 @@
-<ul id="one">
-    <li class="cq1">
-        <a routerLink='/platform'><img src="../../assets/images/logo.png" alt=""></a>
-    </li>
-    <li class="cq3">
-        <h2>邯钢汽车用钢数据信息化平台 </h2>
-    </li>
-    <li class="cq2"><a routerLink="/material" style="color:white;font-size:17px;">首页</a></li>
-    <li class="cq"><a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca" style="color:white;font-size:17px;">整车模型</a></li>
-    <li class="cq"><a href="http://yx2605166.china-g.com/" style="color:white; font-size:17px;">联系我们</a></li>
-    <li class="cq6">帮助</li>
-    <li class="cq4">
-        <img src="../../assets/images/user.png" alt="">
-        <button nz-button nz-dropdown [nzDropdownMenu]="menu" [nzGhost]="true" [nzBlock]="true">系统管理员<i nz-icon nzType="down"></i></button>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-            <ul nz-menu>
-                <!-- <li nz-menu-item>
-              <a>个人信息</a>
+<div class="navigation">
+    <div class="w1200 navigation-box">
+        <div class="navigation-logo">
+            <a routerLink='/platform'>
+                <img width="346" height="42" src="../../assets/images/navigation-logo.png" alt="">
+            </a>
+        </div>
+        <ul id="one" class="navigation-list">
+            <li class="navigation-item"><a routerLink="/material">首页</a></li>
+            <li class="navigation-item">
+                <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">整车模型</a>
             </li>
-            <li nz-menu-item>
-              <a>修改密码</a>
-            </li> -->
-                <li nz-menu-item (click)="out()">
-                    退出登录
-                </li>
-            </ul>
-        </nz-dropdown-menu>
-    </li>
-    <li class="cq5" *ngIf="system">
-        <a style="color:white" target="_blank" (click)="checkToken()">系统管理&nbsp;&nbsp;|</a>
-        <!-- <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template> -->
-    </li>
-</ul>
+            <li class="navigation-item">
+                <a href="http://yx2605166.china-g.com/">联系我们</a></li>
+            <li class="navigation-item">帮助</li>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="系统提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="重新登录">
-    <p>登录状态已过期，您可以继续留在该页面，或者重新登录</p>
-</nz-modal>
+            <li class="navigation-item">
+                <a target="_blank" (click)="checkToken()" *ngIf="system">
+                    系统管理&nbsp;&nbsp;|
+                </a>
+                <img class="user" src=" ../../assets/images/user.png" alt="" />
+                <a nz-dropdown [nzDropdownMenu]="menu">
+                    admin,系统管理员
+                    <i nz-icon nzType="down"></i>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <!-- <li nz-menu-item>
+                            <a>个人信息</a>
+                            </li>
+                            <li nz-menu-item>
+                            <a>修改密码</a>
+                            </li> -->
+                        <li nz-menu-item (click)="out()">退出登录</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </li>
+            <!--<li class="navigation-item" *ngIf="system">
+                <a target="_blank" (click)="checkToken()" *ngIf="system">
+                    系统管理&nbsp;&nbsp;|
+                </a>
+                 <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template>
+            </li> -->
+        </ul>
+    </div>
+    <!-- 登录过期提示框 START -->
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="系统提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+        nzOkText="重新登录">
+        <p>登录状态已过期，您可以继续留在该页面，或者重新登录</p>
+    </nz-modal>
+    <!-- 登录过期提示框 START -->
+</div>

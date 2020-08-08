@@ -1,68 +1,37 @@
-
-#one{
-        list-style-type: none;
-        margin: 0;
-        padding: 8px;
-        overflow: hidden;
-        background-color: #333;
-        height:62px
-        
-    } 
-.cq1{
-        float:left;
-        margin-right:15px;
-    }
-.cq3{
-        float:left;
-    }
-h2{
-        margin:0px;
-        padding:7.4px 0px;
-        color:white
-    }
-.cq2{
-        margin-left:12%;
-        float:left;
-        padding:10.6px 0px;
-
-    }
-.cq{
-        float:left;
-        margin-left:5%; 
-        padding:10.6px 0px;
-    }
-.cq4{
-        float:right;
-        margin-right:3%;
-        position:relative;
-        left:0px;    
-
-        padding:10.5px 0px;
-        width:120px
-    }
-
-button{
-        position: absolute;
-        border:none;
-        height:25px;
-        width:90px;
-        padding:0px;
-        left:30px;
-        color:white
-    }
-.cq5{
-    float:right;
-    margin-right:20px;
-    padding:12.6px 0px;
-    color:white;
-
-    }
-.cq6{
-    float:left;
-    margin-left:5%; 
-    color:white;
-    font-size:17px;
-    padding:10.6px 0px;
+.w1200{
+    width: 1200px;
+    margin: 0 auto;
 }
+.navigation{
+    margin: 0;
+    height:250px;
+    background: url('../../assets/images/navigation-bg.jpg') no-repeat center; 
+    background-size: cover;
+    padding: 20px 0;
+} 
 
 
+.navigation-box{
+    display: flex;
+}
+.navigation-list{
+    list-style: none;
+    text-align: right;
+    flex: 1;
+}
+.navigation-list .navigation-item{
+    padding: 0 21px;
+    display: inline-block;
+}
+.navigation-list .navigation-item a{
+    color:#fff; 
+    font-size:18px;
+    line-height: 42px;
+}
+.navigation-list .navigation-item .user{
+    margin-right: 10px;
+}
+.cdk-overlay-pane{
+    width: 98px !important;
+    min-width: auto !important;
+}
