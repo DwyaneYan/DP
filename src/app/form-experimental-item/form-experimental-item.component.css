@@ -1,4 +1,4 @@
-* {
+body {
     font-family: "Microsoft YaHei", Arial, Verdana;
 }
 
@@ -15,47 +15,37 @@
     border-radius: 6px;
 }
 
-.titlee {
-    /* background-color: rgb(3, 107, 189);
-    color: #ffffff; */
-    font-size: 16px;
+.title {
+    font-size: 22px;
     text-align: center;
-    line-height: 24px;
-    height: 26px;
-    width: 80px;
-    border-radius: 5px;
-    margin-left: 10px;
-    position: absolute;
-    top: 17px;
-    color: black;
-    font-weight: 500
+    color: #222;
+    line-height: 45px;
+    padding-top: 20px;
 }
-
-.menu-table {
-    position: relative;
-    left: 7%;
-    width: 10%;
-    padding-top: 80px;
-    /* width: 70%; */
-    /* margin: 30px auto; */
-    color: rgb(138, 134, 134);
-}
-
 .left-menu {
     position: relative;
-    height: auto
+    width:220px;
+    top: 60px;
+    color: rgb(138, 134, 134);
+    background-color: #fafafa;
+    border-right:1px solid #e6e6e6;
+    
 }
+::ng-deep .ant-menu,::ng-deep .ant-menu-submenu>.ant-menu{
+    background-color: #fafafa;
+    border:none !important;
+    
+}
+::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background-color: #fff;
+    border-top:1px solid #e6e6e6;
+    border-bottom:1px solid #e6e6e6;
+}
+::ng-deep .ant-menu-inline .ant-menu-item-selected::after{
+    left:0;
+    right:auto;
 
-
-/* .car{
-    float:left
-} */
-
-
-/* #file /deep/ button{
-    margin-left:20px
-} */
-
+}
 nz-upload {
     float: left;
     margin-left: 20px;
