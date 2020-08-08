@@ -1,17 +1,8 @@
 
-#materialType{
-    /* color: #000000;
-    height: 200px; */
-    width: 1090px;
-    margin:auto;
-    overflow:auto;
-    margin-top:30px;
-    /* margin-top:20px;
-    font-size: 16px;
-    font-family: "Microsoft YaHei"; */
-    margin-bottom:20px
+.material-box{
+    position: relative;
+    top:-40px;
 }
-
 .material-class{
     float: left;
     height: 185px;
@@ -41,63 +32,59 @@
     color: rgb(60, 113, 228);
     padding-left: 10px;
     font-size: large;
-margin-bottom:0px
-}
-
-.tag-area{
-
-    float:left;
-    margin-right:12px;
-    margin-top:10px;
-    font-size: 16px;
-    /* font-family: "Microsoft YaHei";  */
-    cursor:pointer;
+    margin-bottom:0px
 }
 
 .tag:hover{ color:blue; }
 .tag:active {
     color:blue;}
-#limit{
-    height: 210px;
-    width: 1100px;
-    margin: auto;
-    border: solid 0.1em #b8b8b8;
+.limit-box{
     border-radius: 10px;
-    clear:both;
+    background-color: #fff;
+    font-size: 16px;
+    padding: 30px 40px;
 }
 
 .row{
-    margin-top: 20px;
-    margin-left: 20px;
-    color: black;
+    padding: 11px 0;
 }
-
-.limit-tag1{
-    margin-left: 40px;
+.row label{
+    color: #666;
 }
-
-.limit-tag{
-    margin-left: 30px;
+.row .limit-tag,.row .limit-tag-between,.tag-area{
     cursor:pointer;
+    color: #222;
+    margin:0 12px;
+    display: inline-block;
+    line-height: 24px;
+    padding: 0 8px;
+    
 }
-.limit-tag4{
-    margin-left: 30px;
+.row .limit-tag,.row .limit-tag-between{
+    margin:0 12px;
 }
-.limit-tag5{
-    margin-left: 30px;
+.row .limit-tag:hover,.row .limit-tag.selected,.limit-inner .tag-area.selected{ 
+    color:#fff; 
+    background-color: #0d95f0;
+    border-radius: 4px;
 }
-.limit-tag:hover{ color:blue; }
-hr{
-    margin-top: 5px;
-    border:dashed 0.03em rgb(221, 220, 220);
+.limit-inner{
+    padding: 12px 0;
+    background-color: #fafafa;
+    border:1px solid #e6e6e6;
+    border-radius: 6px;
+    display: flex;
+    margin: 10px 0 0 80px;
 }
-
+.tag-area{
+    margin: 0 8px;
+}
 .input-box{
     outline-style: none;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 2px 2px;
-    width: 60px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    padding: 2px;
+    width: 48px;
     font-size: 16px;
     font-weight: normal;
     font-family: "Microsoft YaHei";
@@ -112,22 +99,10 @@ hr{
     color: white;
 }
 
-#list{
-    border:solid 0.1em #b8b8b8;
-    width: 1100px;
-    margin: 20px auto;
-    border-radius:10px;
-    overflow:auto;
-    overflow-x:hidden
-}
-#cllb{
-    float: left;
-    color: rgb(60, 113, 228);
-    font-size: large;
-    font-family: "Microsoft YaHei";
-    margin-top:1.3%;
-    margin-left:15px;
-    font-family: "Microsoft YaHei";
+.material-list{
+    margin: 20px 0;
+    border-radius:10px;   
+    position: relative; 
 }
 
 #start{color: rgb(60, 113, 228);}
@@ -142,10 +117,5 @@ hr{
 .image{
     float: right;
     margin: 2% 1px;
-}
-
-.selected{
-    color: rgb(60, 113, 228);
-    font-weight:bold;
 }
 

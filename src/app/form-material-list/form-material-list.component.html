@@ -39,7 +39,10 @@
 
 <!-- 材料对比弹窗  START -->
 <div class="compare-box" *ngIf="checkList.length >=1 && checkbox">
-  <h4>材料对比<i class="angle" nz-icon nzType="right" nzTheme="outline"></i></h4>
+  <h4>
+    材料对比
+    <i class="angle" nz-icon nzType="right" nzTheme="outline"></i>
+  </h4>
   <ul>
     <li *ngFor="let data of checkList">
       <span class="text name">{{ data.name }}</span>

@@ -1,56 +1,88 @@
-<app-form-material-db-background></app-form-material-db-background>
-<div id="materialType">
-    <div [class]="item.class" *ngFor="let item of materialType;let i=index">
-        <h4 class="class-name">{{item.name}}</h4>
-        <div class="tag-area" *ngFor="let childItem of item.children" (click)="filtrationMaterialType(childItem)"
-            [class.selected]="params.materialType == childItem.enum">
-            {{childItem.name}}
-        </div>
-    </div>
-</div>
-<div id="limit">
-    <div class="row">
-        生产厂家111 :
-        <span *ngFor="let item of listManufacturers">
-            <span class="limit-tag" (click)="filtrationManufacturers(item) "
-                [class.selected]="params.manufactoryId == item.id"> {{item.name}} </span>
-        </span>
-    </div>
-    <hr />
-    <div class="row">
-        型号规格 :
-        <span *ngFor="let item of listModel">
-            <span class="limit-tag" (click)=" filtrationModel(item) " [class.selected]="params.model == item.value">
-                {{item.value}} mm </span>
-        </span>
-        <span class="limit-tag">
-            <input class="input-box" type="text" [(ngModel)]='params.minModel' (blur)="filtrationMinModel($event)">~
-            <input class="input-box" type="text" [(ngModel)]='params.maxModel' (blur)="filtrationMaxModel($event)">mm
-        </span>
-    </div>
-    <hr />
-    <div class="row">
-        屈服强度 :
-        <span *ngFor="let item of listStrength ">
-            <span *ngFor="let childItem of item.children">
-                <span class="limit-tag" (click)="filtrationStrength(childItem)"
-                    [class.selected]="params.MinStrenth == childItem.min">{{childItem.min}}~{{childItem.max}}MPa</span>
-            </span>
-        </span>
-        <span class="limit-tag">
-            <input class="input-box" type="text" [(ngModel)]='params.MinStrenth'
-                (blur)="filtrationMinStrength($event)">~
-            <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth'
-                (blur)="filtrationMaxStrength($event)">MPa
-        </span>
-    </div>
-    <hr />
-    <button id="clear-btn" (click)="clear()">清除筛选</button>
-</div>
-<div id="list">
-    <div id="title">
-        <h3 id="cllb"> <strong>材料列表</strong></h3>
-    </div>
-    <app-form-material-list [data]="material" [params]="params"></app-form-material-list>
+<div>
+    <app-form-navigation></app-form-navigation>
+    <div class="w1200 material-box">
+        <!-- 材料分类  START -->
+        <!-- <div id="materialType">
+            <div [class]="item.class" *ngFor="let item of materialType;let i=index">
+                <h4 class="class-name">{{item.name}}</h4>
+                <div class="tag-area" *ngFor="let childItem of item.children" (click)="filtrationMaterialType(childItem)" [class.selected]="params.materialType == childItem.enum">
+                    {{childItem.name}}
+                </div>
+            </div>
+        </div> -->
+        <!-- 材料分类  END -->
+        <!-- 材料分类  START -->
+        <div class="limit-box">
+            <div class="row">
+                <span class="label">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型 :</span>
+                <span class="limit-tag" [class.selected]="params.materialType =='' "
+                    (click)="filtrationMaterialType({enum:''})">不限</span>
+                <span *ngFor="let item of materialType;let i=index">
+                    <span class="limit-tag" (click)="filtrationMaterialType(item)"
+                        [class.selected]="params.materialType == item.enum || parentType == item.enum">{{item.name}}</span>
+                </span>
+                <div *ngIf="params.materialType" class="limit-inner">
+                    <div class="tag-area" *ngFor="let childItem of materialTypeChildren"
+                        (click)="filtrationMaterialType(childItem)"
+                        [class.selected]="params.materialType == childItem.enum">
+                        {{childItem.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <span class="label">生产厂家 :</span>
+                <span class="limit-tag" [class.selected]="params.manufactoryId ==''"
+                    (click)="filtrationManufacturers({id:''})">不限</span>
+                <span *ngFor="let item of listManufacturers">
+                    <span class="limit-tag" (click)="filtrationManufacturers(item)"
+                        [class.selected]="params.manufactoryId == item.id"> {{item.name}} </span>
+                </span>
+            </div>
+            <div class="row">
+                <span class="label">型号规格 :</span>
+                <span class="limit-tag" [class.selected]="params.model ==''"
+                    (click)="filtrationModel({value:''})">不限</span>
+                <span *ngFor="let item of listModel">
+                    <span class="limit-tag" (click)=" filtrationModel(item) "
+                        [class.selected]="params.model == item.value"> {{item.value}} mm </span>
+                </span>
+                <span class="limit-tag-between">
+                    <input class="input-box" type="text" [(ngModel)]='params.minModel'
+                        (blur)="filtrationMinModel($event)"> ~
+                    <input class="input-box" type="text" [(ngModel)]='params.maxModel'
+                        (blur)="filtrationMaxModel($event)"> mm
+                </span>
+            </div>
 
+            <div class="row">
+                <span class="label">屈服强度 :</span>
+                <span class="limit-tag" [class.selected]="params.MinStrenth ==''"
+                    (click)="filtrationModel({min:''})">不限</span>
+                <span *ngFor="let item of listStrength ">
+                    <span *ngFor="let childItem of item.children">
+                        <span class="limit-tag" (click)="filtrationStrength(childItem)"
+                            [class.selected]="params.MinStrenth == childItem.min">{{childItem.min}}~{{childItem.max}}MPa</span>
+                    </span>
+                </span>
+                <span class="limit-tag-between">
+                    <input class="input-box" type="text" [(ngModel)]='params.MinStrenth'
+                        (blur)="filtrationMinStrength($event)"> ~
+                    <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth'
+                        (blur)="filtrationMaxStrength($event)"> MPa
+                </span>
+            </div>
+            <div class="row">
+                <span class="label">按关键字 :</span>
+                <app-form-material-db-background></app-form-material-db-background>
+                <button id="clear-btn" (click)="clear()">清除筛选</button>
+            </div>
+
+        </div>
+        <!-- 材料分类  END -->
+        <!-- 材料列表  START -->
+        <div class="material-list">
+            <app-form-material-list [data]="material" [params]="params"></app-form-material-list>
+        </div>
+        <!-- 材料列表  END -->
+    </div>
 </div>

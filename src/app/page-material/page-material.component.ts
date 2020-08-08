@@ -18,8 +18,8 @@ export class PageMaterialComponent implements OnInit {
     [
       //冷轧
       {
-        class:"material-class",
-        value: "10",
+        class: "material-class",
+        enum: "10",
         name: "冷轧",
         children: [
           {
@@ -63,7 +63,8 @@ export class PageMaterialComponent implements OnInit {
       },
 
       //镀锌
-      {class:"material-class",
+      {
+        class: "material-class",
         enum: "110",
         name: "镀锌",
         children: [
@@ -74,7 +75,7 @@ export class PageMaterialComponent implements OnInit {
           {
             enum: '130',
             name: '高强IF钢'
-          },    
+          },
           {
             enum: '170',
             name: 'IF钢'
@@ -99,7 +100,8 @@ export class PageMaterialComponent implements OnInit {
       },
 
       //热轧
-      {class:"material-class",
+      {
+        class: "material-class",
         enum: "180",
         name: "热轧",
         children: [
@@ -119,7 +121,7 @@ export class PageMaterialComponent implements OnInit {
             enum: '210',
             name: 'QStE结构钢系列'
           },
- 
+
           {
             enum: '230',
             name: '车轮钢轧'
@@ -140,7 +142,8 @@ export class PageMaterialComponent implements OnInit {
       },
 
       //中板
-      {class:"material-class1",
+      {
+        class: "material-class1",
         enum: "270",
         name: "中板",
         children: [
@@ -186,68 +189,71 @@ export class PageMaterialComponent implements OnInit {
     },
   ]
   //屈服强度
-  public listStrength = 
-  [
-    //120~180MPa
-    {
-      children: 
-      [
-        {
-          min: '120',
-          max: '180'
-        },
-      ]      
-    },
+  public listStrength =
+    [
+      //120~180MPa
+      {
+        children:
+          [
+            {
+              min: '120',
+              max: '180'
+            },
+          ]
+      },
 
-    //180~340MPa
-    {      
-      children: 
-      [
-        {
-          min: '180',
-          max: '340'
-        },
-      ] 
-    },
+      //180~340MPa
+      {
+        children:
+          [
+            {
+              min: '180',
+              max: '340'
+            },
+          ]
+      },
 
-    //340~500MPa
-    {
-      children: 
-      [
-        {
-          min: '340',
-          max: '500'
-        },
-      ] 
-    },
+      //340~500MPa
+      {
+        children:
+          [
+            {
+              min: '340',
+              max: '500'
+            },
+          ]
+      },
 
-    //500~1200MPa
-    {
-      children: 
-      [
-        {
-          min: '500',
-          max: '1200'
-        },
-      ] 
-    }
-  ]
+      //500~1200MPa
+      {
+        children:
+          [
+            {
+              min: '500',
+              max: '1200'
+            },
+          ]
+      }
+    ]
   //#endregion
 
   public material = []  //存放查询的数据并传给材料列表
 
   //查询条件表单
   public params = {
-    Name:'',  //材料名称
+    Name: '',  //材料名称
     materialType: '',  //材料分类
+
     manufactoryId: '',  //生产厂家
     model: "",  //型号规格
     maxModel: "", //最大型号规格
     minModel: "", //最小型号规格
-    Strength:"",
+    Strength: "",
     MaxStrenth: "", //最大屈服强度
     MinStrenth: "", //最小屈服强度
   }
+  public materialTypeChildren = []//存放当前选中材料分类的子分类
+  public parentType = "" //选中材料分类的子分类的父级
   constructor(
     private materialService: MaterialServiceService,    //实例化材料服务
     public http: HttpClient,
@@ -255,13 +261,13 @@ export class PageMaterialComponent implements OnInit {
     private ApiService: ApiService,
 
   ) { }
-  ngOnInit() {    
-  this.route.paramMap.subscribe(param => {
-    let materialName = param.get('materialName');
-    if (materialName){ //从搜索跳转过来
-      this.params.Name = param.get('materialName');
-    }
-    })
+  ngOnInit() {
+    this.route.paramMap.subscribe(param => {
+      let materialName = param.get('materialName');
+      if (materialName) { //从搜索跳转过来
+        this.params.Name = param.get('materialName');
+      }
+    });
     this.getGetManufacturers();
   }
 
@@ -279,11 +285,15 @@ export class PageMaterialComponent implements OnInit {
   //材料分类  
   public async filtrationMaterialType(childItem) {
     this.params.materialType = childItem.enum;
+    if (childItem.children) {
+      this.materialTypeChildren = childItem.children;
+      this.parentType = childItem.enum;
+    }
     // console.log(this.params)
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items
       // console.log(this.material)
-    })    
+    })
   }
 
   //生产厂家
@@ -293,17 +303,17 @@ export class PageMaterialComponent implements OnInit {
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
- })
- }
-  
+    })
+  }
+
   //型号规格
-  public async  filtrationModel(item) {
+  public async filtrationModel(item) {
     this.params.model = item.value
     // console.log(this.params);
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
- })
+    })
   }
 
   public async filtrationMinModel(e: any) {
@@ -328,7 +338,7 @@ export class PageMaterialComponent implements OnInit {
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
-  })
+    })
   }
 
   public async filtrationMinStrength(e: any) {
@@ -347,19 +357,19 @@ export class PageMaterialComponent implements OnInit {
 
   //清楚筛选条件
   public async clear() {
-      this.params.Name='',
+    this.params.Name = '',
       this.params.materialType = '',
       this.params.manufactoryId = '',
       this.params.model = '',
       this.params.minModel = ''
-      this.params.maxModel = ''
-      this.params.MaxStrenth = ''
-      this.params.MinStrenth = ''
-      // console.log(this.params)
-      await this.ApiService.GetMater(this.params).then((res: any) => {
-        this.material = res.items
-        // console.log(this.material)
-      })    
+    this.params.maxModel = ''
+    this.params.MaxStrenth = ''
+    this.params.MinStrenth = ''
+    // console.log(this.params)
+    await this.ApiService.GetMater(this.params).then((res: any) => {
+      this.material = res.items
+      // console.log(this.material)
+    })
   }
   //#endregion
 
