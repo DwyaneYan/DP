@@ -1,15 +1,14 @@
+<!-- <app-form-navigation></app-form-navigation> -->
 
-<app-form-navigation></app-form-navigation>
+<!-- <div id="search-part"> -->
 
-<div id="search-part">
-
-    <div id="search-box">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="请输入要搜索的材料信息" [(ngModel)]="materialName"/>
-        </nz-input-group>
-        <ng-template #suffixButton>
-            <a [routerLink]="['/material', materialName]"><button nz-button nzType="primary" nzSize="large"  nzSearch >搜索</button></a>
-        </ng-template>
-    </div>
+<div id="search-box">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="请输入要搜索的材料信息" [(ngModel)]="materialName" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <a [routerLink]="['/material', materialName]"><button nz-button nzType="primary" nzSize="large"
+                nzSearch>搜索</button></a>
+    </ng-template>
 </div>
-
+<!-- </div> -->

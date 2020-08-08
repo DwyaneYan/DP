@@ -1,15 +1,19 @@
-
-#search-part{
+/* #search-part{
     background-image: url('../../assets/images/material-firstpage-search-background.png') ;
     background-size: cover;
     height:100px;
     background-position:top;
     padding-top:40px
-}
+} */
 
 #search-box{
     width: 65%;
-    /* height: 50px; */
     margin: auto;
-    /* padding-top:40px; */
-}
+} 
+/* #search-box{
+    width: 400px;
+    display:inline-block;
+    
+    margin-left: 20px;
+    
+} */
