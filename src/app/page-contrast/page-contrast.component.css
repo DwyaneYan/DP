@@ -34,6 +34,12 @@
     border-bottom: solid 1px grey;
     padding-bottom: 8px;
 }
+.compare-table /deep/ .ant-table-body{
+    margin-top:-1px;
+}
+.compare-table /deep/ .ant-table-tbody>tr>td,.compare-table /deep/ .ant-table-thead>tr>th {
+    padding: 16px 8px;
+}
 nz-table.vertical {
     -webkit-writing-mode: vertical-lr;
     -moz-writing-mode: vertical-lr;
@@ -43,7 +49,7 @@ nz-table.vertical {
 
 nz-table.vertical th,
 nz-table.vertical td {
-    width: 143px;
+    width: 160px;
     height: 4px;
 }
 
@@ -56,10 +62,10 @@ nz-table.vertical div {
 }
 
 nz-table.vertical div.sta {
-    width: 100px;
+    width: 130px;
 }
 nz-table.borderedTable tr {
-    width: 143px;
+    width: 123px;
 }
 
 #info {
@@ -103,9 +109,6 @@ nz-table.borderedTable tr {
 
 .sta {
     float: left;
-    text-align: center;
-    margin-left: 6px;
-    margin-top: 2px;
     font-weight: bold;
 }
 

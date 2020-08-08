@@ -38,9 +38,9 @@
             <td id="posi">
               <i nz-icon nzType="close" nzTheme="outline" id="i" (click)="del(i)"></i>
               <div class="sta">{{ name[i] }}</div>
-              <div class="sta">{{ model[i] }}</div>
-              <div class="sta">{{ manu[i] }}</div>
-              <div class="sta">{{ reelNumber[i] }}</div>
+              <div class="sta">型号规格(mm)：{{ model[i] }}</div>
+              <div class="sta">生产厂家：{{ manu[i] }}</div>
+              <div class="sta">卷号：{{ reelNumber[i] }}</div>
             </td>
           </tr>
         </tbody>
@@ -52,15 +52,15 @@
             <tr>
               <th id="str" nzWidth="173px" style="height:30px;padding-top: 5px;
               padding-bottom: 5px;">
-                <div style="width:141px;text-align: left;">{{ dataList.name }}
+                <div style="width:130px;text-align: left;">{{ dataList.name }}
                 </div>
               </th>
               <th *ngFor="let dataDes of dataList.itemDes;let i = index;" nzAlign="right" nzWidth="173px">
                 <div>
                   <span *ngIf="dataDes.length>=15 else elseBlock"  nz-tooltip [nzTooltipTitle]="titleTemplate"
-                    style="display:inline-block;width:141px;">{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
+                    style="display:inline-block;width:130px;">{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
                   <ng-template #elseBlock><span nz-tooltip [nzTooltipTitle]="titleTemplate"
-                      style="display:inline-block;width:141px;">{{ dataDes}}</span></ng-template>
+                      style="display:inline-block;width:130px;">{{ dataDes}}</span></ng-template>
                   <ng-template #titleTemplate>
                     <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
                   </ng-template>
@@ -69,7 +69,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of this[dataList.key]; let i = index" style="width: 143px;">
+            <tr *ngFor="let data of this[dataList.key]; let i = index">
               <td nzBreakWord [attr.rowspan]="i === 0 ? this[dataList.key].length : 1" *ngIf="i == 0">
                 <div></div>
               </td>
@@ -94,7 +94,7 @@
 
 
 
-    <div id="add" (click)="showModal()" *ngIf="StaticTension.length<7">
+    <div id="add" (click)="showModal()" *ngIf="StaticTension.length<6">
       <i nz-icon nzType="plus" nzTheme="outline" id="tian"></i>
       <div id="jia">添加</div>
     </div>
