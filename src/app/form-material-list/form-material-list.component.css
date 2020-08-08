@@ -1,49 +1,75 @@
-.head{
+
+.table-title{
+    color: #222;
+    font-size: 18px;
+}
+.table-title strong{
+    color: #fd6b21;
+    font-size: 24px;
+}
+.header {
     text-align:center;
-    background-color:rgba(107, 152, 248, 0.959);
-    font-weight:bold;
-    color:white
- 
+    background-color:#fafafa;
+    color:#999;
+    font-size: 16px;
 }
-.he{padding-top:8px;
-    padding-bottom:8px;
-    text-align:center;}
-
-.components-table-demo-control-bar{
-    position:relative;
-    left:82%;
-    top:12px
+.table-col{
+    padding:20px 0;
+    text-align:center;
+    background-color: #fff;
+    font-size: 16px;
 }
-#xfk{
-background:-webkit-linear-gradient(bottom,white,lightblue,skyblue); 
+.table-col a{
+    color: #2a9df1;
+}
+.components-table-control-bar{
+    position: absolute;
+    bottom:15px;
+    left:0;
+}
+.compare-box{
+    background-color:#fff; 
+    box-shadow:  0 0 4px 1px rgba(0,0,0,0.05);
     position: fixed;
-    border-radius:8px; 
-top:30%;
-left:65%;
-width:420px
-
+    border-radius:10px; 
+    top:30%;
+    right:3%;
+    width:318px;
+    padding: 20px;
+    text-align: center;
 }
-ul{
-    list-style-type: none;
-    padding-top:13px;
-    padding-left: 25px;
+.compare-box h4{
+    color: #222;
+    font-size: 18px;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: left;
+    padding-bottom: 10px;
+}
+.compare-box .angle{
+    float: right;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.compare-box li{
+    padding: 10px 0;
+    border-bottom: 1px dashed #e6e6e6;
+    text-align: left;
+    display: flex;
+    font-size: 16px;
+}
+
+.compare-box li .text{
+    display:inline-block;
+    flex: 1;
+    color: #0d95f0;
     
 }
-li{
-    height:30px
+.compare-box li .anticon{
+    color: #b3b3b3;
+    margin-top: 5px;
+    cursor: pointer;
 }
-#show{
-    background-color: blue;
-    color:white;
-    font-size: medium;
+.compare-box button{
+    margin-top: 10px;
 }
 
-.lt{
-    display:inline-block;
-    width:120px;
-}
-button{
-    float:right;
-    margin-right:10px;
-    margin-bottom:10px
-}
