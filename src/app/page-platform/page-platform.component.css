@@ -23,15 +23,14 @@
     flex: 1;
 }
 .model-list{
-    list-style: none;
-    margin-left:-70px;
+    margin-left:-30px;
     margin-top: 20px;
     overflow: hidden;
+    clear: both;
 }
 .model-list .model-item{
     width: 205px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 1px solid #e6e6e6;
     border-radius: 4px;
     height: 330px;
     display: flex;
@@ -41,14 +40,18 @@
     margin:0 0 0 25px;
     text-align: center;
     flex-direction: column;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 .model-list .model-name{
     margin-top:30px;
     font-size: 16px;
     color: #222;
-    
 }
-.model-list .model-item:last-child{
+.model-list .model-item:hover .model-name{
+    color: #0d95f0;
+}
+.model-list .model-item:hover{
     border:1px dashed #0d95f0;
 }
 .model-list .model-item:last-child .model-name{
@@ -65,14 +68,10 @@
 #search-box,
 #text,
 #msearch-box,
-#mtext,
-#search-box2{
+#mtext{
     float: right;
 }
 
-#text {
-    margin: 5px 15px;
-}
 .import-box{
     text-align: right;
 }
@@ -80,27 +79,13 @@
    display: inline-block;
    margin-left: 12px;
 }
-
-#search-box2 {
-    float: right;
-    margin-top: 0.8%;
-    margin-right: 1%;
-}
-.material-list{
-    margin-left:-30px;
-    margin-top: 20px;
-    overflow: hidden;
-    clear: both;
-}
-.material-item {
+.material-item{
     float: left;
     width: 205px;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin:0  0 20px 25px;
-    margin-bottom: 20px;
     position: relative;
-    box-sizing: border-box;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 }
