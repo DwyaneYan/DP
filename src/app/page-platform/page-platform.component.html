@@ -1,29 +1,51 @@
 <app-form-navigation></app-form-navigation>
-<div id="background">
+<div class="w1200">
 
     <!--整车模块-->
-    <div id="zhengche-module">
-        <div id="zhengche">
-            <nz-card nzTitle="全部车型" [nzExtra]="extraTemplate" [nzBordered]="false">
-
-                <div id="jiaoche">
-                    <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">
-                        <img src="../../assets/images/jiaoche.png" alt="" width="130" height="64"> 轿车</a>
-
+    <div class="model-box">
+        <div class="model-top">
+            <div class="title">全部车型</div>
+            <div class="rightsearch">
+                <div id="search-box">
+                    <nz-input-group [nzSuffix]="suffixIconSearch">
+                        <input type="text" nz-input placeholder="搜索车型" />
+                    </nz-input-group>
+                    <ng-template #suffixIconSearch>
+                        <i nz-icon nzType="search"></i>
+                    </ng-template>
                 </div>
+            </div>
 
-                <div id="suv">
-                    <img src="../../assets/images/suv.png" alt="" width="130" height="64"> SUV
-                </div>
-
-                <div id="shangyongche">
-                    <img src="../../assets/images/shangyongche.png" alt="" width="130" height="64"> 商用车
-                </div>
-
-            </nz-card>
         </div>
-
-        <ng-template #extraTemplate>
+        <ul class="model-list">
+            <li class="model-item">
+                <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">
+                    <img src="../../assets/images/jiaoche.png" alt="" width="159" height="105">
+                    <div class="model-name">轿车</div>
+                </a>
+            </li>
+            <li class="model-item">
+                <img src="../../assets/images/suv.png" alt="" width="159" height="105">
+                <div class="model-name">SUV</div>
+            </li>
+            <li class="model-item">
+                <img src="../../assets/images/shangyongche.png" alt="" width="159" height="105">
+                <div class="model-name">商用车</div>
+            </li>
+            <li class="model-item">
+                <a href="javascript:;">
+                    <img src="../../assets/images/paoche.png" alt="" width="159" height="105">
+                    <div class="model-name">跑车</div>
+                </a>
+            </li>
+            <li class="model-item">
+                <a href="javascript:;">
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>
+                    <div class="model-name">添加车型</div>
+                </a>
+            </li>
+        </ul>
+        <!-- <ng-template #extraTemplate>
             <div class="rightsearch">
 
                 <div id="text">
@@ -40,56 +62,79 @@
                 </div>
 
             </div>
-        </ng-template>
+        </ng-template> -->
     </div>
 
+
     <!--材料库模块-->
-    <div id="material-model">
-        <a routerLink="/material" id="cailiaoku">材料库</a>
-        <div id="import" *ngIf="FormExperimentalItemComponent.button('postData')">
-            <img src="../../assets/images/import-data.png" alt="">
-            <div (click)="showModal()" style="  padding-left: 5px;display:inline-block">
-                <span>导入数据</span>
+    <div class="model-box mt25">
+        <div class="model-top">
+            <a class="title" routerLink="/material" id="cailiaoku">材料库</a>
+        </div>
+        <div class="import-box">
+            <!-- 导入数据  START -->
+            <div class="import" *ngIf="FormExperimentalItemComponent.button('postData')">
+                <button nz-button nzType="primary" nzShape="round" nzGhost (click)="showModal()">
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>
+                    导入数据
+                </button>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                    <div id="text-xzwj">
+                        <br /> 选择文件:
+                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
+                            [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
+                            <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
+                        </nz-upload>
+                    </div>
+                </nz-modal>
             </div>
-            <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-                <div id="text-xzwj">
-                    <br /> 选择文件:
-                    <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
-                        [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
-                        <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
+            <!-- 导入数据  END -->
+
+            <!-- 添加材料  START -->
+            <div class="import" *ngIf="FormExperimentalItemComponent.button('addtj')">
+                <button nz-button nzType="primary" nzShape="round" nzGhost (click)="showModal1()">
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>
+                    添加推荐材料
+                </button>
+                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()"
+                    (nzOnOk)="handleOk()">
+                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"
+                        nzPlaceHolder="添加推荐材料"></nz-cascader>
+                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)"
+                        [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
+                        &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon
+                                nzType="upload"></i>上传材料图片</button>
                     </nz-upload>
+                </nz-modal>
+            </div>
+            <!-- 添加材料  END -->
+
+            <!-- 删除推荐材料 START -->
+            <!-- <div id="import" *ngIf="FormExperimentalItemComponent.button('deletetj')">
+                <span>删除推荐材料</span> &nbsp;
+                <nz-switch [(ngModel)]="showcan"></nz-switch>
+            </div> -->
+            <!-- 删除推荐材料 START -->
+        </div>
+
+        <!-- 材料列表 START -->
+        <div class="material-list">
+            <div class="material-item" *ngFor="let material of addlist">
+                <div class="material-delete" (click)="shanchutj(material.id)">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
-            </nz-modal>
-        </div>
-        <div id="import" *ngIf="FormExperimentalItemComponent.button('addtj')">
-            <div (click)="showModal1()"><span>添加推荐材料</span></div>
-            <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-                <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"
-                    nzPlaceHolder="添加推荐材料"></nz-cascader>
-                <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)"
-                    [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
-                    &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon nzType="upload"></i>上传材料图片</button>
-                </nz-upload>
-            </nz-modal>
-        </div>
-        <div id="import" *ngIf="FormExperimentalItemComponent.button('deletetj')">
-            <span>删除推荐材料</span> &nbsp;
-            <nz-switch [(ngModel)]="showcan"></nz-switch>
-        </div>
-        <hr />
-        <div class="material" *ngFor="let material of addlist">
-            <i nz-icon nzType="close" nzTheme="outline" style="position:absolute;right:3px" *ngIf="showcan"
-                (click)="shanchutj(material.id)"></i>
-            <a [routerLink]="material.routerLink1">
-                <img [src]="material.avatarUrl" style="width: 100px;height:110px;position:absolute;margin-left:20px" />
-            </a>
-            <div class="material-info">
-                材料牌号: {{material.name}}<br /> 生产厂家: {{material.manufactory}}<br /> 型号规格: {{material.model}}<br /> 卷号:
-                {{material.reelNumber}}
+                <a class="material-pic" [routerLink]="material.routerLink1">
+                    <img [src]="material.avatarUrl" />
+                </a>
+                <div class="material-info">
+                    <h4> {{material.name}}</h4>
+                    生产厂家: {{material.manufactory}}<br />
+                    型号规格: {{material.model}}<br />
+                    卷号:{{material.reelNumber}}
+                </div>
             </div>
         </div>
-
-
+        <!-- 材料列表 START -->
     </div>
 
 </div>
