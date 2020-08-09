@@ -1,27 +1,31 @@
 <div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{x:'1200px'}">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
         <thead>
             <tr>
-                <th class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
+                <th nzWidth="200px" *ngFor="let data of table[0].one">
+                    {{data}}
+                </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
+                <td *ngFor="let data of table[0].key">
+                    {{trialDataDetail[0]?trialDataDetail[0][data]:''}}
+                </td>
             </tr>
         </tbody>
     </nz-table>
 
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox" style="overflow: auto;margin-top:30px;margin-bottom:30px" nzBordered [nzScroll]="{ y: '700px' }">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox" nzBordered [nzScroll]="{ y: '700px' }">
         <thead>
             <tr>
                 <th class="one" nzWidth="120px">样件编号</th>
                 <th class="one" nzWidth="90px" *ngFor="let data of ys,let i = index">
                     <span nz-tooltip [nzTooltipTitle]=" titleTemplate">{{data}}</span>
                     <ng-template #titleTemplate>
-                    
+
                         <a (click)="contrastTable(data)">对比</a>
-                            </ng-template>
+                    </ng-template>
                 </th>
             </tr>
         </thead>
@@ -41,4 +45,4 @@
 <nz-modal [(nzVisible)]="isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
     <div echarts       [options]="options"       style="height: 400px;position: relative;"           ></div>
-    </nz-modal>
+</nz-modal>
