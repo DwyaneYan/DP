@@ -1,8 +1,8 @@
 .info-box {
-    position: absolute;
+    /* position: absolute;
     left: 22%;
     top: 50px;
-    width: 60%
+    width: 60% */
 }
 .info-box .title{
     color: #222;

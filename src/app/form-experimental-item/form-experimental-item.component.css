@@ -29,6 +29,7 @@ body {
     color: rgb(138, 134, 134);
     background-color: #fafafa;
     border-right:1px solid #e6e6e6;
+    float: left;
     
 }
 ::ng-deep .ant-menu,::ng-deep .ant-menu-submenu>.ant-menu{

@@ -1,53 +1,55 @@
-<div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{x: '1400px'}">
-        <thead>
-            <tr>
-                <th nzWidth="200px" class="one" *ngFor="let data1 of table1">{{data1}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="one1" *ngFor="let data5 of table5">{{trialDataDetail[0]?trialDataDetail[0][data5]:''}}</td>
-            </tr>
-        </tbody>
-    </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px;margin-bottom:30px; " [nzScroll]="{x: '2160px', y: '700px' }" nzBordered id="one" *ngFor="let value of data;let i = index">
-        <thead>
-            <tr>
-                <th [nzWidth]="table3[i]" class="one" *ngFor="let data2 of table2;let i = index" style="height:58px">
-                    <span *ngIf="('sampleCode,direction').indexOf(table4[i]) == -1;else other_content">
-                       <span nz-tooltip [nzTooltipTitle]="titleTemplate" >{{ data2 }}</span>
+<!-- <div id="dataTable"> -->
+<!-- [nzScroll]="{x: '1400px'}" -->
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <thead>
+        <tr>
+            <th nzWidth="200px" class="one" *ngFor="let data1 of table1">{{data1}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="one1" *ngFor="let data5 of table5">{{trialDataDetail[0]?trialDataDetail[0][data5]:''}}</td>
+        </tr>
+    </tbody>
+</nz-table>
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px;margin-bottom:30px; "
+    [nzScroll]="{x: '2160px', y: '700px' }" nzBordered id="one" *ngFor="let value of data;let i = index">
+    <thead>
+        <tr>
+            <th [nzWidth]="table3[i]" class="one" *ngFor="let data2 of table2;let i = index" style="height:58px">
+                <span *ngIf="('sampleCode,direction').indexOf(table4[i]) == -1;else other_content">
+                    <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{ data2 }}</span>
                     <ng-template #titleTemplate>
                         <a (click)="contrastTable(table4[i], data2,this[value])">对比</a>
-                            </ng-template>
-                            </span>
-                            <ng-template #other_content>
-                                <span #other_content>{{ data2 }}</span>
-                                    </ng-template>
-                </th>
-            </tr>
+                    </ng-template>
+                </span>
+                <ng-template #other_content>
+                    <span #other_content>{{ data2 }}</span>
+                </ng-template>
+            </th>
+        </tr>
 
-        </thead>
-        <tbody *ngIf="i==0;else elseBlock">
-            <tr *ngFor="let details of trialDataDetails">
-                <td class="one1" *ngFor="let data4 of table4" nzBreakWord>{{ details[data4] }}</td>
-            </tr>
+    </thead>
+    <tbody *ngIf="i==0;else elseBlock">
+        <tr *ngFor="let details of trialDataDetails">
+            <td class="one1" *ngFor="let data4 of table4" nzBreakWord>{{ details[data4] }}</td>
+        </tr>
+        <tr *ngFor="let detail of this[value]">
+            <td class="one1" *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
+        </tr>
+    </tbody>
+    <ng-template #elseBlock>
+        <tbody>
             <tr *ngFor="let detail of this[value]">
                 <td class="one1" *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
             </tr>
         </tbody>
-        <ng-template #elseBlock>
-            <tbody>
-                <tr *ngFor="let detail of this[value]">
-                    <td class="one1" *ngFor="let data4 of table4" nzBreakWord>{{ detail[data4] }}</td>
-                </tr>
-            </tbody>
-        </ng-template>
-    </nz-table>
-</div>
+    </ng-template>
+</nz-table>
+<!-- </div> -->
 
 
 <nz-modal [(nzVisible)]="isVisible.isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
-    <div       echarts       [options]="options.options"       style="height: 400px;position: relative;"     ></div>
-    </nz-modal>
+    <div echarts  [options]="options.options" style="height: 400px;position: relative;"     ></div>
+</nz-modal>
