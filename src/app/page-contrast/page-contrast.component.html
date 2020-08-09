@@ -90,14 +90,15 @@
           </tbody>
         </nz-table>
       </div>
+
+      <div class="add-button" (click)="showModal()" *ngIf="StaticTension.length<6">
+        <i nz-icon nzType="plus" nzTheme="outline" class="icon"></i>
+        <div class="text">添加</div>
+      </div>
     </div>
 
 
 
-    <div id="add" (click)="showModal()" *ngIf="StaticTension.length<6">
-      <i nz-icon nzType="plus" nzTheme="outline" id="tian"></i>
-      <div id="jia">添加</div>
-    </div>
 
     <div *ngIf="checkbox" id="xfk" name="checkbox">
       <i nz-icon nzType="close" nzTheme="outline" id="i" (click)="cac()"></i>

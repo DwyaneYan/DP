@@ -19,6 +19,7 @@
 .compare-table{
     margin-top: 25px;
     display: inline-block;
+    position: relative;
 }
 .ed {
     float: right;
@@ -137,21 +138,23 @@ nz-table.borderedTable tr {
     right: 0px;
 }
 
-#add {
-    border: 1px solid grey;
-    height: 120px;
-    margin-top: 30px;
-    float: left;
+.add-button {
+    border: 1px solid #e6e6e6;
+    height: 130px;
+    position: absolute;
+    top: 0;
+    right: -159px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:#0d95f0;
 }
 
-#tian {
+.add-button .icon {
     display: block;
-    margin: 25px 10px;
-}
-
-#jia {
-    margin: auto;
-    width: 30px;
+    margin-bottom:10px;
 }
 
 #xfk {

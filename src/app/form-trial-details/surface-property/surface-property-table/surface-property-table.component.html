@@ -1,81 +1,85 @@
-<div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{ x: '1600px' }">
+<div class="dataTable">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered [nzScroll]="{ x: '1600px' }">
         <thead>
             <tr>
-                <th class="one" nzWidth='200px' *ngFor="let data of table[0].one">{{data}}</th>
+                <th nzWidth='200px' *ngFor="let data of table[0].one">{{data}}</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetailss[0]?trialDataDetailss[0][data]:''}}</td>
+                <td *ngFor="let data of table[0].key">
+                    {{trialDataDetailss[0]?trialDataDetailss[0][data]:''}}</td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="width: 1000px;margin-top:30px;" nzTitle="镀层重量" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzTitle="镀层重量" nzBordered>
         <thead>
             <tr>
-                <th nzWidth="200px" class="one" *ngFor="let data of table[1].one">{{data}}</th>
+                <th nzWidth="200px" *ngFor="let data of table[1].one">{{data}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of trialDataDetail">
-                <td class="one1" *ngFor="let data1 of table[1].key">{{ data[data1] }}</td>
+                <td *ngFor="let data1 of table[1].key">{{ data[data1] }}</td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered style="margin-top:30px;" [nzWidthConfig]="widthConfig" [nzScroll]="{ x: '1360px' }">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25" [nzWidthConfig]="widthConfig"
+        [nzScroll]="{ x: '1360px' }">
         <thead>
             <tr>
-                <th colspan="2" rowspan="2" class="one" *ngFor="let data1 of table[2].one;let i=index">{{data1}}</th>
-                <th [attr.colspan]="two[i]" class="one" *ngFor="let data2 of three;let i=index">{{data2}}</th>
+                <th colspan="2" rowspan="2" *ngFor="let data1 of table[2].one;let i=index">{{data1}}</th>
+                <th [attr.colspan]="two[i]" *ngFor="let data2 of three;let i=index">{{data2}}</th>
             </tr>
             <tr>
-                <th [attr.colspan]="c" class="one">{{trialDataDetails[0]?.raRequirement}}</th>
+                <th [attr.colspan]="c">{{trialDataDetails[0]?.raRequirement}}</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="one1" rowspan="2">上表</td>
-                <td class="one1">粗糙度Ra/μm</td>
-                <td class="one1" *ngFor="let data of aboveRoughness">{{data}}</td>
+                <td rowspan="2">上表</td>
+                <td>粗糙度Ra/μm</td>
+                <td *ngFor="let data of aboveRoughness">{{data}}</td>
             </tr>
             <tr>
-                <td class="one1">峰值密度RPc个 /cm</td>
-                <td class="one1" *ngFor="let data of abovePeakDensity">{{data}}</td>
+                <td>峰值密度RPc个 /cm</td>
+                <td *ngFor="let data of abovePeakDensity">{{data}}</td>
             </tr>
             <tr>
-                <td class="one1" rowspan="2">下表</td>
-                <td class="one1">粗糙度Ra/μm</td>
-                <td class="one1" *ngFor="let data of belowRoughness">{{data}}</td>
+                <td rowspan="2">下表</td>
+                <td>粗糙度Ra/μm</td>
+                <td *ngFor="let data of belowRoughness">{{data}}</td>
             </tr>
             <tr>
-                <td class="one1">峰值密度RPc个 /cm</td>
-                <td class="one1" *ngFor="let data of belowPeakDensity">{{data}}</td>
+                <td>峰值密度RPc个 /cm</td>
+                <td *ngFor="let data of belowPeakDensity">{{data}}</td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzWidthConfig]="widthConfig1" style="width: 750px;margin-top:30px;margin-bottom:30px;">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzWidthConfig]="widthConfig1" class="mt25">
         <thead>
             <tr>
-                <th rowspan="2" class="one">公称厚度</th>
+                <th rowspan="2">公称厚度</th>
                 <th [attr.colspan]="d" class="one">{{trialDataDetailsss[0]?.sizeRequirement}}</th>
             </tr>
             <tr>
-                <th class="one" *ngFor="let data of trialDataDetailsss">{{data?.testCode}}</th>
+                <th *ngFor="let data of trialDataDetailsss">
+                    {{data?.testCode}}
+                </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="one1">距边部40mm</td>
-                <td class="one1" *ngFor="let data of edgeThickness1">{{data}}</td>
+                <td>距边部40mm</td>
+                <td *ngFor="let data of edgeThickness1">{{data}}</td>
             </tr>
             <tr>
-                <td class="one1">距左边部1/4</td>
-                <td class="one1" *ngFor="let data of edgeThickness2">{{data}}</td>
+                <td>距左边部1/4</td>
+                <td *ngFor="let data of edgeThickness2">{{data}}</td>
             </tr>
             <tr>
-                <td class="one1">板宽1/2</td>
-                <td class="one1" *ngFor="let data of edgeThickness3">{{data}}</td>
+                <td>板宽1/2</td>
+                <td *ngFor="let data of edgeThickness3">{{data}}</td>
             </tr>
         </tbody>
     </nz-table>
