@@ -1,21 +1,13 @@
-.dataTable {
-    /* position: absolute;
-    left: 22%;
-    top: 180px;
-    width: 75% */
-}
-
-.one {
+.dataTable thead th {
     text-align: center;
     background-color:#f4f4f4;
     color: #666;
     padding: 8px 0;
 }
 
-.one1 {
+.dataTable tbody td{
     text-align: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px 0;
 }
 
 .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
@@ -45,4 +37,11 @@
 
 nz-modal /deep/ .ant-modal-content {
     width: 600px
+}
+.echarts-box{
+    height: 400px;
+    position: relative;
+}
+.ant-table-wrapper::after{
+    clear: none !important;
 }

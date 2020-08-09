@@ -1,70 +1,69 @@
-<div class="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{}">
-        <thead>
-            <tr>
-                <th nzWidth="200px" *ngFor="let data1 of table1">{{data1}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td *ngFor="let data2 of table2">
-                    {{trialDataDetail[0]?trialDataDetail[0][data2]:''}}
-                </td>
-            </tr>
-        </tbody>
-    </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt30" nzBordered *ngFor="let data3 of table3">
-        <thead>
-            <tr>
-                <th nzWidth="200px" *ngFor="let data31 of data3.one">
-                    {{data31}}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td *ngFor="let data32 of data3.key">{{trialDataDetail[0]?trialDataDetail[0][data32]:''}}
-                </td>
-            </tr>
-        </tbody>
-    </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt30" nzBordered>
-        <thead>
-            <tr>
-                <th nzWidth="200px" *ngFor="let data41 of table4[0].one">{{data41}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let detail of two;let i=index ">
-                <td [attr.rowspan]="i === 0 ? two.length : 1" *ngIf="i==0">{{mater[0]}}</td>
-                <td *ngFor="let data42 of table4[0].key">{{detail[data42]}}</td>
-            </tr>
-        </tbody>
-    </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt30" nzBordered [nzScroll]="{y:'700px' }">
-        <thead>
-            <tr>
-                <th nzWidth="200px" *ngFor="let data41 of table4[1].one; let i = index">
-                    <span *ngIf="('sampleCode').indexOf(table4[1].key[i]) == -1; else other_content">
-                        <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data41}}</span>
-                        <ng-template #titleTemplate>
+<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{}">
+    <thead>
+        <tr>
+            <th nzWidth="200px" *ngFor="let data1 of table1">{{data1}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td *ngFor="let data2 of table2">
+                {{trialDataDetail[0]?trialDataDetail[0][data2]:''}}
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered *ngFor="let data3 of table3">
+    <thead>
+        <tr>
+            <th nzWidth="200px" *ngFor="let data31 of data3.one">
+                {{data31}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td *ngFor="let data32 of data3.key">{{trialDataDetail[0]?trialDataDetail[0][data32]:''}}
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <thead>
+        <tr>
+            <th nzWidth="200px" *ngFor="let data41 of table4[0].one">{{data41}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let detail of two;let i=index ">
+            <td [attr.rowspan]="i === 0 ? two.length : 1" *ngIf="i==0">{{mater[0]}}</td>
+            <td *ngFor="let data42 of table4[0].key">{{detail[data42]}}</td>
+        </tr>
+    </tbody>
+</nz-table>
+<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'700px' }">
+    <thead>
+        <tr>
+            <th nzWidth="200px" *ngFor="let data41 of table4[1].one; let i = index">
+                <span *ngIf="('sampleCode').indexOf(table4[1].key[i]) == -1; else other_content">
+                    <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data41}}</span>
+                    <ng-template #titleTemplate>
 
-                            <a (click)="contrastTable(table4[1].key[i], data41)">对比</a>
-                        </ng-template>
-                    </span>
-                    <ng-template #other_content>
-                        <span #other_content>{{data41}}</span>
+                        <a (click)="contrastTable(table4[1].key[i], data41)">对比</a>
                     </ng-template>
-                </th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let detail of  trialDataDetails ">
-            <tr>
-                <td *ngFor="let data42 of table4[1].key">{{detail[data42]}}</td>
-            </tr>
-        </tbody>
-    </nz-table>
-</div>
+                </span>
+                <ng-template #other_content>
+                    <span #other_content>{{data41}}</span>
+                </ng-template>
+            </th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let detail of  trialDataDetails ">
+        <tr>
+            <td *ngFor="let data42 of table4[1].key">{{detail[data42]}}</td>
+        </tr>
+    </tbody>
+</nz-table>
+
 
 <nz-modal [(nzVisible)]="isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
     <div echarts [options]="options" class="echarts-box"></div>

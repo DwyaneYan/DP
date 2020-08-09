@@ -87,6 +87,9 @@ export class StaticTensionPictureComponent implements OnInit {
   classdata(name, p1, p2, da, datas, p3, p4) {
     let option = {
       width: '550',
+      title: {
+        text: name
+      },
       tooltip: {
         trigger: 'axis',
         backgroundColor: "white",

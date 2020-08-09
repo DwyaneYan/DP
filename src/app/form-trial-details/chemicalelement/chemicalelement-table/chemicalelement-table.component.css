@@ -1,6 +1,3 @@
-.dataTable {
-    
-}
 .dataTable thead th {
     text-align: center;
     background-color: #f4f4f4;
@@ -18,5 +15,8 @@
 }
 .tablebox{
     overflow: auto;
-    margin-top:30px;
+}
+.echarts-box{
+    height: 400px;
+    position: relative;
 }

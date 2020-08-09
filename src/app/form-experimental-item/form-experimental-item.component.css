@@ -23,9 +23,10 @@ body {
     padding-top: 20px;
 }
 .left-menu {
-    position: relative;
+    position: absolute;
     width:220px;
-    top: 50px;
+    top: 0;
+    left:-220px;
     color: rgb(138, 134, 134);
     background-color: #fafafa;
     border-right:1px solid #e6e6e6;

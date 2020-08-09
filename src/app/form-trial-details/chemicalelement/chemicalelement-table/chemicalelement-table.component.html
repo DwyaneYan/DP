@@ -1,5 +1,5 @@
 <div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25">
         <thead>
             <tr>
                 <th nzWidth="200px" *ngFor="let data of table[0].one">
@@ -16,7 +16,7 @@
         </tbody>
     </nz-table>
 
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox" nzBordered [nzScroll]="{ y: '700px' }">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox mt25" nzBordered [nzScroll]="{ y: '700px' }">
         <thead>
             <tr>
                 <th class="one" nzWidth="120px">样件编号</th>
@@ -44,5 +44,5 @@
 
 <nz-modal [(nzVisible)]="isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
-    <div echarts       [options]="options"       style="height: 400px;position: relative;"           ></div>
+    <div echarts [options]="options" class="echarts-box"></div>
 </nz-modal>
