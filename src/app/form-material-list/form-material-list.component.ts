@@ -266,11 +266,11 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         }
       }
       console.log(this.checkList.length);
-      if (this.checkList.length > 6) {
+      if (this.checkList.length > 5) {
         this.disabled = true;
         this.modalService.warning({
           nzTitle: '提示',
-          nzContent: '材料对比最多7条数据！'
+          nzContent: '材料对比最多6条数据！'
         });
       }
     } else {
