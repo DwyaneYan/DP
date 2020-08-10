@@ -1,15 +1,11 @@
-#dataTable {
-    position: absolute;
-    left: 22%;
-    top: 180px;
-    width: 75%;
-}
-
 .buttonDownload {
-    float: left;
+    display: inline-block;
     margin-right: 25px
 }
-
+.title{
+    margin-top: 20px;
+    font-size: 14px;
+}
 .nz-row {
     text-align: center
 }

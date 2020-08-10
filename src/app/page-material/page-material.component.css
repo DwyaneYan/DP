@@ -90,13 +90,16 @@
     font-family: "Microsoft YaHei";
 }
 
-#clear-btn{
-    margin-top: 0.5%;
-    margin-left: 2%;
+.clear-btn{
+    margin-left:10px;
     border-radius: 5px;
     background-color: rgb(160, 160, 160);
     font-family: "Microsoft YaHei";
     color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    line-height: 38px;
 }
 
 .material-list{

@@ -151,3 +151,9 @@ div /deep/.ant-card-head {
     font-size: 18px;
     font-weight: 500
 }
+.material-box #search-box{
+    display: inline-block;
+    width: 330px;
+    margin-left: 10px;
+    vertical-align: top;
+}

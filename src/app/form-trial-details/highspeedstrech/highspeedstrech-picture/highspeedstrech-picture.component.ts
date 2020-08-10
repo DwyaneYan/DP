@@ -129,7 +129,7 @@ this.ImgPathOne=this.MetallographicPictureComponent.getname(this.one[0].fileStri
   }
 classdata(name,p1,p2,da,datas,p3,p4){
   let option = {
-    width:'550',
+    width:650,
     title: {
       text: name
         },   
@@ -163,13 +163,17 @@ classdata(name,p1,p2,da,datas,p3,p4){
     },
     yAxis: {},
     series: [],
-    legend:{data:[],
-      orient:'vertical',
-      left:'700',
-     top:'30',
-    height:"200",
-    
- }
+    legend: {
+      data: [],
+      orient: 'vertical',
+      right: 30,
+      top: 100,
+      height: 200
+    },
+    grid: {
+      x: 60,
+      bottom: 20
+    }
   };
   let temp2 = [];
   datas.map(item => {

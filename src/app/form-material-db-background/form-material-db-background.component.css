@@ -6,9 +6,12 @@
     padding-top:40px
 } */
 
-#search-box{
-    width: 65%;
+.search-box{
+    width: 300px;
     margin: auto;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
 } 
 /* #search-box{
     width: 400px;
