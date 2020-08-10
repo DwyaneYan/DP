@@ -1,5 +1,5 @@
 <div class="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
+    <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
         <thead>
             <tr>
                 <th nzWidth="200px" *ngFor="let data1 of  table1">{{data1}}</th>
@@ -11,7 +11,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered>
         <thead>
             <tr>
                 <th nzWidth="150px" *ngFor="let data2 of  table2">{{data2}}</th>
@@ -24,8 +24,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '700px' }" style="margin-top:30px"
-        nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '700px' }" class="mt25" nzBordered>
         <thead>
             <tr>
                 <th [nzWidth]="width[i]" class="one" *ngFor="let data4 of  table4;let i=index">
