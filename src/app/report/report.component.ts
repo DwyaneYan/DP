@@ -74,7 +74,7 @@ else if(this.name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePro
       this.trialDataDetails = res
       console.log(this.trialDataDetails)
       for(let a=0;a<this.trialDataDetails.length;a++)
-      {if(this.trialDataDetails[a].fileKey!=null){
+      {if(this.trialDataDetails[a] && this.trialDataDetails[a].fileKey!=null){
     this.one.push(this.trialDataDetails[a])
 
   }

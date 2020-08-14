@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "http://10.130.53.1:60001",
+        "target": "http://10.130.161.45:60001",
         "secure": false
     },
     "/devhg-api": {

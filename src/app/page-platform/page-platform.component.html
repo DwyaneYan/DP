@@ -81,8 +81,7 @@
                 <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
                     <div id="text-xzwj">
                         <br /> 选择文件:
-                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
-                            [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
+                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true' [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
                             <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                         </nz-upload>
                     </div>
@@ -96,12 +95,9 @@
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     添加推荐材料
                 </button>
-                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()"
-                    (nzOnOk)="handleOk()">
-                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"
-                        nzPlaceHolder="添加推荐材料"></nz-cascader>
-                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)"
-                        [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
+                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
+                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)" [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
                         &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon
                                 nzType="upload"></i>上传材料图片</button>
                     </nz-upload>
@@ -123,15 +119,16 @@
                 <div class="material-delete" (click)="shanchutj(material.id)">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
-                <a class="material-pic" [routerLink]="material.routerLink1">
-                    <img [src]="material.avatarUrl" />
+                <a [routerLink]="material.routerLink1">
+
+                    <a class="material-pic">
+                        <img [src]="material.avatarUrl" />
+                    </a>
+                    <div class="material-info">
+                        <h4> {{material.name}}</h4>
+                        生产厂家: {{material.manufactory}}<br /> 型号规格: {{material.model}}<br /> 卷号:{{material.reelNumber}}
+                    </div>
                 </a>
-                <div class="material-info">
-                    <h4> {{material.name}}</h4>
-                    生产厂家: {{material.manufactory}}<br />
-                    型号规格: {{material.model}}<br />
-                    卷号:{{material.reelNumber}}
-                </div>
             </div>
         </div>
         <!-- 材料列表 START -->

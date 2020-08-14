@@ -34,7 +34,7 @@ export class MetallographicReportComponent implements OnInit {
     .toPromise()
     .then((res: any) => {
       this.trialDataDetails = res
-      this.common(this.trialDataDetails[0].fileKey)
+      this.common(this.trialDataDetails[0]?this.trialDataDetails[0].fileKey:'')
     })  
 
   }
