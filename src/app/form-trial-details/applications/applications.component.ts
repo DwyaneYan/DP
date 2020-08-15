@@ -75,7 +75,7 @@ ImgPathOne=[]
 this.getform(data)
       });
   }
-
+three = [] //图片名
 public  async getBrief(p){
   // let api =`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`;
   await this.ApiService.getApplicationCaseById(p)
@@ -83,25 +83,31 @@ public  async getBrief(p){
     this.breif = res.breif,
     this.suppliedPart=res.suppliedPart;
 this.requirement=res.requirement,
-this.photo=res.fileString;
-this.file=res.fileKey;
+this.photo=res.fileString;//应用案例的图片可以上传多个，不会被覆盖
+this.file=res.fileKey;//应用案例的文件显示，数据库里始终只会存一个文件，修改上传会覆盖原来的
 console.log(res)
 if(res.fileKey){
 let files=this.file.slice(0,this.file.length-1)
-console.log(files)
+
 let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
      pdf.embed(b, "#pdf1")
 }
 if(this.photo){
-let a=this.photo.split(";")
-a.pop();
-console.log(a)
-let b=this.fenge(a,/[_.]/)
-for(let c=1;c<b.length;c+=2){
-  this.arr1.push(b[c])
+let one=this.photo.split(";")
+one.pop();//one得到文件全名的数组
+let x =one.length;
+for(let a=0;a<x;a++){
+  let d= one[a].indexOf("_")//每个文件名字符串中的第一个_出现的位置
+  let f=one[a].lastIndexOf(".")//每个文件名字符串中的最后一个.出现的位置
+  this.three.push(one[a].slice(d+1,f-1))//this.three是文件名除去_之前的字符
 }
-for(let d=0;d<a.length;d++){  
-   let picture=a[d]
+// let b=this.fenge(a,/[_.]/)
+// console.log(b)
+// for(let c=1;c<b.length;c+=2){
+//   this.arr1.push(b[c]) //arr1是图片的真实名称，上传的图片名中最好不要带_和.这两个字符
+// }
+for(let d=0;d<x;d++){  
+   let picture=one[d]
   this.ImgPathOne.push(`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
 }}
 

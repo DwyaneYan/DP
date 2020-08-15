@@ -372,6 +372,11 @@ export class PageMaterialComponent implements OnInit {
     })
   }
   //#endregion
-
+  //根据材料牌号搜索材料
+  public async  doEvent(data){
+    this.params.Name = data
+    await this.ApiService.GetMater(this.params).then((res: any) => {
+      this.material = res.items})
+  }
 
 }

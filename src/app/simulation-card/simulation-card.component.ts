@@ -182,7 +182,9 @@ formData =new FormData();
       this.http.get(api).toPromise()
       .then((res: any) => {
       if(res.items[0].fileKey) {this.one=res.items[0].fileKey.split(";")
-        this.one.pop()//this.one得到文件全名
+        this.one.pop()//this.one得到文件全名的数组
+ console.log(this.one)
+
 
 //         console.log(this.one)
 //         //let two=[]
@@ -198,7 +200,6 @@ formData =new FormData();
 
 // }
 // //two是文件名
-// console.log(this.two)
 // let z=this.two.length
  let x=this.one.length
 //  this.material=[]
@@ -207,9 +208,9 @@ let sc=[]
 //let data=[]
  for(let a=0;a<x;a++)
 {
- let d= this.one[a].indexOf("_")
- let f=this.one[a].lastIndexOf(".")
- this.three.push(this.one[a].slice(d+1))
+ let d= this.one[a].indexOf("_")//每个文件名字符串中的第一个_出现的位置
+ let f=this.one[a].lastIndexOf(".")//每个文件名字符串中的最后一个.出现的位置
+ this.three.push(this.one[a].slice(d+1))//this.three是文件名除去_之前的字符
  //console.log(this.one[a])
  let arr1=[]
 //sc.push(this.one[a].slice(f+1))
@@ -230,6 +231,7 @@ let sc=[]
  }
  this.hz.push(this.one[a].slice(f+1))
 }
+console.log(this.data)
 this.after=this.PageContrastComponent.unique1(this.hz)
 console.log(this.rea)
 console.log(this.after)

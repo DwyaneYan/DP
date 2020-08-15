@@ -78,7 +78,7 @@
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     导入数据
                 </button>
-                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false>
                     <div id="text-xzwj">
                         <br /> 选择文件:
                         <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true' [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
@@ -95,7 +95,7 @@
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     添加推荐材料
                 </button>
-                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false>
                     <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
                     <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)" [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
                         &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon

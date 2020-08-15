@@ -58,6 +58,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   ) { }
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
   ngOnChanges() {
+    this.Allmaterial()
     this.listOfAllData = this.pushdata(this.data)
     this.luyou(this.listOfAllData, this.arr)
     if (this.checkList.length != 0) {
@@ -103,7 +104,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
       this.ApiService.GetTrials(data.materialId).then((res: any) => {
         this.trials = res
         this.trials.forEach((val, i, array) => {
-          this.trialName.push(val.name)
+          this.trialName.push(val?val.name:'')
         });
         arr = [this.trialName.includes("静态拉伸"),
         this.trialName.includes("压缩"),
@@ -241,6 +242,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   }
   arr = []
   Allmaterial() {
+    debugger
     let params = this.params
     this.ApiService.GetMater(params).then((res: any) => {
       console.log("返回结果：" + JSON.stringify(res))

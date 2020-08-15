@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter ,Input} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -8,14 +8,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class FormMaterialDbBackgroundComponent implements OnInit {
 
-  materialName='';
-
+  // materialName='';
+  @Output()  paihao = new EventEmitter(); 
+ @Input() ph
   constructor(
     public http: HttpClient,
 
   ) { }
 
   ngOnInit() {
+  }
+  search(){
+this.paihao.emit(this.ph)
   }
   
 }

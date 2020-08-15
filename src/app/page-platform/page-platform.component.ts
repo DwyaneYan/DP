@@ -10,7 +10,7 @@ import { FormExperimentalItemComponent } from '../form-experimental-item/form-ex
 
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class PagePlatformComponent implements OnInit {
   url
   theurl
   nzOptions=[]
-  values: any[] | null = null;
+  values=[];
   listManufacturers
   listMa = [];
   list = [];
@@ -53,8 +53,17 @@ pas=[]
   //   this.showcan = true;
   // }
   shanchutj(p){
-this.ApiService.shanchutj(p).then((res: any) => {
-  this.showma()})
+    this.modal.confirm({
+      nzTitle: '是否删除此推荐材料?',
+      // nzContent: '<b style="color: red;">Some descriptions</b>',
+      nzOkText: '确定',
+      nzOkType: 'danger',
+      nzOnOk: () => {this.ApiService.shanchutj(p).then((res: any) => {
+        this.showma()})},
+      nzCancelText: '取消',
+      nzOnCancel: () => console.log('Cancel')
+    });
+
 
   }
   showModal(): void {
@@ -64,14 +73,58 @@ this.ApiService.shanchutj(p).then((res: any) => {
   showModal1(): void {
 
     this.isVisible1 = true;
+    //可选项数据源
     this.op();
   }
   FileList=[]
  handleOk() {
+   console.log(this.values)
+   
+   if(this.values[0]){this.pat.manufactoryId = this.values[0];
+  this.pat.name = this.values[1];
+  this.pat.model = this.values[2];
+  this.pat.reelNumber = this.values[3];
+  //查询材料
+  this.ApiService.GetMater(this.pat).then((res: any) => {
+    this.addid=res.items[0].id
+    console.log(this.addid)
+    //根据材料id添加到推荐表
+    this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
+      //添加后查询所有推荐材料
+      this.ApiService.showMaterials().then((res: any) => {
+         this.addlist=res; 
+         this.addlist.map(val=>
+          {if(val.fileString){ 
+           val.fileString=val.fileString.slice(0,val.fileString.length-1);//获取推荐材料的图片名,始终只有一个图片
+          val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`
+        }
+        else{
+          val.avatarUrl=''
+        }
+      }
+        )        
+         this.FormMaterialListComponent.luyou(this.addlist,this.arr)       
+        //  console.log(this.addid)
+        //  console.log(this.addlist)
+        //根据材料id添加推荐材料图片
+        this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
+        this.showma()
+        this.isVisible = false;
+        this.FileList=[]  ;  
+    this.isVisible1 =false;
+    this.showi=false;
+    this.values = []
+     });
+    })
+
+  })}
+  else{
     this.isVisible = false;
     this.FileList=[]  ;  
 this.isVisible1 =false;
-this.showi=false
+this.showi=false;
+
+  }
 
   }
 
@@ -80,6 +133,7 @@ this.showi=false
     this.isVisible1 = false;
     this.showi=false
     this.FileList=[]  ;  
+    this.values = []
   }
   constructor(
     private FormMaterialListComponent:FormMaterialListComponent,
@@ -89,7 +143,7 @@ this.showi=false
     private FormAddCarComponent: FormAddCarComponent,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     private ApiService: ApiService,
-
+    private modal: NzModalService
      ) { }
     d =[]
     e =[]
@@ -311,6 +365,7 @@ customReqone = (item: UploadXHRArgs) => {
       }, 100);
       }
   arr=[]
+  //获取所有推荐材料
 showma(){
  this.ApiService.showMaterials().then((res: any) => {
     this.addlist=res;
@@ -340,39 +395,8 @@ showma(){
 
 
   onChanges(values: any): void {
-    this.pat.manufactoryId = values[0];
-    this.pat.name = values[1];
-    this.pat.model = values[2];
-    this.pat.reelNumber = values[3];
-    //查询材料
-    this.ApiService.GetMater(this.pat).then((res: any) => {
-      this.addid=res.items[0].id
-      console.log(this.addid)
-      //根据材料id添加到推荐表
-      this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
-        //添加后查询所有推荐材料
-        this.ApiService.showMaterials().then((res: any) => {
-           this.addlist=res; 
-           this.addlist.map(val=>
-            {if(val.fileString){ 
-             val.fileString=val.fileString.slice(0,val.fileString.length-1);//获取推荐材料的图片名
-            val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`
-          }
-          else{
-            val.avatarUrl=''
-          }
-        }
-          )        
-           this.FormMaterialListComponent.luyou(this.addlist,this.arr)       
-          //  console.log(this.addid)
-          //  console.log(this.addlist)
-          //根据材料id添加推荐材料图片
-          this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
-       });
-      })
-
-    })
-this.values=[]
+   console.log(this.values)
+// this.values=[]
 this.showi=true
   }
   handleChange(info: { file: UploadFile }): void { 
@@ -411,7 +435,7 @@ this.showi=true
         this.msg.error('Network error');
         break;
     }
- this.showma()
+//  this.showma()
   }
 
   

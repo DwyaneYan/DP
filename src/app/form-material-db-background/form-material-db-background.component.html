@@ -4,11 +4,12 @@
 
 <div class="search-box">
     <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input type="text" nz-input placeholder="请输入要搜索的材料信息" [(ngModel)]="materialName" />
+        <input type="text" nz-input placeholder="请输入要搜索的材料信息" [(ngModel)]="ph" />
     </nz-input-group>
     <ng-template #suffixButton>
-        <a [routerLink]="['/material', materialName]"><button nz-button nzType="primary" nzSize="large"
-                nzSearch>搜索</button></a>
+        <!-- <a [routerLink]="['/material', materialName]"> -->
+        <button nz-button nzType="primary" nzSize="large" (click)="search()" nzSearch>搜索</button>
+        <!-- </a> -->
     </ng-template>
 </div>
 <!-- </div> -->
