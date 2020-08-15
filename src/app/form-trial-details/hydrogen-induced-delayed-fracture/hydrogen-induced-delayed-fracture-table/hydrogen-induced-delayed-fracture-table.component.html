@@ -1,26 +1,26 @@
-<div id="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}"  nzBordered
+<div class="dataTable">
+  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered
   *ngFor="let data of table">
     <thead >
       <tr>
-        <th class="one" nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
+        <th nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
     </thead>
     <tbody>
       <tr >
-        <td class="one1" *ngFor="let data1 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
+        <td *ngFor="let data1 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
       </tr>
     </tbody>
 </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table3" nzBordered>
+    <nz-table class="mt25"  [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
         <thead>
           <tr>
-            <th nzWidth="200px" class="one" *ngFor="let data1 of table1[0].one">{{data1}}</th>
+            <th nzWidth="200px" *ngFor="let data1 of table1[0].one">{{data1}}</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let data of trialDataDetails" >
-            <td class="one1" *ngFor="let data1 of table1[0].key">{{ data[data1] }}</td>
+            <td *ngFor="let data1 of table1[0].key">{{ data[data1] }}</td>
           </tr>
         </tbody>
       </nz-table>

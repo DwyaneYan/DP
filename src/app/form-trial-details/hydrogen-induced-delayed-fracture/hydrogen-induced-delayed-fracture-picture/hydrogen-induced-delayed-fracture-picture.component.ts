@@ -65,7 +65,7 @@ this.PlotPicture(this.data, this.xData)
 
   public PlotPicture(data, xData) {
     this.options = {
-      width:"400",
+      //width:"400",
       title: {
           text: '恒弯曲加载氢脆实验结果'
            },    
@@ -93,6 +93,11 @@ this.PlotPicture(this.data, this.xData)
         symbolSize: 5,
         type: "line",
       }],
+      grid: {
+        x: 60,
+        right:100,
+        bottom: 20
+      }
 
     };}
 }

@@ -1,13 +1,29 @@
-#c {
-    width: 320px;
-    height: 400px;
-    margin-right: 30px;
+.all-box{
+    margin-left:-40px;
+    overflow: hidden;
+}
+.all-box .all-item{
+    width: 200px;
+    margin: 0 0 30px 40px;
     float: left;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
 }
-
-#all {
-    position: absolute;
-    left: 22%;
-    top: 180px;
-    width: 75%;
+.all-box .all-item h2{
+    color: #000;
+    font-size: 14px;
+    padding: 20px 0;
+    text-align: center;
+    margin: 0;
 }
+.all-box .all-item .img{
+    width: 200px;
+    height: 200px;
+}
+.echarts-box{
+    height: 400px; 
+    padding: 20px 30px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin-top: 25px;
+  }

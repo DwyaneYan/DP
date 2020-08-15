@@ -1,9 +1,9 @@
-<div id="dataTable" >
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table1" [nzScroll]="{x: '1200px' }"
+<div class="dataTable" >
+  <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25"
   nzBordered>
     <thead >
       <tr>
-        <th  class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
+        <th  nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
       </tr>
     </thead>
     <tbody>
@@ -12,16 +12,16 @@
       </tr>
     </tbody>
 </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered>
         <thead>
           <tr>
-            <th nzWidth="150px" class="one" *ngFor="let data1 of table[1].one">{{data1}}</th>
+            <th nzWidth="150px" *ngFor="let data1 of table[1].one">{{data1}}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let detail of trialDataDetail" >
-            <td  class="one1" *ngFor="let data2 of table[1].key">{{ detail[data2] }}</td>
+            <td  *ngFor="let data2 of table[1].key">{{ detail[data2] }}</td>
           </tr>
         </tbody>
-      </nz-table><br>
+      </nz-table>
 </div>

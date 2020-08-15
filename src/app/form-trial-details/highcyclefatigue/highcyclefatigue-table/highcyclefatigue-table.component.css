@@ -1,8 +1,13 @@
-#dataTable {
-    position: absolute;
-    left: 22%;
-    top: 180px;
-    width: 75%;
+.dataTable thead th {
+    text-align: center;
+    background-color:#f4f4f4;
+    color: #666;
+    padding: 8px 0;
+}
+
+.dataTable tbody td{
+    text-align: center;
+    padding: 8px 0;
 }
 
 .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
