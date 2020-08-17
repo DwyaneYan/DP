@@ -1,30 +1,30 @@
-<div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x:'1200px'}" nzBordered>
+<div class="dataTable">
+    <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
         <thead>
             <tr>
-                <th class="one" nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
+                <th nzWidth="200px" *ngFor="let data of table[0].one">{{data}}</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
+                <td *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
             </tr>
         </tbody>
     </nz-table>
 
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="tablebox" style="overflow: auto;margin-top:30px;margin-bottom:30px" nzBordered>
+    <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
         <thead>
             <tr>
-                <th nzWidth="110px" class="one" *ngFor="let data of table[1].one ">{{data}}</th>
-                <th nzWidth="100px" class="one">SWET(℃)</th>
-                <th nzWidth="120px" class="one" *ngFor="let data1 of serials">{{data1}}</th>
+                <th nzWidth="110px" *ngFor="let data of table[1].one ">{{data}}</th>
+                <th nzWidth="100px" >SWET(℃)</th>
+                <th nzWidth="120px" *ngFor="let data1 of serials">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let detail of serialss;let i=index">
-                <td class="one1">{{ serialsss[i] }}</td>
-                <td class="one1" [attr.rowspan]="i === 0 ? serialss.length : 1" *ngIf="i==0">{{ trialDataDetails[0]?.swet }}</td>
-                <td class="one1" *ngFor="let data1 of detail">{{ data1?.expansionType }}</td>
+                <td >{{ serialsss[i] }}</td>
+                <td [attr.rowspan]="i === 0 ? serialss.length : 1" *ngIf="i==0">{{ trialDataDetails[0]?.swet }}</td>
+                <td *ngFor="let data1 of detail">{{ data1?.expansionType }}</td>
             </tr>
         </tbody>
     </nz-table>
