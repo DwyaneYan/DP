@@ -22,10 +22,10 @@
                 <th class="one" nzWidth="120px">样件编号</th>
                 <th class="one" nzWidth="90px" *ngFor="let data of ys,let i = index">
                     <span nz-tooltip [nzTooltipTitle]=" titleTemplate">{{data}}</span>
-                    <ng-template #titleTemplate>
+                    <!-- <ng-template #titleTemplate>
 
                         <a (click)="contrastTable(data)">对比</a>
-                    </ng-template>
+                    </ng-template> -->
                 </th>
             </tr>
         </thead>
@@ -45,4 +45,4 @@
 <nz-modal [(nzVisible)]="isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
     <div echarts [options]="options" class="echarts-box"></div>
-</nz-modal>
+    </nz-modal>

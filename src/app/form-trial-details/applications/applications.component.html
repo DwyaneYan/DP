@@ -1,36 +1,35 @@
 <app-base-info [materialId]="materialId"></app-base-info>
 <div id="dataTable">
-  <button nz-button nzType="primary" (click)='showModalde()' style="background-color: #ffa4a4;border-color: #ffa4a4;margin-right: 15px;margin-bottom:10px" *ngIf="FormExperimentalItemComponent.button('delete')"><i nz-icon nzType="delete" nzTheme="outline"></i>删除</button>
+    <button nz-button nzType="primary" (click)='showModalde()' style="background-color: #ffa4a4;border-color: #ffa4a4;margin-right: 15px;margin-bottom:10px" *ngIf="FormExperimentalItemComponent.button('delete')"><i nz-icon nzType="delete" nzTheme="outline"></i>删除</button>
 
-  <button nz-button nzType="primary" (click)='bianji()' style="background-color: #89e7b3;border-color: #89e7b3;margin-right: 15px;" *ngIf="FormExperimentalItemComponent.button('put')"><i nz-icon nzType="edit" nzTheme="outline" ></i>修改</button>
-  
-  <button nz-button nzType="primary" (click)="showModal()" style="background-color: #FFBA00;border-color: #FFBA00;" *ngIf="FormExperimentalItemComponent.button('out')"><i nz-icon nzType="vertical-align-bottom" nzTheme="outline" ></i>导出</button>
-<h2 >简况:</h2>
-<p>{{breif}}</p>
-<h2 >供货零件名称:</h2>
-<p>{{suppliedPart}}</p>
-<h2 >要求:</h2>
-<p>{{requirement}}</p>
-<div id="c" *ngFor="let data of ImgPathOne;let i=index">
-  <h1>{{this.arr1[i]}}</h1>
-  <img class="img"  alt="" height="300" width="300" [src]="data"> 
-</div>
-<div id="pdf1" style="height:1500px;clear:both" *ngIf='file'>
-</div>
+    <button nz-button nzType="primary" (click)='bianji()' style="background-color: #89e7b3;border-color: #89e7b3;margin-right: 15px;" *ngIf="FormExperimentalItemComponent.button('put')"><i nz-icon nzType="edit" nzTheme="outline" ></i>修改</button>
+
+    <button nz-button nzType="primary" (click)="showModal()" style="background-color: #FFBA00;border-color: #FFBA00;" *ngIf="FormExperimentalItemComponent.button('out')"><i nz-icon nzType="vertical-align-bottom" nzTheme="outline" ></i>导出</button>
+    <h2>简况:</h2>
+    <p>{{breif}}</p>
+    <h2>供货零件名称:</h2>
+    <p>{{suppliedPart}}</p>
+    <h2>要求:</h2>
+    <p>{{requirement}}</p>
+    <div id="c" *ngFor="let data of ImgPathOne;let i=index">
+        <h1>{{three[i]}}</h1>
+        <img class="img" alt="" height="300" width="300" [src]="data">
+    </div>
+    <div id="pdf1" style="height:1500px;clear:both" *ngIf='file'>
+    </div>
 
 
 
-<app-form-modify-car *ngIf="isVisible"
-[isVisible]='isVisible' [car]="car"  [form] ='form' (outer)="getCar()" [mater]="materialId"  (outer1)="getshow($event)"></app-form-modify-car>
-<nz-modal [(nzVisible)]="isVisibless" nzTitle="警告" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <app-form-modify-car *ngIf="isVisible" [isVisible]='isVisible' [car]="car" [form]='form' (outer)="getCar()" [mater]="materialId" (outer1)="getshow($event)"></app-form-modify-car>
+    <nz-modal [(nzVisible)]="isVisibless" nzTitle="警告" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
-  <nz-alert nzType="warning" nzMessage="是否确认导出所有应用案例?" nzShowIcon></nz-alert>
+        <nz-alert nzType="warning" nzMessage="是否确认导出所有应用案例?" nzShowIcon></nz-alert>
 
-</nz-modal>
+    </nz-modal>
 
-<nz-modal [(nzVisible)]="isVisiblessde" nzTitle="警告" (nzOnCancel)="handleCancelde()" (nzOnOk)="handleOkde()">
+    <nz-modal [(nzVisible)]="isVisiblessde" nzTitle="警告" (nzOnCancel)="handleCancelde()" (nzOnOk)="handleOkde()">
 
-  <nz-alert nzType="warning" nzMessage="是否确认删除此车型?" nzShowIcon></nz-alert>
+        <nz-alert nzType="warning" nzMessage="是否确认删除此车型?" nzShowIcon></nz-alert>
 
-</nz-modal>
+    </nz-modal>
 </div>

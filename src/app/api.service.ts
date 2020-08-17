@@ -833,6 +833,16 @@ async getPart(materialId){
  })
  return res;
 }
-
+// 根据材料id删除材料
+async delMaterials(materialIds){
+  let api = `/api/hangang/material`;
+  let params = {params:{ids:materialIds}}
+  let res= await this.http.delete(api,params)
+  .toPromise()
+  .catch(err =>{
+   console.log(err);
+ })
+ return res;
+}
 }
 

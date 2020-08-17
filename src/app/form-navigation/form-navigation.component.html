@@ -20,7 +20,7 @@
             <li class="navigation-item">
                 <img class="user" src=" ../../assets/images/user.png" alt="" />
                 <a nz-dropdown [nzDropdownMenu]="menu">
-                    admin,系统管理员
+                   {{userName}}
                     <i nz-icon nzType="down"></i>
                 </a>
                 <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -39,8 +39,7 @@
         </ul>
     </div>
     <!-- 登录过期提示框 START -->
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="系统提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-        nzOkText="重新登录">
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="系统提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="重新登录">
         <p>登录状态已过期，您可以继续留在该页面，或者重新登录</p>
     </nz-modal>
     <!-- 登录过期提示框 START -->

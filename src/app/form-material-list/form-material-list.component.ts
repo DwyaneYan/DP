@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { valHooks } from 'jquery';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,7 +55,8 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     private materiallistService: MaterialListService,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     private ApiService: ApiService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private nzMessageService: NzMessageService
 
   ) { }
   //用于监听data的变化,实现每当新的请求数据发生时,更新材料列表
@@ -272,7 +275,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         this.disabled = true;
         this.modalService.warning({
           nzTitle: '提示',
-          nzContent: '材料对比最多6条数据！'
+          nzContent: '最多选择6条数据！'
         });
       }
     } else {
@@ -297,6 +300,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
 
   }
   select() {
+  
     for (var j = 0; j < this.checkList.length; j++) {
       this.contrasts[j] = this.checkList[j].materialId
     }
@@ -320,8 +324,42 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     return arr2
   }
   //对比按钮点击事件
+  contrast = true
+  delete = true
+  title = ''
   compared() {
-    this.checkbox = !this.checkbox;
+this.checkbox = !this.checkbox;
+this.delete = !this.delete;
+this.checkList = [];
+this.disabled = false;
+this.listOfAllData.map(val=>val.checked = false)
+// this.listOfAllData.map(val=>val.checked = false)
+  }
+  //删除材料
+  del(){
+     this.checkbox = !this.checkbox;
+     this.listOfAllData.map(val=>val.checked = false)
+     this.contrast = !this.contrast;
+     this.checkList = [];
+this.disabled = false
+  }
+  cancel(): void {
+    // this.nzMessageService.info('click cancel');
   }
 
+  confirm(): void {
+    console.log(this.checkList)
+    let ids = []
+    this.checkList.map(val=>ids.push(val.materialId))
+    console.log(ids)
+    this.ApiService.delMaterials(ids).then((res:any)=>{
+      this.nzMessageService.info('删除成功');
+      this.Allmaterial()
+    })
+
+  }
+  getTitle(){
+    this.title = `确定删除这${this.checkList.length}条材料？`
+
+  }
 }

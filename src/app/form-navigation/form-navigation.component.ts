@@ -21,6 +21,7 @@ export class FormNavigationComponent implements OnInit {
   ) { }
   // target=''
 token=''
+userName = ''
   ngOnInit() {
 //     let httpOptions = {
 //       headers: new HttpHeaders({
@@ -41,7 +42,12 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
   //  this.href=`http://10.130.53.6:80/usermanage?token=${this.token}`
   // this.href='#'
   // this.target = '_self'
-  //  this.ApiService.getUserProfile().then(res=>console.log(res))
+  //调若依的接口获取用户的基本信息
+    this.ApiService.getUserProfile().then((res:any)=>
+      {
+        this.userName=res.data.userName
+        console.log( this.userName)}
+      )
     
   }
   isVisible=false

@@ -1,58 +1,86 @@
 <!-- 材料列表  START -->
 <h3 class="table-title"> 在信息化平台中为你找到<strong>{{totalCount}}</strong>条数据</h3>
 <nz-table #rowSelectionTable [nzData]="listOfAllData" [nzShowSizeChanger]=false>
-  <thead>
-    <tr>
-      <th nzWidth="8%" *ngIf="checkbox" class="header"></th>
-      <th nzWidth="15%" class="header"><a class="header" routerLink="/materialss">材料名称</a></th>
-      <th nzWidth="18%" class="header"><a class="header" routerLink="/factory">生产厂家</a></th>
-      <th nzWidth="16%" class="header">型号规格</th>
-      <th nzWidth="19%" class="header">卷号</th>
-      <th nzWidth="12%" class="header">屈服强度</th>
-      <!-- <th nzWidth="14%" class="head"><a routerLink="/typicalpart" class="head1">典型零件</a></th>
+    <thead>
+        <tr>
+            <th nzWidth="8%" *ngIf="checkbox" class="header"></th>
+            <th nzWidth="15%" class="header"><a class="header" routerLink="/materialss">材料名称</a></th>
+            <th nzWidth="18%" class="header"><a class="header" routerLink="/factory">生产厂家</a></th>
+            <th nzWidth="16%" class="header">型号规格</th>
+            <th nzWidth="19%" class="header">卷号</th>
+            <th nzWidth="12%" class="header">屈服强度</th>
+            <!-- <th nzWidth="14%" class="head"><a routerLink="/typicalpart" class="head1">典型零件</a></th>
           <th nzWidth="13%" class="head">应用车型</th> -->
-      <!-- <th nzWidth="220px" class="head">检测日期</th> -->
-      <th nzWidth="12%" class="header">操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of rowSelectionTable.data">
-      <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked"
-        (nzCheckedChange)="refreshStatus($event,data.materialId)" class="table-col" name="chk"></td>
-      <td class="table-col" nzBreakWord>{{ data.name }}</td>
-      <td class="table-col" nzBreakWord>{{ data.manufacture }}</td>
-      <td class="table-col" nzBreakWord>{{ data.thickness }}</td>
-      <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
-      <td class="table-col" nzBreakWord>{{ data.model }}</td>
-      <td class="table-col"><a [routerLink]="data.routerLink1">查看</a></td>
-    </tr>
-  </tbody>
+            <!-- <th nzWidth="220px" class="head">检测日期</th> -->
+            <th nzWidth="12%" class="header">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+            <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.materialId)" class="table-col" name="chk"></td>
+            <td class="table-col" nzBreakWord>{{ data.name }}</td>
+            <td class="table-col" nzBreakWord>{{ data.manufacture }}</td>
+            <td class="table-col" nzBreakWord>{{ data.thickness }}</td>
+            <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
+            <td class="table-col" nzBreakWord>{{ data.model }}</td>
+            <td class="table-col"><a [routerLink]="data.routerLink1">查看</a></td>
+        </tr>
+    </tbody>
 </nz-table>
 <!-- 材料列表  END -->
 
 <!-- 材料列表-开始对比按钮  START -->
 <div class="components-table-control-bar">
-  <button nz-button nzType="primary" nzGhost (click)="compared()">开始对比</button>
+    <button nz-button nzType="primary" nzGhost (click)="compared()" *ngIf="contrast; else elseBlock">对比</button>
+    <ng-template #elseBlock>
+        <button nz-button nzType="primary" nzGhost disabled>对比</button>
+    </ng-template>
+    <button nz-button nzType="primary" nzGhost (click)="del()" *ngIf="delete; else elseBlockOne" style="margin-left:30px">删除</button>
+    <ng-template #elseBlockOne>
+        <button nz-button nzType="primary" nzGhost disabled style="margin-left:30px">删除</button>
+    </ng-template>
 </div>
 <!-- 材料列表-开始对比按钮  END -->
 
 
 <!-- 材料对比弹窗  START -->
-<div class="compare-box" *ngIf="checkList.length >=1 && checkbox">
-  <h4>
-    材料对比
-    <i class="angle" nz-icon nzType="right" nzTheme="outline"></i>
-  </h4>
-  <ul>
-    <li *ngFor="let data of checkList">
-      <span class="text name">{{ data.name }}</span>
-      <span class="text">{{ data.manufacture }}</span>
-      <span class="text">{{ data.thickness }}</span>
-      <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i>
-    </li>
-  </ul>
-  <a [routerLink]="['/contrast']" [queryParams]="{materialids:contrastID}" target="_blank">
-    <button nz-button nzType="primary" (click)="select()"> 开始对比</button>
-  </a>
+<div class="compare-box" *ngIf="checkList.length >=1 && checkbox && contrast">
+    <h4>
+        材料对比
+        <i class="angle" nz-icon nzType="right" nzTheme="outline"></i>
+    </h4>
+    <ul>
+        <li *ngFor="let data of checkList">
+            <span class="text name">{{ data.name }}</span>
+            <span class="text">{{ data.manufacture }}</span>
+            <span class="text">{{ data.thickness }}</span>
+            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i>
+        </li>
+    </ul>
+    <a [routerLink]="['/contrast']" [queryParams]="{materialids:contrastID}" target="_blank">
+        <button nz-button nzType="primary" (click)="select()"> 开始对比</button>
+    </a>
+</div>
+<!-- 材料对比弹窗  END -->
+
+<!-- 删除材料弹窗  START -->
+<div class="compare-box" *ngIf="checkList.length >=1 && checkbox && delete">
+    <h4>
+        删除材料
+        <i class="angle" nz-icon nzType="right" nzTheme="outline"></i>
+    </h4>
+    <ul>
+        <li *ngFor="let data of checkList">
+            <span class="text name">{{ data.name }}</span>
+            <span class="text">{{ data.manufacture }}</span>
+            <span class="text">{{ data.thickness }}</span>
+            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i>
+        </li>
+    </ul>
+
+    <a nz-popconfirm [nzPopconfirmTitle]="title" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm()" (nzOnCancel)="cancel()" style="color:white" (click)="getTitle()">
+        <button nz-button nzType="primary"> 删除 </button>
+    </a>
+
 </div>
 <!-- 材料对比弹窗  END -->
