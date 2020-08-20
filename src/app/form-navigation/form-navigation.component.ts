@@ -33,7 +33,7 @@ userName = ''
 //     this.ApiService.getInfo(httpOptions).then((res:any)=>{
 // console.log( res.roles)
 let res=JSON.parse(sessionStorage.getItem("permissions"))
-      if(res.roles.indexOf('wy')!=-1){
+      if(res.roles.indexOf('wy')!=-1){     //permissions的roles中包含wy才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
         this.system=true
             }else{
               this.system = false
@@ -42,10 +42,16 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
   //  this.href=`http://10.130.53.6:80/usermanage?token=${this.token}`
   // this.href='#'
   // this.target = '_self'
-  //调若依的接口获取用户的基本信息
+  //调若依的接口获取用户的基本信息,token失效返回code是多少?，token失效则移除session中的token
     this.ApiService.getUserProfile().then((res:any)=>
       {
+        if(res.code==500){
+          sessionStorage.removeItem("token")
+        this. isVisible=true;
+      this.userName = ''}
+        else if(res.code == 200){
         this.userName=res.data.userName
+        }
         console.log( this.userName)}
       )
     

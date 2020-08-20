@@ -69,7 +69,7 @@ this.ApiService.getAllPart().then((res:any)=>{
     })
   }
   openDialog(){
-    debugger;
+    // debugger;
     this.isVisible = true;
     this.values = []
     this.getTree();

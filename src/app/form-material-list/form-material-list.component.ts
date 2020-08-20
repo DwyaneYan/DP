@@ -245,7 +245,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   }
   arr = []
   Allmaterial() {
-    debugger
+    // debugger
     let params = this.params
     this.ApiService.GetMater(params).then((res: any) => {
       console.log("返回结果：" + JSON.stringify(res))
@@ -305,6 +305,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
       this.contrasts[j] = this.checkList[j].materialId
     }
     this.contrastID = this.contrasts.toString();
+    console.log(this.contrastID)
   }
   pushdata(arr1) {
     let arr2 = []
@@ -331,6 +332,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
 this.checkbox = !this.checkbox;
 this.delete = !this.delete;
 this.checkList = [];
+this.contrastID = '';
 this.disabled = false;
 this.listOfAllData.map(val=>val.checked = false)
 // this.listOfAllData.map(val=>val.checked = false)

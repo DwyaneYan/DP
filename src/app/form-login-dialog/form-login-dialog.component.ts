@@ -49,7 +49,7 @@ export class FormLoginDialogComponent implements OnInit {
           this.getCode();
         } else {
           // this.ApiService.setToken(res.token)
-          sessionStorage.setItem("token", res.token);
+          sessionStorage.setItem("token", res.token);//token存到session
           let httpOptions = {
             headers: new HttpHeaders({
               Authorization: "Bearer" + " " + res.token,

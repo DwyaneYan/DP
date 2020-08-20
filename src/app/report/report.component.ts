@@ -31,7 +31,7 @@ name1=''
     let str  = location.href .substring(0, index+1);
     let name = str.substring(0,str.length-1)
     let index1=name.lastIndexOf("\/");  
-this.name1 = name.substring(index1+1)
+    this.name1 = name.substring(index1+1)
     console.log(this.name1)
 if (this.name1=='static-tension-home'){
   this.GetTrialDataDetailss('getStaticTensionDataDetails') 
@@ -68,7 +68,7 @@ else if(this.name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePro
   }
   one=[]
   public async GetTrialDataDetailss(p) {
-    console.log(this.ApiService.getChemicalElementDataDetails)
+    // console.log(this.ApiService.getChemicalElementDataDetails)
     await this.ApiService[p](this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res

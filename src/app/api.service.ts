@@ -15,7 +15,15 @@ export class ApiService {
     private cookies: CookieService,
 
     ) { }
-
+    httpOptions = {}
+  //   ngOnInit() { 
+  //     //请求头,注意token是存在session storage中不是cookie中
+  // this.httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
+  //   })
+  // };
+  //    }
 
 //在材料表筛选材料
 async GetMater(params){
@@ -783,14 +791,14 @@ async getCardType100(p){
  })
  return res;
 }
-//请求头
-  httpOptions = {
+
+// 查询用户个人信息,在请求头上要添加token,且token会失效
+async  getUserProfile() {
+  this.httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
       })
     };
-// 查询用户个人信息,在请求头上要添加token
-async  getUserProfile() {
   let api=`/devhg-api/system/user/profile`
   let res= await this.http.get(api,this.httpOptions)
   .toPromise()

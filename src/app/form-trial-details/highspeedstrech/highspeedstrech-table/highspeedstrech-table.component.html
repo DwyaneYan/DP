@@ -28,15 +28,14 @@
         <thead>
             <tr>
                 <th [nzWidth]="width[i]" class="one" *ngFor="let data4 of  table4;let i=index">
-                    <span
-                        *ngIf="('sampleCode,testTarget,thickness,gaugeDistance').indexOf(table5[i]) == -1; else other_content">
+                    <span *ngIf="('sampleCode,testTarget,thickness,gaugeDistance').indexOf(table5[i]) == -1; else other_content">
                         <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data4}}</span>
-                        <ng-template #titleTemplate>
+                    <ng-template #titleTemplate>
 
-                            <a (click)="contrastTable(table5[i], data4,one)">对比</a>
-                        </ng-template>
-                    </span>
-                    <ng-template #other_content><span #other_content>{{data4}}</span></ng-template>
+                        <a (click)="contrastTable(table5[i], data4,one)">对比</a>
+                            </ng-template>
+                            </span>
+                            <ng-template #other_content><span #other_content>{{data4}}</span></ng-template>
                 </th>
             </tr>
         </thead>
@@ -46,9 +45,8 @@
             </tr>
         </tbody>
     </nz-table>
-
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px;margin-bottom:30px"
-        [nzScroll]="nzScrolls" class='tablebox' nzBordered [nzWidthConfig]='nzWidthConfig4'>
+    <!-- 真塑性应变真应力未延伸到1 START-->
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" style="margin-top:30px;margin-bottom:30px" [nzScroll]="nzScrolls" class='tablebox' nzBordered [nzWidthConfig]='nzWidthConfig4'>
         <thead>
             <tr>
                 <th rowspan="2" nzBreakWord>True plastic strain</th>
@@ -65,10 +63,11 @@
             </tr>
         </tbody>
     </nz-table>
+    <!-- 真塑性应变真应力 END-->
 
 
 </div>
 <nz-modal [(nzVisible)]="isVisible.isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
     <div       echarts       [options]="options.options"       style="height: 400px;position: relative;"     ></div>
-</nz-modal>
+    </nz-modal>

@@ -63,17 +63,20 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
 
       this.trialDataDetails.forEach(val=>{this.arry1.push(val.serialNumber);
         this.arry4.push(val.temperature);})
-      this.serials=this.unique1(this.arry1)
-    document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (210+this.serials.length*120) +"px";
+      this.serials=this.unique1(this.arry1)//去重后的杯号
+      console.log(this.trialDataDetails.length)
+   // document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (210+this.serials.length*120) +"px";
 
-      this.serialsss=this.unique1(this.arry4)
-
+      this.serialsss=this.unique1(this.arry4)//去重后的试验温度
         for(let d=0;d<this.serialsss.length;d++){
           this.serialss[d]=[]
-        for(let c=d;c<this.trialDataDetails.length;c+=this.trialDataDetails.length/this.serials.length){
-          this.serialss[d].push(this.trialDataDetails[c]);
-        }}
-      
+        for(let c=d;c<this.trialDataDetails.length;c+=this.serialsss.length){
+         this.serialss[d].push(this.trialDataDetails[c]);
+         console.log(c)
+        }
+        console.log(this.serialss[d])
+      }
+      console.log( this.serialss)
     })    
   }
   unique1(array) {

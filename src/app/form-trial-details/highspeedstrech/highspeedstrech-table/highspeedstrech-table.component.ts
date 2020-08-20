@@ -138,15 +138,17 @@ console.log(this.one[0])
     // let api1=`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrainExtends/${materialId}`;
     await this.ApiService.getHighSpeedStrechDataDetailStressStrainExtends(this.materialId)
     .then((res: any) => {
-      this.trialDataDetailss = res
+      this.trialDataDetailss = res;
       let speed=[]
          this.trialDataDetailss.map(val=>speed.push(val.realPlasticTestTarget))        
          this.speeds=this.unique1(speed)
-         for(let c=1;c<this.speeds.length+1;c++){
-          this.nzWidthConfig4[0]='130px'
-          this.nzWidthConfig4[c]='110px'
-         }
-         this.nzScrolls={y:'700px',x:(this.speeds.length*110+130) +"px"}
+         console.log(this.trialDataDetailss)
+
+        //  for(let c=1;c<this.speeds.length+1;c++){
+        //   this.nzWidthConfig4[0]='130px'
+        //   this.nzWidthConfig4[c]='110px'
+        //  }
+        //  this.nzScrolls={y:'700px',x:(this.speeds.length*110+130) +"px"}
         //  let ele=document.getElementsByClassName('tablebox')[0] as HTMLElement
         //  ele.style.width = (this.speeds.length*110+130) +"px";
         
@@ -154,14 +156,16 @@ console.log(this.one[0])
          let strain=[]
          arr3=this.classitem(this.trialDataDetailss,'realPlasticTestTarget') ;//延伸到1 
          arr3[0].List.map(val=>strain.push(val.realPlasticStrainHalf))       
-         console.log(strain) 
          this.strainData=this.notempty(strain)
+         console.log(this.strainData.length);
        for(let b=0;b<this.strainData.length;b++){
        this.stress[b]=[]
        for(let a=b;a<this.trialDataDetailss.length;a+=this.trialDataDetailss.length/arr3.length){
         this.stress[b].push(this.trialDataDetailss[a].realPlasticStressHalf)
        }
         }
+        console.log(this.stress) 
+
          })
          }
 classitem(arry1,p){
