@@ -22,7 +22,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 })
 export class PagePlatformComponent implements OnInit {
   avatarUrl
-  maUrl
+  maUrl = '';
   isVisible = false;
   isVisible1 = false;
   isOkLoading = false;
@@ -71,60 +71,26 @@ pas=[]
 
   }
   showModal1(): void {
-
+//添加推荐材料弹框
     this.isVisible1 = true;
     //可选项数据源
     this.op();
   }
   FileList=[]
+  //添加推荐材料弹框确认
  handleOk() {
-   console.log(this.values)
+   console.log(this.values[0]);
+   //根据材料id添加到推荐表
+   if(this.values[0]){this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
+  this.showma(); 
+})}
+else{
+  this.isVisible1 =false; 
+}
+
    
-   if(this.values[0]){this.pat.manufactoryId = this.values[0];
-  this.pat.name = this.values[1];
-  this.pat.model = this.values[2];
-  this.pat.reelNumber = this.values[3];
-  //查询材料
-  this.ApiService.GetMater(this.pat).then((res: any) => {
-    this.addid=res.items[0].id
-    console.log(this.addid)
-    //根据材料id添加到推荐表
-    this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
-      //添加后查询所有推荐材料
-      this.ApiService.showMaterials().then((res: any) => {
-         this.addlist=res; 
-         this.addlist.map(val=>
-          {if(val.fileString){ 
-           val.fileString=val.fileString.slice(0,val.fileString.length-1);//获取推荐材料的图片名,始终只有一个图片
-          val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}`
-        }
-        else{
-          val.avatarUrl=''
-        }
-      }
-        )        
-         this.FormMaterialListComponent.luyou(this.addlist,this.arr)       
-        //  console.log(this.addid)
-        //  console.log(this.addlist)
-        //根据材料id添加推荐材料图片
-        this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
-        this.showma()
-        this.isVisible = false;
-        this.FileList=[]  ;  
-    this.isVisible1 =false;
-    this.showi=false;
-    this.values = []
-     });
-    })
-
-  })}
-  else{
-    this.isVisible = false;
-    this.FileList=[]  ;  
-this.isVisible1 =false;
-this.showi=false;
-
-  }
+ 
+  
 
   }
 
@@ -271,6 +237,10 @@ fileStatus
 responseData
 filePath
 customReq = (item: UploadXHRArgs) => {
+  // debugger;
+  console.log(this.maUrl)
+  console.log(item)
+  console.log(item.action!)
   this.fileStatus = false;
   this.responseData = [];
   // 构建一个 FormData 对象，用于存储文件或其他参数
@@ -281,7 +251,7 @@ customReq = (item: UploadXHRArgs) => {
     reportProgress: true,
     withCredentials: true
   });
-  console.log(this.addlist)
+  console.log(req)
   
   // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
   return this.http.request(req).subscribe(
@@ -303,6 +273,8 @@ customReq = (item: UploadXHRArgs) => {
     },
     err => {
       // 处理失败
+      console.log(err)
+     // console.log(targetItem)
       item.onError!(err, item.file!);
     }
   )
@@ -377,7 +349,11 @@ showma(){
           val.avatarUrl=''
         }
       })
-        this.FormMaterialListComponent.luyou(this.addlist,this.arr)     
+        this.FormMaterialListComponent.luyou(this.addlist,this.arr)     ;
+        this.FileList=[]  ;  
+        this.isVisible1 =false;  //isVisible1是推荐材料弹框
+        this.showi=false; //showi是导入推荐材料图片按钮
+        this.values = [];
 });
 }
 
@@ -393,10 +369,29 @@ showma(){
     }
 
 
-
+//推荐材料级联选择框值发生变化时触发
   onChanges(values: any): void {
-   console.log(this.values)
+  // console.log(values);
+   if(this.values[0]){
+    this.pat.manufactoryId = this.values[0];
+ this.pat.name = this.values[1];
+ this.pat.model = this.values[2];
+ this.pat.reelNumber = this.values[3];
+ //查询材料
+ this.ApiService.GetMater(this.pat).then((res: any) => {
+   this.addid=res.items[0].id
+   console.log(this.addid)
+      
+       //  console.log(this.addid)
+       //  console.log(this.addlist)
+       //根据材料id添加推荐材料图片
+       this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
+
+
+    });
+}
 // this.values=[]
+//上传推荐材料图片
 this.showi=true
   }
   handleChange(info: { file: UploadFile }): void { 
@@ -418,6 +413,9 @@ this.showi=true
         break;
     }
   }
+
+//推荐材料上传图片文件改变时触发
+//推荐材料只会有一张图片，之后上传的会覆盖之前的
   handleChange1(info: { file: UploadFile }): void { 
     switch (info.file.status) {
       // case 'uploading':      
