@@ -1,9 +1,10 @@
 
 
-<div id="all">
-
-    <div id="c" *ngFor="let data of ImgPathOne;let i=index">
-        <h1>{{this.name[i]}}</h1>
-        <img class="img"  alt="" height="300" width="300" [src]="data"> 
+<div class="all-box mt25">
+    <div class="all-item" *ngFor="let data of ImgPathOne;let i=index">
+        <h2>{{this.name[i]}}</h2>
+        <div class="img">
+            <img alt="" height="200" width="200" [src]="data"> 
+        </div>
     </div>
 </div>
