@@ -1,22 +1,28 @@
-.all-box{
-    margin-left:-40px;
-    overflow: hidden;
+.all-box {
+  margin-left: -40px;
+  overflow: hidden;
 }
-.all-box .all-item{
-    width: 200px;
-    margin: 0 0 30px 40px;
-    float: left;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
+
+.all-box .all-item {
+  width: 200px;
+  margin: 0 0 30px 40px;
+  float: left;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
 }
-.all-box .all-item h2{
-    color: #000;
-    font-size: 14px;
-    padding: 20px 0;
-    text-align: center;
-    margin: 0;
+
+.all-box .all-item h2 {
+  color: #000;
+  font-size: 14px;
+  padding: 20px 0;
+  text-align: center;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.all-box .all-item .img{
-    width: 200px;
-    height: 200px;
+
+.all-box .all-item .img {
+  width: 200px;
+  height: 200px;
 }
