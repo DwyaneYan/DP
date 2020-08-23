@@ -1,23 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
+body {
   background-color: #f4f4f4 !important;
 }
-.w1200{
+
+.w1200 {
   width: 1200px;
   margin: 0 auto;
 }
-div,p,span,ul,li,h1,h2,h3,h4,h5,h6,i{
-  margin:0;
+
+div,
+p,
+span,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-ul{
+
+ul {
   list-style-type: none;
 }
-.mt25{
+
+.mt25 {
   margin-top: 25px;
 }
-.mb25{
+
+.mb25 {
   margin-bottom: 25px;
+}
+
+.ellipsis {
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.layout-fixed table {
+  table-layout: fixed;
 }

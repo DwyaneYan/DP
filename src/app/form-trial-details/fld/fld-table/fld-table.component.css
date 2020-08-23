@@ -1,14 +1,16 @@
+/* .dataTable table {
+  table-layout: fixed;
+} */
 
 .dataTable thead th {
-    text-align: center;
-    background-color:#f4f4f4;
-    color: #666;
-    padding: 8px 0;
+  text-align: center;
+  background-color: #f4f4f4;
+  color: #666;
+  padding: 8px;
 }
 
-.dataTable tbody td{
-    text-align: center;
-    padding: 8px 0;
+.dataTable tbody td {
+  padding: 16px;
 }
 
 /* #table1{
@@ -28,5 +30,5 @@
 } */
 
 .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-    background: white;
+  background: white;
 }
