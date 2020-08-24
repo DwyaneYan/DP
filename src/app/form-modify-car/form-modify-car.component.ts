@@ -28,7 +28,7 @@ export class FormModifyCarComponent implements OnInit {
 
   ngOnInit() {
    console.log(this.formAddCarComponent.beforeUpload1)
-   console.log(this.form)
+   console.log(this.form)//
 
     this.profileForm = this.fb.group({
       // carName: ['', Validators.required],
@@ -176,7 +176,7 @@ formData =new FormData();
       }
     }
     handleChange1(info: { file: UploadFile }): void { 
-      console.log(info.file)
+      //console.log(info.file)
       switch (info.file.status) {
   
         case 'done':
