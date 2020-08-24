@@ -1,4 +1,4 @@
-<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{}">
+<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{x:'1400px' }">
     <thead>
         <tr>
             <th nzWidth="200px" *ngFor="let data1 of table1">{{data1}}</th>
@@ -40,10 +40,10 @@
         </tr>
     </tbody>
 </nz-table>
-<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'700px' }">
+<nz-table class="mt25 fff" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'700px' }">
     <thead>
         <tr>
-            <th nzWidth="200px" *ngFor="let data41 of table4[1].one; let i = index">
+            <th nzWidth="120px" *ngFor="let data41 of table4[1].one; let i = index">
                 <span *ngIf="('sampleCode').indexOf(table4[1].key[i]) == -1; else other_content">
                     <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data41}}</span>
                     <ng-template #titleTemplate>
