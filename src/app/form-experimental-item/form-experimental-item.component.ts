@@ -81,27 +81,27 @@ carid//此id
 
    arr3=[]
 
-  menu1=[{name:"静态拉伸",children:['jtls1','jtls2','jtls3'],luyou:'static-tension-home'},
-  {name:"压缩",children:['ys1','ys2','ys3'],luyou:"compression"},
-  {name:"金相",children:['jx1','jx2','jx3'],luyou:"metallographic"},
-  {name:"物理性能",children:['wlxn1','wlxn2','wlxn3'],luyou:"physicalperformance"},
-  {name:"化学成分",children:['hxcf1','hxcf2','hxcf3'],luyou:'chemicalelement'},
-  {name:"禁用物质",children:['jywz1','jywz2','jywz3'],luyou:'prohibited-substance'},
-  {name:"表面性能",children:['bmxn1','bmxn2','bmxn3'],luyou:'surface-property'},
-  {name:"烘烤硬化",children:['hkyh1','hkyh2','hkyh3'],luyou:'bake-hardening'}]
-  menu2=[{name:"弯曲",children:['wq1','wq2','wq3'],luyou:'bending'},
-  {name:"成型极限FLD",children:['fld1','fld2','fld3'],luyou:'fld'},
-  {name:"抗凹性能",children:['kaxn1','kaxn2','kaxn3'],luyou:'dent-resistance'},
-{name: "翻边扣合性能",children:['fbkh','fbkh2','fbkh3'],luyou:'flanging-clasp'},
-{name:"焊接性能",children:['hjxn1','hjxn2','hjxn3'],luyou:'welding'},
-{name:"胶结性能",children:['jjxn1','jjxn2','jjxn3'],luyou:'cementing'},
-{name:"涂装性能",children:['tzxn1','tzxn2','tzxn3'],luyou:'painting'},
-{name:"回弹性能",children:['htxn1','htxn2','htxn3'],luyou:'rebound'}]
-menu3=[{name:"二次加工脆性",children:['ecjgcx1','ecjgcx2','ecjgcx3'],luyou:'secondary-working-embrittlement'},
-{name:"氢致延迟开裂",children:['qzyckl1','qzyckl2','qzyckl3'],luyou:'hydrogen-induced-delayed-fracture'},
-{name:"高速拉伸",children:['gsls1','gsls2','gsls3'],luyou:'highspeedstrech' },
-{name:"低周疲劳",children:['dzpl1','dzpl2','dzpl3'],luyou:'lowcyclefatigue'},
-{name:"高周疲劳",children:['gzpl1','gzpl2','gzpl3'],luyou:'highcyclefatigue'}]
+  menu1=[{name:"static-tension-home",children:['jtls1','jtls2','jtls3','jtls4'],luyou:'static-tension-home',names:"静态拉伸"},
+  {name:"compression",children:['ys1','ys2','ys3','ys4'],luyou:"compression",names:"压缩"},
+  {name:"metallographic",children:['jx1','jx2','jx3','jx4'],luyou:"metallographic",names:"金相"},
+  {name:"physicalperformance",children:['wlxn1','wlxn2','wlxn3','wlxn4'],luyou:"physicalperformance",names:'物理性能'},
+  {name:"chemicalelement",children:['hxcf1','hxcf2','hxcf3','hxcf4'],luyou:'chemicalelement',names:"化学成分"},
+  {name:"prohibited-substance",children:['jywz1','jywz2','jywz3','jywz4'],luyou:'prohibited-substance',names:'禁用物质'},
+  {name:"surface-property",children:['bmxn1','bmxn2','bmxn3','bmxn4'],luyou:'surface-property',names:"表面性能"},
+  {name:"bake-hardening",children:['hkyh1','hkyh2','hkyh3','hkyh4'],luyou:'bake-hardening',names:"烘烤硬化"}]
+  menu2=[{name:"bending",children:['wq1','wq2','wq3','wq4'],luyou:'bending',names:"弯曲"},
+  {name:"fld",children:['fld1','fld2','fld3','fld4'],luyou:'fld',names:"成型极限FLD"},
+  {name:"dent-resistance",children:['kaxn1','kaxn2','kaxn3','kaxn4'],luyou:'dent-resistance',names:"抗凹性能"},
+{name: "flanging-clasp",children:['fbkh','fbkh2','fbkh3','fbkh4'],luyou:'flanging-clasp',names:"翻边扣合性能"},
+{name:"welding",children:['hjxn1','hjxn2','hjxn3','hjxn4'],luyou:'welding',names:"焊接性能"},
+{name:"cementing",children:['jjxn1','jjxn2','jjxn3','jjxn4'],luyou:'cementing',names:"胶结性能"},
+{name:"painting",children:['tzxn1','tzxn2','tzxn3','tzxn4'],luyou:'painting',names:"涂装性能"},
+{name:"rebound",children:['htxn1','htxn2','htxn3','htxn4'],luyou:'rebound',names:"回弹性能"}]
+menu3=[{name:"secondary-working-embrittlement",children:['ecjgcx1','ecjgcx2','ecjgcx3','ecjgcx4'],luyou:'secondary-working-embrittlement',names:"二次加工脆性"},
+{name:"hydrogen-induced-delayed-fracture",children:['qzyckl1','qzyckl2','qzyckl3','qzyckl4'],luyou:'hydrogen-induced-delayed-fracture',names:"氢致延迟开裂"},
+{name:"highspeedstrech",children:['gsls1','gsls2','gsls3','gsls4'],luyou:'highspeedstrech',names:"高速拉伸" },
+{name:"lowcyclefatigue",children:['dzpl1','dzpl2','dzpl3','dzpl4'],luyou:'lowcyclefatigue',names:"低周疲劳"},
+{name:"highcyclefatigue",children:['gzpl1','gzpl2','gzpl3','gzpl4'],luyou:'highcyclefatigue',names:"高周疲劳"}]
 str1=''
   ngOnInit() {
     this.GetTrials(this.materialId)
@@ -182,26 +182,26 @@ let length2=this.menu2.length
 let length3=this.menu3.length
 for(let a=0;a<length1;a++){
   this.routerLink1[a]=[]
-    if(this.button(this.menu1[a].children[0])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]}
-else if(this.button(this.menu1[a].children[1])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]}
-else if(this.button(this.menu1[a].children[2])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]}
-else{this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]
+    if(this.button(this.menu1[a].children[0])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/table`]}
+else if(this.button(this.menu1[a].children[1])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/picture`]}
+else if(this.button(this.menu1[a].children[2])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/report`]}
+else{this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/typical-part`]
   }
 }
 for(let a=0;a<length2;a++){
   this.routerLink2[a]=[]
-    if(this.button(this.menu2[a].children[0])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]}
-else if(this.button(this.menu2[a].children[1])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]}
-else if(this.button(this.menu2[a].children[2])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]}
-else{this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]
+    if(this.button(this.menu2[a].children[0])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/table`]}
+else if(this.button(this.menu2[a].children[1])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/picture`]}
+else if(this.button(this.menu2[a].children[2])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/report`]}
+else{this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/typical-part`]
   }
 }
 for(let a=0;a<length3;a++){
   this.routerLink3[a]=[]
-    if(this.button(this.menu3[a].children[0])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]}
-else if(this.button(this.menu3[a].children[1])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]}
-else if(this.button(this.menu3[a].children[2])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]}
-else{this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]
+    if(this.button(this.menu3[a].children[0])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/table`]}
+else if(this.button(this.menu3[a].children[1])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/picture`]}
+else if(this.button(this.menu3[a].children[2])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/report`]}
+else{this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/typical-part`]
   }
 }
 //onsole.log(this.routerLink)
@@ -236,53 +236,86 @@ show(){this.isVisible = true;}
 formData =new FormData();
 formDataList = []
 returnFalse =false
-//权限目录
-quanxian(p):Boolean{
-  this.data=JSON.parse(window.sessionStorage.getItem("data"))
-  let length=this.data.data[0].children.length
-  let arr=[]
-  for(let a=0;a<length;a++){
-    arr.push(this.data.data[0].children[a].meta.title)
-  }
-  if(arr.indexOf(`${p}`)==-1){
-    return false
-  }
-  else{
-    return true
-  }
-}
-//权限菜单
-menu(p):Boolean{
-  this.data=JSON.parse(window.sessionStorage.getItem("data"))
-  //console.log(this.data)
-  let length1=this.data.data[0].children.length
-let arr=[]
-let one
+//权限-试验项目目录
+// quanxian(p):Boolean{
+//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
+//   let length=this.data.data[0].children[1].children.length
+//   let arr=[]
+//   for(let a=0;a<length;a++){
+//     arr.push(this.data.data[0].children[1].children[a].meta.title)
+//   }
+//   console.log(arr)
+//   if(arr.indexOf(`${p}`)==-1){
+//     return false
+//   }
+//   else{
+//     return true
+//   }
+// }
+// //权限-应用案例目录，不能单独分配目录
+// cases(p):Boolean{
+//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
+//   // let length=
+//   let arr=[this.data.data[0].children[2]?this.data.data[0].children[2].meta.title:""]
+//   // for(let a=0;a<length;a++){
+//   //   arr.push(this.data.data[0].children[1].children[a].meta.title)
+//   // }
+//   // console.log(arr)
+//   if(arr.indexOf(`${p}`)==-1){
+//     return false
+//   }
+//   else{
+//     return true
+//   }
+// }
+// //权限-仿真卡片目录，不能单独分配目录
+// card(p):Boolean{
+//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
+//   // let length=
+//   let arr=[this.data.data[0].children[3]?this.data.data[0].children[3].meta.title:""]
+//   // for(let a=0;a<length;a++){
+//   //   arr.push(this.data.data[0].children[1].children[a].meta.title)
+//   // }
+//   // console.log(arr)
+//   if(arr.indexOf(`${p}`)==-1){
+//     return false
+//   }
+//   else{
+//     return true
+//   }
+// }
+// //权限-试验项目菜单
+// menu(p):Boolean{
+//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
+//   console.log(this.data)
+//   let length1=this.data.data[0].children[1].children.length
+// let arr=[]
+// let one
 
-  for(let a=0;a<length1;a++){
-    if(this.data.data[0].children[a].children){
-       one=this.data.data[0].children[a].children.length    
-      for(let b=0;b<one;b++){
-        arr.push(this.data.data[0].children[a].children[b].meta.title)
-      }}
-  }
-
-  if(arr.indexOf(`${p}`)==-1){
-    return false
-  }
-  else{
-    return true
-  }
-}
-//按钮权限
+//   for(let a=0;a<length1;a++){
+//     if(this.data.data[0].children[1].children[a].children){
+//        one=this.data.data[0].children[1].children[a].children.length    
+//       for(let b=0;b<one;b++){
+//         arr.push(this.data.data[0].children[1].children[a].children[b].meta.title)
+//       }}
+//   }
+// console.log(arr)
+//   if(arr.indexOf(`${p}`)==-1){
+//     return false
+//   }
+//   else{
+//     return true
+//   }
+// }
+//所有按钮权限
 button(p):Boolean{
   this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
 //console.log(this.permissions)
-  if(this.permissions .permissions.indexOf(`${p}`)==-1){
+  if(this.permissions.permissions.indexOf(`${p}`)==-1 && this.permissions.roles.indexOf("admin")==-1){
     return false
   }
   else{
-    return true
+    return true //管理员和不是管理员但是有权限的人
   }
 
 }

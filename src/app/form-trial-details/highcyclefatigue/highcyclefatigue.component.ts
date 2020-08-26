@@ -11,6 +11,8 @@ export class HighcyclefatigueComponent implements OnInit {
   p1='gzpl1'
   p2='gzpl2'
   p3='gzpl3'
+  p4='gzpl4'
+
   constructor(  private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

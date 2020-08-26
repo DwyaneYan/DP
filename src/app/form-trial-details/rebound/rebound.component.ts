@@ -11,6 +11,8 @@ export class ReboundComponent implements OnInit {
   p1='htxn1'
   p2='htxn2'
   p3='htxn3'
+  p4='htxn4'
+
   constructor(     private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

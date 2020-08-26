@@ -11,6 +11,8 @@ export class ChemicalelementComponent implements OnInit {
   p1='hxcf1'
   p2='hxcf2'
   p3='hxcf3'
+  p4='hxcf4'
+
   constructor(   private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

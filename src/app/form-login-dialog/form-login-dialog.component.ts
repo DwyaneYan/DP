@@ -10,6 +10,7 @@ import { CookieService } from "ngx-cookie-service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { HttpHeaders } from "@angular/common/http";
+import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
 
 @Component({
   selector: "app-form-login-dialog",
@@ -58,16 +59,28 @@ export class FormLoginDialogComponent implements OnInit {
           this.ApiService.getInfo(httpOptions).then((res: any) => {
             window.sessionStorage.setItem("permissions", JSON.stringify(res));
             this.ApiService.getRouters(httpOptions).then((res: any) => {
-              window.sessionStorage.setItem("data", JSON.stringify(res));
+              window.sessionStorage.setItem("data", JSON.stringify(res));//data控制按钮权限
 
-              if (this.routeInfo.snapshot.queryParams["vimId"]) {
-                this.router.navigateByUrl(
-                  "/display/" +
-                    this.routeInfo.snapshot.queryParams["vimId"] +
-                    "/static-tension-home/typical-part"
-                );
+              if (window.location.search.indexOf("type=vim") != -1) {
+               let position = window.location.search.slice(1).replace(/=&/g, '/').lastIndexOf("/");
+                let url = window.location.search.slice(1).replace(/=&/g, '/').slice(0,position)
+               console.log(url)
+              window.open(url,'_self')
+                // this.router.navigateByUrl(
+                //   url
+                // );
               } else {
-                this.router.navigateByUrl("platform");
+                // this.router.navigate(["/platform",{ relativeTo: this.routeInfo }]);
+      // location.reload() 
+      console.log(this.routeInfo,this.router)
+      // window.sessionStorage.setItem("fromLogin",'1')
+      //window.open('/platform','_self')
+      this.router.navigateByUrl("/platform")//路由导航和在导航栏直接导航的区别,手动导航就会执行路由配置文件
+      //重新加载路由
+      // this.router.config.push({path: "platform1", component: TypicalPartComponent})
+      // // window.open(`http://localhost:4200/platform`,'_self')
+      // console.log(this.routeInfo,this.router)
+
               }
             });
             console.log(res);
@@ -89,23 +102,26 @@ export class FormLoginDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      code: [null, [Validators.required]],
-      uuid: [null],
-      remember: [false],
-    });
+    // this.validateForm = this.fb.group({
+    //   userName: [null, [Validators.required]],
+    //   password: [null, [Validators.required]],
+    //   code: [null, [Validators.required]],
+    //   // uuid: [null],
+    //   remember: [false],
+    // });
+    //  debugger;
     this.getCode();
-    this.getCookie();
+    //this.getCookie();
 
-    console.log(this.router);
+    console.log(this.validateForm);
   }
   //获取验证码
-  async getCode() {
-    await this.ApiService.getCodeImg().then((res: any) => {
+   getCode() {
+     this.ApiService.getCodeImg().then((res: any) => {
       this.codeUrl = "data:image/gif;base64," + res.img;
       this.uuid = res.uuid;
+      this.getCookie();
+
     });
   }
 
@@ -113,8 +129,17 @@ export class FormLoginDialogComponent implements OnInit {
     const userName = this.cookies.get("userName");
     const password = this.cookies.get("password");
     const remember = this.cookies.get("remember");
-    this.validateForm.value.userName = userName === undefined ? "" : userName;
-    this.validateForm.value.password = password === undefined ? "" : password;
-    this.validateForm.value.remember = remember === undefined ? "" : remember;
+    // this.validateForm.value.userName = userName === undefined ? "" : userName;
+    // this.validateForm.value.password = password === undefined ? "" : password;
+    // this.validateForm.value.remember = remember == 'true' ? true : false;
+    this.validateForm = this.fb.group({
+      userName: [userName === undefined ? "" : userName, [Validators.required]],
+      password: [password === undefined ? "" : password, [Validators.required]],
+      code: [null, [Validators.required]],
+      // uuid: [null],
+      remember: [remember == 'true' ? true : false],
+    });
+    // console.log(userName,remember, this.validateForm.value.userName,this.validateForm,this.validateForm.value);
+
   }
 }

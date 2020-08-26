@@ -35,9 +35,9 @@
     <ng-template #elseBlock>
         <button nz-button nzType="primary" nzGhost disabled>对比</button>
     </ng-template>
-    <button nz-button nzType="primary" nzGhost (click)="del()" *ngIf="delete; else elseBlockOne" style="margin-left:30px">删除</button>
+    <button nz-button nzType="primary" nzGhost (click)="del()" *ngIf="delete && FormExperimentalItemComponent.button('deleteMaterial'); else elseBlockOne" style="margin-left:30px">删除</button>
     <ng-template #elseBlockOne>
-        <button nz-button nzType="primary" nzGhost disabled style="margin-left:30px">删除</button>
+        <button nz-button nzType="primary" nzGhost disabled *ngIf="FormExperimentalItemComponent.button('deleteMaterial')" style="margin-left:30px">删除</button>
     </ng-template>
 </div>
 <!-- 材料列表-开始对比按钮  END -->

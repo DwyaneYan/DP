@@ -11,6 +11,8 @@ export class CompressionComponent implements OnInit {
   p1='ys1'
   p2='ys2'
   p3='ys3'
+  p4='ys4'
+
   public materialId
   constructor(
     private router: Router,

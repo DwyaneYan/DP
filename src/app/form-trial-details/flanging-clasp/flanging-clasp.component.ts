@@ -11,6 +11,8 @@ export class FlangingClaspComponent implements OnInit {
   p1='fbkh1'
   p2='fbkh2'
   p3='fbkh3'
+  p4='fbkh4'
+
   constructor( private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

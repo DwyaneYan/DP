@@ -11,6 +11,8 @@ export class HighspeedstrechComponent implements OnInit {
   p1='gsls1'
   p2='gsls2'
   p3='gsls3'
+  p4='gsls4'
+
   constructor(     private router: Router,) { }
 
   ngOnInit() {        this.materialId = this.router

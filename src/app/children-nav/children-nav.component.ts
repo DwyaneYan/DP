@@ -13,6 +13,8 @@ export class ChildrenNavComponent implements OnInit {
   @Input() p1
   @Input() p2
   @Input() p3
+  @Input() p4
+
 
   constructor(private FormExperimentalItemComponent: FormExperimentalItemComponent,) { }
 

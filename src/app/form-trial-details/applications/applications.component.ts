@@ -48,10 +48,12 @@ ImgPathOne=[]
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
     // this.car = this.route.snapshot.paramMap.get('car');  
+    //注意这里会组件复用，可以使用 paramMap 可观察对象来检测路由参数在同一个实例中何时发生了变化。
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => of(params.get('car'))
       )).subscribe((data) => {
         // this.getform(data)
+        //路由参数在同一个实例中发生了变化时执行
         this.car=data
         console.log(this.car)
         this.arr1=[];
@@ -88,17 +90,20 @@ public  async getBrief(p){
 this.requirement=res.requirement,
 this.photo=res.fileString;//应用案例的图片可以上传多个，不会被覆盖
 this.file=res.fileKey;//应用案例的文件显示，数据库里始终只会存一个文件，修改上传会覆盖原来的
-console.log(res)
-//
-if(res.fileKey){
+console.log(res);
+console.log(this.file)
+if(this.file){
 let files=this.file.slice(0,this.file.length-1)
+document.getElementById("pdf1").style.display = 'block'; 
 
 let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
 // this.$nextTick(function () {
 pdf.embed(b, "#pdf1")  //第一次导入文件会出现[PDFObject] Target element cannot be determined无法预览pdf
 // })
 }
-console.log(this.file)
+else{
+  document.getElementById("pdf1").style.display = 'none'; 
+}
 if(this.photo){
 let one=this.photo.split(";")
 one.pop();//one得到文件全名的数组

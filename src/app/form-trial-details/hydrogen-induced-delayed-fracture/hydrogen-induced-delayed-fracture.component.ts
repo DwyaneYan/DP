@@ -11,6 +11,8 @@ export class HydrogenInducedDelayedFractureComponent implements OnInit {
   p1='qzyckl1'
   p2='qzyckl2'
   p3='qzyckl3'
+  p4='qzyckl4'
+
   constructor(     private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

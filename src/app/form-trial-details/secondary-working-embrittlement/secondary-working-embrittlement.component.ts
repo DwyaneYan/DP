@@ -11,6 +11,8 @@ export class SecondaryWorkingEmbrittlementComponent implements OnInit {
   p1='ecjgcx1'
   p2='ecjgcx2'
   p3='ecjgcx3'
+  p4='ecjgcx4'
+
   constructor(   private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

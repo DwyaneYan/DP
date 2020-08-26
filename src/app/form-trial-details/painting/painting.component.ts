@@ -11,6 +11,8 @@ export class PaintingComponent implements OnInit {
   p1='tzxn1'
   p2='tzxn2'
   p3='tzxn3'
+  p4='tzxn4'
+
   constructor(   private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

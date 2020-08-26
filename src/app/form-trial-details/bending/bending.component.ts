@@ -13,6 +13,7 @@ export class BendingComponent implements OnInit {
   p1='wq1'
   p2='wq2'
   p3='wq3'
+  p4='wq4'
   constructor(
    
     private router: Router,

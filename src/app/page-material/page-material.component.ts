@@ -315,15 +315,26 @@ export class PageMaterialComponent implements OnInit {
       // console.log(this.material);
     })
   }
+  //型号规格不限
+  public async filtModel(){
+    this.params.model = '';
+    this.params.minModel = '';
+    this.params.maxModel = '';
 
-  public async filtrationMinModel(e: any) {
+    // console.log(this.params);
+    await this.ApiService.GetMater(this.params).then((res: any) => {
+      this.material = res.items;
+      // console.log(this.material);
+    })
+  }
+  public async filtrationMinModel() {
     this.params.model = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
     })
   }
 
-  public async filtrationMaxModel(e: any) {
+  public async filtrationMaxModel() {
     this.params.model = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
@@ -340,15 +351,25 @@ export class PageMaterialComponent implements OnInit {
       // console.log(this.material);
     })
   }
-
-  public async filtrationMinStrength(e: any) {
+  //屈服强度不限
+  public async filtStrength() {
+    this.params.MinStrenth = '';
+    this.params.MaxStrenth = '';
+    this.params.Strength = '';
+    // console.log(this.params);
+    await this.ApiService.GetMater(this.params).then((res: any) => {
+      this.material = res.items;
+      // console.log(this.material);
+    })
+  }
+  public async filtrationMinStrength() {
     this.params.Strength = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
     })
   }
 
-  public async filtrationMaxStrength(e: any) {
+  public async filtrationMaxStrength() {
     this.params.Strength = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;

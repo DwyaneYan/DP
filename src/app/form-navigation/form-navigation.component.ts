@@ -33,7 +33,7 @@ userName = ''
 //     this.ApiService.getInfo(httpOptions).then((res:any)=>{
 // console.log( res.roles)
 let res=JSON.parse(sessionStorage.getItem("permissions"))
-      if(res.roles.indexOf('wy')!=-1){     //permissions的roles中包含wy才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
+      if(res.roles.indexOf('hg')!=-1 || res.roles.indexOf('admin')!=-1){     //permissions的roles中包含wy才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
         this.system=true
             }else{
               this.system = false
@@ -80,7 +80,7 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
 // debugger;
 //如果操作成功表示token还未失效，那么带着token跳转到系统管理
          this.token= sessionStorage.getItem("token")
-         window.open(`http://localhost:81/usermanage?token=${this.token}`)
+         window.open(`http://localhost:81/system/user?token=${this.token}`)
 // this.target = '_blank'
 // console.log(this.href,this.target)
       }
@@ -96,7 +96,8 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
 
     this.isVisible = false;
     // debugger;
-    this.router.navigateByUrl("/login")
+    this.router.navigateByUrl("/login");
+    location.reload()
 
   }
 
@@ -106,9 +107,12 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
   }
 
   out(){
-  sessionStorage.removeItem("token")
-  this.ApiService.logout()
- this.router.navigateByUrl('login'); 
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("permissions");
+  this.ApiService.logout().then(()=>
+  this.router.navigateByUrl('login')
+  // this.router.parseUrl("/login")
+  )
 //location.reload()
   }
 }

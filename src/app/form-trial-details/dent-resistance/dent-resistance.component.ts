@@ -11,6 +11,8 @@ export class DentResistanceComponent implements OnInit {
   p1='kaxn1'
   p2='kaxn2'
   p3='kaxn3'
+  p4='kaxn4'
+
   constructor(private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

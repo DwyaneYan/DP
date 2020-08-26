@@ -128,10 +128,335 @@ import { SimulationCardComponent } from './simulation-card/simulation-card.compo
 import { ReportComponent } from './report/report.component';
 import { LoginGuardService } from './login-guard.service'
 import { Page404Component } from './page404/page404.component'
-import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component'
+import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
+// import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
+
+
+let allRoutes =[
+  { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
+  { path: 'login', component: PageLoginComponent},
+  { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
+  { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+  //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
+  // { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+  { path: 'display/:materialId', component:PageDisplayComponent,
+  canActivateChild: [LoginGuardService],
+    children:[
+      {
+        path: 'static-tension-home', component: StaticTensionHomeComponent,
+        children:[
+          { path: 'table', component: StaticTensionTableComponent ,permissions:"jtls1"},
+          { path: 'picture', component: StaticTensionPictureComponent,permissions:"jtls2"},
+          { path: 'report', component:ReportComponent,permissions:"jtls3"},
+          { path: 'typical-part', component:TypicalPartComponent,permissions:"jtls4"},
+
+        ]  
+      },
+      { 
+        path: 'bending', component: BendingComponent,
+        children:[
+          { path: 'table', component: BendingTableComponent ,permissions:"wq1"},
+          { path: 'picture', component: BendingPictureComponent ,permissions:"wq2"},
+          { path: 'report', component:ReportComponent ,permissions:"wq3" },
+          { path: 'typical-part', component: TypicalPartComponent,permissions:"wq4" },
+          
+        ]  
+      },
+
+      { 
+        path: 'compression', component:CompressionComponent,
+        children:[
+          { path: 'table', component: CompressionTableComponent ,permissions:"ys1"},
+          { path: 'picture', component: CompressionPictureComponent ,permissions:"ys2" },
+          { path: 'report', component: ReportComponent , permissions:"ys3"},
+          { path: 'typical-part', component: TypicalPartComponent, permissions:"ys4" },
+         
+        ]  
+      },
+      { 
+        path: 'highspeedstrech', component:HighspeedstrechComponent,
+        children:[
+          { path: 'table', component: HighspeedstrechTableComponent,permissions:"gsls1"},
+          { path: 'picture', component: HighspeedstrechPictureComponent  ,permissions:"gsls2" },
+          { path: 'report', component: ReportComponent  ,permissions:"gsls3" },
+          { path: 'typical-part', component:TypicalPartComponent  ,permissions:"gsls4" },
+          
+        ]  
+      }, 
+       { 
+        path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
+        children:[
+          { path: 'table', component:  LowcyclefatigueTableComponent,permissions:"dzpl1"},
+          { path: 'picture', component:  LowcyclefatiguePictureComponent   ,permissions:"dzpl2" },
+          { path: 'report', component:  ReportComponent    ,permissions:"dzpl3"},
+          { path: 'typical-part', component: TypicalPartComponent  ,permissions:"dzpl4" },
+           
+        ]  
+      },
+      { 
+        path: 'highcyclefatigue', component:HighcyclefatigueComponent,
+        children:[
+          { path: 'table', component:  HighcyclefatigueTableComponent,permissions:"gzpl1"},
+          { path: 'picture', component:  HighcyclefatiguePictureComponent  ,permissions:"gzpl2"   },
+          { path: 'report', component:  ReportComponent   ,permissions:"gzpl3"  },
+          { path: 'typical-part', component: TypicalPartComponent  ,permissions:"gzpl4"  },
+          
+        ]  
+      },
+      { 
+        path: 'metallographic', component:MetallographicComponent,
+        children:[
+          { path: 'table', component:  MetallographicTableComponent,permissions:"jx1" },
+          { path: 'picture', component:  MetallographicPictureComponent ,permissions:"jx2"    },
+          { path: 'report', component:  ReportComponent  ,permissions:"jx3"  },
+          { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jx4"  },
+          
+        ]  
+      },
+      { 
+        path: 'physicalperformance', component: PhysicalperformanceComponent,
+        children:[
+          { path: 'table', component:  PhysicalperformanceTableComponent ,permissions:"wlxn1"},
+          { path: 'picture', component:  PhysicalperformancePictureComponent   ,permissions:"wlxn2"  },
+          { path: 'report', component:  ReportComponent    ,permissions:"wlxn3"  },
+          { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"wlxn4" },
+           
+        ]  
+      },
+      { 
+        path: 'chemicalelement', component:ChemicalelementComponent,
+        children:[
+          { path: 'table', component: ChemicalelementTableComponent,permissions:"hxcf1"},
+          { path: 'picture', component:  ChemicalelementPictureComponent  ,permissions:"hxcf2"  },
+          { path: 'report', component:  ReportComponent ,permissions:"hxcf3"   },
+          { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hxcf4" },
+          
+        ]  
+      },
+      { 
+        path: 'prohibited-substance', component:ProhibitedSubstanceComponent,
+        children:[
+          { path: 'table', component: ProhibitedSubstanceTableComponent,permissions:"jywz1"},
+          { path: 'picture', component:  ProhibitedSubstancePictureComponent  ,permissions:"jywz2" },
+          { path: 'report', component:  ReportComponent,permissions:"jywz3"   },
+          { path: 'typical-part', component:  TypicalPartComponent ,permissions:"jywz4" },
+           
+        ]  
+      }, 
+      { 
+        path: 'dent-resistance', component:DentResistanceComponent,
+        children:[
+          { path: 'table', component: DentResistanceTableComponent ,permissions:"kaxn1"},
+          { path: 'picture', component:  DentResistancePictureComponent ,permissions:"kaxn2" },
+          { path: 'report', component:  ReportComponent  ,permissions:"kaxn3"},
+          { path: 'typical-part', component: TypicalPartComponent ,permissions:"kaxn4"},
+          
+        ]  
+      },
+      { 
+        path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
+        children:[
+          { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent,permissions:"ecjgcx1"},
+          { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent  ,permissions:"ecjgcx2" },
+          { path: 'report', component:   ReportComponent  ,permissions:"ecjgcx3" },
+          { path: 'typical-part', component: TypicalPartComponent  ,permissions:"ecjgcx4" },
+          
+        ]  
+      },
+      { 
+        path: 'flanging-clasp', component:FlangingClaspComponent,
+        children:[
+          { path: 'table', component: FlangingClaspTableComponent,permissions:"fbkh1"},
+          { path: 'picture', component:  FlangingClaspPictureComponent  ,permissions:"fbkh2" },
+          { path: 'report', component:  ReportComponent   ,permissions:"fbkh3"},
+          { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"fbkh4"},
+           
+        ]  
+      },
+      { 
+        path: 'hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
+        children:[
+          { path: 'table', component: HydrogenInducedDelayedFractureTableComponent,permissions:"qzyckl1" },
+          { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent ,permissions:"qzyckl2"  },
+          { path: 'report', component: ReportComponent ,permissions:"qzyckl3"  },
+          { path: 'typical-part', component:TypicalPartComponent ,permissions:"qzyckl4"},
+          
+        ]  
+      },
+      { 
+        path: 'welding', component:WeldingComponent,
+        children:[
+          { path: 'table', component: WeldingTableComponent,permissions:"hjxn1"  },
+          { path: 'picture', component:  WeldingPictureComponent   ,permissions:"hjxn2" },
+          { path: 'report', component:  ReportComponent  ,permissions:"hjxn3"  },
+          { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hjxn4"  },
+         
+        ]  
+      },
+      { 
+        path: 'cementing', component:CementingComponent ,
+        children:[
+          { path: 'table', component:CementingTableComponent ,permissions:"jjxn1" },
+          { path: 'picture', component:  CementingPictureComponent  ,permissions:"jjxn2"    },
+          { path: 'report', component:  ReportComponent   ,permissions:"jjxn3" },
+          { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jjxn4" },
+           
+        ]  
+      },
+      { 
+        path: 'painting', component:PaintingComponent ,
+        children:[
+          { path: 'table', component:PaintingTableComponent,permissions:"tzxn1" },
+          { path: 'picture', component:  PaintingPictureComponent  ,permissions:"tzxn2"  },
+          { path: 'report', component:  ReportComponent  ,permissions:"tzxn3"  },
+          { path: 'typical-part', component:  TypicalPartComponent ,permissions:"tzxn4"  },
+          
+        ]  
+      },
+      { 
+        path: 'fld', component:FLDComponent ,
+        children:[
+          { path: 'table', component:FldTableComponent ,permissions:"fld1" },
+          { path: 'picture', component:  FldPictureComponent ,permissions:"fld2"     },
+          { path: 'report', component:  ReportComponent  ,permissions:"fld3"  },
+          { path: 'typical-part', component:  TypicalPartComponent ,permissions:"fld4" },
+          
+        ]  
+      },
+      { 
+        path: 'rebound', component:ReboundComponent ,
+        children:[
+          { path: 'table', component:ReboundTableComponent,permissions:"htxn1"  },
+          { path: 'picture', component:  ReboundPictureComponent    ,permissions:"htxn2"  },
+          { path: 'report', component:  ReportComponent   ,permissions:"htxn3" },
+          { path: 'typical-part', component: TypicalPartComponent ,permissions:"htxn4"},
+         
+        ]  
+      },
+      { 
+        path: 'bake-hardening', component:BakeHardeningComponent  ,
+        children:[
+          { path: 'table', component: BakeHardeningTableComponent  ,permissions:"hkyh1" },
+          { path: 'picture', component:  BakeHardeningPictureComponent ,permissions:"hkyh2"  },
+          { path: 'report', component:  ReportComponent ,permissions:"hkyh3"   },
+          { path: 'typical-part', component: TypicalPartComponent  ,permissions:"hkyh4" },
+          
+        ]  
+      },
+      { 
+        path: 'surface-property', component:SurfacePropertyComponent   ,
+        children:[
+          { path: 'table', component: SurfacePropertyTableComponent,permissions:"bmxn1"  },
+          { path: 'picture', component:  SurfacePropertyPictureComponent  ,permissions:"bmxn2" },
+          { path: 'report', component:  ReportComponent  ,permissions:"bmxn3" },
+          { path: 'typical-part', component: TypicalPartComponent,permissions:"bmxn4" },
+         
+        ]  
+      },
+      { 
+        path: 'applications/:car', component:ApplicationsComponent   ,
+        
+      },
+      { 
+        path: 'simulationCard', component:SimulationCardComponent   , 
+      }
+  ]},
+  { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
+  { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
+  { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
+
+]
+// let selectRoutes = allRoutes
+// selectRoutes[4].children=[]
+console.log(allRoutes[4].children)
+
+let length = allRoutes[4].children.length-2;
+let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+// let currentRoutes: Routes
+//登陆后才能确定路由数组,这个文件只有刷新页面会再次执行但点击导航或者前进后退不会执行
+if(permissions){
+function button(p):Boolean{
+  if(permissions.permissions.indexOf(`${p}`)==-1 && permissions.roles.indexOf("admin")==-1){
+    return false
+  }
+  else{
+    return true
+  }
+
+}
+for(let a=0;a<length;a++){
+  console.log(a,length,allRoutes[4].children)
+  console.log(allRoutes[4].children[a])
+  if(!button(allRoutes[4].children[a].path)){
+    delete allRoutes[4].children[a];
+  //  a-=1
+  }
+  else{
+      let b = allRoutes[4].children[a].children.length;
+    for(let c=0;c<b;c++){ 
+      if(!button(allRoutes[4].children[a].children[c].permissions)){
+      delete  allRoutes[4].children[a].children[c]
+    }
+    else{
+      delete allRoutes[4].children[a].children[c].permissions
+    }
+
+  }
+  }
+  // if(allRoutes[4].children[a]==undefined){
+
+  // }
+}
+// for(let a=0;a<length;a++){
+// if(allRoutes[4].children[a]!=undefined){
+//   selectRoutes[4].children.push(allRoutes[4].children[a])
+
+
+// //   let b = allRoutes[4].children[a].children.length;
+// //   for(let c=0;c<b;c++){ 
+// //     if(allRoutes[4].children[a].children[c]!=undefined){
+
+// //     }
+// // }
+// }
+// }
+// for(let a=0;a<length2;a++){
+// selectRoutes[4].children[a].children.filter(function(item) {
+//       return item != undefined
+//    });
+// }
+
+// if(!button("viewCar")){
+//   allRoutes[4].children.splice(length,1)
+// }
+
+allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+  return item != undefined
+   });
+console.log(allRoutes[4].children)
+
+let length2 = allRoutes[4].children.length-2
+ console.log(length2)
+  for(let a=0;a<length2;a++){
+    console.log(allRoutes[4].children[a].children)
+    allRoutes[4].children[a].children = allRoutes[4].children[a].children.filter(function(item) {
+      return item != undefined
+       });
+  }
+console.log(allRoutes[4].children)
+}
+//  currentRoutes = allRoutes
+// }else{
+//  currentRoutes = allRoutes
+
+// }
+let currentRoutes: Routes = allRoutes
+
+
+//遍历allRoutes ,找getInfo中的permissions权限字段permissions.indexof(item.permissions)
 
 const routes: Routes = [
-  { path: '', redirectTo: '/platform' ,pathMatch: 'full',},
+  { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
   { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
@@ -139,7 +464,8 @@ const routes: Routes = [
   //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
   { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
 
-  { path: 'display/:materialId', component:PageDisplayComponent,canActivate: [LoginGuardService],
+  { path: 'display/:materialId', component:PageDisplayComponent,
+  canActivateChild: [LoginGuardService],
     children:[
       {
         path: 'static-tension-home', component: StaticTensionHomeComponent,
@@ -364,27 +690,27 @@ const routes: Routes = [
 
   ]},
 
-  { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
-  { path: 'attribute-constract', component:PageAttributeConstractComponent},
-  { path: 'material-fake', component:PageMaterialFakeComponent},
-  { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
-  { path: 'system-manage', component:PageSystemManageComponent },
-  { path: 'factory', component: FormFactoryListComponent },
-  { path: 'typicalpart', component: FormTypicpartListComponent },
-  { path: 'material-trial', component: PageMaterialTrialComponent },
-  { path: 'materialss', component: FormMateriaListComponent },
+  // { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
+  // { path: 'attribute-constract', component:PageAttributeConstractComponent},
+  // { path: 'material-fake', component:PageMaterialFakeComponent},
+  // { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
+  // { path: 'system-manage', component:PageSystemManageComponent },
+  // { path: 'factory', component: FormFactoryListComponent },
+  // { path: 'typicalpart', component: FormTypicpartListComponent },
+  // { path: 'material-trial', component: PageMaterialTrialComponent },
+  // { path: 'materialss', component: FormMateriaListComponent },
   { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
-  { path: '404', component: Page404Component },
+  { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
 
 
 ]
 
-
+// routes.push
 
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'}) ],  //初始化路由器,并让它开始监听浏览器中的地址变化,导航后页面滚动条滚动到顶部
+  imports: [ RouterModule.forRoot(currentRoutes,{scrollPositionRestoration: 'enabled' }) ],  //初始化路由器,并让它开始监听浏览器中的地址变化,导航后页面滚动条滚动到顶部
   exports: [ RouterModule ],  //导出 RouterModule 让路由器的相关指令可以在 AppModule 中的组件中使用。
 })
 export class AppRoutingModule {

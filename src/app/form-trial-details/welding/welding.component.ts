@@ -12,6 +12,8 @@ export class WeldingComponent implements OnInit {
   p1='hjxn1'
   p2='hjxn2'
   p3='hjxn3'
+  p4='hjxn4'
+
   constructor(     private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

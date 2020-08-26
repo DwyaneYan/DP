@@ -11,7 +11,9 @@ import { FormExperimentalItemComponent } from '../form-experimental-item/form-ex
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-
+import {
+  Router,ActivatedRoute,RouterStateSnapshot
+} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
@@ -109,7 +111,9 @@ else{
     private FormAddCarComponent: FormAddCarComponent,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     private ApiService: ApiService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private router: Router,
+    private ActivatedRoute:ActivatedRoute,
      ) { }
     d =[]
     e =[]
@@ -119,6 +123,11 @@ else{
 
   ngOnInit() {  
 
+  //  if( window.sessionStorage.getItem("fromLogin")&&window.sessionStorage.getItem("fromLogin")=='1'){
+  //   location.reload()
+  //   window.sessionStorage.removeItem("fromLogin")
+  //  }
+  console.log(this.router)
 //   let httpOptions = {
 //       headers: new HttpHeaders({
 //         'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),

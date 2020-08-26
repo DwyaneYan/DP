@@ -10,6 +10,8 @@ export class ProhibitedSubstanceComponent implements OnInit {
   p1='jywz1'
   p2='jywz2'
   p3='jywz3'
+  p4='jywz4'
+
   public materialId
   constructor(   private router: Router,) { }
 

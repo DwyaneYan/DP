@@ -11,6 +11,8 @@ export class StaticTensionHomeComponent implements OnInit {
   p1='jtls1'
   p2='jtls2'
   p3='jtls3'
+  p4='jtls4'
+
   public materialId
 
   constructor(

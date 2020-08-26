@@ -11,6 +11,8 @@ export class BakeHardeningComponent implements OnInit {
   p1='hkyh1'
   p2='hkyh2'
   p3='hkyh3'
+  p4='hkyh4'
+
   constructor(private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

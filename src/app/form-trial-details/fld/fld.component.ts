@@ -11,6 +11,8 @@ export class FLDComponent implements OnInit {
   p1='fld1'
   p2='fld2'
   p3='fld3'
+  p4='fld4'
+
   constructor(  private router: Router,) { }
 
   ngOnInit() {     this.materialId = this.router

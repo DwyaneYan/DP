@@ -11,6 +11,8 @@ export class CementingComponent implements OnInit {
   p1='jjxn1'
   p2='jjxn2'
   p3='jjxn3'
+  p4='jjxn4'
+
   constructor(  private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

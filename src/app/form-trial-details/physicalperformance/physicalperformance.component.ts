@@ -11,6 +11,8 @@ export class PhysicalperformanceComponent implements OnInit {
   p1='wlxn1'
   p2='wlxn2'
   p3='wlxn3'
+  p4='wlxn4'
+
   constructor(  private router: Router,) { }
 
   ngOnInit() {   this.materialId = this.router

@@ -11,6 +11,8 @@ export class MetallographicComponent implements OnInit {
   p1='jx1'
   p2='jx2'
   p3='jx3'
+  p4='jx4'
+
   constructor( private router: Router,) { }
 
   ngOnInit() {    this.materialId = this.router

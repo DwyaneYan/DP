@@ -36,22 +36,22 @@
             </div>
             <div class="row">
                 <span class="label">型号规格 :</span>
-                <span class="limit-tag" [class.selected]="params.model ==''" (click)="filtrationModel({value:''})">不限</span>
+                <span class="limit-tag" [class.selected]="params.model ==''" (click)="filtModel()">不限</span>
                 <span *ngFor="let item of listModel">
                     <span class="limit-tag" (click)=" filtrationModel(item) "
                         [class.selected]="params.model == item.value"> {{item.value}} mm </span>
                 </span>
                 <span class="limit-tag-between">
                     <input class="input-box" type="text" [(ngModel)]='params.minModel'
-                        (blur)="filtrationMinModel($event)"> ~
+                        (blur)="filtrationMinModel()"> ~
                     <input class="input-box" type="text" [(ngModel)]='params.maxModel'
-                        (blur)="filtrationMaxModel($event)"> mm
+                        (blur)="filtrationMaxModel()"> mm
                 </span>
             </div>
 
             <div class="row">
                 <span class="label">屈服强度 :</span>
-                <span class="limit-tag" [class.selected]="params.MinStrenth ==''" (click)="filtrationModel({min:''})">不限</span>
+                <span class="limit-tag" [class.selected]="params.MinStrenth ==''" (click)="filtStrength()">不限</span>
                 <span *ngFor="let item of listStrength ">
                     <span *ngFor="let childItem of item.children">
                         <span class="limit-tag" (click)="filtrationStrength(childItem)"
@@ -60,9 +60,9 @@
                 </span>
                 <span class="limit-tag-between">
                     <input class="input-box" type="text" [(ngModel)]='params.MinStrenth'
-                        (blur)="filtrationMinStrength($event)"> ~
+                        (blur)="filtrationMinStrength()"> ~
                     <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth'
-                        (blur)="filtrationMaxStrength($event)"> MPa
+                        (blur)="filtrationMaxStrength()"> MPa
                 </span>
             </div>
             <div class="row">

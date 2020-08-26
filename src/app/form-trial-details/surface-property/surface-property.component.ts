@@ -11,6 +11,7 @@ export class SurfacePropertyComponent implements OnInit {
   p1='bmxn1'
   p2='bmxn2'
   p3='bmxn3'
+  p4='bmxn4'
 
   constructor(
     private router: Router,

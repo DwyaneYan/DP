@@ -10,6 +10,7 @@ export class PageLoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // debugger;
   }
 
 }
