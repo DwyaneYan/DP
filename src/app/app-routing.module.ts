@@ -366,13 +366,12 @@ let allRoutes =[
   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
 
 ]
-// let selectRoutes = allRoutes
-// selectRoutes[4].children=[]
+
 console.log(allRoutes[4].children)
 
 let length = allRoutes[4].children.length-2;
 let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-// let currentRoutes: Routes
+
 //登陆后才能确定路由数组,这个文件只有刷新页面会再次执行但点击导航或者前进后退不会执行
 if(permissions){
 function button(p):Boolean{
@@ -385,326 +384,295 @@ function button(p):Boolean{
 
 }
 for(let a=0;a<length;a++){
-  console.log(a,length,allRoutes[4].children)
-  console.log(allRoutes[4].children[a])
+
   if(!button(allRoutes[4].children[a].path)){
     delete allRoutes[4].children[a];
-  //  a-=1
   }
   else{
-      let b = allRoutes[4].children[a].children.length;
-    for(let c=0;c<b;c++){ 
-      if(!button(allRoutes[4].children[a].children[c].permissions)){
-      delete  allRoutes[4].children[a].children[c]
-    }
-    else{
-      delete allRoutes[4].children[a].children[c].permissions
+
+      let array =[]  //删除子路由数组中的元素
+      allRoutes[4].children[a].children.forEach((item,index,arr)=>{
+        if(!button(item.permissions)){
+          array.push(index)}
+       else{
+      delete item.permissions}
+    })
+    for(let i =0;i<array.length;i++){
+      allRoutes[4].children[a].children.splice(array[i]-i,1)
     }
 
   }
-  }
-  // if(allRoutes[4].children[a]==undefined){
 
-  // }
 }
-// for(let a=0;a<length;a++){
-// if(allRoutes[4].children[a]!=undefined){
-//   selectRoutes[4].children.push(allRoutes[4].children[a])
 
 
-// //   let b = allRoutes[4].children[a].children.length;
-// //   for(let c=0;c<b;c++){ 
-// //     if(allRoutes[4].children[a].children[c]!=undefined){
-
-// //     }
-// // }
-// }
-// }
-// for(let a=0;a<length2;a++){
-// selectRoutes[4].children[a].children.filter(function(item) {
-//       return item != undefined
-//    });
-// }
-
-// if(!button("viewCar")){
-//   allRoutes[4].children.splice(length,1)
-// }
 
 allRoutes[4].children = allRoutes[4].children.filter(function(item) {
   return item != undefined
-   });
-console.log(allRoutes[4].children)
-
-let length2 = allRoutes[4].children.length-2
- console.log(length2)
-  for(let a=0;a<length2;a++){
-    console.log(allRoutes[4].children[a].children)
-    allRoutes[4].children[a].children = allRoutes[4].children[a].children.filter(function(item) {
-      return item != undefined
-       });
-  }
-console.log(allRoutes[4].children)
+   });//删除路由中的空元素
+if(!button("viewCar")){
+ allRoutes[4].children.splice(length,1)
 }
-//  currentRoutes = allRoutes
-// }else{
-//  currentRoutes = allRoutes
+console.log(allRoutes[4].children)
 
-// }
+
+}
+
 let currentRoutes: Routes = allRoutes
 
 
 //遍历allRoutes ,找getInfo中的permissions权限字段permissions.indexof(item.permissions)
 
-const routes: Routes = [
-  { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
-  { path: 'login', component: PageLoginComponent},
-  { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
-  { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+// const routes: Routes = [
+//   { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
+//   { path: 'login', component: PageLoginComponent},
+//   { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
+//   { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
 
-  //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
-  { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+//   //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
+//   { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
 
-  { path: 'display/:materialId', component:PageDisplayComponent,
-  canActivateChild: [LoginGuardService],
-    children:[
-      {
-        path: 'static-tension-home', component: StaticTensionHomeComponent,
-        children:[
-          { path: 'table', component: StaticTensionTableComponent },
-          { path: 'picture', component: StaticTensionPictureComponent },
-          { path: 'report', component:ReportComponent},
-          { path: 'typical-part', component:TypicalPartComponent},
+//   { path: 'display/:materialId', component:PageDisplayComponent,
+//   canActivateChild: [LoginGuardService],
+//     children:[
+//       {
+//         path: 'static-tension-home', component: StaticTensionHomeComponent,
+//         children:[
+//           { path: 'table', component: StaticTensionTableComponent },
+//           { path: 'picture', component: StaticTensionPictureComponent },
+//           { path: 'report', component:ReportComponent},
+//           { path: 'typical-part', component:TypicalPartComponent},
 
-        ]  
-      },
-      { 
-        path: 'bending', component: BendingComponent,
-        children:[
-          { path: 'table', component: BendingTableComponent },
-          { path: 'picture', component: BendingPictureComponent },
-          { path: 'report', component:ReportComponent  },
-          { path: 'typical-part', component: TypicalPartComponent },
+//         ]  
+//       },
+//       { 
+//         path: 'bending', component: BendingComponent,
+//         children:[
+//           { path: 'table', component: BendingTableComponent },
+//           { path: 'picture', component: BendingPictureComponent },
+//           { path: 'report', component:ReportComponent  },
+//           { path: 'typical-part', component: TypicalPartComponent },
           
-        ]  
-      },
+//         ]  
+//       },
 
-      { 
-        path: 'compression', component:CompressionComponent,
-        children:[
-          { path: 'table', component: CompressionTableComponent },
-          { path: 'picture', component: CompressionPictureComponent  },
-          { path: 'report', component: ReportComponent  },
-          { path: 'typical-part', component: TypicalPartComponent },
+//       { 
+//         path: 'compression', component:CompressionComponent,
+//         children:[
+//           { path: 'table', component: CompressionTableComponent },
+//           { path: 'picture', component: CompressionPictureComponent  },
+//           { path: 'report', component: ReportComponent  },
+//           { path: 'typical-part', component: TypicalPartComponent },
          
-        ]  
-      },
-      { 
-        path: 'highspeedstrech', component:HighspeedstrechComponent,
-        children:[
-          { path: 'table', component: HighspeedstrechTableComponent},
-          { path: 'picture', component: HighspeedstrechPictureComponent   },
-          { path: 'report', component: ReportComponent   },
-          { path: 'typical-part', component:TypicalPartComponent   },
+//         ]  
+//       },
+//       { 
+//         path: 'highspeedstrech', component:HighspeedstrechComponent,
+//         children:[
+//           { path: 'table', component: HighspeedstrechTableComponent},
+//           { path: 'picture', component: HighspeedstrechPictureComponent   },
+//           { path: 'report', component: ReportComponent   },
+//           { path: 'typical-part', component:TypicalPartComponent   },
           
-        ]  
-      }, 
-       { 
-        path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
-        children:[
-          { path: 'table', component:  LowcyclefatigueTableComponent},
-          { path: 'picture', component:  LowcyclefatiguePictureComponent    },
-          { path: 'report', component:  ReportComponent    },
-          { path: 'typical-part', component: TypicalPartComponent  },
+//         ]  
+//       }, 
+//        { 
+//         path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
+//         children:[
+//           { path: 'table', component:  LowcyclefatigueTableComponent},
+//           { path: 'picture', component:  LowcyclefatiguePictureComponent    },
+//           { path: 'report', component:  ReportComponent    },
+//           { path: 'typical-part', component: TypicalPartComponent  },
            
-        ]  
-      },
-      { 
-        path: 'highcyclefatigue', component:HighcyclefatigueComponent,
-        children:[
-          { path: 'table', component:  HighcyclefatigueTableComponent},
-          { path: 'picture', component:  HighcyclefatiguePictureComponent     },
-          { path: 'report', component:  ReportComponent     },
-          { path: 'typical-part', component: TypicalPartComponent    },
+//         ]  
+//       },
+//       { 
+//         path: 'highcyclefatigue', component:HighcyclefatigueComponent,
+//         children:[
+//           { path: 'table', component:  HighcyclefatigueTableComponent},
+//           { path: 'picture', component:  HighcyclefatiguePictureComponent     },
+//           { path: 'report', component:  ReportComponent     },
+//           { path: 'typical-part', component: TypicalPartComponent    },
           
-        ]  
-      },
-      { 
-        path: 'metallographic', component:MetallographicComponent,
-        children:[
-          { path: 'table', component:  MetallographicTableComponent },
-          { path: 'picture', component:  MetallographicPictureComponent     },
-          { path: 'report', component:  ReportComponent    },
-          { path: 'typical-part', component: TypicalPartComponent   },
+//         ]  
+//       },
+//       { 
+//         path: 'metallographic', component:MetallographicComponent,
+//         children:[
+//           { path: 'table', component:  MetallographicTableComponent },
+//           { path: 'picture', component:  MetallographicPictureComponent     },
+//           { path: 'report', component:  ReportComponent    },
+//           { path: 'typical-part', component: TypicalPartComponent   },
           
-        ]  
-      },
-      { 
-        path: 'physicalperformance', component: PhysicalperformanceComponent,
-        children:[
-          { path: 'table', component:  PhysicalperformanceTableComponent },
-          { path: 'picture', component:  PhysicalperformancePictureComponent     },
-          { path: 'report', component:  ReportComponent      },
-          { path: 'typical-part', component:  TypicalPartComponent   },
+//         ]  
+//       },
+//       { 
+//         path: 'physicalperformance', component: PhysicalperformanceComponent,
+//         children:[
+//           { path: 'table', component:  PhysicalperformanceTableComponent },
+//           { path: 'picture', component:  PhysicalperformancePictureComponent     },
+//           { path: 'report', component:  ReportComponent      },
+//           { path: 'typical-part', component:  TypicalPartComponent   },
            
-        ]  
-      },
-      { 
-        path: 'chemicalelement', component:ChemicalelementComponent,
-        children:[
-          { path: 'table', component: ChemicalelementTableComponent},
-          { path: 'picture', component:  ChemicalelementPictureComponent    },
-          { path: 'report', component:  ReportComponent    },
-          { path: 'typical-part', component:  TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'chemicalelement', component:ChemicalelementComponent,
+//         children:[
+//           { path: 'table', component: ChemicalelementTableComponent},
+//           { path: 'picture', component:  ChemicalelementPictureComponent    },
+//           { path: 'report', component:  ReportComponent    },
+//           { path: 'typical-part', component:  TypicalPartComponent  },
           
-        ]  
-      },
-      { 
-        path: 'prohibited-substance', component:ProhibitedSubstanceComponent,
-        children:[
-          { path: 'table', component: ProhibitedSubstanceTableComponent},
-          { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'prohibited-substance', component:ProhibitedSubstanceComponent,
+//         children:[
+//           { path: 'table', component: ProhibitedSubstanceTableComponent},
+//           { path: 'picture', component:  ProhibitedSubstancePictureComponent   },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component:  TypicalPartComponent  },
            
-        ]  
-      }, 
-      { 
-        path: 'dent-resistance', component:DentResistanceComponent,
-        children:[
-          { path: 'table', component: DentResistanceTableComponent },
-          { path: 'picture', component:  DentResistancePictureComponent  },
-          { path: 'report', component:  ReportComponent  },
-          { path: 'typical-part', component: TypicalPartComponent },
+//         ]  
+//       }, 
+//       { 
+//         path: 'dent-resistance', component:DentResistanceComponent,
+//         children:[
+//           { path: 'table', component: DentResistanceTableComponent },
+//           { path: 'picture', component:  DentResistancePictureComponent  },
+//           { path: 'report', component:  ReportComponent  },
+//           { path: 'typical-part', component: TypicalPartComponent },
           
-        ]  
-      },
-      { 
-        path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
-        children:[
-          { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent},
-          { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
-          { path: 'report', component:   ReportComponent   },
-          { path: 'typical-part', component: TypicalPartComponent   },
+//         ]  
+//       },
+//       { 
+//         path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
+//         children:[
+//           { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent},
+//           { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent    },
+//           { path: 'report', component:   ReportComponent   },
+//           { path: 'typical-part', component: TypicalPartComponent   },
           
-        ]  
-      },
-      { 
-        path: 'flanging-clasp', component:FlangingClaspComponent,
-        children:[
-          { path: 'table', component: FlangingClaspTableComponent},
-          { path: 'picture', component:  FlangingClaspPictureComponent   },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'flanging-clasp', component:FlangingClaspComponent,
+//         children:[
+//           { path: 'table', component: FlangingClaspTableComponent},
+//           { path: 'picture', component:  FlangingClaspPictureComponent   },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component:  TypicalPartComponent  },
            
-        ]  
-      },
-      { 
-        path: 'hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
-        children:[
-          { path: 'table', component: HydrogenInducedDelayedFractureTableComponent },
-          { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
-          { path: 'report', component: ReportComponent  },
-          { path: 'typical-part', component:TypicalPartComponent },
+//         ]  
+//       },
+//       { 
+//         path: 'hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
+//         children:[
+//           { path: 'table', component: HydrogenInducedDelayedFractureTableComponent },
+//           { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent  },
+//           { path: 'report', component: ReportComponent  },
+//           { path: 'typical-part', component:TypicalPartComponent },
           
-        ]  
-      },
-      { 
-        path: 'welding', component:WeldingComponent,
-        children:[
-          { path: 'table', component: WeldingTableComponent },
-          { path: 'picture', component:  WeldingPictureComponent   },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'welding', component:WeldingComponent,
+//         children:[
+//           { path: 'table', component: WeldingTableComponent },
+//           { path: 'picture', component:  WeldingPictureComponent   },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component:  TypicalPartComponent  },
          
-        ]  
-      },
-      { 
-        path: 'cementing', component:CementingComponent ,
-        children:[
-          { path: 'table', component:CementingTableComponent },
-          { path: 'picture', component:  CementingPictureComponent     },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component: TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'cementing', component:CementingComponent ,
+//         children:[
+//           { path: 'table', component:CementingTableComponent },
+//           { path: 'picture', component:  CementingPictureComponent     },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component: TypicalPartComponent  },
            
-        ]  
-      },
-      { 
-        path: 'painting', component:PaintingComponent ,
-        children:[
-          { path: 'table', component:PaintingTableComponent},
-          { path: 'picture', component:  PaintingPictureComponent   },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  TypicalPartComponent   },
+//         ]  
+//       },
+//       { 
+//         path: 'painting', component:PaintingComponent ,
+//         children:[
+//           { path: 'table', component:PaintingTableComponent},
+//           { path: 'picture', component:  PaintingPictureComponent   },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component:  TypicalPartComponent   },
           
-        ]  
-      },
-      { 
-        path: 'fld', component:FLDComponent ,
-        children:[
-          { path: 'table', component:FldTableComponent },
-          { path: 'picture', component:  FldPictureComponent     },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component:  TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'fld', component:FLDComponent ,
+//         children:[
+//           { path: 'table', component:FldTableComponent },
+//           { path: 'picture', component:  FldPictureComponent     },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component:  TypicalPartComponent  },
           
-        ]  
-      },
-      { 
-        path: 'rebound', component:ReboundComponent ,
-        children:[
-          { path: 'table', component:ReboundTableComponent },
-          { path: 'picture', component:  ReboundPictureComponent     },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component: TypicalPartComponent },
+//         ]  
+//       },
+//       { 
+//         path: 'rebound', component:ReboundComponent ,
+//         children:[
+//           { path: 'table', component:ReboundTableComponent },
+//           { path: 'picture', component:  ReboundPictureComponent     },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component: TypicalPartComponent },
          
-        ]  
-      },
-      { 
-        path: 'bake-hardening', component:BakeHardeningComponent  ,
-        children:[
-          { path: 'table', component: BakeHardeningTableComponent  },
-          { path: 'picture', component:  BakeHardeningPictureComponent  },
-          { path: 'report', component:  ReportComponent   },
-          { path: 'typical-part', component: TypicalPartComponent  },
+//         ]  
+//       },
+//       { 
+//         path: 'bake-hardening', component:BakeHardeningComponent  ,
+//         children:[
+//           { path: 'table', component: BakeHardeningTableComponent  },
+//           { path: 'picture', component:  BakeHardeningPictureComponent  },
+//           { path: 'report', component:  ReportComponent   },
+//           { path: 'typical-part', component: TypicalPartComponent  },
           
-        ]  
-      },
-      { 
-        path: 'surface-property', component:SurfacePropertyComponent   ,
-        children:[
-          { path: 'table', component: SurfacePropertyTableComponent },
-          { path: 'picture', component:  SurfacePropertyPictureComponent  },
-          { path: 'report', component:  ReportComponent  },
-          { path: 'typical-part', component: TypicalPartComponent },
+//         ]  
+//       },
+//       { 
+//         path: 'surface-property', component:SurfacePropertyComponent   ,
+//         children:[
+//           { path: 'table', component: SurfacePropertyTableComponent },
+//           { path: 'picture', component:  SurfacePropertyPictureComponent  },
+//           { path: 'report', component:  ReportComponent  },
+//           { path: 'typical-part', component: TypicalPartComponent },
          
-        ]  
-      },
-      { 
-        path: 'applications/:car', component:ApplicationsComponent   ,
+//         ]  
+//       },
+//       { 
+//         path: 'applications/:car', component:ApplicationsComponent   ,
         
-      },
-      { 
-        path: 'simulationCard', component:SimulationCardComponent   ,
+//       },
+//       { 
+//         path: 'simulationCard', component:SimulationCardComponent   ,
         
-      },
+//       },
   
 
-  ]},
+//   ]},
 
-  // { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
-  // { path: 'attribute-constract', component:PageAttributeConstractComponent},
-  // { path: 'material-fake', component:PageMaterialFakeComponent},
-  // { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
-  // { path: 'system-manage', component:PageSystemManageComponent },
-  // { path: 'factory', component: FormFactoryListComponent },
-  // { path: 'typicalpart', component: FormTypicpartListComponent },
-  // { path: 'material-trial', component: PageMaterialTrialComponent },
-  // { path: 'materialss', component: FormMateriaListComponent },
-  { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
-  { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
-  { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
+//   // { path: 'report-fullscreen', component:PageDisplayReportFsComponent},
+//   // { path: 'attribute-constract', component:PageAttributeConstractComponent},
+//   // { path: 'material-fake', component:PageMaterialFakeComponent},
+//   // { path: 'material-floating-box', component:PageMaterialFloatingBoxComponent},
+//   // { path: 'system-manage', component:PageSystemManageComponent },
+//   // { path: 'factory', component: FormFactoryListComponent },
+//   // { path: 'typicalpart', component: FormTypicpartListComponent },
+//   // { path: 'material-trial', component: PageMaterialTrialComponent },
+//   // { path: 'materialss', component: FormMateriaListComponent },
+//   { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
+//   { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
+//   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
 
 
-]
+// ]
 
 // routes.push
 
