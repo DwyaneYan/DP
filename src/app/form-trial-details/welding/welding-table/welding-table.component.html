@@ -1,6 +1,6 @@
 <div class="dataTable">
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" id="{{data.table}}" [nzScroll]="data.nzScroll"
-    *ngFor="let data of table" nzBordered>
+    *ngFor="let data of table;let tableIdx=index" nzBordered [class]="tableIdx==0?'layout-fixed mt25':'mt25'">
     <thead>
       <tr>
         <th nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
@@ -8,7 +8,10 @@
     </thead>
     <tbody>
       <tr>
-        <td *ngFor="let data1 of data.key">{{ trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
+        <td [nzBreakWord]="tableIdx!==0" *ngFor="let data1 of data.key;let tdIdx = index"
+          [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :'ellipsis'"
+          (click)="clickItem(tableIdx==0,tdIdx)">
+          {{ trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
       </tr>
     </tbody>
   </nz-table>

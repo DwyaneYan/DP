@@ -1,4 +1,4 @@
-<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{x:'1400px' }">
+<nz-table class="mt25 layout-fixed" [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzScroll]="{x:'1400px' }">
     <thead>
         <tr>
             <th nzWidth="200px" *ngFor="let data1 of table1">{{data1}}</th>
@@ -6,7 +6,8 @@
     </thead>
     <tbody>
         <tr>
-            <td *ngFor="let data2 of table2">
+            <td *ngFor="let data2 of table2;let tdIdx = index" [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'"
+                (click)="clickItem(tdIdx)">
                 {{trialDataDetail[0]?trialDataDetail[0][data2]:''}}
             </td>
         </tr>
