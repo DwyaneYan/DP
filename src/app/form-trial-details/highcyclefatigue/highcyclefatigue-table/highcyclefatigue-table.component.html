@@ -1,52 +1,53 @@
 <div class="dataTable">
-  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1800px' }"
- nzBordered>
-    <thead >
+  <nz-table class="mt25 layout-fixed" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1800px' }" nzBordered>
+    <thead>
       <tr>
         <th nzWidth="200px" *ngFor="let data1 of table[0].one">{{data1}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr >
-        <td *ngFor="let data1 of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
+      <tr>
+        <td *ngFor="let data1 of table[0].key;let tdIdx = index"
+          [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
+          {{trialDataDetail[0]?trialDataDetail[0][data1]:''}}
+        </td>
       </tr>
     </tbody>
-</nz-table>
-<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false"  nzBordered>
-  <thead >
-    <tr>
-      <th nzWidth="{{table[1].width[i]}}" *ngFor="let data1 of table[1].one;let i=index">{{data1}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td *ngFor="let data1 of table[1].key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
-    </tr>
-  </tbody>
-</nz-table>
-<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
-  <thead >
-    <tr>
-      <th nzWidth="200px" *ngFor="let data1 of table[2].one">{{data1}}</th>
-    </tr>
-  </thead>
-  <tbody  >
-    <tr *ngFor="let data5 of two;let i=index" >
-      <td [attr.rowspan]="i === 0 ? two.length : 1"  *ngIf="i==0">{{mater[0]}}</td>
-      <td *ngFor="let data1 of table[2].key">{{data5[data1]}}</td>
-    </tr>
-  </tbody>
-</nz-table>
-<nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
-  <thead >
-    <tr>
-      <th nzWidth="200px" *ngFor="let data1 of table[3].one">{{data1}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data5 of trialDataDetails" >
-      <td  *ngFor="let data1 of table[3].key">{{data5[data1]}}</td>
-    </tr>
-  </tbody>
-</nz-table>
-    
+  </nz-table>
+  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <thead>
+      <tr>
+        <th nzWidth="{{table[1].width[i]}}" *ngFor="let data1 of table[1].one;let i=index">{{data1}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngFor="let data1 of table[1].key">{{trialDataDetail[0]?trialDataDetail[0][data1]:''}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <thead>
+      <tr>
+        <th nzWidth="200px" *ngFor="let data1 of table[2].one">{{data1}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data5 of two;let i=index">
+        <td [attr.rowspan]="i === 0 ? two.length : 1" *ngIf="i==0">{{mater[0]}}</td>
+        <td *ngFor="let data1 of table[2].key">{{data5[data1]}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <thead>
+      <tr>
+        <th nzWidth="200px" *ngFor="let data1 of table[3].one">{{data1}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data5 of trialDataDetails">
+        <td *ngFor="let data1 of table[3].key">{{data5[data1]}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
