@@ -406,6 +406,7 @@ for(let a=0;a<length;a++){
 }
 
 
+console.log(allRoutes[4].children)
 
 allRoutes[4].children = allRoutes[4].children.filter(function(item) {
   return item != undefined

@@ -4,7 +4,7 @@
     <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)" [(nzFileList)]="nzFileList" class='buttonDownload'>
         <button nz-button *ngIf="FormExperimentalItemComponent.button('uploadCard')"><i nz-icon nzType="upload" ></i>上传仿真卡片</button>
     </nz-upload>
-    <button nz-button (click)="showModal()" class='buttonDownload'><span>下载仿真卡片</span></button>
+    <button nz-button (click)="showModal()" class='buttonDownload' *ngIf="FormExperimentalItemComponent.button('downLoadkFile')"><span>下载k文件</span></button>
 </div>
 <div class="mt25">
     <h2 class="title">点击下载文件:</h2>
@@ -13,7 +13,7 @@
         <ng-template ngFor let-data1 [ngForOf]="data[item]" let-i="index">
             <div *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock" style="margin-top:15px">
                 <a nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
-{{data1}}</a>
+                  {{data1}}</a>
             </div>
             <ng-template #elseBlock>{{data1}}<br><br></ng-template>
         </ng-template>

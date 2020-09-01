@@ -80,48 +80,28 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     this.Allmaterial();
 
   }
-  // menu = [{ name: "静态拉伸", children: ['jtls1', 'jtls2', 'jtls3'], luyou: 'static-tension-home' },
-  // { name: "压缩", children: ['ys1', 'ys2', 'ys3'], luyou: "compression" },
-  // { name: "金相", children: ['jx1', 'jx2', 'jx3'], luyou: "metallographic" },
-  // { name: "物理性能", children: ['wlxn1', 'wlxn2', 'wlxn3'], luyou: "physicalperformance" },
-  // { name: "化学成分", children: ['hxcf1', 'hxcf2', 'hxcf3'], luyou: 'chemicalelement' },
-  // { name: "禁用物质", children: ['jywz1', 'jywz2', 'jywz3'], luyou: 'prohibited-substance' },
-  // { name: "表面性能", children: ['bmxn1', 'bmxn2', 'bmxn3'], luyou: 'surface-property' },
-  // { name: "烘烤硬化", children: ['hkyh1', 'hkyh2', 'hkyh3'], luyou: 'bake-hardening' },
-  // { name: "弯曲", children: ['wq1', 'wq2', 'wq3'], luyou: 'bending' },
-  // { name: "成型极限FLD", children: ['fld1', 'fld2', 'fld3'], luyou: 'fld' },
-  // { name: "抗凹性能", children: ['kaxn1', 'kaxn2', 'kaxn3'], luyou: 'dent-resistance' },
-  // { name: "翻边扣合性能", children: ['fbkh', 'fbkh2', 'fbkh3'], luyou: 'flanging-clasp' },
-  // { name: "焊接性能", children: ['hjxn1', 'hjxn2', 'hjxn3'], luyou: 'welding' },
-  // { name: "胶结性能", children: ['jjxn1', 'jjxn2', 'jjxn3'], luyou: 'cementing' },
-  // { name: "涂装性能", children: ['tzxn1', 'tzxn2', 'tzxn3'], luyou: 'painting' },
-  // { name: "回弹性能", children: ['htxn1', 'htxn2', 'htxn3'], luyou: 'rebound' },
-  // { name: "二次加工脆性", children: ['ecjgcx1', 'ecjgcx2', 'ecjgcx3'], luyou: 'secondary-working-embrittlement' },
-  // { name: "氢致延迟开裂", children: ['qzyckl1', 'qzyckl2', 'qzyckl3'], luyou: 'hydrogen-induced-delayed-fracture' },
-  // { name: "高速拉伸", children: ['gsls1', 'gsls2', 'gsls3'], luyou: 'highspeedstrech' },
-  // { name: "低周疲劳", children: ['dzpl1', 'dzpl2', 'dzpl3'], luyou: 'lowcyclefatigue' },
-  // { name: "高周疲劳", children: ['gzpl1', 'gzpl2', 'gzpl3'], luyou: 'highcyclefatigue' }]
-  menu=[{name:"static-tension-home",children:['jtls1','jtls2','jtls3'],luyou:'static-tension-home',},
-  {name:"compression",children:['ys1','ys2','ys3'],luyou:"compression"},
-  {name:"metallographic",children:['jx1','jx2','jx3'],luyou:"metallographic"},
-  {name:"physicalperformance",children:['wlxn1','wlxn2','wlxn3'],luyou:"physicalperformance"},
-  {name:"chemicalelement",children:['hxcf1','hxcf2','hxcf3'],luyou:'chemicalelement'},
-  {name:"prohibited-substance",children:['jywz1','jywz2','jywz3'],luyou:'prohibited-substance'},
-  {name:"surface-property",children:['bmxn1','bmxn2','bmxn3'],luyou:'surface-property'},
-  {name:"bake-hardening",children:['hkyh1','hkyh2','hkyh3'],luyou:'bake-hardening'},
-  {name:"bending",children:['wq1','wq2','wq3'],luyou:'bending'},
-  {name:"fld",children:['fld1','fld2','fld3'],luyou:'fld'},
-  {name:"dent-resistance",children:['kaxn1','kaxn2','kaxn3'],luyou:'dent-resistance'},
-{name: "flanging-clasp",children:['fbkh','fbkh2','fbkh3'],luyou:'flanging-clasp'},
-{name:"welding",children:['hjxn1','hjxn2','hjxn3'],luyou:'welding'},
-{name:"cementing",children:['jjxn1','jjxn2','jjxn3'],luyou:'cementing'},
-{name:"painting",children:['tzxn1','tzxn2','tzxn3'],luyou:'painting'},
-{name:"rebound",children:['htxn1','htxn2','htxn3'],luyou:'rebound'},
-{name:"secondary-working-embrittlement",children:['ecjgcx1','ecjgcx2','ecjgcx3'],luyou:'secondary-working-embrittlement'},
-{name:"hydrogen-induced-delayed-fracture",children:['qzyckl1','qzyckl2','qzyckl3'],luyou:'hydrogen-induced-delayed-fracture'},
-{name:"highspeedstrech",children:['gsls1','gsls2','gsls3'],luyou:'highspeedstrech' },
-{name:"lowcyclefatigue",children:['dzpl1','dzpl2','dzpl3'],luyou:'lowcyclefatigue'},
-{name:"highcyclefatigue",children:['gzpl1','gzpl2','gzpl3'],luyou:'highcyclefatigue'}]
+
+  menu=[{name:"static-tension-home",children:['jtls1','jtls2','jtls3','jtls4'],luyou:'static-tension-home',},
+  {name:"compression",children:['ys1','ys2','ys3','ys4'],luyou:"compression"},
+  {name:"metallographic",children:['jx1','jx2','jx3','jx4'],luyou:"metallographic"},
+  {name:"physicalperformance",children:['wlxn1','wlxn2','wlxn3',,'wlxn4'],luyou:"physicalperformance"},
+  {name:"chemicalelement",children:['hxcf1','hxcf2','hxcf3','hxcf4'],luyou:'chemicalelement'},
+  {name:"prohibited-substance",children:['jywz1','jywz2','jywz3','jywz4'],luyou:'prohibited-substance'},
+  {name:"surface-property",children:['bmxn1','bmxn2','bmxn3','bmxn4'],luyou:'surface-property'},
+  {name:"bake-hardening",children:['hkyh1','hkyh2','hkyh3','hkyh4'],luyou:'bake-hardening'},
+  {name:"bending",children:['wq1','wq2','wq3','wq4'],luyou:'bending'},
+  {name:"fld",children:['fld1','fld2','fld3','fld4'],luyou:'fld'},
+  {name:"dent-resistance",children:['kaxn1','kaxn2','kaxn3','kaxn4'],luyou:'dent-resistance'},
+{name: "flanging-clasp",children:['fbkh','fbkh2','fbkh3','fbkh4'],luyou:'flanging-clasp'},
+{name:"welding",children:['hjxn1','hjxn2','hjxn3','hjxn4'],luyou:'welding'},
+{name:"cementing",children:['jjxn1','jjxn2','jjxn3','jjxn4'],luyou:'cementing'},
+{name:"painting",children:['tzxn1','tzxn2','tzxn3','tzxn4'],luyou:'painting'},
+{name:"rebound",children:['htxn1','htxn2','htxn3','htxn4'],luyou:'rebound'},
+{name:"secondary-working-embrittlement",children:['ecjgcx1','ecjgcx2','ecjgcx3','ecjgcx4'],luyou:'secondary-working-embrittlement'},
+{name:"hydrogen-induced-delayed-fracture",children:['qzyckl1','qzyckl2','qzyckl3','qzyckl4'],luyou:'hydrogen-induced-delayed-fracture'},
+{name:"highspeedstrech",children:['gsls1','gsls2','gsls3','gsls4'],luyou:'highspeedstrech' },
+{name:"lowcyclefatigue",children:['dzpl1','dzpl2','dzpl3','dzpl4'],luyou:'lowcyclefatigue'},
+{name:"highcyclefatigue",children:['gzpl1','gzpl2','gzpl3','gzpl4'],luyou:'highcyclefatigue'}]
 
   luyou(listOfAllData, arr) {
     listOfAllData.forEach(data => {
@@ -152,42 +132,14 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         this.trialName.includes("低周疲劳"),
         this.trialName.includes("高周疲劳")
         ]
-        // this.staticTension = 
-        // this.compress = this.trialName.includes("压缩")
-        // this.highspeedTension = this.trialName.includes("高速拉伸")
-        // this.dizhoupilao = this.trialName.includes("低周疲劳")
-        // this.gaozhoupilao = this.trialName.includes("高周疲劳")
-        // this.jinxiang = this.trialName.includes("金相")
-        // this.wulixingneng = this.trialName.includes("物理性能")
-        // this.jinyongwuzhi = this.trialName.includes("禁用物质")
-        // this.biaomianxn = this.trialName.includes("表面性能")
-        // this.bend = this.trialName.includes("弯曲")
-        // this.chemical =  this.trialName.includes("化学成分")
-        // this.kangAoxn = this.trialName.includes("抗凹性能")
-        // this.ercijiagongcx = this.trialName.includes("二次加工脆性")
-        // this.fanbiankouhexn = this.trialName.includes("翻边扣合性能")
-        // this.qingzhiyanchikl = this.trialName.includes("氢致延迟开裂")
-        // this.hanjiexn = this.trialName.includes("焊接性能")
-        // this.jiaojiexn = this.trialName.includes("胶结性能")
-        // this.tuzhuangxn = this.trialName.includes("涂装性能")
-        // this.FLD = this.trialName.includes("成型极限")
-        // this.huitanxn = this.trialName.includes("回弹性能")
-        // this.hongkaoyh = this.trialName.includes("烘烤硬化")
-
-        //   if(this.staticTension&&this.FormExperimentalItemComponent.menu("静态拉伸")){
-        //     if(this.FormExperimentalItemComponent.button("jtls1")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/table`]}
-        //  else if(this.FormExperimentalItemComponent.button("jtls2")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/picture`]}
-        //  else if(this.FormExperimentalItemComponent.button("jtls3")){data.routerLink1=[`/display/${data.materialId}/static-tension-home/report`]}
-        //   else{data.routerLink1=[`/display/${data.materialId}/static-tension-home/typical-part`]}
-
-        //   }
+       
         let length = this.menu.length
         for (let a = 0; a < length; a++) {
           if (arr[a] && this.FormExperimentalItemComponent.button(this.menu[a].name)) {
             if (this.FormExperimentalItemComponent.button(this.menu[a].children[0])) { data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/table`] }
             else if (this.FormExperimentalItemComponent.button(this.menu[a].children[1])) { data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/picture`] }
             else if (this.FormExperimentalItemComponent.button(this.menu[a].children[2])) { data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/report`] }
-            else { data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/typical-part`] }
+            else if (this.FormExperimentalItemComponent.button(this.menu[a].children[3])){ data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/typical-part`] }
             break
           }
         }

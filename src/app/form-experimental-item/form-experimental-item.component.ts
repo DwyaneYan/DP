@@ -187,6 +187,8 @@ else if(this.button(this.menu1[a].children[1])){this.routerLink1[a]=[`/display/$
 else if(this.button(this.menu1[a].children[2])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/report`]}
 else{this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/typical-part`]
   }
+  // this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]
+
 }
 for(let a=0;a<length2;a++){
   this.routerLink2[a]=[]
@@ -195,7 +197,9 @@ else if(this.button(this.menu2[a].children[1])){this.routerLink2[a]=[`/display/$
 else if(this.button(this.menu2[a].children[2])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/report`]}
 else{this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/typical-part`]
   }
+// this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]
 }
+
 for(let a=0;a<length3;a++){
   this.routerLink3[a]=[]
     if(this.button(this.menu3[a].children[0])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/table`]}
@@ -203,8 +207,10 @@ else if(this.button(this.menu3[a].children[1])){this.routerLink3[a]=[`/display/$
 else if(this.button(this.menu3[a].children[2])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/report`]}
 else{this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/typical-part`]
   }
+//  this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]
+
 }
-//onsole.log(this.routerLink)
+
 }
 
 

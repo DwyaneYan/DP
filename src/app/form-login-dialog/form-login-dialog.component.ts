@@ -23,6 +23,8 @@ export class FormLoginDialogComponent implements OnInit {
   uuid;
   token = "";
   submitForm(): void {
+    console.log(this.validateForm)
+    //校验状态
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -45,8 +47,8 @@ export class FormLoginDialogComponent implements OnInit {
 
       this.ApiService.login(username, password, code, uuid).then((res: any) => {
         // this.token=res.token
-        if (res.code == 500) {
-          this.message.create("error", "认证失败，无法访问系统");
+        if (res.code != 200) {
+          this.message.create("error", "认证失败，无法访问系统资源"); //目前res.msg无信息
           this.getCode();
         } else {
           // this.ApiService.setToken(res.token)
@@ -86,8 +88,7 @@ export class FormLoginDialogComponent implements OnInit {
             console.log(res);
           });
         }
-        // let storage = window.sessionStorage;
-        //     storage.setItem('token', this.token);
+
       });
     }
   }
@@ -110,6 +111,7 @@ export class FormLoginDialogComponent implements OnInit {
     //   remember: [false],
     // });
     //  debugger;
+    this.getCookie();
     this.getCode();
     //this.getCookie();
 
@@ -120,8 +122,6 @@ export class FormLoginDialogComponent implements OnInit {
      this.ApiService.getCodeImg().then((res: any) => {
       this.codeUrl = "data:image/gif;base64," + res.img;
       this.uuid = res.uuid;
-      this.getCookie();
-
     });
   }
 
