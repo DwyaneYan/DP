@@ -1,6 +1,6 @@
 <div class="dataTable">
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered *ngFor="let data of table">
-    <thead >
+    <thead>
       <tr>
         <th nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
       </tr>
@@ -10,6 +10,6 @@
         <td *ngFor="let data1 of data.key">{{detail[data1]}}</td>
       </tr>
     </tbody>
-</nz-table>
+  </nz-table>
 
 </div>

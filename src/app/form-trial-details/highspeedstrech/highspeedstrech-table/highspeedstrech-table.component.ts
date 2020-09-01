@@ -89,6 +89,8 @@ export class HighspeedstrechTableComponent implements OnInit {
   // options;
   options = { options: {} };
   isVisible = { isVisible: false };
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
   contrastTable(params, des, one) {
     let data = [];
     console.log(data);
@@ -282,5 +284,14 @@ export class HighspeedstrechTableComponent implements OnInit {
       }
     });
     return arr;
+  }
+  //点击行中的列项展开信息
+  clickItem(tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }
