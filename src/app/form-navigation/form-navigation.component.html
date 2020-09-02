@@ -8,11 +8,15 @@
         <ul id="one" class="navigation-list">
             <li class="navigation-item"><a routerLink="/material">首页</a></li>
             <li class="navigation-item">
-                <a href="http://car.typeo.org/view/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca">整车模型</a>
+                <a href="http://localhost:4280/car-type?type=hangang" target="_blank">整车模型</a>
             </li>
             <li class="navigation-item">
-                <a href="http://yx2605166.china-g.com/">联系我们</a></li>
-            <li class="navigation-item"><a href="javascript;">帮助</a></li>
+                <a href="http://www.hgjt.cn/" target="_blank">联系我们</a></li>
+            <li class="navigation-item">
+                <!-- <a routerLink="/userManual">帮助</a> -->
+                <!-- <a href="邯钢汽车用钢数据信息化平台使用手册.pdf">帮助</a> -->
+                <a (click)="openPDF()">帮助</a>
+            </li>
             <li class="navigation-item" *ngIf="system">
                 <a target="_blank" (click)="checkToken()">系统管理</a>
                 <!-- <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template> -->

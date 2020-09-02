@@ -33,7 +33,7 @@ userName = ''
 //     this.ApiService.getInfo(httpOptions).then((res:any)=>{
 // console.log( res.roles)
 let res=JSON.parse(sessionStorage.getItem("permissions"))
-      if(res.roles.indexOf('hg')!=-1 || res.roles.indexOf('admin')!=-1){     //permissions的roles中包含wy才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
+      if(res.roles.indexOf('adminHG')!=-1 || res.roles.indexOf('admin')!=-1){     //permissions的roles中包含权限字符adminHG或者admin才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
         this.system=true
             }else{
               this.system = false
@@ -114,5 +114,11 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
   // this.router.parseUrl("/login")
   )
 //location.reload()
+  }
+  openPDF(){
+    window.open(
+              "../../../assets/邯钢汽车用钢数据信息化平台使用手册.pdf" ,
+              "_blank"
+            );
   }
 }

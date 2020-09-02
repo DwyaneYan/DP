@@ -129,6 +129,8 @@ import { ReportComponent } from './report/report.component';
 import { LoginGuardService } from './login-guard.service'
 import { Page404Component } from './page404/page404.component'
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
+// import { PageUsermanualComponent } from './page-usermanual/page-usermanual.component';
+
 // import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 
 
@@ -361,6 +363,8 @@ let allRoutes =[
         path: 'simulationCard', component:SimulationCardComponent   , 
       }
   ]},
+  // { path: 'userManual', component: PageUsermanualComponent,canActivate: [LoginGuardService]},
+
   { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
   { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
