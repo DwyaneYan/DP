@@ -2,36 +2,36 @@
     <nz-form-item>
         <nz-form-control nzErrorTip="用户名不能为空">
             <nz-input-group nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="userName" placeholder="账号" />
+                <input type="text" nz-input formControlName="userName" placeholder="请输入账号" />
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-control nzErrorTip="密码不能为空">
             <nz-input-group nzPrefixIcon="lock">
-                <input type="password" nz-input formControlName="password" placeholder="密码" />
+                <input type="password" nz-input formControlName="password" placeholder="请输入密码" />
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-control nzErrorTip="验证码不能为空">
 
-            <nz-input-group style="width:60%">
-                <input type="text" nz-input formControlName="code" placeholder="验证码" />
+            <nz-input-group class="login-code">
+                <input type="text" nz-input formControlName="code" placeholder="请输入验证码" />
             </nz-input-group>
-            <div style="float:right;width:33%">
-                <img [src]="codeUrl" (click)='getCode()'>
+            <div class="code-image">
+                <img [src]="codeUrl" (click)='getCode()' width="100%" height="46">
             </div>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-control>
             <label nz-checkbox formControlName="remember">
-            <span>记住密码</span>
-          </label>
+                <span>记住密码</span>
+            </label>
         </nz-form-control>
     </nz-form-item>
 
-    <button nz-button [nzType]="primary" style="width:100%;background-color:#46a6ff;color:white">立即登录</button>
+    <button nz-button [nzType]="primary" class="login-button">登录</button>
 
 </form>

@@ -11,5 +11,32 @@
 }
      */
 nz-form-item {
-margin-bottom:5px
-     }
+  margin-bottom: 5px
+}
+
+.login-code {
+  width: 150px;
+}
+
+.login-code .ant-input {
+  padding-left: 35px;
+  background: url("../../assets/images/icon-code.png") no-repeat 10px center;
+}
+
+.code-image {
+  height: 46px;
+  width: 90px;
+  float: right;
+}
+
+.code-image img {
+  border-radius: 6px;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #468cf5;
+  color: #fff;
+  height: 48px;
+  border-radius: 6px;
+}

@@ -62,12 +62,6 @@
   border: 1px dashed #0d95f0;
 }
 
-.model-list .model-item:last-child .model-name {
-  color: #0d95f0;
-  margin-top: 10px;
-  font-size: 16px;
-}
-
 .model-list .model-item:last-child .anticon {
   font-size: 30px;
 }

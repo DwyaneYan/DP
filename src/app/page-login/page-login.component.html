@@ -1,12 +1,16 @@
-
- <div id="login">
+<div id="login">
     <!-- <app-form-navigation></app-form-navigation> -->
 
     <div id="login-dialog">
- <!-- </div> -->
-        <div id="form">
+        <div class="login-logo"><img src="../../assets/images/navigation-logo.png" /></div>
+        <nz-carousel class="login-swipper" [nzEffect]="'fade'" [nzAutoPlay]="true" [nzDots]="false">
+            <div nz-carousel-content *ngFor="let image of images">
+                <img [src]="image" alt="" width="1200" height="600">
+            </div>
+        </nz-carousel>
+        <div class="form">
+            <div class="login-title">欢迎登录</div>
             <app-form-login-dialog></app-form-login-dialog>
         </div>
     </div>
 </div>
-
