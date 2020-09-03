@@ -40,7 +40,10 @@ export class FormAddCarComponent implements OnInit,OnChanges {
   this.profileForm.reset();
   this.isVisible = false;
   this.button=true;
-  this.outer1.emit(this.isVisible)
+  this.outer1.emit(this.isVisible);
+  this.nzFileList = [];
+  this.nzFileList1 = [];
+
 }
 formData =new FormData();
 ngOnChanges(changes: SimpleChanges) {

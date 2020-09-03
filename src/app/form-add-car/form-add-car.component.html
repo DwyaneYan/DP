@@ -1,62 +1,44 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="添加车型" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()"
->
- <form nz-form  [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
-     <nz-form-item>
-         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="carName">车型名称</nz-form-label>
-         <nz-form-control nzErrorTip="请输入车型名称" [nzSm]="14" [nzXs]="24" >
-            <input formControlName="carName" nz-input placeholder="车型名称" />
- </nz-form-control>
- </nz-form-item>
- <nz-form-item>
-     <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="jiankuang">简况</nz-form-label>
-     <nz-form-control [nzSm]="14" [nzXs]="24">
-         <textarea rows="4" nz-input formControlName="jiankuang"></textarea>
-</nz-form-control>
-</nz-form-item>
-<nz-form-item>
- <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="lingjian">供货零件名称</nz-form-label>
- <nz-form-control [nzSm]="14" [nzXs]="24">
-     <textarea rows="4" nz-input formControlName="lingjian"></textarea>
-</nz-form-control>
-</nz-form-item>
-<nz-form-item>
- <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="yaoqiu">要求</nz-form-label>
- <nz-form-control [nzSm]="14" [nzXs]="24">
-     <textarea rows="4" nz-input formControlName="yaoqiu"></textarea>
-</nz-form-control>
-</nz-form-item>
-<nz-form-item>
- <nz-form-control [nzOffset]="4" [nzSpan]="10">
-   <button nz-button nzType="primary" [disabled]="!profileForm.valid">提交</button>
-   <button nz-button (click)="resetForm($event)" style="margin-left:20px">重置</button>
- </nz-form-control>
-</nz-form-item>
- 
- </form>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="添加车型信息" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()">
+    <form nz-form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="carName">车型名称</nz-form-label>
+            <nz-form-control nzErrorTip="请输入车型名称" [nzSm]="14" [nzXs]="24">
+                <input formControlName="carName" nz-input placeholder="车型名称" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="jiankuang">简况</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea rows="4" nz-input formControlName="jiankuang"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lingjian">供货零件名称</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea rows="4" nz-input formControlName="lingjian"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="yaoqiu">要求</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea rows="4" nz-input formControlName="yaoqiu"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzOffset]="4" [nzSpan]="10">
+                <button nz-button nzType="primary" [disabled]="!profileForm.valid">提交</button>
+                <button nz-button (click)="resetForm($event)" style="margin-left:20px">重置</button>
+            </nz-form-control>
+        </nz-form-item>
+
+    </form>
 
 
-     <nz-upload 
-     [nzCustomRequest]='customRequestOne'
-     [nzAction]="maUrl1"
-     (nzChange)="handleChange($event)"        
-     [nzDisabled]='button'
-     (click)='createBasicMessage()'
-     [(nzFileList)]="nzFileList"
-     [nzBeforeUpload]="beforeUpload1"
-   >
-   <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
-</nz-upload>
-<nz-upload id='file'
+    <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl1" (nzChange)="handleChange($event)" [nzDisabled]='button' (click)='createBasicMessage()' [(nzFileList)]="nzFileList" [nzBeforeUpload]="beforeUpload1">
+        <button nz-button><i nz-icon nzType="upload" ></i>上传图片</button>
+    </nz-upload>
+    <nz-upload id='file' [nzCustomRequest]='customRequestTwo' [nzAction]="maUrl2" (nzChange)="handleChange1($event)" [nzDisabled]='button' (click)='createBasicMessage()' [(nzFileList)]="nzFileList1" [nzBeforeUpload]="beforeUpload2">
+        <button nz-button><i nz-icon nzType="upload" ></i>上传文件</button>
+    </nz-upload>
 
-[nzCustomRequest]='customRequestTwo'
-[nzAction]="maUrl2"
-(nzChange)="handleChange1($event)"
-     [nzDisabled]='button'
-     (click)='createBasicMessage()'
-     [(nzFileList)]="nzFileList1"
-     [nzBeforeUpload]="beforeUpload2"
-   >
-   <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
-</nz-upload>
-
-   </nz-modal>
+</nz-modal>

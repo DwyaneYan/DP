@@ -1,54 +1,41 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="修改车型信息" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()">
+    <div>
+        <div style="float:left;padding:6px 0px;margin-left:48px">车型名称:</div>
+        <input style="width:60%;float:left;margin-left:10px" [(ngModel)]="value" nz-input [disabled]="true" /></div>
+    <form nz-form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="jiankuang">简况</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea rows="4" nz-input formControlName="jiankuang"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lingjian">供货零件名称</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea rows="4" nz-input formControlName="lingjian"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="yaoqiu">要求</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea rows="4" nz-input formControlName="yaoqiu"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzOffset]="4" [nzSpan]="10" class="last">
+                <button nz-button nzType="primary">修改</button>
+                <!-- <button nz-button (click)="resetForm($event)" style="margin-left:20px">重置</button> -->
+            </nz-form-control>
+        </nz-form-item>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="添加车型" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()"
->
-<div>
-  <div style="float:left;padding:6px 0px;margin-left:48px">车型名称:</div>
-<input style="width:60%;float:left;margin-left:10px" [(ngModel)]="value" nz-input  [disabled]="true" /></div>
- <form nz-form  [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
- <nz-form-item>
-     <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="jiankuang">简况</nz-form-label>
-     <nz-form-control [nzSm]="14" [nzXs]="24">
-         <textarea rows="4" nz-input formControlName="jiankuang" ></textarea>
-</nz-form-control>
-</nz-form-item>
-<nz-form-item>
- <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="lingjian">供货零件名称</nz-form-label>
- <nz-form-control [nzSm]="14" [nzXs]="24">
-     <textarea rows="4" nz-input formControlName="lingjian" ></textarea>
-</nz-form-control>
-</nz-form-item>
-<nz-form-item>
- <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="yaoqiu" >要求</nz-form-label>
- <nz-form-control [nzSm]="14" [nzXs]="24">
-     <textarea rows="4" nz-input formControlName="yaoqiu" ></textarea>
-</nz-form-control>
-</nz-form-item>
-<nz-form-item>
- <nz-form-control [nzOffset]="4" [nzSpan]="10" class="last">
-   <button nz-button nzType="primary" >修改</button>
-   <!-- <button nz-button (click)="resetForm($event)" style="margin-left:20px">重置</button> -->
- </nz-form-control>
-</nz-form-item>
- 
- </form>
+    </form>
 
 
-     <nz-upload
-     [nzCustomRequest]='customRequestOne'
-     [nzAction]="maUrl1"
-     (nzChange)="handleChange($event)"        
-     [nzBeforeUpload]="formAddCarComponent.beforeUpload1"
-   >
-   <button nz-button ><i nz-icon nzType="upload" ></i>上传图片</button>
-</nz-upload>
-<nz-upload id='file'
+    <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl1" (nzChange)="handleChange($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload1">
+        <button nz-button><i nz-icon nzType="upload" ></i>上传图片</button>
+    </nz-upload>
+    <nz-upload id='file' [nzCustomRequest]='customRequestTwo' [nzAction]="maUrl2" (nzChange)="handleChange1($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload2">
+        <button nz-button><i nz-icon nzType="upload" ></i>上传文件</button>
+    </nz-upload>
 
-[nzCustomRequest]='customRequestTwo'
-[nzAction]="maUrl2"
-(nzChange)="handleChange1($event)"
-[nzBeforeUpload]="formAddCarComponent.beforeUpload2"
-   >
-   <button nz-button ><i nz-icon nzType="upload" ></i>上传文件</button>
-</nz-upload>
-
-   </nz-modal>
+</nz-modal>

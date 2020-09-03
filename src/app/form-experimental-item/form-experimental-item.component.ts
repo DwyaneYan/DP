@@ -92,7 +92,7 @@ carid//此id
   menu2=[{name:"bending",children:['wq1','wq2','wq3','wq4'],luyou:'bending',names:"弯曲"},
   {name:"fld",children:['fld1','fld2','fld3','fld4'],luyou:'fld',names:"成型极限FLD"},
   {name:"dent-resistance",children:['kaxn1','kaxn2','kaxn3','kaxn4'],luyou:'dent-resistance',names:"抗凹性能"},
-{name: "flanging-clasp",children:['fbkh','fbkh2','fbkh3','fbkh4'],luyou:'flanging-clasp',names:"翻边扣合性能"},
+{name: "flanging-clasp",children:['fbkh1','fbkh2','fbkh3','fbkh4'],luyou:'flanging-clasp',names:"翻边扣合性能"},
 {name:"welding",children:['hjxn1','hjxn2','hjxn3','hjxn4'],luyou:'welding',names:"焊接性能"},
 {name:"cementing",children:['jjxn1','jjxn2','jjxn3','jjxn4'],luyou:'cementing',names:"胶结性能"},
 {name:"painting",children:['tzxn1','tzxn2','tzxn3','tzxn4'],luyou:'painting',names:"涂装性能"},
