@@ -61,7 +61,7 @@ this.ApiService.getAllPart().then((res:any)=>{
     //目前只能获取到这条材料第一次绑定的零件信息
     this.ApiService.getPart(this.materialId).then((res:any)=>{
         if(res.ProjectId)
-    {window.open(`http://localhost:4280/car-model?carModelId=${res.ProjectId}&type=hangang&directoryId=${res.directoryId}&filterName=${res.Name}`)}
+    {window.open(`http://10.130.161.173:80/car-model?carModelId=${res.ProjectId}&type=hangang&directoryId=${res.directoryId}&filterName=${res.Name}`)}
     else{
       this.message.info('请先绑定零件');
     }

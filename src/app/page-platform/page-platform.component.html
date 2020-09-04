@@ -21,22 +21,19 @@
         <nz-divider></nz-divider>
         <ul class="model-list">
             <li class="model-item">
-                <a href="http://localhost:4280/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang"
-                    target="_blank">
+                <a href="http://10.130.161.173:80/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang" target="_blank">
                     <img src="../../assets/images/jiaoche.png" alt="" width="159" height="105">
                     <div class="model-name">轿车</div>
                 </a>
             </li>
             <li class="model-item">
-                <a href="http://localhost:4280/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang"
-                    target="_blank">
+                <a href="http://10.130.161.173:80/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang" target="_blank">
                     <img src="../../assets/images/suv.png" alt="" width="159" height="105">
                     <div class="model-name">SUV</div>
                 </a>
             </li>
             <li class="model-item">
-                <a href="http://localhost:4280/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang"
-                    target="_blank">
+                <a href="http://10.130.161.173:80/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang" target="_blank">
                     <img src="../../assets/images/shangyongche.png" alt="" width="159" height="105">
                     <div class="model-name">商用车</div>
                 </a>
@@ -88,12 +85,10 @@
                     <i class="icon-import"></i>
                     导入数据
                 </button>
-                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-                    nzMaskClosable=false [nzFooter]=null>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false [nzFooter]=null>
                     <div id="text-xzwj">
                         <br /> 选择文件:
-                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
-                            [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
+                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true' [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
                             <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                         </nz-upload>
                     </div>
@@ -107,12 +102,9 @@
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     添加推荐材料
                 </button>
-                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()"
-                    (nzOnOk)="handleOk()" nzMaskClosable=false>
-                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"
-                        nzPlaceHolder="添加推荐材料"></nz-cascader>
-                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)"
-                        [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
+                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false>
+                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
+                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)" [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
                         &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon
                                 nzType="upload"></i>上传材料图片</button>
                     </nz-upload>
@@ -131,8 +123,7 @@
         <!-- 材料列表 START -->
         <div class="model-list">
             <div class="material-item" *ngFor="let material of addlist">
-                <div class="material-delete" (click)="shanchutj(material.id)"
-                    *ngIf="FormExperimentalItemComponent.button('hg-home-deletetj')">
+                <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="FormExperimentalItemComponent.button('hg-home-deletetj')">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
                 <a [routerLink]="material.routerLink1">
