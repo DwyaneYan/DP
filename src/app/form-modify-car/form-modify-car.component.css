@@ -1,16 +1,30 @@
-form{
-    margin-top:60px
+form {
+  margin-top: 60px
 }
-nz-upload{
-    float:left;
-    margin-left:20px;
-    position: relative;
-    top: -60px;
-    left:210px
+
+nz-upload {}
+
+.upload-list /deep/ .ant-upload-list-item {
+  width: 50%;
+  float: left;
+
 }
-.last /deep/ .ant-form-item-control{
-    left:40px
+
+.last /deep/ .ant-form-item-control {
+  left: 40px
 }
+
 nz-upload /deep/.ant-upload-list-item-info {
-    width:100px
-} 
+  width: 100%;
+}
+
+.upload-form {
+  margin-bottom: 30px;
+}
+
+.upload-form .upload-label {
+  text-align: right;
+  line-height: 30px;
+  padding-right: 5px;
+  color: #333;
+}

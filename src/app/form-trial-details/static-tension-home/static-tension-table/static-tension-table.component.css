@@ -4,7 +4,7 @@
   padding: 8px 0;
 }
 
-.dataTable>.ant-table-thead>tr>th {
+.dataTable.ant-table-thead>tr>th {
   text-align: center;
 }
 
