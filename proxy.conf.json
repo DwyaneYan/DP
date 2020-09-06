@@ -1,13 +1,13 @@
 {
     "/api": {
-        "target": "http://localhost:60001",
+        "target": "http://218.70.10.201:60001",
         "secure": false
     },
-    "/devhg-api": {
-        "target": "http://localhost:8080",
+    "/devhg-api/": {
+        "target": "http://218.70.10.201:28080",
         "secure": false,
         "pathRewrite": {
-            "^/devhg-api": ""
+            "^/devhg-api/": ""
         }
     }
 }

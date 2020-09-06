@@ -1,19 +1,27 @@
 <app-base-info [materialId]="materialId">
 </app-base-info>
-<div class="mt25">
-    <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)" [(nzFileList)]="nzFileList" class='buttonDownload'>
-        <button nz-button *ngIf="FormExperimentalItemComponent.button('uploadCard')"><i nz-icon nzType="upload" ></i>上传仿真卡片</button>
-    </nz-upload>
-    <button nz-button (click)="showModal()" class='buttonDownload' *ngIf="FormExperimentalItemComponent.button('downLoadkFile')"><span>下载k文件</span></button>
+<div class="mt25 button-list">
+    <span class="title">点击下载文件:</span>
+    <div class="button-item">
+        <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)"
+            [(nzFileList)]="nzFileList" class='buttonDownload'>
+            <button nz-button nzShape="round" *ngIf="FormExperimentalItemComponent.button('uploadCard')">
+                <i nz-icon nzType="upload"></i>
+                上传仿真卡片
+            </button>
+        </nz-upload>
+        <button nz-button nzShape="round" nztype="primary" (click)="showModal()" class='buttonDownload'
+            *ngIf="FormExperimentalItemComponent.button('downLoadkFile')"><span>下载k文件</span></button>
+    </div>
 </div>
-<div class="mt25">
-    <h2 class="title">点击下载文件:</h2>
-    <div style="float:left;margin-left:50px;margin-top:10px;width:250px;height:350px;overflow:auto" *ngFor="let item of after">
+<div class="mt20 download-list">
+    <div class="download-item" *ngFor="let item of after">
         <h3>{{item}}</h3>
         <ng-template ngFor let-data1 [ngForOf]="data[item]" let-i="index">
-            <div *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock" style="margin-top:15px">
-                <a nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
-                  {{data1}}</a>
+            <div class="download-box" *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock">
+                <a class="download-text" nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom"
+                    (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
+                    {{data1}}</a>
             </div>
             <ng-template #elseBlock>{{data1}}<br><br></ng-template>
         </ng-template>
@@ -28,10 +36,12 @@
 {{data}}</a>
 </div> -->
     </div>
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="下载仿真卡片" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]='null'>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="下载仿真卡片" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+        [nzFooter]='null'>
         <div nz-row class="nz-row">
             <div nz-col nzSpan="12">Type12</div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="oneDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="oneDown()">下载</button>
+            </div>
         </div>
         <div class="one"></div>
         <div nz-row class="nz-row">
@@ -64,7 +74,8 @@
                 <nz-input-number [(ngModel)]="type15.cp"></nz-input-number>
             </div>
             <div nz-col nzSpan="12"></div>
-            <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="twoDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="twoDown()">下载</button>
+            </div>
             <!-- 使用formGroup 属性绑定把 type15 绑定到模板中的 form 标签上，
             在 form 标签上，使用 ngSubmit 事件绑定来监听表单提交，并使用 checkoutForm 值调用 onSubmit() 方法。 -->
             <!-- <form nz-form [formGroup]="type15">
@@ -82,21 +93,23 @@
         <div nz-row class="nz-row">
             <div nz-col nzSpan="12">
                 <span>Type24</span>
-                <br/>
+                <br />
                 <span>静态拉伸</span>
 
             </div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;" (click)="threeDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;"
+                    (click)="threeDown()">下载</button></div>
         </div>
         <div class="one"></div>
         <div nz-row class="nz-row">
             <div nz-col nzSpan="12">
                 <span>Type24</span>
-                <br/>
+                <br />
                 <span>高速拉伸</span>
 
             </div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;" (click)="fourDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;"
+                    (click)="fourDown()">下载</button></div>
         </div>
         <div class="one "></div>
         <div nz-row class="nz-row ">
@@ -106,17 +119,20 @@
             <div nz-col nzSpan="12"><span>r</span>&nbsp;&nbsp;&nbsp;
                 <nz-input-number [(ngModel)]="type39.r"></nz-input-number>
             </div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="fiveDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="fiveDown()">下载</button>
+            </div>
         </div>
         <div class="one "></div>
         <div nz-row class="nz-row">
             <div nz-col nzSpan="12">Type81</div>
-            <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="sixDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="sixDown()">下载</button>
+            </div>
         </div>
         <div class="one "></div>
         <div nz-row class="nz-row">
             <div nz-col nzSpan="12">Type100</div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="sevenDown()">下载</button></div>
+            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="sevenDown()">下载</button>
+            </div>
         </div>
     </nz-modal>
 </div>
