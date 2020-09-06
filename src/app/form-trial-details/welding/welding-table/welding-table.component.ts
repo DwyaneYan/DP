@@ -95,10 +95,12 @@ export class WeldingTableComponent implements OnInit {
         // console.log(this.trialDataDetail)
       }
     );
-    this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
-    this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-      "T"
-    )[0];
+    // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
+    // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
+    //   "T"
+    // )[0];
+    this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+    this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
   }
   public async GetTrialDataDetailss() {
     // let materialId = this.materialId

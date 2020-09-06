@@ -57,12 +57,14 @@ export class DentResistanceTableComponent implements OnInit {
     await this.ApiService.getDentResistanceDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split(
-          "T"
-        )[0];
-        this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-          "T"
-        )[0];
+        // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split(
+        //   "T"
+        // )[0];
+        // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
+        //   "T"
+        // )[0];
+        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
         // console.log(this.trialDataDetail)
       }
     );

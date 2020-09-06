@@ -852,5 +852,12 @@ async delMaterials(materialIds){
  })
  return res;
 }
+//处理返回时间的方法
+handleTime(date){
+ return date?date.split(
+    "T"
+  )[0] : ''
+  console.log(date)
+}
 }
 

@@ -18,7 +18,7 @@ export class FlangingClaspTableComponent implements OnInit {
     nzScroll :{x: '1200px' }
 },
 {table:"table2",
-  one:["翻遍等级"],
+  one:["翻边等级"],
   key:["flangingLevel"],
   nzScroll :{x: '200px' }
 ,
@@ -39,8 +39,10 @@ export class FlangingClaspTableComponent implements OnInit {
     await this.ApiService.getFlangingClaspDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
-      this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
-      this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];  
+      // this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
+      // this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];  
+      this.trialDataDetail[0].dates =  this.ApiService.handleTime(this.trialDataDetail[0].dates);
+      this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
     })    
   }
 }

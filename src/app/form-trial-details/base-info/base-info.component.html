@@ -1,12 +1,12 @@
 <div class="info-box" *ngFor="let data of baseInfo">
-  <div class="title">材料牌号{{ data.name }}</div>
-  <div class="detail">
-    <span>卷号：{{ data.reelNumber}}</span>
-    <span>型号规格：(mm){{ data.model}}</span>
-    <span>生产厂家：{{ data.manufactoryName}}</span>
-    <span>材料标准：{{ data.materialStandard?data.materialStandard:"X"}}</span>
-    <!-- <span>检测日期{{ data.date}}</span> -->
-  </div>
+    <div class="title">材料牌号{{ data.name }}</div>
+    <div class="detail">
+        <span>卷号：{{ data.reelNumber}}</span>
+        <span>型号规格(mm)：{{ data.model}}</span>
+        <span>生产厂家：{{ data.manufactoryName}}</span>
+        <span>材料标准：{{ data.materialStandard}}</span>
+        <!-- <span>检测日期{{ data.date}}</span> -->
+    </div>
 </div>
 <!-- <div class="table-border">
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="tabletwo">

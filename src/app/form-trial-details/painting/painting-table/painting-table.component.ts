@@ -198,8 +198,10 @@ key:"pointStrength"
     await this.ApiService.getPaintingDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetailsssssssss = res
-      this.trialDataDetailsssssssss[0].dates= this.trialDataDetailsssssssss[0].dates.split("T")[0];
-      this.trialDataDetailsssssssss[0].dateEnds= this.trialDataDetailsssssssss[0].dateEnds.split("T")[0]; 
+      // this.trialDataDetailsssssssss[0].dates= this.trialDataDetailsssssssss[0].dates.split("T")[0];
+      // this.trialDataDetailsssssssss[0].dateEnds= this.trialDataDetailsssssssss[0].dateEnds.split("T")[0]; 
+      this.trialDataDetailsssssssss[0].dates =  this.ApiService.handleTime(this.trialDataDetailsssssssss[0].dates);
+      this.trialDataDetailsssssssss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailsssssssss[0].dateEnds);
       // console.log(this.trialDataDetail)
     })    
   }

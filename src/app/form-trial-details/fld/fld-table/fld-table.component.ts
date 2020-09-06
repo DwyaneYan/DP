@@ -77,12 +77,14 @@ export class FldTableComponent implements OnInit {
     await this.ApiService.getFLDDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetails = res;
-        this.trialDataDetails[0].dates = this.trialDataDetails[0].dates.split(
-          "T"
-        )[0];
-        this.trialDataDetails[0].dateEnds = this.trialDataDetails[0].dateEnds.split(
-          "T"
-        )[0];
+        // this.trialDataDetails[0].dates = this.trialDataDetails[0].dates?this.trialDataDetails[0].dates.split(
+        //   "T"
+        // )[0] : ''
+        // this.trialDataDetails[0].dateEnds = this.trialDataDetails[0].dateEnds?this.trialDataDetails[0].dateEnds.split(
+        //   "T"
+        // )[0]:''
+        this.trialDataDetails[0].dates = this.ApiService.handleTime(this.trialDataDetails[0].dates);
+        this.trialDataDetails[0].dateEnds = this.ApiService.handleTime(this.trialDataDetails[0].dateEnds);
         // console.log(this.trialDataDetail)
       }
     );
