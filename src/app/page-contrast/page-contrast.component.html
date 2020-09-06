@@ -55,11 +55,22 @@
                             </th>
                             <th *ngFor="let dataDes of dataList.itemDes;let i = index;" nzAlign="right" nzWidth="173px">
                                 <div>
-                                    <span *ngIf="dataDes.length>=15 else elseBlock"  nz-tooltip [nzTooltipTitle]="titleTemplate" style="display:inline-block;width:130px;">{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
-                                    <ng-template #elseBlock><span nz-tooltip [nzTooltipTitle]="titleTemplate" style="display:inline-block;width:130px;">{{ dataDes}}</span></ng-template>
-                                        <ng-template #titleTemplate>
-                                            <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
+                                    <span *ngIf="dataDes.length>=15 else elseBlock"   style="display:inline-block;width:130px;">
+                                        <span nz-tooltip [nzTooltipTitle]="titleTemplate" *ngIf="dataDes !='执行标准' else elseBlockone"> {{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
+                                    <ng-template #elseBlockone>
+                                        <span>{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
                                         </ng-template>
+                                        </span>
+                                        <ng-template #elseBlock><span style="display:inline-block;width:130px;">
+                                        <span nz-tooltip [nzTooltipTitle]="titleTemplate" *ngIf="dataDes !='执行标准' else elseBlockone">{{ dataDes}}</span>
+                                            <ng-template #elseBlockone>
+                                                <span>{{ dataDes}}</span>
+                                                </ng-template>
+                                                </span>
+                                                </ng-template>
+                                                <ng-template #titleTemplate>
+                                                    <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
+                                                </ng-template>
                                 </div>
                             </th>
                         </tr>
