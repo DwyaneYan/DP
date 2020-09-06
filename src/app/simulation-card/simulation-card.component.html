@@ -1,23 +1,25 @@
 <app-base-info [materialId]="materialId">
 </app-base-info>
-<div class="mt25">
-    <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)"
-        [(nzFileList)]="nzFileList" class='buttonDownload'>
-        <button nz-button *ngIf="FormExperimentalItemComponent.button('uploadCard')"><i nz-icon
-                nzType="upload"></i>上传仿真卡片</button>
-    </nz-upload>
-    <button nz-button (click)="showModal()" class='buttonDownload'
-        *ngIf="FormExperimentalItemComponent.button('downLoadkFile')"><span>下载k文件</span></button>
+<div class="mt25 button-list">
+    <span class="title">点击下载文件:</span>
+    <div class="button-item">
+        <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)"
+            [(nzFileList)]="nzFileList" class='buttonDownload'>
+            <button nz-button nzShape="round" *ngIf="FormExperimentalItemComponent.button('uploadCard')">
+                <i nz-icon nzType="upload"></i>
+                上传仿真卡片
+            </button>
+        </nz-upload>
+        <button nz-button nzShape="round" nztype="primary" (click)="showModal()" class='buttonDownload'
+            *ngIf="FormExperimentalItemComponent.button('downLoadkFile')"><span>下载k文件</span></button>
+    </div>
 </div>
-<div class="mt25">
-    <h2 class="title">点击下载文件:</h2>
-    <div class="download-list"
-        style="float:left;margin-left:50px;margin-top:10px;width:250px;height:350px;overflow:auto"
-        *ngFor="let item of after">
+<div class="mt20 download-list">
+    <div class="download-item" *ngFor="let item of after">
         <h3>{{item}}</h3>
         <ng-template ngFor let-data1 [ngForOf]="data[item]" let-i="index">
-            <div *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock" style="margin-top:15px">
-                <a nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom"
+            <div class="download-box" *ngIf="FormExperimentalItemComponent.button('downloadCard');else elseBlock">
+                <a class="download-text" nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
                     {{data1}}</a>
             </div>
