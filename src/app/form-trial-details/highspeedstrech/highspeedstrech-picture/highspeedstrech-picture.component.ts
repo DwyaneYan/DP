@@ -86,16 +86,30 @@ this.ImgPathOne=this.MetallographicPictureComponent.getname(this.one[0].fileStri
     arr3=this.classitem(this.trialDataDetailss,'realPlasticTestTarget') ;//延伸到1
     console.log(arr3)
     console.log(arr2)  
-
+//保证顺序正确的情况下，数据插入顺序错位就会发生错误
+    // for(let a=0;a<this.one.length;a++){
+    //     arr2[a].sampleCode=this.one[a].sampleCode;
+    //     arr2[a].testTarget=this.one[a].testTarget;
+      
+    // }
+    
+let arr2Length = arr2.length
     for(let a=0;a<this.one.length;a++){
-        arr2[a].sampleCode=this.one[a].sampleCode;
-        arr2[a].testTarget=this.one[a].testTarget;
-    }
-  //   for(let a=0;a<this.four.length;a++){
-  //     arr3[a].testTarget=this.four[a];
-  // }
 
-  // console.log(arr3)
+      for(let b = 0;b<arr2Length;b++){
+        if(this.one[a].id == arr2[b].highSpeedStrechDataDetailId){
+          arr2[b].sampleCode = this.one[a].sampleCode;
+          arr2[b].testTarget=this.one[a].testTarget;
+        }
+      }
+  }
+  let ids = [];
+  this.one.map(val=>ids.push(val.id))
+  console.log(ids)
+  arr2.sort((prev, next) => {
+    return ids.indexOf(prev.highSpeedStrechDataDetailId) - ids.indexOf(next.highSpeedStrechDataDetailId)
+  })
+   console.log(arr2)
     this.trialDataDetails.map(mapItem => {
       xData.push((mapItem.engineeringStrain * 10000).toFixed(4));
       xData2.push((mapItem.realStrain * 10000).toFixed(4));  
@@ -120,6 +134,7 @@ this.ImgPathOne=this.MetallographicPictureComponent.getname(this.one[0].fileStri
     xData4.sort((a, b) => {
       return Number(a) - Number(b);
     }); 
+    console.log(xData3)
     // this.PlotPicture(arr2, xData,xData2,xData3)
     this.option1=this.classdata('工程应力工程应变','工程应变','工程应力',xData,arr2,"engineeringStrain",'engineeringStress');
     this.option2=this.classdata('真应力真应变','真应变','真应力',xData2,arr2,"realStrain",'realStress');
@@ -179,7 +194,7 @@ classdata(name,p1,p2,da,datas,p3,p4){
   datas.map(item => {
     temp2 = [];
     item.List.map(i => {
-      temp2.push( [(i[p3]*10000).toFixed(4),i[p4]]);
+      if(i[p3]!=null){temp2.push( [(i[p3]*10000).toFixed(4),i[p4]]);}
     });
     temp2.sort((a,b)=>{return Number(a[0])-Number(b[0])});
     if(name=="真塑性应变真应力延伸到1" || name=="真塑性应变真应力")
@@ -191,6 +206,8 @@ classdata(name,p1,p2,da,datas,p3,p4){
         name:item.highSpeedStrechDataDetailId,
       })
       option.legend.data.push(item.highSpeedStrechDataDetailId)
+    console.log(temp2)
+
     }else{
     option.series.push({
       symbolSize: 5,
