@@ -16,9 +16,14 @@
     <p>{{suppliedPart}}</p>
     <h2>要求:</h2>
     <p>{{requirement}}</p>
-    <div id="c" *ngFor="let data of ImgPathOne;let i=index">
-        <h1>{{three[i]}}</h1>
-        <img class="img" alt="" height="300" width="300" [src]="data">
+    <div class="all-box">
+        <div class="all-item" *ngFor="let data of ImgPathOne;let i=index">
+            <h2>{{three[i]}}</h2>
+            <div class="img">
+                <img alt="" height="200" width="200" [src]="data">
+            </div>
+
+        </div>
     </div>
     <div id="pdf1" style="height:1500px;clear:both">
     </div>

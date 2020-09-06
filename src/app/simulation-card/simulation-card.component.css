@@ -4,7 +4,7 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 32px;
 }
 
@@ -56,6 +56,8 @@
 
 .button-list {
   display: flex;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 30px;
 }
 
 .button-list .title {
@@ -74,9 +76,10 @@
 .download-item {
   float: left;
   margin-left: 17px;
-  margin-top: 10px;
+  margin-top: 30px;
   width: 295px;
-  height: 350px;
+  height: 330px;
+  overflow: auto;
   border: 1px solid #e6e6e6;
   border-radius: 6px;
 }
@@ -90,11 +93,11 @@
 }
 
 .download-box {
-  padding: 24px;
+  padding: 10px 24px;
 }
 
 .download-text {
-  line-height: 40px;
+  line-height: 1.5;
 }
 
 .download-text::before {

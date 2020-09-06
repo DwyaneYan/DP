@@ -1,19 +1,22 @@
 <app-base-info [materialId]="materialId">
 </app-base-info>
-<div class="mt25 button-list">
+<div class="button-list mt25">
     <span class="title">点击下载文件:</span>
     <div class="button-item">
         <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)"
             [(nzFileList)]="nzFileList" class='buttonDownload'>
-            <button nz-button nzShape="round" *ngIf="FormExperimentalItemComponent.button('uploadCard')">
+            <button nz-button nzShape="round" nzType="primary" nzGhost
+                *ngIf="FormExperimentalItemComponent.button('uploadCard')">
                 <i nz-icon nzType="upload"></i>
                 上传仿真卡片
             </button>
         </nz-upload>
-        <button nz-button nzShape="round" nztype="primary" (click)="showModal()" class='buttonDownload'
+        <button nz-button nzShape="round" nzType="primary" nzGhost (click)="showModal()" class='buttonDownload'
             *ngIf="FormExperimentalItemComponent.button('downLoadkFile')"><span>下载k文件</span></button>
     </div>
 </div>
+
+
 <div class="mt20 download-list">
     <div class="download-item" *ngFor="let item of after">
         <h3>{{item}}</h3>

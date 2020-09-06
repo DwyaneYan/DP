@@ -10,7 +10,8 @@
         <li nz-submenu nzTitle="基础数据" nzOpen *ngIf="button('basicData')">
             <ul>
                 <ng-container *ngFor="let data of menu1;let i=index">
-                    <li nz-menu-item *ngIf="arr1[i]&&button(menu1[i].name)" nzMatchRouter><a [routerLink]=routerLink1[i]>{{menu1[i].names}}</a></li>
+                    <li nz-menu-item *ngIf="arr1[i]&&button(menu1[i].name)" nzMatchRouter><a
+                            [routerLink]=routerLink1[i]>{{menu1[i].names}}</a></li>
                 </ng-container>
                 <!-- <li nz-menu-item  nzMatchRouter *ngIf = "staticTension&&menu('静态拉伸')" routerLinkActive="ant-menu-item-selected"><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
                     <li nz-menu-item nzMatchRouter *ngIf = "compress&&menu('压缩')"><a [routerLink]="['/display',materialId ,'compression']">压缩</a></li>
@@ -26,7 +27,8 @@
         <li nz-submenu nzTitle="应用数据" nzOpen *ngIf="button('applicationData')">
             <ul>
                 <ng-container *ngFor="let data of menu2;let i=index">
-                    <li nz-menu-item *ngIf="arr2[i]&&button(menu2[i].name)" nzMatchRouter><a [routerLink]=routerLink2[i]>{{menu2[i].names}}</a></li>
+                    <li nz-menu-item *ngIf="arr2[i]&&button(menu2[i].name)" nzMatchRouter><a
+                            [routerLink]=routerLink2[i]>{{menu2[i].names}}</a></li>
                     <!-- <ng-template #elseBlock>
                             <li nz-menu-item  *ngIf = "arr1[i]&&menu(menu1[i].name)" ><a [routerLink]=routerLink2[i]>{{menu2[i].name}}</a></li>.
                             </ng-template> -->
@@ -44,7 +46,8 @@
         <li nz-submenu nzTitle="服役数据" nzOpen *ngIf="button('serviceData')">
             <ul>
                 <ng-container *ngFor="let data of menu3;let i=index">
-                    <li nz-menu-item *ngIf="arr3[i]&&button(menu3[i].name)" nzMatchRouter><a [routerLink]=routerLink3[i]>{{menu3[i].names}}</a></li>
+                    <li nz-menu-item *ngIf="arr3[i]&&button(menu3[i].name)" nzMatchRouter><a
+                            [routerLink]=routerLink3[i]>{{menu3[i].names}}</a></li>
                     <!-- <ng-template #elseBlock>
                             <li nz-menu-item  *ngIf = "arr1[i]&&menu(menu1[i].name)" ><a [routerLink]=routerLink3[i]>{{menu3[i].name}}</a></li>.
                             </ng-template> -->
@@ -59,12 +62,13 @@
         </li>
         <li nz-submenu nzTitle="应用案例" *ngIf="button('hg-cases')">
             <ul>
-                <li nz-menu-item nzDisabled style="cursor:pointer" *ngIf="button('add')">
-                    <div style="text-decoration: underline;" (click)='show()'>添加车型</div>
+                <li nz-menu-item nzDisabled style="cursor:pointer;" *ngIf="button('add')">
+                    <div style="text-decoration: underline;color:#1890ff" (click)='show()'>添加车型</div>
                 </li>
                 <ng-template ngFor let-data [ngForOf]="car" let-i="index">
 
-                    <li nz-menu-item nzMatchRouter *ngIf="button('viewCar')"><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
+                    <li nz-menu-item nzMatchRouter *ngIf="button('viewCar')"><a
+                            [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
                 </ng-template>
             </ul>
         </li>
@@ -72,6 +76,7 @@
     </ul>
 </div>
 
-<app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar2($event)" (outer1)="getCar1($event)"></app-form-add-car>
+<app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar2($event)"
+    (outer1)="getCar1($event)"></app-form-add-car>
 
 <!-- 左侧菜单栏 END -->
