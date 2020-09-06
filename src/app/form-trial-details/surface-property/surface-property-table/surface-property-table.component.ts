@@ -148,12 +148,14 @@ export class SurfacePropertyTableComponent implements OnInit {
         console.log(this.trialDataDetailss);
       }
     );
-    this.trialDataDetailss[0].dates = this.trialDataDetailss[0].dates.split(
-      "T"
-    )[0];
-    this.trialDataDetailss[0].dateEnds = this.trialDataDetailss[0].dateEnds.split(
-      "T"
-    )[0];
+    // this.trialDataDetailss[0].dates = this.trialDataDetailss[0].dates.split(
+    //   "T"
+    // )[0];
+    // this.trialDataDetailss[0].dateEnds = this.trialDataDetailss[0].dateEnds.split(
+    //   "T"
+    // )[0];
+    this.trialDataDetailss[0].dates = this.ApiService.handleTime(this.trialDataDetailss[0].dates);
+    this.trialDataDetailss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailss[0].dateEnds);
   }
   classitem(arry1, p) {
     let arry = [];

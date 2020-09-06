@@ -297,7 +297,8 @@ customReqone = (item: UploadXHRArgs) => {
 
         this.formData.append('input',item.file as any);
         this.formDataList.push(item);    
-  console.log(item.action!)
+  //item.action 就是接口url
+  console.log(item)
       // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
       return  setTimeout(() => {
         const req = new HttpRequest('POST', item.action!, this.formData, {
@@ -322,8 +323,8 @@ customReqone = (item: UploadXHRArgs) => {
                 this.returnFalse = false;
                 for (const item of this.formDataList) {
                   item.onSuccess!(event.body, item.file!, event);
-  
-                    
+                    console.log(event)
+  //               console.log()    
                   }
                   this.formData = new FormData();
                   this.formDataList=[];
@@ -331,6 +332,7 @@ customReqone = (item: UploadXHRArgs) => {
              },
             err => {
               // 处理失败
+  //感叹号是非null和非undefined的类型断言,ts的语法
               this.returnFalse = false;
               for (const item of this.formDataList) {
                 item.onError!(err, item.file!);
@@ -404,7 +406,9 @@ showma(){
 this.showi=true
   }
   handleChange(info: { file: UploadFile }): void { 
-    console.log(info.file)
+    console.log(info)
+    //info能获取到上传接口返回信息，在info.file.response中
+    //并且自带的上传成功与否信息在info.file.status中
     switch (info.file.status) {
       // case 'uploading':      
       //   break;

@@ -188,8 +188,10 @@ export class HighspeedstrechTableComponent implements OnInit {
             this.one.push(this.trialDataDetail[a]);
           }
         }
-        this.one[0].dates = this.one[0].dates.split("T")[0];
-        this.one[0].dateEnds = this.one[0].dateEnds.split("T")[0];
+        // this.one[0].dates = this.one[0].dates.split("T")[0];
+        // this.one[0].dateEnds = this.one[0].dateEnds.split("T")[0];
+        this.one[0].dates =  this.ApiService.handleTime(this.one[0].dates);
+        this.one[0].dateEnds =  this.ApiService.handleTime(this.one[0].dateEnds);
         console.log(this.one[0]);
       }
     );

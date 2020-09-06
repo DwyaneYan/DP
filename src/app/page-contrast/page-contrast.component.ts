@@ -149,7 +149,7 @@ export class PageContrastComponent implements OnInit {
     this.getGetMaterialss();
     this.getGetMaterials();
     this.getGetManufacturers();
-    this.navScroll();
+    // this.navScroll();
   }
 // 请求对比数据
   public async getGetMaterials() {
@@ -483,9 +483,14 @@ this.th[j][a][b] = {
    
       let data = [];
       let xData = [];
+      console.log(this[trialType])
       this[trialType].forEach((iterator,i,array) => {
         data.push(iterator[param]);
-        xData.push(this.name[i])
+        xData.push(`${this.name[i]},
+        ${this.model[i]},
+        ${this.manu[i]},
+        ${this.reelNumber[i]}
+        `)
       })
     this.PlotPicture(data, xData, des);
   }
@@ -510,7 +515,11 @@ this.th[j][a][b] = {
           },
           xAxis: {
             type: "category",
-            data: xData
+            data: xData,
+            "axisLabel":{
+              interval: 0
+            }
+      
           },
           yAxis: {
             type: "value"
@@ -518,7 +527,9 @@ this.th[j][a][b] = {
           series: [
             {
               data: data,
-              type: "line"
+              type: "line",
+              // 显示数值
+              itemStyle : { normal: {label : {show: true}}}
             }
           ]
         };

@@ -72,15 +72,15 @@ else if(this.name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePro
     await this.ApiService[p](this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
-      console.log(this.trialDataDetails)
+      // console.log(this.trialDataDetails)
       for(let a=0;a<this.trialDataDetails.length;a++)
       {if(this.trialDataDetails[a] && this.trialDataDetails[a].fileKey!=null){
     this.one.push(this.trialDataDetails[a])
 
   }
       }
-      console.log(this.trialDataDetails)
-      this.MetallographicReportComponent.common(this.one[0].fileKey)
+      // console.log(this.one[0])
+      if(this.one[0]){this.MetallographicReportComponent.common(this.one[0].fileKey)}
     })  
 
   }

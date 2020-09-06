@@ -48,7 +48,7 @@ export class FormLoginDialogComponent implements OnInit {
       this.ApiService.login(username, password, code, uuid).then((res: any) => {
         // this.token=res.token
         if (res.code != 200) {
-          this.message.create("error", "认证失败，无法访问系统资源"); //目前res.msg无信息
+          this.message.create("error", res.msg); //目前res.msg无信息
           this.getCode();
         } else {
           // this.ApiService.setToken(res.token)
