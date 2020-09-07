@@ -1,4 +1,6 @@
-.apply-box {}
+.apply-box {
+  margin-top: 10px;
+}
 
 .apply-button-red {
   background-color: #ffa4a4;

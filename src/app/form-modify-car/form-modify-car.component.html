@@ -1,7 +1,8 @@
 <nz-modal [(nzVisible)]="isVisible" nzTitle="修改车型信息" [nzFooter]=null nzMaskClosable=false (nzOnCancel)="handleCancel()">
     <div>
         <div style="float:left;padding:6px 0px;margin-left:48px">车型名称:</div>
-        <input style="width:60%;float:left;margin-left:10px" [(ngModel)]="value" nz-input [disabled]="true" /></div>
+        <input style="width:60%;float:left;margin-left:10px" [(ngModel)]="value" nz-input [disabled]="true" />
+    </div>
     <form nz-form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
         <nz-form-item>
             <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="jiankuang">简况</nz-form-label>
@@ -21,6 +22,25 @@
                 <textarea rows="4" nz-input formControlName="yaoqiu"></textarea>
             </nz-form-control>
         </nz-form-item>
+        <div nz-row class="upload-form">
+            <div nz-col nzSpan="6" class="upload-label">上传图片:</div>
+            <div nz-col nzSpan="18" class="upload-list">
+                <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl1" (nzChange)="handleChange($event)"
+                    [nzBeforeUpload]="formAddCarComponent.beforeUpload1">
+                    <button nz-button><i nz-icon nzType="upload"></i>上传</button>
+                </nz-upload>
+            </div>
+
+        </div>
+        <div nz-row class="upload-form">
+            <div nz-col nzSpan="6" class="upload-label">上传文件:</div>
+            <div nz-col nzSpan="18" class="upload-list">
+                <nz-upload id='file' [nzCustomRequest]='customRequestTwo' [nzAction]="maUrl2"
+                    (nzChange)="handleChange1($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload2">
+                    <button nz-button><i nz-icon nzType="upload"></i>上传</button>
+                </nz-upload>
+            </div>
+        </div>
         <nz-form-item>
             <nz-form-control [nzOffset]="4" [nzSpan]="10" class="last">
                 <button nz-button nzType="primary">修改</button>
@@ -31,11 +51,6 @@
     </form>
 
 
-    <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl1" (nzChange)="handleChange($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload1">
-        <button nz-button><i nz-icon nzType="upload" ></i>上传图片</button>
-    </nz-upload>
-    <nz-upload id='file' [nzCustomRequest]='customRequestTwo' [nzAction]="maUrl2" (nzChange)="handleChange1($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload2">
-        <button nz-button><i nz-icon nzType="upload" ></i>上传文件</button>
-    </nz-upload>
+
 
 </nz-modal>
