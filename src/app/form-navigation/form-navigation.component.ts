@@ -12,6 +12,7 @@ import { Router} from '@angular/router';
 export class FormNavigationComponent implements OnInit {
   system=false
   href=''
+  toShouye = this.ApiService.toVIm + `/view/car-type?type=hangang`
   constructor(
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     private ApiService: ApiService,
@@ -80,7 +81,7 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
 // debugger;
 //如果操作成功表示token还未失效，那么带着token跳转到系统管理
          this.token= sessionStorage.getItem("token")
-         window.open(`http://localhost:81/system/user?token=${this.token}`)
+         window.open(`${this.ApiService.toRuoYi}/system/user?token=${this.token}`)
 // this.target = '_blank'
 // console.log(this.href,this.target)
       }

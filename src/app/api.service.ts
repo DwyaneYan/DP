@@ -16,6 +16,8 @@ export class ApiService {
 
     ) { }
     httpOptions = {}
+    toVIm = `http://10.130.3.142:88` //跳转到vim
+    toRuoYi = `http://10.130.3.142:81`  //管理系统跳转到若依
   //   ngOnInit() { 
   //     //请求头,注意token是存在session storage中不是cookie中
   // this.httpOptions = {
