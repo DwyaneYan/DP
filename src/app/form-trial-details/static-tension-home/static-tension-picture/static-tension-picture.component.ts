@@ -45,6 +45,9 @@ export class StaticTensionPictureComponent implements OnInit {
       .then((res: any) => {
         this.trialDataDetail = res
       })
+      console.log( this.trialDataDetail)
+      console.log( this.trialDataDetails)
+
     let arry = []
     let xData2 = []
     this.trialDataDetail.map(mapItem => {
@@ -64,10 +67,18 @@ export class StaticTensionPictureComponent implements OnInit {
         }
       }
     })
+    console.log(arry)
 
-    for (let a = 25; a < this.trialDataDetails.length; a++) {
+//静态拉伸批量数据必须确保25个,带头带中带尾可以数量任意
+    for (let a = 25; a < this.trialDataDetails.length;a++) {
       this.one.push(this.trialDataDetails[a])
     }
+    let ids = [];
+    this.one.map(val=>ids.push(val.id))
+    arry.sort((prev, next) => {
+      return ids.indexOf(prev.staticTensionDataDetailId) - ids.indexOf(next.staticTensionDataDetailId)
+    })
+
     for (let a = 0; a < this.one.length; a++) {
       arry[a].sampleCode = this.one[a].sampleCode;
       arry[a].direction = this.one[a].direction
