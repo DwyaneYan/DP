@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "http://localhost:60001",
+        "target": "http://10.130.3.142:8003",
         "secure": false
     },
     "/devhg-api/": {

@@ -12,7 +12,7 @@ import { Router} from '@angular/router';
 export class FormNavigationComponent implements OnInit {
   system=false
   href=''
-  toShouye = this.ApiService.toVIm + `/view/car-type?type=hangang`
+  toShouye = this.ApiService.toVIm + `/car-type?type=hangang`
   constructor(
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     private ApiService: ApiService,
