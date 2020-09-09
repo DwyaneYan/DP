@@ -3,7 +3,8 @@
     *ngFor="let data of table;let tableIdx=index" nzBordered [class]="tableIdx==0?'layout-fixed mt25':'mt25'">
     <thead>
       <tr>
-        <th nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
+        <th [nzWidth]="tableIdx ==0 && thIdx == 0||tableIdx ==0 && thIdx == 1||tableIdx ==0 &&thIdx ==2?'110px':'200px'"
+          *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
       </tr>
     </thead>
     <tbody>

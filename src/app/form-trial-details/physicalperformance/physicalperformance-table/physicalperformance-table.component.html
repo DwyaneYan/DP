@@ -1,9 +1,11 @@
 <div class="dataTable">
   <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered
-    *ngFor="let data of table">
+    *ngFor="let data of table;let tableIdx = index">
     <thead>
       <tr>
-        <th *ngFor="let data1 of data.one">{{data1}}</th>
+        <th [nzWidth]="tableIdx == 0 && thIdx==0||tableIdx == 0 && thIdx==1||tableIdx == 0 && thIdx==2?'150px':'200px'"
+          *ngFor="let data1 of data.one;let thIdx = index">
+          {{data1}}</th>
       </tr>
     </thead>
     <tbody>

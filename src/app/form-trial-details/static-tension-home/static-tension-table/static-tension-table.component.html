@@ -1,9 +1,11 @@
 <!-- <div id="dataTable"> -->
 <!-- [nzScroll]="{x: '1400px'}" -->
-<nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25">
+<nz-table class="dataTable" [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25">
     <thead>
         <tr>
-            <th nzWidth="200px" class="one" *ngFor="let data1 of table1">{{data1}}</th>
+            <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" class="one"
+                *ngFor="let data1 of table1;let thIdx = index">
+                {{data1}}</th>
         </tr>
     </thead>
     <tbody>
@@ -12,19 +14,20 @@
         </tr>
     </tbody>
 </nz-table>
-<nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25 mb25" [nzScroll]="{x: '2160px', y: '700px' }" nzBordered id="one" *ngFor="let value of data;let i = index">
+<nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25 mb25" [nzScroll]="{x: '2160px', y: '700px' }" nzBordered
+    id="one" *ngFor="let value of data;let i = index">
     <thead>
         <tr>
             <th [nzWidth]="table3[i]" class="one" *ngFor="let data2 of table2;let i = index" style="height:58px">
                 <span *ngIf="('sampleCode,direction,thickness').indexOf(table4[i]) == -1;else other_content">
                     <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{ data2 }}</span>
-                <ng-template #titleTemplate>
-                    <a (click)="contrastTable(table4[i], data2,this[value])">对比</a>
-                        </ng-template>
-                        </span>
-                        <ng-template #other_content>
-                            <span #other_content>{{ data2 }}</span>
-                                </ng-template>
+                    <ng-template #titleTemplate>
+                        <a (click)="contrastTable(table4[i], data2,this[value])">对比</a>
+                    </ng-template>
+                </span>
+                <ng-template #other_content>
+                    <span #other_content>{{ data2 }}</span>
+                </ng-template>
             </th>
         </tr>
 
@@ -51,4 +54,4 @@
 <nz-modal [(nzVisible)]="isVisible.isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
     <div echarts  [options]="options.options" class="echarts-box"></div>
-    </nz-modal>
+</nz-modal>
