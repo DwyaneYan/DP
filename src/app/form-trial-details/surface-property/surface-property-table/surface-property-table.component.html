@@ -3,7 +3,9 @@
         [nzScroll]="{ x: '1600px' }">
         <thead>
             <tr>
-                <th nzWidth='200px' *ngFor="let data of table[0].one">{{data}}</th>
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'110px':'200px'"
+                    *ngFor="let data of table[0].one;let thIdx = index">
+                    {{data}}</th>
             </tr>
         </thead>
         <tbody>

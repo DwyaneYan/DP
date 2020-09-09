@@ -2,7 +2,8 @@
     <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25">
         <thead>
             <tr>
-                <th nzWidth="200px" *ngFor="let data of table[0].one">
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'"
+                    *ngFor="let data of table[0].one;let thIdx = index">
                     {{data}}
                 </th>
             </tr>

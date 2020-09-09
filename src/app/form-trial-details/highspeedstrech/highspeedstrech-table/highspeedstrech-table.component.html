@@ -2,7 +2,8 @@
     <nz-table class="mt25 layout-fixed" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
         <thead>
             <tr>
-                <th nzWidth="200px" *ngFor="let data1 of  table1">{{data1}}</th>
+                <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'150px':'200px'"
+                    *ngFor="let data1 of  table1;let thIdx=index">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
