@@ -3,6 +3,12 @@
   background-color: #fff;
   margin-top: -40px;
   border-radius: 5px;
+  overflow: hidden;
+
+}
+
+.compare-top {
+  position: relative;
 }
 
 .compare-top .title {
@@ -10,12 +16,37 @@
   color: #222;
 }
 
+.add-button {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  color: #0d95f0;
+}
+
+/* .add-button {
+  border: 1px solid #e6e6e6;
+  height: 130px;
+  position: absolute;
+  top: 0;
+  right: -159px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #0d95f0;
+}
+
+.add-button .icon {
+  display: block;
+  margin-bottom: 10px;
+} */
 .nav-list {
   position: fixed;
   z-index: 999;
-  left: 200px;
+  right: 0px;
   top: 50%;
-  margin-top: -100px;
+  margin-top: -150px;
   width: 120px;
 }
 
@@ -23,6 +54,10 @@
   margin-top: 25px;
   display: inline-block;
   position: relative;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  border: 1px solid #e8e8e8;
 }
 
 .ed {
@@ -41,7 +76,7 @@
 }
 
 .compare-table /deep/ .ant-table-body {
-  margin-top: -1px;
+  margin: -1px -1px 0 -1px;
 }
 
 .compare-table /deep/ .ant-table-tbody>tr>td,
@@ -72,6 +107,12 @@ nz-table.vertical div {
 
 nz-table.vertical div.sta {
   width: 140px;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 nz-table.borderedTable tr {
@@ -147,24 +188,7 @@ nz-table.borderedTable tr {
   right: 0px;
 }
 
-.add-button {
-  border: 1px solid #e6e6e6;
-  height: 130px;
-  position: absolute;
-  top: 0;
-  right: -159px;
-  width: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #0d95f0;
-}
 
-.add-button .icon {
-  display: block;
-  margin-bottom: 10px;
-}
 
 #xfk {
   width: 400px;

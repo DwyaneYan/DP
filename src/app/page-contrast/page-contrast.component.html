@@ -15,13 +15,21 @@
             <span class="title">材料对比</span>
             <!-- <nz-switch nzSize="small" [ngModel]="true" class="cd"></nz-switch>
       <span class="ed">编辑模式</span> -->
+            <!-- <div class="add-button" (click)="showModal()">
+                <i nz-icon nzType="plus" nzTheme="outline" class="icon"></i>
+                <div class="text">添加</div>
+            </div> -->
+            <button nz-button class="add-button" nzType="primary" nzShape="round" nzGhost (click)="showModal()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+                添加材料
+            </button>
         </div>
         <!-- 材料对比 START -->
         <div class="compare-table">
             <nz-table class="borderedTable" nzBordered [nzData]="[{}]" [nzShowPagination]="false">
                 <thead>
                     <tr>
-                        <th id="info">
+                        <th id="info" nzWidth="100px" nzLeft="0">
                             <div id="hide1">材料信息</div>
                             <div id="hide2"></div>
                             <div id="hide3">
@@ -51,12 +59,13 @@
                     [nzShowPagination]="false" *ngIf="listItemBlank[dataList.key] == true">
                     <thead>
                         <tr>
-                            <th id="str" nzWidth="173px" style="height:30px;padding-top: 5px;
+                            <th id="str" nzWidth="173px" nzLeft="0" style="height:30px;padding-top: 5px;
               padding-bottom: 5px;">
                                 <div style="width:130px;text-align: left;">{{ dataList.name }}
                                 </div>
                             </th>
-                            <th *ngFor="let dataDes of dataList.itemDes;let i = index;" nzAlign="right" nzWidth="173px">
+                            <th *ngFor="let dataDes of dataList.itemDes;let i = index;" nzAlign="right" nzWidth="173px"
+                                nzLeft="0">
                                 <div>
                                     <span *ngIf="dataDes.length>=15 else elseBlock"  
                                         style="display:inline-block;width:130px;">
@@ -104,11 +113,8 @@
                     </tbody>
                 </nz-table>
             </div>
+            <!-- *ngIf="StaticTension.length<6" -->
 
-            <div class="add-button" (click)="showModal()" *ngIf="StaticTension.length<6">
-                <i nz-icon nzType="plus" nzTheme="outline" class="icon"></i>
-                <div class="text">添加</div>
-            </div>
         </div>
 
 
