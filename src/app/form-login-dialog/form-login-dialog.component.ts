@@ -48,8 +48,12 @@ export class FormLoginDialogComponent implements OnInit {
       this.ApiService.login(username, password, code, uuid).then((res: any) => {
         // this.token=res.token
         if (res.code != 200) {
-          this.message.create("error", res.msg); 
-          this.getCode();
+          if(res.msg == ''){
+            this.message.create("error", '验证码失效'); 
+            this.getCode();
+          }
+          else{this.message.create("error", res.msg); 
+          this.getCode();}
         } else {
           // this.ApiService.setToken(res.token)
           sessionStorage.setItem("token", res.token);//token存到session

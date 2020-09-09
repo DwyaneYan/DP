@@ -1,107 +1,108 @@
 .compare-box {
-  padding: 30px 40px;
-  background-color: #fff;
-  margin-top: -40px;
-  border-radius: 5px;
+    padding: 30px 40px;
+    background-color: #fff;
+    margin-top: -40px;
+    border-radius: 5px;
 }
 
 .compare-top .title {
-  font-size: 22px;
-  color: #222;
+    font-size: 22px;
+    color: #222;
 }
 
 .nav-list {
-  position: fixed;
-  z-index: 999;
-  left: 200px;
-  top: 50%;
-  margin-top: -100px;
-  width: 120px;
+    position: fixed;
+    z-index: 999;
+    left: 200px;
+    top: 50%;
+    margin-top: -100px;
+    width: 120px;
 }
 
 .compare-table {
-  margin-top: 25px;
-  display: inline-block;
-  position: relative;
+    margin-top: 25px;
+    display: inline-block;
+    position: relative;
 }
 
 .ed {
-  float: right;
-  padding-right: 8px;
+    float: right;
+    padding-right: 8px;
 }
 
 .cd {
-  float: right;
-  padding-right: 20px;
+    float: right;
+    padding-right: 20px;
 }
 
 #he {
-  border-bottom: solid 1px grey;
-  padding-bottom: 8px;
+    border-bottom: solid 1px grey;
+    padding-bottom: 8px;
 }
 
 .compare-table /deep/ .ant-table-body {
-  margin-top: -1px;
+    margin-top: -1px;
 }
 
 .compare-table /deep/ .ant-table-tbody>tr>td,
 .compare-table /deep/ .ant-table-thead>tr>th {
-  padding: 16px 8px;
+    padding: 16px 8px;
 }
 
 nz-table.vertical {
-  -webkit-writing-mode: vertical-lr;
-  -moz-writing-mode: vertical-lr;
-  -ms-writing-mode: tb-lr;
-  writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    writing-mode: vertical-lr;
 }
 
 nz-table.vertical th,
 nz-table.vertical td {
-  width: 160px;
-  height: 4px;
+    width: 160px;
+    height: 4px;
 }
 
 nz-table.vertical div {
-  /* width: 100px; */
-  -webkit-writing-mode: horizontal-tb;
-  -moz-writing-mode: horizontal-tb;
-  -ms-writing-mode: lr-tb;
-  writing-mode: horizontal-tb;
+    /* width: 100px; */
+    -webkit-writing-mode: horizontal-tb;
+    -moz-writing-mode: horizontal-tb;
+    -ms-writing-mode: lr-tb;
+    writing-mode: horizontal-tb;
 }
 
 nz-table.vertical div.sta {
-  width: 140px;
+    width: 140px;
 }
 
 nz-table.borderedTable tr {
-  width: 123px;
+    width: 123px;
 }
 
 #info {
-  height: 130px;
+    height: 130px;
+    width: 160px
 }
 
 #hide1 {
-  float: left;
-  color: blue;
+    float: left;
+    color: blue;
 }
 
 #hide2 {
-  float: left;
-  margin-top: 13px;
-  margin-bottom: 7px;
-  width: 110px;
+    float: left;
+    margin-top: 13px;
+    margin-bottom: 7px;
+    width: 110px;
 }
 
 #hide3 {
-  float: left;
-  width: 140px;
+    float: left;
+    width: 140px;
 }
 
 #str {
-  border-right: none;
-  background-color: white;
+    border-right: none;
+    background-color: white;
 }
 
 
@@ -111,22 +112,22 @@ nz-table.borderedTable tr {
 } */
 
 .cell {
-  text-align: right;
-  width: 173px;
-  padding-right: 2px;
-  height: 8px;
+    text-align: right;
+    width: 173px;
+    padding-right: 2px;
+    height: 8px;
 }
 
 .sta {
-  float: left;
-  font-weight: bold;
+    float: left;
+    font-weight: bold;
 }
 
 
 /* 改antd table的默认样式，鼠标放在行上的背景颜色为白色 */
 
 .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-  background: white;
+    background: white;
 }
 
 
@@ -136,52 +137,52 @@ nz-table.borderedTable tr {
 } */
 
 #i {
-  position: absolute;
-  top: 6px;
-  right: 6px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
 }
 
 #posi {
-  position: relative;
-  top: 0px;
-  right: 0px;
+    position: relative;
+    top: 0px;
+    right: 0px;
 }
 
 .add-button {
-  border: 1px solid #e6e6e6;
-  height: 130px;
-  position: absolute;
-  top: 0;
-  right: -159px;
-  width: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #0d95f0;
+    border: 1px solid #e6e6e6;
+    height: 130px;
+    position: absolute;
+    top: 0;
+    right: -159px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #0d95f0;
 }
 
 .add-button .icon {
-  display: block;
-  margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 #xfk {
-  width: 400px;
-  height: 200px;
-  border: 1px solid rgb(204, 203, 203);
-  position: fixed;
-  top: 100px;
-  right: 100px;
-  background-color: white;
-  border-radius: 10px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgb(204, 203, 203);
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 #tit {
-  font-size: 15px;
-  font-weight: bold;
-  margin-top: 15px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  border-bottom: 1px solid rgb(173, 173, 173);
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(173, 173, 173);
 }

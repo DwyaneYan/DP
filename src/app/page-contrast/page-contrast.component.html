@@ -3,8 +3,7 @@
 <div class="w1200">
     <!-- 左边定位菜单  START -->
     <ul nz-menu nzMode="inline" class="nav-list" id="navList">
-        <li nz-menu-item nz-tooltip [nzTitle]="isCollapsed ? 'Navigation One' : ''"
-            *ngFor="let dataList of pageConfiguration" [attr.data-id]="dataList.key" (click)="clickNav(dataList.key)">
+        <li nz-menu-item nz-tooltip [nzTitle]="isCollapsed ? 'Navigation One' : ''" *ngFor="let dataList of pageConfiguration" [attr.data-id]="dataList.key" (click)="clickNav(dataList.key)">
             <span>{{ dataList.name }}</span>
         </li>
     </ul>
@@ -47,37 +46,35 @@
                 </tbody>
             </nz-table>
             <div *ngFor="let dataList of pageConfiguration; let i = index" id="js-content">
-                <nz-table class="borderedTable vertical js-content" nzBordered [id]="[dataList.key]" [nzData]="[{}]"
-                    [nzShowPagination]="false" *ngIf="listItemBlank[dataList.key] == true">
+                <nz-table class="borderedTable vertical js-content" nzBordered [id]="[dataList.key]" [nzData]="[{}]" [nzShowPagination]="false" *ngIf="listItemBlank[dataList.key] == true">
                     <thead>
                         <tr>
-                            <th id="str" nzWidth="173px" style="height:30px;padding-top: 5px;
+                            <th id="str" style="height:30px;padding-top: 5px;
               padding-bottom: 5px;">
                                 <div style="width:130px;text-align: left;">{{ dataList.name }}
                                 </div>
                             </th>
                             <th *ngFor="let dataDes of dataList.itemDes;let i = index;" nzAlign="right" nzWidth="173px">
                                 <div>
-                                    <span *ngIf="dataDes.length>=15 else elseBlock"  
-                                        style="display:inline-block;width:130px;">
+                                    <span *ngIf="dataDes.length>=15 else elseBlock"   style="display:inline-block;width:130px;">
                                         <span nz-tooltip [nzTooltipTitle]="titleTemplate"
                                             *ngIf="dataDes !='执行标准' else elseBlockone">
                                             {{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
-                                        <ng-template #elseBlockone>
-                                            <span>{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
+                                    <ng-template #elseBlockone>
+                                        <span>{{ dataDes.substring(0,dataDes.indexOf('(')) }}<br>{{ dataDes.substring(dataDes.indexOf('(')) }}</span>
                                         </ng-template>
-                                    </span>
-                                    <ng-template #elseBlock><span style="display:inline-block;width:130px;">
+                                        </span>
+                                        <ng-template #elseBlock><span style="display:inline-block;width:130px;">
                                             <span nz-tooltip [nzTooltipTitle]="titleTemplate"
                                                 *ngIf="dataDes !='执行标准' else elseBlockone">{{ dataDes}}</span>
                                             <ng-template #elseBlockone>
                                                 <span>{{ dataDes}}</span>
-                                            </ng-template>
-                                        </span>
-                                    </ng-template>
-                                    <ng-template #titleTemplate>
-                                        <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
-                                    </ng-template>
+                                                </ng-template>
+                                                </span>
+                                                </ng-template>
+                                                <ng-template #titleTemplate>
+                                                    <a (click)="contrastStaticTension(dataList.item[i],dataDes,dataList.key)">对比</a>
+                                                </ng-template>
                                 </div>
                             </th>
                         </tr>
@@ -130,4 +127,4 @@
 <nz-modal [(nzVisible)]="isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
 
     <div echarts       [options]="options"       style="height: 400px;position: relative;"></div>
-</nz-modal>
+    </nz-modal>
