@@ -1,271 +1,264 @@
-import { Component, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
-import { MaterialServiceService } from './material-service.service'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormMaterialListComponent } from '../form-material-list/form-material-list.component';
-import { ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { Component, OnInit } from "@angular/core";
+import { Output, EventEmitter } from "@angular/core";
+import { MaterialServiceService } from "./material-service.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { FormMaterialListComponent } from "../form-material-list/form-material-list.component";
+import {
+  ActivatedRoute,
+  Router,
+  NavigationEnd,
+  ActivationEnd,
+} from "@angular/router";
+import { ApiService } from "src/app/api.service";
 
 @Component({
-  selector: 'app-page-material',
-  templateUrl: './page-material.component.html',
-  styleUrls: ['./page-material.component.css']
+  selector: "app-page-material",
+  templateUrl: "./page-material.component.html",
+  styleUrls: ["./page-material.component.css"],
 })
-
 export class PageMaterialComponent implements OnInit {
+  materialType = [
+    //冷轧
+    {
+      class: "material-class",
+      enum: "10",
+      name: "冷轧",
+      children: [
+        {
+          enum: "20",
+          name: "烘烤硬化钢",
+        },
+        {
+          enum: "30",
+          name: "高强IF钢",
+        },
+        {
+          enum: "100",
+          name: "IF钢",
+        },
+        {
+          enum: "40",
+          name: "低碳铝镇静钢",
+        },
+        {
+          enum: "50",
+          name: "低合金高强度钢",
+        },
+        {
+          enum: "60",
+          name: "双相钢",
+        },
+        {
+          enum: "70",
+          name: "淬火延性钢",
+        },
+        {
+          enum: "80",
+          name: "马氏体钢",
+        },
+        {
+          enum: "90",
+          name: "增强成形性双相钢",
+        },
+      ],
+    },
 
-  materialType =
-    [
-      //冷轧
-      {
-        class: "material-class",
-        enum: "10",
-        name: "冷轧",
-        children: [
-          {
-            enum: '20',
-            name: '烘烤硬化钢'
-          },
-          {
-            enum: '30',
-            name: '高强IF钢'
-          },
-          {
-            enum: '100',
-            name: 'IF钢'
-          },
-          {
-            enum: '40',
-            name: '低碳铝镇静钢'
-          },
-          {
-            enum: '50',
-            name: '低合金高强度钢'
-          },
-          {
-            enum: '60',
-            name: '双相钢'
-          },
-          {
-            enum: '70',
-            name: '淬火延性钢'
-          },
-          {
-            enum: '80',
-            name: '马氏体钢'
-          },
-          {
-            enum: '90',
-            name: '增强成形性双相钢'
-          },
+    //镀锌
+    {
+      class: "material-class",
+      enum: "110",
+      name: "镀锌",
+      children: [
+        {
+          enum: "120",
+          name: "烘烤硬化钢",
+        },
+        {
+          enum: "130",
+          name: "高强IF钢",
+        },
+        {
+          enum: "170",
+          name: "IF钢",
+        },
+        {
+          enum: "140",
+          name: "低碳铝镇静钢",
+        },
+        {
+          enum: "150",
+          name: "低合金高强度钢",
+        },
+        {
+          enum: "160",
+          name: "双相钢",
+        },
+        {
+          enum: "175",
+          name: "增强成形性双相钢",
+        },
+      ],
+    },
 
-        ]
-      },
+    //热轧
+    {
+      class: "material-class",
+      enum: "180",
+      name: "热轧",
+      children: [
+        {
+          enum: "190",
+          name: "低碳钢",
+        },
+        {
+          enum: "200",
+          name: "SAPH系列",
+        },
+        {
+          enum: "220",
+          name: "大梁钢",
+        },
+        {
+          enum: "210",
+          name: "QStE结构钢系列",
+        },
 
-      //镀锌
-      {
-        class: "material-class",
-        enum: "110",
-        name: "镀锌",
-        children: [
-          {
-            enum: '120',
-            name: '烘烤硬化钢'
-          },
-          {
-            enum: '130',
-            name: '高强IF钢'
-          },
-          {
-            enum: '170',
-            name: 'IF钢'
-          },
-          {
-            enum: '140',
-            name: '低碳铝镇静钢'
-          },
-          {
-            enum: '150',
-            name: '低合金高强度钢'
-          },
-          {
-            enum: '160',
-            name: '双相钢'
-          },
-          {
-            enum: '175',
-            name: '增强成形性双相钢'
-          }
-        ]
-      },
+        {
+          enum: "230",
+          name: "车轮钢轧",
+        },
+        {
+          enum: "240",
+          name: "双相钢",
+        },
+        {
+          enum: "250",
+          name: "箱体钢",
+        },
+        {
+          enum: "260",
+          name: "制动鼓用钢",
+        },
+      ],
+    },
 
-      //热轧
-      {
-        class: "material-class",
-        enum: "180",
-        name: "热轧",
-        children: [
-          {
-            enum: '190',
-            name: '低碳钢'
-          },
-          {
-            enum: '200',
-            name: 'SAPH系列'
-          },
-          {
-            enum: '220',
-            name: '大梁钢'
-          },
-          {
-            enum: '210',
-            name: 'QStE结构钢系列'
-          },
-
-          {
-            enum: '230',
-            name: '车轮钢轧'
-          },
-          {
-            enum: '240',
-            name: '双相钢'
-          },
-          {
-            enum: '250',
-            name: '箱体钢'
-          },
-          {
-            enum: '260',
-            name: '制动鼓用钢'
-          },
-        ]
-      },
-
-      //中板
-      {
-        class: "material-class1",
-        enum: "270",
-        name: "中板",
-        children: [
-          {
-            enum: '275',
-            name: '大梁钢'
-          },
-          {
-            enum: '300',
-            name: '自卸车厢体用耐磨钢'
-          },
-          {
-            enum: '280',
-            name: '车轮钢'
-          },
-          {
-            enum: '290',
-            name: '车桥钢'
-          },
-
-        ]
-      }
-
-    ]
-
+    //中板
+    {
+      class: "material-class1",
+      enum: "270",
+      name: "中板",
+      children: [
+        {
+          enum: "275",
+          name: "大梁钢",
+        },
+        {
+          enum: "300",
+          name: "自卸车厢体用耐磨钢",
+        },
+        {
+          enum: "280",
+          name: "车轮钢",
+        },
+        {
+          enum: "290",
+          name: "车桥钢",
+        },
+      ],
+    },
+  ];
 
   //#region 限制条件字段
   //厂家
-  public listManufacturers = []
+  public listManufacturers = [];
   //型号规格
   public listModel = [
     {
-      value: '0.7',
+      value: "0.7",
     },
     {
-      value: '1.2',
+      value: "1.2",
     },
     {
-      value: '1.5',
+      value: "1.5",
     },
     {
-      value: '6.0',
+      value: "6.0",
     },
-  ]
+  ];
   //屈服强度
-  public listStrength =
-    [
-      //120~180MPa
-      {
-        children:
-          [
-            {
-              min: '120',
-              max: '180'
-            },
-          ]
-      },
+  public listStrength = [
+    //120~180MPa
+    {
+      children: [
+        {
+          min: "120",
+          max: "180",
+        },
+      ],
+    },
 
-      //180~340MPa
-      {
-        children:
-          [
-            {
-              min: '180',
-              max: '340'
-            },
-          ]
-      },
+    //180~340MPa
+    {
+      children: [
+        {
+          min: "180",
+          max: "340",
+        },
+      ],
+    },
 
-      //340~500MPa
-      {
-        children:
-          [
-            {
-              min: '340',
-              max: '500'
-            },
-          ]
-      },
+    //340~500MPa
+    {
+      children: [
+        {
+          min: "340",
+          max: "500",
+        },
+      ],
+    },
 
-      //500~1200MPa
-      {
-        children:
-          [
-            {
-              min: '500',
-              max: '1200'
-            },
-          ]
-      }
-    ]
+    //500~1200MPa
+    {
+      children: [
+        {
+          min: "500",
+          max: "1200",
+        },
+      ],
+    },
+  ];
   //#endregion
 
-  public material = []  //存放查询的数据并传给材料列表
+  public material = []; //存放查询的数据并传给材料列表
 
   //查询条件表单
   public params = {
-    Name: '',  //材料名称
-    materialType: '',  //材料分类
+    Name: "", //材料名称
+    materialType: "", //材料分类
 
-    manufactoryId: '',  //生产厂家
-    model: "",  //型号规格
+    manufactoryId: "", //生产厂家
+    model: "", //型号规格
     maxModel: "", //最大型号规格
     minModel: "", //最小型号规格
     Strength: "",
     MaxStrenth: "", //最大屈服强度
     MinStrenth: "", //最小屈服强度
-  }
-  public materialTypeChildren = []//存放当前选中材料分类的子分类
-  public parentType = "" //选中材料分类的子分类的父级
+  };
+  public materialTypeChildren = []; //存放当前选中材料分类的子分类
+  public parentType = ""; //选中材料分类的子分类的父级
   constructor(
-    private materialService: MaterialServiceService,    //实例化材料服务
+    private materialService: MaterialServiceService, //实例化材料服务
     public http: HttpClient,
     private route: ActivatedRoute,
-    private ApiService: ApiService,
-
-  ) { }
+    private ApiService: ApiService
+  ) {}
   ngOnInit() {
-    this.route.paramMap.subscribe(param => {
-      let materialName = param.get('materialName');
-      if (materialName) { //从搜索跳转过来
-        this.params.Name = param.get('materialName');
+    this.route.paramMap.subscribe((param) => {
+      let materialName = param.get("materialName");
+      if (materialName) {
+        //从搜索跳转过来
+        this.params.Name = param.get("materialName");
       }
     });
     this.getGetManufacturers();
@@ -282,63 +275,66 @@ export class PageMaterialComponent implements OnInit {
 
   //#region 获取筛选条件并 发送查询请求
 
-  //材料分类  
-  public async filtrationMaterialType(childItem) {
+  //材料分类
+  public async filtrationMaterialType(childItem, isAll) {
     this.params.materialType = childItem.enum;
+    if (isAll) {
+      this.parentType = "";
+    }
     if (childItem.children) {
       this.materialTypeChildren = childItem.children;
       this.parentType = childItem.enum;
     }
     // console.log(this.params)
     await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items
+      this.material = res.items;
       // console.log(this.material)
-    })
+    });
   }
 
   //生产厂家
   public async filtrationManufacturers(item) {
-    this.params.manufactoryId = item.id
+    this.params.manufactoryId = item.id;
     // console.log(this.params);
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
-    })
+    });
   }
 
   //型号规格
   public async filtrationModel(item) {
-    this.params.model = item.value
+    this.params.model = item.value;
     // console.log(this.params);
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
-    })
+    });
   }
   //型号规格不限
-  public async filtModel(){
-    this.params.model = '';
-    this.params.minModel = '';
-    this.params.maxModel = '';
+  public async filtModel() {
+    this.params.model = "";
+    this.params.minModel = "";
+    this.params.maxModel = "";
 
     // console.log(this.params);
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
-    })
+    });
   }
   public async filtrationMinModel() {
     this.params.model = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
-    })
+    });
   }
 
   public async filtrationMaxModel() {
     this.params.model = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
-    })
+    });
   }
 
   //屈服强度
@@ -349,55 +345,55 @@ export class PageMaterialComponent implements OnInit {
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
-    })
+    });
   }
   //屈服强度不限
   public async filtStrength() {
-    this.params.MinStrenth = '';
-    this.params.MaxStrenth = '';
-    this.params.Strength = '';
+    this.params.MinStrenth = "";
+    this.params.MaxStrenth = "";
+    this.params.Strength = "";
     // console.log(this.params);
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
       // console.log(this.material);
-    })
+    });
   }
   public async filtrationMinStrength() {
     this.params.Strength = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
-    })
+    });
   }
 
   public async filtrationMaxStrength() {
     this.params.Strength = "";
     await this.ApiService.GetMater(this.params).then((res: any) => {
       this.material = res.items;
-    })
+    });
   }
 
   //清楚筛选条件
   public async clear() {
-    this.params.Name = '',
-      this.params.materialType = '',
-      this.params.manufactoryId = '',
-      this.params.model = '',
-      this.params.minModel = ''
-    this.params.maxModel = ''
-    this.params.MaxStrenth = ''
-    this.params.MinStrenth = ''
+    (this.params.Name = ""),
+      (this.params.materialType = ""),
+      (this.params.manufactoryId = ""),
+      (this.params.model = ""),
+      (this.params.minModel = "");
+    this.params.maxModel = "";
+    this.params.MaxStrenth = "";
+    this.params.MinStrenth = "";
     // console.log(this.params)
     await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items
+      this.material = res.items;
       // console.log(this.material)
-    })
+    });
   }
   //#endregion
   //根据材料牌号搜索材料
-  public async  doEvent(data){
-    this.params.Name = data
+  public async doEvent(data) {
+    this.params.Name = data;
     await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items})
+      this.material = res.items;
+    });
   }
-
 }
