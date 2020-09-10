@@ -6,6 +6,7 @@ import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,8 @@ export class FormAddCarComponent implements OnInit,OnChanges {
   @Input() materialId
   @Output() private outer=new EventEmitter<string>();
   @Output() private outer1=new EventEmitter<string>();
-  button=true
+  // button=true
+  submitFail = true
   nzFileList=[]
   nzFileList1=[]
   car=[] 
@@ -27,10 +29,10 @@ export class FormAddCarComponent implements OnInit,OnChanges {
     public http: HttpClient,
     private msg: NzMessageService ) { }
   profileForm = this.fb.group({
-    carName: ['', Validators.required],
-    jiankuang: [''],
-    lingjian: [''],
-    yaoqiu: [''],
+    vehicleType: ['', Validators.required],
+    breif: [''],
+    suppliedPart: [''],
+    requirement: [''],
    
   });
   ngOnInit() {
@@ -39,7 +41,7 @@ export class FormAddCarComponent implements OnInit,OnChanges {
   handleCancel(): void {
   this.profileForm.reset();
   this.isVisible = false;
-  this.button=true;
+  // this.button=true;
   this.outer1.emit(this.isVisible);
   this.nzFileList = [];
   this.nzFileList1 = [];
@@ -52,58 +54,202 @@ ngOnChanges(changes: SimpleChanges) {
 }
 formDataList = []
 returnFalse =false
-  customRequestOne= (item: UploadXHRArgs) => {
-    // this.nzFileList=[]
-          this.formData.append('photo',item.file as any);
-          this.formDataList.push(item);    
-    console.log(item.action!)
-        // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
-        return  setTimeout(() => {
-          const req = new HttpRequest('PUT', item.action!, this.formData, {
-            reportProgress: true,
-            withCredentials: true
-          });
-          if(this.returnFalse == false){
-            this.http.request(req).subscribe(
-              (event: HttpEvent<{}>) => {
-                if (event.type === HttpEventType.UploadProgress) {
-                  if (event.total! > 0) {
-                    // tslint:disable-next-line:no-any
-                    (event as any).percent = (event.loaded / event.total!) * 100;
-                  }
-                  // 处理上传进度条，必须指定 `percent` 属性来表示进度
-                  for (const item of this.formDataList) {
-                  item.onProgress!(event, item.file!);
-                    
-                  }
-                } else if (event instanceof HttpResponse) {
-                  // 处理成功
-                  this.returnFalse = false;
-                  for (const item of this.formDataList) {
-                    item.onSuccess!(event.body, item.file!, event);
+  // customRequestOne()  {
+  //   // this.nzFileList=[]
+  //   this.formData = new FormData();
+  //   this.nzFileList.forEach((file: any) => {
+  //     this.formData.append('photo', file);
+  //   });
+  //   //       this.formData.append('photo',item.file as any);
+  //   //       this.formDataList.push(item);    
+  //   // console.log(item.action!)
+  //       // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+  //   //     return  setTimeout(() => {
+  //   //       const req = new HttpRequest('PUT', item.action!, this.formData, {
+  //   //         reportProgress: true,
+  //   //         withCredentials: true
+  //   //       });
+  //   //       if(this.returnFalse == false){
+  //   //         this.http.request(req).subscribe(
+  //   //           (event: HttpEvent<{}>) => {
+  //   //             if (event.type === HttpEventType.UploadProgress) {
+  //   //               if (event.total! > 0) {
+  //   //                 // tslint:disable-next-line:no-any
+  //   //                 (event as any).percent = (event.loaded / event.total!) * 100;
+  //   //               }
+  //   //               // 处理上传进度条，必须指定 `percent` 属性来表示进度
+  //   //               for (const item of this.formDataList) {
+  //   //               item.onProgress!(event, item.file!);
+  //   //                 
+  //   //               }
+  //   //             } else if (event instanceof HttpResponse) {
+  //   //               // 处理成功
+  //   //               this.returnFalse = false;
+  //   //               for (const item of this.formDataList) {
+  //   //                 item.onSuccess!(event.body, item.file!, event);
     
-                      
-                    }
-                    this.formData = new FormData();
-                    this.formDataList=[];
-                }
-               },
-              err => {
-                // 处理失败
-                this.returnFalse = false;
-                for (const item of this.formDataList) {
-                  item.onError!(err, item.file!);
-                }
-                this.formData = new FormData();
-                this.formDataList=[];
-              }
-              
-            )
-            this.returnFalse = true;
+  //   //                   
+  //   //                 }
+  //   //                 this.formData = new FormData();
+  //   //                 this.formDataList=[];
+  //   //             }
+  //   //            },
+  //   //           err => {
+  //   //             // 处理失败
+  //   //             this.returnFalse = false;
+  //   //             for (const item of this.formDataList) {
+  //   //               item.onError!(err, item.file!);
+  //   //             }
+  //   //             this.formData = new FormData();
+  //   //             this.formDataList=[];
+  //   //           }
+  //   //           
+  //   //         )
+  //   //         this.returnFalse = true;
     
-          }  
-        }, 100);
-        }
+  //   //       }  
+  //   //     }, 100);
+  //   const req = new HttpRequest('PUT', this.maUrl1, this.formData, {
+  //     // reportProgress: true
+  //   });
+  //   this.http
+  //     .request(req)
+  //     .pipe(filter(e => e instanceof HttpResponse))
+  //     .subscribe(
+  //       () => {
+  //         this.nzFileList = [];
+  //         this.msg.success('图片上传成功');
+  //       },
+  //       () => {
+  //         this.msg.error('图片上传失败');
+  //       }
+  //     );
+  //       }
+    customRequestOne= (item: UploadXHRArgs) => {
+      // this.nzFileList=[]
+            this.formData.append('photo',item.file as any);
+            this.formDataList.push(item);    
+      console.log(item.action!)
+          // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+          return  setTimeout(() => {
+            const req = new HttpRequest('PUT', item.action!, this.formData, {
+              reportProgress: true,
+              withCredentials: true
+            });
+            if(this.returnFalse == false){
+              this.http.request(req).subscribe(
+                (event: HttpEvent<{}>) => {
+                  if (event.type === HttpEventType.UploadProgress) {
+                    if (event.total! > 0) {
+                      // tslint:disable-next-line:no-any
+                      (event as any).percent = (event.loaded / event.total!) * 100;
+                    }
+                    // 处理上传进度条，必须指定 `percent` 属性来表示进度
+                    for (const item of this.formDataList) {
+                    item.onProgress!(event, item.file!);
+                      
+                    }
+                  } else if (event instanceof HttpResponse) {
+                    // 处理成功
+                    this.returnFalse = false;
+                    for (const item of this.formDataList) {
+                      item.onSuccess!(event.body, item.file!, event);
+      
+                        
+                      }
+                      this.formData = new FormData();
+                      this.formDataList=[];
+      this.msg.success("图片上传成功");
+                  }
+                 },
+                err => {
+                  // 处理失败
+                  this.returnFalse = false;
+                  for (const item of this.formDataList) {
+                    item.onError!(err, item.file!);
+                  }
+                  this.formData = new FormData();
+                  this.formDataList=[];
+      this.msg.error('图片上传失败');
+                }
+                
+              )
+              this.returnFalse = true;
+      
+            }  
+          }, 100);
+          }
+    // customRequestTwo()  {
+    //   const formDataTwo = new FormData();
+    //   //       this.formData.append('document',item.file as any);
+    //   //       this.formDataList.push(item);    
+    //   // console.log(item.action!)
+    //   this.nzFileList1.forEach((file: any) => {
+    //     formDataTwo.append('document', file);
+    //   });
+    //   const req = new HttpRequest('PUT', this.maUrl2, formDataTwo, {
+    //   // reportProgress: true
+    // });
+    // this.http
+    //   .request(req)
+    //   .pipe(filter(e => e instanceof HttpResponse))
+    //   .subscribe(
+    //     () => {
+    //       this.nzFileList1 = [];
+    //       this.msg.success('文件上传成功');
+    //     },
+    //     () => {
+    //       this.msg.error('文件上传失败');
+    //     }
+    //   );
+  
+    //       // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+    //   //     return  setTimeout(() => {
+    //   //       const req = new HttpRequest('PUT', item.action!, this.formData, {
+    //   //         reportProgress: true,
+    //   //         withCredentials: true
+    //   //       });
+    //   //       if(this.returnFalse == false){
+    //   //         this.http.request(req).subscribe(
+    //   //           (event: HttpEvent<{}>) => {
+    //   //             if (event.type === HttpEventType.UploadProgress) {
+    //   //               if (event.total! > 0) {
+    //   //                 // tslint:disable-next-line:no-any
+    //   //                 (event as any).percent = (event.loaded / event.total!) * 100;
+    //   //               }
+    //   //               // 处理上传进度条，必须指定 `percent` 属性来表示进度
+    //   //               for (const item of this.formDataList) {
+    //   //               item.onProgress!(event, item.file!);
+    //   //                 
+    //   //               }
+    //   //             } else if (event instanceof HttpResponse) {
+    //   //               // 处理成功
+    //   //               this.returnFalse = false;
+    //   //               for (const item of this.formDataList) {
+    //   //                 item.onSuccess!(event.body, item.file!, event);
+      
+    //   //                   
+    //   //                 }
+    //   //                 this.formData = new FormData();
+    //   //                 this.formDataList=[];
+    //   //             }
+    //   //            },
+    //   //           err => {
+    //   //             // 处理失败
+    //   //             this.returnFalse = false;
+    //   //             for (const item of this.formDataList) {
+    //   //               item.onError!(err, item.file!);
+    //   //             }
+    //   //             this.formData = new FormData();
+    //   //             this.formDataList=[];
+    //   //           }
+    //   //           
+    //   //         )
+    //   //         this.returnFalse = true;
+      
+    //   //       }  
+    //   //     }, 100);
+    //       }
     customRequestTwo= (item: UploadXHRArgs) => {
             this.formData.append('document',item.file as any);
             this.formDataList.push(item);    
@@ -137,6 +283,7 @@ returnFalse =false
                       }
                       this.formData = new FormData();
                       this.formDataList=[];
+      this.msg.success("文件上传成功");
                   }
                  },
                 err => {
@@ -147,6 +294,8 @@ returnFalse =false
                   }
                   this.formData = new FormData();
                   this.formDataList=[];
+      this.msg.error('文件上传失败');
+
                 }
                 
               )
@@ -187,28 +336,35 @@ returnFalse =false
     carid
     maUrl1
     maUrl2
-submitForm(value): void {
-  let api=`/api/hangang/materialTrial/applicationCaseByInput?MaterialId=${this.materialId}&VehicleType=${value.carName}`
+submitForm(): void {
+  console.log(this.profileForm.value)
+  for (const i in this.profileForm.controls) {
+    this.profileForm.controls[i].markAsDirty();
+    this.profileForm.controls[i].updateValueAndValidity();
+  }
+  if(this.profileForm.valid){
+    let api=`/api/hangang/materialTrial/applicationCaseByInput?MaterialId=${this.materialId}&VehicleType=${this.profileForm.value.vehicleType}`
   this.http.get(api).toPromise()
   .then((res: any) => {
       if(res.length==0){
-   
-    let form={materialId:this.materialId,
-      vehicleType:value.carName,
-      breif:value.jiankuang,
-      suppliedPart:value.lingjian,
-      requirement:value.yaoqiu}
+        this.profileForm.value.materialId = this.materialId;
+    // let form={materialId:this.materialId,
+    //   vehicleType:value.carName,
+    //   breif:value.jiankuang,
+    //   suppliedPart:value.lingjian,
+    //   requirement:value.yaoqiu}
     let api ='/api/hangang/materialTrial/applicationCase';
-    this.http.post(api,form)
+    this.http.post(api,this.profileForm.value)
 .toPromise()
  .then((res: any) => {
 
   this.carid=res
-  this.button=false
+  // this.button=false
   // this.getCar()
   this.maUrl1=`/api/hangang/trialdatadetail/ApplicationCasePicturePut?Id=${this.carid}`
   this.maUrl2=`/api/hangang/trialdatadetail/ApplicationCaseDocumentPut?Id=${this.carid}`
-  this.msg.info('已提交')
+  this.submitFail = false;
+  this.msg.info('车型添加成功')
   this.outer.emit(this.carid)
  })}
 else{
@@ -216,6 +372,8 @@ else{
 
 }
 })
+  }
+  
 //  this.profileForm.reset()
 
 }
@@ -224,27 +382,26 @@ resetForm(e: MouseEvent): void {
   this.profileForm.reset();
 }
 createBasicMessage(): void {
-  if(this.button==true){
+  if(this.submitFail ==true){
     this.msg.info('请先提交');
   }
 }
 
 //限制上传的图片格式
-beforeUpload1 = (file: UploadFile, _fileList: UploadFile[]) => {
+beforeUpload1 = (file: UploadFile) => {
   return new Observable((observer: Observer<boolean>) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
       this.msg.error('只能上传JPG和PNG');
       observer.complete();
-      return;
+      return ;
     }
     observer.next(isJpgOrPng );
     observer.complete();
   });
 };
 //限制文件上传格式
-beforeUpload2 = (file: UploadFile, _fileList: UploadFile[]) => {
- //console.log(file.type)
+beforeUpload2 = (file: UploadFile) => {
   return new Observable((observer: Observer<boolean>) => {
     const isJpgOrPng = file.type === 'application/pdf' ;
     if (!isJpgOrPng) {
