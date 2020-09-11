@@ -17,13 +17,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of rowSelectionTable.data">
-            <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.materialId)" class="table-col" name="chk"></td>
+            <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.id)" class="table-col" name="chk"></td>
             <td class="table-col" nzBreakWord>{{ data.name }}</td>
-            <td class="table-col" nzBreakWord>{{ data.manufacture }}</td>
-            <td class="table-col" nzBreakWord>{{ data.thickness }}</td>
-            <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
+            <td class="table-col" nzBreakWord>{{ data.manufactoryName }}</td>
             <td class="table-col" nzBreakWord>{{ data.model }}</td>
-            <td class="table-col"><a [routerLink]="data.routerLink1">查看</a></td>
+            <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
+            <td class="table-col" nzBreakWord>{{ data.strength }}</td>
+            <td class="table-col" (click)="getURl(data.id,data)" style="color:#1890ff">查看</td>
         </tr>
     </tbody>
 </nz-table>
@@ -52,9 +52,9 @@
     <ul>
         <li *ngFor="let data of checkList">
             <span class="text name">{{ data.name }}</span>
-            <span class="text">{{ data.manufacture }}</span>
-            <span class="text">{{ data.thickness }}</span>
-            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i>
+            <span class="text">{{ data.manufactoryName }}</span>
+            <span class="text">{{ data.model }}</span>
+            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.id)"></i>
         </li>
     </ul>
     <a [routerLink]="['/contrast']" [queryParams]="{materialids:contrastID}" target="_blank">
@@ -72,9 +72,9 @@
     <ul>
         <li *ngFor="let data of checkList">
             <span class="text name">{{ data.name }}</span>
-            <span class="text">{{ data.manufacture }}</span>
-            <span class="text">{{ data.thickness }}</span>
-            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialId)"></i>
+            <span class="text">{{ data.manufactoryName }}</span>
+            <span class="text">{{ data.model }}</span>
+            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.id)"></i>
         </li>
     </ul>
 
