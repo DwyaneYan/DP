@@ -18,21 +18,23 @@ export class TypicalPartComponent implements OnInit {
   ) { }
 
   materialId
+   carNAme
   ngOnInit() {
     this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
-
+    this.ApiService.getPart(this.materialId).then((res:any)=>{
+      console.log(res)
+    })
     
   }
   //获取零件目录树
   getTree(){
     let temp = [];
-this.ApiService.getAllPart().then((res:any)=>{
+     this.ApiService.getAllPart().then((res:any)=>{
          let carName = this.sort_pro(res,['carName']);
-         console.log(carName)
+        //  console.log(carName)
         let length = carName.length;
-        //this.nzOptions =  new Array(length)
         for(let a = 0;a<length;a++){
           let length1 = carName[a].children.length;
           temp.push({
@@ -73,17 +75,14 @@ this.ApiService.getAllPart().then((res:any)=>{
     this.isVisible = true;
     this.values = []
     this.getTree();
-
-    console.log(this.nzOptions)
-
   }
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+
+
 let a = this.values[1].directoryId;
 //点击确定就绑定，可否重新绑定？
  this.ApiService.bindMater(a,this.materialId).then((res:any)=>{
-
+  this.isVisible = false;
  })
   }
 

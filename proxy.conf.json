@@ -4,7 +4,7 @@
         "secure": false
     },
     "/devhg-api/": {
-        "target": "http://localhost:8080",
+        "target": "http://10.130.3.142:8080",
         "secure": false,
         "pathRewrite": {
             "^/devhg-api/": ""

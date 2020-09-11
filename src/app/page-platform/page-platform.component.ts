@@ -34,7 +34,7 @@ export class PagePlatformComponent implements OnInit {
   url
   theurl
   nzOptions=[]
-  values=[];
+   values=[];
   listManufacturers
   listMa = [];
   list = [];
@@ -79,12 +79,13 @@ pas=[]
 //添加推荐材料弹框
     this.isVisible1 = true;
     //可选项数据源
-    this.op();
+    this.ops();
   }
   FileList=[]
   //添加推荐材料弹框确认
  handleOk() {
-   console.log(this.values[0]);
+  //  console.log(this.values[0]);
+  this.values = []
    //根据材料id添加到推荐表
    if(this.values[0]){this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
   this.showma(); 
@@ -148,103 +149,63 @@ else{
 //   window.sessionStorage.setItem('data',  JSON.stringify(res)); 
 //      })
     this.showma();
-   
+
 
   }
-op(){
+
+ops(){
   this.ApiService.GetManufacturers().then((res: any) => {
     this.listManufacturers = res.items;
-    let temp = [];
-    for (let j = 0; j < this.listManufacturers.length; j++) {
-    temp[j] = {
-        value: this.listManufacturers[j].id,
-        label: this.listManufacturers[j].name
-      };
-      this.listMa[j] = [];
-      this.list[j] = [];
-      this.li[j] = [];//每个厂家的牌号
-      this.pa[j] = { manufactoryId: "" };
-      this.pa[j].manufactoryId = this.listManufacturers[j].id;
-      console.log(this.pa[j])
-      this.ApiService.GetMater(this.pa[j]).then((res: any) => {
-        console.log(this.pa[j])
-        this.listMa[j] = res.items;
-        this.listMa[j].forEach(val => this.list[j].push(val.name));
-        this.li[j] = this.unique1(this.list[j]);//每个厂家的牌号
-        console.log(res)
-        this.th[j] = [];
-        this.listMath[j] = [];
-        this.lit[j] = [];
-        this.pas[j] = [];
-        this.limo[j] = [];//每个牌号的型号规格
-        this.d[j]=[]
-        this.e[j]=[]
-        this.f[j]=[]
-        this.g[j]=[] 
-        for (let a = 0; a < this.li[j].length; a++) {
-          this.two[j] = [];
-          this.listMath[j][a] = [];
-          this.lit[j][a] = [];
-          this.limo[j][a] = [];//每个牌号的型号规格
-          this.d[j][a]=[]
-        this.e[j][a]=[]
-        this.f[j][a]=[]
-        this.g[j][a]=[]
-          this.pas[j][a] = { manufactoryId: "", Name: "" };
-          this.pas[j][a].manufactoryId = this.listManufacturers[j].id;
-          this.pas[j][a].Name = this.li[j][a];
-          this.ApiService.GetMater(this.pas[j][a]).then(
-            (res: any) => {
-              this.listMath[j][a] = res.items;             
-              this.listMath[j][a].forEach(val =>{
-               this.lit[j][a].push(val.model)}
-              );
-              this.limo[j][a] = this.unique1(this.lit[j][a]);   //每个牌号的型号规格         
-             this.th[j][a] = [];
-              for (let b = 0; b < this.limo[j][a].length; b++) {
-                this.f[j][a][b]=[]
-                this.e[j][a][b]=[]
-                this.g[j][a][b]=[]
-                this.d[j][a][b]={ manufactoryId: "", Name: "" ,model:2};
-                this.d[j][a][b].manufactoryId = this.listManufacturers[j].id;
-                this.d[j][a][b].Name = this.li[j][a];
-                this.d[j][a][b].model = this.limo[j][a][b];
-              this.ApiService.GetMater(this.d[j][a][b]).then((res: any) => {
-                this.e[j][a][b] = res.items;
-                this.e[j][a][b].forEach(val =>{
-                  this.f[j][a][b].push(val.reelNumber)}
-                 );
-                 this.f[j][a][b]=this.unique1(this.f[j][a][b]);
-for(let x=0;x<this.f[j][a][b].length;x++){
-  this.g[j][a][b][x]={
-    value: this.f[j][a][b][x],
-    label: this.f[j][a][b][x],
-    isLeaf: true
-  };
-}
-this.th[j][a][b] = {
-  value: this.limo[j][a][b],
-  label: this.limo[j][a][b],
-  children:this.g[j][a][b] ,
-};
+    let temp = [];//可选项数据列表
+    this.listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
+    let lengthTemp = temp.length
+      this.ApiService.GetMater().then((res:any)=>{
+        let allMaterials = res.items
+for(let a= 0;a<lengthTemp;a++){
+  temp[a].children = []
+  let name = allMaterials.filter(item=>item.manufactoryId == temp[a].value) //牌号数组,牌号会重复
+ console.log(name)
 
-              this.two[j][a] = {
-                value: this.li[j][a],
-                label: this.li[j][a],
-                children: this.th[j][a]
-              };
-              this.nzOptions[j].children = this.two[j];
-            })
-            }
-            }
-          );
-        }
-      });
-    }
-    this.nzOptions = temp;
-   console.log( this.nzOptions)
-  });
+   let nameAfter = this.uniqueArr(name,'name') //牌号去重
+ let lengthName = nameAfter.length
+ console.log(name,nameAfter)
+ nameAfter.map(val=>temp[a].children.push({value:val.name,label:val.name}))
+  console.log(temp[a].children)
+for(let b= 0;b<lengthName;b++){
+  temp[a].children[b].children = []
+  let model = allMaterials.filter(item=>item.manufactoryId == temp[a].value && item.name == nameAfter[b].name) //型号规格数组，重复
+  let modelAfter = this.uniqueArr(model,'model') //型号规格去重
+ console.log(model,modelAfter)
+  let lengthModel = modelAfter.length
+  modelAfter.map(val=>temp[a].children[b].children.push({value:val.model,label:val.model}))
+ console.log(temp[a].children[b].children)
+  for(let c = 0;c<lengthModel;c++){
+    temp[a].children[b].children[c].children = []
+    let reelNumber = allMaterials.filter(item=>item.manufactoryId == temp[a].value && item.name == nameAfter[b].name && item.model == modelAfter[c].model) //卷号数组，重复
+    let reelNumberAfter = this.uniqueArr(reelNumber,'reelNumber') //卷号去重
+ console.log(2111,reelNumber,reelNumberAfter)
+ // let lengthreelNumber = reelNumberAfter.length
+    reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.reelNumber,label:val.reelNumber,isLeaf: true}))
+ console.log(temp[a].children[b].children[c])
+
+  }
+
 }
+
+}
+this.nzOptions = temp
+console.log(temp)
+      })
+    
+  })
+
+}
+
+uniqueArr(arr1,p) {
+  const res = new Map();
+  return arr1.filter((a) => !res.has(a[p]) && res.set(a[p], 1)) //对象数组根据属性去重
+}
+
 fileStatus
 responseData
 filePath
@@ -385,12 +346,12 @@ showma(){
 
 //推荐材料级联选择框值发生变化时触发
   onChanges(values: any): void {
-  // console.log(values);
-   if(this.values[0]){
-    this.pat.manufactoryId = this.values[0];
- this.pat.name = this.values[1];
- this.pat.model = this.values[2];
- this.pat.reelNumber = this.values[3];
+  console.log(values);
+   if(values[0]){
+    this.pat.manufactoryId = values[0];
+ this.pat.name = values[1];
+ this.pat.model = values[2];
+ this.pat.reelNumber = values[3];
  //查询材料
  this.ApiService.GetMater(this.pat).then((res: any) => {
    this.addid=res.items[0].id

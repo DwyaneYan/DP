@@ -29,7 +29,7 @@ export class ApiService {
   //    }
 
 //在材料表筛选材料
-async GetMater(params){
+async GetMater(params?){
     let url ="/api/hangang/material/materials";
     let res= await this.http.get(url,{params}).toPromise()
     .catch(err =>{
