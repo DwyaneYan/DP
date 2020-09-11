@@ -17,6 +17,8 @@ import { connectableObservableDescriptor } from "rxjs/internal/observable/Connec
   styleUrls: ["./page-contrast.component.css"]
 })
 export class PageContrastComponent implements OnInit {
+  viewAdd = false //添加推荐材料弹框
+  valuetj = []
   StaticTension=[]//静态拉伸
   LowCycleFatigue = [];//低周疲劳
   ChemicalElement=[];//化学成分
@@ -110,13 +112,14 @@ export class PageContrastComponent implements OnInit {
     { key: "hide", value: "隐藏空白项", checked: false, id: "hideItem" },
     { key: "show", value: "标示全部项", checked: true, id: "showItem" }
   ];
-  name = [];
-  model = [];
-  manu = [];
-  checkbox = false;
-  values = [];
+  name = []; //牌号
+  model = []; //型号规格
+  manu = []; //厂家
+  reelNumber = []//卷号
+  // checkbox = false;
+  // values = [];
   listManufacturers = [];
-  nzOptions = [];
+  nzOptions = [];//可选项数据
   listMa = [];
   list = [];
   li = [];
@@ -138,8 +141,8 @@ export class PageContrastComponent implements OnInit {
     private ApiService: ApiService,
 
   ) {}
-  contrastID;
-  array = [];
+  contrastID = '';//查询参数
+  array = []; //对比材料id数组
   ngOnInit() {
     $("nz-table")
       .addClass("vertical")
@@ -147,51 +150,61 @@ export class PageContrastComponent implements OnInit {
       .wrapInner("<div>");
     //$('table').addClass('vertical');//数字会变垂直，不能用
     this.contrastID = this.routerinfo.snapshot.queryParams["materialids"];
-    if(this.contrastID.length>0){
+    if(this.contrastID){
     this.array = this.contrastID.split(",");}
     else{this.array=[]}
     this.getGetMaterialss();
     this.getGetMaterials();
-    this.getGetManufacturers();
+    // this.getGetManufacturers();
     // this.navScroll();
   }
 // 请求对比数据
-  public async getGetMaterials() {
-    if(this.array.length!=0) {
-      await this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
-      this.StaticTension= res; 
+ getGetMaterials() {
+    // if(this.array.length!=0) {
+       this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
+      this.StaticTension = res; 
       console.log(this.array.length,this.StaticTension)
 });
-    await this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
+     this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
     this.LowCycleFatigue= res; 
 });
 
-await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) => {
+ this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) => {
   this.ChemicalElement= res;
 
 })
-    this.changeStatus(this.listArr);
+    // this.changeStatus(this.listArr);
 
-  }
-  else{
-    this.StaticTension=[]
-    console.log(this.array,this.StaticTension.length)
-  }
+  // }
+  // else{
+  //   this.StaticTension=[]
+  //   // console.log(this.array,this.StaticTension.length)
+  // }
 
 }
-reelNumber=[]
-  public async getGetMaterialss() {
-    for (var i = 0; i < this.array.length; i++) {
-      await this.MaterialsContrastService.GetMaterialss(this.array[i]).then(
+// reelNumber=[]
+//表头数据，调了多次接口，很慢
+  public  getGetMaterialss() {
+    // for (var i = 0; i < this.array.length; i++) {
+    //   let ob = {Id:this.array[i]}
+       this.MaterialsContrastService.getMaterialsByIds(this.array).then(
         (res: any) => {
-          console.log(res.items)
-          this.name[i] = res.items[0].name; 
-          this.manu[i] = res.items[0].manufactoryName;          
-          this.model[i] = res.items[0].model;
-          this.reelNumber[i]=res.items[0].reelNumber
+          // console.log(res.items)
+          let comparisonMaterialList = res;
+          comparisonMaterialList.map(val=>{
+            this.name.push(val.name)
+            this.manu.push(val.manufactoryName);          //暂时没有返回生产厂家名，只有厂家id
+            this.model.push(val.model);
+            this.reelNumber.push(val.reelNumber)
+          })
+          console.log(this.name,this.manu,this.model,this.reelNumber)
+          // this.name[i] = res.items[0].name; 
+          // this.manu[i] = res.items[0].manufactoryName;          
+          // this.model[i] = res.items[0].model;
+          // this.reelNumber[i]=res.items[0].reelNumber
         }
       );
-    }
+    // }
   }
   two = [];
   th = [];
@@ -255,12 +268,14 @@ d =[]
 e =[]
 f =[]
 g=[]
+
   showModal() {
-    this.checkbox = true;
-    // this.PagePlatformComponent.ops()
+
+    this.viewAdd = true
+    this.valuetj = []
+
     this.ops()
-    console.log(this.nzOptions);
-    this.values = [];
+
   }
   ops(){
     this.ApiService.GetManufacturers().then((res: any) => {
@@ -332,12 +347,12 @@ g=[]
     });
 
   }
-  cac() {
-    this.checkbox = false;
-  }
-  showo(value) {
+  // cac() {
+  //   this.checkbox = false;
+  // }
+  // showo(value) {
 
-  }
+  // }
   hideItem() {
     this.listItemBlank = this.listItem;
   }
@@ -354,7 +369,6 @@ g=[]
     this.manu.splice(i, 1);
     this.reelNumber.splice(i, 1);
     this.array.splice(i, 1).toString();
-
     this.changeStatus(this.listArr);
     console.log(this.array);
     window.history.pushState(null, null, `/contrast?materialids=${this.array}`);
@@ -373,40 +387,15 @@ g=[]
       }
     }
   }
-  public async getGetManufacturers() {
-    await this.MaterialsContrastService.GetManufacturers().then((res: any) => {
-      // console.log(res);
-      this.listManufacturers = res.items;
-      // console.log(this.listManufacturers)
-    });
-  }
-  pa = [{ manufactoryId: "" }];
 
-  pas = [];
+  // 
   pat = {
     Name: "", //材料名称
-    materialType: "", //材料分类
-    manufactoryId: "", //生产厂家
-    model: "", //型号规格
-    maxModel: "", //最大型号规格
-    minModel: "", //最小型号规格
-    Strength: "",
-    MaxStrenth: "", //最大屈服强度
-    MinStrenth: "" ,//最小屈服强度
+    ManufactoryId: "", //生产厂家
+    Model: "", //型号规格
     ReelNumber:''
   };
-  public async getGetMa() {
-    await this.MaterialsContrastService.GetMater(this.pa).then((res: any) => {
-      // console.log(res);
-      this.listMa = res.items;
-      this.listMa.forEach(val => this.list.push(val.name));
-      this.listMa.forEach(val => this.listmodel.push(val.model));
-      this.li = this.unique1(this.list);
-      this.limo = this.unique1(this.listmodel);
-      
-      // console.log(this.listManufacturers)
-    });
-  }
+
   // 字符串数组去重
   unique1(array) {
     var n = []; //一个新的临时数组
@@ -418,26 +407,7 @@ g=[]
     }
     return n;
   }
-  onChanges(values: string[]) {
-    console.log(values);
-    this.pat.manufactoryId = values[0];
-    this.pat.Name = values[1];
-    this.pat.model = values[2];
-    this.pat.ReelNumber =values[3];
-    this.MaterialsContrastService.GetMater(this.pat).then((res: any) => {
-      this.addlist = res.items;
-      this.array.push(this.addlist[0].id);
-      this.getGetMaterialss();
-      this.getGetMaterials();
-      this.array.toString();
-      window.history.pushState(
-        null,
-        null,
-        `/contrast?materialids=${this.array}`
-      );
-    });
-    this.checkbox = false;
-  }
+
 
   open(): void {
     this.visible = true;
@@ -506,12 +476,46 @@ g=[]
       }
     
   handleOk(): void {
-      console.log("Button ok clicked!");
+  //     console.log("Button ok clicked!");
       this.isVisible = false;
     }
     
   handleCancel(): void {
-      console.log("Button cancel clicked!");
+  //     console.log("Button cancel clicked!");
       this.isVisible = false;
     }
+  handleCanceltj(){
+this.viewAdd = false;
+this.valuetj = []
+  }
+  handleOktj(){
+    this.pat.ManufactoryId = this.valuetj[0];
+    this.pat.Name = this.valuetj[1];
+    this.pat.Model = this.valuetj[2];
+    this.pat.ReelNumber =this.valuetj[3];
+    // this.name =[];
+    // this.model =[];
+    // this.manu=[];
+    // this.reelNumber= []
+    // console.log(this.pat)
+    this.MaterialsContrastService.GetMaterialss(this.pat).then((res: any) => {
+      // console.log(res)
+      this.addlist = res.items;
+      this.array.push(this.addlist[0].id);
+      // this.getGetMaterialss();
+      this.name.push(this.addlist[0].name);
+      this.model.push(this.addlist[0].model);
+      this.manu.push(this.addlist[0].manufactoryName)
+      this.reelNumber.push(this.addlist[0].reelNumber);//不调接口
+      this.getGetMaterials();
+      this.array.toString();
+      window.history.pushState(
+        null,
+        null,
+        `/contrast?materialids=${this.array}`
+      );
+    });
+    this.viewAdd = false;
+this.valuetj = []
+  }
 }

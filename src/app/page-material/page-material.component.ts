@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ViewChildren,QueryList } from "@angular/core";
 import { Output, EventEmitter } from "@angular/core";
 import { MaterialServiceService } from "./material-service.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { FormMaterialListComponent } from "../form-material-list/form-material-list.component";
+import { FormMaterialDbBackgroundComponent } from "../form-material-db-background/form-material-db-background.component";
 import {
   ActivatedRoute,
   Router,
@@ -17,6 +17,7 @@ import { ApiService } from "src/app/api.service";
   styleUrls: ["./page-material.component.css"],
 })
 export class PageMaterialComponent implements OnInit {
+  @ViewChildren(FormMaterialDbBackgroundComponent) enterData: QueryList<FormMaterialDbBackgroundComponent>;//访问整个子组件实例
   materialType = [
     //冷轧
     {
@@ -174,16 +175,16 @@ export class PageMaterialComponent implements OnInit {
   //型号规格
   public listModel = [
     {
-      value: "0.7",
+      Model: "0.7",
     },
     {
-      value: "1.2",
+      Model: "1.2",
     },
     {
-      value: "1.5",
+      Model: "1.5",
     },
     {
-      value: "6.0",
+      Model: "6.0",
     },
   ];
   //屈服强度
@@ -192,8 +193,8 @@ export class PageMaterialComponent implements OnInit {
     {
       children: [
         {
-          min: "120",
-          max: "180",
+          MinStrenth: "120",
+          MaxStrenth: "180",
         },
       ],
     },
@@ -202,8 +203,8 @@ export class PageMaterialComponent implements OnInit {
     {
       children: [
         {
-          min: "180",
-          max: "340",
+          MinStrenth: "180",
+          MaxStrenth: "340",
         },
       ],
     },
@@ -212,8 +213,8 @@ export class PageMaterialComponent implements OnInit {
     {
       children: [
         {
-          min: "340",
-          max: "500",
+          MinStrenth: "340",
+          MaxStrenth: "500",
         },
       ],
     },
@@ -222,26 +223,25 @@ export class PageMaterialComponent implements OnInit {
     {
       children: [
         {
-          min: "500",
-          max: "1200",
+          MinStrenth: "500",
+          MaxStrenth: "1200",
         },
       ],
     },
   ];
   //#endregion
 
-  public material = []; //存放查询的数据并传给材料列表
+  public material = []; //存放查询的所有材料数据并传给材料列表
 
   //查询条件表单
   public params = {
     Name: "", //材料名称
-    materialType: "", //材料分类
-
-    manufactoryId: "", //生产厂家
-    model: "", //型号规格
-    maxModel: "", //最大型号规格
-    minModel: "", //最小型号规格
-    Strength: "",
+    MaterialType: "", //材料分类
+    ManufactoryId: "", //生产厂家
+    Model: "", //型号规格
+    MaxModel: "", //最大型号规格
+    MinModel: "", //最小型号规格
+    // Strength: "",
     MaxStrenth: "", //最大屈服强度
     MinStrenth: "", //最小屈服强度
   };
@@ -254,14 +254,15 @@ export class PageMaterialComponent implements OnInit {
     private ApiService: ApiService
   ) {}
   ngOnInit() {
-    this.route.paramMap.subscribe((param) => {
-      let materialName = param.get("materialName");
-      if (materialName) {
-        //从搜索跳转过来
-        this.params.Name = param.get("materialName");
-      }
-    });
+    // this.route.paramMap.subscribe((param) => {
+    //   let materialName = param.get("materialName");
+    //   if (materialName) {
+    //     //从搜索跳转过来
+    //     this.params.Name = param.get("materialName");
+    //   }
+    // });
     this.getGetManufacturers();
+    this.filtrationMaterial({})
   }
 
   //在加载材料首页的时候查询生产厂家表,获取所有厂家并显示在筛选条件上
@@ -274,126 +275,153 @@ export class PageMaterialComponent implements OnInit {
   }
 
   //#region 获取筛选条件并 发送查询请求
-
-  //材料分类
-  public async filtrationMaterialType(childItem, isAll) {
-    this.params.materialType = childItem.enum;
+  //筛选材料
+  filtrationMaterial(obj, isAll?){
+    this.params.MaterialType = (obj.enum || obj.enum == '')? obj.enum:this.params.MaterialType
+    this.params.ManufactoryId = (obj.id || obj.id == '')? obj.id:this.params.ManufactoryId
+    this.params.Model = (obj.Model || obj.Model == '')? obj.Model:this.params.Model
+    this.params.MinModel = (obj.MinModel || obj.MinModel == '')? obj.MinModel:this.params.MinModel
+    this.params.MaxModel = (obj.MaxModel || obj.MaxModel == '')? obj.MaxModel:this.params.MaxModel
+    this.params.MinStrenth = (obj.MinStrenth || obj.MinStrenth == '')? obj.MinStrenth:this.params.MinStrenth
+    this.params.MaxStrenth = (obj.MaxStrenth || obj.MaxStrenth == '')? obj.MaxStrenth:this.params.MaxStrenth
     if (isAll) {
       this.parentType = "";
     }
-    if (childItem.children) {
-      this.materialTypeChildren = childItem.children;
-      this.parentType = childItem.enum;
+    if (obj.children) {
+      this.materialTypeChildren = obj.children;
+      this.parentType = obj.enum;
     }
-    // console.log(this.params)
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material)
-    });
+    this.ApiService.GetMater(this.params).then((res: any) => {
+          this.material = res.items;})
+
   }
 
-  //生产厂家
-  public async filtrationManufacturers(item) {
-    this.params.manufactoryId = item.id;
-    // console.log(this.params);
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material);
-    });
-  }
+  // //材料分类
+  // public async filtrationMaterialType(childItem, isAll?) {
+  //   this.params.MaterialType = childItem.enum;
+  //   if (isAll) {
+  //     this.parentType = "";
+  //   }
+  //   if (childItem.children) {
+  //     this.materialTypeChildren = childItem.children;
+  //     this.parentType = childItem.enum;
+  //   }
+  //   // console.log(this.params)
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //     // console.log(this.material)
+  //   });
+  // }
 
-  //型号规格
-  public async filtrationModel(item) {
-    this.params.model = item.value;
-    // console.log(this.params);
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material);
-    });
-  }
-  //型号规格不限
-  public async filtModel() {
-    this.params.model = "";
-    this.params.minModel = "";
-    this.params.maxModel = "";
+  // //生产厂家
+  // public async filtrationManufacturers(item) {
+  //   this.params.manufactoryId = item.id;
+  //   // console.log(this.params);
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //     // console.log(this.material);
+  //   });
+  // }
 
-    // console.log(this.params);
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material);
-    });
-  }
-  public async filtrationMinModel() {
-    this.params.model = "";
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-    });
-  }
+  // //型号规格
+  // public async filtrationModel(item) {
+  //   this.params.model = item.value;
+  //   // console.log(this.params);
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //     // console.log(this.material);
+  //   });
+  // }
+  // //型号规格不限
+  // public async filtModel() {
+  //   this.params.model = "";
+  //   this.params.minModel = "";
+  //   this.params.maxModel = "";
 
-  public async filtrationMaxModel() {
-    this.params.model = "";
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-    });
-  }
+  //   // console.log(this.params);
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //     // console.log(this.material);
+  //   });
+  // }
+  // public async filtrationMinModel() {
+  //   this.params.model = "";
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //   });
+  // }
 
-  //屈服强度
-  public async filtrationStrength(item) {
-    this.params.MinStrenth = item.min;
-    this.params.MaxStrenth = item.max;
-    // console.log(this.params);
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material);
-    });
-  }
-  //屈服强度不限
-  public async filtStrength() {
-    this.params.MinStrenth = "";
+  // public async filtrationMaxModel() {
+  //   this.params.model = "";
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //   });
+  // }
+
+  // //屈服强度
+  // public async filtrationStrength(item) {
+  //   this.params.MinStrenth = item.min;
+  //   this.params.MaxStrenth = item.max;
+  //   // console.log(this.params);
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //     // console.log(this.material);
+  //   });
+  // }
+  // //屈服强度不限
+  // public async filtStrength() {
+  //   this.params.MinStrenth = "";
+  //   this.params.MaxStrenth = "";
+  //   this.params.Strength = "";
+  //   // console.log(this.params);
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //     // console.log(this.material);
+  //   });
+  // }
+  // public async filtrationMinStrength() {
+  //   this.params.Strength = "";
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //   });
+  // }
+
+  // public async filtrationMaxStrength() {
+  //   this.params.Strength = "";
+  //   await this.ApiService.GetMater(this.params).then((res: any) => {
+  //     this.material = res.items;
+  //   });
+  // }
+
+  //清除筛选条件
+  public  clear() {
+    this.params.Name = "",
+      this.params.MaterialType = "",
+    this.params.ManufactoryId = "",
+      this.params.Model = "",
+      this.params.MinModel = "";
+    this.params.MaxModel = "";
     this.params.MaxStrenth = "";
-    this.params.Strength = "";
-    // console.log(this.params);
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material);
-    });
-  }
-  public async filtrationMinStrength() {
-    this.params.Strength = "";
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-    });
-  }
-
-  public async filtrationMaxStrength() {
-    this.params.Strength = "";
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-    });
-  }
-
-  //清楚筛选条件
-  public async clear() {
-    (this.params.Name = ""),
-      (this.params.materialType = ""),
-      (this.params.manufactoryId = ""),
-      (this.params.model = ""),
-      (this.params.minModel = "");
-    this.params.maxModel = "";
-    this.params.MaxStrenth = "";
     this.params.MinStrenth = "";
+    this.enterData.first.data = ''//直接访问子组件实例修改子组件状态值
+    console.log(this.enterData.first.data)
+    this.filtrationMaterial({})
     // console.log(this.params)
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-      // console.log(this.material)
-    });
+    // await this.ApiService.GetMater(this.params).then((res: any) => {
+    //   this.material = res.items;
+    //   // console.log(this.material)
+    // });
   }
   //#endregion
   //根据材料牌号搜索材料
   public async doEvent(data) {
     this.params.Name = data;
-    await this.ApiService.GetMater(this.params).then((res: any) => {
-      this.material = res.items;
-    });
+    // await this.ApiService.GetMater(this.params).then((res: any) => {
+    //   this.material = res.items;
+    // });
+    this.filtrationMaterial({})
+  }
+  reGet(){
+    this.filtrationMaterial({})
   }
 }

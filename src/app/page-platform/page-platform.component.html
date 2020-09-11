@@ -133,7 +133,7 @@
                     *ngIf="FormExperimentalItemComponent.button('hg-home-deletetj')">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
-                <a [routerLink]="material.routerLink1">
+                <a (click)="nav(material.materialId,material)">
 
                     <a class="material-pic">
                         <img [src]="material.avatarUrl" />

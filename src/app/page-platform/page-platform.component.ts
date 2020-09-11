@@ -51,7 +51,7 @@ pas=[]
   model:2,
   reelNumber:''}
   addlist=[]
-  addid
+  addid = ''
   showi=false
   showcan=false
   // canceltj(){
@@ -78,6 +78,8 @@ pas=[]
   showModal1(): void {
 //添加推荐材料弹框
     this.isVisible1 = true;
+    this.values = [];
+    this.addid = ''
     //可选项数据源
     this.ops();
   }
@@ -85,9 +87,8 @@ pas=[]
   //添加推荐材料弹框确认
  handleOk() {
   //  console.log(this.values[0]);
-  this.values = []
    //根据材料id添加到推荐表
-   if(this.values[0]){this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
+   if(this.addid){this.ApiService.ADDManufacturers(this.addid).then((res: any) => {
   this.showma(); 
 })}
 else{
@@ -323,15 +324,96 @@ showma(){
         else{
           val.avatarUrl=''
         }
+        // this.FormMaterialListComponent.getURl(val.id,val)
       })
-        this.FormMaterialListComponent.luyou(this.addlist,this.arr)     ;
+        // this.FormMaterialListComponent.luyou(this.addlist,this.arr)     ;
+        
         this.FileList=[]  ;  
         this.isVisible1 =false;  //isVisible1是推荐材料弹框
         this.showi=false; //showi是导入推荐材料图片按钮
         this.values = [];
 });
 }
+nav(id,val){
+        this.getURl(id,val)
 
+}
+getURl(id,data){
+  //查询这条材料做了哪些试验
+  this.ApiService.GetTrials(id).then((res: any) => {
+    let trials = res
+    let trialName = []
+    let  menu=[{name:"static-tension-home",children:['jtls1','jtls2','jtls3','jtls4'],luyou:'static-tension-home',},
+    {name:"compression",children:['ys1','ys2','ys3','ys4'],luyou:"compression"},
+    {name:"metallographic",children:['jx1','jx2','jx3','jx4'],luyou:"metallographic"},
+    {name:"physicalperformance",children:['wlxn1','wlxn2','wlxn3',,'wlxn4'],luyou:"physicalperformance"},
+    {name:"chemicalelement",children:['hxcf1','hxcf2','hxcf3','hxcf4'],luyou:'chemicalelement'},
+    {name:"prohibited-substance",children:['jywz1','jywz2','jywz3','jywz4'],luyou:'prohibited-substance'},
+    {name:"surface-property",children:['bmxn1','bmxn2','bmxn3','bmxn4'],luyou:'surface-property'},
+    {name:"bake-hardening",children:['hkyh1','hkyh2','hkyh3','hkyh4'],luyou:'bake-hardening'},
+    {name:"bending",children:['wq1','wq2','wq3','wq4'],luyou:'bending'},
+    {name:"fld",children:['fld1','fld2','fld3','fld4'],luyou:'fld'},
+    {name:"dent-resistance",children:['kaxn1','kaxn2','kaxn3','kaxn4'],luyou:'dent-resistance'},
+  {name: "flanging-clasp",children:['fbkh','fbkh2','fbkh3','fbkh4'],luyou:'flanging-clasp'},
+  {name:"welding",children:['hjxn1','hjxn2','hjxn3','hjxn4'],luyou:'welding'},
+  {name:"cementing",children:['jjxn1','jjxn2','jjxn3','jjxn4'],luyou:'cementing'},
+  {name:"painting",children:['tzxn1','tzxn2','tzxn3','tzxn4'],luyou:'painting'},
+  {name:"rebound",children:['htxn1','htxn2','htxn3','htxn4'],luyou:'rebound'},
+  {name:"secondary-working-embrittlement",children:['ecjgcx1','ecjgcx2','ecjgcx3','ecjgcx4'],luyou:'secondary-working-embrittlement'},
+  {name:"hydrogen-induced-delayed-fracture",children:['qzyckl1','qzyckl2','qzyckl3','qzyckl4'],luyou:'hydrogen-induced-delayed-fracture'},
+  {name:"highspeedstrech",children:['gsls1','gsls2','gsls3','gsls4'],luyou:'highspeedstrech' },
+  {name:"lowcyclefatigue",children:['dzpl1','dzpl2','dzpl3','dzpl4'],luyou:'lowcyclefatigue'},
+  {name:"highcyclefatigue",children:['gzpl1','gzpl2','gzpl3','gzpl4'],luyou:'highcyclefatigue'}]
+    trials.forEach((val, i, array) => {
+      trialName.push(val.name)
+    });
+    console.log(trialName)//不是按页面顺序
+    let arr = [trialName.includes("静态拉伸"),
+    trialName.includes("压缩"),
+    trialName.includes("金相"),
+    trialName.includes("物理性能"),
+    trialName.includes("化学成分"),
+    trialName.includes("禁用物质"),
+    trialName.includes("表面性能"),
+    trialName.includes("烘烤硬化"),
+    trialName.includes("弯曲"),
+    trialName.includes("成型极限"),
+    trialName.includes("抗凹性能"),
+    trialName.includes("翻边扣合性能"),
+    trialName.includes("焊接性能"),
+    trialName.includes("胶结性能"),
+    trialName.includes("涂装性能"),
+    trialName.includes("回弹性能"),
+    trialName.includes("二次加工脆性"),
+    trialName.includes("氢致延迟开裂"),
+    trialName.includes("高速拉伸"),
+    trialName.includes("低周疲劳"),
+    trialName.includes("高周疲劳")
+    ]
+    let length = menu.length
+    for (let a = 0; a < length; a++) {
+      if (arr[a] && this.FormExperimentalItemComponent.button(menu[a].name)) {
+        if (this.FormExperimentalItemComponent.button(menu[a].children[0])) { 
+          this.router.navigateByUrl(`/display/${id}/${menu[a].luyou}/table`);  
+          // data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/table`]
+         }
+        else if (this.FormExperimentalItemComponent.button(menu[a].children[1])) { 
+          this.router.navigateByUrl(`/display/${id}/${menu[a].luyou}/picture`);  
+          // data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/picture`] 
+        }
+        else if (this.FormExperimentalItemComponent.button(menu[a].children[2])) { 
+          this.router.navigateByUrl(`/display/${id}/${menu[a].luyou}/report`);  
+          // data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/report`] 
+        }
+        else if (this.FormExperimentalItemComponent.button(menu[a].children[3])){ 
+          this.router.navigateByUrl(`/display/${id}/${menu[a].luyou}/typical-part`);  
+          // data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/typical-part`] 
+        }
+        break
+      }
+    }
+  })
+}
     unique1(array) {
       var n = []; //一个新的临时数组
       //遍历当前数组
@@ -346,7 +428,7 @@ showma(){
 
 //推荐材料级联选择框值发生变化时触发
   onChanges(values: any): void {
-  console.log(values);
+  // console.log(values);
    if(values[0]){
     this.pat.manufactoryId = values[0];
  this.pat.name = values[1];
@@ -354,14 +436,14 @@ showma(){
  this.pat.reelNumber = values[3];
  //查询材料
  this.ApiService.GetMater(this.pat).then((res: any) => {
+   //有可能查询不到材料？
+   if(res.items[0]){
    this.addid=res.items[0].id
-   console.log(this.addid)
-      
        //  console.log(this.addid)
        //  console.log(this.addlist)
        //根据材料id添加推荐材料图片
        this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
-
+   }
 
     });
 }

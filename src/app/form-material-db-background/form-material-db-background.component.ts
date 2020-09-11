@@ -10,16 +10,19 @@ export class FormMaterialDbBackgroundComponent implements OnInit {
 
   // materialName='';
   @Output()  paihao = new EventEmitter(); 
- @Input() ph
+//  @Input() ph
+ data = ''
   constructor(
     public http: HttpClient,
 
   ) { }
-
+  ngOnChanges() {
+// this.data = this.ph
+  }
   ngOnInit() {
   }
   search(){
-this.paihao.emit(this.ph)
+this.paihao.emit(this.data)
   }
   
 }

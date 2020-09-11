@@ -9,34 +9,30 @@ export class MaterialsContrastService {
   //静态拉伸对比
   async GetMaterials(array)
   {
-    if(array.length>1){
-      var api
-      api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
-    api +=array[0];
-    for(var j=1;j<array.length;j++){   
-    api+="&ids="+array[j]
-    }
-    let res= await this.http.get(api).toPromise().catch(err=>{
+      let ids = {ids:array}
+      let api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum";
+    let res= await this.http.get(api,{params:ids}).toPromise().catch(err=>{
       console.log(err);        
     });
-    // console.log(api) ;
-    console.log(res) 
+
     return res;    //res是一个promise对象
   }
 
-else {
-  let api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum?ids=";
-  let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
-    console.log(err);
-  });
-  return res;
-}
-
-  }
-  async GetMaterialss(params)
+  async GetMaterialss(params?)
   {
-    let api ="/api/hangang/material/materials?Id=";
-    let res= await this.http.get(api+params)
+    let api ="/api/hangang/material/materials";
+    let res= await this.http.get(api,{params:params})
+    .toPromise()
+    .catch(err =>{
+      console.log(err);
+    });
+    return res;  //返回请求到的数据(Promise对象)
+  }
+   async getMaterialsByIds(params)
+  {
+    let ids = {ids:params}
+    let api ="/api/hangang/material/materialsByIds";
+    let res= await this.http.get(api,{params:ids})
     .toPromise()
     .catch(err =>{
       console.log(err);
@@ -52,16 +48,16 @@ else {
     return res;
   }
 
-  async GetMater(params)
-  {
-    let api ="/api/hangang/material/materials";
-    let res= await this.http.get(api, {params})
-    .toPromise()
-    .catch(err =>{
-      console.log(err);
-    });
-    return res;  //返回请求到的数据(Promise对象)
-  }
+  // async GetMater(params)
+  // {
+  //   let api ="/api/hangang/material/materials";
+  //   let res= await this.http.get(api, {params})
+  //   .toPromise()
+  //   .catch(err =>{
+  //     console.log(err);
+  //   });
+  //   return res;  //返回请求到的数据(Promise对象)
+  // }
   // 低周疲劳对比
   async LowCycleFatigue(array)
   {

@@ -15,63 +15,59 @@
         <div class="limit-box">
             <div class="row">
                 <span class="label">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型 :</span>
-                <span class="limit-tag" [class.selected]="params.materialType =='' "
-                    (click)="filtrationMaterialType({enum:''},true)">不限</span>
+                <span class="limit-tag" [class.selected]="params.MaterialType =='' " (click)="filtrationMaterial({enum:''},true)">不限</span>
                 <span *ngFor="let item of materialType;let i=index">
-                    <span class="limit-tag" (click)="filtrationMaterialType(item)"
-                        [class.selected]="params.materialType == item.enum || parentType == item.enum">
+                    <span class="limit-tag" (click)="filtrationMaterial(item)"
+                        [class.selected]="params.MaterialType == item.enum || parentType == item.enum">
                         {{item.name}}
                     </span>
                 </span>
-                <div *ngIf="params.materialType" class="limit-inner">
-                    <div class="tag-area" *ngFor="let childItem of materialTypeChildren"
-                        (click)="filtrationMaterialType(childItem,false)"
-                        [class.selected]="params.materialType == childItem.enum">
+                <div *ngIf="params.MaterialType" class="limit-inner">
+                    <div class="tag-area" *ngFor="let childItem of materialTypeChildren" (click)="filtrationMaterial(childItem,false)" [class.selected]="params.MaterialType == childItem.enum">
                         {{childItem.name}}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <span class="label">生产厂家 :</span>
-                <span class="limit-tag" [class.selected]="params.manufactoryId ==''"
-                    (click)="filtrationManufacturers({id:''})">不限</span>
+                <span class="limit-tag" [class.selected]="params.ManufactoryId ==''" (click)="filtrationMaterial({id:''})">不限</span>
                 <span *ngFor="let item of listManufacturers">
-                    <span class="limit-tag" (click)="filtrationManufacturers(item)"
-                        [class.selected]="params.manufactoryId == item.id"> {{item.name}} </span>
+                    <span class="limit-tag" (click)="filtrationMaterial(item)"
+                        [class.selected]="params.ManufactoryId == item.id"> {{item.name}} </span>
                 </span>
             </div>
             <div class="row">
                 <span class="label">型号规格 :</span>
-                <span class="limit-tag" [class.selected]="params.model ==''" (click)="filtModel()">不限</span>
+                <span class="limit-tag" [class.selected]="params.Model =='' && params.MinModel == '' && params.MaxModel == ''" (click)="filtrationMaterial({Model:'',MinModel:'',MaxModel:''})">不限</span>
                 <span *ngFor="let item of listModel">
-                    <span class="limit-tag" (click)=" filtrationModel(item) "
-                        [class.selected]="params.model == item.value"> {{item.value}} mm </span>
+                    <span class="limit-tag" (click)=" filtrationMaterial(item) "
+                        [class.selected]="params.Model == item.Model"> {{item.Model}} mm </span>
                 </span>
                 <span class="limit-tag-between">
-                    <input class="input-box" type="text" [(ngModel)]='params.minModel' (blur)="filtrationMinModel()"> ~
-                    <input class="input-box" type="text" [(ngModel)]='params.maxModel' (blur)="filtrationMaxModel()"> mm
+                    <input class="input-box" type="text" [(ngModel)]='params.MinModel' (blur)="filtrationMaterial({})"> ~
+                    <input class="input-box" type="text" [(ngModel)]='params.MaxModel' (blur)="filtrationMaterial({})"> mm
                 </span>
             </div>
 
             <div class="row">
                 <span class="label">屈服强度 :</span>
-                <span class="limit-tag" [class.selected]="params.MinStrenth ==''" (click)="filtStrength()">不限</span>
+                <span class="limit-tag" [class.selected]="params.MinStrenth =='' && params.MaxStrenth == ''" (click)="filtrationMaterial({MinStrenth:'',MaxStrenth:''})">不限</span>
                 <span *ngFor="let item of listStrength ">
                     <span *ngFor="let childItem of item.children">
-                        <span class="limit-tag" (click)="filtrationStrength(childItem)"
-                            [class.selected]="params.MinStrenth == childItem.min">{{childItem.min}}~{{childItem.max}}MPa</span>
-                    </span>
+                        <span class="limit-tag" (click)="filtrationMaterial(childItem)"
+                            [class.selected]="params.MinStrenth == childItem.MinStrenth">{{childItem.MinStrenth}}~{{childItem.MaxStrenth}}MPa</span>
+                </span>
                 </span>
                 <span class="limit-tag-between">
                     <input class="input-box" type="text" [(ngModel)]='params.MinStrenth'
-                        (blur)="filtrationMinStrength()"> ~
+                        (blur)="filtrationMaterial({})"> ~
                     <input class="input-box" type="text" [(ngModel)]='params.MaxStrenth'
-                        (blur)="filtrationMaxStrength()"> MPa
+                        (blur)="filtrationMaterial({})"> MPa
                 </span>
             </div>
             <div class="row">
                 <span class="label">按关键字 :</span>
-                <app-form-material-db-background (paihao)="doEvent($event)" [ph]="params.Name">
+                <app-form-material-db-background (paihao)="doEvent($event)">
                 </app-form-material-db-background>
                 <button class="clear-btn" (click)="clear()">清除筛选</button>
             </div>
@@ -80,7 +76,7 @@
         <!-- 材料分类  END -->
         <!-- 材料列表  START -->
         <div class="material-list">
-            <app-form-material-list [data]="material" [params]="params"></app-form-material-list>
+            <app-form-material-list [data]="material" (reGet)="reGet()"></app-form-material-list>
         </div>
         <!-- 材料列表  END -->
     </div>
