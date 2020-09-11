@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ViewChildren,QueryList } from "@angular/core";
 import { Output, EventEmitter } from "@angular/core";
 import { MaterialServiceService } from "./material-service.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { FormMaterialListComponent } from "../form-material-list/form-material-list.component";
+import { FormMaterialDbBackgroundComponent } from "../form-material-db-background/form-material-db-background.component";
 import {
   ActivatedRoute,
   Router,
@@ -17,6 +17,7 @@ import { ApiService } from "src/app/api.service";
   styleUrls: ["./page-material.component.css"],
 })
 export class PageMaterialComponent implements OnInit {
+  @ViewChildren(FormMaterialDbBackgroundComponent) enterData: QueryList<FormMaterialDbBackgroundComponent>;//访问整个子组件实例
   materialType = [
     //冷轧
     {
@@ -394,14 +395,16 @@ export class PageMaterialComponent implements OnInit {
 
   //清除筛选条件
   public  clear() {
-    (this.params.Name = ""),
-      (this.params.MaterialType = ""),
-      (this.params.ManufactoryId = ""),
-      (this.params.Model = ""),
-      (this.params.MinModel = "");
+    this.params.Name = "",
+      this.params.MaterialType = "",
+    this.params.ManufactoryId = "",
+      this.params.Model = "",
+      this.params.MinModel = "";
     this.params.MaxModel = "";
     this.params.MaxStrenth = "";
     this.params.MinStrenth = "";
+    this.enterData.first.data = ''//直接访问子组件实例修改子组件状态值
+    console.log(this.enterData.first.data)
     this.filtrationMaterial({})
     // console.log(this.params)
     // await this.ApiService.GetMater(this.params).then((res: any) => {
