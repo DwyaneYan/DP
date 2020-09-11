@@ -94,7 +94,7 @@ nz-table.vertical {
 nz-table.vertical th,
 nz-table.vertical td {
   width: 160px;
-  height: 4px;
+  /* height: 4px; */
 }
 
 nz-table.vertical div {
@@ -113,6 +113,10 @@ nz-table.vertical div.sta {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  writing-mode: initial;
+  position: relative;
+  word-break: break-all;
+  margin-top: 4px;
 }
 
 nz-table.borderedTable tr {
@@ -186,6 +190,8 @@ nz-table.borderedTable tr {
   position: relative;
   top: 0px;
   right: 0px;
+  -webkit-box-orient: vertical;
+  display: block;
 }
 
 
