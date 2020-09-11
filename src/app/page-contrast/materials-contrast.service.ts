@@ -28,6 +28,17 @@ export class MaterialsContrastService {
     });
     return res;  //返回请求到的数据(Promise对象)
   }
+   async getMaterialsByIds(params)
+  {
+    let ids = {ids:params}
+    let api ="/api/hangang/material/materialsByIds";
+    let res= await this.http.get(api,{params:ids})
+    .toPromise()
+    .catch(err =>{
+      console.log(err);
+    });
+    return res;  //返回请求到的数据(Promise对象)
+  }
   async GetManufacturers()
   {
     let api = "/api/hangang/manufactory/manufactories";

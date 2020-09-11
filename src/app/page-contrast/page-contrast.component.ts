@@ -142,7 +142,7 @@ export class PageContrastComponent implements OnInit {
 
   ) {}
   contrastID = '';//查询参数
-  array = []; //id数组
+  array = []; //对比材料id数组
   ngOnInit() {
     $("nz-table")
       .addClass("vertical")
@@ -162,7 +162,7 @@ export class PageContrastComponent implements OnInit {
  getGetMaterials() {
     // if(this.array.length!=0) {
        this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
-      this.StaticTension= res; 
+      this.StaticTension = res; 
       console.log(this.array.length,this.StaticTension)
 });
      this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
@@ -184,19 +184,27 @@ export class PageContrastComponent implements OnInit {
 }
 // reelNumber=[]
 //表头数据，调了多次接口，很慢
-  public async getGetMaterialss() {
-    for (var i = 0; i < this.array.length; i++) {
-      let ob = {Id:this.array[i]}
-      await this.MaterialsContrastService.GetMaterialss(ob).then(
+  public  getGetMaterialss() {
+    // for (var i = 0; i < this.array.length; i++) {
+    //   let ob = {Id:this.array[i]}
+       this.MaterialsContrastService.getMaterialsByIds(this.array).then(
         (res: any) => {
-          console.log(res.items)
-          this.name[i] = res.items[0].name; 
-          this.manu[i] = res.items[0].manufactoryName;          
-          this.model[i] = res.items[0].model;
-          this.reelNumber[i]=res.items[0].reelNumber
+          // console.log(res.items)
+          let comparisonMaterialList = res;
+          comparisonMaterialList.map(val=>{
+            this.name.push(val.name)
+            this.manu.push(val.manufactoryName);          //暂时没有返回生产厂家名，只有厂家id
+            this.model.push(val.model);
+            this.reelNumber.push(val.reelNumber)
+          })
+          console.log(this.name,this.manu,this.model,this.reelNumber)
+          // this.name[i] = res.items[0].name; 
+          // this.manu[i] = res.items[0].manufactoryName;          
+          // this.model[i] = res.items[0].model;
+          // this.reelNumber[i]=res.items[0].reelNumber
         }
       );
-    }
+    // }
   }
   two = [];
   th = [];
@@ -361,7 +369,6 @@ g=[]
     this.manu.splice(i, 1);
     this.reelNumber.splice(i, 1);
     this.array.splice(i, 1).toString();
-
     this.changeStatus(this.listArr);
     console.log(this.array);
     window.history.pushState(null, null, `/contrast?materialids=${this.array}`);
@@ -486,12 +493,20 @@ this.valuetj = []
     this.pat.Name = this.valuetj[1];
     this.pat.Model = this.valuetj[2];
     this.pat.ReelNumber =this.valuetj[3];
+    // this.name =[];
+    // this.model =[];
+    // this.manu=[];
+    // this.reelNumber= []
     // console.log(this.pat)
     this.MaterialsContrastService.GetMaterialss(this.pat).then((res: any) => {
-      console.log(res)
+      // console.log(res)
       this.addlist = res.items;
       this.array.push(this.addlist[0].id);
-      this.getGetMaterialss();
+      // this.getGetMaterialss();
+      this.name.push(this.addlist[0].name);
+      this.model.push(this.addlist[0].model);
+      this.manu.push(this.addlist[0].manufactoryName)
+      this.reelNumber.push(this.addlist[0].reelNumber);//不调接口
       this.getGetMaterials();
       this.array.toString();
       window.history.pushState(
