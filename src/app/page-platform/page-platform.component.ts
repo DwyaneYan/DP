@@ -84,7 +84,7 @@ pas=[]
     this.ops();
   }
   FileList=[]
-  //添加推荐材料弹框确认
+  //添加推荐材料弹框确认,添加到推荐表？
  handleOk() {
   //  console.log(this.values[0]);
    //根据材料id添加到推荐表
@@ -430,13 +430,18 @@ getURl(id,data){
   onChanges(values: any): void {
   // console.log(values);
    if(values[0]){
+    //  if(values[1].indexOf("+") !== -1){
+    //   values[1] = values[1].replace(/\+/g,"%2B")
+    //  }
+     console.log(values[1])
     this.pat.manufactoryId = values[0];
- this.pat.name = values[1];
+ this.pat.name = values[1]; //材料名称中会有+号，加号会被解码为空格,+号用正则替换
  this.pat.model = values[2];
  this.pat.reelNumber = values[3];
  //查询材料
  this.ApiService.GetMater(this.pat).then((res: any) => {
    //有可能查询不到材料？
+   console.log(values[1])
    if(res.items[0]){
    this.addid=res.items[0].id
        //  console.log(this.addid)

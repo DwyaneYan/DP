@@ -25,13 +25,15 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   displayData = [];
   checkList = [];
   public allmaterial = [];
-  totalCount = 0;
+  totalCount = 0;//显示数量
+  total = 0;//实际数量
   checkbox = false;
   allChecked = false;
   indeterminate = false;
   disabled = false
   aaaaaa
-  @Input() data = []; //所有材料列表数据
+  dataAll = [] //数据库所有材料
+  @Input() data = []; //筛选得到的所有材料列表数据
   // @Input() params;
   public trials
   // public trialName = []
@@ -46,7 +48,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     
 
   ) { }
-  //子组件在渲染的时候，父组件的数据还没有获取到，导致在子组件中依赖这个@Input变量的变量和方法出错
+  //子组件在渲染的时候，父组件的数据还没有获取到，导致在子组件中依赖这个@Input变量的变量和方法出错,每次筛选后执行
   ngOnChanges() {
     // this.Allmaterial()
     // this.listOfAllData = this.pushdata(this.data)
@@ -60,19 +62,40 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     //     });
     //   }
     // }
-    this.listOfAllData = this.data //全部材料
+    this.contrasts = []
+    console.log(111111111111111)
+    this.listOfAllData = this.data //全部材料实际显示的,
     this.totalCount = this.listOfAllData.length; //数据个数
-
+    this.listOfAllData.forEach(val=>{val.checked = false}) //不设置checked属性值是undefined
+        this.listOfAllData.forEach(val=>{
+          for(let b= 0;b<this.total;b++){
+            if(this.dataAll[b].id == val.id){
+    val.checked = this.dataAll[b].checked
+            }
+          }
+        })
   }
   //#region 模块 
 
   ngOnInit(): void {
     // this.Allmaterial();
     this.listOfAllData = this.data //全部材料;
+    console.log(11111111111)
     // this.totalCount = this.listOfAllData.length;
+   
+    // this.
   }
+//处理筛选
+  screening(){
+    this.ApiService.GetMater({}).then((res:any)=>{
+      this.dataAll = res.items //所有数据
+      this.total = res.totalCount //所有数据数量
+      this.dataAll.forEach(val=>{val.checked = false})//全部未选中
+      // console.log(this.dataAll)
+      
 
- 
+    })
+  }
 
 getURl(id,data){
   //查询这条材料做了哪些试验
@@ -277,22 +300,29 @@ getURl(id,data){
 
   contrasts = []
   contrastID
-  uncheckList
-  al = []
-  dis = []
-  temp
+  // uncheckList
+  // al = []
+  // dis = []
+  // temp
   //选中的回调
   refreshStatus(val,id): void {
     //选中
     if (val) {
-      this.contrasts = []
-      this.checkList = this.listOfAllData.filter(value => value.checked);
+      // this.contrasts = []
       // for (const iterator of temp) {
       //   if (JSON.stringify(this.checkList).indexOf(JSON.stringify(iterator)) == -1) {
       //     this.checkList.push(iterator)
       //   }
       // }
-
+      this.dataAll.map(el=>{
+        for(let a= 0;a<this.totalCount;a++){
+          if(this.listOfAllData[a].id == el.id){
+            el.checked = this.listOfAllData[a].checked
+          }
+        }
+          })
+          // console.log(this.listOfAllData)
+          this.checkList = this.dataAll.filter(value => value.checked);
       if (this.checkList.length > 5) {
         this.disabled = true;
         this.modalService.warning({
@@ -303,8 +333,16 @@ getURl(id,data){
     } 
     //取消选中
     else {
-      this.contrasts = []
+      // this.contrasts = []
       this.checkList = this.checkList.filter(value => value.id !== id )
+      this.dataAll.forEach(el=>{
+        for(let a= 0;a<this.totalCount;a++){
+          if(this.listOfAllData[a].id == el.id){
+            el.checked = this.listOfAllData[a].checked
+          }
+        }
+          })
+         
     }
   }
   // #endregionf
@@ -321,13 +359,20 @@ getURl(id,data){
           vari.checked = false
         }
       }
+      this.dataAll.forEach(val=>{
+        if(val.id == x){
+            val.checked = false
+        }
+      })
     }
 
   }
   select() {
+    this.contrasts = []
+    this.contrastID = ''
     this.checkList.map(val=>{this.contrasts.push(val.id)})
     this.contrastID = this.contrasts.toString();//直接把整个字符串作为查询参数
-     console.log(this.contrastID)
+    //  console.log(this.contrastID)
   }
   // pushdata(arr1) {
   //   let arr2 = []
@@ -358,7 +403,8 @@ this.contrastID = '';
 this.disabled = false; //第一列不禁用
 this.listOfAllData.map(val=>val.checked = false) //第一列全部取消选中
 this.contrasts = [] //选中的id
-// this.listOfAllData.map(val=>val.checked = false)
+this.screening()
+
   }
   //删除材料
   del(){

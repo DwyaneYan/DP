@@ -18,15 +18,26 @@ export class TypicalPartComponent implements OnInit {
   ) { }
 
   materialId
-   carNAme
+   carName = '' //车型名称
+   partName = '' //零部件名称
+   projectId = ''//车型id
+   directoryId = ''//零部件id
   ngOnInit() {
     this.materialId = this.router
     .routerState.root.firstChild
     .snapshot.paramMap.get('materialId');
-    this.ApiService.getPart(this.materialId).then((res:any)=>{
-      console.log(res)
-    })
+this.getPartInfo()
     
+  }
+  //获取这条材料绑定的零件信息
+  getPartInfo(){
+    this.ApiService.getPart(this.materialId).then((res:any)=>{
+      // console.log(res)
+      this.partName = res.Name
+      this.carName = res.carName
+      this.projectId= res.ProjectId
+      this.directoryId = res.directoryId
+    })
   }
   //获取零件目录树
   getTree(){
@@ -61,14 +72,19 @@ export class TypicalPartComponent implements OnInit {
   goVim(){
     //获取此材料绑定的零件信息来拼接跳转路由
     //目前只能获取到这条材料第一次绑定的零件信息
-    this.ApiService.getPart(this.materialId).then((res:any)=>{
-        if(res.ProjectId)
-    {window.open(`${this.ApiService.toVIm}/car-model?carModelId=${res.ProjectId}&type=hangang&directoryId=${res.directoryId}&filterName=${res.Name}`)}
+    // this.ApiService.getPart(this.materialId).then((res:any)=>{
+    //     if(res.ProjectId)
+    // {window.open(`${this.ApiService.toVIm}/car-model?carModelId=${res.ProjectId}&type=hangang&directoryId=${res.directoryId}&filterName=${res.Name}`)}
+    // else{
+    //   this.message.info('请先绑定零件');
+    // }
+
+    // })
+    if(this.projectId)
+    {window.open(`${this.ApiService.toVIm}/car-model?carModelId=${this.projectId}&type=hangang&directoryId=${this.directoryId}&filterName=${this.partName}`)}
     else{
       this.message.info('请先绑定零件');
     }
-
-    })
   }
   openDialog(){
     // debugger;
@@ -80,9 +96,12 @@ export class TypicalPartComponent implements OnInit {
 
 
 let a = this.values[1].directoryId;
-//点击确定就绑定，可否重新绑定？
+//点击确定就绑定，重新绑定不生效，
  this.ApiService.bindMater(a,this.materialId).then((res:any)=>{
+   if(res.Code ==200){
+  this.getPartInfo()
   this.isVisible = false;
+   }
  })
   }
 

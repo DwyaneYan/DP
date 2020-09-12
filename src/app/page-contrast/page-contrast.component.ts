@@ -193,7 +193,7 @@ export class PageContrastComponent implements OnInit {
           let comparisonMaterialList = res;
           comparisonMaterialList.map(val=>{
             this.name.push(val.name)
-            this.manu.push(val.manufactoryName);          //暂时没有返回生产厂家名，只有厂家id
+            this.manu.push(val.manufactoryName);         //暂时没有返回生产厂家名，只有厂家id
             this.model.push(val.model);
             this.reelNumber.push(val.reelNumber)
           })

@@ -4,6 +4,9 @@
     <nz-modal [(nzVisible)]="isVisible" nzTitle="绑定零件" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
         <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"></nz-cascader>
     </nz-modal>
-    <div>此材料已绑定到
+    <div *ngIf='projectId; else elseBlock'>此材料已绑定到{{carName}}的{{partName}}
     </div>
+    <ng-template #elseBlock>
+        <div>这条材料暂未绑定零部件</div>
+    </ng-template>
 </div>
