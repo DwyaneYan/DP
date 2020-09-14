@@ -32,7 +32,7 @@ this.getPartInfo()
   //获取这条材料绑定的零件信息
   getPartInfo(){
     this.ApiService.getPart(this.materialId).then((res:any)=>{
-      // console.log(res)
+       console.log(res)
       this.partName = res.Name
       this.carName = res.carName
       this.projectId= res.ProjectId
@@ -90,11 +90,11 @@ this.getPartInfo()
     // debugger;
     this.isVisible = true;
     this.values = []
-    this.getTree();
+    this.getTree();//生成可选项数据源
   }
   handleOk(): void {
-
-
+    console.log(this.values)
+if(this.values[1]){
 let a = this.values[1].directoryId;
 //点击确定就绑定，重新绑定不生效，
  this.ApiService.bindMater(a,this.materialId).then((res:any)=>{
@@ -103,6 +103,10 @@ let a = this.values[1].directoryId;
   this.isVisible = false;
    }
  })
+}
+else{
+  this.isVisible = false;
+}
   }
 
   handleCancel(): void {
@@ -141,7 +145,7 @@ let a = this.values[1].directoryId;
       }
       return c;
     }
-    onChanges(values: any): void {
-      console.log(values, this.values);
-    }
+    // onChanges(values: any): void {
+    //   console.log(values, this.values);
+    // }
 }

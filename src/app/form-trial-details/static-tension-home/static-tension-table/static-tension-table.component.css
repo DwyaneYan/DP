@@ -1,26 +1,31 @@
 .dataTable thead th {
-  background-color: #f4f4f4;
-  color: #666;
-  padding: 8px 0;
+    background-color: #f4f4f4;
+    color: #666;
+    padding: 8px 0;
 }
 
 .dataTable tbody td {
-  text-align: center;
-  padding: 8px 0;
+    text-align: center;
+    padding: 8px 0;
 }
 
 .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-  background: white;
+    background: white;
 }
 
+
+/* .one {
+    margin: 0px
+} */
+
 #one .one /deep/.ng-star-inserted>span {
-  display: block;
-  height: 41.6px;
-  text-align: center;
+    display: block;
+    height: 41.6px;
+    text-align: center;
 }
 
 #one .one /deep/ .ant-table-header-column {
-  height: 41.6px;
+    height: 41.6px;
 }
 
 
@@ -29,14 +34,14 @@
 } */
 
 nz-modal /deep/ .ant-modal-content {
-  width: 600px
+    width: 600px
 }
 
 .echarts-box {
-  height: 400px;
-  position: relative;
+    height: 400px;
+    position: relative;
 }
 
 .ant-table-wrapper::after {
-  clear: none !important;
+    clear: none !important;
 }

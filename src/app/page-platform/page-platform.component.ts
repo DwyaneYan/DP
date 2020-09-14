@@ -23,9 +23,9 @@ import {
   styleUrls: ['./page-platform.component.css']
 })
 export class PagePlatformComponent implements OnInit {
-  tojiaoche = this.ApiService.toVIm + `/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang`
-  toSUV = this.ApiService.toVIm + `/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang`
-  toSY = this.ApiService.toVIm + `/car-model?carModelId=1e9d1d3d-d9ad-4e77-b330-f014ce033cad&type=hangang`
+  tojiaoche = this.ApiService.toVIm + `/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca&type=hangang`
+  toSUV = this.ApiService.toVIm + `/car-model?carModelId=65593d7a-575a-4515-8a59-9a6a3e143d87&type=hangang`
+  toSY = this.ApiService.toVIm + `/car-type?type=hangang`
   avatarUrl
   maUrl = '';
   isVisible = false;

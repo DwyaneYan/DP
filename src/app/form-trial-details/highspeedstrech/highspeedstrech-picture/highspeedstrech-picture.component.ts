@@ -144,7 +144,7 @@ let arr2Length = arr2.length
   }
 classdata(name,p1,p2,da,datas,p3,p4){
   let option = {
-    width:650,
+    // width:'650px',//
     title: {
       text: name
         },   
@@ -180,15 +180,17 @@ classdata(name,p1,p2,da,datas,p3,p4){
     series: [],
     legend: {
       data: [],
-      orient: 'vertical',
-      right: 30,
-      top: 100,
-      height: 200
-    },
+      orient: 'horizontal',
+       left: '30px',
+      top: '40px',
+      // height: 200
+    },//图例
     grid: {
-      x: 60,
-      bottom: 20
-    }
+      // x: 60,
+      top:'140px',
+      // height:''
+      bottom: '50px'
+    }//网格线在容器中的位置
   };
   let temp2 = [];
   datas.map(item => {

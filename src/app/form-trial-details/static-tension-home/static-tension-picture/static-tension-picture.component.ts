@@ -97,7 +97,7 @@ export class StaticTensionPictureComponent implements OnInit {
 
   classdata(name, p1, p2, da, datas, p3, p4) {
     let option = {
-      width: '550',
+      // width: '550',
       title: {
         text: name
       },
@@ -132,15 +132,15 @@ export class StaticTensionPictureComponent implements OnInit {
       yAxis: {},
       series: [],
       grid: {
-        x: 60,
-        bottom: 20
+        top:'120px',
+        // height:''
+        bottom: '50px'
       },
       legend: {
         data: [],
-        orient: 'vertical',
-        right: 30,
-        top: 100,
-        height: 200,
+        orient: 'horizontal',
+        left: '30px',
+       top: '40px',
 
       }
     };

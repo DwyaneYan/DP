@@ -1,7 +1,7 @@
-.echarts-box{
-  height: 400px; 
-  padding: 20px 30px;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  margin-top: 25px;
+.echarts-box {
+    height: 550px;
+    /* padding: 20px 30px; */
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin-top: 25px;
 }
