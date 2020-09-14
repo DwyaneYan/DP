@@ -18,7 +18,7 @@
                 <i nz-icon nzType="plus" nzTheme="outline" class="icon"></i>
                 <div class="text">添加</div>
             </div> -->
-            <button nz-button class="add-button" nzType="primary" nzShape="round" nzGhost (click)="showModal()">
+            <button nz-button class="add-button" nzType="primary" nzShape="round" nzGhost (click)="showModal()" *ngIf="name.length&lt;6">
                 <i nz-icon nzType="plus" nzTheme="outline"></i>
                 添加材料
             </button>
@@ -130,7 +130,7 @@
         </div> -->
 
 
-        <nz-modal [(nzVisible)]="viewAdd" nzTitle="添加推荐材料" (nzOnCancel)="handleCanceltj()" (nzOnOk)="handleOktj()">
+        <nz-modal [(nzVisible)]="viewAdd" nzTitle="添加对比材料" (nzOnCancel)="handleCanceltj()" (nzOnOk)="handleOkdb()">
             <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="valuetj">
             </nz-cascader>
         </nz-modal>

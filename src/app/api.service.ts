@@ -31,11 +31,21 @@ export class ApiService {
 //在材料表筛选材料
 async GetMater(params?){
     let url ="/api/hangang/material/materials";
-    let res= await this.http.get(url,{params:params}).toPromise()
-    .catch(err =>{
-      console.log(err);
-    });
-    return res; 
+    if(params.type&& params.type == 'tszf'){
+      let res= await this.http.get(url+params.url).toPromise()
+      .catch(err =>{
+        console.log(err);
+      });
+      return res; 
+    }else{
+      let res= await this.http.get(url,{params:params}).toPromise()
+      .catch(err =>{
+        console.log(err);
+      });
+      return res; 
+    }
+   
+   
   }
 //在厂家表查询所有厂家
   async GetManufacturers()

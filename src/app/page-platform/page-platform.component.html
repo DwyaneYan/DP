@@ -86,12 +86,10 @@
                     <i class="icon-import"></i>
                     导入数据
                 </button>
-                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-                    nzMaskClosable=false [nzFooter]=null>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false [nzFooter]=null>
                     <div id="text-xzwj">
                         <br /> 选择文件:
-                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true'
-                            [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
+                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory='true' [nzCustomRequest]="customReqone" [nzFileList]="FileList" (nzChange)="handleChange($event)">
                             <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                         </nz-upload>
                     </div>
@@ -105,12 +103,9 @@
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     添加推荐材料
                 </button>
-                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()"
-                    (nzOnOk)="handleOk()" nzMaskClosable=false>
-                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)"
-                        nzPlaceHolder="添加推荐材料"></nz-cascader>
-                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)"
-                        [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
+                <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false>
+                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
+                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)" [nzFileList]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
                         &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon
                                 nzType="upload"></i>上传材料图片</button>
                     </nz-upload>
@@ -129,23 +124,19 @@
         <!-- 材料列表 START -->
         <div class="model-list">
             <div class="material-item" *ngFor="let material of addlist">
-                <div class="material-delete" (click)="shanchutj(material.id)"
-                    *ngIf="FormExperimentalItemComponent.button('hg-home-deletetj')">
+                <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="FormExperimentalItemComponent.button('hg-home-deletetj')">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
-                <a (click)="nav(material.materialId,material)">
+                <div (click)="nav(material.materialId,material)">
 
                     <a class="material-pic">
                         <img [src]="material.avatarUrl" />
                     </a>
                     <div class="material-info">
                         <h4> {{material.name}}</h4>
-                        <div class="ellipsis" title="生产厂家: {{material.manufactory}}">生产厂家: {{material.manufactory}}
-                        </div>型号规格:
-                        {{material.model}}<br />
-                        卷号:{{material.reelNumber}}
+                        生产厂家: {{material.manufactory}}<br /> 型号规格: {{material.model}}<br /> 卷号:{{material.reelNumber}}
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         <!-- 材料列表 START -->

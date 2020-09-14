@@ -5,7 +5,7 @@ import { switchMap, map } from "rxjs/operators";
 import { PagePlatformComponent } from "../page-platform/page-platform.component";
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { MaterialsContrastService } from "./materials-contrast.service";
 import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 @Injectable({
@@ -139,7 +139,7 @@ export class PageContrastComponent implements OnInit {
     private MaterialsContrastService: MaterialsContrastService,
     private PagePlatformComponent:PagePlatformComponent,
     private ApiService: ApiService,
-
+    private message: NzMessageService
   ) {}
   contrastID = '';//查询参数
   array = []; //对比材料id数组
@@ -270,11 +270,9 @@ f =[]
 g=[]
 
   showModal() {
-
     this.viewAdd = true
     this.valuetj = []
-
-    this.ops()
+this.ops()
 
   }
   ops(){
@@ -283,15 +281,15 @@ g=[]
       let temp = [];//可选项数据列表
       listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
       let lengthTemp = temp.length
-        this.ApiService.GetMater().then((res:any)=>{
+        this.ApiService.GetMater({}).then((res:any)=>{
           let allMaterials = res.items
   for(let a= 0;a<lengthTemp;a++){
     temp[a].children = []
     let name = allMaterials.filter(item=>item.manufactoryId == temp[a].value) //牌号数组,牌号会重复
    console.log(name)
-  
      let nameAfter = this.PagePlatformComponent.uniqueArr(name,'name') //牌号去重
    let lengthName = nameAfter.length
+  //  if(lengthName){
    console.log(name,nameAfter)
    nameAfter.map(val=>temp[a].children.push({value:val.name,label:val.name}))
     console.log(temp[a].children)
@@ -315,7 +313,10 @@ g=[]
     }
   
   }
-  
+// }
+// else{
+//   temp[a].children = undefined
+// }
   }
   this.nzOptions = temp
   console.log(this.nzOptions)
@@ -393,7 +394,9 @@ g=[]
     Name: "", //材料名称
     ManufactoryId: "", //生产厂家
     Model: "", //型号规格
-    ReelNumber:''
+    ReelNumber:'',//卷号,
+    type:"",
+    url:""
   };
 
   // 字符串数组去重
@@ -488,25 +491,29 @@ g=[]
 this.viewAdd = false;
 this.valuetj = []
   }
-  handleOktj(){
-    this.pat.ManufactoryId = this.valuetj[0];
-    this.pat.Name = this.valuetj[1];
-    this.pat.Model = this.valuetj[2];
-    this.pat.ReelNumber =this.valuetj[3];
+  handleOkdb(){
+    // this.pat.ManufactoryId = this.valuetj[0];
+    // this.pat.Name = this.valuetj[1];
+    // this.pat.Model = this.valuetj[2];
+    // this.pat.ReelNumber =this.valuetj[3];
+    if(this.valuetj[0]){
+    this.pat.type = 'tszf'
+    this.pat.url = `?manufactoryId=${this.valuetj[0]}&name=${encodeURIComponent(this.valuetj[1])}&model=${this.valuetj[2]}&reelNumber=${this.valuetj[3]}`
     // this.name =[];
     // this.model =[];
     // this.manu=[];
     // this.reelNumber= []
     // console.log(this.pat)
-    this.MaterialsContrastService.GetMaterialss(this.pat).then((res: any) => {
+    this.ApiService.GetMater(this.pat).then((res: any) => {
       // console.log(res)
+      if(res.items.length){
       this.addlist = res.items;
       this.array.push(this.addlist[0].id);
       // this.getGetMaterialss();
       this.name.push(this.addlist[0].name);
       this.model.push(this.addlist[0].model);
       this.manu.push(this.addlist[0].manufactoryName)
-      this.reelNumber.push(this.addlist[0].reelNumber);//不调接口
+      this.reelNumber.push(this.addlist[0].reelNumber);
       this.getGetMaterials();
       this.array.toString();
       window.history.pushState(
@@ -514,8 +521,17 @@ this.valuetj = []
         null,
         `/contrast?materialids=${this.array}`
       );
+      }
+      else{
+        this.message.info('未找到材料');
+      }
+     this.viewAdd = false;
     });
+    // this.valuetj = []
+  }
+  else{
     this.viewAdd = false;
-this.valuetj = []
+    // this.valuetj = []
+  }
   }
 }

@@ -49,7 +49,7 @@ pas=[]
   pat={manufactoryId:"",
   name:"",
   model:2,
-  reelNumber:''}
+  reelNumber:'',type:'',url:''}
   addlist=[]
   addid = ''
   showi=false
@@ -93,6 +93,7 @@ pas=[]
 })}
 else{
   this.isVisible1 =false; 
+  // this.
 }
 
    
@@ -149,7 +150,7 @@ else{
 // this.ApiService.getRouters(httpOptions).then((res:any)=>{
 //   window.sessionStorage.setItem('data',  JSON.stringify(res)); 
 //      })
-    this.showma();
+    this.showma();//查询所有推荐材料
 
 
   }
@@ -160,7 +161,7 @@ ops(){
     let temp = [];//可选项数据列表
     this.listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
     let lengthTemp = temp.length
-      this.ApiService.GetMater().then((res:any)=>{
+      this.ApiService.GetMater({}).then((res:any)=>{
         let allMaterials = res.items
 for(let a= 0;a<lengthTemp;a++){
   temp[a].children = []
@@ -216,7 +217,7 @@ customReq = (item: UploadXHRArgs) => {
   console.log(item)
   console.log(item.action!)
   this.fileStatus = false;
-  this.responseData = [];
+  // this.responseData = [];
   // 构建一个 FormData 对象，用于存储文件或其他参数
   const formData = new FormData();
   // tslint:disable-next-line:no-any
@@ -240,9 +241,11 @@ customReq = (item: UploadXHRArgs) => {
       } else if (event instanceof HttpResponse) {
         // 处理成功
         this.fileStatus = true;
-        this.responseData = event.body;
-        this.filePath = this.responseData.data;
+        // this.responseData = event.body;
+        console.log( event,item)
+        // this.filePath = this.responseData.data;
         item.onSuccess!(event.body, item.file!, event);
+        // this.msg.success("图片上传成功");
       }
     },
     err => {
@@ -320,7 +323,7 @@ showma(){
     this.addlist.forEach(val=>
       {if(val.fileString){
       val.fileString=val.fileString.slice(0,val.fileString.length-1);
-        val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` }
+        val.avatarUrl=`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${val.fileString}` }//推荐材料图片src地址
         else{
           val.avatarUrl=''
         }
@@ -331,7 +334,7 @@ showma(){
         this.FileList=[]  ;  
         this.isVisible1 =false;  //isVisible1是推荐材料弹框
         this.showi=false; //showi是导入推荐材料图片按钮
-        this.values = [];
+        // this.values = [];
 });
 }
 nav(id,val){
@@ -428,33 +431,47 @@ getURl(id,data){
 
 //推荐材料级联选择框值发生变化时触发
   onChanges(values: any): void {
-  // console.log(values);
+    
    if(values[0]){
-    //  if(values[1].indexOf("+") !== -1){
-    //   values[1] = values[1].replace(/\+/g,"%2B")
-    //  }
-     console.log(values[1])
-    this.pat.manufactoryId = values[0];
- this.pat.name = values[1]; //材料名称中会有+号，加号会被解码为空格,+号用正则替换
- this.pat.model = values[2];
- this.pat.reelNumber = values[3];
+//      if(values[1].indexOf("+") !== -1){
+//       values[1] = values[1].replace(/\+/g,encodeURIComponent('+'))
+//      }
+//      console.log(values[1])
+//     this.pat.manufactoryId = values[0];
+//  this.pat.name = values[1]; //材料名称中会有+号，加号会被解码为空格,+号用正则替换
+//  this.pat.model = values[2];
+//  this.pat.reelNumber = values[3];
+ this.pat.type = "tszf"
+ this.pat.url = `?manufactoryId=${values[0]}&name=${encodeURIComponent(values[1])}&model=${values[2]}&reelNumber=${values[3]}`
  //查询材料
  this.ApiService.GetMater(this.pat).then((res: any) => {
    //有可能查询不到材料？
    console.log(values[1])
-   if(res.items[0]){
+   if(res.items.length){
    this.addid=res.items[0].id
        //  console.log(this.addid)
        //  console.log(this.addlist)
        //根据材料id添加推荐材料图片
        this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
+   this.showi=true
    }
-
+   else{
+  this.msg.info('未找到材料')
+  this.showi=false;
+  this.addid = ''
+  this.maUrl = ''
+   }
     });
+}
+else{
+  this.showi=false;
+  this.addid = ''
+  this.maUrl = ''
+
 }
 // this.values=[]
 //上传推荐材料图片
-this.showi=true
+
   }
   handleChange(info: { file: UploadFile }): void { 
     console.log(info)
@@ -473,7 +490,7 @@ this.showi=true
         this.msg.success("文件上传成功");
         break;
       case 'error':
-        this.msg.error('Network error');
+        this.msg.error('文件上传失败');
         break;
     }
   }
@@ -481,6 +498,7 @@ this.showi=true
 //推荐材料上传图片文件改变时触发
 //推荐材料只会有一张图片，之后上传的会覆盖之前的
   handleChange1(info: { file: UploadFile }): void { 
+    console.log(info.file.status)
     switch (info.file.status) {
       // case 'uploading':      
       //   break;
@@ -494,7 +512,7 @@ this.showi=true
         this.msg.success("图片上传成功");
         break;
       case 'error':
-        this.msg.error('Network error');
+        this.msg.error('图片上传失败');
         break;
     }
 //  this.showma()

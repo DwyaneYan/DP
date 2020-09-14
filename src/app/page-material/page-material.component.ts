@@ -244,6 +244,8 @@ export class PageMaterialComponent implements OnInit {
     // Strength: "",
     MaxStrenth: "", //最大屈服强度
     MinStrenth: "", //最小屈服强度
+    url:'',
+    type:""
   };
   public materialTypeChildren = []; //存放当前选中材料分类的子分类
   public parentType = ""; //选中材料分类的子分类的父级
@@ -403,6 +405,8 @@ export class PageMaterialComponent implements OnInit {
     this.params.MaxModel = "";
     this.params.MaxStrenth = "";
     this.params.MinStrenth = "";
+    this.params.type = "";
+    this.params.url = "";
     this.enterData.first.data = ''//直接访问子组件实例修改子组件状态值
     console.log(this.enterData.first.data)
     this.filtrationMaterial({})
@@ -419,6 +423,9 @@ export class PageMaterialComponent implements OnInit {
     // await this.ApiService.GetMater(this.params).then((res: any) => {
     //   this.material = res.items;
     // });
+    this.params.type = "tszf"
+    this.params.url = `?manufactoryId=${this.params.ManufactoryId}&name=${encodeURIComponent(this.params.Name)}&model=${this.params.Model}&materialType=${this.params.MaterialType}
+    &minModel=${this.params.MinModel}&maxModel=${this.params.MaxModel}&maxStrenth=${this.params.MaxStrenth}&minStrenth=${this.params.MinStrenth}`
     this.filtrationMaterial({})
   }
   reGet(){
