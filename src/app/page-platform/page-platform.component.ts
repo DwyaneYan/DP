@@ -50,7 +50,7 @@ pas=[]
   name:"",
   model:2,
   reelNumber:'',type:'',url:''}
-  addlist=[]
+  addlist=[]//推荐材料列表
   addid = ''
   showi=false
   showcan=false
