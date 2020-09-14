@@ -44,7 +44,7 @@
 
 
 <!-- 材料对比弹窗  START -->
-<div class="compare-box" *ngIf="checkList.length >=1 && checkbox && contrast">
+<div class="compare-box" *ngIf="checkList.length &gt;0 && checkbox && contrast">
     <h4>
         材料对比
         <i class="angle" nz-icon nzType="right" nzTheme="outline"></i>
@@ -64,7 +64,7 @@
 <!-- 材料对比弹窗  END -->
 
 <!-- 删除材料弹窗  START -->
-<div class="compare-box" *ngIf="checkList.length >=1 && checkbox && delete">
+<div class="compare-box" *ngIf="checkList.length&gt;0 && checkbox && delete">
     <h4>
         删除材料
         <i class="angle" nz-icon nzType="right" nzTheme="outline"></i>

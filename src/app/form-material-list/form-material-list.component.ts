@@ -323,6 +323,7 @@ getURl(id,data){
           })
           // console.log(this.listOfAllData)
           this.checkList = this.dataAll.filter(value => value.checked);
+          console.log( this.checkList)
       if (this.checkList.length > 5) {
         this.disabled = true;
         this.modalService.warning({
@@ -342,6 +343,7 @@ getURl(id,data){
           }
         }
           })
+          console.log( this.checkList)
          
     }
   }
@@ -409,11 +411,13 @@ this.screening()
   //删除材料
   del(){
      this.checkbox = !this.checkbox;
+    console.log(this.delete,this.checkbox)
      this.listOfAllData.map(val=>val.checked = false)
-     this.contrast = !this.contrast;
+this.screening()
+     this.contrast = !this.contrast;//禁用对比按钮
      this.checkList = [];
      this.contrasts = []
-this.disabled = false
+this.disabled = false//第一列不禁用
   }
   cancel(): void {
     // this.nzMessageService.info('click cancel');
