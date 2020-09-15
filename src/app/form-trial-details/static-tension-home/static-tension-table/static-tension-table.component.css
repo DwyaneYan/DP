@@ -18,15 +18,14 @@
     margin: 0px
 } */
 
-#one .one /deep/.ng-star-inserted>span {
+/* #one .one /deep/.ng-star-inserted>span {
     display: block;
-    height: 41.6px;
     text-align: center;
 }
 
 #one .one /deep/ .ant-table-header-column {
     height: 41.6px;
-}
+} */
 
 
 /* #one .one /deep/.ng-star-inserted{

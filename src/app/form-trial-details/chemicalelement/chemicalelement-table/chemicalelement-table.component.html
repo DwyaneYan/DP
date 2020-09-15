@@ -1,5 +1,5 @@
 <div id="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25">
+    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered  class="layout-fixed mt25" [nzScroll]="{ x: '1200px' }">
         <thead>
             <tr>
                 <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'"
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr>
-                <td *ngFor="let data of table[0].key">
+                <td *ngFor="let data of table[0].key;let tdIdx=index " [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'"  (click)="clickItem(tdIdx)">
                     {{trialDataDetail[0]?trialDataDetail[0][data]:''}}
                 </td>
             </tr>

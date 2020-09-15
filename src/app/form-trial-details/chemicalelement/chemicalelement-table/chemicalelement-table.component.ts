@@ -37,7 +37,8 @@ export class ChemicalelementTableComponent implements OnInit {
   ]
   isVisible = false;
   options;
-
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
   contrastTable(params) {
     let data = [];
     let xData = [];
@@ -213,6 +214,15 @@ export class ChemicalelementTableComponent implements OnInit {
       }
     }
     return true; //如果不能找到相匹配的元素，返回true
+  }
+   //点击行中的列项展开信息
+   clickItem(tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }
 
