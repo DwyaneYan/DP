@@ -16,9 +16,9 @@ export class ApiService {
 
     ) { }
     httpOptions = {}
-     toVIm = `http://10.130.3.142:88/view` //跳转到vim
+     toVIm = `http://10.80.27.201:88/view` //跳转到vim
     //toVIm = `http://localhost:4280` //跳转到vim
-    toRuoYi = `http://10.130.3.142:81`  //管理系统跳转到若依
+    toRuoYi = `http://10.80.27.201:81`  //管理系统跳转到若依
   //   ngOnInit() { 
   //     //请求头,注意token是存在session storage中不是cookie中
   // this.httpOptions = {

@@ -408,8 +408,8 @@ export class PageMaterialComponent implements OnInit {
     this.params.type = "";
     this.params.url = "";
     this.enterData.first.data = ''//直接访问子组件实例修改子组件状态值
-    console.log(this.enterData.first.data)
-    this.filtrationMaterial({})
+    // console.log(this.enterData.first.data)
+    this.filtrationMaterial({enum:''},true)
     // console.log(this.params)
     // await this.ApiService.GetMater(this.params).then((res: any) => {
     //   this.material = res.items;
