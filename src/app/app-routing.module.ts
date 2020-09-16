@@ -391,7 +391,7 @@ function button(p):Boolean{
 if(permissions){
   // console.log(1111111)
 for(let a=0;a<length;a++){
-  let childs = allRoutes[4].children[a]
+  // let childs = allRoutes[4].children[a]
   if(!button(allRoutes[4].children[a].path)){
     delete allRoutes[4].children[a];
   }
@@ -417,7 +417,7 @@ for(let a=0;a<length;a++){
         }
         // let realLength = allRoutes[4].children[a].children.length
         //待优化
-        childs.children.push(defaultPath)
+        allRoutes[4].children[a].children.push(defaultPath)
         // childs.children[realLength] = defaultPath
     }
 

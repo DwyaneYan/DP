@@ -164,16 +164,18 @@ export class PageContrastComponent implements OnInit {
        this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
       this.StaticTension = res; 
       console.log(this.array.length,this.StaticTension)
+      this.changeStatus(this.listArr);
 });
      this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
     this.LowCycleFatigue= res; 
+    this.changeStatus(this.listArr);
 });
 
  this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) => {
   this.ChemicalElement= res;
-
+  this.changeStatus(this.listArr);
 })
-    // this.changeStatus(this.listArr);
+    
 
   // }
   // else{
