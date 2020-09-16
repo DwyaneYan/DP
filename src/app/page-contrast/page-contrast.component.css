@@ -117,7 +117,7 @@ nz-table.vertical div.sta {
   writing-mode: initial;
   position: relative;
   word-break: break-all;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 nz-table.borderedTable tr {
@@ -125,23 +125,23 @@ nz-table.borderedTable tr {
 }
 
 #info {
-  height: 130px;
+  height: 170px;
 }
 
 #hide1 {
-  float: left;
+  /* float: left; */
   color: blue;
 }
 
 #hide2 {
-  float: left;
+  /* float: left;
   margin-top: 13px;
-  margin-bottom: 7px;
+  margin-bottom: 7px; */
   width: 110px;
 }
 
 #hide3 {
-  float: left;
+  /* float: left; */
   width: 140px;
 }
 
