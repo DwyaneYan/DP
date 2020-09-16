@@ -29,10 +29,12 @@
                 <thead>
                     <tr>
                         <th id="info" nzWidth="100px" nzLeft="0">
-                            <div id="hide1">材料信息</div>
-                            <div id="hide2"></div>
+                            
+                            <!-- <div id="hide2"></div> -->
                             <div id="hide3">
+                                <div id="hide1">材料信息</div>
                                 <label *ngFor="let field of fields">
+                                  
                                     <label nz-checkbox [(nzChecked)]="field.checked" [(ngModel)]="field.checked"
                                         (ngModelChange)="refreshStatus(field.id, $event)"
                                         [id]="field.id">{{ field.value }}</label>
