@@ -134,7 +134,7 @@ import { TypicalPartComponent } from 'src/app/typical-part/typical-part.componen
 // import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 
 
-let allRoutes =[
+let allRoutes:any =[
   { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
   { path: 'login', component: PageLoginComponent},
   { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
@@ -326,17 +326,20 @@ let allRoutes =[
         ]  
       },
       { 
-        path: 'rebound', component:ReboundComponent ,
+        path: 'rebound', 
+        component:ReboundComponent ,
+       
+        // path: 'rebound', component:ReboundTableComponent ,
         children:[
+          // {path: '',redirectTo:'table',permissions:"htxn1",pathMatch: 'full'},
           { path: 'table', component:ReboundTableComponent,permissions:"htxn1"  },
           { path: 'picture', component:  ReboundPictureComponent    ,permissions:"htxn2"  },
           { path: 'report', component:  ReportComponent   ,permissions:"htxn3" },
-          { path: 'typical-part', component: TypicalPartComponent ,permissions:"htxn4"},
-         
+          { path: 'typical-part', component: TypicalPartComponent ,permissions:"htxn4"}
         ]  
       },
       { 
-        path: 'bake-hardening', component:BakeHardeningComponent  ,
+        path: 'bake-hardening', component:BakeHardeningComponent ,
         children:[
           { path: 'table', component: BakeHardeningTableComponent  ,permissions:"hkyh1" },
           { path: 'picture', component:  BakeHardeningPictureComponent ,permissions:"hkyh2"  },
@@ -375,11 +378,8 @@ console.log(allRoutes[4].children)
 
 let length = allRoutes[4].children.length-2;
 let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-
-//登陆后才能确定路由数组,这个文件只有刷新页面会再次执行但点击导航或者前进后退不会执行
-if(permissions){
 function button(p):Boolean{
-  if(permissions.permissions.indexOf(`${p}`)==-1 && permissions.roles.indexOf("admin")==-1){
+  if(permissions && permissions.permissions.indexOf(`${p}`)==-1 && permissions.roles.indexOf("admin")==-1){
     return false
   }
   else{
@@ -387,8 +387,11 @@ function button(p):Boolean{
   }
 
 }
+//登陆后才能确定路由数组,这个文件只有刷新页面会再次执行但点击导航或者前进后退不会执行
+if(permissions){
+  // console.log(1111111)
 for(let a=0;a<length;a++){
-
+  let childs = allRoutes[4].children[a]
   if(!button(allRoutes[4].children[a].path)){
     delete allRoutes[4].children[a];
   }
@@ -404,6 +407,19 @@ for(let a=0;a<length;a++){
     for(let i =0;i<array.length;i++){
       allRoutes[4].children[a].children.splice(array[i]-i,1)
     }
+    //设置默认展示图表
+      let onePath = allRoutes[4].children[a].children[0]
+      if(onePath){
+        let defaultPath = {
+          path: '',
+          redirectTo: onePath.path,
+          pathMatch: 'full'
+        }
+        // let realLength = allRoutes[4].children[a].children.length
+        //待优化
+        childs.children.push(defaultPath)
+        // childs.children[realLength] = defaultPath
+    }
 
   }
 
@@ -418,7 +434,7 @@ allRoutes[4].children = allRoutes[4].children.filter(function(item) {
 if(!button("viewCar")){
  allRoutes[4].children.splice(length,1)
 }
-console.log(allRoutes[4].children)
+// console.log(allRoutes[4].children)
 
 
 }

@@ -182,30 +182,30 @@ let length2=this.menu2.length
 let length3=this.menu3.length
 for(let a=0;a<length1;a++){
   this.routerLink1[a]=[]
-    if(this.button(this.menu1[a].children[0])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/table`]}
-else if(this.button(this.menu1[a].children[1])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/picture`]}
-else if(this.button(this.menu1[a].children[2])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/report`]}
-else{this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}/typical-part`]
+    if(this.button(this.menu1[a].children[0])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]}
+else if(this.button(this.menu1[a].children[1])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]}
+else if(this.button(this.menu1[a].children[2])){this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]}
+else{this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]
   }
   // this.routerLink1[a]=[`/display/${this.materialId}/${this.menu1[a].luyou}`]
 
 }
 for(let a=0;a<length2;a++){
   this.routerLink2[a]=[]
-    if(this.button(this.menu2[a].children[0])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/table`]}
-else if(this.button(this.menu2[a].children[1])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/picture`]}
-else if(this.button(this.menu2[a].children[2])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/report`]}
-else{this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}/typical-part`]
+    if(this.button(this.menu2[a].children[0])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]}
+else if(this.button(this.menu2[a].children[1])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]}
+else if(this.button(this.menu2[a].children[2])){this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]}
+else{this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]
   }
 // this.routerLink2[a]=[`/display/${this.materialId}/${this.menu2[a].luyou}`]
 }
 
 for(let a=0;a<length3;a++){
   this.routerLink3[a]=[]
-    if(this.button(this.menu3[a].children[0])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/table`]}
-else if(this.button(this.menu3[a].children[1])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/picture`]}
-else if(this.button(this.menu3[a].children[2])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/report`]}
-else{this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}/typical-part`]
+    if(this.button(this.menu3[a].children[0])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]}
+else if(this.button(this.menu3[a].children[1])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]}
+else if(this.button(this.menu3[a].children[2])){this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]}
+else{this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]
   }
 //  this.routerLink3[a]=[`/display/${this.materialId}/${this.menu3[a].luyou}`]
 
