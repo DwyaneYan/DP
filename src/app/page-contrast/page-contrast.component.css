@@ -193,6 +193,7 @@ nz-table.borderedTable tr {
   right: 0px;
   -webkit-box-orient: vertical;
   display: block;
+  padding: 16px 8px 8px 8px;
 }
 
 
