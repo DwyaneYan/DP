@@ -11,6 +11,7 @@ import { NzMessageService } from "ng-zorro-antd/message";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { HttpHeaders } from "@angular/common/http";
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
+import {initRouter} from "../init-routers"
 
 @Component({
   selector: "app-form-login-dialog",
@@ -23,7 +24,6 @@ export class FormLoginDialogComponent implements OnInit {
   uuid;
   token = "";
   submitForm(): void {
-    console.log(this.validateForm)
     //校验状态
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -55,7 +55,6 @@ export class FormLoginDialogComponent implements OnInit {
           else{this.message.create("error", res.msg); 
           this.getCode();}
         } else {
-          // this.ApiService.setToken(res.token)
           sessionStorage.setItem("token", res.token);//token存到session
           let httpOptions = {
             headers: new HttpHeaders({
@@ -64,32 +63,32 @@ export class FormLoginDialogComponent implements OnInit {
           };
           this.ApiService.getInfo(httpOptions).then((res: any) => {
             window.sessionStorage.setItem("permissions", JSON.stringify(res));
-            this.ApiService.getRouters(httpOptions).then((res: any) => {
-              window.sessionStorage.setItem("data", JSON.stringify(res));//data控制按钮权限
-
+            // this.ApiService.getRouters(httpOptions).then((res: any) => {
+              // window.sessionStorage.setItem("data", JSON.stringify(res));//data控制按钮权限
               if (window.location.search.indexOf("type=vim") != -1) {
                let position = window.location.search.slice(1).replace(/=&/g, '/').lastIndexOf("/");
                 let url = window.location.search.slice(1).replace(/=&/g, '/').slice(0,position)
-               console.log(url)
-              window.open(url,'_self')
+              //  console.log(url)
+              // window.open(url,'_self')
+               this.ApiService.selfReloadRouter(this.router)
+              this.router.navigateByUrl(`${url}`)
                 // this.router.navigateByUrl(
                 //   url
                 // );
               } else {
                 // this.router.navigate(["/platform",{ relativeTo: this.routeInfo }]);
-      // location.reload() 
-      console.log(this.routeInfo,this.router)
-      // window.sessionStorage.setItem("fromLogin",'1')
-      //window.open('/platform','_self')
-      this.router.navigateByUrl("/platform")//路由导航和在导航栏直接导航的区别,手动导航就会执行路由配置文件
+      // console.log(this.routeInfo,this.router)
+      // this.router.config = initRouter()
+    this.router.config = this.ApiService.selfReloadRouter(initRouter())
+        console.log(this.router)
+     this.router.navigateByUrl("/platform")//路由导航和在导航栏直接导航的区别,手动导航就会执行路由配置文件
+
       //重新加载路由
       // this.router.config.push({path: "platform1", component: TypicalPartComponent})
       // // window.open(`http://localhost:4200/platform`,'_self')
-      // console.log(this.routeInfo,this.router)
-
               }
-            });
-            console.log(res);
+            // });
+            // console.log(res);
           });
         }
 
@@ -103,7 +102,8 @@ export class FormLoginDialogComponent implements OnInit {
     private cookies: CookieService,
     private message: NzMessageService,
     public router: Router,
-    private routeInfo: ActivatedRoute
+    private routeInfo: ActivatedRoute,
+    // private initRouter:initRouter,
   ) {}
 
   ngOnInit(): void {
@@ -146,4 +146,68 @@ export class FormLoginDialogComponent implements OnInit {
     // console.log(userName,remember, this.validateForm.value.userName,this.validateForm,this.validateForm.value);
 
   }
+  //重置路由
+  // reloadRouter(){
+  //   let allRoutes:any = this.router.config
+  //   let length = allRoutes[4].children.length-2;
+  //   let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+    
+  //   function button(p):Boolean{
+  //     if(permissions && permissions.permissions.indexOf(`${p}`)==-1 && permissions.roles.indexOf("admin")==-1){
+  //       return false
+  //     }
+  //     else{
+  //       return true
+  //     }
+    
+  //   }
+  //   if(permissions){
+
+  //   for(let a=0;a<length;a++){
+
+  //     if(!button(allRoutes[4].children[a].path)){
+  //       delete allRoutes[4].children[a];
+  //     }
+  //     else{
+    
+  //         let array =[]  //删除子路由数组中的元素
+  //         allRoutes[4].children[a].children.forEach((item,index,arr)=>{
+  //           if(!button(item.permissions)){
+  //             array.push(index)}
+  //          else{
+  //         delete item.permissions}
+  //       })
+  //       for(let i =0;i<array.length;i++){
+  //         allRoutes[4].children[a].children.splice(array[i]-i,1)
+  //       }
+  //       //设置默认展示图表
+  //         let onePath = allRoutes[4].children[a].children[0]
+  //         if(onePath){
+  //           let defaultPath = {
+  //             path: '',
+  //             redirectTo: onePath.path,
+  //             pathMatch: 'full'
+  //           }
+  //           //待优化
+  //           allRoutes[4].children[a].children.push(defaultPath)
+  //       }
+
+    
+  //     }
+    
+  //   }
+    
+    
+  //   console.log(allRoutes[4].children)
+    
+  //   allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+  //     return item != undefined
+  //      });//删除路由中的空元素
+  //   if(!button("viewCar")){
+  //    allRoutes[4].children.splice(length,1)
+  //   }   
+  //   }
+
+  //   this.router.config = allRoutes
+  // }
 }

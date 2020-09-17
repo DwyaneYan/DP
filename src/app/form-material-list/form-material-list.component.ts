@@ -153,6 +153,7 @@ getURl(id,data){
     for (let a = 0; a < length; a++) {
       if (arr[a] && this.FormExperimentalItemComponent.button(menu[a].name)) {
         if (this.FormExperimentalItemComponent.button(menu[a].children[0])) { 
+          console.log(111111111111)
           this.Router.navigateByUrl(`/display/${id}/${menu[a].luyou}/table`);  
           // data.routerLink1 = [`/display/${data.materialId}/${this.menu[a].luyou}/table`]
          }

@@ -180,6 +180,7 @@ import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { Page404Component } from './page404/page404.component';
 import { TypicalPartComponent } from './typical-part/typical-part.component';
+import { initRouter } from './init-routers';
 // import { PageUsermanualComponent } from './page-usermanual/page-usermanual.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
@@ -406,6 +407,7 @@ import { TypicalPartComponent } from './typical-part/typical-part.component';
     NgZorroAntdModule,
     AppRoutingModule,
     NgxEchartsModule,
+    // InitRoutersModule,
    
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }, CookieService  ,],

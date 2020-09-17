@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 
 
@@ -16,10 +17,10 @@ export class ApiService {
 
     ) { }
     httpOptions = {}
-     toVIm = `http://10.80.27.201:88/view` //跳转到vim
-    //toVIm = `http://localhost:4280` //跳转到vim
-    toRuoYi = `http://10.80.27.201:81`  //管理系统跳转到若依
-    //toRuoYi = `http://localhost:81`
+     //toVIm = `http://10.80.27.201:88/view` //跳转到vim
+    toVIm = `http://localhost:4280` //跳转到vim
+   // toRuoYi = `http://10.80.27.201:81`  //管理系统跳转到若依
+    toRuoYi = `http://localhost:81`
   //   ngOnInit() { 
   //     //请求头,注意token是存在session storage中不是cookie中
   // this.httpOptions = {
@@ -873,5 +874,63 @@ handleTime(date){
   )[0] : ''
   console.log(date)
 }
+
+//自定义重置路由的方法
+  selfReloadRouter(p){
+    let allRoutes:any = p
+    let length = allRoutes[4].children.length-2;
+    let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+    function button(p):Boolean{
+      if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
+        return true
+      }
+      else{
+        return false
+      }
+    
+    }
+    if(permissions){
+    for(let a=0;a<length;a++){
+      if(!button(allRoutes[4].children[a].path)){
+        delete allRoutes[4].children[a];
+      }
+      else{
+    
+          let array =[]  //删除子路由数组中的元素
+          allRoutes[4].children[a].children.forEach((item,index,arr)=>{
+            if(!button(item.permissions)){
+              array.push(index)}
+           else{
+          delete item.permissions}
+        })
+        for(let i =0;i<array.length;i++){
+          allRoutes[4].children[a].children.splice(array[i]-i,1)
+        }
+        //设置默认展示图表
+          let onePath = allRoutes[4].children[a].children[0]
+          if(onePath){
+            let defaultPath = {
+              path: '',
+              redirectTo: onePath.path,
+              pathMatch: 'full'
+            }
+            //待优化
+            allRoutes[4].children[a].children.push(defaultPath)
+        }
+
+    
+      }
+    
+    }  
+    allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+      return item != undefined
+       });//删除路由中的空元素
+    if(!button("viewCar")){
+     allRoutes[4].children.splice(length,1)
+    }   
+    }
+    return allRoutes
+  }
+ 
 }
 

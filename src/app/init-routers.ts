@@ -1,10 +1,25 @@
+// import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { NgModule } from '@angular/core';
-// import{ApiService} from './api.service'
 import { RouterModule, Routes } from '@angular/router';
-// import {initRouter,baseRouter,selfReloadRouter} from "./init-routers"
 import { PageLoginComponent } from './page-login/page-login.component';
 import { PagePlatformComponent } from './page-platform/page-platform.component';
 import { PageMaterialComponent } from './page-material/page-material.component';
+import { PageDisplayTableComponent } from './page-display-table/page-display-table.component';
+import { PageDisplayPictureComponent } from './page-display-picture/page-display-picture.component';
+import { PageDisplayReportComponent } from './page-display-report/page-display-report.component';
+import { PageDisplayReportFsComponent } from './page-display-report-fs/page-display-report-fs.component';
+import { PageDisplayTypicalPartComponent } from './page-display-typical-part/page-display-typical-part.component';
+import { PageAttributeConstractComponent } from './page-attribute-constract/page-attribute-constract.component';
+import { PageMaterialFakeComponent } from './page-material-fake/page-material-fake.component';
+import { PageMaterialFloatingBoxComponent } from './page-material-floating-box/page-material-floating-box.component';
+import { PageSystemManageComponent } from './page-system-manage/page-system-manage.component';
+import { PageDisplayhomeComponent } from './page-displayhome/page-displayhome.component';
+import { FormFactoryListComponent } from './form-factory-list/form-factory-list.component';
+import { FormTypicpartListComponent } from './form-typicpart-list/form-typicpart-list.component';
+import { PageMaterialTrialComponent } from './page-material-trial/page-material-trial.component';
+import { FormMateriaListComponent } from './form-materia-list/form-materia-list.component';
 import { PageDisplayComponent } from './page-display/page-display.component';
 import { StaticTensionHomeComponent } from './form-trial-details/static-tension-home/static-tension-home.component'
 import { StaticTensionTableComponent } from './form-trial-details/static-tension-home/static-tension-table/static-tension-table.component'
@@ -69,6 +84,47 @@ import { BakeHardeningTableComponent } from './form-trial-details/bake-hardening
 import { SurfacePropertyComponent } from './form-trial-details/surface-property/surface-property.component';
 import { SurfacePropertyTableComponent } from './form-trial-details/surface-property/surface-property-table/surface-property-table.component';
 import { SurfacePropertyPictureComponent,} from './form-trial-details/surface-property/surface-property-picture/surface-property-picture.component';
+import { StaticTensionTypicalPartComponent } from './form-trial-details/static-tension-home/static-tension-typical-part/static-tension-typical-part.component';
+import { BendingReportComponent } from './form-trial-details/bending/bending-report/bending-report.component';
+import { BendingTypicalPartComponent } from './form-trial-details/bending/bending-typical-part/bending-typical-part.component';
+import { CompressionReportComponent } from './form-trial-details/compression/compression-report/compression-report.component';
+import { CompressionTypicalPartComponent } from './form-trial-details/compression/compression-typical-part/compression-typical-part.component';
+import { HighspeedstrechReportComponent } from './form-trial-details/highspeedstrech/highspeedstrech-report/highspeedstrech-report.component';
+import { HighspeedstrechTypicalPartComponent } from './form-trial-details/highspeedstrech/highspeedstrech-typical-part/highspeedstrech-typical-part.component';
+import { LowcyclefatigueReportComponent } from './form-trial-details/lowcyclefatigue/lowcyclefatigue-report/lowcyclefatigue-report.component';
+import { LowcyclefatigueTypicalPartComponent } from './form-trial-details/lowcyclefatigue/lowcyclefatigue-typical-part/lowcyclefatigue-typical-part.component';
+import { HighcyclefatigueReportComponent } from './form-trial-details/highcyclefatigue/highcyclefatigue-report/highcyclefatigue-report.component';
+import { HighcyclefatigueTypicalPartComponent } from './form-trial-details/highcyclefatigue/highcyclefatigue-typical-part/highcyclefatigue-typical-part.component';
+import { MetallographicReportComponent } from './form-trial-details/metallographic/metallographic-report/metallographic-report.component';
+import { MetallographicTypicalPartComponent } from './form-trial-details/metallographic/metallographic-typical-part/metallographic-typical-part.component';
+import { PhysicalperformanceReportComponent } from './form-trial-details/physicalperformance/physicalperformance-report/physicalperformance-report.component';
+import { PhysicalperformanceTypicalPartComponent } from './form-trial-details/physicalperformance/physicalperformance-typical-part/physicalperformance-typical-part.component';
+import { ChemicalelementReportComponent } from './form-trial-details/chemicalelement/chemicalelement-report/chemicalelement-report.component';
+import { ChemicalelementTypicalPartComponent } from './form-trial-details/chemicalelement/chemicalelement-typical-part/chemicalelement-typical-part.component';
+import { ProhibitedSubstanceReportComponent } from './form-trial-details/prohibited-substance/prohibited-substance-report/prohibited-substance-report.component';
+import { ProhibitedSubstanceTypicalPartComponent } from './form-trial-details/prohibited-substance/prohibited-substance-typical-part/prohibited-substance-typical-part.component';
+import { SurfacePropertyReportComponent } from './form-trial-details/surface-property/surface-property-report/surface-property-report.component';
+import { SurfacePropertyTypicalPartComponent } from './form-trial-details/surface-property/surface-property-typical-part/surface-property-typical-part.component';
+import { DentResistanceReportComponent } from './form-trial-details/dent-resistance/dent-resistance-report/dent-resistance-report.component';
+import { DentResistanceTypicalPartComponent } from './form-trial-details/dent-resistance/dent-resistance-typical-part/dent-resistance-typical-part.component';
+import { SecondaryWorkingEmbrittlementReportComponent } from './form-trial-details/secondary-working-embrittlement/secondary-working-embrittlement-report/secondary-working-embrittlement-report.component';
+import { SecondaryWorkingEmbrittlementTypicalPartComponent } from './form-trial-details/secondary-working-embrittlement/secondary-working-embrittlement-typical-part/secondary-working-embrittlement-typical-part.component';
+import { FlangingClaspReportComponent } from './form-trial-details/flanging-clasp/flanging-clasp-report/flanging-clasp-report.component';
+import { FlangingClaspTypicalPartComponent } from './form-trial-details/flanging-clasp/flanging-clasp-typical-part/flanging-clasp-typical-part.component';
+import { HydrogenInducedDelayedFractureReportComponent } from './form-trial-details/hydrogen-induced-delayed-fracture/hydrogen-induced-delayed-fracture-report/hydrogen-induced-delayed-fracture-report.component';
+import { HydrogenInducedDelayedFractureTypicalPartComponent } from './form-trial-details/hydrogen-induced-delayed-fracture/hydrogen-induced-delayed-fracture-typical-part/hydrogen-induced-delayed-fracture-typical-part.component';
+import { WeldingReportComponent } from './form-trial-details/welding/welding-report/welding-report.component';
+import { WeldingTypicalPartComponent } from './form-trial-details/welding/welding-typical-part/welding-typical-part.component';
+import { CementingReportComponent } from './form-trial-details/cementing/cementing-report/cementing-report.component';
+import { CementingTypicalPartComponent } from './form-trial-details/cementing/cementing-typical-part/cementing-typical-part.component';
+import { PaintingReportComponent } from './form-trial-details/painting/painting-report/painting-report.component';
+import { PaintingTypicalPartComponent } from './form-trial-details/painting/painting-typical-part/painting-typical-part.component';
+import { FldReportComponent } from './form-trial-details/fld/fld-report/fld-report.component';
+import { FldTypicalPartComponent } from './form-trial-details/fld/fld-typical-part/fld-typical-part.component';
+import { ReboundReportComponent } from './form-trial-details/rebound/rebound-report/rebound-report.component';
+import { ReboundTypicalPartComponent } from './form-trial-details/rebound/rebound-typical-part/rebound-typical-part.component';
+import { BakeHardeningReportComponent } from './form-trial-details/bake-hardening/bake-hardening-report/bake-hardening-report.component';
+import { BakeHardeningTypicalPartComponent } from './form-trial-details/bake-hardening/bake-hardening-typical-part/bake-hardening-typical-part.component';
 import { PageContrastComponent } from './page-contrast/page-contrast.component'
 import { ApplicationsComponent } from './form-trial-details/applications/applications.component';
 import { SimulationCardComponent } from './simulation-card/simulation-card.component';
@@ -77,13 +133,14 @@ import { LoginGuardService } from './login-guard.service'
 import { Page404Component } from './page404/page404.component'
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
 
-
-
-  let allRoutes:any =[
+function initRouter(){
+  let allRoute:any =[
     { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
     { path: 'login', component: PageLoginComponent},
     { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
     { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+    //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
+    // { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
     { path: 'display/:materialId', component:PageDisplayComponent,
     canActivateChild: [LoginGuardService],
       children:[
@@ -309,84 +366,103 @@ import { TypicalPartComponent } from 'src/app/typical-part/typical-part.componen
           path: 'simulationCard', component:SimulationCardComponent   , 
         }
     ]},
+    // { path: 'userManual', component: PageUsermanualComponent,canActivate: [LoginGuardService]},
+  
     { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
     { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
     { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
   
   ]
-  // let baseRouter:any =[
-  //   { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
-  //   { path: 'login', component: PageLoginComponent},
-  //   { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
-  //   { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
-  //   { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
-  //   { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
-  //   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
+  let allRoutes1:any = allRoute
+  return allRoutes1
+}
+// function baseRouter(){
+//   let allRoute:any =[
+//     { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
+//     { path: 'login', component: PageLoginComponent},
+//     { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
+//     { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+//     { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
+//     { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
+//     { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
   
-  // ]
-  let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-  // let allRoutes:any = permissions ? initRouter : baseRouter 
-  let length = allRoutes[4].children.length-2; 
-  function button(p):Boolean{
-    if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
-      return true
-    }
-    else{
-      return false
-    }
+//   ]
+//   let allRoutes1:any = allRoute
+//   return allRoutes1
+// }
+// function selfReloadRouter(p){
+//   // let allRoutes:any = p
+//   let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+//   // if(permissions){
+//   //   let allRoutes:any = initRouter()
+//   // }
+//   let allRoutes:any = permissions ? initRouter() : baseRouter()
   
-  }
-  if(permissions){
-  for(let a=0;a<length;a++){
-    if(!button(allRoutes[4].children[a].path)){
-      delete allRoutes[4].children[a];
-    }
-    else{
-        let array =[]  //删除子路由数组中的元素
-        allRoutes[4].children[a].children.forEach((item,index,arr)=>{
-          if(!button(item.permissions)){
-            array.push(index)}
-         else{
-        delete item.permissions}
-      })
-      for(let i =0;i<array.length;i++){
-        allRoutes[4].children[a].children.splice(array[i]-i,1)
-      }
-      //设置默认展示图表
-        let onePath = allRoutes[4].children[a].children[0]
-        if(onePath){
-          let defaultPath = {
-            path: '',
-            redirectTo: onePath.path,
-            pathMatch: 'full'
-          }
-          //待优化
-          allRoutes[4].children[a].children.push(defaultPath)
-      }
+//   let length = allRoutes[4].children.length-2;
+  
+//   function button(p):Boolean{
+//     if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
+//       return true
+//     }
+//     else{
+//       return false
+//     }
+  
+//   }
+//   if(permissions){
+//   for(let a=0;a<length;a++){
+
+//     if(!button(allRoutes[4].children[a].path)){
+//       delete allRoutes[4].children[a];
+//     }
+//     else{
+  
+//         let array =[]  //删除子路由数组中的元素
+//         allRoutes[4].children[a].children.forEach((item,index,arr)=>{
+//           if(!button(item.permissions)){
+//             array.push(index)}
+//          else{
+//         delete item.permissions}
+//       })
+//       for(let i =0;i<array.length;i++){
+//         allRoutes[4].children[a].children.splice(array[i]-i,1)
+//       }
+//       //设置默认展示图表
+//         let onePath = allRoutes[4].children[a].children[0]
+//         if(onePath){
+//           let defaultPath = {
+//             path: '',
+//             redirectTo: onePath.path,
+//             pathMatch: 'full'
+//           }
+//           //待优化
+//           allRoutes[4].children[a].children.push(defaultPath)
+//       }
 
   
-    }
+//     }
   
-  }  
-  // console.log(allRoutes[4].children)
-  allRoutes[4].children = allRoutes[4].children.filter(function(item) {
-    return item != undefined
-     });//删除路由中的空元素
-  if(!button("viewCar")){
-   allRoutes[4].children.splice(length,1)
-  }   
-  }
+//   }  
+//   // console.log(allRoutes[4].children)
+//   allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+//     return item != undefined
+//      });//删除路由中的空元素
+//   if(!button("viewCar")){
+//    allRoutes[4].children.splice(length,1)
+//   }   
+//   }
+//   // p.config = allRoutes
+//   return allRoutes
+// }
 
-let currentRoutes: Routes = allRoutes
+export {initRouter}
+// @NgModule({
+//   declarations: [],
+//   imports: [
+//     CommonModule
+//   ]
+// })
 
-
-
-@NgModule({
-  imports: [ RouterModule.forRoot(currentRoutes,{scrollPositionRestoration: 'enabled' }) ],  //初始化路由器,并让它开始监听浏览器中的地址变化,导航后页面滚动条滚动到顶部
-  exports: [ RouterModule ],  //导出 RouterModule 让路由器的相关指令可以在 AppModule 中的组件中使用。
-})
-export class AppRoutingModule {
-
-
-
- }
+// export class InitRoutersModule {
+  
+//  }

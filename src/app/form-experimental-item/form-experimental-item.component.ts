@@ -73,7 +73,7 @@ carid//此id
     // private msg: NzMessageService 
 
   ) { } 
-  permissions
+  // permissions
   data
   // listOfAllData=[{materialId:this.materialId}]
    arr1=[]
@@ -315,13 +315,13 @@ returnFalse =false
 // }
 //所有按钮权限
 button(p):Boolean{
-  this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+  let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
 //console.log(this.permissions)
-  if(this.permissions.permissions.indexOf(`${p}`)==-1 && this.permissions.roles.indexOf("admin")==-1){
-    return false
+  if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
+    return true
   }
   else{
-    return true //管理员和不是管理员但是有权限的人
+    return false 
   }
 
 }

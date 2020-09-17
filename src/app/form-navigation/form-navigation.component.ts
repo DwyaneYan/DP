@@ -110,11 +110,13 @@ let res=JSON.parse(sessionStorage.getItem("permissions"))
   out(){
   sessionStorage.removeItem("token");
   sessionStorage.removeItem("permissions");
-  this.ApiService.logout().then(()=>
-  this.router.navigateByUrl('login')
+  this.ApiService.logout().then((res:any)=>{
+    this.router.navigateByUrl('/login')
+  // location.reload()
+  }
+  
   // this.router.parseUrl("/login")
   )
-//location.reload()
   }
   openPDF(){
     window.open(

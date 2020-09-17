@@ -339,7 +339,6 @@ showma(){
 }
 nav(id,val){
         this.getURl(id,val)
-
 }
 getURl(id,data){
   //查询这条材料做了哪些试验
