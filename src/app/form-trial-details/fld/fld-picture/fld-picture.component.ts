@@ -27,8 +27,6 @@ export class FldPictureComponent implements OnInit {
 
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/fLDDataDetailItems/${materialId}`;
     await this.ApiService.getFLDDataDetailItems(this.materialId)
       .then((res: any) => {
         this.trialDataDetail = res
@@ -41,8 +39,6 @@ export class FldPictureComponent implements OnInit {
   }
   public PlotPicture(data, xData) {
     this.options = {
-
-
       title: {
         text: 'FLD'
       },

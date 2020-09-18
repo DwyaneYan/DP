@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MetallographicReportComponent } from 'src/app/form-trial-details/metallographic/metallographic-report/metallographic-report.component';
 import { ApiService } from 'src/app/api.service';
+import {common} from 'src/app/picture'
 
 @Component({
   selector: 'app-report',
@@ -12,17 +12,15 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  materialId
+  materialId = ''
   trialDataDetails=[]
+  name1='' //url中的倒数第二个路径名
   constructor(
     private router: Router,
     public http: HttpClient,
     public ApiService: ApiService,
 
-    public MetallographicReportComponent: MetallographicReportComponent,
-
   ) { }
-name1=''
   ngOnInit() {
     this.materialId = this.router
     .routerState.root.firstChild
@@ -32,7 +30,7 @@ name1=''
     let name = str.substring(0,str.length-1)
     let index1=name.lastIndexOf("\/");  
     this.name1 = name.substring(index1+1)
-    console.log(this.name1)
+    // console.log(this.name1)
 if (this.name1=='static-tension-home'){
   this.GetTrialDataDetailss('getStaticTensionDataDetails') 
 }
@@ -48,39 +46,30 @@ else if(this.name1=='prohibited-substance'){this.GetTrialDataDetailss('getProhib
 else if(this.name1=='dent-resistance'){this.GetTrialDataDetailss('getDentResistanceDataDetails') }
 else if(this.name1=='secondary-working-embrittlement'){this.GetTrialDataDetailss('getSecondaryWorkingEmbrittlementDataDetails') }
 else if(this.name1=='flanging-clasp'){this.GetTrialDataDetailss('getFlangingClaspDataDetails') }
-
 else if(this.name1=='hydrogen-induced-delayed-fracture'){this.GetTrialDataDetailss('getHydrogenInducedDelayedFractureDataDetails') }
-
 else if(this.name1=='welding'){this.GetTrialDataDetailss('getWeldingDataDetails') }
-
 else if(this.name1=='cementing'){this.GetTrialDataDetailss('getCementingDataDetails') }
 else if(this.name1=='painting'){this.GetTrialDataDetailss('getPaintingDataDetails') }
 else if(this.name1=='fld'){this.GetTrialDataDetailss('getFLDDataDetails') }
 else if(this.name1=='rebound'){this.GetTrialDataDetailss('getReboundDataDetails') }
 else if(this.name1=='bake-hardening'){this.GetTrialDataDetailss('getBakeHardeningDataDetails') }
 else if(this.name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePropertyDataDetails') }
-
-
-
-
-
-
   }
-  one=[]
+  
   public async GetTrialDataDetailss(p) {
-    // console.log(this.ApiService.getChemicalElementDataDetails)
     await this.ApiService[p](this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res
-      // console.log(this.trialDataDetails)
-      for(let a=0;a<this.trialDataDetails.length;a++)
-      {if(this.trialDataDetails[a] && this.trialDataDetails[a].fileKey!=null){
-    this.one.push(this.trialDataDetails[a])
-
-  }
+      let one=[]//报告名，数组只有一个字符串
+      let length = this.trialDataDetails.length
+      for(let a=0;a<length;a++)
+      {
+        if(this.trialDataDetails[a] && this.trialDataDetails[a].fileKey!=null){
+          one.push(this.trialDataDetails[a].fileKey)
+          break
+        }
       }
-      // console.log(this.one[0])
-      if(this.one[0]){this.MetallographicReportComponent.common(this.one[0].fileKey)}
+     common(one[0])
     })  
 
   }

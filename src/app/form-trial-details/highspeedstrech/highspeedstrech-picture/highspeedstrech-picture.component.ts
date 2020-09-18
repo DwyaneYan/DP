@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MetallographicPictureComponent } from 'src/app/form-trial-details/metallographic/metallographic-picture/metallographic-picture.component';
+import {getname} from 'src/app/picture'
+
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -29,7 +30,7 @@ name=[]
   options:any;
   constructor( private router: Router,
     public http: HttpClient,
-    public MetallographicPictureComponent: MetallographicPictureComponent,
+
     private ApiService: ApiService,
 
     ) { }
@@ -42,35 +43,30 @@ name=[]
   // window.onscroll = this.lazyload;
   }
   public async GetTrialDataDetail() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetails/${materialId}`;
     await this.ApiService.getHighSpeedStrechDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
-      for(let a=0;a<this.trialDataDetail.length;a++)
-{if(this.trialDataDetail[a].standard==null){
+      let length = this.trialDataDetail.length
+      for(let a=0;a<length;a++)
+{if(this.trialDataDetail[a]&&this.trialDataDetail[a].standard==null){
 this.two.push(this.trialDataDetail[a])
 }
 else{this.one.push(this.trialDataDetail[a])}
 }
 this.one.map(val=>this.three.push(val.testTarget))
 this.four=this.unique1(this.three)
-
-this.name= this.MetallographicPictureComponent.getname(this.one[0].fileString).afterName
-this.ImgPathOne=this.MetallographicPictureComponent.getname(this.one[0].fileString).ImgPathOne
+this.name= getname(this.one[0]?this.one[0].fileString:'').afterName
+this.ImgPathOne=getname(this.one[0]?this.one[0].fileString:'').ImgPathOne
     })  
   
   }
 
 
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrains/${materialId}`;
     await this.ApiService.getHighSpeedStrechDataDetailStressStrains(this.materialId)
     .then((res: any) => {
       this.trialDataDetails = res;     
     }) 
-    // let api1=`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrainExtends/${materialId}`;
     await this.ApiService.getHighSpeedStrechDataDetailStressStrainExtends(this.materialId)
     .then((res: any) => {
       this.trialDataDetailss = res

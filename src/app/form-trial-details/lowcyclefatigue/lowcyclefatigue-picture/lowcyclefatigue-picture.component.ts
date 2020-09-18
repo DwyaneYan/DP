@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MetallographicPictureComponent } from 'src/app/form-trial-details/metallographic/metallographic-picture/metallographic-picture.component';
 import { ApiService } from 'src/app/api.service';
+import {getname} from 'src/app/picture'
 
 @Component({
   selector: 'app-lowcyclefatigue-picture',
@@ -17,7 +17,6 @@ export class LowcyclefatiguePictureComponent implements OnInit {
 name=[]
   constructor( private router: Router,
     public http: HttpClient,
-    public MetallographicPictureComponent: MetallographicPictureComponent,
     private ApiService: ApiService,
 
     ) { }
@@ -28,13 +27,12 @@ name=[]
     this.GetTrialDataDetails()
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetails/${materialId}`;
+
     await this.ApiService.getLowCycleFatigueDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
-      this.name= this.MetallographicPictureComponent.getname(this.trialDataDetail[0].fileString).afterName
-      this.ImgPathOne=this.MetallographicPictureComponent.getname(this.trialDataDetail[0].fileString).ImgPathOne
+      this.name= getname(this.trialDataDetail[0]?this.trialDataDetail[0].fileString:'').afterName
+      this.ImgPathOne=getname(this.trialDataDetail[0]?this.trialDataDetail[0].fileString:'').ImgPathOne
     }) 
 
   }

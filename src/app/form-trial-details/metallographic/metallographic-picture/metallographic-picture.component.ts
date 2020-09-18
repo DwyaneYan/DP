@@ -3,7 +3,7 @@ import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-
+import {getname} from 'src/app/picture'
 @Component({
   selector: 'app-metallographic-picture',
   templateUrl: './metallographic-picture.component.html',
@@ -13,20 +13,14 @@ import { ApiService } from 'src/app/api.service';
   providedIn: 'root'
 })
 export class MetallographicPictureComponent implements OnInit {
-  public materialId
-  file=[]
+  public materialId = ''
   trialDataDetail=[]  //存放请求到的试验结果
-  files
-  filess=[]
-  a1
-  a2=[]
   ImgPathOne=[]
   name=[]
   constructor(
     private router: Router,
     public http: HttpClient,   
     public ApiService: ApiService,
-
     ) { }
 
   ngOnInit() { this.materialId = this.router
@@ -37,14 +31,11 @@ export class MetallographicPictureComponent implements OnInit {
   }
 
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/metallographicDataDetails/${materialId}`;
     await this.ApiService.getMetallographicDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
-      this.name=this.getname(this.trialDataDetail[0].fileString).afterName
-      this.ImgPathOne=this.getname(this.trialDataDetail[0].fileString).ImgPathOne
-      console.log(this.ImgPathOne)
+      this.name = getname(this.trialDataDetail[0]?this.trialDataDetail[0].fileString:'').afterName
+      this.ImgPathOne = getname(this.trialDataDetail[0]?this.trialDataDetail[0].fileString:'').ImgPathOne
     })   
   }
 
