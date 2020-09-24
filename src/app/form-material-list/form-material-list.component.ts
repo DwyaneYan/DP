@@ -6,11 +6,9 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { valHooks } from 'jquery';
-import {
- 
-  Router,
+import {Router,} from "@angular/router";
+import {button} from 'src/app/picture'
 
-} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +18,7 @@ import {
   styleUrls: ['./form-material-list.component.css']
 })
 export class FormMaterialListComponent implements OnChanges, OnInit {
+  button = button
   listOfAllData = [];
   routerLink1
   displayData = [];

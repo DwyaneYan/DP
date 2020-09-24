@@ -9,6 +9,8 @@ import { PageContrastComponent } from 'src/app/page-contrast/page-contrast.compo
 import { ApiService } from 'src/app/api.service';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators ,ValidatorFn,AbstractControl} from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
+import {button} from 'src/app/picture'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +20,7 @@ import { Observable, Observer } from 'rxjs';
   styleUrls: ['./simulation-card.component.css']
 })
 export class SimulationCardComponent implements OnInit {
+  button = button
 //FormBuilder 服务需要导入并注入该服务，然后才能使用它
   constructor( private router: Router,
     public http: HttpClient,

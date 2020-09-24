@@ -4,6 +4,7 @@ import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormMaterialListComponent } from '../form-material-list/form-material-list.component'
 import { HttpHeaders } from '@angular/common/http';
+import {button} from 'src/app/picture'
 
 import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
 import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
@@ -26,6 +27,7 @@ export class PagePlatformComponent implements OnInit {
   tojiaoche = this.ApiService.toVIm + `/car-model?carModelId=0e389231-8b77-4f06-8d36-ac72ac67eaca&type=hangang`
   toSUV = this.ApiService.toVIm + `/car-model?carModelId=65593d7a-575a-4515-8a59-9a6a3e143d87&type=hangang`
   toSY = this.ApiService.toVIm + `/car-type?type=hangang`
+  button = button
   avatarUrl
   maUrl = '';
   isVisible = false;

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 // import { Test } from 'src/testData';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-//import { FormMaterialListComponent } from '../form-material-list/form-material-list.component'
+import { button } from 'src/app/picture'
 
 @Component({
   selector: 'app-form-experimental-item',
@@ -17,17 +17,8 @@ import { ApiService } from 'src/app/api.service';
   providedIn: 'root'
 })
 export class FormExperimentalItemComponent implements OnInit {
-  @Input() materialId
-// testData=Test
-
-  // profileForm = this.fb.group({
-  //   carName: ['', Validators.required],
-  //   jiankuang: [''],
-  //   lingjian: [''],
-  //   yaoqiu: [''],
-   
-  // });
-  // profileForm:FormGroup
+  button = button
+  @Input() materialId:string //dispaly组件传过来的
 carid//此id
   isVisible = false;
   id=[]//所有id
@@ -36,41 +27,15 @@ carid//此id
   nzCustomRequestTwo
   maUrl1
   maUrl2
-  // button=true
-  // validateForm!: FormGroup;
+
   public trials
   public trialName=[]
-  // public staticTension
-  // public compress
-  // public highspeedTension
-  // public dizhoupilao
-  // public gaozhoupilao
-  // public jinxiang
-  // public wulixingneng
-  // public jinyongwuzhi
-  // public biaomianxn
-  // public bend
-  // public chemical
-  // public kangAoxn
-  // public ercijiagongcx
-  // public fanbiankouhexn
-  // public qingzhiyanchikl
-  // public hanjiexn
-  // public jiaojiexn
-  // public tuzhuangxn
-  // public FLD
-  // public huitanxn
-  // public hongkaoyh
+
 
 
   constructor(
-    private experimentalItemService: ExperimentalItemService,
-    // private fb: FormBuilder,
     public http: HttpClient,
     public ApiService: ApiService,
-   //private FormMaterialListComponent:FormMaterialListComponent,
-
-    // private msg: NzMessageService 
 
   ) { } 
   // permissions
@@ -105,19 +70,7 @@ menu3=[{name:"secondary-working-embrittlement",children:['ecjgcx1','ecjgcx2','ec
 str1=''
   ngOnInit() {
     this.GetTrials(this.materialId)
-   // this.FormMaterialListComponent.luyou(this.listOfAllData,this.arr)
-
     this.getCar()
-  
-    // this.permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-    // this.data=JSON.parse(window.sessionStorage.getItem("data"))
-    // console.log(this.router )
-    // let url=location.href
-    // let index=url.lastIndexOf('\/')
-    // let str = url.substring(0,index);
-    // let index1=str.lastIndexOf("\/")
-    // this. str1 = str.substring(index1 + 1,str.length);
-
      console.log(this.button('put'))
 }
 routerLink1=[]
@@ -132,28 +85,7 @@ routerLink3=[]
 this.trials.forEach((val,i,array) => {
   this.trialName.push(val.name)
 });
-console.log(this.trialName)
-// this.staticTension = this.trialName.includes("静态拉伸")
-// this.compress = this.trialName.includes("压缩")
-// this.highspeedTension = this.trialName.includes("高速拉伸")
-// this.dizhoupilao = this.trialName.includes("低周疲劳")
-// this.gaozhoupilao = this.trialName.includes("高周疲劳")
-// this.jinxiang = this.trialName.includes("金相")
-// this.wulixingneng = this.trialName.includes("物理性能")
-// this.jinyongwuzhi = this.trialName.includes("禁用物质")
-// this.biaomianxn = this.trialName.includes("表面性能")
-// this.bend = this.trialName.includes("弯曲")
-// this.chemical =  this.trialName.includes("化学成分")
-// this.kangAoxn = this.trialName.includes("抗凹性能")
-// this.ercijiagongcx = this.trialName.includes("二次加工脆性")
-// this.fanbiankouhexn = this.trialName.includes("翻边扣合性能")
-// this.qingzhiyanchikl = this.trialName.includes("氢致延迟开裂")
-// this.hanjiexn = this.trialName.includes("焊接性能")
-// this.jiaojiexn = this.trialName.includes("胶结性能")
-// this.tuzhuangxn = this.trialName.includes("涂装性能")
-// this.FLD = this.trialName.includes("成型极限")
-// this.huitanxn = this.trialName.includes("回弹性能")
-// this.hongkaoyh = this.trialName.includes("烘烤硬化")
+// console.log(this.trialName)
 this.arr1=[this.trialName.includes("静态拉伸"),
 this.trialName.includes("压缩"),
 this.trialName.includes("金相"),
@@ -176,7 +108,7 @@ this.trialName.includes("高速拉伸"),
 this.trialName.includes("低周疲劳"),
 this.trialName.includes("高周疲劳")
 ]
-console.log(this.arr2)
+// console.log(this.arr2)
 let length1=this.menu1.length
 let length2=this.menu2.length
 let length3=this.menu3.length
@@ -223,8 +155,8 @@ public async getCar(){
     this.car[a]=this.cars[a].vehicleType
     this.id[a]=this.cars[a].id
    }
-   console.log( this.car)
-   console.log( this.id)
+  //  console.log( this.car)
+  //  console.log( this.id)
 
  })
 
@@ -234,95 +166,13 @@ public  getCar1(event){
  this.isVisible=event
 }
 public  getCar2(event){
-  // this.id.push(event)
   this.getCar()
  }
-show(){this.isVisible = true;}
+show(){
+  this.isVisible = true;
+}
 
 formData =new FormData();
 formDataList = []
 returnFalse =false
-//权限-试验项目目录
-// quanxian(p):Boolean{
-//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
-//   let length=this.data.data[0].children[1].children.length
-//   let arr=[]
-//   for(let a=0;a<length;a++){
-//     arr.push(this.data.data[0].children[1].children[a].meta.title)
-//   }
-//   console.log(arr)
-//   if(arr.indexOf(`${p}`)==-1){
-//     return false
-//   }
-//   else{
-//     return true
-//   }
-// }
-// //权限-应用案例目录，不能单独分配目录
-// cases(p):Boolean{
-//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
-//   // let length=
-//   let arr=[this.data.data[0].children[2]?this.data.data[0].children[2].meta.title:""]
-//   // for(let a=0;a<length;a++){
-//   //   arr.push(this.data.data[0].children[1].children[a].meta.title)
-//   // }
-//   // console.log(arr)
-//   if(arr.indexOf(`${p}`)==-1){
-//     return false
-//   }
-//   else{
-//     return true
-//   }
-// }
-// //权限-仿真卡片目录，不能单独分配目录
-// card(p):Boolean{
-//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
-//   // let length=
-//   let arr=[this.data.data[0].children[3]?this.data.data[0].children[3].meta.title:""]
-//   // for(let a=0;a<length;a++){
-//   //   arr.push(this.data.data[0].children[1].children[a].meta.title)
-//   // }
-//   // console.log(arr)
-//   if(arr.indexOf(`${p}`)==-1){
-//     return false
-//   }
-//   else{
-//     return true
-//   }
-// }
-// //权限-试验项目菜单
-// menu(p):Boolean{
-//   this.data=JSON.parse(window.sessionStorage.getItem("data"))
-//   console.log(this.data)
-//   let length1=this.data.data[0].children[1].children.length
-// let arr=[]
-// let one
-
-//   for(let a=0;a<length1;a++){
-//     if(this.data.data[0].children[1].children[a].children){
-//        one=this.data.data[0].children[1].children[a].children.length    
-//       for(let b=0;b<one;b++){
-//         arr.push(this.data.data[0].children[1].children[a].children[b].meta.title)
-//       }}
-//   }
-// console.log(arr)
-//   if(arr.indexOf(`${p}`)==-1){
-//     return false
-//   }
-//   else{
-//     return true
-//   }
-// }
-//所有按钮权限
-button(p):Boolean{
-  let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-//console.log(this.permissions)
-  if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
-    return true
-  }
-  else{
-    return false 
-  }
-
-}
 }

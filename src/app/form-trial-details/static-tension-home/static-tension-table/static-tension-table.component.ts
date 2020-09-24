@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Test } from 'src/testData';
 import { ApiService } from 'src/app/api.service';
 import * as math from "mathjs"
@@ -217,18 +217,24 @@ options={options:{}};
   
   constructor(
     public http: HttpClient,
-    private router: Router,
+    // private router: Router,
+    private route: ActivatedRoute,
     private ApiService: ApiService,
     private GaussService: GaussService,
 
-  ) { }
+  ) { 
+    //从根路由获取路由参数
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
-      // console.log(this.materialId)
-console.log(this.testData[0].data[0])
+    // this.materialId = this.router
+    // .routerState.root.firstChild
+    // .snapshot.paramMap.get('materialId');
+      console.log(this.route.pathFromRoot,this.materialId)
+// console.log(this.testData[0].data[0])
     this.GetTrialDataDetails();
     this.GetTrialDataDetail();
   }

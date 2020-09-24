@@ -23,43 +23,35 @@ export class PageMaterialComponent implements OnInit {
     {
       class: "material-class",
       enum: "10",
-      name: "冷轧",
+      name: "冷轧板",
       children: [
         {
           enum: "20",
-          name: "烘烤硬化钢",
+          name: "普通用",
         },
         {
           enum: "30",
-          name: "高强IF钢",
+          name: "深冲用",
         },
         {
           enum: "100",
-          name: "IF钢",
+          name: "高强IF钢",
         },
         {
           enum: "40",
-          name: "低碳铝镇静钢",
+          name: "低合金钢",
         },
         {
           enum: "50",
-          name: "低合金高强度钢",
-        },
-        {
-          enum: "60",
           name: "双相钢",
         },
         {
+          enum: "60",
+          name: "复相钢",
+        },
+        {
           enum: "70",
-          name: "淬火延性钢",
-        },
-        {
-          enum: "80",
           name: "马氏体钢",
-        },
-        {
-          enum: "90",
-          name: "增强成形性双相钢",
         },
       ],
     },
@@ -68,105 +60,101 @@ export class PageMaterialComponent implements OnInit {
     {
       class: "material-class",
       enum: "110",
-      name: "镀锌",
+      name: "镀锌板",
       children: [
         {
           enum: "120",
-          name: "烘烤硬化钢",
+          name: "普通用",
         },
         {
           enum: "130",
-          name: "高强IF钢",
+          name: "深冲用",
         },
         {
           enum: "170",
-          name: "IF钢",
+          name: "高强IF钢",
         },
         {
           enum: "140",
-          name: "低碳铝镇静钢",
+          name: "低合金钢",
         },
         {
           enum: "150",
-          name: "低合金高强度钢",
+          name: "双相钢",
         },
         {
           enum: "160",
-          name: "双相钢",
-        },
-        {
-          enum: "175",
-          name: "增强成形性双相钢",
+          name: "烘烤硬化钢",
         },
       ],
     },
 
-    //热轧
-    {
-      class: "material-class",
-      enum: "180",
-      name: "热轧",
-      children: [
-        {
-          enum: "190",
-          name: "低碳钢",
-        },
-        {
-          enum: "200",
-          name: "SAPH系列",
-        },
-        {
-          enum: "220",
-          name: "大梁钢",
-        },
-        {
-          enum: "210",
-          name: "QStE结构钢系列",
-        },
+    // //热轧
+    // {
+    //   class: "material-class",
+    //   enum: "180",
+    //   name: "热轧",
+    //   children: [
+    //     {
+    //       enum: "190",
+    //       name: "低碳钢",
+    //     },
+    //     {
+    //       enum: "200",
+    //       name: "SAPH系列",
+    //     },
+    //     {
+    //       enum: "220",
+    //       name: "大梁钢",
+    //     },
+    //     {
+    //       enum: "210",
+    //       name: "QStE结构钢系列",
+    //     },
 
-        {
-          enum: "230",
-          name: "车轮钢轧",
-        },
-        {
-          enum: "240",
-          name: "双相钢",
-        },
-        {
-          enum: "250",
-          name: "箱体钢",
-        },
-        {
-          enum: "260",
-          name: "制动鼓用钢",
-        },
-      ],
-    },
+    //     {
+    //       enum: "230",
+    //       name: "车轮钢轧",
+    //     },
+    //     {
+    //       enum: "240",
+    //       name: "双相钢",
+    //     },
+    //     {
+    //       enum: "250",
+    //       name: "箱体钢",
+    //     },
+    //     {
+    //       enum: "260",
+    //       name: "制动鼓用钢",
+    //     },
+    //   ],
+    // },
 
-    //中板
-    {
-      class: "material-class1",
-      enum: "270",
-      name: "中板",
-      children: [
-        {
-          enum: "275",
-          name: "大梁钢",
-        },
-        {
-          enum: "300",
-          name: "自卸车厢体用耐磨钢",
-        },
-        {
-          enum: "280",
-          name: "车轮钢",
-        },
-        {
-          enum: "290",
-          name: "车桥钢",
-        },
-      ],
-    },
+    // //中板
+    // {
+    //   class: "material-class1",
+    //   enum: "270",
+    //   name: "中板",
+    //   children: [
+    //     {
+    //       enum: "275",
+    //       name: "大梁钢",
+    //     },
+    //     {
+    //       enum: "300",
+    //       name: "自卸车厢体用耐磨钢",
+    //     },
+    //     {
+    //       enum: "280",
+    //       name: "车轮钢",
+    //     },
+    //     {
+    //       enum: "290",
+    //       name: "车桥钢",
+    //     },
+    //   ],
+    // },
   ];
 
   //#region 限制条件字段

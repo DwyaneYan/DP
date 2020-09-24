@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { switchMap} from 'rxjs/operators';
 import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 import { ApiService } from 'src/app/api.service';
+import {button} from 'src/app/picture'
 
 // import { Observable } from 'rxjs/observable';
 // import { of } from 'rxjs/observable/of';
@@ -20,6 +21,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./applications.component.css']
 })
 export class ApplicationsComponent implements OnInit {
+  button = button
   isVisible = false;
   isVisibless=false//导出应用案例
   isVisiblessde=false

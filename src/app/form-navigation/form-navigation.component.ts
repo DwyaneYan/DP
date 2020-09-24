@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Router} from '@angular/router';
+import {button} from 'src/app/picture'
 
 @Component({
   selector: 'app-form-navigation',

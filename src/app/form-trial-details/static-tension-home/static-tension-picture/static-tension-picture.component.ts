@@ -9,23 +9,21 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./static-tension-picture.component.css']
 })
 export class StaticTensionPictureComponent implements OnInit {
-  materialId
+  materialId = ''
   one = []
-  trialDataDetail = []
-  trialDataDetails = []
+  trialDataDetail = [] //应力应变数据对
+  trialDataDetails = [] //静态拉伸数据对
   public dataList1 = []
   public dataList2 = []
   public dataList3 = []
   //echarts绘图
-  option: any;
-  options2
+  engineering = {}      //工程应力应变实例
+  trueStressStrain = {}    //真应力应变实例
   constructor(
     public http: HttpClient,
     private router: Router,
     private ApiService: ApiService,
-
   ) { }
-
   ngOnInit() {
     this.materialId = this.router
       .routerState.root.firstChild
@@ -34,9 +32,7 @@ export class StaticTensionPictureComponent implements OnInit {
       .then((res: any) => {
         this.trialDataDetails = res
       })
-
     this.GetTrialDataDetails();
-
   }
 
   public async GetTrialDataDetails() {
@@ -47,7 +43,6 @@ export class StaticTensionPictureComponent implements OnInit {
       })
       console.log( this.trialDataDetail)
       console.log( this.trialDataDetails)
-
     let arry = []
     let xData2 = []
     this.trialDataDetail.map(mapItem => {
@@ -91,8 +86,8 @@ export class StaticTensionPictureComponent implements OnInit {
     xData2.sort((a, b) => {
       return Number(a) - Number(b);
     });
-    this.option = this.classdata("工程应力应变数据对", "应变", "应力", xData, arry, "strain", "stress")
-    this.options2 = this.classdata("真应力应变数据对", "真应变", "真应力", xData2, arry, "realStrain", "realStress")
+    this.engineering = this.classdata("工程应力应变数据对", "应变", "应力", xData, arry, "strain", "stress")
+    this.trueStressStrain = this.classdata("真应力应变数据对", "真应变", "真应力", xData2, arry, "realStrain", "realStress")
   }
 
   classdata(name, p1, p2, da, datas, p3, p4) {

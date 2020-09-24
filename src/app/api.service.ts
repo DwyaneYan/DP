@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import {button} from 'src/app/picture'
 
 
 
@@ -880,15 +881,6 @@ handleTime(date){
     let allRoutes:any = p
     let length = allRoutes[4].children.length-2;
     let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-    function button(p):Boolean{
-      if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
-        return true
-      }
-      else{
-        return false
-      }
-    
-    }
     if(permissions){
     for(let a=0;a<length;a++){
       if(!button(allRoutes[4].children[a].path)){

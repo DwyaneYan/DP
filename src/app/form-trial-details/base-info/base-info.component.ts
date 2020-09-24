@@ -9,43 +9,27 @@ import { ApiService } from 'src/app/api.service';
 })
 export class BaseInfoComponent implements OnInit {
 
-  @Input() materialId;
-
-  public params = {
-    Id: '', 
-  }
-
-  //存放
-  public baseInfo
-  mater = []
-
+  @Input() materialId:string;
+  //材料基本信息
+  public baseInfo = []
+  @Output()checkvalue = new EventEmitter<any>();//材料名称传给路由出口组件
   constructor(
     public http: HttpClient,
     private ApiService: ApiService,
-
   ) { }
 
   ngOnInit() {
-    // console.log(this.materialId)
     this.GetBaseInfo()
-    
   }
 
-  public async GetBaseInfo(){
+   GetBaseInfo(){
     let params= {
-      Id: '', 
+      Id: this.materialId, 
     }
-    params.Id = this.materialId
-   // let api = "http://localhost:60001/api/hangang/material/materials";
-    await this.ApiService.GetMater(params)
+     this.ApiService.GetMater(params)
     .then((res:any)=>{
       this.baseInfo = res.items;
-      // console.log(this.baseInfo)
-    })
-
-    
-    this.checkvalue.emit(this.baseInfo[0].name);
+      this.checkvalue.emit(this.baseInfo[0].name);
+    })  
   }
-  @Output()//与@input相反
-  checkvalue = new EventEmitter<any>();
 }

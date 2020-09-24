@@ -42,4 +42,16 @@ function  common(a){
     }
   }
   }
-export {getname,common}
+  //按钮权限
+  function button(p):Boolean{
+    let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+    if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
+      return true
+    }
+    else{
+      return false
+    }
+  
+  }
+
+export {getname,common,button}

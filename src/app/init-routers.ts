@@ -73,6 +73,7 @@ import { ReportComponent } from './report/report.component';
 import { LoginGuardService } from './login-guard.service'
 import { Page404Component } from './page404/page404.component'
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
+import { PictureComponent } from './picture/picture.component';
 
 function initRouter(){
   let allRoute:any =[
@@ -130,7 +131,7 @@ function initRouter(){
           path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
           children:[
             { path: 'table', component:  LowcyclefatigueTableComponent,permissions:"dzpl1"},
-            { path: 'picture', component:  LowcyclefatiguePictureComponent   ,permissions:"dzpl2" },
+            { path: 'picture', component:  PictureComponent   ,permissions:"dzpl2" },
             { path: 'report', component:  ReportComponent    ,permissions:"dzpl3"},
             { path: 'typical-part', component: TypicalPartComponent  ,permissions:"dzpl4" },
              
@@ -140,7 +141,7 @@ function initRouter(){
           path: 'highcyclefatigue', component:HighcyclefatigueComponent,
           children:[
             { path: 'table', component:  HighcyclefatigueTableComponent,permissions:"gzpl1"},
-            { path: 'picture', component:  HighcyclefatiguePictureComponent  ,permissions:"gzpl2"   },
+            { path: 'picture', component:  PictureComponent  ,permissions:"gzpl2"   },
             { path: 'report', component:  ReportComponent   ,permissions:"gzpl3"  },
             { path: 'typical-part', component: TypicalPartComponent  ,permissions:"gzpl4"  },
             
@@ -150,7 +151,7 @@ function initRouter(){
           path: 'metallographic', component:MetallographicComponent,
           children:[
             { path: 'table', component:  MetallographicTableComponent,permissions:"jx1" },
-            { path: 'picture', component:  MetallographicPictureComponent ,permissions:"jx2"    },
+            { path: 'picture', component:  PictureComponent ,permissions:"jx2"    },
             { path: 'report', component:  ReportComponent  ,permissions:"jx3"  },
             { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jx4"  },
             
@@ -190,7 +191,7 @@ function initRouter(){
           path: 'dent-resistance', component:DentResistanceComponent,
           children:[
             { path: 'table', component: DentResistanceTableComponent ,permissions:"kaxn1"},
-            { path: 'picture', component:  DentResistancePictureComponent ,permissions:"kaxn2" },
+            { path: 'picture', component:  PictureComponent ,permissions:"kaxn2" },
             { path: 'report', component:  ReportComponent  ,permissions:"kaxn3"},
             { path: 'typical-part', component: TypicalPartComponent ,permissions:"kaxn4"},
             
@@ -200,7 +201,7 @@ function initRouter(){
           path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
           children:[
             { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent,permissions:"ecjgcx1"},
-            { path: 'picture', component:  SecondaryWorkingEmbrittlementPictureComponent  ,permissions:"ecjgcx2" },
+            { path: 'picture', component:  PictureComponent  ,permissions:"ecjgcx2" },
             { path: 'report', component:   ReportComponent  ,permissions:"ecjgcx3" },
             { path: 'typical-part', component: TypicalPartComponent  ,permissions:"ecjgcx4" },
             
@@ -210,7 +211,7 @@ function initRouter(){
           path: 'flanging-clasp', component:FlangingClaspComponent,
           children:[
             { path: 'table', component: FlangingClaspTableComponent,permissions:"fbkh1"},
-            { path: 'picture', component:  FlangingClaspPictureComponent  ,permissions:"fbkh2" },
+            { path: 'picture', component:  PictureComponent  ,permissions:"fbkh2" },
             { path: 'report', component:  ReportComponent   ,permissions:"fbkh3"},
             { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"fbkh4"},
              
@@ -230,7 +231,7 @@ function initRouter(){
           path: 'welding', component:WeldingComponent,
           children:[
             { path: 'table', component: WeldingTableComponent,permissions:"hjxn1"  },
-            { path: 'picture', component:  WeldingPictureComponent   ,permissions:"hjxn2" },
+            { path: 'picture', component:  PictureComponent   ,permissions:"hjxn2" },
             { path: 'report', component:  ReportComponent  ,permissions:"hjxn3"  },
             { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hjxn4"  },
            
@@ -250,7 +251,7 @@ function initRouter(){
           path: 'painting', component:PaintingComponent ,
           children:[
             { path: 'table', component:PaintingTableComponent,permissions:"tzxn1" },
-            { path: 'picture', component:  PaintingPictureComponent  ,permissions:"tzxn2"  },
+            { path: 'picture', component:  PictureComponent  ,permissions:"tzxn2"  },
             { path: 'report', component:  ReportComponent  ,permissions:"tzxn3"  },
             { path: 'typical-part', component:  TypicalPartComponent ,permissions:"tzxn4"  },
             
@@ -317,84 +318,6 @@ function initRouter(){
   let allRoutes1:any = allRoute
   return allRoutes1
 }
-// function baseRouter(){
-//   let allRoute:any =[
-//     { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
-//     { path: 'login', component: PageLoginComponent},
-//     { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
-//     { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
-//     { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
-//     { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
-//     { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
-  
-//   ]
-//   let allRoutes1:any = allRoute
-//   return allRoutes1
-// }
-// function selfReloadRouter(p){
-//   // let allRoutes:any = p
-//   let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-//   // if(permissions){
-//   //   let allRoutes:any = initRouter()
-//   // }
-//   let allRoutes:any = permissions ? initRouter() : baseRouter()
-  
-//   let length = allRoutes[4].children.length-2;
-  
-//   function button(p):Boolean{
-//     if(permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
-//       return true
-//     }
-//     else{
-//       return false
-//     }
-  
-//   }
-//   if(permissions){
-//   for(let a=0;a<length;a++){
-
-//     if(!button(allRoutes[4].children[a].path)){
-//       delete allRoutes[4].children[a];
-//     }
-//     else{
-  
-//         let array =[]  //删除子路由数组中的元素
-//         allRoutes[4].children[a].children.forEach((item,index,arr)=>{
-//           if(!button(item.permissions)){
-//             array.push(index)}
-//          else{
-//         delete item.permissions}
-//       })
-//       for(let i =0;i<array.length;i++){
-//         allRoutes[4].children[a].children.splice(array[i]-i,1)
-//       }
-//       //设置默认展示图表
-//         let onePath = allRoutes[4].children[a].children[0]
-//         if(onePath){
-//           let defaultPath = {
-//             path: '',
-//             redirectTo: onePath.path,
-//             pathMatch: 'full'
-//           }
-//           //待优化
-//           allRoutes[4].children[a].children.push(defaultPath)
-//       }
-
-  
-//     }
-  
-//   }  
-//   // console.log(allRoutes[4].children)
-//   allRoutes[4].children = allRoutes[4].children.filter(function(item) {
-//     return item != undefined
-//      });//删除路由中的空元素
-//   if(!button("viewCar")){
-//    allRoutes[4].children.splice(length,1)
-//   }   
-//   }
-//   // p.config = allRoutes
-//   return allRoutes
-// }
 
 export {initRouter}
 

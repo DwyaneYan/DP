@@ -1,19 +1,21 @@
 
 import { Component, OnInit } from '@angular/core';
-
 import { Router ,ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
-import {common} from 'src/app/picture'
+import {getname} from 'src/app/picture'
+import {ImgView} from '../imgView'
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-picture',
+  templateUrl: './picture.component.html',
+  styleUrls: ['./picture.component.css']
 })
-export class ReportComponent implements OnInit {
+export class PictureComponent implements OnInit {
   materialId = ''
   trialDataDetail = []
+  ImgPathOne=[] //图片地址
+  name=[] //图片名
   constructor(
     // private router: Router,
     private route: ActivatedRoute,
@@ -25,9 +27,6 @@ export class ReportComponent implements OnInit {
       })
   }
   ngOnInit() {
-    // this.materialId = this.router
-    // .routerState.root.firstChild
-    // .snapshot.paramMap.get('materialId');
     let index= location.href.lastIndexOf("\/");  
     let str  = location.href .substring(0, index+1);
     let name = str.substring(0,str.length-1)
@@ -57,22 +56,29 @@ else if(name1=='rebound'){this.GetTrialDataDetailss('getReboundDataDetails') }
 else if(name1=='bake-hardening'){this.GetTrialDataDetailss('getBakeHardeningDataDetails') }
 else if(name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePropertyDataDetails') }
   }
-  //
-  public async GetTrialDataDetailss(p) {
-    await this.ApiService[p](this.materialId).then((res: any) => {
+  
+  public  GetTrialDataDetailss(p) {
+    this.ApiService[p](this.materialId).then((res: any) => {
       this.trialDataDetail = res
-      let one=''//报告名，现在只能显示一个报告，即一个字符串
+      let one = ''//图片字符串
       let length = this.trialDataDetail.length
-      for(let a=0;a<length;a++)
-      {
-        //报告在detail表的fileKey，图片在detail表的fileString
-        if(this.trialDataDetail[a] && this.trialDataDetail[a].fileKey!=null){
-          one = this.trialDataDetail[a].fileKey
+      for(let a=0;a<length;a++){
+        if(this.trialDataDetail[a] && this.trialDataDetail[a].fileString!=null){
+          one = this.trialDataDetail[a].fileString
           break
         }
       }
-     common(one)
-    })  
+      this.name = getname(one).afterName
+      this.ImgPathOne = getname(one).ImgPathOne
+    }) 
+  }
+
+  enlarge(src){
+    let dataList = this.ImgPathOne;
+    var options = {
+                    dataList: dataList,
+                    currentSrc: src
+                };
+    ImgView("imgView", options);
   }
 }
-

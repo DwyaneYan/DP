@@ -81,7 +81,7 @@
         <nz-divider></nz-divider>
         <div class="import-box">
             <!-- 导入数据  START -->
-            <div class="import" *ngIf="FormExperimentalItemComponent.button('hg-home-postData')">
+            <div class="import" *ngIf="button('hg-home-postData')">
                 <button nz-button nzType="primary" nzShape="round" nzGhost (click)="showModal()">
                     <i class="icon-import"></i>
                     导入数据
@@ -98,7 +98,7 @@
             <!-- 导入数据  END -->
 
             <!-- 添加材料  START -->
-            <div class="import" *ngIf="FormExperimentalItemComponent.button('hg-home-addtj')">
+            <div class="import" *ngIf="button('hg-home-addtj')">
                 <button nz-button nzType="primary" nzShape="round" nzGhost (click)="showModal1()">
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     添加推荐材料
@@ -124,7 +124,7 @@
         <!-- 材料列表 START -->
         <div class="model-list">
             <div class="material-item" *ngFor="let material of addlist">
-                <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="FormExperimentalItemComponent.button('hg-home-deletetj')">
+                <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="button('hg-home-deletetj')">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
                 <div (click)="nav(material.materialId,material)">

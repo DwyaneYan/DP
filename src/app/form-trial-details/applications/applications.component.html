@@ -1,14 +1,11 @@
 <app-base-info [materialId]="materialId"></app-base-info>
 <div class="apply-box">
-    <button nz-button nzType="primary" (click)='showModalde()' class="apply-button-red"
-        *ngIf="FormExperimentalItemComponent.button('delete')"><i nz-icon nzType="delete"
+    <button nz-button nzType="primary" (click)='showModalde()' class="apply-button-red" *ngIf="button('delete')"><i nz-icon nzType="delete"
             nzTheme="outline"></i>删除</button>
 
-    <button class="apply-button-green" nz-button nzType="primary" (click)='bianji()'
-        *ngIf="FormExperimentalItemComponent.button('put')"><i nz-icon nzType="edit" nzTheme="outline"></i>修改</button>
+    <button class="apply-button-green" nz-button nzType="primary" (click)='bianji()' *ngIf="button('put')"><i nz-icon nzType="edit" nzTheme="outline"></i>修改</button>
 
-    <button class="apply-button-yellow" nz-button nzType="primary" (click)="showModal()" style=""
-        *ngIf="FormExperimentalItemComponent.button('out')"><i nz-icon nzType="vertical-align-bottom"
+    <button class="apply-button-yellow" nz-button nzType="primary" (click)="showModal()" *ngIf="button('out')"><i nz-icon nzType="vertical-align-bottom"
             nzTheme="outline"></i>导出</button>
     <h2>简况:</h2>
     <p>{{breif}}</p>
@@ -30,8 +27,7 @@
 
 
 
-    <app-form-modify-car *ngIf="isVisible" [isVisible]='isVisible' [car]="car" [form]='form' (outer)="getCar()"
-        [mater]="materialId" (outer1)="getshow($event)"></app-form-modify-car>
+    <app-form-modify-car *ngIf="isVisible" [isVisible]='isVisible' [car]="car" [form]='form' (outer)="getCar()" [mater]="materialId" (outer1)="getshow($event)"></app-form-modify-car>
     <nz-modal [(nzVisible)]="isVisibless" nzTitle="警告" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
         <nz-alert nzType="warning" nzMessage="是否确认导出所有应用案例?" nzShowIcon></nz-alert>
