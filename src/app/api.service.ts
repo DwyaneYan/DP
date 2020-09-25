@@ -22,14 +22,6 @@ export class ApiService {
     toVIm = `http://localhost:4280` //跳转到vim
    // toRuoYi = `http://10.80.27.201:81`  //管理系统跳转到若依
     toRuoYi = `http://localhost:81`
-  //   ngOnInit() { 
-  //     //请求头,注意token是存在session storage中不是cookie中
-  // this.httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
-  //   })
-  // };
-  //    }
 
 //在材料表筛选材料
 async GetMater(params?){
@@ -873,7 +865,6 @@ handleTime(date){
  return date?date.split(
     "T"
   )[0] : ''
-  console.log(date)
 }
 
 //自定义重置路由的方法
@@ -923,6 +914,15 @@ handleTime(date){
     }
     return allRoutes
   }
+//更新材料基本信息
+async upDateBase(obj){
+  let api = `/api/hangang/material/${obj.id}/materialBase`
+  let res = await this.http.put(api,obj).toPromise().catch(err =>{
+   console.log(err);
+ })
+ return res
+
+}
  
 }
 

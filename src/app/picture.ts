@@ -1,4 +1,5 @@
 import pdf from 'pdfobject'
+import {ImgView} from './imgView'
 //返回试验信息中的处理后图片名和图片地址（数组）对象，参数是图片名称字符串以分号分隔
 function getname(allName){
   let afterName=[] //图片去掉前缀和后缀的名称数组
@@ -53,5 +54,12 @@ function  common(a){
     }
   
   }
-
-export {getname,common,button}
+//放大、缩小图片
+function enlarge(src,ImgPathOne){
+  let options = {
+                  dataList:ImgPathOne,
+                  currentSrc: src
+              };
+    ImgView("imgView", options);
+}
+export {getname,common,button,enlarge}

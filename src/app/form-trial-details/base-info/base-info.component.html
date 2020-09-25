@@ -1,10 +1,66 @@
 <div class="info-box" *ngFor="let data of baseInfo">
-    <div class="title">材料牌号{{ data.name }}</div>
+    <div class='paihao'>
+        <div class="title">材料牌号{{ data.name }}</div>
+        <button nz-button nzType="primary" (click)="showModal()">修改</button>
+    </div>
     <div class="detail">
         <span>卷号：{{ data.reelNumber}}</span>
         <span>型号规格(mm)：{{ data.model}}</span>
         <span>生产厂家：{{ data.manufactoryName}}</span>
         <span>材料标准：{{ data.materialStandard}}</span>
-        <!-- <span>检测日期{{ data.date}}</span> -->
     </div>
 </div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="材料基本信息" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzWidth]='600' [nzFooter]=null>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">材料牌号</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24">
+                        <input nz-input formControlName="name" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">卷号</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24">
+                        <input nz-input formControlName="reelNumber" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">型号规格</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24">
+                        <input nz-input formControlName="model" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">生产厂家</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24">
+                        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="选择厂家" formControlName="manufactoryId">
+                            <nz-option [nzLabel]="data.name" [nzValue]="data.id" *ngFor="let data of manufactoryInfo"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">材料标准</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24">
+                        <input nz-input formControlName="materialStandard" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row>
+            <div nz-col [nzSpan]="24" class="search-area">
+                <button nz-button [nzType]="'primary'">修改</button>
+            </div>
+        </div>
+    </form>
+
+</nz-modal>

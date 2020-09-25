@@ -5,16 +5,13 @@ import { switchMap} from 'rxjs/operators';
 import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 import { ApiService } from 'src/app/api.service';
 import {button} from 'src/app/picture'
-
-// import { Observable } from 'rxjs/observable';
-// import { of } from 'rxjs/observable/of';
-// import { Observable} from "rxjs";
 import { of } from "rxjs"
 import { SimulationCardComponent } from "src/app/simulation-card/simulation-card.component"
-
 import pdf from 'pdfobject'
 import { NzMessageService } from 'ng-zorro-antd/message';
-//import { FormModifyCarComponent } from 'src/app/form-modify-car/form-modify-car.component';
+import {getname,enlarge} from 'src/app/picture'
+
+
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
@@ -22,18 +19,23 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class ApplicationsComponent implements OnInit {
   button = button
-  isVisible = false;
-  isVisibless=false//导出应用案例
-  isVisiblessde=false
-  breif//简况
-  arr1=[]
-ImgPathOne=[]
+  enlarge = enlarge
+  isVisible = false; //修改车型弹框
+  isVisibless = false;//导出应用案例弹框
+  isVisiblessde = false; //删除车型弹框
+  breif = '' //车型简况
+  suppliedPart = ''//供货零件名称
+  requirement = ''//要求
+  form = {}//车型基本信息对象
+  ImgPathOne = [] //车型相关图片地址数组
+  three = [] //图片名
+  materialId = ''//材料id
+
   case//应用案例详情
-  car//应用案例id
-  suppliedPart//零件名称
-  requirement//要求
-  photo//图片
-  file = ''//车型信息中的文件名
+  carId = ''//车型id
+  arr1=[]
+  photo = ''//车型相关的所有图片
+  file = ''//车型信息中的文件全名
 
   constructor( private route: ActivatedRoute,
     private router: Router,
@@ -42,98 +44,48 @@ ImgPathOne=[]
     private SimulationCardComponent: SimulationCardComponent,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     public ApiService: ApiService,
-
-    ) { }
-  materialId
+    ) { 
+      //从根路由获取路由参数
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+    }
   ngOnInit() {
-    this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
-    // this.car = this.route.snapshot.paramMap.get('car');  
     //注意这里会组件复用，可以使用 paramMap 可观察对象来检测路由参数在同一个实例中何时发生了变化。
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => of(params.get('car'))
       )).subscribe((data) => {
-        // this.getform(data)
         //路由参数在同一个实例中发生了变化时执行
-        this.car=data
-        console.log(this.car)
-        this.arr1=[];
-        this.ImgPathOne=[]
-
-        
-        this.getBrief(data)
-
+        this.carId = data
+        this.arr1 =[];
+        this.ImgPathOne = []       
+        this.getBrief()
       });
 
   }
-//再次上传应用案例的图片或者再次上传文件触发，不用点击确定修改按钮
-  getCar(){
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => of(params.get('car'))
-      )).subscribe((data) => {
-        // this.car=data
-        this.arr1=[];
-        this.ImgPathOne=[] //图片位置
-        // this.file='';
-        this.three = []//图片名
-        this.getBrief(data)
-// this.getform(data)
-      });
-  }
-three = [] //图片名
+
 //根据车型id获取车型信息
-public  async getBrief(p){
-  await this.ApiService.getApplicationCaseById(p)
+public  async getBrief(){
+  await this.ApiService.getApplicationCaseById(this.carId)
   .then((res: any) => {
-    this.form = res
+    this.form = res  //车型信息对象
     this.breif = res.breif,
-    this.suppliedPart=res.suppliedPart;
-this.requirement=res.requirement,
-this.photo=res.fileString;//应用案例的图片可以上传多个，不会被覆盖
-this.file=res.fileKey;//应用案例的文件显示，数据库里始终只会存一个文件，修改上传会覆盖原来的
-console.log(res);
-console.log(this.file)
-if(this.file){
-let files=this.file.slice(0,this.file.length-1)
-document.getElementById("pdf1").style.display = 'block'; 
-
-let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
-// this.$nextTick(function () {
-pdf.embed(b, "#pdf1")  //第一次导入文件会出现[PDFObject] Target element cannot be determined无法预览pdf
-// })
-}
-else{
-  document.getElementById("pdf1").style.display = 'none'; 
-}
-if(this.photo){
-let one=this.photo.split(";")
-one.pop();//one得到文件全名的数组
-let x =one.length;
-for(let a=0;a<x;a++){
-  let d= one[a].indexOf("_")//每个文件名字符串中的第一个_出现的位置
-  let f=one[a].lastIndexOf(".")//每个文件名字符串中的最后一个.出现的位置
-  this.three.push(one[a].slice(d+1,f))//this.three是文件名除去_之前的字符
-}
-// let b=this.fenge(a,/[_.]/)
- console.log(this.three)
-// for(let c=1;c<b.length;c+=2){
-//   this.arr1.push(b[c]) //arr1是图片的真实名称，上传的图片名中最好不要带_和.这两个字符
-// }
-for(let d=0;d<x;d++){  
-   let picture=one[d]
-  this.ImgPathOne.push(`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${picture}`)
-}}
-
+    this.suppliedPart = res.suppliedPart;
+    this.requirement = res.requirement,
+    this.photo = res.fileString;//应用案例的图片可以上传多个，不会被覆盖
+    this.file = res.fileKey;//应用案例的文件显示，数据库里始终只会存一个文件，修改上传会覆盖原来的
+    if(this.file){
+      let files=this.file.slice(0,this.file.length-1)
+      document.getElementById("pdf1").style.display = 'block'; 
+      let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${files}`
+      pdf.embed(b, "#pdf1")  //第一次导入文件会出现[PDFObject] Target element cannot be determined无法预览pdf
+    }
+    else{
+      document.getElementById("pdf1").style.display = 'none'; 
+    }
+     this.three = getname(this.photo).afterName
+    this.ImgPathOne = getname(this.photo).ImgPathOne
   })
-}
-
-fenge(arry,p){
-  let arry1=arry.toString().split(p)
-  return arry1
-}
-cancel(): void {
-  // this.nzMessageService.info('click cancel');
 }
 
  confirm(){
@@ -141,7 +93,6 @@ cancel(): void {
   this.route.paramMap.pipe(
     switchMap((params: ParamMap) => of(params.get('car'))
     )).subscribe((data) => {
-      // let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
   this.ApiService. getApplicationCase(data)
   .then((res: any) => {})
     })
@@ -149,16 +100,7 @@ cancel(): void {
 getshow(event){
   this.isVisible=event
 }
-form
-//根据车型id查询车型信息
-// public async getform(p){
-//   //let api=`http://localhost:60001/api/hangang/materialTrial/${p}/applicationCaseById`
-//  await this.ApiService.getApplicationCaseById(p)
-//  .then((res: any) => {
-//    this.form = res
-// console.log(this.form)
-//  })
-// }
+
 bianji(){
   this.isVisible=true
  
@@ -191,7 +133,6 @@ handleOkde(){
   this.route.paramMap.pipe(
     switchMap((params: ParamMap) => of(params.get('car'))
     )).subscribe((data) => {
-      //let api =`http://localhost:60001/api/hangang/materialTrial/${data}/applicationCase`;
       this.ApiService. getApplicationCase(data)
   .then()
     })

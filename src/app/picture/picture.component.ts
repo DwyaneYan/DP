@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router ,ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
-import {getname} from 'src/app/picture'
-import {ImgView} from '../imgView'
+import {getname,enlarge} from 'src/app/picture'
+
 
 @Component({
   selector: 'app-picture',
@@ -14,8 +14,9 @@ import {ImgView} from '../imgView'
 export class PictureComponent implements OnInit {
   materialId = ''
   trialDataDetail = []
-  ImgPathOne=[] //图片地址
-  name=[] //图片名
+  ImgPathOne = [] //图片地址数组
+  name = [] //处理后的图片名数组
+  enlarge = enlarge //作为本地变量使用
   constructor(
     // private router: Router,
     private route: ActivatedRoute,
@@ -71,14 +72,5 @@ else if(name1=='surface-property'){this.GetTrialDataDetailss('getSurfaceProperty
       this.name = getname(one).afterName
       this.ImgPathOne = getname(one).ImgPathOne
     }) 
-  }
-
-  enlarge(src){
-    let dataList = this.ImgPathOne;
-    var options = {
-                    dataList: dataList,
-                    currentSrc: src
-                };
-    ImgView("imgView", options);
   }
 }

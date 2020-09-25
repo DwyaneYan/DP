@@ -8,22 +8,22 @@
         </li>
         <li nz-submenu nzTitle="基础数据" nzOpen *ngIf="button('basicData')">
             <ul>
-                <ng-container *ngFor="let data of menu1;let i=index">
-                    <li nz-menu-item *ngIf="arr1[i]&&button(menu1[i].name)" nzMatchRouter><a [routerLink]=routerLink1[i]>{{menu1[i].names}}</a></li>
+                <ng-container *ngFor="let data of menu.slice(0,8);let i=index">
+                    <li nz-menu-item *ngIf="arr[i]&&button(menu[i].name)" nzMatchRouter><a [routerLink]='routerLink[i]'>{{menu[i].names}}</a></li>
                 </ng-container>
             </ul>
         </li>
         <li nz-submenu nzTitle="应用数据" nzOpen *ngIf="button('applicationData')">
             <ul>
-                <ng-container *ngFor="let data of menu2;let i=index">
-                    <li nz-menu-item *ngIf="arr2[i]&&button(menu2[i].name)" nzMatchRouter><a [routerLink]=routerLink2[i]>{{menu2[i].names}}</a></li>
+                <ng-container *ngFor="let data of menu.slice(8,15);let i=index">
+                    <li nz-menu-item *ngIf="arr[i+8]&&button(menu[i+8].name)" nzMatchRouter><a [routerLink]='routerLink[i+8]'>{{menu[i+8].names}}</a></li>
                 </ng-container>
             </ul>
         </li>
         <li nz-submenu nzTitle="服役数据" nzOpen *ngIf="button('serviceData')">
             <ul>
-                <ng-container *ngFor="let data of menu3;let i=index">
-                    <li nz-menu-item *ngIf="arr3[i]&&button(menu3[i].name)" nzMatchRouter><a [routerLink]=routerLink3[i]>{{menu3[i].names}}</a></li>
+                <ng-container *ngFor="let data of menu.slice(15);let i=index">
+                    <li nz-menu-item *ngIf="arr[i+15]&&button(menu[i+15].name)" nzMatchRouter><a [routerLink]='routerLink[i+15]'>{{menu[i+15].names}}</a></li>
 
                 </ng-container>
             </ul>
@@ -33,16 +33,15 @@
                 <li nz-menu-item nzDisabled style="cursor:pointer;" *ngIf="button('add')">
                     <div style="text-decoration: underline;color:#1890ff" (click)='show()'>添加车型</div>
                 </li>
-                <ng-template ngFor let-data [ngForOf]="car" let-i="index">
-
-                    <li nz-menu-item nzMatchRouter *ngIf="button('viewCar')"><a [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
+                <ng-template ngFor let-data [ngForOf]="carName" let-i="index">
+                    <li nz-menu-item nzMatchRouter *ngIf="button('viewCar')"><a [routerLink]="['/display',materialId ,'applications',ids[i]]">{{data}}</a></li>
                 </ng-template>
             </ul>
         </li>
         <li nz-menu-item nzMatchRouter><a [routerLink]="['/display',materialId ,'simulationCard']">仿真卡片</a> </li>
     </ul>
 </div>
-
-<app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar2($event)" (outer1)="getCar1($event)"></app-form-add-car>
+<!-- 菜单栏的添加车型表单弹框是一个组件 -->
+<app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar()" (outer1)="getCar1($event)"></app-form-add-car>
 
 <!-- 左侧菜单栏 END -->

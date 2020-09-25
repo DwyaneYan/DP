@@ -27,7 +27,7 @@
         <div nz-row class="upload-form">
             <div nz-col nzSpan="6" class="upload-label">上传图片:</div>
             <div nz-col nzSpan="18" class="upload-list">
-                <nz-upload [nzAction]="maUrl1" [(nzFileList)]="nzFileList" [nzBeforeUpload]="beforeUpload1" [nzCustomRequest]='customRequestOne'>
+                <nz-upload [nzAction]="maUrl" [(nzFileList)]="nzFileList" [nzBeforeUpload]="beforeUpload1" [nzCustomRequest]='customRequest'>
                     <button nz-button [disabled]="submitFail" type="button"><i nz-icon nzType="upload"></i>上传图片</button>
                 </nz-upload>
             </div>
@@ -36,7 +36,7 @@
         <div nz-row class="upload-form">
             <div nz-col nzSpan="6" class="upload-label">上传文件:</div>
             <div nz-col nzSpan="18" class="upload-list">
-                <nz-upload id='file' [nzAction]="maUrl2" [nzLimit]="1" [nzMultiple]="true" [(nzFileList)]="nzFileList1" [nzBeforeUpload]="beforeUpload2" [nzCustomRequest]='customRequestTwo'>
+                <nz-upload id='file' [nzAction]="maUrl1" [nzLimit]="1" [nzMultiple]="true" [(nzFileList)]="nzFileList1" [nzBeforeUpload]="beforeUpload2" [nzCustomRequest]='customRequest1'>
                     <button nz-button [disabled]="submitFail" type="button"><i nz-icon nzType="upload"></i>上传文件</button>
                 </nz-upload>
             </div>

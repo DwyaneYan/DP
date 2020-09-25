@@ -1,19 +1,30 @@
-.info-box {
-    /* position: absolute;
-    left: 22%;
-    top: 50px;
-    width: 60% */
-}
-.info-box .title{
+.info-box .title {
     color: #222;
     font-size: 22px;
+    display: inline;
 }
-.info-box span{
+
+.search-area {
+    text-align: center;
+}
+
+.info-box .paihao {
+    position: relative
+}
+
+.info-box .paihao [nz-button] {
+    display: inline;
+    position: absolute;
+    right: 10px
+}
+
+.info-box span {
     font-size: 16px;
     margin-right: 20px;
     display: inline-block;
     line-height: 30px;
 }
+
 .he {
     text-align: center;
     background-color: rgba(107, 152, 248, 0.959);
@@ -62,8 +73,3 @@
     text-align: center;
     border-right: 1px solid rgb(230, 229, 229);
 }
-
-
-/* #tabletwo {
-    width: 800px;
-} */

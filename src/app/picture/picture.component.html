@@ -3,7 +3,7 @@
     <div class="all-item" *ngFor="let data of ImgPathOne;let i=index">
         <h2 [title]='name[i]'>{{name[i]}}</h2>
         <div class="img">
-            <img alt="" [src]="data" class="item" (click)="enlarge(data)">
+            <img alt="" [src]="data" class="item" (click)="enlarge(data,ImgPathOne)">
         </div>
     </div>
 </div>
