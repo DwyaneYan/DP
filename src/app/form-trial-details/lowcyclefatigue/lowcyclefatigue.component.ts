@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class LowcyclefatigueComponent implements OnInit {
   public materialId
-  name="lowcyclefatigue"
   p1='dzpl1'
   p2='dzpl2'
   p3='dzpl3'

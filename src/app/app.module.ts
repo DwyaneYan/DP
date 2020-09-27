@@ -99,6 +99,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Page404Component } from './page404/page404.component';
 import { TypicalPartComponent } from './typical-part/typical-part.component';
 import { PictureComponent } from './picture/picture.component';
+import { TrailnameComponent } from './trailname/trailname.component';
 
 
 @NgModule({
@@ -188,6 +189,7 @@ import { PictureComponent } from './picture/picture.component';
     Page404Component,
     TypicalPartComponent,
     PictureComponent,
+    TrailnameComponent,
   ],
   imports: [
     

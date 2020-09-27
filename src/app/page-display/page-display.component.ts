@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnChanges} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap} from 'rxjs/operators';
 import { of } from "rxjs"
@@ -7,8 +7,8 @@ import { of } from "rxjs"
   templateUrl: './page-display.component.html',
   styleUrls: ['./page-display.component.css']
 })
-export class PageDisplayComponent implements OnInit {
-  //材料id, 通过获取路由参数得到,并传给子组件,注意路由出口组件不过是子组件
+export class PageDisplayComponent implements OnInit,OnChanges{
+  //材料id, 通过获取路由参数得到,并传给子组件,注意路由出口组件不是子组件
   public materialId:string = ''
   constructor(    
     private route: ActivatedRoute,
@@ -18,9 +18,10 @@ export class PageDisplayComponent implements OnInit {
         this.materialId = params['materialId'];
         })
     }
-
+    ngOnChanges(){
+      console.log(1111111111)
+    }
   ngOnInit() {
-    console.log(this.materialId)
   }
 
 }

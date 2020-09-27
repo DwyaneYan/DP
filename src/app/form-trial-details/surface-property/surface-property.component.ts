@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class SurfacePropertyComponent implements OnInit {
   public materialId
-  name="surface-property"
   p1='bmxn1'
   p2='bmxn2'
   p3='bmxn3'

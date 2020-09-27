@@ -75,6 +75,7 @@ async GetBaseInfo(){
       this.validateForm.controls[i].updateValueAndValidity();
     }
      this.ApiService.upDateBase(this.validateForm.value).then((res:any)=>{
+       this.isVisible = false;
        this.GetBaseInfo()
      })
   }

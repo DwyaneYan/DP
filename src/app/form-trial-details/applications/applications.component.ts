@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap} from 'rxjs/operators';
-import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
 import { ApiService } from 'src/app/api.service';
 import {button} from 'src/app/picture'
 import { of } from "rxjs"
@@ -10,7 +9,7 @@ import { SimulationCardComponent } from "src/app/simulation-card/simulation-card
 import pdf from 'pdfobject'
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {getname,enlarge} from 'src/app/picture'
-
+import{ TrialNameService} from '../../form-experimental-item/trial-name.service'
 
 @Component({
   selector: 'app-applications',
@@ -30,10 +29,7 @@ export class ApplicationsComponent implements OnInit {
   ImgPathOne = [] //车型相关图片地址数组
   three = [] //图片名
   materialId = ''//材料id
-
-  case//应用案例详情
   carId = ''//车型id
-  arr1=[]
   photo = ''//车型相关的所有图片
   file = ''//车型信息中的文件全名
 
@@ -42,8 +38,9 @@ export class ApplicationsComponent implements OnInit {
     public http: HttpClient,
     private nzMessageService: NzMessageService,
     private SimulationCardComponent: SimulationCardComponent,
-    private FormExperimentalItemComponent: FormExperimentalItemComponent,
     public ApiService: ApiService,
+    public TrialNameService: TrialNameService,
+
     ) { 
       //从根路由获取路由参数
     this.route.pathFromRoot[1].params.subscribe(params => {
@@ -57,13 +54,11 @@ export class ApplicationsComponent implements OnInit {
       )).subscribe((data) => {
         //路由参数在同一个实例中发生了变化时执行
         this.carId = data
-        this.arr1 =[];
-        this.ImgPathOne = []       
-        this.getBrief()
+      this.ImgPathOne = []       
+      this.getBrief()
       });
-
+      
   }
-
 //根据车型id获取车型信息
 public  async getBrief(){
   await this.ApiService.getApplicationCaseById(this.carId)
@@ -86,16 +81,6 @@ public  async getBrief(){
      this.three = getname(this.photo).afterName
     this.ImgPathOne = getname(this.photo).ImgPathOne
   })
-}
-
- confirm(){
-  this.nzMessageService.info('车型已删除,请刷新');
-  this.route.paramMap.pipe(
-    switchMap((params: ParamMap) => of(params.get('car'))
-    )).subscribe((data) => {
-  this.ApiService. getApplicationCase(data)
-  .then((res: any) => {})
-    })
 }
 getshow(event){
   this.isVisible=event
@@ -123,20 +108,21 @@ handleCancel(): void {
 
 
 showModalde(){
-  this.isVisiblessde=true
+  this.isVisiblessde = true
 }
 handleCancelde(){
-  this.isVisiblessde=false
+  this.isVisiblessde = false
 }
 handleOkde(){
-  this.isVisiblessde=false
-  this.route.paramMap.pipe(
-    switchMap((params: ParamMap) => of(params.get('car'))
-    )).subscribe((data) => {
-      this.ApiService. getApplicationCase(data)
-  .then()
+  this.isVisiblessde = false
+  this.ApiService. getApplicationCase(this.carId).then((res:any)=>{
+    let carInfo = []
+    this.ApiService.getCar(this.materialId).then((res: any) => {
+      carInfo = res
+    this.TrialNameService.carName.next(carInfo)
+    this.router.navigateByUrl(`/display/${this.materialId}`)
     })
-    this.nzMessageService.info('车型已删除,请刷新页面');
+  })
 }
 
 }

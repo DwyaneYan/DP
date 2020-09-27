@@ -1,15 +1,15 @@
 <ul nz-menu nzMode="horizontal">
 
     <li nz-menu-item nzMatchRouter *ngIf="button(p1)">
-        <a [routerLink]="['/display', materialId, name,'table']">数据表</a>
+        <a routerLink="table">数据表</a>
     </li>
     <li nz-menu-item nzMatchRouter *ngIf="button(p2)">
-        <a [routerLink]="['/display', materialId, name,'picture']">数据图</a>
+        <a routerLink="picture">数据图</a>
     </li>
     <li nz-menu-item nzMatchRouter *ngIf="button(p3)">
-        <a [routerLink]="['/display', materialId, name,'report']">报告</a>
+        <a routerLink="report">报告</a>
     </li>
     <li nz-menu-item nzMatchRouter *ngIf="button(p4)">
-        <a [routerLink]="['/display', materialId, name, 'typical-part']">典型零部件</a>
+        <a routerLink="typical-part">典型零部件</a>
     </li>
 </ul>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-dent-resistance',
   templateUrl: './dent-resistance.component.html',
@@ -7,17 +8,26 @@ import { Router } from '@angular/router';
 })
 export class DentResistanceComponent implements OnInit {
   public materialId
-  name="dent-resistance"
-  p1='kaxn1'
-  p2='kaxn2'
-  p3='kaxn3'
-  p4='kaxn4'
+  p1 = 'kaxn1'
+  p2 = 'kaxn2'
+  p3 = 'kaxn3'
+  p4 = 'kaxn4'
+  // deleteTrial = this.ApiService.deleteTrial
+  constructor(
+    private route: ActivatedRoute,
+    public ApiService: ApiService,
 
-  constructor(private router: Router,) { }
+    ) {
+      this.route.parent.params.subscribe(params => {
+        this.materialId = params['materialId'];
+        });
+        console.log(this.route.snapshot.routeConfig.path)
+     }
 
-  ngOnInit() {    this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
+  ngOnInit() {    
+
   }
-
+  deleteTrial(){
+    this.ApiService.deleteTrial(this.materialId,'抗凹性能')
+  }
 }

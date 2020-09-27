@@ -112,14 +112,10 @@ export class FormLoginDialogComponent implements OnInit {
     const userName = this.cookies.get("userName");
     const password = this.cookies.get("password");
     const remember = this.cookies.get("remember");
-    // this.validateForm.value.userName = userName === undefined ? "" : userName;
-    // this.validateForm.value.password = password === undefined ? "" : password;
-    // this.validateForm.value.remember = remember == 'true' ? true : false;
     this.validateForm = this.fb.group({
       userName: [userName === undefined ? "" : userName, [Validators.required]],
       password: [password === undefined ? "" : password, [Validators.required]],
       code: [null, [Validators.required]],
-      // uuid: [null],
       remember: [remember == 'true' ? true : false],
     });
 

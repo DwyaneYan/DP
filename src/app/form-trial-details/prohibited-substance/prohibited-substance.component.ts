@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./prohibited-substance.component.css']
 })
 export class ProhibitedSubstanceComponent implements OnInit {
-  name="prohibited-substance"
   p1='jywz1'
   p2='jywz2'
   p3='jywz3'

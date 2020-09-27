@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class ReboundComponent implements OnInit {
   public materialId
-  name="rebound"
   p1='htxn1'
   p2='htxn2'
   p3='htxn3'

@@ -6,67 +6,37 @@ import { PageLoginComponent } from './page-login/page-login.component';
 import { PagePlatformComponent } from './page-platform/page-platform.component';
 import { PageMaterialComponent } from './page-material/page-material.component';
 import { PageDisplayComponent } from './page-display/page-display.component';
-import { StaticTensionHomeComponent } from './form-trial-details/static-tension-home/static-tension-home.component'
 import { StaticTensionTableComponent } from './form-trial-details/static-tension-home/static-tension-table/static-tension-table.component'
 import { StaticTensionPictureComponent } from './form-trial-details/static-tension-home/static-tension-picture/static-tension-picture.component'
-import { BendingComponent } from './form-trial-details/bending/bending.component';
 import { BendingTableComponent } from './form-trial-details/bending/bending-table/bending-table.component';
 import { BendingPictureComponent } from './form-trial-details/bending/bending-picture/bending-picture.component';
 import { CompressionPictureComponent } from './form-trial-details/compression/compression-picture/compression-picture.component';
 import { CompressionTableComponent } from './form-trial-details/compression/compression-table/compression-table.component';
-import { CompressionComponent } from './form-trial-details/compression/compression.component';
 import { HighspeedstrechPictureComponent } from './form-trial-details/highspeedstrech/highspeedstrech-picture/highspeedstrech-picture.component';
 import { HighspeedstrechTableComponent } from './form-trial-details/highspeedstrech/highspeedstrech-table/highspeedstrech-table.component';
-import { HighspeedstrechComponent } from './form-trial-details/highspeedstrech/highspeedstrech.component';
-import { LowcyclefatigueComponent } from './form-trial-details/lowcyclefatigue/lowcyclefatigue.component';
-import { LowcyclefatiguePictureComponent } from './form-trial-details/lowcyclefatigue/lowcyclefatigue-picture/lowcyclefatigue-picture.component';
 import { LowcyclefatigueTableComponent } from './form-trial-details/lowcyclefatigue/lowcyclefatigue-table/lowcyclefatigue-table.component';
-import { HighcyclefatigueComponent } from './form-trial-details/highcyclefatigue/highcyclefatigue.component';
-import { HighcyclefatiguePictureComponent } from './form-trial-details/highcyclefatigue/highcyclefatigue-picture/highcyclefatigue-picture.component';
 import { HighcyclefatigueTableComponent } from './form-trial-details/highcyclefatigue/highcyclefatigue-table/highcyclefatigue-table.component';
-import { MetallographicComponent } from './form-trial-details/metallographic/metallographic.component';
-import { MetallographicPictureComponent } from './form-trial-details/metallographic/metallographic-picture/metallographic-picture.component';
 import { MetallographicTableComponent } from './form-trial-details/metallographic/metallographic-table/metallographic-table.component';
-import { PhysicalperformanceComponent } from './form-trial-details/physicalperformance/physicalperformance.component';
 import { PhysicalperformancePictureComponent } from './form-trial-details/physicalperformance/physicalperformance-picture/physicalperformance-picture.component';
-import { PhysicalperformanceTableComponent } from './form-trial-details/physicalperformance/physicalperformance-table/physicalperformance-table.component';
-import { ChemicalelementComponent } from './form-trial-details/chemicalelement/chemicalelement.component';
+import { PhysicalperformanceTableComponent } from './form-trial-details/physicalperformance/physicalperformance-table/physicalperformance-table.component'
 import { ChemicalelementPictureComponent } from './form-trial-details/chemicalelement/chemicalelement-picture/chemicalelement-picture.component';
 import { ChemicalelementTableComponent } from './form-trial-details/chemicalelement/chemicalelement-table/chemicalelement-table.component';
-import { ProhibitedSubstanceComponent } from './form-trial-details/prohibited-substance/prohibited-substance.component';
 import { ProhibitedSubstancePictureComponent } from './form-trial-details/prohibited-substance/prohibited-substance-picture/prohibited-substance-picture.component';
 import { ProhibitedSubstanceTableComponent } from './form-trial-details/prohibited-substance/prohibited-substance-table/prohibited-substance-table.component';
-import { DentResistanceComponent } from './form-trial-details/dent-resistance/dent-resistance.component';
-import { DentResistancePictureComponent } from './form-trial-details/dent-resistance/dent-resistance-picture/dent-resistance-picture.component';
 import { DentResistanceTableComponent } from './form-trial-details/dent-resistance/dent-resistance-table/dent-resistance-table.component';
-import { SecondaryWorkingEmbrittlementComponent } from './form-trial-details/secondary-working-embrittlement/secondary-working-embrittlement.component';
-import { SecondaryWorkingEmbrittlementPictureComponent } from './form-trial-details/secondary-working-embrittlement/secondary-working-embrittlement-picture/secondary-working-embrittlement-picture.component';
 import { SecondaryWorkingEmbrittlementTableComponent } from './form-trial-details/secondary-working-embrittlement/secondary-working-embrittlement-table/secondary-working-embrittlement-table.component';
-import { FlangingClaspComponent } from './form-trial-details/flanging-clasp/flanging-clasp.component';
-import { FlangingClaspPictureComponent } from './form-trial-details/flanging-clasp/flanging-clasp-picture/flanging-clasp-picture.component';
 import { FlangingClaspTableComponent } from './form-trial-details/flanging-clasp/flanging-clasp-table/flanging-clasp-table.component';
-import { HydrogenInducedDelayedFractureComponent } from './form-trial-details/hydrogen-induced-delayed-fracture/hydrogen-induced-delayed-fracture.component';
 import { HydrogenInducedDelayedFracturePictureComponent } from './form-trial-details/hydrogen-induced-delayed-fracture/hydrogen-induced-delayed-fracture-picture/hydrogen-induced-delayed-fracture-picture.component';
 import { HydrogenInducedDelayedFractureTableComponent } from './form-trial-details/hydrogen-induced-delayed-fracture/hydrogen-induced-delayed-fracture-table/hydrogen-induced-delayed-fracture-table.component';
-import { WeldingComponent } from './form-trial-details/welding/welding.component';
-import { WeldingPictureComponent } from './form-trial-details/welding/welding-picture/welding-picture.component';
 import { WeldingTableComponent } from './form-trial-details/welding/welding-table/welding-table.component';
-import { CementingComponent } from './form-trial-details/cementing/cementing.component';
-import { CementingPictureComponent } from './form-trial-details/cementing/cementing-picture/cementing-picture.component';
 import { CementingTableComponent } from './form-trial-details/cementing/cementing-table/cementing-table.component';
-import { PaintingComponent } from './form-trial-details/painting/painting.component';
-import { PaintingPictureComponent } from './form-trial-details/painting/painting-picture/painting-picture.component';
 import { PaintingTableComponent } from './form-trial-details/painting/painting-table/painting-table.component';
-import { FLDComponent } from './form-trial-details/fld/fld.component';
 import { FldPictureComponent } from './form-trial-details/fld/fld-picture/fld-picture.component';
 import { FldTableComponent } from './form-trial-details/fld/fld-table/fld-table.component';
-import { ReboundComponent } from './form-trial-details/rebound/rebound.component';
 import { ReboundPictureComponent } from './form-trial-details/rebound/rebound-picture/rebound-picture.component';
 import { ReboundTableComponent } from './form-trial-details/rebound/rebound-table/rebound-table.component';
-import { BakeHardeningComponent } from './form-trial-details/bake-hardening/bake-hardening.component';
 import { BakeHardeningPictureComponent } from './form-trial-details/bake-hardening/bake-hardening-picture/bake-hardening-picture.component';
 import { BakeHardeningTableComponent } from './form-trial-details/bake-hardening/bake-hardening-table/bake-hardening-table.component';
-import { SurfacePropertyComponent } from './form-trial-details/surface-property/surface-property.component';
 import { SurfacePropertyTableComponent } from './form-trial-details/surface-property/surface-property-table/surface-property-table.component';
 import { SurfacePropertyPictureComponent,} from './form-trial-details/surface-property/surface-property-picture/surface-property-picture.component';
 import { PageContrastComponent } from './page-contrast/page-contrast.component'
@@ -78,6 +48,7 @@ import { Page404Component } from './page404/page404.component'
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
 import { button } from 'src/app/picture'
 import { PictureComponent } from './picture/picture.component';
+import { TrailnameComponent } from './trailname/trailname.component';
 
 
 
@@ -90,7 +61,7 @@ import { PictureComponent } from './picture/picture.component';
     canActivateChild: [LoginGuardService],
       children:[
         {
-          path: 'static-tension-home', component: StaticTensionHomeComponent,
+          path: 'static-tension-home', component: TrailnameComponent,
           children:[
             { path: 'table', component: StaticTensionTableComponent ,permissions:"jtls1"},
             { path: 'picture', component: StaticTensionPictureComponent,permissions:"jtls2"},
@@ -100,7 +71,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'bending', component: BendingComponent,
+          path: 'bending', component: TrailnameComponent,
           children:[
             { path: 'table', component: BendingTableComponent ,permissions:"wq1"},
             { path: 'picture', component: BendingPictureComponent ,permissions:"wq2"},
@@ -111,7 +82,7 @@ import { PictureComponent } from './picture/picture.component';
         },
   
         { 
-          path: 'compression', component:CompressionComponent,
+          path: 'compression', component:TrailnameComponent,
           children:[
             { path: 'table', component: CompressionTableComponent ,permissions:"ys1"},
             { path: 'picture', component: CompressionPictureComponent ,permissions:"ys2" },
@@ -121,7 +92,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'highspeedstrech', component:HighspeedstrechComponent,
+          path: 'highspeedstrech', component:TrailnameComponent,
           children:[
             { path: 'table', component: HighspeedstrechTableComponent,permissions:"gsls1"},
             { path: 'picture', component: HighspeedstrechPictureComponent  ,permissions:"gsls2" },
@@ -131,7 +102,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         }, 
          { 
-          path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
+          path: 'lowcyclefatigue', component:TrailnameComponent,
           children:[
             { path: 'table', component:  LowcyclefatigueTableComponent,permissions:"dzpl1"},
             { path: 'picture', component:  PictureComponent   ,permissions:"dzpl2" },
@@ -141,7 +112,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'highcyclefatigue', component:HighcyclefatigueComponent,
+          path: 'highcyclefatigue', component:TrailnameComponent,
           children:[
             { path: 'table', component:  HighcyclefatigueTableComponent,permissions:"gzpl1"},
             { path: 'picture', component:  PictureComponent  ,permissions:"gzpl2"   },
@@ -151,7 +122,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'metallographic', component:MetallographicComponent,
+          path: 'metallographic', component:TrailnameComponent,
           children:[
             { path: 'table', component:  MetallographicTableComponent,permissions:"jx1" },
             { path: 'picture', component:  PictureComponent ,permissions:"jx2"    },
@@ -161,7 +132,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'physicalperformance', component: PhysicalperformanceComponent,
+          path: 'physicalperformance', component: TrailnameComponent,
           children:[
             { path: 'table', component:  PhysicalperformanceTableComponent ,permissions:"wlxn1"},
             { path: 'picture', component:  PhysicalperformancePictureComponent   ,permissions:"wlxn2"  },
@@ -171,7 +142,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'chemicalelement', component:ChemicalelementComponent,
+          path: 'chemicalelement', component:TrailnameComponent,
           children:[
             { path: 'table', component: ChemicalelementTableComponent,permissions:"hxcf1"},
             { path: 'picture', component:  ChemicalelementPictureComponent  ,permissions:"hxcf2"  },
@@ -181,7 +152,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'prohibited-substance', component:ProhibitedSubstanceComponent,
+          path: 'prohibited-substance', component:TrailnameComponent,
           children:[
             { path: 'table', component: ProhibitedSubstanceTableComponent,permissions:"jywz1"},
             { path: 'picture', component:  ProhibitedSubstancePictureComponent  ,permissions:"jywz2" },
@@ -191,7 +162,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         }, 
         { 
-          path: 'dent-resistance', component:DentResistanceComponent,
+          path: 'dent-resistance', component:TrailnameComponent,
           children:[
             { path: 'table', component: DentResistanceTableComponent ,permissions:"kaxn1"},
             { path: 'picture', component:  PictureComponent ,permissions:"kaxn2" },
@@ -201,7 +172,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
+          path: 'secondary-working-embrittlement', component:TrailnameComponent,
           children:[
             { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent,permissions:"ecjgcx1"},
             { path: 'picture', component:  PictureComponent  ,permissions:"ecjgcx2" },
@@ -211,7 +182,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'flanging-clasp', component:FlangingClaspComponent,
+          path: 'flanging-clasp', component:TrailnameComponent,
           children:[
             { path: 'table', component: FlangingClaspTableComponent,permissions:"fbkh1"},
             { path: 'picture', component:  PictureComponent  ,permissions:"fbkh2" },
@@ -221,7 +192,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
+          path: 'hydrogen-induced-delayed-fracture', component:TrailnameComponent,
           children:[
             { path: 'table', component: HydrogenInducedDelayedFractureTableComponent,permissions:"qzyckl1" },
             { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent ,permissions:"qzyckl2"  },
@@ -231,7 +202,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'welding', component:WeldingComponent,
+          path: 'welding', component:TrailnameComponent,
           children:[
             { path: 'table', component: WeldingTableComponent,permissions:"hjxn1"  },
             { path: 'picture', component:  PictureComponent   ,permissions:"hjxn2" },
@@ -241,17 +212,17 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'cementing', component:CementingComponent ,
+          path: 'cementing', component:TrailnameComponent ,
           children:[
             { path: 'table', component:CementingTableComponent ,permissions:"jjxn1" },
-            { path: 'picture', component:  CementingPictureComponent  ,permissions:"jjxn2"    },
+            { path: 'picture', component:  PictureComponent  ,permissions:"jjxn2"    },
             { path: 'report', component:  ReportComponent   ,permissions:"jjxn3" },
             { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jjxn4" },
              
           ]  
         },
         { 
-          path: 'painting', component:PaintingComponent ,
+          path: 'painting', component:TrailnameComponent ,
           children:[
             { path: 'table', component:PaintingTableComponent,permissions:"tzxn1" },
             { path: 'picture', component:  PictureComponent  ,permissions:"tzxn2"  },
@@ -261,7 +232,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'fld', component:FLDComponent ,
+          path: 'fld', component:TrailnameComponent ,
           children:[
             { path: 'table', component:FldTableComponent ,permissions:"fld1" },
             { path: 'picture', component:  FldPictureComponent ,permissions:"fld2"     },
@@ -272,7 +243,7 @@ import { PictureComponent } from './picture/picture.component';
         },
         { 
           path: 'rebound', 
-          component:ReboundComponent ,
+          component:TrailnameComponent ,
           children:[
             { path: 'table', component:ReboundTableComponent,permissions:"htxn1"  },
             { path: 'picture', component:  ReboundPictureComponent    ,permissions:"htxn2"  },
@@ -281,7 +252,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'bake-hardening', component:BakeHardeningComponent ,
+          path: 'bake-hardening', component:TrailnameComponent ,
           children:[
             { path: 'table', component: BakeHardeningTableComponent  ,permissions:"hkyh1" },
             { path: 'picture', component:  BakeHardeningPictureComponent ,permissions:"hkyh2"  },
@@ -291,7 +262,7 @@ import { PictureComponent } from './picture/picture.component';
           ]  
         },
         { 
-          path: 'surface-property', component:SurfacePropertyComponent   ,
+          path: 'surface-property', component:TrailnameComponent   ,
           children:[
             { path: 'table', component: SurfacePropertyTableComponent,permissions:"bmxn1"  },
             { path: 'picture', component:  SurfacePropertyPictureComponent  ,permissions:"bmxn2" },

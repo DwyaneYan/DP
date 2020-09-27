@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Router} from "@angular/router";
 import {button} from 'src/app/picture'
-
+import{ TrialNameService } from './form-experimental-item/trial-name.service'
 
 
 @Injectable({
@@ -15,7 +14,8 @@ export class ApiService {
 
   constructor(public http: HttpClient,
     private cookies: CookieService,
-
+    private router: Router,
+    private TrialNameService: TrialNameService,
     ) { }
     httpOptions = {}
      //toVIm = `http://10.80.27.201:88/view` //跳转到vim
@@ -921,6 +921,35 @@ async upDateBase(obj){
    console.log(err);
  })
  return res
+}
+//根据材料Id和试验项目id删除材料与试验项目的对应关系
+ async deleteMaterialTrial(params){
+    let api = `/api/hangang/materialTrial/materialTrial`
+    let res = await this.http.delete(api,{params}).toPromise().catch(err =>{
+      console.log(err);
+    })
+    return res
+}
+// 删除试验项目
+ deleteTrial(materialId,name){
+ this.GetTrials(materialId).then((res:any) => {
+    console.log(res)
+    let data = res.filter(function(item){return item.name == name }) 
+    let obj = {
+      materialId,
+      trialId:data[0].id
+    }
+    this.deleteMaterialTrial(obj).then((res:any)=>{
+      this.GetTrials(materialId).then((res:any) => {
+        let trialName = []
+        res.forEach((val) => {
+          trialName.push(val.name)
+        }); 
+        this.TrialNameService.trialName.next(trialName);
+        this.router.navigateByUrl(`/display/${materialId}`)
+     })
+    })
+  })
 
 }
  

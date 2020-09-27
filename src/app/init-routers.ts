@@ -74,6 +74,7 @@ import { LoginGuardService } from './login-guard.service'
 import { Page404Component } from './page404/page404.component'
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
 import { PictureComponent } from './picture/picture.component';
+import { TrailnameComponent } from './trailname/trailname.component';
 
 function initRouter(){
   let allRoute:any =[
@@ -82,12 +83,11 @@ function initRouter(){
     { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
     { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
     //用于按材料名称搜索，点击搜索按钮，带着材料名称跳转
-    // { path: 'material/:materialName', component: PageMaterialComponent,canActivate: [LoginGuardService]},
     { path: 'display/:materialId', component:PageDisplayComponent,
     canActivateChild: [LoginGuardService],
       children:[
         {
-          path: 'static-tension-home', component: StaticTensionHomeComponent,
+          path: 'static-tension-home', component: TrailnameComponent,
           children:[
             { path: 'table', component: StaticTensionTableComponent ,permissions:"jtls1"},
             { path: 'picture', component: StaticTensionPictureComponent,permissions:"jtls2"},
@@ -97,7 +97,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'bending', component: BendingComponent,
+          path: 'bending', component: TrailnameComponent,
           children:[
             { path: 'table', component: BendingTableComponent ,permissions:"wq1"},
             { path: 'picture', component: BendingPictureComponent ,permissions:"wq2"},
@@ -108,7 +108,7 @@ function initRouter(){
         },
   
         { 
-          path: 'compression', component:CompressionComponent,
+          path: 'compression', component:TrailnameComponent,
           children:[
             { path: 'table', component: CompressionTableComponent ,permissions:"ys1"},
             { path: 'picture', component: CompressionPictureComponent ,permissions:"ys2" },
@@ -118,7 +118,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'highspeedstrech', component:HighspeedstrechComponent,
+          path: 'highspeedstrech', component:TrailnameComponent,
           children:[
             { path: 'table', component: HighspeedstrechTableComponent,permissions:"gsls1"},
             { path: 'picture', component: HighspeedstrechPictureComponent  ,permissions:"gsls2" },
@@ -128,7 +128,7 @@ function initRouter(){
           ]  
         }, 
          { 
-          path: 'lowcyclefatigue', component:LowcyclefatigueComponent,
+          path: 'lowcyclefatigue', component:TrailnameComponent,
           children:[
             { path: 'table', component:  LowcyclefatigueTableComponent,permissions:"dzpl1"},
             { path: 'picture', component:  PictureComponent   ,permissions:"dzpl2" },
@@ -138,7 +138,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'highcyclefatigue', component:HighcyclefatigueComponent,
+          path: 'highcyclefatigue', component:TrailnameComponent,
           children:[
             { path: 'table', component:  HighcyclefatigueTableComponent,permissions:"gzpl1"},
             { path: 'picture', component:  PictureComponent  ,permissions:"gzpl2"   },
@@ -148,7 +148,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'metallographic', component:MetallographicComponent,
+          path: 'metallographic', component:TrailnameComponent,
           children:[
             { path: 'table', component:  MetallographicTableComponent,permissions:"jx1" },
             { path: 'picture', component:  PictureComponent ,permissions:"jx2"    },
@@ -158,7 +158,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'physicalperformance', component: PhysicalperformanceComponent,
+          path: 'physicalperformance', component: TrailnameComponent,
           children:[
             { path: 'table', component:  PhysicalperformanceTableComponent ,permissions:"wlxn1"},
             { path: 'picture', component:  PhysicalperformancePictureComponent   ,permissions:"wlxn2"  },
@@ -168,7 +168,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'chemicalelement', component:ChemicalelementComponent,
+          path: 'chemicalelement', component:TrailnameComponent,
           children:[
             { path: 'table', component: ChemicalelementTableComponent,permissions:"hxcf1"},
             { path: 'picture', component:  ChemicalelementPictureComponent  ,permissions:"hxcf2"  },
@@ -178,7 +178,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'prohibited-substance', component:ProhibitedSubstanceComponent,
+          path: 'prohibited-substance', component:TrailnameComponent,
           children:[
             { path: 'table', component: ProhibitedSubstanceTableComponent,permissions:"jywz1"},
             { path: 'picture', component:  ProhibitedSubstancePictureComponent  ,permissions:"jywz2" },
@@ -188,7 +188,7 @@ function initRouter(){
           ]  
         }, 
         { 
-          path: 'dent-resistance', component:DentResistanceComponent,
+          path: 'dent-resistance', component:TrailnameComponent,
           children:[
             { path: 'table', component: DentResistanceTableComponent ,permissions:"kaxn1"},
             { path: 'picture', component:  PictureComponent ,permissions:"kaxn2" },
@@ -198,7 +198,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'secondary-working-embrittlement', component:SecondaryWorkingEmbrittlementComponent,
+          path: 'secondary-working-embrittlement', component:TrailnameComponent,
           children:[
             { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent,permissions:"ecjgcx1"},
             { path: 'picture', component:  PictureComponent  ,permissions:"ecjgcx2" },
@@ -208,7 +208,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'flanging-clasp', component:FlangingClaspComponent,
+          path: 'flanging-clasp', component:TrailnameComponent,
           children:[
             { path: 'table', component: FlangingClaspTableComponent,permissions:"fbkh1"},
             { path: 'picture', component:  PictureComponent  ,permissions:"fbkh2" },
@@ -218,7 +218,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'hydrogen-induced-delayed-fracture', component:HydrogenInducedDelayedFractureComponent,
+          path: 'hydrogen-induced-delayed-fracture', component:TrailnameComponent,
           children:[
             { path: 'table', component: HydrogenInducedDelayedFractureTableComponent,permissions:"qzyckl1" },
             { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent ,permissions:"qzyckl2"  },
@@ -228,7 +228,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'welding', component:WeldingComponent,
+          path: 'welding', component:TrailnameComponent,
           children:[
             { path: 'table', component: WeldingTableComponent,permissions:"hjxn1"  },
             { path: 'picture', component:  PictureComponent   ,permissions:"hjxn2" },
@@ -238,17 +238,17 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'cementing', component:CementingComponent ,
+          path: 'cementing', component:TrailnameComponent ,
           children:[
             { path: 'table', component:CementingTableComponent ,permissions:"jjxn1" },
-            { path: 'picture', component:  CementingPictureComponent  ,permissions:"jjxn2"    },
+            { path: 'picture', component:  PictureComponent  ,permissions:"jjxn2"    },
             { path: 'report', component:  ReportComponent   ,permissions:"jjxn3" },
             { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jjxn4" },
              
           ]  
         },
         { 
-          path: 'painting', component:PaintingComponent ,
+          path: 'painting', component:TrailnameComponent ,
           children:[
             { path: 'table', component:PaintingTableComponent,permissions:"tzxn1" },
             { path: 'picture', component:  PictureComponent  ,permissions:"tzxn2"  },
@@ -258,7 +258,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'fld', component:FLDComponent ,
+          path: 'fld', component:TrailnameComponent ,
           children:[
             { path: 'table', component:FldTableComponent ,permissions:"fld1" },
             { path: 'picture', component:  FldPictureComponent ,permissions:"fld2"     },
@@ -269,7 +269,7 @@ function initRouter(){
         },
         { 
           path: 'rebound', 
-          component:ReboundComponent ,
+          component:TrailnameComponent ,
          
           // path: 'rebound', component:ReboundTableComponent ,
           children:[
@@ -281,7 +281,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'bake-hardening', component:BakeHardeningComponent ,
+          path: 'bake-hardening', component:TrailnameComponent ,
           children:[
             { path: 'table', component: BakeHardeningTableComponent  ,permissions:"hkyh1" },
             { path: 'picture', component:  BakeHardeningPictureComponent ,permissions:"hkyh2"  },
@@ -291,7 +291,7 @@ function initRouter(){
           ]  
         },
         { 
-          path: 'surface-property', component:SurfacePropertyComponent   ,
+          path: 'surface-property', component:TrailnameComponent   ,
           children:[
             { path: 'table', component: SurfacePropertyTableComponent,permissions:"bmxn1"  },
             { path: 'picture', component:  SurfacePropertyPictureComponent  ,permissions:"bmxn2" },

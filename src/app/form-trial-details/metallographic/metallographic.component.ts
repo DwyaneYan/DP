@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-metallographic',
   templateUrl: './metallographic.component.html',
@@ -7,17 +8,23 @@ import { Router } from '@angular/router';
 })
 export class MetallographicComponent implements OnInit {
   public materialId
-  name="metallographic"
   p1='jx1'
   p2='jx2'
   p3='jx3'
   p4='jx4'
 
-  constructor( private router: Router,) { }
+  constructor( 
+    private route: ActivatedRoute,
+    public ApiService: ApiService,
+    ) {
+    this.route.parent.params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+   }
 
-  ngOnInit() {    this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
+  ngOnInit() {   
   }
-
+  deleteTrial(){
+    this.ApiService.deleteTrial(this.materialId,'金相')
+  }
 }

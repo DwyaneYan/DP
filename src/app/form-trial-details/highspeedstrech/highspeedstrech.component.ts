@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class HighspeedstrechComponent implements OnInit {
   public materialId
-  name="highspeedstrech"
   p1='gsls1'
   p2='gsls2'
   p3='gsls3'

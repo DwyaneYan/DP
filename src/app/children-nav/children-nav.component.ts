@@ -9,8 +9,6 @@ import {button} from 'src/app/picture'
   styleUrls: ['./children-nav.component.css']
 })
 export class ChildrenNavComponent implements OnInit {
-  @Input() materialId
-  @Input() name
   @Input() p1
   @Input() p2
   @Input() p3

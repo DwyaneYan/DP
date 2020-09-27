@@ -7,7 +7,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./static-tension-home.component.css'],
 })
 export class StaticTensionHomeComponent implements OnInit {
-  name="static-tension-home"
+
   p1='jtls1'
   p2='jtls2'
   p3='jtls3'
