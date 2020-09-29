@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import { NzTreeHigherOrderServiceToken } from "ng-zorro-antd";
+import { classitem,unique1,notempty } from "../../../picture";
 import { ApiService } from "src/app/api.service";
 import { GaussService } from "src/app/gauss.service";
+import { NameService } from '../../base-info/name.service'
 
 @Component({
   selector: "app-highspeedstrech-table",
@@ -13,12 +14,10 @@ import { GaussService } from "src/app/gauss.service";
 export class HighspeedstrechTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
-  baseInfo;
   trialDataDetailss = [];
-  one = [];
-  two = [];
-  three = [];
-  mater = [];
+  one = []; //试验结果
+  two = []; //参考数据
+  mater = '';//试验结果中的牌号
   table1 = [
     "测试机构",
     "开始检测日期",
@@ -84,100 +83,58 @@ export class HighspeedstrechTableComponent implements OnInit {
     "testMethod",
     "direction",
   ];
-
-  // isVisible = false;
-  // options;
-  options = { options: {} };
-  isVisible = { isVisible: false };
+  speeds = []; //真塑性应力应变未延伸到1速率
+  strainData = []; //应变
+  stress = []; //应力
+  nzWidthConfig4 = []; //未延伸到1的表格列宽
+  nzScrolls = {}; // 表格总宽度，否则列宽不生效
+  options = {};
+  isVisible = false;
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
-  contrastTable(params, des, one) {
+  constructor(
+    private route: ActivatedRoute,
+    public http: HttpClient,
+    private ApiService: ApiService,
+    private GaussService: GaussService,
+    private NameService:NameService
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+    this.NameService.changeName$.subscribe(n => {this.mater = n;console.log( this.mater)})
+
+  }
+
+  ngOnInit() {
+    this.GetTrialDataDetails();
+    this.GetTrialDataDetailss();
+  }
+  changeisVisible(){
+    this.isVisible = false
+  }
+  contrastTable(params, des) {
     let data = [];
-    console.log(data);
     let xData = [];
-    for (const iterator of one) {
+    for (const iterator of this.one) {
       data.push(iterator[params]);
       xData.push(iterator["sampleCode"]);
     }
     let gauss = this.GaussService.gauss(data);
     let hist = this.GaussService.hist(data);
-    let xAll = gauss.x.concat(hist.pxLast);
-    xAll.sort((a, b) => {
-      return Number(a) - Number(b);
-    });
-    console.log(gauss, hist);
-    // this.PlotPicture(gauss.y,xAll,des,hist.data1,gauss.xGauss);
-    this.GaussService.PlotPicture(
-      gauss.y,
-      xAll,
+    // let xAll = gauss.x.concat(hist.pxLast);
+    // xAll.sort((a, b) => {
+    //   return Number(a) - Number(b);
+    // });
+    this.isVisible = true
+    //正态分布图
+    this.options = this.GaussService.PlotPicture(
       des,
       hist.data1,
       gauss.xGauss,
-      this.isVisible,
-      this.options
     );
-    console.log(this.isVisible.isVisible, this.options.options);
-    //
-    //     this.PlotPicture(data, xData,des);
-  }
-  handleOk(): void {
-    this.isVisible.isVisible = false;
-  }
-
-  handleCancel(): void {
-    this.isVisible.isVisible = false;
-  }
-  // public PlotPicture(data, xData, des) {
-  //       this.isVisible = true;
-  //       this.options = {
-  //         title: {
-  //           text: des,
-  //           x: "center",
-  //           y: "top"
-  //         },
-  //         xAxis: {
-  //           type: "category",
-  //           data: xData
-  //         },
-  //         yAxis: {
-  //           type: "value"
-  //         },
-  //         series: [
-  //           {
-  //             data: data,
-  //             type: "line"
-  //           }
-  //         ]
-  //       };
-  //     }
-  constructor(
-    private router: Router,
-    public http: HttpClient,
-    private ApiService: ApiService,
-    private GaussService: GaussService
-  ) {}
-
-  ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
-    this.GetTrialDataDetails();
-    this.GetBaseInfo(this.materialId);
-    this.GetTrialDataDetailss();
-  }
-
-  public async GetBaseInfo(p) {
-    let param = { id: `${p}` };
-    // let api = "http://localhost:60001/api/hangang/material/materials?Id=";
-    await this.ApiService.GetMater(param).then((res: any) => {
-      this.baseInfo = res.items;
-    });
-    // console.log(this.baseInfo)
-    this.mater.push(this.baseInfo[0].name);
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetails/${materialId}`;
     await this.ApiService.getHighSpeedStrechDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
@@ -188,105 +145,43 @@ export class HighspeedstrechTableComponent implements OnInit {
             this.one.push(this.trialDataDetail[a]);
           }
         }
-        // this.one[0].dates = this.one[0].dates.split("T")[0];
-        // this.one[0].dateEnds = this.one[0].dateEnds.split("T")[0];
-        this.one[0].dates =  this.ApiService.handleTime(this.one[0].dates);
-        this.one[0].dateEnds =  this.ApiService.handleTime(this.one[0].dateEnds);
-        console.log(this.one[0]);
+        if(this.one.length){
+          this.one[0].dates =  this.ApiService.handleTime(this.one[0].dates);
+          this.one[0].dateEnds =  this.ApiService.handleTime(this.one[0].dateEnds);
+        }
       }
     );
   }
-  speeds = [];
-  strainData = [];
-  stress = [];
-  nzWidthConfig4 = [];
-  nzScroll4 = {};
-  nzScrolls = {};
+
   public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api1=`http://localhost:60001/api/hangang/materialTrial/highSpeedStrechDataDetailStressStrainExtends/${materialId}`;
     await this.ApiService.getHighSpeedStrechDataDetailStressStrainExtends(
       this.materialId
     ).then((res: any) => {
       this.trialDataDetailss = res;
-      let speed = [];
+      let speed = []; //速率
       this.trialDataDetailss.map((val) =>
         speed.push(val.realPlasticTestTarget)
       );
-      this.speeds = this.unique1(speed);
-      console.log(this.trialDataDetailss);
-
+      this.speeds = unique1(speed);
+      this.nzWidthConfig4[0] = "130px";
       for (let c = 1; c < this.speeds.length + 1; c++) {
-        this.nzWidthConfig4[0] = "130px";
         this.nzWidthConfig4[c] = "110px";
       }
       this.nzScrolls = { x: this.speeds.length * 110 + 130 + "px" };
-      // let ele = document.getElementsByClassName("tablebox")[0] as HTMLElement;
-      // ele.style.width = this.speeds.length * 110 + 130 + "px";
-
-      let arr3 = [];
-      let strain = [];
-      arr3 = this.classitem(this.trialDataDetailss, "realPlasticTestTarget"); //延伸到1
+      let arr3 = []; //试验结果按照realPlasticTestTarget分类
+      let strain = []; //应变
+      arr3 = classitem(this.trialDataDetailss, "realPlasticTestTarget",'highSpeedStrechDataDetailId'); //延伸到1
       arr3[0].List.map((val) => strain.push(val.realPlasticStrainHalf));
-      this.strainData = this.notempty(strain);
-      console.log(this.strainData.length);
+      this.strainData = notempty(strain);
       for (let b = 0; b < this.strainData.length; b++) {
         this.stress[b] = [];
-        for (
-          let a = b;
-          a < this.trialDataDetailss.length;
-          a += this.trialDataDetailss.length / arr3.length
-        ) {
+        for (let a = b;a < this.trialDataDetailss.length;a += this.trialDataDetailss.length / arr3.length) {
           this.stress[b].push(this.trialDataDetailss[a].realPlasticStressHalf);
         }
       }
-      console.log(this.stress);
     });
   }
-  classitem(arry1, p) {
-    let arry = [];
-    arry1.map((mapItem) => {
-      if (arry.length == 0) {
-        arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] });
-      } else {
-        let res = arry.some((item) => {
-          //判断相同highSpeedStrechDataDetailId，有就添加到当前项
-          if (item.highSpeedStrechDataDetailId == mapItem[p]) {
-            item.List.push(mapItem);
-            return true;
-          }
-        });
-        if (!res) {
-          //如果没找相同highSpeedStrechDataDetailId添加一个新对象
-          arry.push({
-            highSpeedStrechDataDetailId: mapItem[p],
-            List: [mapItem],
-          });
-        }
-      }
-    });
-    return arry;
-  }
-  unique1(array) {
-    var n = []; //一个新的临时数组
-    //遍历当前数组
-    for (var i = 0; i < array.length; i++) {
-      //如果当前数组的第i已经保存进了临时数组，那么跳过，
-      //否则把当前项push到临时数组里面
-      if (n.indexOf(array[i]) == -1) n.push(array[i]);
-    }
-    return n;
-  }
-  notempty(a) {
-    var arr = [];
-    a.map(function (val, index) {
-      //过滤规则为，不为空串、不为null、不为undefined，也可自行修改
-      if (val !== "" && val != undefined) {
-        arr.push(val);
-      }
-    });
-    return arr;
-  }
+
   //点击行中的列项展开信息
   clickItem(tdIdx) {
     this.activeTdIdx = tdIdx;

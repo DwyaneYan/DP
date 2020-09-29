@@ -1,28 +1,27 @@
-<div class="dataTable">
-  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" id="table1" nzBordered>
-    <thead>
-      <tr>
-        <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'"
-          *ngFor="let data of table[0].one;let thIdx = index">{{data}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
-      </tr>
-    </tbody>
-  </nz-table>
-  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" id="table2" nzBordered>
-    <thead>
-      <tr>
-        <th [nzWidth]="table[1].width[i]" *ngFor="let data of table[1].one;let i=index">{{data}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of trialDataDetail">
-        <td *ngFor="let data1 of table[1].key">{{ data[data1]}}</td>
+<div id="dataTable">
+    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" id="table1" nzBordered>
+        <thead>
+            <tr>
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" *ngFor="let data of table[0].one;let thIdx = index">{{data}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
+                <td *ngFor="let data of table[0].key">{{detail[data]}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <nz-table class="mt25" [nzData]="trialDataDetail" [nzFrontPagination]="false" id="table2" nzBordered>
+        <thead>
+            <tr>
+                <th [nzWidth]="table[1].width[i]" *ngFor="let data of table[1].one;let i=index">{{data}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of trialDataDetail">
+                <td *ngFor="let data1 of table[1].key">{{ data[data1]}}</td>
 
-      </tr>
-    </tbody>
-  </nz-table>
+            </tr>
+        </tbody>
+    </nz-table>
 </div>

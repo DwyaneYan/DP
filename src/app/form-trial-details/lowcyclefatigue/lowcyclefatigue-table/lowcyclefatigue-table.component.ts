@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
+import { NameService } from '../../base-info/name.service'
+import {PlotPicture} from "../../../picture"
 
 @Component({
   selector: "app-lowcyclefatigue-table",
@@ -11,10 +13,8 @@ import { ApiService } from "src/app/api.service";
 export class LowcyclefatigueTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
-  mater = [];
-  two = [];
-  trialDataDetails = [{}];
-  baseInfo = [];
+  mater = '';
+  trialDataDetails = [];
   table1 = [
     "测试机构",
     "开始检测日期",
@@ -99,7 +99,7 @@ export class LowcyclefatigueTableComponent implements OnInit {
     },
   ];
   isVisible = false;
-  options;
+  options = {};
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   contrastTable(params, des) {
@@ -109,89 +109,46 @@ export class LowcyclefatigueTableComponent implements OnInit {
       data.push(iterator[params]);
       xData.push(iterator["sampleCode"]);
     }
-    this.PlotPicture(data, xData, des);
-  }
-  handleOk(): void {
-    console.log("Button ok clicked!");
-    this.isVisible = false;
+    this.isVisible = true
+    this.options = PlotPicture(data, xData, des);
   }
 
-  handleCancel(): void {
-    console.log("Button cancel clicked!");
-    this.isVisible = false;
-  }
-  public PlotPicture(data, xData, des) {
-    this.isVisible = true;
-    this.options = {
-      title: {
-        text: des,
-        x: "center",
-        y: "top",
-      },
-      xAxis: {
-        type: "category",
-        data: xData,
-      },
-      yAxis: {
-        type: "value",
-      },
-      series: [
-        {
-          data: data,
-          type: "line",
-        },
-      ],
-    };
-  }
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
-    private ApiService: ApiService
-  ) {}
+    private ApiService: ApiService,
+    private NameService:NameService
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+    this.NameService.changeName$.subscribe(n => {this.mater = n;console.log( this.mater)})
+
+  }
 
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
-    this.GetBaseInfo(this.materialId);
   }
-  public async GetBaseInfo(p) {
-    let param = { id: `${p}` };
-    //let api = "http://localhost:60001/api/hangang/material/materials?Id=";
-    await this.ApiService.GetMater(param).then((res: any) => {
-      this.baseInfo = res.items;
-    });
-    // console.log(this.baseInfo)
-    this.mater.push(this.baseInfo[0].name);
+  changeisVisible(){
+    this.isVisible = false
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetails/${materialId}`;
     await this.ApiService.getLowCycleFatigueDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        for (let a = 1; a < this.trialDataDetail.length; a++) {
-          this.two.push(this.trialDataDetail[a]);
-        }
       }
     );
-    // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
-    // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-    //   "T"
-    // )[0];
-    this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-    this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    if(this.trialDataDetail.length){
+        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    }
   }
   public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/lowCycleFatigueDataDetailItems/${materialId}`;
     await this.ApiService.getLowCycleFatigueDataDetailItems(
       this.materialId
     ).then((res: any) => {
       this.trialDataDetails = res;
-      console.log(this.trialDataDetails);
     });
   }
   //点击行中的列项展开信息

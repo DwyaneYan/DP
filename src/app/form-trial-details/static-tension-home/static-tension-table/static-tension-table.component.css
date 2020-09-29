@@ -1,37 +1,3 @@
-.dataTable thead th {
-    background-color: #f4f4f4;
-    color: #666;
-    padding: 8px 0;
-}
-
-.dataTable tbody td {
-    text-align: center;
-    padding: 8px 0;
-}
-
-.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-    background: white;
-}
-
-
-/* .one {
-    margin: 0px
-} */
-
-/* #one .one /deep/.ng-star-inserted>span {
-    display: block;
-    text-align: center;
-}
-
-#one .one /deep/ .ant-table-header-column {
-    height: 41.6px;
-} */
-
-
-/* #one .one /deep/.ng-star-inserted{
-    height:unset;
-} */
-
 nz-modal /deep/ .ant-modal-content {
     width: 600px
 }

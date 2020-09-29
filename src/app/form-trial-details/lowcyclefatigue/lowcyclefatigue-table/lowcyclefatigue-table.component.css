@@ -1,31 +1,10 @@
-.dataTable thead th {
-    text-align: center;
-    background-color: #f4f4f4;
-    color: #666;
-    padding: 8px 0;
+.echarts-box {
+    height: 400px;
+    position: relative;
 }
 
-.dataTable tbody td {
-    text-align: center;
-    padding: 8px 0;
-}
 
-/* #dataTable /deep/.ant-table-scroll table {
-    width: auto;
-    min-width: unset;
-}
-
- #dataTable /deep/.ant-table-fixed{
-    min-width: unset;
-} */
-.echarts-box{
-    height: 400px;
-    position: relative;
-}
-.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-    background: white;
-}
-
+/* 
 #dataTable /deep/.ant-table-fixed {
     min-width: unset;
-}
+} */

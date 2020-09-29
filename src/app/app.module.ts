@@ -100,6 +100,7 @@ import { Page404Component } from './page404/page404.component';
 import { TypicalPartComponent } from './typical-part/typical-part.component';
 import { PictureComponent } from './picture/picture.component';
 import { TrailnameComponent } from './trailname/trailname.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 
 @NgModule({
@@ -190,6 +191,7 @@ import { TrailnameComponent } from './trailname/trailname.component';
     TypicalPartComponent,
     PictureComponent,
     TrailnameComponent,
+    LineChartComponent,
   ],
   imports: [
     

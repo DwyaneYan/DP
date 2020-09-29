@@ -1,30 +1,28 @@
-<div class="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered
-    *ngFor="let data of table;let tableIdx = index">
-    <thead>
-      <tr>
-        <th [nzWidth]="tableIdx == 0 && thIdx==0||tableIdx == 0 && thIdx==1||tableIdx == 0 && thIdx==2?'150px':'200px'"
-          *ngFor="let data1 of data.one;let thIdx = index">
-          {{data1}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td *ngFor="let data2 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data2]:''}}</td>
-      </tr>
-    </tbody>
-  </nz-table>
-  <nz-table class="mt25" nzBordered [nzData]=[{}] [nzFrontPagination]="false" *ngFor="let data of table1">
-    <thead>
-      <tr>
-        <th nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let detail of this[data.table]">
-        <td *ngFor="let data1 of data.key">{{ detail[data1]}}</td>
-      </tr>
-    </tbody>
-  </nz-table> <br>
+<div id="dataTable">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered *ngFor="let data of table.slice(0,2);let tableIdx = index">
+        <thead>
+            <tr>
+                <th [nzWidth]="tableIdx == 0 && thIdx==0||tableIdx == 0 && thIdx==1||tableIdx == 0 && thIdx==2?'150px':'200px'" *ngFor="let data1 of data.one;let thIdx = index">
+                    {{data1}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
+                <td *ngFor="let data2 of data.key">{{detail[data2]}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <nz-table class="mt25" nzBordered [nzData]='this[data.table]' [nzFrontPagination]="false" *ngFor="let data of table.slice(2)">
+        <thead>
+            <tr>
+                <th nzWidth="200px" *ngFor="let data1 of data.one">{{data1}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detail of this[data.table]">
+                <td *ngFor="let data1 of data.key">{{ detail[data1]}}</td>
+            </tr>
+        </tbody>
+    </nz-table> <br>
 
 </div>

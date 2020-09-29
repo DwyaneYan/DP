@@ -1,19 +1,18 @@
-<div class="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered>
+<div id="dataTable">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered>
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'"
-                    *ngFor="let data of table[0].one;let thIdx = index">{{data}}</th>
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" *ngFor="let data of table[0].one;let thIdx = index">{{data}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="one1" *ngFor="let data of table[0].key">{{trialDataDetail[0]?trialDataDetail[0][data]:''}}
+            <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
+                <td class="one1" *ngFor="let data of table[0].key">{{detail[data]}}
                 </td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25">
+    <nz-table [nzData]='last' [nzFrontPagination]="false" nzBordered class="mt25 tablebox">
         <thead>
             <tr>
                 <th nzWidth="120px">样件编号</th>
@@ -27,7 +26,7 @@
             </tr>
             <tr *ngFor="let detail of last;let i=index">
                 <td nzBreakWord>{{bh[i]}}</td>
-                <td nzBreakWord *ngFor="let detail1 of detail">{{detail1?.contentRatio}}</td>
+                <td nzBreakWord *ngFor="let detail1 of detail">{{detail1.contentRatio}}</td>
             </tr>
         </tbody>
     </nz-table>

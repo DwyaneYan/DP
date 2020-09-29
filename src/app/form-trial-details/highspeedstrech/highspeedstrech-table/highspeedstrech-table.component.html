@@ -1,21 +1,19 @@
-<div class="dataTable">
-    <nz-table class="mt25 layout-fixed" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
+<div id="dataTable">
+    <nz-table [nzData]='trialDataDetail' class="mt25 layout-fixed" [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'150px':'200px'"
-                    *ngFor="let data1 of  table1;let thIdx=index">{{data1}}</th>
+                <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'150px':'200px'" *ngFor="let data1 of  table1;let thIdx=index">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td *ngFor="let data6 of  table6;let tdIdx = index"
-                    [class]=" tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
-                    {{one[0]?one[0][data6]:''}}
+            <tr *ngFor="let detail of one.slice(0,1)">
+                <td *ngFor="let data6 of  table6;let tdIdx = index" [class]=" tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
+                    {{detail[data6]}}
                 </td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzBordered>
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered>
         <thead>
             <tr>
                 <th *ngFor="let data2 of  table2">{{data2}}</th>
@@ -23,24 +21,22 @@
         </thead>
         <tbody>
             <tr *ngFor="let detail of  two;index as i">
-                <td [attr.rowspan]="i === 0 ? two.length : 1" *ngIf="i==0">{{ mater[0] }}</td>
+                <td [attr.rowspan]="i === 0 ? two.length : 1" *ngIf="i==0">{{ mater }}</td>
                 <td *ngFor="let data3 of  table3">{{ detail[data3] }}</td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '700px' }" class="mt25" nzBordered>
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '700px' }" class="mt25" nzBordered>
         <thead>
             <tr>
-                <th [nzWidth]="width[i]" class="one" *ngFor="let data4 of  table4;let i=index">
-                    <span
-                        *ngIf="('sampleCode,testTarget,thickness,gaugeDistance').indexOf(table5[i]) == -1; else other_content">
+                <th [nzWidth]="width[i]" *ngFor="let data4 of  table4;let i=index">
+                    <span *ngIf="('sampleCode,testTarget,thickness,gaugeDistance').indexOf(table5[i]) == -1; else other_content">
                         <span nz-tooltip [nzTooltipTitle]="titleTemplate">{{data4}}</span>
-                        <ng-template #titleTemplate>
-
-                            <a (click)="contrastTable(table5[i], data4,one)">对比</a>
-                        </ng-template>
-                    </span>
-                    <ng-template #other_content><span #other_content>{{data4}}</span></ng-template>
+                    <ng-template #titleTemplate>
+                        <a (click)="contrastTable(table5[i], data4)">对比</a>
+                            </ng-template>
+                            </span>
+                            <ng-template #other_content><span #other_content>{{data4}}</span></ng-template>
                 </th>
             </tr>
         </thead>
@@ -51,12 +47,11 @@
         </tbody>
     </nz-table>
     <!-- 真塑性应变真应力未延伸到1 START-->
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="nzScrolls" class='tablebox mt25' nzBordered
-        [nzWidthConfig]='nzWidthConfig4'>
+    <nz-table [nzData]='strainData' [nzFrontPagination]="false" [nzScroll]="nzScrolls" class='tablebox mt25' nzBordered [nzWidthConfig]='nzWidthConfig4'>
         <thead>
             <tr>
                 <th rowspan="2" nzBreakWord>True plastic strain</th>
-                <th class="one" [attr.colspan]="speeds.length" nzBreakWord>True stress/Mpa</th>
+                <th [attr.colspan]="speeds.length" nzBreakWord>True stress/Mpa</th>
             </tr>
             <tr>
                 <th *ngFor="let data5 of  speeds" nzBreakWord>{{data5}}</th>
@@ -70,10 +65,5 @@
         </tbody>
     </nz-table>
     <!-- 真塑性应变真应力 END-->
-
-
 </div>
-<nz-modal [(nzVisible)]="isVisible.isVisible"  nzTitle="对比"  (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
-
-    <div       echarts       [options]="options.options"       style="height: 400px;position: relative;"     ></div>
-</nz-modal>
+<app-line-chart [isVisible]='isVisible' [options]="options" (isShow)="changeisVisible()"></app-line-chart>

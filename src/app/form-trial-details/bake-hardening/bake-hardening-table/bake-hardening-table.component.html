@@ -1,10 +1,8 @@
-<div class="dataTable">
-    <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="data.nzScroll"
-        *ngFor="let data of table;let tableIndex = index" nzBordered>
+<div id="dataTable">
+    <nz-table class="mt25" [nzData]="this[data.name]" [nzFrontPagination]="false" *ngFor="let data of table;let tableIndex = index" nzBordered>
         <thead>
             <tr>
-                <th [nzWidth]="tableIndex == 0 &&thIdx == 0||tableIndex == 0 && thIdx == 1||tableIndex == 0 && thIdx ==2?'150px':'auto'"
-                    *ngFor="let data1 of data.one;let thIdx = index">
+                <th [nzWidth]="tableIndex == 0 &&thIdx == 0||tableIndex == 0 && thIdx == 1||tableIndex == 0 && thIdx ==2?'150px':'auto'" *ngFor="let data1 of data.one;let thIdx = index">
                     {{data1}}</th>
             </tr>
         </thead>

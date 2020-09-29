@@ -1,14 +1,3 @@
-.dataTable thead th {
-    text-align: center;
-    background-color:#f4f4f4;
-    color: #666;
-    padding: 8px 0;
-}
-
-.dataTable tbody td{
-    text-align: center;
-    padding: 8px 0;
-}
 .footer {
     position: absolute;
     bottom: 0px;
@@ -27,8 +16,4 @@
     position: absolute;
     top: 50px;
     left: 90%;
-}
-
-.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-    background: white;
 }

@@ -25,7 +25,6 @@ export class TrailnameComponent implements OnInit {
   }
 
   ngOnInit() {
-    // let currentInfo = menu.filter((item)=>{item.name == this.route.snapshot.routeConfig.path});
     console.log(menu,this.currentInfo,this.route.snapshot.routeConfig.path)
     this.p1 = this.currentInfo[0].children[0]
     this.p2 = this.currentInfo[0].children[1]

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input , Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { NameService } from './name.service'
 @Component({
   selector: 'app-base-info',
   templateUrl: './base-info.component.html',
@@ -12,7 +13,6 @@ export class BaseInfoComponent implements OnInit {
   @Input() materialId:string;
   //材料基本信息
   public baseInfo = [] //材料基本信息数组，数组元素只有一个对象
-  @Output()checkvalue = new EventEmitter<any>();//材料名称传给路由出口组件
   isVisible = false; //修改材料基本信息弹框
   manufactoryInfo = [] //所有厂家信息
   validateForm = this.fb.group({
@@ -27,7 +27,9 @@ export class BaseInfoComponent implements OnInit {
   constructor(
     public http: HttpClient,
     private ApiService: ApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private NameService: NameService,
+
   ) { }
 
  ngOnInit() {
@@ -41,15 +43,17 @@ async GetBaseInfo(){
     }
     await this.ApiService.GetMater(params).then((res:any)=>{
       this.baseInfo = res.items;
-      this.checkvalue.emit(this.baseInfo[0].name);  
-      this.validateForm = this.fb.group({
-        name: [this.baseInfo[0].name],
-        reelNumber: [this.baseInfo[0].reelNumber],
-        model: [this.baseInfo[0].model],
-        manufactoryId: [this.baseInfo[0].manufactoryId],
-        materialStandard: [this.baseInfo[0].materialStandard],
-        id:[this.materialId]
-        });  
+      if(this.baseInfo.length){
+        this.NameService.name.next(this.baseInfo[0].name)
+        this.validateForm = this.fb.group({
+          name: [this.baseInfo[0].name],
+          reelNumber: [this.baseInfo[0].reelNumber],
+          model: [this.baseInfo[0].model],
+          manufactoryId: [this.baseInfo[0].manufactoryId],
+          materialStandard: [this.baseInfo[0].materialStandard],
+          id:[this.materialId]
+          });  
+      }
     })  
   }
   //查询所有厂家

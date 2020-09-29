@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
-
+import { NameService } from '../../base-info/name.service'
 @Component({
   selector: "app-highcyclefatigue-table",
   templateUrl: "./highcyclefatigue-table.component.html",
@@ -11,9 +11,7 @@ import { ApiService } from "src/app/api.service";
 export class HighcyclefatigueTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
-  baseInfo = [];
-  mater = [];
-  two = [];
+  mater = ''; //试验结果中的牌号
   trialDataDetails = [];
   table = [
     {
@@ -82,53 +80,36 @@ export class HighcyclefatigueTableComponent implements OnInit {
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
-    private ApiService: ApiService
-  ) {}
+    private ApiService: ApiService,
+    private NameService:NameService
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+    this.NameService.changeName$.subscribe(n => {this.mater = n;console.log( this.mater)})
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
-    this.GetBaseInfo(this.materialId);
   }
-  public async GetBaseInfo(p) {
-    let param = { id: `${p}` };
-    await this.ApiService.GetMater(param).then((res: any) => {
-      this.baseInfo = res.items;
-    });
-    // console.log(this.baseInfo)
-    this.mater.push(this.baseInfo[0].name);
-  }
+
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/highCycleFatigueDataDetails/${materialId}`;
     await this.ApiService.getHighCycleFatigueDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        for (let a = 1; a < this.trialDataDetail.length; a++) {
-          this.two.push(this.trialDataDetail[a]);
+        if(this.trialDataDetail.length){
+            this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+            this.trialDataDetail[0].dateEnds =  this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
         }
-        // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split(
-        //   "T"
-        // )[0];
-        // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-        //   "T"
-        // )[0];
-        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-        this.trialDataDetail[0].dateEnds =  this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
       }
     );
   }
   public async GetTrialDataDetailss() {
-    await this.ApiService.getHighCycleFatigueDataDetailItems(
-      this.materialId
-    ).then((res: any) => {
+    await this.ApiService.getHighCycleFatigueDataDetailItems(this.materialId).then((res: any) => {
       this.trialDataDetails = res;
-      console.log(this.trialDataDetails);
     });
   }
   clickItem(tdIdx) {

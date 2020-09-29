@@ -36,12 +36,6 @@ export class GaussService {
    //标准差
    let deviations = data.map(x=>{ return x-mean})
    let stddev = Number(math.sqrt(deviations.map(this.square).reduce(this.sum)/(data.length-1)).toFixed(4))
-   //最大值
-  //  let max = math.max.apply(null,data)
-  //  //最小值
-  //  let min = math.min.apply(null,data)
-   //置信区间
-  //  this.length = data.length
    let xp = this.generaterArray(mean-3*stddev,mean+3*stddev,6*stddev/data.length)
    //正态分布图的横坐标
    let x = xp.map(val=>Number(val.toFixed(4)))
@@ -83,9 +77,8 @@ export class GaussService {
    return {pxLast,arrP,data1}
   }
   //画图
-   PlotPicture(data, xData, des,data1,data2,isVisible,options) {
-     isVisible.isVisible  = true;
-        options.options  = {
+   PlotPicture( des,data1,data2) {
+        let options  = {
           title: {
             text: des,
             x: "center",
@@ -93,7 +86,6 @@ export class GaussService {
           },
           xAxis: {
             type: "value",
-             //data: xData
              scale:true
           },
           yAxis: {
@@ -108,14 +100,14 @@ export class GaussService {
         
             },
     //概率分布条形图
-    {
+            {
                 data: data1,
                 type: "bar",
          
               }
           ]
         };
-
+    return options
       }
 
 }

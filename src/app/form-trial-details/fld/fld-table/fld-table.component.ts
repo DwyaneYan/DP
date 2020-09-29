@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 
@@ -48,44 +48,35 @@ export class FldTableComponent implements OnInit {
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService
-  ) {}
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
   }
-  public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/fLDDataDetailItems/${materialId}`;
-    await this.ApiService.getFLDDataDetailItems(this.materialId).then(
+  public  GetTrialDataDetails() {
+     this.ApiService.getFLDDataDetailItems(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        // console.log(this.trialDataDetail)
       }
     );
-    // this.nzScroll  = {x: '1300px' }
+
   }
-  public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/fLDDataDetails/${materialId}`;
-    await this.ApiService.getFLDDataDetails(this.materialId).then(
+  public  GetTrialDataDetailss() {
+     this.ApiService.getFLDDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetails = res;
-        // this.trialDataDetails[0].dates = this.trialDataDetails[0].dates?this.trialDataDetails[0].dates.split(
-        //   "T"
-        // )[0] : ''
-        // this.trialDataDetails[0].dateEnds = this.trialDataDetails[0].dateEnds?this.trialDataDetails[0].dateEnds.split(
-        //   "T"
-        // )[0]:''
+        if(this.trialDataDetails.length){
         this.trialDataDetails[0].dates = this.ApiService.handleTime(this.trialDataDetails[0].dates);
         this.trialDataDetails[0].dateEnds = this.ApiService.handleTime(this.trialDataDetails[0].dateEnds);
-        // console.log(this.trialDataDetail)
+        }
       }
     );
   }

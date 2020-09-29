@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 
@@ -16,7 +16,6 @@ export class ReboundTableComponent implements OnInit {
   trialDataDetailsss = [];
   table = [
     {
-      table: "table1",
       name: "trialDataDetail",
       nzScroll: { x: "1200px" },
       one: [
@@ -39,7 +38,6 @@ export class ReboundTableComponent implements OnInit {
   ];
   table1 = [
     {
-      table: "table2",
       name: "trialDataDetail",
       nzScroll: { x: "1050px" },
       width: ["150px", "150px", "150px", "150px", "150px", "150px", "150px"],
@@ -63,7 +61,6 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      table: "table3",
       width: ["150px", "150px", "150px", "150px", "150px", "150px"],
       name: "trialDataDetails",
       nzScroll: { x: "900px" },
@@ -85,7 +82,6 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      table: "table4",
       name: "trialDataDetailss",
       nzScroll: { x: "1030px" },
       width: [
@@ -126,7 +122,6 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      table: "table5",
       name: "trialDataDetailsss",
       width: ["150px", "150px", "100px", "100px", "100px", "100px"],
       nzScroll: { x: "700px" },
@@ -144,63 +139,50 @@ export class ReboundTableComponent implements OnInit {
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService
-  ) {}
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
     this.GetTrialDataDetailsss();
     this.GetTrialDataDetailssss();
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetails/${materialId}`;
     await this.ApiService.getReboundDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        // console.log(this.trialDataDetail)
       }
     );
-    // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
-    // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-    //   "T"
-    // )[0];
-    this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-    this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    if(this.trialDataDetail.length){
+        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    }
   }
   public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems/${materialId}`;
     await this.ApiService.getReboundDataDetailItems(this.materialId).then(
       (res: any) => {
         this.trialDataDetails = res;
-        // console.log(this.trialDataDetails)
       }
     );
   }
   public async GetTrialDataDetailsss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems2/${materialId}`;
     await this.ApiService.getReboundDataDetailItems2(this.materialId).then(
       (res: any) => {
         this.trialDataDetailss = res;
-        console.log(this.trialDataDetailss);
       }
     );
   }
   public async GetTrialDataDetailssss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems3/${materialId}`;
     await this.ApiService.getReboundDataDetailItems3(this.materialId).then(
       (res: any) => {
         this.trialDataDetailsss = res;
-        console.log(this.trialDataDetailsss);
       }
     );
   }

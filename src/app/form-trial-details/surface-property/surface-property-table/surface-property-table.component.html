@@ -1,22 +1,20 @@
-<div class="dataTable">
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25 layout-fixed" nzBordered
-        [nzScroll]="{ x: '1600px' }">
+<div id="dataTable">
+    <nz-table [nzData]='trialDataDetailss' [nzFrontPagination]="false" class="mt25 layout-fixed" nzBordered [nzScroll]="{ x: '1600px' }">
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'110px':'200px'"
-                    *ngFor="let data of table[0].one;let thIdx = index">
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'110px':'200px'" *ngFor="let data of table[0].one;let thIdx = index">
                     {{data}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td *ngFor="let data of table[0].key;let tdIdx = index"
-                    [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
-                    {{trialDataDetailss[0]?trialDataDetailss[0][data]:''}}</td>
+            <tr *ngFor="let detail of trialDataDetailss.slice(0,1)">
+                <td *ngFor="let data of table[0].key;let tdIdx = index" [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
+                    {{detail[data]}}</td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" nzTitle="镀层重量" nzBordered>
+    <!-- 镀层重量 START -->
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzTitle="镀层重量" nzBordered>
         <thead>
             <tr>
                 <th nzWidth="200px" *ngFor="let data of table[1].one">{{data}}</th>
@@ -28,15 +26,16 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered class="mt25" [nzWidthConfig]="widthConfig"
-        [nzScroll]="{ x: '1360px' }">
+    <!-- 镀层重量 END -->
+    <!-- 粗糙度和峰值密度 START -->
+    <nz-table [nzData]="trialDataDetails" [nzFrontPagination]="false" nzBordered class="mt25" [nzWidthConfig]="widthConfig" [nzScroll]="{ x: '1360px' }">
         <thead>
             <tr>
                 <th colspan="2" rowspan="2" *ngFor="let data1 of table[2].one;let i=index">{{data1}}</th>
                 <th [attr.colspan]="two[i]" *ngFor="let data2 of three;let i=index">{{data2}}</th>
             </tr>
             <tr>
-                <th [attr.colspan]="c">{{trialDataDetails[0]?.raRequirement}}</th>
+                <th [attr.colspan]="trialDataDetails.length">{{trialDataDetails[0]?.raRequirement}}</th>
             </tr>
         </thead>
         <tbody>
@@ -60,11 +59,13 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]=[{}] [nzFrontPagination]="false" nzBordered [nzWidthConfig]="widthConfig1" class="mt25">
+    <!-- 粗糙度和峰值密度 END -->
+    <!-- 公称厚度 START  -->
+    <nz-table [nzData]='trialDataDetailsss' [nzFrontPagination]="false" nzBordered [nzWidthConfig]="widthConfig1" class="mt25">
         <thead>
             <tr>
                 <th rowspan="2">公称厚度</th>
-                <th [attr.colspan]="d" class="one">{{trialDataDetailsss[0]?.sizeRequirement}}</th>
+                <th [attr.colspan]="trialDataDetailsss.length">{{trialDataDetailsss[0]?.sizeRequirement}}</th>
             </tr>
             <tr>
                 <th *ngFor="let data of trialDataDetailsss">

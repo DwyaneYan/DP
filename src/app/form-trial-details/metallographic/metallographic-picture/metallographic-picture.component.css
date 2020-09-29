@@ -1,4 +1,4 @@
-.all-box {
+/* .all-box {
     margin-left: -40px;
     overflow: hidden;
 }
@@ -28,7 +28,7 @@
 }
 
 
-/* 图片居中 */
+
 
 img.item {
     max-width: 100%;
@@ -291,4 +291,4 @@ div /deep/ .dialog-tool .previous-dialog:hover {
     100% {
         opacity: 1;
     }
-}
+} */

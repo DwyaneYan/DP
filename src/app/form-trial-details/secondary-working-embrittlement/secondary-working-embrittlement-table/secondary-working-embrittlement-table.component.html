@@ -1,22 +1,19 @@
-<div class="dataTable">
-    <nz-table class="mt25 layout-fixed" [nzData]=[{}] [nzFrontPagination]="false" nzBordered
-        [nzScroll]="{x: '1200px' }">
+<div id="dataTable">
+    <nz-table class="mt25 layout-fixed" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered [nzScroll]="{x: '1200px' }">
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'110px':'200px'"
-                    *ngFor="let data of table[0].one;let thIdx=index">{{data}}</th>
+                <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'110px':'200px'" *ngFor="let data of table[0].one;let thIdx=index">{{data}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td *ngFor="let data of table[0].key;let tdIdx = index"
-                    [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
-                    {{trialDataDetail[0]?trialDataDetail[0][data]:''}}</td>
+            <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
+                <td *ngFor="let data of table[0].key;let tdIdx = index" [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
+                    {{detail[data]}}</td>
             </tr>
         </tbody>
     </nz-table>
 
-    <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered>
+    <nz-table class="mt25" [nzData]='trialDataDetails' [nzFrontPagination]="false" nzBordered>
         <thead>
             <tr>
                 <th nzWidth="110px" *ngFor="let data of table[1].one ">{{data}}</th>

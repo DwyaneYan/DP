@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router } from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
 
@@ -9,9 +9,9 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./bake-hardening-table.component.css']
 })
 export class BakeHardeningTableComponent implements OnInit {
-public materialId
-trialDataDetail
-trialDataDetails
+public materialId = ''
+trialDataDetail = [] //基本信息
+trialDataDetails = [] //详细试验结果
 table=[{
   table:"table1",
   name:"trialDataDetail",
@@ -23,40 +23,37 @@ table=[{
 name:"trialDataDetails",
 one:["烘烤温度及时间","Rt2.0(MPa)","Rp0.2(MPa)","Rm(MPa)","BH2(MPa)"],
 key:["temperatureTimes","rt","rp","rm","bH2"],
-//nzScroll :{x: '1000px' }
-
 }]
-  constructor(private router: Router,
+  constructor(private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
+    ) { 
+      this.route.pathFromRoot[1].params.subscribe(params => {
+        this.materialId = params['materialId'];
+        })
+    }
 
-    ) { }
-
-  ngOnInit() { this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
+  ngOnInit() { 
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
   }
+  //烘烤硬化试验基本信息
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetails/${materialId}`;
     await this.ApiService.getBakeHardeningDataDetails(this.materialId)
     .then((res: any) => {
-      this.trialDataDetail = res
-      // this.trialDataDetail[0].dates= this.trialDataDetail[0].dates.split("T")[0];
-      // this.trialDataDetail[0].dateEnds= this.trialDataDetail[0].dateEnds.split("T")[0];  
+      this.trialDataDetail = res //如果这条材料没有这个试验项目信息
+      if(this.trialDataDetail.length){
       this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
       this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+      }
     })    
   }
   public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/bakeHardeningDataDetailItems/${materialId}`;
     await this.ApiService.getBakeHardeningDataDetailItems(this.materialId)
     .then((res: any) => {
-      this.trialDataDetails = res
-      console.log(this.trialDataDetails)
+      if(res.length){
+        this.trialDataDetails = res
+      }
     })    
   }
 }
