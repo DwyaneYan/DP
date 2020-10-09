@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/api.service';
 export class MetallographicTableComponent implements OnInit {
   public materialId
   trialDataDetail=[]
+  loading = true;
   table=[{
     one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
     key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
@@ -36,7 +37,8 @@ export class MetallographicTableComponent implements OnInit {
   public async GetTrialDataDetails() {
     await this.ApiService.getMetallographicDataDetails(this.materialId)
     .then((res: any) => {
-      this.trialDataDetail = res
+      this.trialDataDetail = res;
+      this. loading = false;
       if(this.trialDataDetail.length){
             this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
             this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);

@@ -11,6 +11,7 @@ import { ApiService } from "src/app/api.service";
 export class DentResistanceTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
+  loading = true
   table = [
     {
       table: "table1",
@@ -57,6 +58,7 @@ export class DentResistanceTableComponent implements OnInit {
     await this.ApiService.getDentResistanceDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
+        this.loading = false
         if(this.trialDataDetail.length){
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);

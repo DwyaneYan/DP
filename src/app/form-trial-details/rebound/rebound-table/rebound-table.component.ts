@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
+import{clickItem}from "../../../picture"
 
 @Component({
   selector: "app-rebound-table",
@@ -14,33 +15,38 @@ export class ReboundTableComponent implements OnInit {
   trialDataDetails = [];
   trialDataDetailss = [];
   trialDataDetailsss = [];
-  table = [
+  loading = true
+  loading1 = true
+  loading2 = true
+  loading3 = true
+  table1 = [    
+    {
+    name: "trialDataDetail",
+    loading:"loading",
+    nzScroll: '',
+    one: [
+      "测试机构",
+      "开始检测日期",
+      "检测结束日期",
+      "执行标准",
+      "试验设备",
+      "试验方法",
+    ],
+    key: [
+      "testOrganization",
+      "dates",
+      "dateEnds",
+      "standard",
+      "equipment",
+      "testMethod",
+    ],
+    width: ["110px", "110px", "110px", "150px", "150px", ""], //留一列不设置宽度，他的宽度自适应，不然固定宽度都不会生效
+  },
     {
       name: "trialDataDetail",
-      nzScroll: { x: "1200px" },
-      one: [
-        "测试机构",
-        "开始检测日期",
-        "检测结束日期",
-        "执行标准",
-        "试验设备",
-        "试验方法",
-      ],
-      key: [
-        "testOrganization",
-        "dates",
-        "dateEnds",
-        "standard",
-        "equipment",
-        "testMethod",
-      ],
-    },
-  ];
-  table1 = [
-    {
-      name: "trialDataDetail",
+      loading:"loading",
       nzScroll: { x: "1050px" },
-      width: ["150px", "150px", "150px", "150px", "150px", "150px", "150px"],
+      width: ["150px", "150px", "150px", "150px", "150px", "150px", ""],
       one: [
         "回弹试验类型",
         "弯曲角度",
@@ -61,9 +67,10 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      width: ["150px", "150px", "150px", "150px", "150px", "150px"],
+      loading:"loading1",
+      width: ["", "150px", "150px", "150px", "150px", "150px"],
       name: "trialDataDetails",
-      nzScroll: { x: "900px" },
+      nzScroll: '',
       one: [
         "方向（沿轧向或者垂直轧向）",
         "厚度 t/mm",
@@ -82,6 +89,7 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
+      loading:"loading2",
       name: "trialDataDetailss",
       nzScroll: { x: "1030px" },
       width: [
@@ -94,7 +102,7 @@ export class ReboundTableComponent implements OnInit {
         "80px",
         "80px",
         "80px",
-        "100px",
+        "",
       ],
       one: [
         "方向（沿轧向或者垂直轧向）",
@@ -122,9 +130,10 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
+      loading:"loading3",
       name: "trialDataDetailsss",
-      width: ["150px", "150px", "100px", "100px", "100px", "100px"],
-      nzScroll: { x: "700px" },
+      width: ["", "150px", "100px", "100px", "100px", "100px"],
+      nzScroll: '',
       one: [
         "方向（沿轧向或者垂直轧向）",
         "厚度 t/mm",
@@ -138,6 +147,7 @@ export class ReboundTableComponent implements OnInit {
   ];
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
+  clickItem = clickItem
   constructor(
     private route: ActivatedRoute,
     public http: HttpClient,
@@ -158,6 +168,7 @@ export class ReboundTableComponent implements OnInit {
     await this.ApiService.getReboundDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
+        this.loading = false
       }
     );
     if(this.trialDataDetail.length){
@@ -168,6 +179,7 @@ export class ReboundTableComponent implements OnInit {
   public async GetTrialDataDetailss() {
     await this.ApiService.getReboundDataDetailItems(this.materialId).then(
       (res: any) => {
+        this.loading1 = false
         this.trialDataDetails = res;
       }
     );
@@ -176,26 +188,16 @@ export class ReboundTableComponent implements OnInit {
     await this.ApiService.getReboundDataDetailItems2(this.materialId).then(
       (res: any) => {
         this.trialDataDetailss = res;
+        this.loading2 = false
       }
     );
   }
   public async GetTrialDataDetailssss() {
     await this.ApiService.getReboundDataDetailItems3(this.materialId).then(
       (res: any) => {
+        this.loading3 = false
         this.trialDataDetailsss = res;
       }
     );
-  }
-  //点击行中的列项展开信息
-  clickItem(firstTable, tdIdx) {
-    if (!firstTable) {
-      return;
-    }
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }

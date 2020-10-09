@@ -17,7 +17,7 @@ export class BendingTableComponent implements OnInit {
   table3=['sampleCode','width','thickness','diameter','length','span','bendingStrength','nonProportionalBendingStrenth','bendingOfElasticity']
   table4=['150px','100px','100px','100px','90px','80px','140px','150px','150px']
   table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
- 
+  loading = true
   isVisible = false;  //弯曲各样本对比框
   options = {}; //指定图表的配置项和数据
 
@@ -42,6 +42,7 @@ export class BendingTableComponent implements OnInit {
      this.ApiService.getBendingDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
+      this.loading = false
       if(this.trialDataDetail.length){
       this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
       this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);

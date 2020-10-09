@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
-import{ unique1 } from '../../../picture'
+import{ unique1,clickItem } from '../../../picture'
+
 @Component({
   selector: "app-secondary-working-embrittlement-table",
   templateUrl: "./secondary-working-embrittlement-table.component.html",
@@ -14,6 +15,8 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   trialDataDetails = [];
   serials = []; //去重后的杯子编号
   serialss = []; //渲染数据
+  loading = true
+  loadings = true
   serialsss = [];//去重后的试验温度
   table = [
     {
@@ -33,12 +36,14 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
         "equipment",
         "testMethod",
       ],
+      width:["110px", "110px", "110px", "150px", "150px", ""]
     },
     {
       one: ["试验温度℃"],
       key: ["temperature"],
     },
   ];
+  clickItem = clickItem
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   constructor(
@@ -51,7 +56,6 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
       })
   }
   ngOnInit() {
-
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
   }
@@ -61,6 +65,7 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
     ).then((res: any) => {
       this.trialDataDetail = res;
     });
+  this.loading = false
     if(this.trialDataDetail.length){
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
@@ -68,7 +73,8 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   }
   public async GetTrialDataDetailss() {
     await this.ApiService.getSecondaryWorkingEmbrittlementDataDetailItems(this.materialId).then((res: any) => {
-      this.trialDataDetails = res;
+  this.loadings = false
+  this.trialDataDetails = res;
       let arry1 = [],arry4 = [];
       this.trialDataDetails.forEach((val) => {
         arry1.push(val.serialNumber);
@@ -87,14 +93,5 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
         }
       }
     });
-  }
-  //点击行中的列项展开信息
-  clickItem(tdIdx) {
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }

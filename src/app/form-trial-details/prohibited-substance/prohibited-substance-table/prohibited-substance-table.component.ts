@@ -17,6 +17,7 @@ export class ProhibitedSubstanceTableComponent implements OnInit {
  ys=[]//元素名称
  bh=[] //样件编号
  last=[] //渲染数据
+ loading = true
   table=[{
     one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
     key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
@@ -33,7 +34,8 @@ export class ProhibitedSubstanceTableComponent implements OnInit {
 
   ngOnInit() {
     GetTrialDataDetails('getProhibitedSubstanceDataDetails',this.materialId,this.ApiService).then(res=>{
-      this.bh = res.sampleCode,this.arr3 = res.requirement,this.ys = res.element,this.last = res.data,this.trialDataDetail = res.trialDataDetail
+      this.bh = res.sampleCode,this.arr3 = res.requirement,this.ys = res.element,this.last = res.data,this.trialDataDetail = res.trialDataDetail;
+      this.loading = false
     })
   }
 

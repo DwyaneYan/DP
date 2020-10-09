@@ -15,16 +15,19 @@ export class PaintingTableComponent implements OnInit {
     one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
     key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
     nzScroll :{x: '1200px' },
-    method:"getPaintingDataDetails"
+    method:"getPaintingDataDetails",
+    loading:true
     },
     {
       name:"trialDataDetail",
+      loading:true,
       one:["磷化膜结晶尺寸","磷化膜覆盖率"],
       key:["sizeText","coverRatio"],
       nzScroll :{x: '400px' },
       method:"getPaintingDataDetailPhosphatingItems"
     },
     {
+      loading:true,
       name:"trialDataDetails",
       one:["面积（m2）","初始重量（g）","试验后重量（g）","膜重（g/m2）"],
       key:["area","originalWeight","afterWeight","membraneWeight"],
@@ -33,6 +36,7 @@ export class PaintingTableComponent implements OnInit {
 
     },
     {
+      loading:true,
       name:"trialDataDetailss",
       one:["Ip（s-1）","IH（s-1）","P比"],
       key:["ip","ih","ratio"],
@@ -41,6 +45,7 @@ export class PaintingTableComponent implements OnInit {
 
     },
     {
+      loading:true,
       name:"trialDataDetailsssss",
       title:"电泳漆膜粗糙度",
       one:["Ra（μm）","Rz（μm）"],
@@ -50,6 +55,7 @@ export class PaintingTableComponent implements OnInit {
 
     },
     {
+      loading:true,
       name:"trialDataDetailsss",
       title:"电泳漆膜厚度（μm）",
       key:["pointThickOne","pointThickTwo","pointThickThree"],
@@ -57,6 +63,7 @@ export class PaintingTableComponent implements OnInit {
       method:"getPaintingDataDetailElectrophoreticItems"
       },
       {
+      loading:true,
       name:"trialDataDetailsssssss",
       title:"附着力",
       key:["pointAdhesionOne","pointAdhesionTwo","pointAdhesionThree"],
@@ -64,20 +71,22 @@ export class PaintingTableComponent implements OnInit {
       method:"getPaintingDataDetailAdhesionItems"
       },
       {
+      loading:true,
       name:"trialDataDetailssssssss",
       title:"耐湿热性能",
       key:["pointOne","pointTwo","pointThree"],
       width:['120px', '120px','120px'],
       method:"getPaintingDataDetailDampHeatItems"
-
       },
       {
+        loading:true,
         name:"trialDataDetailssss",
         title:"电泳漆膜铅笔硬度",
         key:"pointHardness",
         method:"getPaintingDataDetailHardnessItems"
         },
         {
+        loading:true,
         name:"trialDataDetailssssss",
         title:"抗石击性能",
         key:"pointStrength",
@@ -118,6 +127,7 @@ export class PaintingTableComponent implements OnInit {
     for(let i = 0; i<length;i++){
       this.ApiService[this.table[i].method](this.materialId).then((res: any) => {
         this[this.table[i].name] = res;
+        this.table[i].loading = false
         if(i == 0 && res.length){
           this[this.table[i].name][0].dates =  this.ApiService.handleTime(this[this.table[i].name][0].dates);
           this[this.table[i].name][0].dateEnds = this.ApiService.handleTime(this[this.table[i].name][0].dateEnds);

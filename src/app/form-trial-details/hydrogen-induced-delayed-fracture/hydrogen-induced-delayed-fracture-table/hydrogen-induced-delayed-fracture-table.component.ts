@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
+import{clickItem}from "../../../picture"
 
 @Component({
   selector: "app-hydrogen-induced-delayed-fracture-table",
@@ -11,17 +12,20 @@ import { ApiService } from "src/app/api.service";
 export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
+  clickItem = clickItem;
+  loading = true;
+  loadings = true;
   trialDataDetails = [];
   table = [
     {
-      table: "table1",
       one: ["测试机构", "开始检测日期", "检测结束日期", "执行标准"],
       key: ["testOrganization", "dates", "dateEnds", "standard"],
+      width: ["110px", "110px", "110px", ""]
     },
     {
-      table: "table2",
       one: ["氢脆试验项目", "试验设备", "溶液类别", "试验时间", "试验方法"],
       key: ["testName", "equipment", "liquorType", "testTime", "testMethod"],
+      width: ["150px", "110px", "110px", "110px",'']
     },
   ];
   table1 = [
@@ -58,6 +62,7 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
     await this.ApiService.getHydrogenInducedDelayedFractureDataDetails(this.materialId).then((res: any) => {
       this.trialDataDetail = res;
     });
+  this.loading = false;
     if(this.trialDataDetail.length){
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
@@ -68,18 +73,20 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
       this.materialId
     ).then((res: any) => {
       this.trialDataDetails = res;
+  this.loadings = false;
+
     });
   }
-  //点击行中的列项展开信息
-  clickItem(firstTable, tdIdx) {
-    if (!firstTable) {
-      return;
-    }
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
-  }
+  // //点击行中的列项展开信息
+  // clickItem(firstTable, tdIdx) {
+  //   if (!firstTable) {
+  //     return;
+  //   }
+  //   this.activeTdIdx = tdIdx;
+  //   if (this.tableCellCls) {
+  //     this.tableCellCls = "";
+  //   } else {
+  //     this.tableCellCls = "ellipsis";
+  //   }
+  // }
 }

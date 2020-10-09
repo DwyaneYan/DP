@@ -18,6 +18,8 @@ export class CompressionTableComponent implements OnInit {
   table3=['sampleCode','width','thickness','diameter','length','compressiveStrength','nonProportionalCompressStrenth','compressOfElasticity']
   table4=['150px','100px','100px','100px','100px','150px','150px','150px']
   table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
+  loading = true;
+
   constructor(    private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -33,7 +35,8 @@ export class CompressionTableComponent implements OnInit {
   public async GetTrialDataDetails() {
     await this.ApiService.getCompressDataDetails(this.materialId)
     .then((res: any) => {
-      this.trialDataDetail = res
+      this.trialDataDetail = res;
+      this.loading = false;
       if(this.trialDataDetail.length){
             this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
             this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);

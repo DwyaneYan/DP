@@ -1,5 +1,5 @@
 <div id="dataTable">
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="layout-fixed mt25" [nzScroll]="{ x: '1200px' }">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="layout-fixed mt25" [nzScroll]="{ x: '1200px' }" [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" *ngFor="let data of table[0].one;let thIdx = index">
@@ -16,7 +16,7 @@
         </tbody>
     </nz-table>
 
-    <nz-table [nzData]="trialDataDetail" [nzFrontPagination]="false" class="tablebox mt25" nzBordered [nzScroll]="{ y: '700px' }">
+    <nz-table [nzData]="trialDataDetail" [nzFrontPagination]="false" class="tablebox mt25" nzBordered [nzScroll]="{ y: '700px' }" [nzLoading]="loading">
         <thead>
             <tr>
                 <th nzWidth="120px">样件编号</th>

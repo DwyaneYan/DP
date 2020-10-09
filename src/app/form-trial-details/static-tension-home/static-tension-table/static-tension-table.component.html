@@ -1,9 +1,9 @@
 <div id="dataTable">
 
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="mt25">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="mt25" [nzLoading]="loading">
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" class="one" *ngFor="let data1 of table1;let thIdx = index">
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" *ngFor="let data1 of table1;let thIdx = index">
                     {{data1}}</th>
             </tr>
         </thead>
@@ -13,7 +13,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]='this[value]' [nzFrontPagination]="false" class="mt25 mb25" [nzScroll]="{x: '2160px', y: '700px' }" nzBordered id="one" *ngFor="let value of data;let i = index">
+    <nz-table [nzData]='this[value]' [nzFrontPagination]="false" class="mt25 mb25" [nzScroll]="{x: '2160px', y: '700px' }" nzBordered *ngFor="let value of data;let i = index" [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="table3[i]" class="one" *ngFor="let data2 of table2;let i = index">

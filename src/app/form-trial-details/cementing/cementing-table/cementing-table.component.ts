@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/api.service';
 export class CementingTableComponent implements OnInit {
   public materialId
   trialDataDetail = [] //胶结试验结果
+  loading = true
   table=[{
     table:"table1",
     one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
@@ -37,6 +38,7 @@ key:["sampleCode","length","width","cementingWidth","mpa","failureMode"]
      this.ApiService.getCementingDataDetails( this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res
+      this.loading = false
       if(this.trialDataDetail.length){
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds); 

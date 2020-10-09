@@ -1,5 +1,5 @@
 <div id="dataTable">
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered>
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" *ngFor="let data1 of table1;let thIdx = index">{{data1}}</th>
@@ -12,7 +12,7 @@
         </tbody>
     </nz-table>
 
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="mt25">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="mt25" [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="table4[i]" *ngFor="let data2 of table2;let i=index">{{data2}}</th>

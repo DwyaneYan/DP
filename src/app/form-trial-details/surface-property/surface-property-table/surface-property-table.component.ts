@@ -88,7 +88,10 @@ export class SurfacePropertyTableComponent implements OnInit {
   edgeThickness3 = [];//板宽1/2
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
-
+  loading = true;
+  loading1 = true
+  loading2 = true
+  loading3 = true
   constructor(
     private route: ActivatedRoute,
     public http: HttpClient,
@@ -106,16 +109,18 @@ export class SurfacePropertyTableComponent implements OnInit {
     this.GetTrialDataDetailssss();
   }
   //镀层重量
-  public async GetTrialDataDetails() {
-    await this.ApiService.getSurfacePropertyCoatingWeights(this.materialId).then((res: any) => {
+  public  GetTrialDataDetails() {
+     this.ApiService.getSurfacePropertyCoatingWeights(this.materialId).then((res: any) => {
       this.trialDataDetail = res;
+      this.loading1 = false
     });
   }
   //粗糙度和峰值密度
-  public async GetTrialDataDetailss() {
-    await this.ApiService.getRoughnessAndPeakDensity(this.materialId).then(
+  public  GetTrialDataDetailss() {
+     this.ApiService.getRoughnessAndPeakDensity(this.materialId).then(
       (res: any) => {
         this.trialDataDetails = res;
+        this.loading2 = false
         let one = classitem(this.trialDataDetails,"position","position");
         for (let a = 0; a < one.length; a++) {
           one[a].List.map((val) => {
@@ -137,39 +142,17 @@ export class SurfacePropertyTableComponent implements OnInit {
         this.trialDataDetailss = res;
       }
     );
-      if(this.trialDataDetailss.length){
-          this.trialDataDetailss[0].dates = this.ApiService.handleTime(this.trialDataDetailss[0].dates);
-          this.trialDataDetailss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailss[0].dateEnds);
-      }
+    this.loading = false;
+    if(this.trialDataDetailss.length){
+        this.trialDataDetailss[0].dates = this.ApiService.handleTime(this.trialDataDetailss[0].dates);
+        this.trialDataDetailss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailss[0].dateEnds);
+    }
   }
-  // classitem(arry1, p) {
-  //   let arry = [];
-  //   arry1.map((mapItem) => {
-  //     if (arry.length == 0) {
-  //       arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] });
-  //     } else {
-  //       let res = arry.some((item) => {
-  //         //判断相同Position，有就添加到当前项
-  //         if (item.highSpeedStrechDataDetailId == mapItem[p]) {
-  //           item.List.push(mapItem);
-  //           return true;
-  //         }
-  //       });
-  //       if (!res) {
-  //         //如果没找相同Position添加一个新对象
-  //         arry.push({
-  //           highSpeedStrechDataDetailId: mapItem[p],
-  //           List: [mapItem],
-  //         });
-  //       }
-  //     }
-  //   });
-  //   return arry;
-  // }
 
-  public async GetTrialDataDetailssss() {
-    await this.ApiService.getSizeTolerance(this.materialId).then((res: any) => {
+  public  GetTrialDataDetailssss() {
+     this.ApiService.getSizeTolerance(this.materialId).then((res: any) => {
       this.trialDataDetailsss = res;
+      this.loading3 = false
       this.trialDataDetailsss.map((val) => {
         this.edgeThickness1.push(val.edgeThickness1);
         this.edgeThickness2.push(val.edgeThickness2);

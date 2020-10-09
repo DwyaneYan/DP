@@ -13,6 +13,9 @@ export class PhysicalperformanceTableComponent implements OnInit {
   trialDataDetail = []
   trialDataDetails = []
   trialDataDetailss = []
+  loading = true;
+  loadingss = true
+  loadings = true
   table = [{
     one: ["测试机构", '开始检测日期', '检测结束日期', "执行标准", "试验设备", "试验方法"],
     key: ["testOrganization", "dates", "dateEnds", "standard", "equipment", "testMethod"],
@@ -25,11 +28,13 @@ export class PhysicalperformanceTableComponent implements OnInit {
   },
   {
     table: "trialDataDetailss",
+    loading:'loadingss',
     one: ["温度（℃）", "热膨胀系数α（1/℃）"],
     key: ["temperatureRange", "thermalExpansion"]
   },
   {
     table: "trialDataDetails",
+    loading:'loadings',
     one: ["温度（℃）", "导热系数λ（W/(cm゜C)）"],
     key: ["temperature", "thermalConductivity"]
   },]
@@ -51,6 +56,7 @@ export class PhysicalperformanceTableComponent implements OnInit {
     await this.ApiService.getPhysicalPerformanceDataDetails(this.materialId)
       .then((res: any) => {
         this.trialDataDetail = res;
+        this.loading = false;
         if(this.trialDataDetail.length){
           this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
           this.trialDataDetail[0].dateEnds =  this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
@@ -58,17 +64,20 @@ export class PhysicalperformanceTableComponent implements OnInit {
       })
   }
   // 导热系数
-  public async GetTrialDataDetailss() {
-    await this.ApiService.getThermalConductivitys(this.materialId)
+  public  GetTrialDataDetailss() {
+     this.ApiService.getThermalConductivitys(this.materialId)
       .then((res: any) => {
-        this.trialDataDetails = res
+        this.trialDataDetails = res;
+        this.loadings = false
+  
       })
   }
   // 热膨胀系数
-  public async GetTrialDataDetailsss() {
-    await this.ApiService.getThermalExpansions(this.materialId)
+  public  GetTrialDataDetailsss() {
+     this.ApiService.getThermalExpansions(this.materialId)
       .then((res: any) => {
-        this.trialDataDetailss = res
+        this.trialDataDetailss = res;
+        this.loadingss = false
       })
   }
 }

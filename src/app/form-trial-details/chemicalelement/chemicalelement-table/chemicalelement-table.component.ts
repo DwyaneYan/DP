@@ -29,6 +29,7 @@ export class ChemicalelementTableComponent implements OnInit {
   ]
   isVisible = false; //对比框
   options = {}; //折线图配置项
+  loading = true;
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   constructor(private route: ActivatedRoute,
@@ -42,7 +43,9 @@ export class ChemicalelementTableComponent implements OnInit {
 
   ngOnInit() {
       GetTrialDataDetails('getChemicalElementDataDetails',this.materialId,this.ApiService).then(res=>{ this.ys = res.element;this.arr3 = res.requirement;this.bh = res.sampleCode;
-      this.last = res.data;this.trialDataDetail = res.trialDataDetail})
+      this.last = res.data;this.trialDataDetail = res.trialDataDetail;
+      this.loading = false;
+    })
   }
   contrastTable(i,title) {
     let data = []

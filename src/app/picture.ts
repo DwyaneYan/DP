@@ -259,4 +259,19 @@ async function GetTrialDataDetails(methonName,materialId,ApiServices) {
     })
   return {requirement,element,sampleCode,data,trialDataDetail}
 }
-export {getname,common,button,enlarge,menu,PlotPicture,groupBy,max,exist,classitem,unique1,notempty,GetTrialDataDetails}
+  //点击行中的列项展开信息
+ function clickItem(firstTable, tdIdx) {
+   console.log(this.activeTdIdx,this.tableCellCls)
+    if (!firstTable) {
+      return;
+    }
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
+   console.log(this.activeTdIdx,this.tableCellCls)
+
+  }
+export {getname,common,button,enlarge,menu,PlotPicture,groupBy,max,exist,classitem,unique1,notempty,GetTrialDataDetails,clickItem}

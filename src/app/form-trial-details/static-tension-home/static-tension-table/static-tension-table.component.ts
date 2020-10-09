@@ -16,13 +16,15 @@ export class StaticTensionTableComponent implements OnInit {
   trialDataDetail1=[] //小批量数据
   trialDataDetail2=[] //带头带中带尾数据
   isVisible = false;
-  options = {}
-table1=['测试机构','开始检测日期','检测结束日期','执行标准','试验设备','试验方法','标距(mm)']
-table2=["位置",'方向','试样厚度a(mm)','屈服强度Rp(MPa)','抗拉强度Rm(MPa)','应变硬化指数(n)','断后伸长率A(％)','塑性应变比γ(%)','弹性模量E(MPa)','泊松比μ','最大力Fm(kN)','烘烤硬化值(BH)','180°弯曲试验(弯曲压头直径D)','V型冲击试验温度(℃)','V型冲击试验吸收能量(KV2/J)']
-table3=['130px','130px','150px','150px','150px','150px','150px','150px','150px','100px','150px','150px','150px','150px','150px']
-table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
-table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod","gaugeDistance"]
-data=["trialDataDetail1","trialDataDetail2"]
+  options = {};
+  loading = true; //第一张表
+  table1=['测试机构','开始检测日期','检测结束日期','执行标准','试验设备','试验方法','标距(mm)']
+  table2=["位置",'方向','试样厚度a(mm)','屈服强度Rp(MPa)','抗拉强度Rm(MPa)','应变硬化指数(n)','断后伸长率A(％)','塑性应变比γ(%)','弹性模量E(MPa)','泊松比μ','最大力Fm(kN)','烘烤硬化值(BH)','180°弯曲试验(弯曲压头直径D)','V型冲击试验温度(℃)','V型冲击试验吸收能量(KV2/J)']
+  table3=['130px','130px','150px','150px','150px','150px','150px','150px','150px','100px','150px','150px','150px','150px','150px']
+  table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
+  table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod","gaugeDistance"]
+  data=["trialDataDetail1","trialDataDetail2"]
+
 
   contrastTable(params, des,c) {
         let data = [];
@@ -60,20 +62,22 @@ data=["trialDataDetail1","trialDataDetail2"]
   public async GetTrialDataDetails() {
     await this.ApiService.getStaticTensionDataDetails(this.materialId)
     .then((res: any) => {    
-    this.trialDataDetail = res
+    this.trialDataDetail = res;
     }) 
+    this.loading = false;
     if(this.trialDataDetail.length){
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates)
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds)
     }
-  this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
-  this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
+    this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
+    this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
   }
   
   public async GetTrialDataDetail() {
     await this.ApiService.getStaticTensionDataDetailRequirements(this.materialId)
     .then((res: any) => {    
-    this.trialDataDetails = res
+        this.trialDataDetails = res;
+
     }) 
   }
 }
