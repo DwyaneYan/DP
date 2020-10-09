@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
-
+import { classitem } from "../../../picture"
 @Component({
   selector: "app-surface-property-table",
   templateUrl: "./surface-property-table.component.html",
@@ -10,10 +10,10 @@ import { ApiService } from "src/app/api.service";
 })
 export class SurfacePropertyTableComponent implements OnInit {
   public materialId;
-  trialDataDetail = [];
-  trialDataDetails = [];
-  trialDataDetailss = [];
-  trialDataDetailsss = [];
+  trialDataDetail = []; //镀层重量
+  trialDataDetails = []; //粗糙度和峰值密度
+  trialDataDetailss = []; //基本信息
+  trialDataDetailsss = []; //公称厚度
   table = [
     {
       one: [
@@ -62,39 +62,9 @@ export class SurfacePropertyTableComponent implements OnInit {
       key: ["raRequirement"],
     },
   ];
-  tableCellCls = "ellipsis";
-  activeTdIdx = 0;
-  constructor(
-    private router: Router,
-    public http: HttpClient,
-    public ApiService: ApiService
-  ) {}
-
-  ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
-
-    this.GetTrialDataDetails();
-    this.GetTrialDataDetailss();
-    this.GetTrialDataDetailsss();
-    this.GetTrialDataDetailssss();
-  }
-  //镀层重量
-  public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyCoatingWeights/${materialId}`;
-    await this.ApiService.getSurfacePropertyCoatingWeights(
-      this.materialId
-    ).then((res: any) => {
-      this.trialDataDetail = res;
-      console.log(this.trialDataDetail);
-    });
-  }
-  one = [];
+  
   two = []; //每个位置的数据个数
-  three = [];
-  c = 0;
+  three = []; //位置
   widthConfig1 = ["150px", "150px", "150px", "150px", "150px"];
   widthConfig = [
     "100px",
@@ -109,88 +79,80 @@ export class SurfacePropertyTableComponent implements OnInit {
     "120px",
     "120px",
   ];
-  aboveRoughness = [];
-  abovePeakDensity = [];
-  belowRoughness = [];
-  belowPeakDensity = [];
+  aboveRoughness = []; //上表粗糙度
+  abovePeakDensity = []; //上峰值密度
+  belowRoughness = []; //下粗糙度
+  belowPeakDensity = []; //下峰值密度
+  edgeThickness1 = [];//距边部40mm
+  edgeThickness2 = [];//距左边部1/4
+  edgeThickness3 = [];//板宽1/2
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
+  loading = true;
+  loading1 = true
+  loading2 = true
+  loading3 = true
+  constructor(
+    private route: ActivatedRoute,
+    public http: HttpClient,
+    public ApiService: ApiService
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
+
+  ngOnInit() {
+    this.GetTrialDataDetails();
+    this.GetTrialDataDetailss();
+    this.GetTrialDataDetailsss();
+    this.GetTrialDataDetailssss();
+  }
+  //镀层重量
+  public  GetTrialDataDetails() {
+     this.ApiService.getSurfacePropertyCoatingWeights(this.materialId).then((res: any) => {
+      this.trialDataDetail = res;
+      this.loading1 = false
+    });
+  }
   //粗糙度和峰值密度
-  public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyRoughnessAndPeakDensity/${materialId}`;
-    await this.ApiService.getRoughnessAndPeakDensity(this.materialId).then(
+  public  GetTrialDataDetailss() {
+     this.ApiService.getRoughnessAndPeakDensity(this.materialId).then(
       (res: any) => {
         this.trialDataDetails = res;
-        this.c = this.trialDataDetails.length;
-        this.one = this.classitem(this.trialDataDetails, "position");
-        console.log(this.one);
-        for (let a = 0; a < this.one.length; a++) {
-          this.one[a].List.map((val) => {
+        this.loading2 = false
+        let one = classitem(this.trialDataDetails,"position","position");
+        for (let a = 0; a < one.length; a++) {
+          one[a].List.map((val) => {
             this.aboveRoughness.push(val.aboveRoughness);
             this.abovePeakDensity.push(val.abovePeakDensity);
             this.belowRoughness.push(val.belowRoughness);
             this.belowPeakDensity.push(val.belowPeakDensity);
           });
-          this.two.push(this.one[a].List.length);
-          this.three.push(this.one[a].highSpeedStrechDataDetailId);
-          //  for(let b=0;b<this.one[a].List.length;b++){
-          //    this.four[a].push(this.one[a].List[b])}
+          this.two.push(one[a].List.length); 
+          this.three.push(one[a].position);
         }
       }
     );
   }
   // detail数据
   public async GetTrialDataDetailsss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertyDataDetails/${materialId}`;
     await this.ApiService.getSurfacePropertyDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetailss = res;
-        console.log(this.trialDataDetailss);
       }
     );
-    // this.trialDataDetailss[0].dates = this.trialDataDetailss[0].dates.split(
-    //   "T"
-    // )[0];
-    // this.trialDataDetailss[0].dateEnds = this.trialDataDetailss[0].dateEnds.split(
-    //   "T"
-    // )[0];
-    this.trialDataDetailss[0].dates = this.ApiService.handleTime(this.trialDataDetailss[0].dates);
-    this.trialDataDetailss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailss[0].dateEnds);
+    this.loading = false;
+    if(this.trialDataDetailss.length){
+        this.trialDataDetailss[0].dates = this.ApiService.handleTime(this.trialDataDetailss[0].dates);
+        this.trialDataDetailss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailss[0].dateEnds);
+    }
   }
-  classitem(arry1, p) {
-    let arry = [];
-    arry1.map((mapItem) => {
-      if (arry.length == 0) {
-        arry.push({ highSpeedStrechDataDetailId: mapItem[p], List: [mapItem] });
-      } else {
-        let res = arry.some((item) => {
-          //判断相同Position，有就添加到当前项
-          if (item.highSpeedStrechDataDetailId == mapItem[p]) {
-            item.List.push(mapItem);
-            return true;
-          }
-        });
-        if (!res) {
-          //如果没找相同Position添加一个新对象
-          arry.push({
-            highSpeedStrechDataDetailId: mapItem[p],
-            List: [mapItem],
-          });
-        }
-      }
-    });
-    return arry;
-  }
-  d;
-  edgeThickness1 = [];
-  edgeThickness2 = [];
-  edgeThickness3 = [];
-  public async GetTrialDataDetailssss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/surfacePropertySizeTolerance/${materialId}`;
-    await this.ApiService.getSizeTolerance(this.materialId).then((res: any) => {
+
+  public  GetTrialDataDetailssss() {
+     this.ApiService.getSizeTolerance(this.materialId).then((res: any) => {
       this.trialDataDetailsss = res;
-      this.d = this.trialDataDetailsss.length;
+      this.loading3 = false
       this.trialDataDetailsss.map((val) => {
         this.edgeThickness1.push(val.edgeThickness1);
         this.edgeThickness2.push(val.edgeThickness2);

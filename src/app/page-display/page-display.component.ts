@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DisplayService } from './display.service'
+import { Component, OnInit ,OnChanges} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { switchMap} from 'rxjs/operators';
 import { of } from "rxjs"
 @Component({
@@ -9,43 +7,21 @@ import { of } from "rxjs"
   templateUrl: './page-display.component.html',
   styleUrls: ['./page-display.component.css']
 })
-export class PageDisplayComponent implements OnInit {
-  //材料id, 在进入展示页面时由材料首页传递进来
-  public materialId
+export class PageDisplayComponent implements OnInit,OnChanges{
+  //材料id, 通过获取路由参数得到,并传给子组件,注意路由出口组件不是子组件
+  public materialId:string = ''
   constructor(    
     private route: ActivatedRoute,
-    private displayService: DisplayService,
-    ) { }
-
+    ) { 
+      //从路由参数中获取材料id
+      this.route.params.subscribe(params => {
+        this.materialId = params['materialId'];
+        })
+    }
+    ngOnChanges(){
+      console.log(1111111111)
+    }
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-    this.materialId = params.get('materialId');
-    })
-    // console.log(this.materialId);
-    this.Thematerial() 
-
-  }
-  public thematerial=[];
-  public mater=[]
-  ma={
-    id:""
-  }
- Thematerial(){
-  this.ma.id=this.materialId
-    this.displayService.Getmaterial(this.ma).then((res: any) => {
-      this.thematerial = res.items;
-       this.thematerial.forEach((val, i, array) =>{
-        this.mater.push({
-          name: val.name,
-          manufacture: val.manufactoryName,
-          thickness: val.model,
-          typicalPart:val.typicalPartName,
-          date:val.date,          
-
-    
-        })})
-      }   
-      )
   }
 
 }

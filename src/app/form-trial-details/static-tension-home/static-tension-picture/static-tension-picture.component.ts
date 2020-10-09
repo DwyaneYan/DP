@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -9,47 +9,37 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./static-tension-picture.component.css']
 })
 export class StaticTensionPictureComponent implements OnInit {
-  materialId
-  one = []
-  trialDataDetail = []
-  trialDataDetails = []
-  public dataList1 = []
-  public dataList2 = []
-  public dataList3 = []
+  materialId = ''
+  trialDataDetail = [] //应力应变数据对
+  trialDataDetails = [] //静态拉伸数据对
   //echarts绘图
-  option: any;
-  options2
+  engineeringStressStrain = {}      //工程应力应变实例
+  trueStressStrain = {}    //真应力应变实例
   constructor(
     public http: HttpClient,
-    private router: Router,
+    private route: ActivatedRoute,
     private ApiService: ApiService,
-
-  ) { }
-
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+   }
   ngOnInit() {
-    this.materialId = this.router
-      .routerState.root.firstChild
-      .snapshot.paramMap.get('materialId');
     this.ApiService.getStaticTensionDataDetails(this.materialId)
       .then((res: any) => {
         this.trialDataDetails = res
       })
-
     this.GetTrialDataDetails();
-
   }
 
   public async GetTrialDataDetails() {
-    let xData = [];
+    let xData = [];//应变数组
     await this.ApiService.getStaticTensionDataDetailStressStrains(this.materialId)
       .then((res: any) => {
         this.trialDataDetail = res
       })
-      console.log( this.trialDataDetail)
-      console.log( this.trialDataDetails)
-
-    let arry = []
-    let xData2 = []
+    let arry = [] //所有结果数组分组
+    let xData2 = [] //真应变数组
     this.trialDataDetail.map(mapItem => {
       xData.push((mapItem.strain * 10000).toFixed(7));
       xData2.push((mapItem.realStrain * 10000).toFixed(7));
@@ -67,37 +57,36 @@ export class StaticTensionPictureComponent implements OnInit {
         }
       }
     })
-    console.log(arry)
-
+let one = [] //带头带中带尾结果
 //静态拉伸批量数据必须确保25个,带头带中带尾可以数量任意
     for (let a = 25; a < this.trialDataDetails.length;a++) {
-      this.one.push(this.trialDataDetails[a])
+      one.push(this.trialDataDetails[a])
     }
     let ids = [];
-    this.one.map(val=>ids.push(val.id))
+    one.map(val=>ids.push(val.id))
+    //数组排序
     arry.sort((prev, next) => {
       return ids.indexOf(prev.staticTensionDataDetailId) - ids.indexOf(next.staticTensionDataDetailId)
     })
-
-    for (let a = 0; a < this.one.length; a++) {
-      arry[a].sampleCode = this.one[a].sampleCode;
-      arry[a].direction = this.one[a].direction
+    for (let a = 0; a < one.length; a++) {
+      arry[a].sampleCode = one[a].sampleCode;
+      arry[a].direction = one[a].direction
     }
-    xData = [...new Set(xData)];
+    xData = [...new Set(xData)];//数组去重
     xData2 = [...new Set(xData2)];
     xData.sort((a, b) => {
-      return Number(a) - Number(b);
+      return Number(a) - Number(b); //数组排序
     });
     xData2.sort((a, b) => {
       return Number(a) - Number(b);
     });
-    this.option = this.classdata("工程应力应变数据对", "应变", "应力", xData, arry, "strain", "stress")
-    this.options2 = this.classdata("真应力应变数据对", "真应变", "真应力", xData2, arry, "realStrain", "realStress")
+    this.engineeringStressStrain = this.classdata("工程应力应变数据对", "应变", "应力", xData, arry, "strain", "stress")
+    this.trueStressStrain = this.classdata("真应力应变数据对", "真应变", "真应力", xData2, arry, "realStrain", "realStress")
+console.log(xData,xData2)
   }
 
   classdata(name, p1, p2, da, datas, p3, p4) {
     let option = {
-      // width: '550',
       title: {
         text: name
       },
@@ -133,7 +122,6 @@ export class StaticTensionPictureComponent implements OnInit {
       series: [],
       grid: {
         top:'120px',
-        // height:''
         bottom: '50px'
       },
       legend: {

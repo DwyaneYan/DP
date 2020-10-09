@@ -1,16 +1,14 @@
-<div calss="dataTable">
-  <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" nzBordered
-    *ngFor="let data of table;let tableIdx=index">
-    <thead>
-      <tr>
-        <th [nzWidth]="tableIdx ==0 && thIdx == 0||tableIdx ==0 && thIdx == 1||tableIdx ==0 &&thIdx ==2?'150px':'200px'"
-          *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td *ngFor="let data2 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data2]:''}}</td>
-      </tr>
-    </tbody>
-  </nz-table>
+<div id="dataTable">
+    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered *ngFor="let data of table;let tableIdx=index" [nzLoading]="loading">
+        <thead>
+            <tr>
+                <th [nzWidth]="tableIdx ==0 && thIdx == 0||tableIdx ==0 && thIdx == 1||tableIdx ==0 &&thIdx ==2?'150px':'200px'" *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td *ngFor="let data2 of data.key">{{trialDataDetail[0]?trialDataDetail[0][data2]:''}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
 </div>

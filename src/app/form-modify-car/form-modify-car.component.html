@@ -25,7 +25,7 @@
         <div nz-row class="upload-form">
             <div nz-col nzSpan="6" class="upload-label">上传图片:</div>
             <div nz-col nzSpan="18" class="upload-list">
-                <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl1" (nzChange)="handleChange($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload1">
+                <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl1" [nzBeforeUpload]="formAddCarComponent.beforeUpload1">
                     <button nz-button type="button"><i nz-icon nzType="upload"></i>上传</button>
                 </nz-upload>
             </div>
@@ -34,7 +34,7 @@
         <div nz-row class="upload-form">
             <div nz-col nzSpan="6" class="upload-label">上传文件:</div>
             <div nz-col nzSpan="18" class="upload-list">
-                <nz-upload id='file' [nzCustomRequest]='customRequestTwo' [nzAction]="maUrl2" (nzChange)="handleChange1($event)" [nzBeforeUpload]="formAddCarComponent.beforeUpload2">
+                <nz-upload id='file' [nzCustomRequest]='customRequestTwo' [nzAction]="maUrl2" [nzBeforeUpload]="formAddCarComponent.beforeUpload2">
                     <button nz-button type="button"><i nz-icon nzType="upload"></i>上传</button>
                 </nz-upload>
             </div>

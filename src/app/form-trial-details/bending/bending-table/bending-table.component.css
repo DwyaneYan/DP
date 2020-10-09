@@ -1,29 +1,7 @@
-.dataTable thead th {
-    text-align: center;
-    background-color:#f4f4f4;
-    color: #666;
-    padding: 8px 0;
-}
-
-.dataTable tbody td{
-    text-align: center;
-    padding: 8px 0;
-}
-
-#tablewid {
-    width: 1060px;
-    overflow: auto
-}
-
-
 /* 抽屉按钮 */
 
 #drawerBtn {
     position: absolute;
     top: 50px;
     left: 90%;
-}
-
-.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
-    background: white;
 }

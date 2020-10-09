@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/form-experimental-item.component';
+import {button} from 'src/app/picture'
+
 
 
 @Component({
@@ -8,15 +9,13 @@ import { FormExperimentalItemComponent } from 'src/app/form-experimental-item/fo
   styleUrls: ['./children-nav.component.css']
 })
 export class ChildrenNavComponent implements OnInit {
-  @Input() materialId
-  @Input() name
   @Input() p1
   @Input() p2
   @Input() p3
   @Input() p4
+  button = button
 
-
-  constructor(private FormExperimentalItemComponent: FormExperimentalItemComponent,) { }
+  constructor() { }
 
   ngOnInit() {
   }

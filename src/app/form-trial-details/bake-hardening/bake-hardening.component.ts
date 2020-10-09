@@ -7,7 +7,7 @@ import {Router } from '@angular/router';
 })
 export class BakeHardeningComponent implements OnInit {
   public materialId
-  name="bake-hardening"
+
   p1='hkyh1'
   p2='hkyh2'
   p3='hkyh3'

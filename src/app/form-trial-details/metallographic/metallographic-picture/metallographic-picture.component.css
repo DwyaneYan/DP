@@ -1,28 +1,294 @@
-.all-box {
-  margin-left: -40px;
-  overflow: hidden;
+/* .all-box {
+    margin-left: -40px;
+    overflow: hidden;
 }
 
 .all-box .all-item {
-  width: 200px;
-  margin: 0 0 30px 40px;
-  float: left;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
+    width: 200px;
+    margin: 0 0 30px 40px;
+    float: left;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
 }
 
 .all-box .all-item h2 {
-  color: #000;
-  font-size: 14px;
-  padding: 20px;
-  text-align: center;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    color: #000;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.all-box .all-item .img {
-  width: 200px;
-  height: 200px;
+.img {
+    height: 200px;
+    border: 1px solid #e6e6e6;
 }
+
+
+
+
+img.item {
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img {
+    border: 0;
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+div /deep/ .img-view-dialog {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+div /deep/ .img-view-content {
+    display: inline-block;
+    margin: 15px auto;
+    border-radius: 4px;
+    padding: 10px;
+    visibility: visible;
+    background: #fff url('../../../../assets/images/loading.gif') no-repeat center;
+    -moz-transition: transform .6s, margin .6s;
+    -webkit-transition: transform .6s, margin .6s;
+    -o-transition: transform .6s, margin .6s;
+    transition: transform .6s, margin .6s;
+    cursor: -webkit-grab;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: flyin .5s;
+    -moz-animation: flyin .5s;
+    animation: flyin .5s;
+}
+
+div /deep/ .loadingImg.img-view-content {
+    background: #fff;
+}
+
+div /deep/ .loadingImg .dialog-img {
+    opacity: 1;
+}
+
+div /deep/ .img-view-content img {
+    display: block;
+    opacity: 0;
+    -moz-transition: all .6s;
+    -o-transition: all .6s;
+    -webkit-transition: all .6s;
+    transition: all .6s;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    vertical-align: baseline;
+}
+
+div /deep/ .closing .img-view-mask {
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: fadeout .5s;
+    -moz-animation: fadeout .5s;
+    animation: fadeout .5s;
+}
+
+div /deep/ .closing .img-view-content {
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: flyout .5s;
+    -moz-animation: flyout .5s;
+    animation: flyout .5s;
+}
+
+div /deep/ .closing .dialog-tool {
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: fadeout .5s;
+    -moz-animation: fadeout .5s;
+    animation: fadeout .5s;
+}
+
+div /deep/ .dialog-tool {
+    z-index: 2;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: fadein 0.5s;
+    -moz-animation: fadein 0.5s;
+    animation: fadein 0.5s;
+}
+
+div /deep/ .close-dialog {
+    background: url('../../../../assets/images/photoTheater.png') no-repeat -1px -128px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: block;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+div /deep/ .rotate-dialog {
+    background-image: url('../../../../assets/images/rotate.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: block;
+    position: fixed;
+    right: 60px;
+    top: 20px;
+    cursor: pointer;
+}
+
+div /deep/ .dialog-tool .rotate-dialog:hover {
+    background-position: 0 -20px;
+}
+
+div /deep/ .dialog-tool .close-dialog:hover {
+    background-position: -1px -149px;
+}
+
+div /deep/ .dialog-tool .previous-dialog,
+div /deep/ .dialog-tool .next-dialog,
+div /deep/ .dialog-tool .next-dialog:hover,
+div /deep/ .dialog-tool .previous-dialog:hover {
+    background: url('../../../../assets/images/photoTheater.png') no-repeat 0 0;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    width: 66px;
+    height: 60px;
+    line-height: 66px;
+    display: block;
+    position: fixed;
+    top: 45%;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: -30px;
+    text-align: center;
+}
+
+div /deep/ .dialog-tool .next-dialog {
+    background-position: 0 -65px;
+    right: 0;
+}
+
+div /deep/ .dialog-tool .previous-dialog {
+    left: 0;
+    background-position: -70px -65px;
+}
+
+div /deep/ .dialog-tool .next-dialog:hover {
+    background-position: 0 0;
+}
+
+div /deep/ .dialog-tool .previous-dialog:hover {
+    background-position: -70px 0;
+}
+
+@-webkit-keyframes flyin {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes flyin {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+        -ms-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes flyout {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+        -ms-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+}
+
+@keyframes flyout {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+        -ms-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+}
+
+@-webkit-keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+} */

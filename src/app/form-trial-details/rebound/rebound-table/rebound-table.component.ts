@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
+import{clickItem}from "../../../picture"
 
 @Component({
   selector: "app-rebound-table",
@@ -14,35 +15,38 @@ export class ReboundTableComponent implements OnInit {
   trialDataDetails = [];
   trialDataDetailss = [];
   trialDataDetailsss = [];
-  table = [
+  loading = true
+  loading1 = true
+  loading2 = true
+  loading3 = true
+  table1 = [    
     {
-      table: "table1",
-      name: "trialDataDetail",
-      nzScroll: { x: "1200px" },
-      one: [
-        "测试机构",
-        "开始检测日期",
-        "检测结束日期",
-        "执行标准",
-        "试验设备",
-        "试验方法",
-      ],
-      key: [
-        "testOrganization",
-        "dates",
-        "dateEnds",
-        "standard",
-        "equipment",
-        "testMethod",
-      ],
-    },
-  ];
-  table1 = [
+    name: "trialDataDetail",
+    loading:"loading",
+    nzScroll: '',
+    one: [
+      "测试机构",
+      "开始检测日期",
+      "检测结束日期",
+      "执行标准",
+      "试验设备",
+      "试验方法",
+    ],
+    key: [
+      "testOrganization",
+      "dates",
+      "dateEnds",
+      "standard",
+      "equipment",
+      "testMethod",
+    ],
+    width: ["110px", "110px", "110px", "150px", "150px", ""], //留一列不设置宽度，他的宽度自适应，不然固定宽度都不会生效
+  },
     {
-      table: "table2",
       name: "trialDataDetail",
+      loading:"loading",
       nzScroll: { x: "1050px" },
-      width: ["150px", "150px", "150px", "150px", "150px", "150px", "150px"],
+      width: ["150px", "150px", "150px", "150px", "150px", "150px", ""],
       one: [
         "回弹试验类型",
         "弯曲角度",
@@ -63,10 +67,10 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      table: "table3",
-      width: ["150px", "150px", "150px", "150px", "150px", "150px"],
+      loading:"loading1",
+      width: ["", "150px", "150px", "150px", "150px", "150px"],
       name: "trialDataDetails",
-      nzScroll: { x: "900px" },
+      nzScroll: '',
       one: [
         "方向（沿轧向或者垂直轧向）",
         "厚度 t/mm",
@@ -85,7 +89,7 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      table: "table4",
+      loading:"loading2",
       name: "trialDataDetailss",
       nzScroll: { x: "1030px" },
       width: [
@@ -98,7 +102,7 @@ export class ReboundTableComponent implements OnInit {
         "80px",
         "80px",
         "80px",
-        "100px",
+        "",
       ],
       one: [
         "方向（沿轧向或者垂直轧向）",
@@ -126,10 +130,10 @@ export class ReboundTableComponent implements OnInit {
       ],
     },
     {
-      table: "table5",
+      loading:"loading3",
       name: "trialDataDetailsss",
-      width: ["150px", "150px", "100px", "100px", "100px", "100px"],
-      nzScroll: { x: "700px" },
+      width: ["", "150px", "100px", "100px", "100px", "100px"],
+      nzScroll: '',
       one: [
         "方向（沿轧向或者垂直轧向）",
         "厚度 t/mm",
@@ -143,77 +147,57 @@ export class ReboundTableComponent implements OnInit {
   ];
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
+  clickItem = clickItem
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService
-  ) {}
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
     this.GetTrialDataDetailsss();
     this.GetTrialDataDetailssss();
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetails/${materialId}`;
     await this.ApiService.getReboundDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        // console.log(this.trialDataDetail)
+        this.loading = false
       }
     );
-    // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
-    // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-    //   "T"
-    // )[0];
-    this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-    this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    if(this.trialDataDetail.length){
+        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    }
   }
   public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems/${materialId}`;
     await this.ApiService.getReboundDataDetailItems(this.materialId).then(
       (res: any) => {
+        this.loading1 = false
         this.trialDataDetails = res;
-        // console.log(this.trialDataDetails)
       }
     );
   }
   public async GetTrialDataDetailsss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems2/${materialId}`;
     await this.ApiService.getReboundDataDetailItems2(this.materialId).then(
       (res: any) => {
         this.trialDataDetailss = res;
-        console.log(this.trialDataDetailss);
+        this.loading2 = false
       }
     );
   }
   public async GetTrialDataDetailssss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/reboundDataDetailItems3/${materialId}`;
     await this.ApiService.getReboundDataDetailItems3(this.materialId).then(
       (res: any) => {
+        this.loading3 = false
         this.trialDataDetailsss = res;
-        console.log(this.trialDataDetailsss);
       }
     );
-  }
-  //点击行中的列项展开信息
-  clickItem(firstTable, tdIdx) {
-    if (!firstTable) {
-      return;
-    }
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }

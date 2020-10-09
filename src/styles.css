@@ -1,12 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-  background-color: #f4f4f4 !important;
+    background-color: #f4f4f4 !important;
+}
+
+
+/* 数据表 */
+
+#dataTable nz-table /deep/ .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
+    background: white;
+}
+
+#dataTable nz-table /deep/ thead th {
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #666;
+    padding: 16px 0;
+}
+
+#dataTable nz-table /deep/ tbody td {
+    text-align: center;
+    padding: 8px 0;
 }
 
 .w1200 {
-  width: 1200px;
-  margin: 0 auto;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 div,
@@ -21,35 +40,38 @@ h4,
 h5,
 h6,
 i {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ul {
-  list-style-type: none;
+    list-style-type: none;
+}
+
+nz-table:first-child {
+    margin-top: 0px;
 }
 
 .mt25 {
-  margin-top: 25px;
+    margin-top: 25px;
 }
 
 .mb25 {
-  margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .ellipsis {
-  word-break: keep-all;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .layout-fixed table {
-  table-layout: fixed;
+    table-layout: fixed;
 }
 
 .ant-table-bordered .ant-table-thead>tr>th {
-  text-align: center;
+    text-align: center;
 }

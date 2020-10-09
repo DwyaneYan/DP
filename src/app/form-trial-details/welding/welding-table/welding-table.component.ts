@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
-
+import{clickItem}from "../../../picture"
 @Component({
   selector: "app-welding-table",
   templateUrl: "./welding-table.component.html",
@@ -11,16 +11,16 @@ import { ApiService } from "src/app/api.service";
 export class WeldingTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
-  trialDataDetails;
+  trialDataDetails = [];
+  loading1 = true
+  loading2 = true
   table = [
     {
-      table: "table1",
       nzScroll: { x: "1000px" },
       one: ["测试机构", "开始检测日期", "检测结束日期", "执行标准", "试验方法"],
       key: ["testOrganization", "dates", "dateEnds", "standard", "testMethod"],
     },
     {
-      table: "table2",
       nzScroll: { x: "2600px" },
       one: [
         "焊接试验类型",
@@ -72,56 +72,39 @@ export class WeldingTableComponent implements OnInit {
   ];
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
+  clickItem = clickItem
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
     private ApiService: ApiService
-  ) {}
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
-    // console.log(this.materialId)
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/weldingDataDetails/${materialId}`;
     await this.ApiService.getWeldingDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
-        // console.log(this.trialDataDetail)
       }
     );
-    // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
-    // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-    //   "T"
-    // )[0];
-    this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-    this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    this.loading1 = false
+    if(this.trialDataDetail.length){
+        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    }
   }
-  public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/weldingDataDetailItems/${materialId}`;
-    await this.ApiService.getWeldingDataDetailItems(this.materialId).then(
+  public  GetTrialDataDetailss() {
+     this.ApiService.getWeldingDataDetailItems(this.materialId).then(
       (res: any) => {
         this.trialDataDetails = res;
-        // console.log(this.trialDataDetail)
+        this.loading2 = false
       }
     );
-  }
-  //点击行中的列项展开信息
-  clickItem(firstTable, tdIdx) {
-    if (!firstTable) {
-      return;
-    }
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }

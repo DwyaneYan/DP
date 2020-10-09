@@ -1,10 +1,11 @@
-.content-box{
+.content-box {
     border-left: 220px solid #fafafa;
     background-color: #fff;
     position: relative;
     top: 50px;
 }
-.right-box{
+
+.right-box {
     padding: 20px 30px;
     min-height: 600px;
 }

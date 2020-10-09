@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit,Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-static-tension-home',
@@ -7,24 +7,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./static-tension-home.component.css'],
 })
 export class StaticTensionHomeComponent implements OnInit {
-  name="static-tension-home"
+
   p1='jtls1'
   p2='jtls2'
   p3='jtls3'
   p4='jtls4'
 
-  public materialId
-
+  public materialId:string
   constructor(
-    private router: Router,
-
-  ) { }
+    private route: ActivatedRoute,
+  ) { 
+    //从父路由参数中获取材料id，暂时不能从display组件传进来
+    this.route.parent.params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
 
   ngOnInit() {
-    this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
-    // console.log(this.materialId)
+    console.log(this.route)
   }
 
 }

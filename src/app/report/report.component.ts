@@ -1,10 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MetallographicReportComponent } from 'src/app/form-trial-details/metallographic/metallographic-report/metallographic-report.component';
 import { ApiService } from 'src/app/api.service';
+import {common} from 'src/app/picture'
 
 @Component({
   selector: 'app-report',
@@ -12,77 +12,67 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  materialId
-  trialDataDetails=[]
+  materialId = ''
+  trialDataDetail = []
   constructor(
-    private router: Router,
+    // private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
-
-    public MetallographicReportComponent: MetallographicReportComponent,
-
-  ) { }
-name1=''
+  ) { 
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
   ngOnInit() {
-    this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
+    // this.materialId = this.router
+    // .routerState.root.firstChild
+    // .snapshot.paramMap.get('materialId');
     let index= location.href.lastIndexOf("\/");  
     let str  = location.href .substring(0, index+1);
     let name = str.substring(0,str.length-1)
     let index1=name.lastIndexOf("\/");  
-    this.name1 = name.substring(index1+1)
-    console.log(this.name1)
-if (this.name1=='static-tension-home'){
+    let name1 = name.substring(index1+1)
+if (name1=='static-tension-home'){
   this.GetTrialDataDetailss('getStaticTensionDataDetails') 
 }
-else if(this.name1=='bending'){this.GetTrialDataDetailss('getBendingDataDetails') }
-else if(this.name1=='compression'){this.GetTrialDataDetailss('getCompressDataDetails') }
-else if(this.name1=='highspeedstrech'){this.GetTrialDataDetailss('getHighSpeedStrechDataDetails') }
-else if(this.name1=='lowcyclefatigue'){this.GetTrialDataDetailss('getLowCycleFatigueDataDetails') }
-else if(this.name1=='highcyclefatigue'){this.GetTrialDataDetailss('getHighCycleFatigueDataDetails') }
-else if(this.name1=='metallographic'){this.GetTrialDataDetailss('getMetallographicDataDetails') }
-else if(this.name1=='physicalperformance'){this.GetTrialDataDetailss('getPhysicalPerformanceDataDetails') }
-else if(this.name1=='chemicalelement'){this.GetTrialDataDetailss('getChemicalElementDataDetails') }
-else if(this.name1=='prohibited-substance'){this.GetTrialDataDetailss('getProhibitedSubstanceDataDetails') }
-else if(this.name1=='dent-resistance'){this.GetTrialDataDetailss('getDentResistanceDataDetails') }
-else if(this.name1=='secondary-working-embrittlement'){this.GetTrialDataDetailss('getSecondaryWorkingEmbrittlementDataDetails') }
-else if(this.name1=='flanging-clasp'){this.GetTrialDataDetailss('getFlangingClaspDataDetails') }
-
-else if(this.name1=='hydrogen-induced-delayed-fracture'){this.GetTrialDataDetailss('getHydrogenInducedDelayedFractureDataDetails') }
-
-else if(this.name1=='welding'){this.GetTrialDataDetailss('getWeldingDataDetails') }
-
-else if(this.name1=='cementing'){this.GetTrialDataDetailss('getCementingDataDetails') }
-else if(this.name1=='painting'){this.GetTrialDataDetailss('getPaintingDataDetails') }
-else if(this.name1=='fld'){this.GetTrialDataDetailss('getFLDDataDetails') }
-else if(this.name1=='rebound'){this.GetTrialDataDetailss('getReboundDataDetails') }
-else if(this.name1=='bake-hardening'){this.GetTrialDataDetailss('getBakeHardeningDataDetails') }
-else if(this.name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePropertyDataDetails') }
-
-
-
-
-
-
+else if(name1=='bending'){this.GetTrialDataDetailss('getBendingDataDetails') }
+else if(name1=='compression'){this.GetTrialDataDetailss('getCompressDataDetails') }
+else if(name1=='highspeedstrech'){this.GetTrialDataDetailss('getHighSpeedStrechDataDetails') }
+else if(name1=='lowcyclefatigue'){this.GetTrialDataDetailss('getLowCycleFatigueDataDetails') }
+else if(name1=='highcyclefatigue'){this.GetTrialDataDetailss('getHighCycleFatigueDataDetails') }
+else if(name1=='metallographic'){this.GetTrialDataDetailss('getMetallographicDataDetails') }
+else if(name1=='physicalperformance'){this.GetTrialDataDetailss('getPhysicalPerformanceDataDetails') }
+else if(name1=='chemicalelement'){this.GetTrialDataDetailss('getChemicalElementDataDetails') }
+else if(name1=='prohibited-substance'){this.GetTrialDataDetailss('getProhibitedSubstanceDataDetails') }
+else if(name1=='dent-resistance'){this.GetTrialDataDetailss('getDentResistanceDataDetails') }
+else if(name1=='secondary-working-embrittlement'){this.GetTrialDataDetailss('getSecondaryWorkingEmbrittlementDataDetails') }
+else if(name1=='flanging-clasp'){this.GetTrialDataDetailss('getFlangingClaspDataDetails') }
+else if(name1=='hydrogen-induced-delayed-fracture'){this.GetTrialDataDetailss('getHydrogenInducedDelayedFractureDataDetails') }
+else if(name1=='welding'){this.GetTrialDataDetailss('getWeldingDataDetails') }
+else if(name1=='cementing'){this.GetTrialDataDetailss('getCementingDataDetails') }
+else if(name1=='painting'){this.GetTrialDataDetailss('getPaintingDataDetails') }
+else if(name1=='fld'){this.GetTrialDataDetailss('getFLDDataDetails') }
+else if(name1=='rebound'){this.GetTrialDataDetailss('getReboundDataDetails') }
+else if(name1=='bake-hardening'){this.GetTrialDataDetailss('getBakeHardeningDataDetails') }
+else if(name1=='surface-property'){this.GetTrialDataDetailss('getSurfacePropertyDataDetails') }
   }
-  one=[]
+  //
   public async GetTrialDataDetailss(p) {
-    // console.log(this.ApiService.getChemicalElementDataDetails)
-    await this.ApiService[p](this.materialId)
-    .then((res: any) => {
-      this.trialDataDetails = res
-      // console.log(this.trialDataDetails)
-      for(let a=0;a<this.trialDataDetails.length;a++)
-      {if(this.trialDataDetails[a] && this.trialDataDetails[a].fileKey!=null){
-    this.one.push(this.trialDataDetails[a])
-
-  }
+    await this.ApiService[p](this.materialId).then((res: any) => {
+      this.trialDataDetail = res
+      let one=''//报告名，现在只能显示一个报告，即一个字符串
+      let length = this.trialDataDetail.length
+      for(let a=0;a<length;a++)
+      {
+        //报告在detail表的fileKey，图片在detail表的fileString
+        if(this.trialDataDetail[a] && this.trialDataDetail[a].fileKey!=null){
+          one = this.trialDataDetail[a].fileKey
+          break
+        }
       }
-      // console.log(this.one[0])
-      if(this.one[0]){this.MetallographicReportComponent.common(this.one[0].fileKey)}
+     common(one)
     })  
-
   }
 }
 

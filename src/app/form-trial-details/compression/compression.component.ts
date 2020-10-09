@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./compression.component.css']
 })
 export class CompressionComponent implements OnInit {
-  name="compression"
   p1='ys1'
   p2='ys2'
   p3='ys3'

@@ -1,16 +1,14 @@
-<div class="dataTable">
-    <nz-table class="mt25" [nzData]=[{}] [nzFrontPagination]="false" [nzScroll]="data.nzScroll"
-        *ngFor="let data of table;let tableIndex = index" nzBordered>
+<div id="dataTable">
+    <nz-table class="mt25" [nzData]="this[data.name]" [nzFrontPagination]="false" *ngFor="let data of table;let tableIndex = index" nzBordered [nzLoading]="this[data.loading]">
         <thead>
             <tr>
-                <th [nzWidth]="tableIndex == 0 &&thIdx == 0||tableIndex == 0 && thIdx == 1||tableIndex == 0 && thIdx ==2?'150px':'auto'"
-                    *ngFor="let data1 of data.one;let thIdx = index">
+                <th [nzWidth]="tableIndex == 0 &&thIdx == 0||tableIndex == 0 && thIdx == 1||tableIndex == 0 && thIdx ==2?'150px':'auto'" *ngFor="let data1 of data.one;let thIdx = index">
                     {{data1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data2 of this[data.name]">
-                <td *ngFor="let data3 of data.key">{{ data2[data3]}}</td>
+                <td *ngFor="let data3 of data.key;let thIdx = index">{{ data2[data3]}}</td>
             </tr>
         </tbody>
     </nz-table>

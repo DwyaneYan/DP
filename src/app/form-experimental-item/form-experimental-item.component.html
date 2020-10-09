@@ -1,4 +1,3 @@
-<!-- <app-form-trial-details [materialId]="materialId" [trialType]="trialType"></app-form-trial-details> -->
 <!-- 左侧菜单栏 START -->
 
 <div class="left-menu">
@@ -9,55 +8,24 @@
         </li>
         <li nz-submenu nzTitle="基础数据" nzOpen *ngIf="button('basicData')">
             <ul>
-                <ng-container *ngFor="let data of menu1;let i=index">
-                    <li nz-menu-item *ngIf="arr1[i]&&button(menu1[i].name)" nzMatchRouter><a
-                            [routerLink]=routerLink1[i]>{{menu1[i].names}}</a></li>
+                <ng-container *ngFor="let data of menu.slice(0,8);let i=index">
+                    <li nz-menu-item *ngIf="trialName.includes(menu[i].names)&&button(menu[i].name)" nzMatchRouter><a [routerLink]='routerLink[i]'>{{menu[i].names}}</a></li>
                 </ng-container>
-                <!-- <li nz-menu-item  nzMatchRouter *ngIf = "staticTension&&menu('静态拉伸')" routerLinkActive="ant-menu-item-selected"><a [routerLink]="['/display',materialId ,'static-tension-home']">静态拉伸</a></li>.
-                    <li nz-menu-item nzMatchRouter *ngIf = "compress&&menu('压缩')"><a [routerLink]="['/display',materialId ,'compression']">压缩</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "jinxiang&&menu('金相')"><a [routerLink]="['/display',materialId ,'metallographic']">金相</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "wulixingneng&&menu('物理性能')"><a [routerLink]="['/display',materialId ,'physicalperformance']">物理性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "chemical"><a [routerLink]="['/display',materialId ,'chemicalelement']">化学成分</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "jinyongwuzhi"><a [routerLink]="['/display',materialId ,'prohibited-substance']">禁用物质</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "biaomianxn"><a [routerLink]="['/display',materialId ,'surface-property']">表面性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "hongkaoyh"><a [routerLink]="['/display',materialId ,'bake-hardening']">烘烤硬化</a></li> -->
-
             </ul>
         </li>
         <li nz-submenu nzTitle="应用数据" nzOpen *ngIf="button('applicationData')">
             <ul>
-                <ng-container *ngFor="let data of menu2;let i=index">
-                    <li nz-menu-item *ngIf="arr2[i]&&button(menu2[i].name)" nzMatchRouter><a
-                            [routerLink]=routerLink2[i]>{{menu2[i].names}}</a></li>
-                    <!-- <ng-template #elseBlock>
-                            <li nz-menu-item  *ngIf = "arr1[i]&&menu(menu1[i].name)" ><a [routerLink]=routerLink2[i]>{{menu2[i].name}}</a></li>.
-                            </ng-template> -->
+                <ng-container *ngFor="let data of menu.slice(8,15);let i=index">
+                    <li nz-menu-item *ngIf="trialName.includes(menu[i+8].names)&&button(menu[i+8].name)" nzMatchRouter><a [routerLink]='routerLink[i+8]'>{{menu[i+8].names}}</a></li>
                 </ng-container>
-                <!-- <li nz-menu-item nzMatchRouter *ngIf = "bend"><a [routerLink]="['/display',materialId ,'bending']">弯曲</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "FLD"><a [routerLink]="['/display',materialId ,'fld']">成型极限FLD</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "kangAoxn"><a [routerLink]="['/display',materialId ,'dent-resistance']" >抗凹性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "fanbiankouhexn"><a [routerLink]="['/display',materialId ,'flanging-clasp']">翻边扣合性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "hanjiexn"><a [routerLink]="['/display',materialId ,'welding']">焊接性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "jiaojiexn"><a [routerLink]="['/display',materialId ,'cementing']">胶结性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "tuzhuangxn"><a [routerLink]="['/display',materialId ,'painting']">涂装性能</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "huitanxn"><a [routerLink]="['/display',materialId ,'rebound']">回弹性能</a></li> -->
             </ul>
         </li>
         <li nz-submenu nzTitle="服役数据" nzOpen *ngIf="button('serviceData')">
             <ul>
-                <ng-container *ngFor="let data of menu3;let i=index">
-                    <li nz-menu-item *ngIf="arr3[i]&&button(menu3[i].name)" nzMatchRouter><a
-                            [routerLink]=routerLink3[i]>{{menu3[i].names}}</a></li>
-                    <!-- <ng-template #elseBlock>
-                            <li nz-menu-item  *ngIf = "arr1[i]&&menu(menu1[i].name)" ><a [routerLink]=routerLink3[i]>{{menu3[i].name}}</a></li>.
-                            </ng-template> -->
+                <ng-container *ngFor="let data of menu.slice(15);let i=index">
+                    <li nz-menu-item *ngIf="trialName.includes(menu[i+15].names)&&button(menu[i+15].name)" nzMatchRouter><a [routerLink]='routerLink[i+15]'>{{menu[i+15].names}}</a></li>
+
                 </ng-container>
-                <!-- <li nz-menu-item nzMatchRouter *ngIf = "ercijiagongcx"><a [routerLink]="['/display',materialId ,'secondary-working-embrittlement']">二次加工脆性</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "qingzhiyanchikl"><a [routerLink]="['/display',materialId ,'hydrogen-induced-delayed-fracture']">氢致延迟开裂</a></li>
-   
-                    <li nz-menu-item nzMatchRouter *ngIf = "highspeedTension"><a [routerLink]="['/display',materialId ,'highspeedstrech']">高速拉伸</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "dizhoupilao"><a [routerLink]="['/display',materialId ,'lowcyclefatigue']">低周疲劳</a></li>
-                    <li nz-menu-item nzMatchRouter *ngIf = "gaozhoupilao"><a [routerLink]="['/display',materialId ,'highcyclefatigue']">高周疲劳</a></li> -->
             </ul>
         </li>
         <li nz-submenu nzTitle="应用案例" *ngIf="button('hg-cases')">
@@ -65,18 +33,15 @@
                 <li nz-menu-item nzDisabled style="cursor:pointer;" *ngIf="button('add')">
                     <div style="text-decoration: underline;color:#1890ff" (click)='show()'>添加车型</div>
                 </li>
-                <ng-template ngFor let-data [ngForOf]="car" let-i="index">
-
-                    <li nz-menu-item nzMatchRouter *ngIf="button('viewCar')"><a
-                            [routerLink]="['/display',materialId ,'applications',id[i]]">{{data}}</a></li>
+                <ng-template ngFor let-data [ngForOf]="carInfo" let-i="index">
+                    <li nz-menu-item nzMatchRouter *ngIf="button('viewCar')"><a [routerLink]="['/display',materialId ,'applications',data.id]">{{data.vehicleType}}</a></li>
                 </ng-template>
             </ul>
         </li>
         <li nz-menu-item nzMatchRouter><a [routerLink]="['/display',materialId ,'simulationCard']">仿真卡片</a> </li>
     </ul>
 </div>
-
-<app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar2($event)"
-    (outer1)="getCar1($event)"></app-form-add-car>
+<!-- 菜单栏的添加车型表单弹框是一个组件 -->
+<app-form-add-car [isVisible]='isVisible' [materialId]="materialId" (outer)="getCar()" (outer1)="getCar1($event)"></app-form-add-car>
 
 <!-- 左侧菜单栏 END -->

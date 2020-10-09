@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class PaintingComponent implements OnInit {
   public materialId
-  name="painting"
   p1='tzxn1'
   p2='tzxn2'
   p3='tzxn3'

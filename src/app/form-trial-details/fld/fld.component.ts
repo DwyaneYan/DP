@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-fld',
   templateUrl: './fld.component.html',
@@ -7,17 +8,21 @@ import { Router } from '@angular/router';
 })
 export class FLDComponent implements OnInit {
   public materialId
-  name="fld"
   p1='fld1'
   p2='fld2'
   p3='fld3'
   p4='fld4'
 
-  constructor(  private router: Router,) { }
+  constructor(      private route: ActivatedRoute,
+    public ApiService: ApiService,) {
+    this.route.parent.params.subscribe(params => {
+      this.materialId = params['materialId'];
+      });
+   }
 
-  ngOnInit() {     this.materialId = this.router
-    .routerState.root.firstChild
-    .snapshot.paramMap.get('materialId');
+  ngOnInit() {    
   }
-
+  deleteTrial(){
+    this.ApiService.deleteTrial(this.materialId,'成型极限')
+  }
 }

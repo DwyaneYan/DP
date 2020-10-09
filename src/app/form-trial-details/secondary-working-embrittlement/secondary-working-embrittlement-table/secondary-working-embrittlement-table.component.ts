@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
+import{ unique1,clickItem } from '../../../picture'
 
 @Component({
   selector: "app-secondary-working-embrittlement-table",
@@ -12,15 +13,11 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
   trialDataDetails = [];
-  arry1 = [];
-  arry2 = [];
-  arry3 = [];
-  arry4 = [];
-  arry5 = [];
-  serial = [];
   serials = []; //去重后的杯子编号
-  serialss = [];
-  serialsss;
+  serialss = []; //渲染数据
+  loading = true
+  loadings = true
+  serialsss = [];//去重后的试验温度
   table = [
     {
       one: [
@@ -39,60 +36,52 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
         "equipment",
         "testMethod",
       ],
+      width:["110px", "110px", "110px", "150px", "150px", ""]
     },
     {
       one: ["试验温度℃"],
       key: ["temperature"],
     },
   ];
+  clickItem = clickItem
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     public http: HttpClient,
     private ApiService: ApiService
-  ) {}
+  ) {
+    this.route.pathFromRoot[1].params.subscribe(params => {
+      this.materialId = params['materialId'];
+      })
+  }
   ngOnInit() {
-    this.materialId = this.router.routerState.root.firstChild.snapshot.paramMap.get(
-      "materialId"
-    );
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
   }
   public async GetTrialDataDetails() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/secondaryWorkingEmbrittlementDataDetails/${materialId}`;
     await this.ApiService.getSecondaryWorkingEmbrittlementDataDetails(
       this.materialId
     ).then((res: any) => {
       this.trialDataDetail = res;
-      // console.log(this.trialDataDetail)
     });
-    // this.trialDataDetail[0].dates = this.trialDataDetail[0].dates.split("T")[0];
-    // this.trialDataDetail[0].dateEnds = this.trialDataDetail[0].dateEnds.split(
-    //   "T"
-    // )[0];
-    this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-    this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+  this.loading = false
+    if(this.trialDataDetail.length){
+        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+    }
   }
   public async GetTrialDataDetailss() {
-    // let materialId = this.materialId
-    // let api =`http://localhost:60001/api/hangang/materialTrial/secondaryWorkingEmbrittlementDataDetailItems/${materialId}`;
-    await this.ApiService.getSecondaryWorkingEmbrittlementDataDetailItems(
-      this.materialId
-    ).then((res: any) => {
-      this.trialDataDetails = res;
-      // console.log(this.trialDataDetail)
-
+    await this.ApiService.getSecondaryWorkingEmbrittlementDataDetailItems(this.materialId).then((res: any) => {
+  this.loadings = false
+  this.trialDataDetails = res;
+      let arry1 = [],arry4 = [];
       this.trialDataDetails.forEach((val) => {
-        this.arry1.push(val.serialNumber);
-        this.arry4.push(val.temperature);
+        arry1.push(val.serialNumber);
+        arry4.push(val.temperature);
       });
-      this.serials = this.unique1(this.arry1); //去重后的杯号
-      console.log(this.trialDataDetails.length);
-      // document.getElementsByClassName('tablebox')[0].querySelector('table').style.width = (210+this.serials.length*120) +"px";
-
-      this.serialsss = this.unique1(this.arry4); //去重后的试验温度
+      this.serials = unique1(arry1); //去重后的杯号
+      this.serialsss = unique1(arry4); //去重后的试验温度
       for (let d = 0; d < this.serialsss.length; d++) {
         this.serialss[d] = [];
         for (
@@ -101,30 +90,8 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
           c += this.serialsss.length
         ) {
           this.serialss[d].push(this.trialDataDetails[c]);
-          console.log(c);
         }
-        console.log(this.serialss[d]);
       }
-      console.log(this.serialss);
     });
-  }
-  unique1(array) {
-    var n = []; //一个新的临时数组
-    //遍历当前数组
-    for (var i = 0; i < array.length; i++) {
-      //如果当前数组的第i已经保存进了临时数组，那么跳过，
-      //否则把当前项push到临时数组里面
-      if (n.indexOf(array[i]) == -1) n.push(array[i]);
-    }
-    return n;
-  }
-  //点击行中的列项展开信息
-  clickItem(tdIdx) {
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }

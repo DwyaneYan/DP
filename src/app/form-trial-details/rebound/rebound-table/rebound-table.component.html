@@ -1,33 +1,15 @@
-<div class="dataTable">
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" id="{{data.table}}" [nzScroll]="data.nzScroll"
-    *ngFor="let data of table;let tableIdx=index" nzBordered [class]="tableIdx==0?'layout-fixed mt25':'mt25'">
-    <thead>
-      <tr>
-        <th
-          [nzWidth]="thIdx == 0 && tableIdx ==0||thIdx == 1 && tableIdx ==0||thIdx ==2 && tableIdx ==0?'110px':'200px'"
-          *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let data2 of this[data.name]">
-      <tr>
-        <td *ngFor="let data3 of data.key;let tdIdx = index"
-          [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :'ellipsis'"
-          (click)="clickItem(tableIdx==0,tdIdx)">
-          {{ data2[data3]}}</td>
-      </tr>
-    </tbody>
-  </nz-table>
-  <nz-table [nzData]=[{}] [nzFrontPagination]="false" class="mt25" [id]="data.table" *ngFor="let data of table1"
-    nzBordered>
-    <thead>
-      <tr>
-        <th *ngFor="let data1 of data.one;let i=index" [nzWidth]="data.width[i]">{{data1}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data2 of this[data.name]">
-        <td *ngFor="let data3 of data.key" nzBreakWord>{{data2[data3]}}</td>
-      </tr>
-    </tbody>
-  </nz-table>
+<div id="dataTable">
+    <nz-table [nzData]='this[data.name]' [nzFrontPagination]="false" [nzScroll]="data.nzScroll" *ngFor="let data of table1;let tableIdx=index" nzBordered [class]="tableIdx==0?'layout-fixed mt25':'mt25'" [nzLoading]="this[data.loading]">
+        <thead>
+            <tr>
+                <th [nzWidth]="data.width[thIdx]" *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let data2 of this[data.name]">
+            <tr>
+                <td *ngFor="let data3 of data.key;let tdIdx = index" [class]="tableIdx==0 || (tableIdx==0 && tdIdx == activeTdIdx )?tableCellCls :''" (click)="clickItem(tableIdx==0,tdIdx)" nzBreakWord>
+                    {{ data2[data3]}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
 </div>

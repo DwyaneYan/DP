@@ -13,13 +13,10 @@
             <li class="navigation-item">
                 <a href="http://www.hgjt.cn/" target="_blank">联系我们</a></li>
             <li class="navigation-item">
-                <!-- <a routerLink="/userManual">帮助</a> -->
-                <!-- <a href="邯钢汽车用钢数据信息化平台使用手册.pdf">帮助</a> -->
                 <a (click)="openPDF()">帮助</a>
             </li>
             <li class="navigation-item" *ngIf="system">
                 <a target="_blank" (click)="checkToken()">系统管理</a>
-                <!-- <ng-template #elseBlock><span>系统管理&nbsp;&nbsp;|</span></ng-template> -->
             </li>
             <li class="navigation-item">
                 <img class="user" src=" ../../assets/images/user.png" alt="" />

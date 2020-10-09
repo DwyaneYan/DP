@@ -10,7 +10,7 @@ import { CookieService } from "ngx-cookie-service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { HttpHeaders } from "@angular/common/http";
-import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
+import {initRouter} from "../init-routers"
 
 @Component({
   selector: "app-form-login-dialog",
@@ -23,7 +23,6 @@ export class FormLoginDialogComponent implements OnInit {
   uuid;
   token = "";
   submitForm(): void {
-    console.log(this.validateForm)
     //校验状态
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -44,9 +43,7 @@ export class FormLoginDialogComponent implements OnInit {
       let code = this.validateForm.value.code;
       let uuid = this.uuid;
       console.log(uuid);
-
       this.ApiService.login(username, password, code, uuid).then((res: any) => {
-        // this.token=res.token
         if (res.code != 200) {
           if(res.msg == ''){
             this.message.create("error", '验证码失效'); 
@@ -55,7 +52,6 @@ export class FormLoginDialogComponent implements OnInit {
           else{this.message.create("error", res.msg); 
           this.getCode();}
         } else {
-          // this.ApiService.setToken(res.token)
           sessionStorage.setItem("token", res.token);//token存到session
           let httpOptions = {
             headers: new HttpHeaders({
@@ -64,46 +60,30 @@ export class FormLoginDialogComponent implements OnInit {
           };
           this.ApiService.getInfo(httpOptions).then((res: any) => {
             window.sessionStorage.setItem("permissions", JSON.stringify(res));
-            this.ApiService.getRouters(httpOptions).then((res: any) => {
-              window.sessionStorage.setItem("data", JSON.stringify(res));//data控制按钮权限
-
               if (window.location.search.indexOf("type=vim") != -1) {
                let position = window.location.search.slice(1).replace(/=&/g, '/').lastIndexOf("/");
                 let url = window.location.search.slice(1).replace(/=&/g, '/').slice(0,position)
-               console.log(url)
-              window.open(url,'_self')
-                // this.router.navigateByUrl(
-                //   url
-                // );
+              this.router.config = this.ApiService.selfReloadRouter(initRouter())
+              this.router.navigateByUrl(`${url}`)
               } else {
-                // this.router.navigate(["/platform",{ relativeTo: this.routeInfo }]);
-      // location.reload() 
-      console.log(this.routeInfo,this.router)
-      // window.sessionStorage.setItem("fromLogin",'1')
-      //window.open('/platform','_self')
-      this.router.navigateByUrl("/platform")//路由导航和在导航栏直接导航的区别,手动导航就会执行路由配置文件
-      //重新加载路由
-      // this.router.config.push({path: "platform1", component: TypicalPartComponent})
-      // // window.open(`http://localhost:4200/platform`,'_self')
-      // console.log(this.routeInfo,this.router)
-
+    this.router.config = this.ApiService.selfReloadRouter(initRouter())
+     this.router.navigateByUrl("/platform")//路由导航和在导航栏直接导航的区别,手动导航就会执行路由配置文件
               }
-            });
-            console.log(res);
           });
         }
 
       });
     }
   }
-  // toDetail(){}
+
   constructor(
     private fb: FormBuilder,
     private ApiService: ApiService,
     private cookies: CookieService,
     private message: NzMessageService,
     public router: Router,
-    private routeInfo: ActivatedRoute
+    private routeInfo: ActivatedRoute,
+    // private initRouter:initRouter,
   ) {}
 
   ngOnInit(): void {
@@ -118,7 +98,6 @@ export class FormLoginDialogComponent implements OnInit {
     this.getCookie();
     this.getCode();
     //this.getCookie();
-
     console.log(this.validateForm);
   }
   //获取验证码
@@ -133,17 +112,13 @@ export class FormLoginDialogComponent implements OnInit {
     const userName = this.cookies.get("userName");
     const password = this.cookies.get("password");
     const remember = this.cookies.get("remember");
-    // this.validateForm.value.userName = userName === undefined ? "" : userName;
-    // this.validateForm.value.password = password === undefined ? "" : password;
-    // this.validateForm.value.remember = remember == 'true' ? true : false;
     this.validateForm = this.fb.group({
       userName: [userName === undefined ? "" : userName, [Validators.required]],
       password: [password === undefined ? "" : password, [Validators.required]],
       code: [null, [Validators.required]],
-      // uuid: [null],
       remember: [remember == 'true' ? true : false],
     });
-    // console.log(userName,remember, this.validateForm.value.userName,this.validateForm,this.validateForm.value);
 
   }
+ 
 }
