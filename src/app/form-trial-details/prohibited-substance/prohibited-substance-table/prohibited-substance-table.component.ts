@@ -23,6 +23,8 @@ export class ProhibitedSubstanceTableComponent implements OnInit {
     key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
 }
 ]
+tableCellCls = "ellipsis";
+activeTdIdx = 0;
   constructor( private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -39,5 +41,13 @@ export class ProhibitedSubstanceTableComponent implements OnInit {
     })
   }
 
-
+  //点击行中的列项展开信息
+  clickItem(tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
+  }
 }

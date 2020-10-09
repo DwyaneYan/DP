@@ -22,6 +22,8 @@ export class MetallographicTableComponent implements OnInit {
   key:["structure","nonMetallicInclusionLevel","grainSize","depthDecarburization"]
 ,
 }]
+tableCellCls = "ellipsis";
+activeTdIdx = 0;
   constructor(private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -45,5 +47,14 @@ export class MetallographicTableComponent implements OnInit {
       }
     })    
   }
+    //点击行中的列项展开信息
+    clickItem(tdIdx) {
+      this.activeTdIdx = tdIdx;
+      if (this.tableCellCls) {
+        this.tableCellCls = "";
+      } else {
+        this.tableCellCls = "ellipsis";
+      }
+    }
   
 }

@@ -1,8 +1,8 @@
 <div id="dataTable">
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="layout-fixed mt25" [nzScroll]="{ x: '1200px' }" [nzLoading]="loading">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered class="layout-fixed mt25" [nzScroll]="{ x: '810px' }" [nzLoading]="loading">
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'150px':'200px'" *ngFor="let data of table[0].one;let thIdx = index">
+                <th [nzWidth]="thIdx == 0||thIdx == 1||thIdx ==2?'120px':'auto'" *ngFor="let data of table[0].one;let thIdx = index">
                     {{data}}
                 </th>
             </tr>

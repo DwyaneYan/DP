@@ -2,7 +2,7 @@
     <nz-table class="mt25" [nzData]='this[data.name]' [nzFrontPagination]="false" id="{{data.table}}" [nzScroll]="data.nzScroll" *ngFor="let data of table;let tableIdx=index" nzBordered [class]="tableIdx==0?'layout-fixed mt25':'mt25'">
         <thead>
             <tr>
-                <th [nzWidth]="tableIdx ==0 && i == 0||tableIdx ==0 && i == 1||tableIdx ==0 &&i ==2?'110px':data.width[i]" *ngFor="let data1 of data.one;let i=index">{{data1}}</th>
+                <th [nzWidth]="tableIdx ==0 && i == 0||tableIdx ==0 && i == 1||tableIdx ==0 &&i ==2?'120px':data.width[i]" *ngFor="let data1 of data.one;let i=index">{{data1}}</th>
             </tr>
         </thead>
         <tbody *ngFor="let data2 of this[data.name]">

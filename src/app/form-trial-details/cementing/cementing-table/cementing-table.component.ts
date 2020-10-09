@@ -22,6 +22,8 @@ export class CementingTableComponent implements OnInit {
 one:["样件编号","样品长度(mm)","试样宽度(mm)","胶结宽度b(mm)","剪切强度Rp(MPa)","失效模式"],
 key:["sampleCode","length","width","cementingWidth","mpa","failureMode"]
 }]
+tableCellCls = "ellipsis";
+activeTdIdx = 0;
   constructor( private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -44,5 +46,14 @@ key:["sampleCode","length","width","cementingWidth","mpa","failureMode"]
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds); 
       }
     })    
+  }
+  //点击行中的列项展开信息
+  clickItem( tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }

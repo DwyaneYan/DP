@@ -20,7 +20,7 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
     {
       one: ["测试机构", "开始检测日期", "检测结束日期", "执行标准"],
       key: ["testOrganization", "dates", "dateEnds", "standard"],
-      width: ["110px", "110px", "110px", ""]
+      width: ["120px", "120px", "120px", ""]
     },
     {
       one: ["氢脆试验项目", "试验设备", "溶液类别", "试验时间", "试验方法"],

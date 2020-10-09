@@ -19,7 +19,8 @@ export class CompressionTableComponent implements OnInit {
   table4=['150px','100px','100px','100px','100px','150px','150px','150px']
   table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
   loading = true;
-
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
   constructor(    private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -43,4 +44,13 @@ export class CompressionTableComponent implements OnInit {
       }
     })    
   } 
+  //点击行中的列项展开信息
+  clickItem(tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
+  }
 }

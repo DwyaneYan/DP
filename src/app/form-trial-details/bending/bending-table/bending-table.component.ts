@@ -20,7 +20,8 @@ export class BendingTableComponent implements OnInit {
   loading = true
   isVisible = false;  //弯曲各样本对比框
   options = {}; //指定图表的配置项和数据
-
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
 
   constructor(
     public http: HttpClient,
@@ -64,5 +65,14 @@ export class BendingTableComponent implements OnInit {
 
   changeisVisible(){
     this.isVisible = false
+  }
+   //点击行中的列项展开信息
+   clickItem(tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }

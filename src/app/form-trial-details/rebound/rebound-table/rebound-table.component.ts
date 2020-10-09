@@ -40,7 +40,7 @@ export class ReboundTableComponent implements OnInit {
       "equipment",
       "testMethod",
     ],
-    width: ["110px", "110px", "110px", "150px", "150px", ""], //留一列不设置宽度，他的宽度自适应，不然固定宽度都不会生效
+    width: ["120px", "120px", "120px", "150px", "150px", ""], //留一列不设置宽度，他的宽度自适应，不然固定宽度都不会生效
   },
     {
       name: "trialDataDetail",

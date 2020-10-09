@@ -103,6 +103,8 @@ export class PaintingTableComponent implements OnInit {
   trialDataDetailsssssss = [] // 附着力
   trialDataDetailssssssss = [] // 耐湿热
   trialDataDetailsssssssss = [] // detail表
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
   constructor( private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -133,6 +135,18 @@ export class PaintingTableComponent implements OnInit {
           this[this.table[i].name][0].dateEnds = this.ApiService.handleTime(this[this.table[i].name][0].dateEnds);
       }
       })    
+    }
+  }
+  //点击行中的列项展开信息
+  clickItem(firstTable, tdIdx) {
+    if (!firstTable) {
+      return;
+    }
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
     }
   }
   // 磷化膜

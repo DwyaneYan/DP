@@ -21,6 +21,7 @@ body {
 #dataTable nz-table /deep/ tbody td {
     text-align: center;
     padding: 8px 0;
+    word-break: break-all;
 }
 
 .w1200 {
