@@ -23,6 +23,8 @@ export class FlangingClaspTableComponent implements OnInit {
   key:["flangingLevel"],
   // nzScroll :{x: '200px' }
 }]
+tableCellCls = "ellipsis";
+activeTdIdx = 0;
   constructor(private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -45,5 +47,17 @@ export class FlangingClaspTableComponent implements OnInit {
       this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
       }
     })    
+  }
+  //点击行中的列项展开信息
+  clickItem(firstTable, tdIdx) {
+    if (!firstTable) {
+      return;
+    }
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }

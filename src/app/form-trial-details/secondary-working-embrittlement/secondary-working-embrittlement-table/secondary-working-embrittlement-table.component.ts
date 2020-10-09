@@ -36,7 +36,7 @@ export class SecondaryWorkingEmbrittlementTableComponent implements OnInit {
         "equipment",
         "testMethod",
       ],
-      width:["110px", "110px", "110px", "150px", "150px", ""]
+      width:["120px", "120px", "120px", "150px", "150px", ""]
     },
     {
       one: ["试验温度℃"],

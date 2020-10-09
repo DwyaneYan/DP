@@ -1,13 +1,13 @@
 <div id="dataTable">
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered *ngFor="let data of table;let tableIdx=index" [nzLoading]="loading">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25 layout-fixed " nzBordered *ngFor="let data of table;let tableIdx=index" [nzLoading]="loading">
         <thead>
             <tr>
-                <th [nzWidth]="tableIdx ==0 && thIdx == 0||tableIdx ==0 && thIdx == 1||tableIdx ==0 &&thIdx ==2?'150px':'200px'" *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
+                <th [nzWidth]="tableIdx ==0 && thIdx == 0||tableIdx ==0 && thIdx == 1||tableIdx ==0 &&thIdx ==2?'120px':'auto'" *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let detail of trialDataDetail">
-                <td *ngFor="let data1 of data.key">{{detail[data1]}}</td>
+                <td *ngFor="let data1 of data.key;let tdIdx = index" [nzBreakWord]="tableIdx!==0" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tableIdx==0,tdIdx)">{{detail[data1]}}</td>
             </tr>
         </tbody>
     </nz-table>

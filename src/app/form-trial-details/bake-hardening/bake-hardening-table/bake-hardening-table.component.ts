@@ -31,7 +31,9 @@ loading1 = true
 loading2 = true
 tableCellCls = tableCellCls;
 activeTdIdx = activeTdIdx;
+loading = true;
 clickItem = clickItem
+
 constructor(private route: ActivatedRoute,
   public http: HttpClient,
   public ApiService: ApiService,
@@ -63,5 +65,17 @@ constructor(private route: ActivatedRoute,
         this.trialDataDetails = res
         this.loading2 = false
     })    
+  }
+  //点击行中的列项展开信息
+  clickItemTd(firstTable, tdIdx) {
+    if (!firstTable) {
+      return;
+    }
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }

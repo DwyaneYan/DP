@@ -40,6 +40,8 @@ export class DentResistanceTableComponent implements OnInit {
       // nzScroll: { x: "400px" },
     },
   ];
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
   constructor(
     private route: ActivatedRoute,
     public http: HttpClient,
@@ -65,5 +67,17 @@ export class DentResistanceTableComponent implements OnInit {
         }
       }
     );
+  }
+  //点击行中的列项展开信息
+  clickItem(firstTable, tdIdx) {
+    if (!firstTable) {
+      return;
+    }
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }

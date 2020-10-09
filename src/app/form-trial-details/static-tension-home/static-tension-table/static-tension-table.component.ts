@@ -24,7 +24,8 @@ export class StaticTensionTableComponent implements OnInit {
   table4=["sampleCode",'direction','thickness','yieldStrength','tensileStrength','strainHardening','elongation','plasticStrainRatio','modulusOfElasticity','poissonRatio','maximumForce','bhValue','indenterDiameter','vImpactTemperature','vImpactEnergy']
   table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod","gaugeDistance"]
   data=["trialDataDetail1","trialDataDetail2"]
-
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
 
   contrastTable(params, des,c) {
         let data = [];
@@ -79,5 +80,14 @@ export class StaticTensionTableComponent implements OnInit {
         this.trialDataDetails = res;
 
     }) 
+  }
+  //点击行中的列项展开信息
+  clickItem(tdIdx) {
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }

@@ -38,6 +38,8 @@ export class PhysicalperformanceTableComponent implements OnInit {
     one: ["温度（℃）", "导热系数λ（W/(cm゜C)）"],
     key: ["temperature", "thermalConductivity"]
   },]
+  tableCellCls = "ellipsis";
+  activeTdIdx = 0;
   constructor(private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -79,5 +81,17 @@ export class PhysicalperformanceTableComponent implements OnInit {
         this.trialDataDetailss = res;
         this.loadingss = false
       })
+  }
+  //点击行中的列项展开信息
+  clickItem(firstTable, tdIdx) {
+    if (!firstTable) {
+      return;
+    }
+    this.activeTdIdx = tdIdx;
+    if (this.tableCellCls) {
+      this.tableCellCls = "";
+    } else {
+      this.tableCellCls = "ellipsis";
+    }
   }
 }
