@@ -19,12 +19,13 @@ export class PhysicalperformanceTableComponent implements OnInit {
   table = [{
     one: ["测试机构", '开始检测日期', '检测结束日期', "执行标准", "试验设备", "试验方法"],
     key: ["testOrganization", "dates", "dateEnds", "standard", "equipment", "testMethod"],
-    nzScroll: { x: '1200px' }
+    width: ['120px','120px','120px','150px','150px','']
   },
   {
     one: ["维氏硬度（HV）", "布氏硬度（HBW）", "洛氏硬度（HRC）", "密度ρ（g/cm3）", "电阻率ρ（Ω·m）"],
     key: ["hv", "hbw", "hrc", "density", "resistivity"],
-    nzScroll: { x: '1000px' }
+    width: ['150px','150px','150px','150px','']
+    
   },
   {
     table: "trialDataDetailss",

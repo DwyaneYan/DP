@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
-import {PlotPicture,GetTrialDataDetails} from "../../../picture"
+import {PlotPicture,GetTrialDataDetails,clickItem} from "../../../picture"
 @Component({
   selector: 'app-chemicalelement-table',
   templateUrl: './chemicalelement-table.component.html',
@@ -15,14 +15,14 @@ export class ChemicalelementTableComponent implements OnInit {
   arr3 = []//要求值
   bh = [] //样件编号
   last = [] //处理后的渲染数据数组,二维数组
+  clickItem = clickItem
   groupCode = []
   table = [{
-    table: "table1",
     one: ["测试机构", '开始检测日期', '检测结束日期', "执行标准", "试验设备", "试验方法"],
-    key: ["testOrganization", "dates", "dateEnds", "standard", "equipment", "testMethod"]
+    key: ["testOrganization", "dates", "dateEnds", "standard", "equipment", "testMethod"],
+    width:['120px','120px','120px','150px','150px','']
   },
   {
-    table: "table2",
     one: ["样件编号"],
     key: ["sampleCode"]
   },
@@ -45,7 +45,7 @@ export class ChemicalelementTableComponent implements OnInit {
 
   ngOnInit() {
       GetTrialDataDetails('getChemicalElementDataDetails',this.materialId,this.ApiService).then(res=>{ this.ys = res.element;this.arr3 = res.requirement;this.bh = res.sampleCode;
-      this.last = res.data;this.trialDataDetail = res.trialDataDetail;
+      this.last = res.data;this.trialDataDetail = res.trialDataDetail;this.groupCode = res.groupCode
       this.loading = false;
     })
   }
@@ -59,15 +59,6 @@ export class ChemicalelementTableComponent implements OnInit {
   }
   changeisVisible(){
     this.isVisible = false
-  }
-   //点击行中的列项展开信息
-   clickItem(tdIdx) {
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }
 

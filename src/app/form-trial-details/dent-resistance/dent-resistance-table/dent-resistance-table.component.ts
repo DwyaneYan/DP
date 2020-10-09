@@ -14,7 +14,6 @@ export class DentResistanceTableComponent implements OnInit {
   loading = true
   table = [
     {
-      table: "table1",
       one: [
         "测试机构",
         "开始检测日期",
@@ -31,13 +30,12 @@ export class DentResistanceTableComponent implements OnInit {
         "equipment",
         "testMethod",
       ],
-      // nzScroll: { x: "1200px" },
+       width: ['120px','120px','120px','150px','150px',''],
     },
     {
-      table: "table2",
       one: ["初始刚度(N/mm)", "0.1mm可见凹痕载荷(N)"],
       key: ["originalRigidity", "visibleDentLoad"],
-      // nzScroll: { x: "400px" },
+      width:[]
     },
   ];
   tableCellCls = "ellipsis";

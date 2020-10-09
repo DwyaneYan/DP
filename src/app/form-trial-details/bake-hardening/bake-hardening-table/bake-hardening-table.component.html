@@ -2,13 +2,13 @@
     <nz-table class="mt25 layout-fixed " [nzData]="this[data.name]" [nzFrontPagination]="false" *ngFor="let data of table;let tableIndex = index" nzBordered [nzLoading]="this[data.loading]">
         <thead>
             <tr>
-                <th [nzWidth]="tableIndex == 0 &&thIdx == 0||tableIndex == 0 && thIdx == 1||tableIndex == 0 && thIdx ==2?'120px':'auto'" *ngFor="let data1 of data.one;let thIdx = index">
+                <th [nzWidth]="data.width[thIdx]" *ngFor="let data1 of data.one;let thIdx = index">
                     {{data1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data2 of this[data.name]">
-                <td *ngFor="let data3 of data.key;let tdIdx = index"  [nzBreakWord]="tableIdx!==0" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItemTd(tableIdx==0,tdIdx)">{{ data2[data3]}}</td>
+                <td *ngFor="let data3 of data.key;let tdIdx = index" [nzBreakWord]="tableIdx!==0" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :(tableIdx==0?'ellipsis':'')" (click)="clickItemTd(tableIdx==0,tdIdx)">{{ data2[data3]}}</td>
             </tr>
         </tbody>
     </nz-table>

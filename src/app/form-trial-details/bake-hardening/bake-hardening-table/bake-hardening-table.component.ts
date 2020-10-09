@@ -3,8 +3,7 @@ import {ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
 import{clickItem}from "../../../picture"
-var tableCellCls = "ellipsis";
-var activeTdIdx = 0;
+
 @Component({
   selector: 'app-bake-hardening-table',
   templateUrl: './bake-hardening-table.component.html',
@@ -18,19 +17,22 @@ table=[{
   name:"trialDataDetail",
   one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
   key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
-  loading:'loading1'
+  loading:'loading1',
+  width:['120px','120px','120px','150px','150px','']
 },
 {
 name:"trialDataDetails",
 one:["烘烤温度及时间","Rt2.0(MPa)","Rp0.2(MPa)","Rm(MPa)","BH2(MPa)"],
 key:["temperatureTimes","rt","rp","rm","bH2"],
-loading:'loading2'
+loading:'loading2',
+width:''
+
 
 }]
 loading1 = true
 loading2 = true
-tableCellCls = tableCellCls;
-activeTdIdx = activeTdIdx;
+tableCellCls = "ellipsis";
+activeTdIdx = 0;
 loading = true;
 clickItem = clickItem
 
@@ -66,16 +68,5 @@ constructor(private route: ActivatedRoute,
         this.loading2 = false
     })    
   }
-  //点击行中的列项展开信息
-  clickItemTd(firstTable, tdIdx) {
-    if (!firstTable) {
-      return;
-    }
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
-  }
+
 }

@@ -31,6 +31,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     "试验方法",
     "取样方向",
   ];
+  width1 = ['120px','120px','120px','150px','150px','150px','']
   table2 = [
     "材料牌号",
     "屈服强度Rp(MPa)",

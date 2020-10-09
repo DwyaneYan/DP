@@ -2,13 +2,13 @@
     <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25 layout-fixed" nzBordered *ngFor="let data of table.slice(0,2);let tableIdx = index" [nzLoading]="loading">
         <thead>
             <tr>
-                <th [nzWidth]="tableIdx == 0 && thIdx==0||tableIdx == 0 && thIdx==1||tableIdx == 0 && thIdx==2?'120px':'auto'" *ngFor="let data1 of data.one;let thIdx = index">
+                <th [nzWidth]="data.width[thIdx]" *ngFor="let data1 of data.one;let thIdx = index">
                     {{data1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
-                <td [nzBreakWord]="tableIdx!==0"  *ngFor="let data2 of data.key;let tdIdx = index" [class]="tableIdx==0 && tdIdx == activeTdIdx?tableCellCls :'ellipsis'" (click)="clickItem(tableIdx==0,tdIdx)">{{detail[data2]}}</td>
+                <td [nzBreakWord]="tableIdx!==0" *ngFor="let data2 of data.key;let tdIdx = index" [class]="tableIdx==0 && tdIdx == activeTdIdx?tableCellCls :(tableIdx==0?'ellipsis':'')" (click)="clickItem(tableIdx==0,tdIdx)">{{detail[data2]}}</td>
             </tr>
         </tbody>
     </nz-table>
