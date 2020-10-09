@@ -1,5 +1,5 @@
 import { Component, OnInit,Output,EventEmitter ,Input} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-form-material-db-background',
@@ -7,10 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./form-material-db-background.component.css']
 })
 export class FormMaterialDbBackgroundComponent implements OnInit {
-
-  // materialName='';
   @Output()  paihao = new EventEmitter(); 
-//  @Input() ph
+
  data = ''
   constructor(
     public http: HttpClient,

@@ -19,142 +19,200 @@ import { ApiService } from "src/app/api.service";
 export class PageMaterialComponent implements OnInit {
   @ViewChildren(FormMaterialDbBackgroundComponent) enterData: QueryList<FormMaterialDbBackgroundComponent>;//访问整个子组件实例
   materialType = [
-    //冷轧
     {
-      class: "material-class",
+      // class: "material-class",
       enum: "100",
       name: "冷轧板",
       children: [
         {
-          enum: "100200",
+          enum: "1001000",
           name: "普通用",
         },
         {
-          enum: "100300",
+          enum: "1001020",
           name: "深冲用",
         },
         {
-          enum: "100100",
-          name: "高强IF钢",
-        },
-        {
-          enum: "40",
+          enum: "1001030",
           name: "低合金钢",
         },
         {
-          enum: "50",
+          enum: "1001040",
           name: "双相钢",
         },
         {
-          enum: "60",
+          enum: "1001050",
           name: "复相钢",
         },
         {
-          enum: "70",
+          enum: "1001060",
           name: "马氏体钢",
+        },       
+        {
+          enum: "1001070",
+          name: "烘烤硬化钢",
+        },
+        {
+          enum: "1001080",
+          name: "碳素结构钢",
+        },
+        {
+          enum: "1001090",
+          name: "低碳铝镇静钢",
+        },
+        {
+          enum: "1001100",
+          name: "低合金高强度钢",
+        },
+        {
+          enum: "1001110",
+          name: "淬火延性钢",
+        },
+        {
+          enum: "1001120",
+          name: "马氏体",
+        },
+        {
+          enum: "1001130",
+          name: "增强成形性双相钢",
+        },  
+        {
+          enum: "1001140",
+          name: "热冲压成形钢",
+        },
+        {
+          enum: "1001150",
+          name: "相变诱导塑性钢",
+        },
+        {
+          enum: "1001160",
+          name: "IF钢",
         },
       ],
     },
-
-    //镀锌
     {
-      class: "material-class",
-      enum: "110",
+      // class: "material-class",
+      enum: "102",
       name: "镀锌板",
       children: [
         {
-          enum: "120",
+          enum: "1021000",
           name: "普通用",
         },
         {
-          enum: "130",
+          enum: "1021010",
           name: "深冲用",
         },
         {
-          enum: "170",
+          enum: "1021020",
           name: "高强IF钢",
         },
         {
-          enum: "140",
+          enum: "1021030",
           name: "低合金钢",
         },
         {
-          enum: "150",
+          enum: "1021040",
           name: "双相钢",
         },
         {
-          enum: "160",
+          enum: "1021050",
           name: "烘烤硬化钢",
+        },
+        {
+          enum: "1021060",
+          name: "低碳铝镇静钢",
+        },
+        {
+          enum: "1021070",
+          name: "低合金高强度钢",
+        },
+        {
+          enum: "1021080",
+          name: "IF钢",
+        },
+        {
+          enum: "1021090",
+          name: "增强成形性双相钢",
+        },
+        {
+          enum: "1021100",
+          name: "复相钢",
+        },
+        {
+          enum: "1021110",
+          name: "相变诱导塑性钢",
+        },
+        {
+          enum: "1021120",
+          name: "热冲压成形钢",
         },
       ],
     },
+ 
+    {
+      // class: "material-class",
+      enum: "104",
+      name: "热轧板",
+      children: [
+        {
+          enum: "1041000",
+          name: "低碳钢",
+        },
+        {
+          enum: "1041010",
+          name: "SAPH系列",
+        },
+        {
+          enum: "1041020",
+          name: "QStE结构钢系列",
+        },
+        {
+          enum: "1041030",
+          name: "大梁钢",
+        },
+        {
+          enum: "1041040",
+          name: "车轮钢",
+        },
+        {
+          enum: "1041050",
+          name: "热轧双相钢",
+        },
+        {
+          enum: "1041060",
+          name: "箱体钢",
+        },
+        {
+          enum: "1041070",
+          name: "制动鼓用钢",
+        },
+      ],
+    },    
+    {
+      // class: "material-class",
+      enum: "106",
+      name: "中厚板",
+      children: [
+        {
+          enum: "1061000",
+          name: "大梁钢",
+        },
+        {
+          enum: "1061010",
+          name: "车轮钢",
+        },
+        {
+          enum: "1061020",
+          name: "车桥钢",
+        },
+        {
+          enum: "1061030",
+          name: "自卸车厢体用耐磨钢",
+        },
 
-    // //热轧
-    // {
-    //   class: "material-class",
-    //   enum: "180",
-    //   name: "热轧",
-    //   children: [
-    //     {
-    //       enum: "190",
-    //       name: "低碳钢",
-    //     },
-    //     {
-    //       enum: "200",
-    //       name: "SAPH系列",
-    //     },
-    //     {
-    //       enum: "220",
-    //       name: "大梁钢",
-    //     },
-    //     {
-    //       enum: "210",
-    //       name: "QStE结构钢系列",
-    //     },
-
-    //     {
-    //       enum: "230",
-    //       name: "车轮钢轧",
-    //     },
-    //     {
-    //       enum: "240",
-    //       name: "双相钢",
-    //     },
-    //     {
-    //       enum: "250",
-    //       name: "箱体钢",
-    //     },
-    //     {
-    //       enum: "260",
-    //       name: "制动鼓用钢",
-    //     },
-    //   ],
-    // },
-
-    // //中板
-    // {
-    //   class: "material-class1",
-    //   enum: "270",
-    //   name: "中板",
-    //   children: [
-    //     {
-    //       enum: "275",
-    //       name: "大梁钢",
-    //     },
-    //     {
-    //       enum: "300",
-    //       name: "自卸车厢体用耐磨钢",
-    //     },
-    //     {
-    //       enum: "280",
-    //       name: "车轮钢",
-    //     },
-    //     {
-    //       enum: "290",
-    //       name: "车桥钢",
-    //     },
-    //   ],
-    // },
+      ],
+    },
   ];
 
   //#region 限制条件字段
@@ -300,6 +358,7 @@ export class PageMaterialComponent implements OnInit {
   public async doEvent(data) {
     this.params.Name = data;
     this.params.type = "tszf"
+    //材料牌号中的特殊字符要进行url编码
     this.params.url = `?manufactoryId=${this.params.ManufactoryId}&name=${encodeURIComponent(this.params.Name)}&model=${this.params.Model}&materialType=${this.params.MaterialType}
     &minModel=${this.params.MinModel}&maxModel=${this.params.MaxModel}&maxStrenth=${this.params.MaxStrenth}&minStrenth=${this.params.MinStrenth}`
     this.filtrationMaterial({})
