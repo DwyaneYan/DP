@@ -15,7 +15,7 @@
     <nz-table class="mt25" nzBordered [nzData]='trialDataDetails' [nzFrontPagination]="false" [nzLoading]="loading2">
         <thead>
             <tr>
-                <th nzWidth="200px" *ngFor="let data1 of table1[0].one">{{data1}}</th>
+                <th *ngFor="let data1 of table1[0].one">{{data1}}</th>
             </tr>
         </thead>
         <tbody>

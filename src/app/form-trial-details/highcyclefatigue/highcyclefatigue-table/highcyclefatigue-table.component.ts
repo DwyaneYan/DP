@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
+import{clickItem}from "../../../picture"
 import { NameService } from '../../base-info/name.service'
 @Component({
   selector: "app-highcyclefatigue-table",
@@ -12,10 +13,12 @@ export class HighcyclefatigueTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
   mater = ''; //试验结果中的牌号
+  clickItem =clickItem
   trialDataDetails = [];
+  loading = true
+  loadings = true
   table = [
     {
-      table: "table1",
       one: [
         "测试机构",
         "开始检测日期",
@@ -40,9 +43,8 @@ export class HighcyclefatigueTableComponent implements OnInit {
       ],
     },
     {
-      table: "table2",
       one: ["公式", "a", "b", "相关系数", "疲劳极限/MPa", "标准偏差/MPa"],
-      width: ["180px", "100px", "100px", "100px", "150px", "150px"],
+      width: ["", "100px", "100px", "100px", "150px", "150px"],
       key: [
         "formula",
         "snaParameter",
@@ -53,7 +55,6 @@ export class HighcyclefatigueTableComponent implements OnInit {
       ],
     },
     {
-      table: "table3",
       one: [
         "材料牌号",
         "屈服强度Rp(MPa)",
@@ -67,7 +68,6 @@ export class HighcyclefatigueTableComponent implements OnInit {
       ],
     },
     {
-      table: "table3",
       one: ["样件编号", "最大应力/MPa", "应力幅/MPa", "循环次数/周次"],
       key: [
         "itemSampleCode",
@@ -100,6 +100,7 @@ export class HighcyclefatigueTableComponent implements OnInit {
     await this.ApiService.getHighCycleFatigueDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
+        this.loading = false
         if(this.trialDataDetail.length){
             this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
             this.trialDataDetail[0].dateEnds =  this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
@@ -110,14 +111,7 @@ export class HighcyclefatigueTableComponent implements OnInit {
   public async GetTrialDataDetailss() {
     await this.ApiService.getHighCycleFatigueDataDetailItems(this.materialId).then((res: any) => {
       this.trialDataDetails = res;
+      this.loadings =false
     });
-  }
-  clickItem(tdIdx) {
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }

@@ -1,5 +1,5 @@
 <div id="dataTable">
-    <nz-table [nzData]='trialDataDetail' class="mt25 layout-fixed" [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered>
+    <nz-table [nzData]='trialDataDetail' class="mt25 layout-fixed" [nzFrontPagination]="false" [nzScroll]="{x: '1400px'}" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'120px':'auto'" *ngFor="let data1 of  table1;let thIdx=index">{{data1}}</th>
@@ -7,16 +7,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let detail of one.slice(0,1)">
-                <td *ngFor="let data6 of  table6;let tdIdx = index" [class]=" tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
+                <td *ngFor="let data6 of  table6;let tdIdx = index" [class]=" tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(true,tdIdx)">
                     {{detail[data6]}}
                 </td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered>
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
-                <th *ngFor="let data2 of  table2">{{data2}}</th>
+                <th *ngFor="let data2 of  table2;let i = index" [nzWidth]="width2[i]">{{data2}}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" [nzScroll]="{ x: '1320px',y: '700px' }" class="mt25" nzBordered>
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" [nzScroll]="{ x: '1130px',y: '800px' }" class="mt25" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="width[i]" *ngFor="let data4 of  table4;let i=index">
@@ -47,7 +47,7 @@
         </tbody>
     </nz-table>
     <!-- 真塑性应变真应力未延伸到1 START-->
-    <nz-table [nzData]='strainData' [nzFrontPagination]="false" [nzScroll]="nzScrolls" class='tablebox mt25' nzBordered [nzWidthConfig]='nzWidthConfig4'>
+    <nz-table [nzData]='strainData' [nzFrontPagination]="false" [nzScroll]="nzScrolls" class='tablebox mt25' nzBordered [nzWidthConfig]='nzWidthConfig4' [nzLoading]="loadings">
         <thead>
             <tr>
                 <th rowspan="2" nzBreakWord>True plastic strain</th>

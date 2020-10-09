@@ -1,5 +1,5 @@
 <div id="dataTable">
-    <nz-table class="mt25 layout-fixed" [nzData]='trialDataDetail' [nzFrontPagination]="false" [nzScroll]="{x: '1260px' }" nzBordered>
+    <nz-table class="mt25 layout-fixed" [nzData]='trialDataDetail' [nzFrontPagination]="false" [nzScroll]="{x: '1260px' }" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'120px':'150px'" *ngFor="let data1 of table[0].one;let thIdx=index">{{data1}}</th>
@@ -7,16 +7,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
-                <td *ngFor="let data1 of table[0].key;let tdIdx = index" [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tdIdx)">
+                <td *ngFor="let data1 of table[0].key;let tdIdx = index" [class]="tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(true,tdIdx)">
                     {{detail[data1]}}
                 </td>
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered>
+    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
-                <th nzWidth="{{table[1].width[i]}}" *ngFor="let data1 of table[1].one;let i=index">{{data1}}</th>
+                <th [nzWidth]="table[1].width[i]" *ngFor="let data1 of table[1].one;let i=index">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,10 +25,10 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered>
+    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
-                <th nzWidth="200px" *ngFor="let data1 of table[2].one">{{data1}}</th>
+                <th *ngFor="let data1 of table[2].one">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
@@ -38,10 +38,10 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25" [nzData]="trialDataDetails" [nzFrontPagination]="false" nzBordered>
+    <nz-table class="mt25" [nzData]="trialDataDetails" [nzFrontPagination]="false" nzBordered [nzLoading]="loadings">
         <thead>
             <tr>
-                <th nzWidth="200px" *ngFor="let data1 of table[3].one">{{data1}}</th>
+                <th *ngFor="let data1 of table[3].one">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
