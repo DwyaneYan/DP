@@ -28,7 +28,7 @@
     <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
-                <th *ngFor="let data1 of table[2].one">{{data1}}</th>
+                <th *ngFor="let data1 of table[2].one;let i = index">{{data1}}</th>
             </tr>
         </thead>
         <tbody>

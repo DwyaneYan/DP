@@ -14,7 +14,8 @@ export class PaintingTableComponent implements OnInit {
     name:"trialDataDetailsssssssss",
     one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
     key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
-    nzScroll :{x: '1200px' },
+    // nzScroll :'',
+    width:['120px','120px','120px','150px','150px',''],
     method:"getPaintingDataDetails",
     loading:true
     },
@@ -23,24 +24,27 @@ export class PaintingTableComponent implements OnInit {
       loading:true,
       one:["磷化膜结晶尺寸","磷化膜覆盖率"],
       key:["sizeText","coverRatio"],
-      nzScroll :{x: '400px' },
+      width:[],
+      // nzScroll :{x: '400px' },
       method:"getPaintingDataDetailPhosphatingItems"
     },
     {
       loading:true,
+      width:[],
       name:"trialDataDetails",
       one:["面积（m2）","初始重量（g）","试验后重量（g）","膜重（g/m2）"],
       key:["area","originalWeight","afterWeight","membraneWeight"],
-      nzScroll :{x: '800px' },
+      // nzScroll :{x: '800px' },
       method:"getPaintingDataDetailMembraneWeightItems"
 
     },
     {
+      width:[],
       loading:true,
       name:"trialDataDetailss",
       one:["Ip（s-1）","IH（s-1）","P比"],
       key:["ip","ih","ratio"],
-      nzScroll :{x: '600px' },
+      // nzScroll :{x: '600px' },
       method:"getPaintingDataDetailPRatioItems"
 
     },

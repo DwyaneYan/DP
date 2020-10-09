@@ -257,7 +257,7 @@ async function GetTrialDataDetails(methonName,materialId,ApiServices) {
         }
       }
     })
-  return {requirement,element,sampleCode,data,trialDataDetail}
+  return {requirement,element,sampleCode,data,trialDataDetail,groupCode}
 }
   //点击行中的列项展开信息
  function clickItem(firstTable, tdIdx) {

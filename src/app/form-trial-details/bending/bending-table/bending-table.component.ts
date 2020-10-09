@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
-import {PlotPicture} from '../../../picture'
+import {PlotPicture,clickItem} from '../../../picture'
 @Component({
   selector: 'app-bending-table',
   templateUrl: './bending-table.component.html',
   styleUrls: ['./bending-table.component.css']
 })
 export class BendingTableComponent implements OnInit {
-
+  clickItem = clickItem
   materialId = ''
   trialDataDetail = [] //试验所有信息,全部包含在一个接口中
   table1=["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"]
+  width1 = ['120px','120px','120px','150px','150px','']
   table2=['样件编号','试样宽','试样厚','试样直径','试样长度','跨距','抗弯强度(MPa)','规定非比例弯曲强度(MPa)','弯曲弹性模量(MPa)']
   table3=['sampleCode','width','thickness','diameter','length','span','bendingStrength','nonProportionalBendingStrenth','bendingOfElasticity']
-  table4=['150px','100px','100px','100px','90px','80px','140px','150px','150px']
+  table4=['120px','90px','90px','90px','90px','80px','120px','150px','']
   table5=["testOrganization","dates","dateEnds","standard","equipment","testMethod"]
   loading = true
   isVisible = false;  //弯曲各样本对比框
@@ -67,12 +68,12 @@ export class BendingTableComponent implements OnInit {
     this.isVisible = false
   }
    //点击行中的列项展开信息
-   clickItem(tdIdx) {
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
-  }
+  //  clickItem(tdIdx) {
+  //   this.activeTdIdx = tdIdx;
+  //   if (this.tableCellCls) {
+  //     this.tableCellCls = "";
+  //   } else {
+  //     this.tableCellCls = "ellipsis";
+  //   }
+  // }
 }

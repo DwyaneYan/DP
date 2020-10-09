@@ -61,6 +61,7 @@ export class HighcyclefatigueTableComponent implements OnInit {
         "抗拉强度Rm(MPa)",
         "断后伸长率A(％)",
       ],
+      width:['120px','150px','150px',''],
       key: [
         "formYieldStrength",
         "formTensileStrength",

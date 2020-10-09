@@ -1,13 +1,13 @@
 <div id="dataTable">
-    <nz-table class="mt25 layout-fixed" [nzData]='this[data.name]' [nzFrontPagination]="false" [nzScroll]="data.nzScroll" *ngFor="let data of table.slice(0,4);let tableIdx=index" [nzLoading]="data.loading" nzBordered>
+    <nz-table class="mt25 layout-fixed" [nzData]='this[data.name]' [nzFrontPagination]="false" *ngFor="let data of table.slice(0,4);let tableIdx=index" [nzLoading]="data.loading" nzBordered>
         <thead>
             <tr>
-                <th [nzWidth]="thIdx == 0 && tableIdx ==0||thIdx == 1 && tableIdx ==0||thIdx ==2 && tableIdx ==0?'120px':'auto'" *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
+                <th [nzWidth]="data.width[thIdx]" *ngFor="let data1 of data.one;let thIdx=index">{{data1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data2 of this[data.name]">
-                <td *ngFor="let data3 of data.key;let tdIdx = index" [nzBreakWord]="tableIdx!==0" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tableIdx==0,tdIdx)">{{ data2[data3]}}</td>
+                <td *ngFor="let data3 of data.key;let tdIdx = index" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :(tableIdx==0?'ellipsis':'')" (click)="clickItem(tableIdx==0,tdIdx)">{{ data2[data3]}}</td>
             </tr>
         </tbody>
     </nz-table>
