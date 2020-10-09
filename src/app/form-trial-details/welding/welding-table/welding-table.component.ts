@@ -16,12 +16,13 @@ export class WeldingTableComponent implements OnInit {
   loading2 = true
   table = [
     {
-      nzScroll: { x: "1000px" },
+      nzScroll: '',
       one: ["测试机构", "开始检测日期", "检测结束日期", "执行标准", "试验方法"],
       key: ["testOrganization", "dates", "dateEnds", "standard", "testMethod"],
+      width:['120px','120px','120px','150px','']
     },
     {
-      nzScroll: { x: "2600px" },
+      nzScroll: { x: "1500px" },
       one: [
         "焊接试验类型",
         "焊机类别",
@@ -52,6 +53,7 @@ export class WeldingTableComponent implements OnInit {
         "holdingWeldingTimes",
         "criticalJointDiameter",
       ],
+      width:['120px','110px','110px','130px','110px','110px','110px','110px','120px','120px','120px','110px','',]
     },
   ];
   table1 = [

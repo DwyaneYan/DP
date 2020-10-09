@@ -45,8 +45,8 @@ export class ReboundTableComponent implements OnInit {
     {
       name: "trialDataDetail",
       loading:"loading",
-      nzScroll: { x: "1050px" },
-      width: ["150px", "150px", "150px", "150px", "150px", "150px", ""],
+      nzScroll: '',
+      width: ["130px", "130px", "140px", "140px", "140px", "140px", ""],
       one: [
         "回弹试验类型",
         "弯曲角度",
@@ -91,11 +91,11 @@ export class ReboundTableComponent implements OnInit {
     {
       loading:"loading2",
       name: "trialDataDetailss",
-      nzScroll: { x: "1030px" },
+      nzScroll: '',
       width: [
-        "150px",
-        "150px",
-        "150px",
+        "140px",
+        "110px",
+        "100px",
         "80px",
         "80px",
         "80px",

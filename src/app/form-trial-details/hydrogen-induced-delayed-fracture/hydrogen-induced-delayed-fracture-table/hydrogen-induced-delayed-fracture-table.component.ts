@@ -25,7 +25,7 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
     {
       one: ["氢脆试验项目", "试验设备", "溶液类别", "试验时间", "试验方法"],
       key: ["testName", "equipment", "liquorType", "testTime", "testMethod"],
-      width: ["150px", "110px", "110px", "110px",'']
+      width: ["150px", "130px", "130px", "110px",'']
     },
   ];
   table1 = [

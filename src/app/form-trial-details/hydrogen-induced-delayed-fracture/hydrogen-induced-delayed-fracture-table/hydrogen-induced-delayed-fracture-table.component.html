@@ -7,7 +7,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let detail of trialDataDetail.slice(0,1)">
-                <td *ngFor="let data1 of data.key;let tdIdx = index" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :'ellipsis'" (click)="clickItem(tableIdx==0,tdIdx)">{{detail[data1]}}</td>
+                <td *ngFor="let data1 of data.key;let tdIdx = index" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls : (tableIdx==0?'ellipsis':'')" (click)="clickItem(tableIdx==0,tdIdx)">{{detail[data1]}}</td>
             </tr>
         </tbody>
     </nz-table>
