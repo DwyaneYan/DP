@@ -32,6 +32,8 @@ export class ChemicalelementTableComponent implements OnInit {
   loading = true;
   tableCellCls = "ellipsis";
   activeTdIdx = 0;
+  nzWidthConfig4 = []; //未延伸到1的表格列宽
+
   constructor(private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
