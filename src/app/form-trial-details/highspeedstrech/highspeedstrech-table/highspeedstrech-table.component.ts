@@ -5,6 +5,7 @@ import { classitem,unique1,notempty } from "../../../picture";
 import { ApiService } from "src/app/api.service";
 import { GaussService } from "src/app/gauss.service";
 import { NameService } from '../../base-info/name.service'
+import{clickItem}from "../../../picture"
 
 @Component({
   selector: "app-highspeedstrech-table",
@@ -15,8 +16,11 @@ export class HighspeedstrechTableComponent implements OnInit {
   public materialId;
   trialDataDetail = [];
   trialDataDetailss = [];
+  clickItem = clickItem
   one = []; //试验结果
   two = []; //参考数据
+  loading = true;
+  loadings = true
   mater = '';//试验结果中的牌号
   table1 = [
     "测试机构",
@@ -36,6 +40,15 @@ export class HighspeedstrechTableComponent implements OnInit {
     "杨氏模量(MPa)",
     "泊松比",
   ];
+  width2 = [
+  "110px",
+  "140px",
+  "140px",
+  "140px",
+  "130px",
+  "130px",
+  "",
+];
   table3 = [
     "formYieldStrength",
     "formTensileStrength",
@@ -56,13 +69,13 @@ export class HighspeedstrechTableComponent implements OnInit {
   ];
   width = [
     "120px",
-    "150px",
+    "130px",
     "180px",
     "180px",
-    "180px",
-    "180px",
-    "180px",
-    "150px",
+    "130px",
+    "130px",
+    "130px",
+    "",
   ];
   table5 = [
     "testTarget",
@@ -138,6 +151,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     await this.ApiService.getHighSpeedStrechDataDetails(this.materialId).then(
       (res: any) => {
         this.trialDataDetail = res;
+        this.loading = false
         for (let a = 0; a < this.trialDataDetail.length; a++) {
           if (this.trialDataDetail[a].standard == null) {
             this.two.push(this.trialDataDetail[a]);
@@ -158,6 +172,7 @@ export class HighspeedstrechTableComponent implements OnInit {
       this.materialId
     ).then((res: any) => {
       this.trialDataDetailss = res;
+      this.loadings = false
       let speed = []; //速率
       this.trialDataDetailss.map((val) =>
         speed.push(val.realPlasticTestTarget)
@@ -167,7 +182,7 @@ export class HighspeedstrechTableComponent implements OnInit {
       for (let c = 1; c < this.speeds.length + 1; c++) {
         this.nzWidthConfig4[c] = "110px";
       }
-      this.nzScrolls = { x: this.speeds.length * 110 + 130 + "px" };
+      this.nzScrolls = { x: this.speeds.length * 110 + 130 + "px" ,y: '800px'};
       let arr3 = []; //试验结果按照realPlasticTestTarget分类
       let strain = []; //应变
       arr3 = classitem(this.trialDataDetailss, "realPlasticTestTarget",'highSpeedStrechDataDetailId'); //延伸到1
@@ -180,15 +195,5 @@ export class HighspeedstrechTableComponent implements OnInit {
         }
       }
     });
-  }
-
-  //点击行中的列项展开信息
-  clickItem(tdIdx) {
-    this.activeTdIdx = tdIdx;
-    if (this.tableCellCls) {
-      this.tableCellCls = "";
-    } else {
-      this.tableCellCls = "ellipsis";
-    }
   }
 }
