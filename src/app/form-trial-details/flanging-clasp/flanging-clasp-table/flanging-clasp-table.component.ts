@@ -13,12 +13,11 @@ export class FlangingClaspTableComponent implements OnInit {
   trialDataDetail = []
   loading = true
   table=[{
-    table:"table1",
     one:["测试机构",'开始检测日期','检测结束日期',"执行标准","试验设备","试验方法"],
     key:["testOrganization","dates","dateEnds","standard","equipment","testMethod"],
      width :['120px','120px','120px','150px','150px','']
 },
-{table:"table2",
+{
   one:["翻边等级"],
   key:["flangingLevel"],
   width:[]

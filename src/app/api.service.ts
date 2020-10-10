@@ -18,11 +18,10 @@ export class ApiService {
     private TrialNameService: TrialNameService,
     ) { }
     httpOptions = {}
-     //toVIm = `http://10.80.27.201:88/view` //跳转到vim
-    toVIm = `http://localhost:4280` //跳转到vim
-   // toRuoYi = `http://10.80.27.201:81`  //管理系统跳转到若依
-    toRuoYi = `http://localhost:81`
-
+    //toVIm = `http://10.80.27.201:88/view`   //跳转到vim
+    toVIm = `http://localhost:4280` //跳转到vim 
+     // toRuoYi = `http://10.80.27.201:81`//管理系统跳转到若依
+    toRuoYi = `http://10.130.3.142:81`
 //在材料表筛选材料
 async GetMater(params?){
     let url ="/api/hangang/material/materials";

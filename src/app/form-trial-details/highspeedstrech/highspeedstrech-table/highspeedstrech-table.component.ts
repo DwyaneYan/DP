@@ -116,11 +116,11 @@ export class HighspeedstrechTableComponent implements OnInit {
     this.route.pathFromRoot[1].params.subscribe(params => {
       this.materialId = params['materialId'];
       })
-    this.NameService.changeName$.subscribe(n => {this.mater = n;console.log( this.mater)})
 
   }
 
   ngOnInit() {
+    this.NameService.changeName$.subscribe(n => {this.mater = n;console.log( this.mater)})
     this.GetTrialDataDetails();
     this.GetTrialDataDetailss();
   }

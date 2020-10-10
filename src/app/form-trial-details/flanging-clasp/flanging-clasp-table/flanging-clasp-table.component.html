@@ -6,8 +6,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td *ngFor="let data2 of data.key;let tdIdx = index" [nzBreakWord]="tableIdx!==0" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :(tableIdx==0?'ellipsis':'')" (click)="clickItem(tableIdx==0,tdIdx)">{{trialDataDetail[0]?trialDataDetail[0][data2]:''}}</td>
+            <tr *ngFor='let item of trialDataDetail.slice(0,1)'>
+                <td *ngFor="let data2 of data.key;let tdIdx = index" [nzBreakWord]="tableIdx!==0" [class]="tableIdx==0 && tdIdx == activeTdIdx ?tableCellCls :(tableIdx==0?'ellipsis':'')" (click)="clickItem(tableIdx==0,tdIdx)">{{item[data2]}}</td>
             </tr>
         </tbody>
     </nz-table>

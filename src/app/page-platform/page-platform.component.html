@@ -124,20 +124,26 @@
         <!-- 材料列表 START -->
         <div class="model-list">
             <div class="material-item" *ngFor="let material of addlist">
-                <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="button('hg-home-deletetj')">
+                <!-- <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="button('hg-home-deletetj')">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>
-                </div>
+                </div> -->
                 <div (click)="nav(material.materialId,material)">
+                    <div class='material-pic'>
+                        <img [src]="material.avatarUrl" *ngIf='material.avatarUrl;else elseBlock' />
+                        <ng-template #elseBlock>
+                            <img src="../../assets/images/tj.png" />
+                        </ng-template>
+                    </div>
 
-                    <a class="material-pic">
-                        <img [src]="material.avatarUrl" />
-                    </a>
                     <div class="material-info">
                         <h4> {{material.name}}</h4>
                         <div class="ellipsis" [title]='material.manufactory'>
                             生产厂家: {{material.manufactory}}
                         </div> 型号规格: {{material.model}}<br /> 卷号:{{material.reelNumber}}
                     </div>
+                </div>
+                <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="button('hg-home-deletetj')">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
                 </div>
             </div>
         </div>
