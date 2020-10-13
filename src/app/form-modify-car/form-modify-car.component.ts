@@ -3,6 +3,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { FormBuilder } from '@angular/forms';
+import{FormAddCarComponent} from '../form-add-car/form-add-car.component'
 @Component({
   selector: 'app-form-modify-car',
   templateUrl: './form-modify-car.component.html',
@@ -25,7 +26,7 @@ export class FormModifyCarComponent implements OnInit {
   constructor(private fb: FormBuilder,
     public http: HttpClient,
     private msg: NzMessageService,
-
+    private formAddCarComponent:FormAddCarComponent
     ) { }
 
   ngOnInit() {
