@@ -19,8 +19,7 @@ export class ApiService {
     ) { }
     httpOptions = {}
     //toVIm = `http://10.80.27.201:88/view`   //跳转到vim
-    toVIm = `http://localhost:4280` //跳转到vim 
-     // toRuoYi = `http://10.80.27.201:81`//管理系统跳转到若依
+    toVIm = `http://10.130.3.142:88/view` //跳转到vim     
     toRuoYi = `http://10.130.3.142:81`
 //在材料表筛选材料
 async GetMater(params?){
@@ -59,8 +58,7 @@ async GetMater(params?){
     });
     return res;
   }
-//在若以登陆后带上token跳到邯钢平台首页，在进入邯钢平台首页时用token获取若以的接口
-  // async getInfo(token)
+//在若以登陆后带上token跳到邯钢平台首页，在进入邯钢平台首页时用token获取若以的接口  // async getInfo(token)
   // {
 
   //   let api = `http://172.20.10.7:81/dev-api/getInfo`;
