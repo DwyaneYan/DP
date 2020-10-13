@@ -729,9 +729,9 @@ async getCardType12(id){
 //获取Type15材料卡片名称
 async getCardType15(p){
   //查询参数
-  let parmas = {params:p}
+  let params = {params:p}
   let api=`/api/hangang/materialTrial/type15CardInfo`
-  let res= await this.http.get(api,parmas)
+  let res= await this.http.get(api,params)
   .toPromise()
   .catch(err =>{
    console.log(err);
@@ -767,7 +767,7 @@ async getCardType39(p){
   //查询参数
    let parmas = {params:p}
   let api=`/api/hangang/materialTrial/type39CardInfo`
-  let res= await this.http.get(api,p)
+  let res= await this.http.get(api,parmas)
   .toPromise()
   .catch(err =>{
    console.log(err);

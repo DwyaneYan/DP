@@ -9,22 +9,30 @@
         <li nz-submenu nzTitle="基础数据" nzOpen *ngIf="button('basicData')">
             <ul>
                 <ng-container *ngFor="let data of menu.slice(0,8);let i=index">
-                    <li nz-menu-item *ngIf="trialName.includes(menu[i].names)&&button(menu[i].name)" nzMatchRouter><a [routerLink]='routerLink[i]'>{{menu[i].names}}</a></li>
+                    <li nz-menu-item *ngIf="trialName.includes(menu[i].names)&&button(menu[i].name);else elseBlock" nzMatchRouter><a [routerLink]='routerLink[i]'>{{menu[i].names}}</a></li>
+                    <ng-template #elseBlock>
+                        <li nz-menu-item nzDisabled>{{menu[i].names}}</li>
+                    </ng-template>
                 </ng-container>
             </ul>
         </li>
         <li nz-submenu nzTitle="应用数据" nzOpen *ngIf="button('applicationData')">
             <ul>
                 <ng-container *ngFor="let data of menu.slice(8,15);let i=index">
-                    <li nz-menu-item *ngIf="trialName.includes(menu[i+8].names)&&button(menu[i+8].name)" nzMatchRouter><a [routerLink]='routerLink[i+8]'>{{menu[i+8].names}}</a></li>
+                    <li nz-menu-item *ngIf="trialName.includes(menu[i+8].names)&&button(menu[i+8].name);else elseBlock" nzMatchRouter><a [routerLink]='routerLink[i+8]'>{{menu[i+8].names}}</a></li>
+                    <ng-template #elseBlock>
+                        <li nz-menu-item nzDisabled>{{menu[i+8].names}}</li>
+                    </ng-template>
                 </ng-container>
             </ul>
         </li>
         <li nz-submenu nzTitle="服役数据" nzOpen *ngIf="button('serviceData')">
             <ul>
                 <ng-container *ngFor="let data of menu.slice(15);let i=index">
-                    <li nz-menu-item *ngIf="trialName.includes(menu[i+15].names)&&button(menu[i+15].name)" nzMatchRouter><a [routerLink]='routerLink[i+15]'>{{menu[i+15].names}}</a></li>
-
+                    <li nz-menu-item *ngIf="trialName.includes(menu[i+15].names)&&button(menu[i+15].name);else elseBlock" nzMatchRouter><a [routerLink]='routerLink[i+15]'>{{menu[i+15].names}}</a></li>
+                    <ng-template #elseBlock>
+                        <li nz-menu-item nzDisabled>{{menu[i+15].names}}</li>
+                    </ng-template>
                 </ng-container>
             </ul>
         </li>

@@ -5,7 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormMaterialListComponent } from '../form-material-list/form-material-list.component'
 import { HttpHeaders } from '@angular/common/http';
 import {button} from 'src/app/picture'
-
+import { UploadChangeParam } from 'ng-zorro-antd/upload';
 import { FormAddCarComponent } from '../form-add-car/form-add-car.component';
 import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 
@@ -130,31 +130,7 @@ else{
    
 
   ngOnInit() {  
-
-  //  if( window.sessionStorage.getItem("fromLogin")&&window.sessionStorage.getItem("fromLogin")=='1'){
-  //   location.reload()
-  //   window.sessionStorage.removeItem("fromLogin")
-  //  }
-  console.log(this.router)
-//   let httpOptions = {
-//       headers: new HttpHeaders({
-//         'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
-//          //'host':'172.20.10.5:60001'
-//       }),
-//       param: {}  
-//     };
-
-// this.ApiService.getInfo(httpOptions).then((res:any)=>{
-//   //if(res.msg!="操作成功"){}
-// window.sessionStorage.setItem('permissions',  JSON.stringify(res)); 
-// console.log(res)
-// })
-// this.ApiService.getRouters(httpOptions).then((res:any)=>{
-//   window.sessionStorage.setItem('data',  JSON.stringify(res)); 
-//      })
     this.showma();//查询所有推荐材料
-
-
   }
 
 ops(){
@@ -198,7 +174,6 @@ for(let b= 0;b<lengthName;b++){
 
 }
 this.nzOptions = temp
-console.log(temp)
       })
     
   })
@@ -210,15 +185,7 @@ uniqueArr(arr1,p) {
   return arr1.filter((a) => !res.has(a[p]) && res.set(a[p], 1)) //对象数组根据属性去重
 }
 
-fileStatus
-responseData
-filePath
 customReq = (item: UploadXHRArgs) => {
-  // debugger;
-  console.log(this.maUrl)
-  console.log(item)
-  console.log(item.action!)
-  this.fileStatus = false;
   // this.responseData = [];
   // 构建一个 FormData 对象，用于存储文件或其他参数
   const formData = new FormData();
@@ -228,8 +195,7 @@ customReq = (item: UploadXHRArgs) => {
     reportProgress: true,
     withCredentials: true
   });
-  console.log(req)
-  
+
   // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
   return this.http.request(req).subscribe(
     (event: HttpEvent<{}>) => {
@@ -242,34 +208,25 @@ customReq = (item: UploadXHRArgs) => {
         item.onProgress!(event, item.file!);
       } else if (event instanceof HttpResponse) {
         // 处理成功
-        this.fileStatus = true;
-        // this.responseData = event.body;
-        console.log( event,item)
-        // this.filePath = this.responseData.data;
         item.onSuccess!(event.body, item.file!, event);
-        // this.msg.success("图片上传成功");
       }
     },
     err => {
       // 处理失败
       console.log(err)
-     // console.log(targetItem)
       item.onError!(err, item.file!);
     }
   )
 };
 formData =new FormData();
 formDataList = []
-returnFalse =false
+returnFalse = false
 customReqone = (item: UploadXHRArgs) => {
       // 构建一个 FormData 对象，用于存储文件或其他参数
-      // tslint:disable-next-line:no-any   
-
+      // tslint:disable-next-line:no-any  
         this.formData.append('input',item.file as any);
         this.formDataList.push(item);    
-  //item.action 就是接口url
-  console.log(item)
-      // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅
+      // 始终返回一个 `Subscription` 对象，nz-upload 会在适当时机自动取消订阅,只调一次接口，但上传的每个item都会有信息
       return  setTimeout(() => {
         const req = new HttpRequest('POST', item.action!, this.formData, {
           reportProgress: true,
@@ -277,7 +234,9 @@ customReqone = (item: UploadXHRArgs) => {
         });
         if(this.returnFalse == false){
           this.http.request(req).subscribe(
+      //先返回HttpHeaderResponse，在返回type loaded total，再返回HttpResponse  
             (event: HttpEvent<{}>) => {
+                console.log(event, HttpEventType,item)
               if (event.type === HttpEventType.UploadProgress) {
                 if (event.total! > 0) {
                   // tslint:disable-next-line:no-any
@@ -293,7 +252,7 @@ customReqone = (item: UploadXHRArgs) => {
                 this.returnFalse = false;
                 for (const item of this.formDataList) {
                   item.onSuccess!(event.body, item.file!, event);
-                    console.log(event)
+                    console.log(event,item,this.formDataList)
   //               console.log()    
                   }
                   this.formData = new FormData();
@@ -315,9 +274,8 @@ customReqone = (item: UploadXHRArgs) => {
           this.returnFalse = true;
   
         }  
-      }, 100);
+      }, 75);
       }
-  arr=[]
   //获取所有推荐材料
 showma(){
  this.ApiService.showMaterials().then((res: any) => {
@@ -329,10 +287,7 @@ showma(){
         else{
           val.avatarUrl=''
         }
-        // this.FormMaterialListComponent.getURl(val.id,val)
-      })
-        // this.FormMaterialListComponent.luyou(this.addlist,this.arr)     ;
-        
+      })   
         this.FileList=[]  ;  
         this.isVisible1 =false;  //isVisible1是推荐材料弹框
         this.showi=false; //showi是导入推荐材料图片按钮
@@ -454,7 +409,7 @@ getURl(id,data){
        //  console.log(this.addlist)
        //根据材料id添加推荐材料图片
        this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
-   this.showi=true
+        this.showi=true
    }
    else{
   this.msg.info('未找到材料')
@@ -470,50 +425,35 @@ else{
   this.maUrl = ''
 
 }
-// this.values=[]
-//上传推荐材料图片
 
   }
-  handleChange(info: { file: UploadFile }): void { 
-    console.log(info)
+  handleChange(info: UploadChangeParam): void { 
+    console.log(info,info.file.response,info.file.status)
     //info能获取到上传接口返回信息，在info.file.response中
     //并且自带的上传成功与否信息在info.file.status中
     switch (info.file.status) {
       // case 'uploading':      
       //   break;
       case 'done':
-        // Get this url from response in real world.
-        // this.getBase64(info.input!.originFileObj!, (img: string) => {
-        //   this.loading = false;
-        //   this.avatarUrl = img;
-        // });
-        // window.alert("文件上传成功")
-        this.msg.success("文件上传成功");
+
+        this.msg.success(info.file.response.message);
         break;
       case 'error':
-        this.msg.error('文件上传失败');
+        this.msg.error('文件上传失败，请联系管理员');
         break;
     }
   }
 
 //推荐材料上传图片文件改变时触发
 //推荐材料只会有一张图片，之后上传的会覆盖之前的
-  handleChange1(info: { file: UploadFile }): void { 
-    console.log(info.file.status)
+  handleChange1(info: UploadChangeParam): void { 
+
     switch (info.file.status) {
-      // case 'uploading':      
-      //   break;
       case 'done':
-        // Get this url from response in real world.
-        // this.getBase64(info.input!.originFileObj!, (img: string) => {
-        //   this.loading = false;
-        //   this.avatarUrl = img;
-        // });
-        // window.alert("图片上传成功，请刷新页面")
-        this.msg.success("图片上传成功");
+        this.msg.success('图片上传成功');//上传成功接口暂无返回信息
         break;
       case 'error':
-        this.msg.error('图片上传失败');
+        this.msg.error('图片上传失败，请联系管理员');
         break;
     }
 //  this.showma()

@@ -101,7 +101,7 @@ export class HighspeedstrechTableComponent implements OnInit {
   strainData = []; //应变
   stress = []; //应力
   nzWidthConfig4 = []; //未延伸到1的表格列宽
-  nzScrolls = {}; // 表格总宽度，否则列宽不生效
+
   options = {};
   isVisible = false;
   tableCellCls = "ellipsis";
@@ -116,9 +116,7 @@ export class HighspeedstrechTableComponent implements OnInit {
     this.route.pathFromRoot[1].params.subscribe(params => {
       this.materialId = params['materialId'];
       })
-
   }
-
   ngOnInit() {
     this.NameService.changeName$.subscribe(n => {this.mater = n;console.log( this.mater)})
     this.GetTrialDataDetails();
@@ -180,10 +178,9 @@ export class HighspeedstrechTableComponent implements OnInit {
       );
       this.speeds = unique1(speed);
       this.nzWidthConfig4[0] = "130px";
-      for (let c = 1; c < this.speeds.length + 1; c++) {
+      for (let c = 1; c < this.speeds.length+1 ; c++) {
         this.nzWidthConfig4[c] = "110px";
       }
-      this.nzScrolls = { x: this.speeds.length * 110 + 130 + "px" ,y: '800px'};
       let arr3 = []; //试验结果按照realPlasticTestTarget分类
       let strain = []; //应变
       arr3 = classitem(this.trialDataDetailss, "realPlasticTestTarget",'highSpeedStrechDataDetailId'); //延伸到1

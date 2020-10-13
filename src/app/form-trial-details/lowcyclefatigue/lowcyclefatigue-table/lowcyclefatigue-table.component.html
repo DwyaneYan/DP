@@ -29,7 +29,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered>
+    <nz-table class="mt25" [nzData]='trialDataDetail.slice(1)' [nzFrontPagination]="false" nzBordered>
         <thead>
             <tr>
                 <th nzWidth="200px" *ngFor="let data41 of table4[0].one">{{data41}}</th>
@@ -42,7 +42,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25 fff" [nzData]='trialDataDetails' [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'700px' }">
+    <nz-table class="mt25 fff" [nzData]='trialDataDetails' [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'800px' }">
         <thead>
             <tr>
                 <th nzWidth="120px" *ngFor="let data41 of table4[1].one; let i = index">

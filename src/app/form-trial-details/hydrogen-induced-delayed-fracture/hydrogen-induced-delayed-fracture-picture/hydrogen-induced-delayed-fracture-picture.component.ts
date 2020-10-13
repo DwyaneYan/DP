@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {getname} from 'src/app/picture'
 import { ApiService } from 'src/app/api.service';
+import {getname,enlarge} from 'src/app/picture'
 
 @Component({
   selector: 'app-hydrogen-induced-delayed-fracture-picture',
@@ -11,13 +11,14 @@ import { ApiService } from 'src/app/api.service';
 })
 export class HydrogenInducedDelayedFracturePictureComponent implements OnInit {
   public materialId
-  trialDataDetail
+  trialDataDetail = []
 name=[]
   ImgPathOne=[]
   xData=[]
   options
   data=[]
-  trialDataDetails
+  trialDataDetails = []
+  enlarge = enlarge
   constructor( private router: Router,
     public http: HttpClient,
     private ApiService: ApiService,
@@ -58,7 +59,6 @@ this.PlotPicture(this.data, this.xData)
 
   public PlotPicture(data, xData) {
     this.options = {
-      //width:"400",
       title: {
           text: '恒弯曲加载氢脆实验结果'
            },    

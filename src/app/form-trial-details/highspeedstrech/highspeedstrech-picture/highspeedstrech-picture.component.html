@@ -1,13 +1,12 @@
 <div class="all-box mt25">
 
     <div class="all-item" *ngFor="let data of ImgPathOne;let i=index">
-        <h2>{{this.name[i]}}</h2>
+        <h2 [title]='name[i]'>{{name[i]}}</h2>
         <div class="img">
-            <img class="img" alt="" height="200" width="200" [src]="data">
+            <img alt="" class="item" [src]="data" (click)="enlarge(data,ImgPathOne)">
         </div>
     </div>
-
-   
+    <div id="imgView"></div>
 </div>
 <div echarts [options]="option1" class="echarts-box"></div>
 <div echarts [options]="option2" class="echarts-box mt25"></div>

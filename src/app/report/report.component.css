@@ -3,7 +3,12 @@
     top: 160px;
     left: 30%;
 } */
-.report{
-    height:1080px;
-    margin-bottom:30px
+
+.report {
+    height: 1080px;
+    margin-bottom: 30px
+}
+
+.downPdf {
+    margin-left: 20px
 }

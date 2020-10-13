@@ -13,7 +13,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered [nzLoading]="loading">
+    <nz-table [nzData]='two' [nzFrontPagination]="false" class="mt25" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th *ngFor="let data2 of  table2;let i = index" [nzWidth]="width2[i]">{{data2}}</th>
@@ -47,20 +47,20 @@
         </tbody>
     </nz-table>
     <!-- 真塑性应变真应力未延伸到1 START-->
-    <nz-table [nzData]='strainData' [nzFrontPagination]="false" [nzScroll]="nzScrolls" class='tablebox mt25' nzBordered [nzWidthConfig]='nzWidthConfig4' [nzLoading]="loadings">
+    <nz-table [nzData]='strainData' [nzFrontPagination]="false" [nzScroll]="{ x: (speeds.length * 110 + 130) + 'px' ,y: '800px'}" class='tablebox mt25' nzBordered [nzWidthConfig]='nzWidthConfig4' [nzLoading]="loadings">
         <thead>
             <tr>
-                <th rowspan="2" nzBreakWord>True plastic strain</th>
-                <th [attr.colspan]="speeds.length" nzBreakWord>True stress/Mpa</th>
+                <th rowspan="2">True plastic strain</th>
+                <th [attr.colspan]="speeds.length">True stress/Mpa</th>
             </tr>
             <tr>
-                <th *ngFor="let data5 of  speeds" nzBreakWord>{{data5}}</th>
+                <th *ngFor="let data5 of  speeds">{{data5}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let details of strainData;let i=index">
                 <td nzBreakWord>{{details}}</td>
-                <td *ngFor="let data of stress[i];let b=index" nzBreakWord>{{data}}</td>
+                <td *ngFor="let data of stress[i];let b=index">{{data}}</td>
             </tr>
         </tbody>
     </nz-table>

@@ -70,7 +70,7 @@ export class ReboundTableComponent implements OnInit {
       loading:"loading1",
       width: ["", "150px", "150px", "150px", "150px", "150px"],
       name: "trialDataDetails",
-      nzScroll: '',
+      nzScroll: {y:'800px'},
       one: [
         "方向（沿轧向或者垂直轧向）",
         "厚度 t/mm",
@@ -91,7 +91,7 @@ export class ReboundTableComponent implements OnInit {
     {
       loading:"loading2",
       name: "trialDataDetailss",
-      nzScroll: '',
+      nzScroll:  {y:'800px'},
       width: [
         "140px",
         "110px",
@@ -133,7 +133,7 @@ export class ReboundTableComponent implements OnInit {
       loading:"loading3",
       name: "trialDataDetailsss",
       width: ["", "150px", "100px", "100px", "100px", "100px"],
-      nzScroll: '',
+      nzScroll:  {y:'800px'},
       one: [
         "方向（沿轧向或者垂直轧向）",
         "厚度 t/mm",

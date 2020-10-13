@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {getname} from 'src/app/picture'
+import {getname,enlarge} from 'src/app/picture'
 
 import { ApiService } from 'src/app/api.service';
 
@@ -26,6 +26,8 @@ export class HighspeedstrechPictureComponent implements OnInit {
   option4
 name=[]
   trialDataDetails
+  enlarge = enlarge //作为本地变量使用
+
   //echarts绘图
   options:any;
   constructor( private router: Router,

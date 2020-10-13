@@ -246,7 +246,7 @@ import { TrailnameComponent } from './trailname/trailname.component';
           component:TrailnameComponent ,
           children:[
             { path: 'table', component:ReboundTableComponent,permissions:"htxn1"  },
-            { path: 'picture', component:  ReboundPictureComponent    ,permissions:"htxn2"  },
+            { path: 'picture', component:  PictureComponent    ,permissions:"htxn2"  },
             { path: 'report', component:  ReportComponent   ,permissions:"htxn3" },
             { path: 'typical-part', component: TypicalPartComponent ,permissions:"htxn4"}
           ]  

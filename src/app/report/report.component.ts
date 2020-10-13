@@ -5,7 +5,7 @@ import { Router ,ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
 import {common} from 'src/app/picture'
-
+import {SimulationCardComponent} from '../simulation-card/simulation-card.component'
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -14,8 +14,10 @@ import {common} from 'src/app/picture'
 export class ReportComponent implements OnInit {
   materialId = ''
   trialDataDetail = []
+  commonArr=[];
+  downstyle = false
   constructor(
-    // private router: Router,
+    private SimulationCardComponent: SimulationCardComponent,
     private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -71,8 +73,16 @@ else if(name1=='surface-property'){this.GetTrialDataDetailss('getSurfaceProperty
           break
         }
       }
-     common(one)
+      let that = this;
+    common(one,function(value){
+        that.commonArr = value
+       that.downstyle = true;
+     });
     })  
+  }
+  downPdf(){
+      
+    this.SimulationCardComponent.download( this.commonArr[1], this.commonArr[0])
   }
 }
 

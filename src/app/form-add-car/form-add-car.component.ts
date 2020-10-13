@@ -83,8 +83,6 @@ export class FormAddCarComponent implements OnInit {
                     this.returnFalse = false;
                     for (const item of this.formDataList) {
                       item.onSuccess!(event.body, item.file!, event);
-      
-                        
                       }
                       this.formData = new FormData();
                       this.formDataList=[];
