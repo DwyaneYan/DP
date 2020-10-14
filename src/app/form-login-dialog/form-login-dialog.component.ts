@@ -22,7 +22,9 @@ export class FormLoginDialogComponent implements OnInit {
   codeUrl; //验证码
   uuid;
   token = "";
+  loading = false;
   submitForm(): void {
+    this.loading = true
     //校验状态
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -49,8 +51,10 @@ export class FormLoginDialogComponent implements OnInit {
             this.message.create("error", '验证码失效'); 
             this.getCode();
           }
-          else{this.message.create("error", res.msg); 
-          this.getCode();}
+          else{
+              this.message.create("error", res.msg); 
+              this.getCode();}
+            this.loading = false
         } else {
           sessionStorage.setItem("token", res.token);//token存到session
           let httpOptions = {

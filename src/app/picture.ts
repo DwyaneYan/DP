@@ -18,7 +18,7 @@ function getname(allName){
         } else {
         two.push(one[a]);
       }
-      ImgPathOne.push(`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${one[a]}`) //图片全名是否需要url编码
+      ImgPathOne.push(`/api/hangang/trialdatadetail/CommonFileStringStream?pictureName=${encodeURIComponent(one[a])}`) //图片全名是否需要url编码
       }
       for(let a=0;a<length;a++)
       {

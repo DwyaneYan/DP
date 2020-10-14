@@ -32,6 +32,11 @@
         </nz-form-control>
     </nz-form-item>
 
-    <button nz-button [nzType]="primary" class="login-button">登录</button>
+    <button nz-button [nzType]="primary" class="login-button">
+        <span *ngIf='!loading;else elseBlockone'>登录</span>
+        <ng-template #elseBlockone>
+            <span>登录中...</span>
+        </ng-template>        
+    </button>
 
 </form>

@@ -5,6 +5,14 @@ body {
 }
 
 
+/* 滚动条宽度会影响表头和内容对齐 */
+
+
+/* #dataTable nz-table /deep/ .ant-table-header {
+    overflow: auto !important
+} */
+
+
 /* 数据表 */
 
 #dataTable nz-table /deep/ .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
