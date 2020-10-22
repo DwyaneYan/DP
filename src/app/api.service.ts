@@ -18,9 +18,9 @@ export class ApiService {
     private TrialNameService: TrialNameService,
     ) { }
     httpOptions = {}
-    //toVIm = `http://10.80.27.201:88/view`   //跳转到vim
-    toVIm = `http://10.130.3.142:88/view` //跳转到vim     
-    toRuoYi = `http://10.130.3.142:81`
+    toVIm = `https://vim.hansteel.cn/view`   //跳转到vim
+    // toVIm = `http://localhost:4280` //跳转到vim     
+    toRuoYi = `http://10.80.27.201:81`
 //在材料表筛选材料
 async GetMater(params?){
     let url ="/api/hangang/material/materials";

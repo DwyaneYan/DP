@@ -30,7 +30,7 @@
                 <span class="label">型号规格 :</span>
                 <span class="limit-tag" [class.selected]="params.Model =='' && params.MinModel == '' && params.MaxModel == ''" (click)="filtrationMaterial({Model:'',MinModel:'',MaxModel:''})">不限</span>
                 <span *ngFor="let item of listModel">
-                    <span class="limit-tag" (click)=" filtrationMaterial(item) "
+                    <span class="limit-tag" (click)=" filtrationMaterial({Model:item.Model,MinModel:'',MaxModel:''}) "
                         [class.selected]="params.Model == item.Model"> {{item.Model}} mm </span>
                 </span>
                 <span class="limit-tag-between">

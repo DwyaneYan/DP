@@ -317,11 +317,17 @@ export class PageMaterialComponent implements OnInit {
   //#region 获取筛选条件并 发送查询请求
   //筛选材料
   filtrationMaterial(obj, isAll?){
+    this.params.Name = this.enterData?this.enterData.first.data:'';
     this.params.MaterialType = (obj.enum || obj.enum == '')? obj.enum:this.params.MaterialType
     this.params.ManufactoryId = (obj.id || obj.id == '')? obj.id:this.params.ManufactoryId
     this.params.Model = (obj.Model || obj.Model == '')? obj.Model:this.params.Model
     this.params.MinModel = (obj.MinModel || obj.MinModel == '')? obj.MinModel:this.params.MinModel
     this.params.MaxModel = (obj.MaxModel || obj.MaxModel == '')? obj.MaxModel:this.params.MaxModel
+    this.params.url = `?manufactoryId=${this.params.ManufactoryId}&name=${encodeURIComponent(this.params.Name)}&model=${this.params.Model}&materialType=${this.params.MaterialType}
+    &minModel=${this.params.MinModel}&maxModel=${this.params.MaxModel}&maxStrenth=${this.params.MaxStrenth}&minStrenth=${this.params.MinStrenth}`
+    if(this.params.MinModel || this.params.MinModel){
+        this.params.Model = ''
+     }
     this.params.MinStrenth = (obj.MinStrenth || obj.MinStrenth == '')? obj.MinStrenth:this.params.MinStrenth
     this.params.MaxStrenth = (obj.MaxStrenth || obj.MaxStrenth == '')? obj.MaxStrenth:this.params.MaxStrenth
     if (isAll) {
@@ -331,8 +337,9 @@ export class PageMaterialComponent implements OnInit {
       this.materialTypeChildren = obj.children;
       this.parentType = obj.enum;
     }
+    console.log(this.params)
     this.ApiService.GetMater(this.params).then((res: any) => {
-          this.material = res.items;})
+          this.material = res.data;})
 
   }
 
