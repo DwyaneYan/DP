@@ -1,6 +1,6 @@
 <!-- 材料列表  START -->
 <h3 class="table-title"> 在信息化平台中为你找到<strong>{{totalCount}}</strong>条数据</h3>
-<nz-table #rowSelectionTable [nzData]="listOfAllData" [nzShowSizeChanger]=false>
+<nz-table #rowSelectionTable [nzData]="listOfAllData" nzShowSizeChanger>
     <thead>
         <tr>
             <th nzWidth="8%" *ngIf="checkbox" class="header"></th>

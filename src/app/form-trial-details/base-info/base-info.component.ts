@@ -34,7 +34,6 @@ export class BaseInfoComponent implements OnInit {
 
  ngOnInit() {
     this.GetBaseInfo();
-
   }
 //根据材料id查询材料基本信息
 async GetBaseInfo(){
@@ -42,7 +41,7 @@ async GetBaseInfo(){
       Id: this.materialId, 
     }
     await this.ApiService.GetMater(params).then((res:any)=>{
-      this.baseInfo = res.items;
+      this.baseInfo = res.data;
       if(this.baseInfo.length){
         this.NameService.name.next(this.baseInfo[0].name)
         this.validateForm = this.fb.group({

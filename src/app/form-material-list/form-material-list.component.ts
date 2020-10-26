@@ -66,7 +66,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
 //处理筛选
   screening(){
     this.ApiService.GetMater({}).then((res:any)=>{
-      this.dataAll = res.items //所有数据
+      this.dataAll = res.data //所有数据
       this.total = res.totalCount //所有数据数量
       this.dataAll.forEach(val=>{val.checked = false})//全部未选中
 

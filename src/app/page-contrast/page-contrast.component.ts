@@ -284,7 +284,7 @@ this.ops()
       listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
       let lengthTemp = temp.length
         this.ApiService.GetMater({}).then((res:any)=>{
-          let allMaterials = res.items
+          let allMaterials = res.data
   for(let a= 0;a<lengthTemp;a++){
     temp[a].children = []
     let name = allMaterials.filter(item=>item.manufactoryId == temp[a].value) //牌号数组,牌号会重复
@@ -508,8 +508,8 @@ this.valuetj = []
     // console.log(this.pat)
     this.ApiService.GetMater(this.pat).then((res: any) => {
       // console.log(res)
-      if(res.items.length){
-      this.addlist = res.items;
+      if(res.data.length){
+      this.addlist = res.data;
       this.array.push(this.addlist[0].id);
       // this.getGetMaterialss();
       this.name.push(this.addlist[0].name);

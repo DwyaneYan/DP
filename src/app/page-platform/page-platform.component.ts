@@ -140,7 +140,7 @@ ops(){
     this.listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
     let lengthTemp = temp.length
       this.ApiService.GetMater({}).then((res:any)=>{
-        let allMaterials = res.items
+        let allMaterials = res.data
 for(let a= 0;a<lengthTemp;a++){
   temp[a].children = []
   let name = allMaterials.filter(item=>item.manufactoryId == temp[a].value) //牌号数组,牌号会重复
@@ -403,8 +403,8 @@ getURl(id,data){
  this.ApiService.GetMater(this.pat).then((res: any) => {
    //有可能查询不到材料？
    console.log(values[1])
-   if(res.items.length){
-   this.addid=res.items[0].id
+   if(res.data.length){
+   this.addid=res.data[0].id
        //  console.log(this.addid)
        //  console.log(this.addlist)
        //根据材料id添加推荐材料图片

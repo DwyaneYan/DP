@@ -24,18 +24,18 @@ export class PageMaterialComponent implements OnInit {
       enum: "100",
       name: "冷轧板",
       children: [
-        {
-          enum: "1001000",
-          name: "普通用",
-        },
+        // {
+        //   enum: "1001000",
+        //   name: "普通用",
+        // },
         {
           enum: "1001020",
-          name: "深冲用",
+          name: "高强IF钢",
         },
-        {
-          enum: "1001030",
-          name: "低合金钢",
-        },
+        // {
+        //   enum: "1001030",
+        //   name: "低合金钢",
+        // },
         {
           enum: "1001040",
           name: "双相钢",
@@ -68,10 +68,10 @@ export class PageMaterialComponent implements OnInit {
           enum: "1001110",
           name: "淬火延性钢",
         },
-        {
-          enum: "1001120",
-          name: "马氏体",
-        },
+        // {
+        //   enum: "1001120",
+        //   name: "马氏体",
+        // },
         {
           enum: "1001130",
           name: "增强成形性双相钢",
@@ -95,22 +95,22 @@ export class PageMaterialComponent implements OnInit {
       enum: "102",
       name: "镀锌板",
       children: [
-        {
-          enum: "1021000",
-          name: "普通用",
-        },
-        {
-          enum: "1021010",
-          name: "深冲用",
-        },
+        // {
+        //   enum: "1021000",
+        //   name: "普通用",
+        // },
+        // {
+        //   enum: "1021010",
+        //   name: "深冲用",
+        // },
         {
           enum: "1021020",
           name: "高强IF钢",
         },
-        {
-          enum: "1021030",
-          name: "低合金钢",
-        },
+        // {
+        //   enum: "1021030",
+        //   name: "低合金钢",
+        // },
         {
           enum: "1021040",
           name: "双相钢",
