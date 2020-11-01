@@ -7,7 +7,7 @@
   /* width:100%;  */
   height: 100%;
   background-size: cover;
-
+  flex-direction: column;
   /* background-repeat: repeat-x; */
 }
 
@@ -21,7 +21,7 @@
 .login-logo {
   position: absolute;
   left: 60px;
-  top: 75px;
+  top: 55px;
   z-index: 10;
 }
 
@@ -55,4 +55,9 @@
 
 .form /deep/ .ant-input-prefix .anticon {
   font-size: 20px;
+}
+#login-dialog+.foot{
+  color:white;
+  text-align: center;
+  font: 12px "宋体";
 }

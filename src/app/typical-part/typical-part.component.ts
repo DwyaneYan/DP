@@ -93,7 +93,7 @@ this.getPartInfo()
     this.getTree();//生成可选项数据源
   }
   handleOk(): void {
-    console.log(this.values)
+    // console.log(this.values)
 if(this.values[1]){
 let a = this.values[1].directoryId;
 //点击确定就绑定，重新绑定不生效，

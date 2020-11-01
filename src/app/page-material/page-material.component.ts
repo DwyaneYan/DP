@@ -1,6 +1,5 @@
 import { Component, OnInit,ViewChildren,QueryList } from "@angular/core";
 import { Output, EventEmitter } from "@angular/core";
-import { MaterialServiceService } from "./material-service.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FormMaterialDbBackgroundComponent } from "../form-material-db-background/form-material-db-background.component";
 import {
@@ -296,7 +295,7 @@ export class PageMaterialComponent implements OnInit {
   public materialTypeChildren = []; //存放当前选中材料分类的子分类
   public parentType = ""; //选中材料分类的子分类的父级
   constructor(
-    private materialService: MaterialServiceService, //实例化材料服务
+    // private materialService: MaterialServiceService, //实例化材料服务
     public http: HttpClient,
     private route: ActivatedRoute,
     private ApiService: ApiService

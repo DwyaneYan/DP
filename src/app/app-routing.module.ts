@@ -294,7 +294,7 @@ import { TrailnameComponent } from './trailname/trailname.component';
   //   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
   
   // ]
-  let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+  let permissions = JSON.parse(window.sessionStorage.getItem("permissions"))
   // let allRoutes:any = permissions ? initRouter : baseRouter 
   let length = allRoutes[4].children.length-2; 
   if(permissions){

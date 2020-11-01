@@ -8,8 +8,8 @@ import { Component, OnInit } from "@angular/core";
 export class PageLoginComponent implements OnInit {
   images = [
     "../../assets/images/login_box.png",
-    "../../assets/images/login_box2.png",
-    "../../assets/images/login_box3.png",
+    "../../assets/images/login_box22.png",
+    "../../assets/images/login_box33.png",
   ];
   constructor() {}
 

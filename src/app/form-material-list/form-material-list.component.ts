@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges ,Output,EventEmitter} from '@angular/core';
-import { MaterialListService } from './material-list.service'
+// import { MaterialListService } from './material-list.service'
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -37,7 +37,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     delete = true
     title = ''
   constructor(
-    private materiallistService: MaterialListService,
+    // private materiallistService: MaterialListService,
     private FormExperimentalItemComponent: FormExperimentalItemComponent,
     private ApiService: ApiService,
     private modalService: NzModalService,

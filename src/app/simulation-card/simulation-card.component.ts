@@ -184,29 +184,9 @@ formData =new FormData();
       let api=`/api/hangang/material/materials?Id=${this.materialId}`
       this.http.get(api).toPromise()
       .then((res: any) => {
-      if(res.items[0].fileKey) {this.one=res.items[0].fileKey.split(";")
+      if(res.data[0].fileKey) {this.one=res.data[0].fileKey.split(";")
         this.one.pop()//this.one得到文件全名的数组
- console.log(this.one)
-
-
-//         console.log(this.one)
-//         //let two=[]
-//         let length=this.one.length
-//         for(let a=0;a<length;a++){
-//           let pattern = /\.{1}[a-z]{1,}$/;
-//           if (pattern.exec(this.one[a]) !== null) {
-//            this. two.push(this.one[a].slice(0, pattern.exec(this.one[a]).index));
-//         } else {
-//          this.two.push( this.one[a]);
-    
-//         }
-
-// }
-// //two是文件名
-// let z=this.two.length
  let x=this.one.length
-//  this.material=[]
-//  this.three=[]
 let sc=[] 
 //let data=[]
  for(let a=0;a<x;a++)
@@ -263,11 +243,8 @@ console.log(this.after)
       a.download = data
       a.click()
       window.URL.revokeObjectURL(url)
-//window.location.href=`http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${data}`
-
     }
     download(p,url) {
-     // var url = `http://localhost:60001/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${data}` // demo图片
       let that=this
       this.ajax(url, function(xhr) {//url是文件流地址
           //var filename = 'xxx' + url.replace(/(.*\.)/, '') // 自定义文件名+后缀

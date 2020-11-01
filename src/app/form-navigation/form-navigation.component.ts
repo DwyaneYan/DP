@@ -22,7 +22,7 @@ export class FormNavigationComponent implements OnInit {
   ) { }
   ngOnInit() {
       let res=JSON.parse(sessionStorage.getItem("permissions"))
-      if(res && (res.roles.indexOf('adminHG')!=-1 || res.roles.indexOf('admin')!=-1)){     //permissions的roles中包含权限字符adminHG或者admin才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
+      if(res && res.roles && (res.roles.indexOf('adminHG')!=-1 || res.roles.indexOf('admin')!=-1)){     //permissions的roles中包含权限字符adminHG或者admin才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
           this.system=true
         }else{
           this.system = false

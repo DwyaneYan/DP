@@ -15,18 +15,18 @@ body {
 
 /* 数据表 */
 
-#dataTable nz-table /deep/ .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
+.dataTable nz-table /deep/ .ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
     background: white;
 }
 
-#dataTable nz-table /deep/ thead th {
+.dataTable nz-table /deep/ thead th {
     text-align: center;
     background-color: #f4f4f4;
     color: #666;
     padding: 16px 0;
 }
 
-#dataTable nz-table /deep/ tbody td {
+.dataTable nz-table /deep/ tbody td {
     text-align: center;
     padding: 8px 0;
     word-break: break-all;

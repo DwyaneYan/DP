@@ -11,10 +11,7 @@ export class MaterialsContrastService {
   {
       let ids = {ids:array}
       let api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum";
-    let res= await this.http.get(api,{params:ids}).toPromise().catch(err=>{
-      console.log(err);        
-    });
-
+    let res= await this.http.get(api,{params:ids}).toPromise()
     return res;    //res是一个promise对象
   }
 
@@ -34,9 +31,6 @@ export class MaterialsContrastService {
     let api ="/api/hangang/material/materialsByIds";
     let res= await this.http.get(api,{params:ids})
     .toPromise()
-    .catch(err =>{
-      console.log(err);
-    });
     return res;  //返回请求到的数据(Promise对象)
   }
   // async GetManufacturers()
@@ -68,19 +62,13 @@ export class MaterialsContrastService {
     for(var j=1;j<array.length;j++){   
     api+="&ids="+array[j]
     }
-    let res= await this.http.get(api).toPromise().catch(err=>{
-      console.log(err);        
-    });
-    // console.log(api) ;
-    console.log(res) 
+    let res= await this.http.get(api).toPromise()
     return res;    
   }
 
   else {
   let api = "/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
-  let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
-    console.log(err);
-  });
+  let res= await this.http.get(api+array[0]).toPromise()
   return res;
 }
 
@@ -95,19 +83,13 @@ async ChemicalElement(array)
   for(var j=1;j<array.length;j++){   
   api+="&ids="+array[j]
   }
-  let res= await this.http.get(api).toPromise().catch(err=>{
-    console.log(err);        
-  });
-  // console.log(api) ;
-  console.log(res) 
+  let res= await this.http.get(api).toPromise()
   return res;    
 }
 
 else {
 let api = "/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
-let res= await this.http.get(api+array[0]).toPromise().catch(err=>{
-  console.log(err);
-});
+let res= await this.http.get(api+array[0]).toPromise()
 return res;
 }
 

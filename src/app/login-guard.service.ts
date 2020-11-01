@@ -27,7 +27,6 @@ export class LoginGuardService implements CanActivate, CanActivateChild{
     //没有权限或者没有登录都要跳到登录页
     if (!user||!permisssions) {
       return this.router.parseUrl("/login");    
-      // location.reload() 
     } else {
       isLogin = true;
     }

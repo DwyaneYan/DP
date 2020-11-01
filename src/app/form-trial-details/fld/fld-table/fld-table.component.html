@@ -1,4 +1,4 @@
-<div id="dataTable">
+<div class="dataTable">
     <nz-table class="mt25" [nzData]='this[data.name]' [nzFrontPagination]="false" id="{{data.table}}" [nzScroll]="data.nzScroll" *ngFor="let data of table;let tableIdx=index" nzBordered [class]="tableIdx==0?'layout-fixed mt25':'mt25'">
         <thead>
             <tr>

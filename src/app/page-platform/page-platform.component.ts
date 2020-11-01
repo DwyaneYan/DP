@@ -279,7 +279,8 @@ customReqone = (item: UploadXHRArgs) => {
   //获取所有推荐材料
 showma(){
  this.ApiService.showMaterials().then((res: any) => {
-    this.addlist=res;
+    this.addlist = res;
+    console.log( this.addlist)
     this.addlist.forEach(val=>
       {if(val.fileString){
       val.fileString=val.fileString.slice(0,val.fileString.length-1);

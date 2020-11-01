@@ -7,8 +7,8 @@
             <th nzWidth="15%" class="header">材料名称</th>
             <th nzWidth="18%" class="header">生产厂家</th>
             <th nzWidth="16%" class="header">型号规格</th>
-            <th nzWidth="19%" class="header">卷号</th>
             <th nzWidth="12%" class="header">屈服强度</th>
+            <th nzWidth="19%" class="header">卷号</th>
             <th nzWidth="12%" class="header">操作</th>
         </tr>
     </thead>
@@ -18,8 +18,8 @@
             <td class="table-col" nzBreakWord>{{ data.name }}</td>
             <td class="table-col" nzBreakWord>{{ data.manufactoryName }}</td>
             <td class="table-col" nzBreakWord>{{ data.model }}</td>
-            <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
             <td class="table-col" nzBreakWord>{{ data.strength }}</td>
+            <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
             <td class="table-col" (click)="getURl(data.id,data)" style="color:#1890ff;cursor:pointer">查看</td>
         </tr>
     </tbody>
