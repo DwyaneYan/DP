@@ -139,33 +139,33 @@ ops(){
     let temp = [];//可选项数据列表
     this.listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
     let lengthTemp = temp.length
-      this.ApiService.GetMater({}).then((res:any)=>{
-        let allMaterials = res.data
+    this.ApiService.GetMater({}).then((res:any)=>{
+      let allMaterials = res.data
 for(let a= 0;a<lengthTemp;a++){
   temp[a].children = []
-  let name = allMaterials.filter(item=>item.manufactoryId == temp[a].value) //牌号数组,牌号会重复
+  let name = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value) //牌号数组,牌号会重复
  console.log(name)
 
    let nameAfter = this.uniqueArr(name,'name') //牌号去重
  let lengthName = nameAfter.length
  console.log(name,nameAfter)
- nameAfter.map(val=>temp[a].children.push({value:val.name,label:val.name}))
+ nameAfter.map(val=>temp[a].children.push({value:val.materialDto.name,label:val.materialDto.name}))
   console.log(temp[a].children)
 for(let b= 0;b<lengthName;b++){
   temp[a].children[b].children = []
-  let model = allMaterials.filter(item=>item.manufactoryId == temp[a].value && item.name == nameAfter[b].name) //型号规格数组，重复
+  let model = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name) //型号规格数组，重复
   let modelAfter = this.uniqueArr(model,'model') //型号规格去重
  console.log(model,modelAfter)
   let lengthModel = modelAfter.length
-  modelAfter.map(val=>temp[a].children[b].children.push({value:val.model,label:val.model}))
+  modelAfter.map(val=>temp[a].children[b].children.push({value:val.materialDto.model,label:val.materialDto.model}))
  console.log(temp[a].children[b].children)
   for(let c = 0;c<lengthModel;c++){
     temp[a].children[b].children[c].children = []
-    let reelNumber = allMaterials.filter(item=>item.manufactoryId == temp[a].value && item.name == nameAfter[b].name && item.model == modelAfter[c].model) //卷号数组，重复
+    let reelNumber = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name && item.materialDto.model == modelAfter[c].materialDto.model) //卷号数组，重复
     let reelNumberAfter = this.uniqueArr(reelNumber,'reelNumber') //卷号去重
  console.log(2111,reelNumber,reelNumberAfter)
  // let lengthreelNumber = reelNumberAfter.length
-    reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.reelNumber,label:val.reelNumber,isLeaf: true}))
+    reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.materialDto.reelNumber,label:val.materialDto.reelNumber,isLeaf: true}))
  console.log(temp[a].children[b].children[c])
 
   }
@@ -182,7 +182,7 @@ this.nzOptions = temp
 
 uniqueArr(arr1,p) {
   const res = new Map();
-  return arr1.filter((a) => !res.has(a[p]) && res.set(a[p], 1)) //对象数组根据属性去重
+  return arr1.filter((a) => !res.has(a['materialDto'][p]) && res.set(a['materialDto'][p], 1)) //对象数组根据属性去重
 }
 
 customReq = (item: UploadXHRArgs) => {
@@ -403,11 +403,8 @@ getURl(id,data){
  //查询材料
  this.ApiService.GetMater(this.pat).then((res: any) => {
    //有可能查询不到材料？
-   console.log(values[1])
    if(res.data.length){
-   this.addid=res.data[0].id
-       //  console.log(this.addid)
-       //  console.log(this.addlist)
+   this.addid=res.data[0].materialDto.id
        //根据材料id添加推荐材料图片
        this.maUrl=`/api/hangang/MaterialPicturePut?Id=${this.addid}`;     
         this.showi=true

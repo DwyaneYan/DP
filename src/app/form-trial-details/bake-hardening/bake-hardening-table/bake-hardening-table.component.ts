@@ -54,11 +54,14 @@ constructor(private route: ActivatedRoute,
     await this.ApiService.getBakeHardeningDataDetails(this.materialId)
     .then((res: any) => {
       this.trialDataDetail = res //如果这条材料没有这个试验项目信息
-      this.loading1 = false
-      if(this.trialDataDetail.length){
-      this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-      this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
-      }
+      this.loading1 = false;
+      this.ApiService.GetMater({ id: this.materialId }).then((res1: any) => {
+        if (this.trialDataDetail.length) {
+          this.trialDataDetail[0].dates = res1.data[0].materialDto.date;
+          this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
+          this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+        }
+      })
     })    
   }
   public async GetTrialDataDetailss() {

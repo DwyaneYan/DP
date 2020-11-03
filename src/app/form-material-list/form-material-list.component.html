@@ -3,23 +3,25 @@
 <nz-table #rowSelectionTable [nzData]="listOfAllData" nzShowSizeChanger>
     <thead>
         <tr>
-            <th nzWidth="8%" *ngIf="checkbox" class="header"></th>
-            <th nzWidth="15%" class="header">材料名称</th>
-            <th nzWidth="18%" class="header">生产厂家</th>
-            <th nzWidth="16%" class="header">型号规格</th>
-            <th nzWidth="12%" class="header">屈服强度</th>
-            <th nzWidth="19%" class="header">卷号</th>
-            <th nzWidth="12%" class="header">操作</th>
+            <th nzWidth="80px" *ngIf="checkbox" class="header"></th>
+            <th nzWidth="180px" class="header">材料名称</th>
+            <th nzWidth="180px" class="header">生产厂家</th>
+            <th nzWidth="150px" class="header">型号规格</th>
+            <th nzWidth="150px" class="header">屈服强度</th>
+            <th nzWidth="200px" class="header">试验项目</th>
+            <th nzWidth="150px" class="header">卷号</th>
+            <th class="header">操作</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of rowSelectionTable.data">
             <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.id)" class="table-col" name="chk"></td>
-            <td class="table-col" nzBreakWord>{{ data.name }}</td>
-            <td class="table-col" nzBreakWord>{{ data.manufactoryName }}</td>
-            <td class="table-col" nzBreakWord>{{ data.model }}</td>
-            <td class="table-col" nzBreakWord>{{ data.strength }}</td>
-            <td class="table-col" nzBreakWord>{{ data.reelNumber }}</td>
+            <td class="table-col">{{ data.name }}</td>
+            <td class="table-col">{{ data.manufactoryName }}</td>
+            <td class="table-col">{{ data.model }}</td>
+            <td class="table-col">{{ data.strength }}</td>
+            <td class="table-col ellipsis">{{ data.trials }}</td>
+            <td class="table-col">{{ data.reelNumber }}</td>
             <td class="table-col" (click)="getURl(data.id,data)" style="color:#1890ff;cursor:pointer">查看</td>
         </tr>
     </tbody>
@@ -48,10 +50,10 @@
     </h4>
     <ul>
         <li *ngFor="let data of checkList">
-            <span class="text name">{{ data.name }}</span>
-            <span class="text">{{ data.manufactoryName }}</span>
-            <span class="text">{{ data.model }}</span>
-            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.id)"></i>
+            <span class="text name">{{ data.materialDto.name }}</span>
+            <span class="text">{{ data.materialDto.manufactoryName }}</span>
+            <span class="text">{{ data.materialDto.model }}</span>
+            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialDto.id)"></i>
         </li>
     </ul>
     <a [routerLink]="['/contrast']" [queryParams]="{materialids:contrastID}" target="_blank">
@@ -68,10 +70,10 @@
     </h4>
     <ul>
         <li *ngFor="let data of checkList">
-            <span class="text name">{{ data.name }}</span>
-            <span class="text">{{ data.manufactoryName }}</span>
-            <span class="text">{{ data.model }}</span>
-            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.id)"></i>
+            <span class="text name">{{ data.materialDto.name }}</span>
+            <span class="text">{{ data.materialDto.manufactoryName }}</span>
+            <span class="text">{{ data.materialDto.model }}</span>
+            <i nz-icon nzType="close" nzTheme="outline" (click)="shanchu(data.materialDto.id)"></i>
         </li>
     </ul>
 

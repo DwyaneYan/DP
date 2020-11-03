@@ -13,7 +13,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table [nzData]='two' [nzFrontPagination]="false" class="mt25" nzBordered [nzLoading]="loading">
+    <nz-table [nzData]='trialDataDetail' [nzFrontPagination]="false" class="mt25" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th *ngFor="let data2 of  table2;let i = index" [nzWidth]="width2[i]">{{data2}}</th>

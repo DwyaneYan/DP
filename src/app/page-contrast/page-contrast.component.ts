@@ -287,29 +287,23 @@ this.ops()
           let allMaterials = res.data
   for(let a= 0;a<lengthTemp;a++){
     temp[a].children = []
-    let name = allMaterials.filter(item=>item.manufactoryId == temp[a].value) //牌号数组,牌号会重复
-   console.log(name)
+    let name = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value) //牌号数组,牌号会重复
      let nameAfter = this.PagePlatformComponent.uniqueArr(name,'name') //牌号去重
    let lengthName = nameAfter.length
-  //  if(lengthName){
-   console.log(name,nameAfter)
-   nameAfter.map(val=>temp[a].children.push({value:val.name,label:val.name}))
-    console.log(temp[a].children)
+   nameAfter.map(val=>temp[a].children.push({value:val.materialDto.name,label:val.materialDto.name}))
   for(let b= 0;b<lengthName;b++){
     temp[a].children[b].children = []
-    let model = allMaterials.filter(item=>item.manufactoryId == temp[a].value && item.name == nameAfter[b].name) //型号规格数组，重复
+    let model = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name) //型号规格数组，重复
     let modelAfter = this.PagePlatformComponent.uniqueArr(model,'model') //型号规格去重
-   console.log(model,modelAfter)
     let lengthModel = modelAfter.length
-    modelAfter.map(val=>temp[a].children[b].children.push({value:val.model,label:val.model}))
-   console.log(temp[a].children[b].children)
+    modelAfter.map(val=>temp[a].children[b].children.push({value:val.materialDto.model,label:val.materialDto.model}))
     for(let c = 0;c<lengthModel;c++){
       temp[a].children[b].children[c].children = []
-      let reelNumber = allMaterials.filter(item=>item.manufactoryId == temp[a].value && item.name == nameAfter[b].name && item.model == modelAfter[c].model) //卷号数组，重复
+      let reelNumber = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name && item.materialDto.model == modelAfter[c].materialDto.model) //卷号数组，重复
       let reelNumberAfter = this.PagePlatformComponent.uniqueArr(reelNumber,'reelNumber') //卷号去重
    console.log(2111,reelNumber,reelNumberAfter)
    // let lengthreelNumber = reelNumberAfter.length
-      reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.reelNumber,label:val.reelNumber,isLeaf: true}))
+      reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.materialDto.reelNumber,label:val.materialDto.reelNumber,isLeaf: true}))
    console.log(temp[a].children[b].children[c])
   
     }
@@ -510,12 +504,12 @@ this.valuetj = []
       // console.log(res)
       if(res.data.length){
       this.addlist = res.data;
-      this.array.push(this.addlist[0].id);
+      this.array.push(this.addlist[0].materialDto.id);
       // this.getGetMaterialss();
-      this.name.push(this.addlist[0].name);
-      this.model.push(this.addlist[0].model);
-      this.manu.push(this.addlist[0].manufactoryName)
-      this.reelNumber.push(this.addlist[0].reelNumber);
+      this.name.push(this.addlist[0].materialDto.name);
+      this.model.push(this.addlist[0].materialDto.model);
+      this.manu.push(this.addlist[0].materialDto.manufactoryName)
+      this.reelNumber.push(this.addlist[0].materialDto.reelNumber);
       this.getGetMaterials();
       this.array.toString();
       window.history.pushState(

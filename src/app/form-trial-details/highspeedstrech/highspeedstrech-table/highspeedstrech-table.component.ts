@@ -158,10 +158,14 @@ export class HighspeedstrechTableComponent implements OnInit {
             this.one.push(this.trialDataDetail[a]);
           }
         }
-        if(this.one.length){
-          this.one[0].dates =  this.ApiService.handleTime(this.one[0].dates);
-          this.one[0].dateEnds =  this.ApiService.handleTime(this.one[0].dateEnds);
-        }
+        this.ApiService.GetMater({ id: this.materialId }).then((res1: any) => {
+          
+          if (this.one.length) {
+            this.one[0].dates = res1.data[0].materialDto.date;
+            this.one[0].dates = this.ApiService.handleTime(this.one[0].dates);
+            this.one[0].dateEnds = this.ApiService.handleTime(this.one[0].dateEnds);
+          }
+        })
       }
     );
   }

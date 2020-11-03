@@ -66,12 +66,16 @@ export class StaticTensionTableComponent implements OnInit {
     this.trialDataDetail = res;
     }) 
     this.loading = false;
-    if(this.trialDataDetail.length){
-        this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates)
-        this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds)
-    }
-    this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
-    this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
+    this.ApiService.GetMater({ id: this.materialId }).then((res: any) => {
+      if (this.trialDataDetail.length) {
+          this.trialDataDetail[0].dates = res.data[0].materialDto.date;
+          this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates)
+          this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds)
+      }
+      this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
+      this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
+    })
+    
   }
   
   public async GetTrialDataDetail() {

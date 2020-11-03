@@ -134,9 +134,12 @@ export class PaintingTableComponent implements OnInit {
       this.ApiService[this.table[i].method](this.materialId).then((res: any) => {
         this[this.table[i].name] = res;
         this.table[i].loading = false
-        if(i == 0 && res.length){
-          this[this.table[i].name][0].dates =  this.ApiService.handleTime(this[this.table[i].name][0].dates);
-          this[this.table[i].name][0].dateEnds = this.ApiService.handleTime(this[this.table[i].name][0].dateEnds);
+        if (i == 0 && res.length) {
+          this.ApiService.GetMater({ id: this.materialId }).then((res1: any) => {
+            this[this.table[i].name][0].dates = res1.data[0].materialDto.date;
+            this[this.table[i].name][0].dates = this.ApiService.handleTime(this[this.table[i].name][0].dates);
+            this[this.table[i].name][0].dateEnds = this.ApiService.handleTime(this[this.table[i].name][0].dateEnds);
+          })
       }
       })    
     }

@@ -209,11 +209,14 @@ async function GetTrialDataDetails(methonName,materialId,ApiServices) {
   let trialDataDetail = []
   let groupCode = []
   await ApiServices[methonName](materialId).then((res: any) => {
-      trialDataDetail = res;
-      if(trialDataDetail.length){
+    trialDataDetail = res;
+    ApiServices['GetMater']({ id: materialId }).then((res1: any) => {
+      if (trialDataDetail.length) {
+        trialDataDetail[0].dates = res1.data[0].materialDto.date;
         trialDataDetail[0].dates = ApiServices.handleTime(trialDataDetail[0].dates);
         trialDataDetail[0].dateEnds = ApiServices.handleTime(trialDataDetail[0].dateEnds);
       }
+    })
       //返回结果按照元素名称分组
       groupCode = groupBy(trialDataDetail, function (item) {
         return [ item.element];

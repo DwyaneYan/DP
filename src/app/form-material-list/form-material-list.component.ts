@@ -47,16 +47,25 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
 
   ngOnChanges() {
     this.contrasts = []
-    this.listOfAllData = this.data //全部材料实际显示的,
+    this.listOfAllData = [];
+   // this.listOfAllData = this.data //全部材料实际显示的,
+    this.data.forEach((val,index) => {
+      this.listOfAllData.push(val.materialDto);
+      this.listOfAllData[index]['trials'] = val.trials
+    })
+    console.log(this.listOfAllData,this.dataAll)
     this.totalCount = this.listOfAllData.length; //数据个数
-    this.listOfAllData.forEach(val=>{val.checked = false}) //不设置checked属性值是undefined
-        this.listOfAllData.forEach(val=>{
-          for(let b= 0;b<this.total;b++){
-            if(this.dataAll[b].id == val.id){
-    val.checked = this.dataAll[b].checked
-            }
-          }
-        })
+    this.listOfAllData.map(val=>{val.checked = false}) //不设置checked属性值是undefined
+    debugger
+    this.listOfAllData.forEach(val=>{
+      for(let b= 0;b<this.total;b++){
+        if(this.dataAll[b].materialDto.id == val.id){
+          val.checked = this.dataAll[b].materialDto.checked
+        }
+      }
+    })
+    console.log(this.listOfAllData,this.dataAll)
+
   }
   //#region 模块 
 
@@ -67,9 +76,8 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   screening(){
     this.ApiService.GetMater({}).then((res:any)=>{
       this.dataAll = res.data //所有数据
-      this.total = res.totalCount //所有数据数量
-      this.dataAll.forEach(val=>{val.checked = false})//全部未选中
-
+      this.total = res.data.length //所有数据数量
+      this.dataAll.forEach(val=>{val.materialDto.checked = false})//全部未选中
     })
   }
 
@@ -114,13 +122,12 @@ getURl(id,data){
     if (val) {
       this.dataAll.map(el=>{
         for(let a= 0;a<this.totalCount;a++){
-          if(this.listOfAllData[a].id == el.id){
-            el.checked = this.listOfAllData[a].checked
+          if(this.listOfAllData[a].id == el.materialDto.id){
+            el.materialDto.checked = this.listOfAllData[a].checked
           }
         }
           })
-          this.checkList = this.dataAll.filter(value => value.checked);
-          console.log( this.checkList)
+      this.checkList = this.dataAll.filter(value => value.materialDto.checked);
       if (this.checkList.length > 5) {
         this.disabled = true;
         this.modalService.warning({
@@ -131,11 +138,11 @@ getURl(id,data){
     } 
     //取消选中
     else {
-      this.checkList = this.checkList.filter(value => value.id !== id )
-      this.dataAll.forEach(el=>{
+      this.checkList = this.checkList.filter(value => value.materialDto.id !== id )
+      this.dataAll.map(el=>{
         for(let a= 0;a<this.totalCount;a++){
-          if(this.listOfAllData[a].id == el.id){
-            el.checked = this.listOfAllData[a].checked
+          if(this.listOfAllData[a].id == el.materialDto.id){
+            el.materialDto.checked = this.listOfAllData[a].checked
           }
         }
           })
@@ -145,7 +152,7 @@ getURl(id,data){
 
   shanchu(x) {
     for (var j = 0; j < this.checkList.length; j++) {
-      if (this.checkList[j].id == x) {
+      if (this.checkList[j].materialDto.id == x) {
         this.checkList.splice(j, 1);
         this.disabled = false;
       }
@@ -154,9 +161,9 @@ getURl(id,data){
           vari.checked = false
         }
       }
-      this.dataAll.forEach(val=>{
-        if(val.id == x){
-            val.checked = false
+      this.dataAll.map(val=>{
+        if(val.materialDto.id == x){
+            val.materialDto.checked = false
         }
       })
     }
@@ -165,7 +172,7 @@ getURl(id,data){
   select() {
     this.contrasts = []
     this.contrastID = ''
-    this.checkList.map(val=>{this.contrasts.push(val.id)})
+    this.checkList.map(val=>{this.contrasts.push(val.materialDto.id)})
     this.contrastID = this.contrasts.toString();//直接把整个字符串作为查询参数
 
   }
@@ -198,7 +205,7 @@ this.disabled = false//第一列不禁用
 
   confirm(): void {
     let ids = []
-    this.checkList.map(val=>ids.push(val.id))
+    this.checkList.map(val=>ids.push(val.confirm.id))
     console.log(ids)
     this.ApiService.delMaterials(ids).then((res:any)=>{
       this.nzMessageService.info('删除成功');

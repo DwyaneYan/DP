@@ -20,47 +20,34 @@ export class ApiService {
     httpOptions = {}
     toVIm = `https://vim.hansteel.cn/view`   //跳转到vim
     // toVIm = `http://localhost:4280` //跳转到vim     
-    toRuoYi = `http://10.80.27.201:81`
-//在材料表筛选材料
-async GetMater(params?){
-    let url ="/api/hangang/material/materials";
-    if(params.type&& params.type == 'tszf'){
-      let res= await this.http.get(url+params.url).toPromise()
-      return res; 
-    }else{
-      let res= await this.http.get(url,{params:params}).toPromise()
-      return res; 
+  toRuoYi = `http://10.80.27.201:81`
+  
+  //筛选材料
+  async GetMater(params?){
+      let url ="/api/hangang/material/materials";
+      if(params.type && params.type == 'tszf'){
+        let res= await this.http.get(url+params.url).toPromise()//材料名称中的特殊字符作为查询参数时要进行url编码
+        return res; 
+      }else{
+        let res= await this.http.get(url,{params:params}).toPromise()
+        return res; 
+      }
     }
-   
-   
-  }
-//在厂家表查询所有厂家
+//查询所有厂家
   async GetManufacturers()
   {
     let api = "/api/hangang/manufactory/manufactories";
     let res= await this.http.get(api).toPromise()
     return res;
   }
-  //根据材料id添加至推荐材料表
+  //添加材料为推荐材料
   async ADDManufacturers(id)
   {
     let api = `/api/hangang/material/${id}/materialRecommendations`;
     let res = await this.http.post(api,id).toPromise()
     return res;
   }
-//在若以登陆后带上token跳到邯钢平台首页，在进入邯钢平台首页时用token获取若以的接口  // async getInfo(token)
-  // {
 
-  //   let api = `http://172.20.10.7:81/dev-api/getInfo`;
-  //   let options={headers:new HttpHeaders({
-  //         'Authorization': `${token}`
-  //       })}
-  //   let res= await this.http.get(api,options
-  //     ).toPromise()(err=>{
-  //     console.log(err);
-  //   });
-  //   return res;
-  // }
 //查询所有推荐材料
   async showMaterials()
   {

@@ -143,10 +143,13 @@ export class SurfacePropertyTableComponent implements OnInit {
       }
     );
     this.loading = false;
-    if(this.trialDataDetailss.length){
+    this.ApiService.GetMater({ id: this.materialId }).then((res: any) => {
+      if (this.trialDataDetailss.length) {
+        this.trialDataDetailss[0].dates = res.data[0].materialDto.date;
         this.trialDataDetailss[0].dates = this.ApiService.handleTime(this.trialDataDetailss[0].dates);
         this.trialDataDetailss[0].dateEnds = this.ApiService.handleTime(this.trialDataDetailss[0].dateEnds);
-    }
+      }
+    })
   }
 
   public  GetTrialDataDetailssss() {

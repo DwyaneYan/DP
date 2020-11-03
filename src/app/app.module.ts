@@ -101,7 +101,7 @@ import { TypicalPartComponent } from './typical-part/typical-part.component';
 import { PictureComponent } from './picture/picture.component';
 import { TrailnameComponent } from './trailname/trailname.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
-
+import { httpInterceptorProviders} from './http-interceptors/index'
 
 @NgModule({
   declarations: [
@@ -208,7 +208,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 
    
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }, CookieService  ,],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, CookieService ,httpInterceptorProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

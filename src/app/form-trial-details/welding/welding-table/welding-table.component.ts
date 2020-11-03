@@ -96,10 +96,13 @@ export class WeldingTableComponent implements OnInit {
       }
     );
     this.loading1 = false
-    if(this.trialDataDetail.length){
+    this.ApiService.GetMater({ id: this.materialId }).then((res1: any) => {
+      if (this.trialDataDetail.length) {
+        this.trialDataDetail[0].dates = res1.data[0].materialDto.date;
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
-    }
+      }
+    })
   }
   public  GetTrialDataDetailss() {
      this.ApiService.getWeldingDataDetailItems(this.materialId).then(

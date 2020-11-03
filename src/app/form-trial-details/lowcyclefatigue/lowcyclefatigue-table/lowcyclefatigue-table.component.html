@@ -1,5 +1,5 @@
 <div class="dataTable">
-    <nz-table class="mt25 layout-fixed" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered [nzScroll]="{x:'1260px' }">
+    <nz-table class="mt25 layout-fixed" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered [nzScroll]="{x:'1260px' }" [nzLoading]="loading">
         <thead>
             <tr>
                 <th [nzWidth]="thIdx == 0||thIdx == 1 ||thIdx ==2?'120px':'150px'" *ngFor="let data1 of table1;let thIdx=index">{{data1}}
@@ -14,7 +14,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered *ngFor="let data3 of table3">
+    <nz-table class="mt25" [nzData]='trialDataDetail' [nzFrontPagination]="false" nzBordered *ngFor="let data3 of table3" [nzLoading]="loading">
         <thead>
             <tr>
                 <th nzWidth="200px" *ngFor="let data31 of data3.one">
@@ -29,7 +29,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25" [nzData]='trialDataDetail.slice(1)' [nzFrontPagination]="false" nzBordered>
+    <nz-table class="mt25" [nzData]='trialDataDetail.slice(1)' [nzFrontPagination]="false" nzBordered [nzLoading]="loading">
         <thead>
             <tr>
                 <th nzWidth="200px" *ngFor="let data41 of table4[0].one">{{data41}}</th>
@@ -42,7 +42,7 @@
             </tr>
         </tbody>
     </nz-table>
-    <nz-table class="mt25 fff" [nzData]='trialDataDetails' [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'800px' }">
+    <nz-table class="mt25 fff" [nzData]='trialDataDetails' [nzFrontPagination]="false" nzBordered [nzScroll]="{y:'800px' }" [nzLoading]="loadings">
         <thead>
             <tr>
                 <th nzWidth="120px" *ngFor="let data41 of table4[1].one; let i = index">

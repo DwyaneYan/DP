@@ -72,11 +72,15 @@ export class FldTableComponent implements OnInit {
   public  GetTrialDataDetailss() {
      this.ApiService.getFLDDataDetails(this.materialId).then(
       (res: any) => {
-        this.trialDataDetails = res;
-        if(this.trialDataDetails.length){
-        this.trialDataDetails[0].dates = this.ApiService.handleTime(this.trialDataDetails[0].dates);
-        this.trialDataDetails[0].dateEnds = this.ApiService.handleTime(this.trialDataDetails[0].dateEnds);
-        }
+         this.trialDataDetails = res;
+         this.ApiService.GetMater({ id: this.materialId }).then((res1: any) => {
+           
+           if (this.trialDataDetails.length) {
+            this.trialDataDetails[0].dates = res1.data[0].materialDto.date;
+             this.trialDataDetails[0].dates = this.ApiService.handleTime(this.trialDataDetails[0].dates);
+             this.trialDataDetails[0].dateEnds = this.ApiService.handleTime(this.trialDataDetails[0].dateEnds);
+           }
+         })
       }
     );
   }

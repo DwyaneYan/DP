@@ -62,11 +62,14 @@ export class HydrogenInducedDelayedFractureTableComponent implements OnInit {
     await this.ApiService.getHydrogenInducedDelayedFractureDataDetails(this.materialId).then((res: any) => {
       this.trialDataDetail = res;
     });
-  this.loading = false;
-    if(this.trialDataDetail.length){
+    this.loading = false;
+    this.ApiService.GetMater({ id: this.materialId }).then((res: any) => {
+      if (this.trialDataDetail.length) {
+        this.trialDataDetail[0].dates = res.data[0].materialDto.date;
         this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
         this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
-    }
+      }
+    })
   }
   public async GetTrialDataDetailss() {
     await this.ApiService.getHydrogenInducedDelayedFractureDataDetailItems(

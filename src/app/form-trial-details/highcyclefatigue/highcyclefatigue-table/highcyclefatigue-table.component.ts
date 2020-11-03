@@ -102,10 +102,13 @@ export class HighcyclefatigueTableComponent implements OnInit {
       (res: any) => {
         this.trialDataDetail = res;
         this.loading = false
-        if(this.trialDataDetail.length){
+        this.ApiService.GetMater({ id: this.materialId }).then((res1: any) => {
+          if (this.trialDataDetail.length) {
+            this.trialDataDetail[0].dates = res1.data[0].materialDto.date;
             this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates);
-            this.trialDataDetail[0].dateEnds =  this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
-        }
+            this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds);
+          }
+        })
       }
     );
   }

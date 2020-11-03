@@ -1,13 +1,13 @@
 <div class="info-box" *ngFor="let data of baseInfo">
     <div class='paihao'>
-        <div class="title">材料牌号{{ data.name }}</div>
+        <div class="title">材料牌号{{ data.materialDto.name }}</div>
         <button nz-button nzType="primary" (click)="showModal()">修改</button>
     </div>
     <div class="detail">
-        <span>卷号：{{ data.reelNumber}}</span>
-        <span>型号规格(mm)：{{ data.model}}</span>
-        <span>生产厂家：{{ data.manufactoryName}}</span>
-        <span>材料标准：{{ data.materialStandard}}</span>
+        <span>卷号：{{ data.materialDto.reelNumber}}</span>
+        <span>型号规格(mm)：{{ data.materialDto.model}}</span>
+        <span>生产厂家：{{ data.materialDto.manufactoryName}}</span>
+        <span>材料标准：{{ data.materialDto.materialStandard}}</span>
     </div>
 </div>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="材料基本信息" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzWidth]='600' [nzFooter]=null>
