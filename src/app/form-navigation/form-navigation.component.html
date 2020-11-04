@@ -2,7 +2,7 @@
     <div class="w1200 navigation-box">
         <div class="navigation-logo">
             <a routerLink='/platform'>
-                <img width="346" height="42" src="../../assets/images/navigation-logo.png" alt="">
+                <img src="../../assets/images/navigation-logo.png" alt="">
             </a>
         </div>
         <ul id="one" class="navigation-list">
@@ -16,13 +16,13 @@
                     联系我们
                     <!-- <i nz-icon nzType="down"></i> -->
                 </a>
-                  <nz-dropdown-menu #contactMenu="nzDropdownMenu">
+                <nz-dropdown-menu #contactMenu="nzDropdownMenu">
                     <ul nz-menu nzSelectable>
-                      <li nz-menu-item>
-                        <a href="http://www.hgjt.cn/" target="_blank">联系电话：0310-6072141</a>
-                      </li>
+                        <li nz-menu-item>
+                            <a href="http://www.hgjt.cn/" target="_blank">联系电话：0310-6072141</a>
+                        </li>
                     </ul>
-                  </nz-dropdown-menu>
+                </nz-dropdown-menu>
             </li>
             <li class="navigation-item">
                 <a (click)="openPDF()">帮助</a>

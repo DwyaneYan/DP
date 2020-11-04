@@ -38,37 +38,7 @@
                     <div class="model-name">商用车</div>
                 </a>
             </li>
-            <!-- <li class="model-item">
-                <a href="javascript:;">
-                    <img src="../../assets/images/paoche.png" alt="" width="159" height="105">
-                    <div class="model-name">跑车</div>
-                </a>
-            </li>
-            <li class="model-item">
-                <a href="javascript:;">
-                    <i nz-icon nzType="plus" nzTheme="outline"></i>
-                    <div class="model-name">添加车型</div>
-                </a>
-            </li> -->
         </ul>
-        <!-- <ng-template #extraTemplate>
-            <div class="rightsearch">
-
-                <div id="text">
-                    <a><img src="../../assets/images/add.png" alt="add"> 添加车型</a>
-                </div>
-
-                <div id="search-box">
-                    <nz-input-group [nzSuffix]="suffixIconSearch">
-                        <input type="text" nz-input placeholder="搜索车型" />
-                    </nz-input-group>
-                    <ng-template #suffixIconSearch>
-                        <i nz-icon nzType="search"></i>
-                    </ng-template>
-                </div>
-
-            </div>
-        </ng-template> -->
     </div>
 
 
@@ -89,7 +59,7 @@
                 <nz-modal [(nzVisible)]="isVisible" nzTitle="导入数据" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false [nzFooter]=null>
                     <div id="text-xzwj">
                         <br /> 选择文件:
-                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory [nzCustomRequest]="customReqone" [(nzFileList)]="FileList" (nzChange)="handleChange($event)">
+                        <nz-upload nzAction="/api/hangang/material/autoAddTestItem" nzDirectory [nzCustomRequest]="customReq" [(nzFileList)]="FileList" (nzChange)="handleChange($event)">
                             <button nz-button><i nz-icon nzType="upload"></i><span>选择要上传的文件</span></button>
                         </nz-upload>
                     </div>
@@ -105,29 +75,18 @@
                 </button>
                 <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false>
                     <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
-                    <nz-upload [nzAction]="maUrl" [nzCustomRequest]="customReq" (nzChange)="handleChange1($event)" [(nzFileList)]="FileList" [nzBeforeUpload]="FormAddCarComponent.beforeUpload1">
-                        &nbsp;&nbsp;&nbsp; <button nz-button *ngIf="showi"><i nz-icon
-                                nzType="upload"></i>上传材料图片</button>
-                    </nz-upload>
+                    &nbsp;&nbsp;&nbsp;
+                    <app-upload [url]='maUrl' [buttonName]="'上传图片'" [type]="'photo'" [hz]="['image/jpeg','image/png']" [error]="'只能上传JPG和PNG'" *ngIf="showi"></app-upload>
                 </nz-modal>
             </div>
             <!-- 添加材料  END -->
 
-            <!-- 删除推荐材料 START -->
-            <!-- <div id="import" *ngIf="FormExperimentalItemComponent.button('deletetj')">
-                <span>删除推荐材料</span> &nbsp;
-                <nz-switch [(ngModel)]="showcan"></nz-switch>
-            </div> -->
-            <!-- 删除推荐材料 START -->
         </div>
 
         <!-- 材料列表 START -->
         <div class="model-list">
             <div class="material-item" *ngFor="let material of addlist">
-                <!-- <div class="material-delete" (click)="shanchutj(material.id)" *ngIf="button('hg-home-deletetj')">
-                    <i nz-icon nzType="delete" nzTheme="outline"></i>
-                </div> -->
-                <div (click)="nav(material.materialId,material)">
+                <div (click)="commonService.getURl(material.materialId,ApiService)">
                     <div class='material-pic'>
                         <img [src]="material.avatarUrl" *ngIf='material.avatarUrl;else elseBlock' />
                         <ng-template #elseBlock>

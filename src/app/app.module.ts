@@ -101,7 +101,8 @@ import { TypicalPartComponent } from './typical-part/typical-part.component';
 import { PictureComponent } from './picture/picture.component';
 import { TrailnameComponent } from './trailname/trailname.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
-import { httpInterceptorProviders} from './http-interceptors/index'
+import { httpInterceptorProviders} from './http-interceptors/index';
+import { UploadComponent } from './upload/upload.component'
 
 @NgModule({
   declarations: [
@@ -192,9 +193,10 @@ import { httpInterceptorProviders} from './http-interceptors/index'
     PictureComponent,
     TrailnameComponent,
     LineChartComponent,
+    UploadComponent,
   ],
   imports: [
-    
+    //BrowserModule模块提供了在Web浏览器中运行angular应用程序所需的功能
     BrowserModule,
     NgZorroAntdModule,
     FormsModule,
@@ -208,7 +210,9 @@ import { httpInterceptorProviders} from './http-interceptors/index'
 
    
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }, CookieService ,httpInterceptorProviders ],
+   //共享服务
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, CookieService, httpInterceptorProviders],
+  //启动组件
   bootstrap: [AppComponent]
 })
 export class AppModule { }

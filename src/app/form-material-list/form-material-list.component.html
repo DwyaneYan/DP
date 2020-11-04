@@ -20,9 +20,11 @@
             <td class="table-col">{{ data.manufactoryName }}</td>
             <td class="table-col">{{ data.model }}</td>
             <td class="table-col">{{ data.strength }}</td>
-            <td class="table-col ellipsis">{{ data.trials }}</td>
+            <td class="table-col">
+                <div class='ellipsis' [title]='data.trials'>{{ data.trials }}</div>
+            </td>
             <td class="table-col">{{ data.reelNumber }}</td>
-            <td class="table-col" (click)="getURl(data.id,data)" style="color:#1890ff;cursor:pointer">查看</td>
+            <td class="table-col" (click)="commonService.getURl(data.id,ApiService)" style="color:#1890ff;cursor:pointer">查看</td>
         </tr>
     </tbody>
 </nz-table>
@@ -77,7 +79,7 @@
         </li>
     </ul>
 
-    <a nz-popconfirm [nzPopconfirmTitle]="title" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm()" (nzOnCancel)="cancel()" style="color:white" (click)="getTitle()">
+    <a nz-popconfirm [nzPopconfirmTitle]="title" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm()" style="color:white" (click)="getTitle()">
         <button nz-button nzType="primary"> 删除 </button>
     </a>
 

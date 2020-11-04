@@ -1,12 +1,18 @@
-<div id="content">
-    <button nz-button nzType="primary" (click)="goVim()">查看模型</button>
-    <button nz-button nzType="primary" (click)="openDialog()" style="margin-left:30px">绑定零件</button>
+<div class="content">
+    <!-- <button nz-button nzType="primary" (click)="goVim()">查看模型</button> -->
+    <button nz-button nzType="primary" (click)="openDialog()">绑定零件</button>
     <nz-modal [(nzVisible)]="isVisible" nzTitle="绑定零件" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-        <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values"></nz-cascader>
+        <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" [nzShowSearch]="true" [nzOptionRender]="renderTpl"></nz-cascader>
+        <ng-template #renderTpl let-option let-index="index">
+            <span *ngIf="index==0 || (index==1 && option.value.materialId == '00000000-0000-0000-0000-000000000000');else elseBlock">{{ option.label }}</span>
+            <ng-template #elseBlock>
+                {{ option.label }}<i nz-icon nzType="link" nzTheme="outline"></i>
+            </ng-template>
+        </ng-template>
+        <span *ngIf="values[1]&&values[1].materialId != '00000000-0000-0000-0000-000000000000'" style="margin-left:10px">此零件已绑定到其他材料，点击确定替换</span>
     </nz-modal>
-    <div *ngIf='projectId; else elseBlock'>此材料已绑定到&nbsp;{{carName}}&nbsp;的&nbsp;{{partName}}
+    <div *ngFor='let data of typicalParts'>
+        此材料已绑定到&nbsp;{{data.carName}}&nbsp;的&nbsp;{{data.name}} &nbsp;&nbsp;&nbsp;&nbsp;<i nz-icon nzType="link" nzTheme="outline" (click)='goVim(data)' title='点击查看零部件'></i>
     </div>
-    <ng-template #elseBlock>
-        <div>这条材料暂未绑定零部件</div>
-    </ng-template>
+    <div *ngIf='!typicalParts.length'>这条材料暂未绑定零部件</div>
 </div>

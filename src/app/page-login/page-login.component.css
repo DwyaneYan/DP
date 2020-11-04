@@ -1,63 +1,66 @@
 #login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('../../assets/images/login-background.png');
-  /* position:absolute;  */
-  /* width:100%;  */
-  height: 100%;
-  background-size: cover;
-  flex-direction: column;
-  /* background-repeat: repeat-x; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/images/login-background.png');
+    /* position:absolute;  */
+    /* width:100%;  */
+    height: 100%;
+    background-size: cover;
+    flex-direction: column;
+    /* background-repeat: repeat-x; */
 }
 
 #login-dialog {
-  width: 1200px;
-  height: 600px;
-  margin: auto;
-  position: relative;
+    width: 1200px;
+    height: 600px;
+    margin: auto;
+    position: relative;
 }
 
 .login-logo {
-  position: absolute;
-  left: 60px;
-  top: 55px;
-  z-index: 10;
+    position: absolute;
+    left: 60px;
+    top: 55px;
+    z-index: 10;
 }
 
 .form {
-  position: absolute;
-  right: 60px;
-  width: 330px;
-  height: 462px;
-  top: 50%;
-  margin-top: -231px;
-  background-color: rgba(255, 255, 255, 0.94);
-  border-radius: 10px;
-  padding: 40px;
+    position: absolute;
+    right: 60px;
+    width: 330px;
+    height: 462px;
+    top: 50%;
+    margin-top: -231px;
+    background-color: rgba(255, 255, 255, 0.94);
+    border-radius: 10px;
+    padding: 40px;
 }
 
 .form .login-title {
-  font-size: 28px;
-  color: #222;
-  margin-bottom: 35px;
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 35px;
 }
 
 .form /deep/ .ant-form-item-control {
-  height: 60px;
+    height: 60px;
 }
 
 .form /deep/ .ant-input {
-  height: 46px;
-  border-radius: 6px;
-  padding-left: 35px;
+    height: 46px;
+    border-radius: 6px;
+    padding-left: 35px;
 }
 
 .form /deep/ .ant-input-prefix .anticon {
-  font-size: 20px;
+    font-size: 20px;
 }
-#login-dialog+.foot{
-  color:white;
-  text-align: center;
-  font: 12px "宋体";
+
+#login-dialog+.foot {
+    position: absolute !important;
+    bottom: 20px;
+    color: white;
+    text-align: center;
+    font: 12px "宋体";
 }

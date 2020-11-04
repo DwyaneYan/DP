@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { Router} from "@angular/router";
 import {button} from 'src/app/picture'
 import{ TrialNameService } from './form-experimental-item/trial-name.service'
@@ -13,14 +11,13 @@ import{ TrialNameService } from './form-experimental-item/trial-name.service'
 export class ApiService {
 
   constructor(public http: HttpClient,
-    private cookies: CookieService,
     private router: Router,
     private TrialNameService: TrialNameService,
     ) { }
     httpOptions = {}
     toVIm = `https://vim.hansteel.cn/view`   //跳转到vim
     // toVIm = `http://localhost:4280` //跳转到vim     
-  toRuoYi = `http://10.80.27.201:81`
+    toRuoYi = `http://10.80.27.201:81`
   
   //筛选材料
   async GetMater(params?){
@@ -60,7 +57,7 @@ export class ApiService {
   async shanchutj(p)
   {
     let api=`/api/hangang/material/${p}/materialRecommendations`
-    let res= await this.http.delete(api,p).toPromise()
+    let res= await this.http.delete(api).toPromise()
     return res;
   }
 //根据材料id查询材料做了哪些实验项目
@@ -69,7 +66,6 @@ export class ApiService {
     let api = `/api/hangang/materialTrial/trialItemByMaterialId/${params}`;
     let res = await this.http.get(api)
     .toPromise()
-    
     return res;
   }
 
@@ -500,6 +496,7 @@ async getApplicationCase(p){
  return res;
 }
 
+  //以下为ry部分接口,获取验证码和登录不要token
 //获取验证码
 async getCodeImg(){
   let api=`/devhg-api/captchaImage`
@@ -508,16 +505,7 @@ async getCodeImg(){
 
  return res;
 }
-Tokenkey="Admin-Token"
-getToken(){
-  return this.cookies.get(this.Tokenkey)
-}
-setToken(token){
-  return this.cookies.set(this.Tokenkey,token)
-}
-removeToken(){
-  return this.cookies.delete(this.Tokenkey)
-}
+
 
 //登录方法
 async login(username,password,code,uuid){
@@ -529,47 +517,35 @@ async login(username,password,code,uuid){
  return res;
 }
 
-    // httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
-    //      //'host':'172.20.10.5:60001'
-    //   }),
-    //   param: {}  
-    // };
+  //以下需要再请求头中添加token
 //获取用户详细信息
-async getInfo(p){
+async getInfo(){
   let api=`/devhg-api/getInfo`
-  let res= await this.http.get(api,p)
+  let res= await this.http.get(api)
   .toPromise()
-
+ return res;
+  }
+  // 查询用户个人信息
+async  getUserProfile() {
+  let api=`/devhg-api/system/user/profile`
+  let res= await this.http.get(api)
+  .toPromise()
  return res;
 }
-//获取路由
-async getRouters(p){
-  let api=`/devhg-api/getRouters`
-  let res= await this.http.get(api,p)
-  .toPromise()
-
- return res;
-}
+// //获取路由，暂不使用
+// async getRouters(p){
+//   let api=`/devhg-api/getRouters`
+//   let res= await this.http.get(api,p)
+//   .toPromise()
+//  return res;
+// }
 //退出方法
 async logout(){
   let api=`/devhg-api/logout`
-  let res= await this.http.post(api,{})
+  let res= await this.http.post(api,'')
   .toPromise()
-
  return res;
 }
-//返回K文件流
-// async outPutK(id){
-//   let api=`/api/hangang/trialdatadetail/OutputKfile?documentName=${id}`
-//   let res= await this.http.get(api)
-//   .toPromise()
-//   (err =>{
-//    console.log(err);
-//  })
-//  return res;
-// }
 
 //获取Type12材料卡片名称
 async getCardType12(id){
@@ -591,8 +567,6 @@ async getCardType15(p){
 }
 //获取Type24静态拉伸材料卡片名称
 async getCardType24S(p){
-  //查询参数
-  // let parmas = {params:p}
   let api=`/api/hangang/materialTrial/materialCardStaticTensionInfo/${p}`
   let res= await this.http.get(api)
   .toPromise()
@@ -602,7 +576,6 @@ async getCardType24S(p){
 //获取Type24高速拉伸材料卡片名称
 async getCardType24H(p){
   //查询参数
-  // let parmas = {params:p}
   let api=`/api/hangang/materialTrial/materialCardInfo/${p}`
   let res= await this.http.get(api)
   .toPromise()
@@ -621,8 +594,6 @@ async getCardType39(p){
 }
 //获取Type81材料卡片名称
 async getCardType81(p){
-  //查询参数
-  //  let parmas = {params:p}
   let api=`/api/hangang/materialTrial/type81CardInfo/${p}`
   let res= await this.http.get(api)
   .toPromise()
@@ -631,8 +602,6 @@ async getCardType81(p){
 }
 //获取Type100材料卡片名称
 async getCardType100(p){
-  //查询参数
-  //  let parmas = {params:p}
   let api=`/api/hangang/materialTrial/type100CardInfo/${p}`
   let res= await this.http.get(api)
   .toPromise()
@@ -640,20 +609,8 @@ async getCardType100(p){
  return res;
 }
 
-// 查询用户个人信息,在请求头上要添加token,且token会失效
-async  getUserProfile() {
-  this.httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer' + ' '+sessionStorage.getItem("token"),
-      })
-    };
-  let api=`/devhg-api/system/user/profile`
-  let res= await this.http.get(api,this.httpOptions)
-  .toPromise()
 
- return res;
-}
-//获取所有零件信息
+//获取所有材料绑定的零件信息
 async getAllPart(){
   let api = `/api/hangang/material/typicalPart`
   let res= await this.http.get(api)
@@ -673,14 +630,6 @@ async bindMater(a,b){
 
  return res;
 }
-//根据材料id查询本条材料绑定的哪个零件
-async getPart(materialId){
-  let api = `/api/hangang/material/hanGangToVIMOperation/${materialId}`
-  let res= await this.http.post(api,{})
-  .toPromise()
-
- return res;
-}
 // 根据材料id删除材料
 async delMaterials(materialIds){
   let api = `/api/hangang/material`;
@@ -689,7 +638,9 @@ async delMaterials(materialIds){
   .toPromise()
 
  return res;
-}
+  }
+  
+
 //处理返回时间的方法
 handleTime(date){
  return date?date.split(
@@ -758,26 +709,48 @@ async upDateBase(obj){
 }
 // 删除试验项目
  deleteTrial(materialId,name){
- this.GetTrials(materialId).then((res:any) => {
-    console.log(res)
-    let data = res.filter(function(item){return item.name == name }) 
-    let obj = {
-      materialId,
-      trialId:data[0].id
-    }
-    this.deleteMaterialTrial(obj).then((res:any)=>{
-      this.GetTrials(materialId).then((res:any) => {
-        let trialName = []
-        res.forEach((val) => {
-          trialName.push(val.name)
-        }); 
-        this.TrialNameService.trialName.next(trialName);
-        this.router.navigateByUrl(`/display/${materialId}`)
-     })
+  this.GetTrials(materialId).then((res:any) => {
+      let data = res.filter(function(item){return item.name == name }) 
+      let obj = {
+        materialId,
+        trialId:data[0].id
+      }
+      this.deleteMaterialTrial(obj).then((res:any)=>{
+        this.GetTrials(materialId).then((res:any) => {
+          let trialName = []
+          res.forEach((val) => {
+            trialName.push(val.name)
+          }); 
+          this.TrialNameService.trialName.next(trialName);
+          this.router.navigateByUrl(`/display/${materialId}`)
+      })
+      })
     })
-  })
 
 }
- 
+ //查询所有典型零部件
+ async getTypicalPart(params){
+  let api = `/api/hangang/material/theMaterialTypicalPart/${params}`
+  let res = await this.http.get(api).toPromise()
+  return res
+  }
+   //查询车型是否已存在
+ async viewCar(materialId,vehicleType){
+  let api = `/api/hangang/materialTrial/applicationCaseByInput?MaterialId=${materialId}&VehicleType=${vehicleType}`
+  let res = await this.http.get(api).toPromise()
+  return res
+  }
+     //添加车型是否已存在
+ async addCar(p){
+  let api = `/api/hangang/materialTrial/applicationCase`
+  let res = await this.http.post(api,p).toPromise()
+  return res
+  }
+  //修改车型
+  async updateCar(p){
+    let api = `/api/hangang/materialTrial/applicationCase`
+    let res = await this.http.put(api,p).toPromise()
+    return res
+    }
 }
 

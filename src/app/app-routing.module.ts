@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-// import{ApiService} from './api.service'
 import { RouterModule, Routes } from '@angular/router';
-// import {initRouter,baseRouter,selfReloadRouter} from "./init-routers"
 import { PageLoginComponent } from './page-login/page-login.component';
 import { PagePlatformComponent } from './page-platform/page-platform.component';
 import { PageMaterialComponent } from './page-material/page-material.component';
@@ -49,7 +47,6 @@ import { TypicalPartComponent } from 'src/app/typical-part/typical-part.componen
 import { button } from 'src/app/picture'
 import { PictureComponent } from './picture/picture.component';
 import { TrailnameComponent } from './trailname/trailname.component';
-
 
 
   let allRoutes:any =[

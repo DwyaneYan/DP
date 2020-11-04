@@ -5,7 +5,7 @@ import { Router ,ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
 import {common} from 'src/app/picture'
-import {SimulationCardComponent} from '../simulation-card/simulation-card.component'
+import {CommonService} from '../common.service'
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -17,7 +17,7 @@ export class ReportComponent implements OnInit {
   commonArr=[];
   downstyle = false
   constructor(
-    private SimulationCardComponent: SimulationCardComponent,
+    private commonService: CommonService,
     private route: ActivatedRoute,
     public http: HttpClient,
     public ApiService: ApiService,
@@ -80,9 +80,8 @@ else if(name1=='surface-property'){this.GetTrialDataDetailss('getSurfaceProperty
      });
     })  
   }
-  downPdf(){
-      
-    this.SimulationCardComponent.download( this.commonArr[1], this.commonArr[0])
+  downPdf(){     
+    this.commonService.download( this.commonArr[1], this.commonArr[0])
   }
 }
 

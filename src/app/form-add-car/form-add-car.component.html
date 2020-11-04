@@ -27,24 +27,20 @@
         <div nz-row class="upload-form">
             <div nz-col nzSpan="6" class="upload-label">上传图片:</div>
             <div nz-col nzSpan="18" class="upload-list">
-                <nz-upload [nzAction]="maUrl" [(nzFileList)]="nzFileList" [nzBeforeUpload]="beforeUpload1" [nzCustomRequest]='customRequest'>
-                    <button nz-button [disabled]="submitFail" type="button"><i nz-icon nzType="upload"></i>上传图片</button>
-                </nz-upload>
+                <app-upload [url]='maUrl' [buttonName]="'上传图片'" [type]="'photo'" [disabled]='submitFail' [hz]="['image/jpeg','image/png']" [error]="'只能上传JPG和PNG'"></app-upload>
             </div>
 
         </div>
         <div nz-row class="upload-form">
             <div nz-col nzSpan="6" class="upload-label">上传文件:</div>
             <div nz-col nzSpan="18" class="upload-list">
-                <nz-upload id='file' [nzAction]="maUrl1" [nzLimit]="1" [nzMultiple]="true" [(nzFileList)]="nzFileList1" [nzBeforeUpload]="beforeUpload2" [nzCustomRequest]='customRequest1'>
-                    <button nz-button [disabled]="submitFail" type="button"><i nz-icon nzType="upload"></i>上传文件</button>
-                </nz-upload>
+                <app-upload [url]='maUrl1' [buttonName]="'上传文件'" [type]="'document'" [disabled]='submitFail' [hz]="['application/pdf']" [error]="'只能上传pdf'"></app-upload>
             </div>
         </div>
         <nz-form-item>
             <nz-form-control [nzOffset]="4" [nzSpan]="10">
                 <button nz-button nzType="primary">提交</button>
-                <button nz-button (click)="resetForm($event)" style="margin-left:20px">重置</button>
+                <button nz-button (click)="resetForm($event)" style="margin-left:20px" type="button">重置</button>
             </nz-form-control>
         </nz-form-item>
 

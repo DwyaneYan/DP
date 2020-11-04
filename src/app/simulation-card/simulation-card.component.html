@@ -3,13 +3,14 @@
 <div class="button-list mt25">
     <span class="title">点击下载文件:</span>
     <div class="button-item">
-        <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" (nzChange)="handleChange($event)" [(nzFileList)]="nzFileList" class='buttonDownload'>
+        <!-- <nz-upload [nzCustomRequest]='customRequestOne' [nzAction]="maUrl" [(nzFileList)]="nzFileList">
             <button nz-button nzShape="round" nzType="primary" nzGhost *ngIf="button('uploadCard')">
                 <i nz-icon nzType="upload"></i>
                 上传仿真卡片
             </button>
-        </nz-upload>
-        <button nz-button nzShape="round" nzType="primary" nzGhost (click)="showModal()" class='buttonDownload' *ngIf="button('downLoadkFile')"><span>下载k文件</span></button>
+        </nz-upload> -->
+        <app-upload [url]='maUrl' [buttonName]="'上传仿真卡片'" [type]="'document'" [permission]="'uploadCard'" (outer)='update()'></app-upload>
+        <button nz-button nzShape="round" nzType="primary" nzGhost (click)="showModal()" *ngIf="button('downLoadkFile')"><span>下载k文件</span></button>
     </div>
 </div>
 
@@ -24,100 +25,94 @@
             </div>
             <ng-template #elseBlock>{{data1}}<br><br></ng-template>
         </ng-template>
-        <!-- <div *ngFor="let data of material;let i=index"   style="margin-top:15px">
-    <a
-    nz-popconfirm
-    nzPopconfirmTitle="是否下载文件?"
-    nzPopconfirmPlacement="bottom"
-    (nzOnConfirm)="confirm(one[i])"
-    (nzOnCancel)="cancel()"
-    >
-{{data}}</a>
-</div> -->
     </div>
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="下载仿真卡片" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]='null'>
-        <div nz-row class="nz-row">
-            <div nz-col nzSpan="12">Type12</div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="oneDown()">下载</button>
-            </div>
-        </div>
-        <div class="one"></div>
-        <div nz-row class="nz-row">
-            <div nz-col nzSpan="12">Type15</div>
-            <div nz-col nzSpan="12"></div>
-        </div>
-        <div nz-row class="nz-row common">
-            <div nz-col nzSpan="12"><span>B</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.b"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>n</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.n"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>c</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.c"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>m</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.m"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>熔点</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.tm"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>A</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.a"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>室温</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.tr"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"><span>比热</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type15.cp"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12"></div>
-            <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="twoDown()">下载</button>
-            </div>
-        </div>
 
-        <div class="one"></div>
-        <div nz-row class="nz-row">
-            <div nz-col nzSpan="12">
-                <span>Type24</span>
-                <br />
-                <span>静态拉伸</span>
-
-            </div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;" (click)="threeDown()">下载</button></div>
-        </div>
-        <div class="one"></div>
-        <div nz-row class="nz-row">
-            <div nz-col nzSpan="12">
-                <span>Type24</span>
-                <br />
-                <span>高速拉伸</span>
-
-            </div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;" (click)="fourDown()">下载</button></div>
-        </div>
-        <div class="one "></div>
-        <div nz-row class="nz-row ">
-            <div nz-col nzSpan="12">Type39</div>
-        </div>
-        <div nz-row class="nz-row common">
-            <div nz-col nzSpan="12"><span>r</span>&nbsp;&nbsp;&nbsp;
-                <nz-input-number [(ngModel)]="type39.r"></nz-input-number>
-            </div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="fiveDown()">下载</button>
-            </div>
-        </div>
-        <div class="one "></div>
-        <div nz-row class="nz-row">
-            <div nz-col nzSpan="12">Type81</div>
-            <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="sixDown()">下载</button>
-            </div>
-        </div>
-        <div class="one "></div>
-        <div nz-row class="nz-row">
-            <div nz-col nzSpan="12">Type100</div>
-            <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="sevenDown()">下载</button>
-            </div>
-        </div>
-    </nz-modal>
 </div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="下载仿真卡片" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]='null'>
+    <div style="margin-bottom:10px">
+        <a href="../../assets/k文件说明.pdf" target="_blank">k文件是LS-DYNA中的材料卡片</a>
+    </div>
+    <div nz-row class="nz-row">
+        <div nz-col nzSpan="12">MaterialTemplateType12</div>
+        <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="oneDown()">下载</button>
+        </div>
+    </div>
+    <div class="one"></div>
+    <div nz-row class="nz-row">
+        <div nz-col nzSpan="12">MaterialTemplateType15</div>
+        <div nz-col nzSpan="12"></div>
+    </div>
+    <div nz-row class="nz-row common">
+        <div nz-col nzSpan="12"><span>B</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.b"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>n</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.n"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>c</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.c"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>m</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.m"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>熔点</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.tm"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>A</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.a"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>室温</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.tr"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"><span>比热</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type15.cp"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12"></div>
+        <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="twoDown()">下载</button>
+        </div>
+    </div>
+
+    <div class="one"></div>
+    <div nz-row class="nz-row">
+        <div nz-col nzSpan="12">
+            <span>MaterialTemplateType24</span>
+            <br />
+            <span>静态拉伸</span>
+
+        </div>
+        <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;" (click)="threeDown()">下载</button></div>
+    </div>
+    <div class="one"></div>
+    <div nz-row class="nz-row">
+        <div nz-col nzSpan="12">
+            <span>MaterialTemplateType24</span>
+            <br />
+            <span>高速拉伸</span>
+
+        </div>
+        <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" style="margin-top:8px;" (click)="fourDown()">下载</button></div>
+    </div>
+    <div class="one "></div>
+    <div nz-row class="nz-row ">
+        <div nz-col nzSpan="12">MaterialTemplateType39</div>
+    </div>
+    <div nz-row class="nz-row common">
+        <div nz-col nzSpan="12"><span>r</span>&nbsp;&nbsp;&nbsp;
+            <nz-input-number [(ngModel)]="type39.r"></nz-input-number>
+        </div>
+        <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="fiveDown()">下载</button>
+        </div>
+    </div>
+    <div class="one "></div>
+    <div nz-row class="nz-row">
+        <div nz-col nzSpan="12">MaterialTemplateType81</div>
+        <div nz-col nzSpan="12" class="down "><button nz-button nzType="primary" (click)="sixDown()">下载</button>
+        </div>
+    </div>
+    <div class="one "></div>
+    <div nz-row class="nz-row">
+        <div nz-col nzSpan="12">MaterialTemplateType100</div>
+        <div nz-col nzSpan="12" class="down"><button nz-button nzType="primary" (click)="sevenDown()">下载</button>
+        </div>
+    </div>
+</nz-modal>

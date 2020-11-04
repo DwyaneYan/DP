@@ -10,9 +10,7 @@ import{ TrialNameService} from './trial-name.service'
   templateUrl: './form-experimental-item.component.html',
   styleUrls: ['./form-experimental-item.component.css']
 })
-@Injectable({
-  providedIn: 'root'
-})
+
 export class FormExperimentalItemComponent implements OnInit {
   button = button
   @Input() materialId:string //dispaly组件传过来的材料id
@@ -20,7 +18,7 @@ export class FormExperimentalItemComponent implements OnInit {
   carInfo = [] //所有应用案例信息
   routerLink = [] //菜单栏路由数组
   public trialName = [] //此材料所做的所有试验项目字符串数组
-  menu = menu
+  menu = menu //组件模板中获取到
   constructor(
     public http: HttpClient,
     public ApiService: ApiService,
@@ -36,19 +34,20 @@ export class FormExperimentalItemComponent implements OnInit {
 
     this.GetTrials()
     this.getCar();
-      let length = this.menu.length
-  for(let a=0;a<length;a++){
-    this.routerLink[a]=`/display/${this.materialId}/${this.menu[a].name}`
-  }
+    let length = this.menu.length
+    for(let a=0;a<length;a++){
+      this.routerLink[a]=`/display/${this.materialId}/${this.menu[a].name}`
+    }
 }
 
  GetTrials(){
    this.ApiService.GetTrials(this.materialId).then((res:any) => {
      this.trialName = []
-        res.forEach((val) => {
-          this.trialName.push(val.name)
-        }); 
-        
+     if (res.length) {
+       res.forEach((val) => {
+         this.trialName.push(val.name)
+       });
+     } 
 
   })
 

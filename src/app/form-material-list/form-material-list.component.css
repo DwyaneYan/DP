@@ -1,56 +1,64 @@
-
-.table-title{
+.table-title {
     color: #222;
     font-size: 18px;
 }
-.table-title strong{
+
+.table-title strong {
     color: #fd6b21;
     font-size: 24px;
 }
+
 .header {
-    text-align:center;
-    background-color:#fafafa;
-    color:#999;
+    text-align: center;
+    background-color: #fafafa;
+    color: #999;
     font-size: 16px;
 }
-.table-col{
-    padding:20px 0;
-    text-align:center;
+
+.table-col {
+    padding: 20px 0;
+    text-align: center;
     background-color: #fff;
     font-size: 16px;
 }
-.table-col a{
+
+.table-col a {
     color: #2a9df1;
 }
-.components-table-control-bar{
+
+.components-table-control-bar {
     position: absolute;
-    bottom:15px;
-    left:0;
+    bottom: 15px;
+    left: 0;
 }
-.compare-box{
-    background-color:#fff; 
-    box-shadow:  0 0 4px 1px rgba(0,0,0,0.05);
+
+.compare-box {
+    background-color: #fff;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.05);
     position: fixed;
-    border-radius:10px; 
-    top:30%;
-    right:3%;
-    width:318px;
+    border-radius: 10px;
+    top: 30%;
+    right: 3%;
+    width: 318px;
     padding: 20px;
     text-align: center;
 }
-.compare-box h4{
+
+.compare-box h4 {
     color: #222;
     font-size: 18px;
     border-bottom: 1px solid #e6e6e6;
     text-align: left;
     padding-bottom: 10px;
 }
-.compare-box .angle{
+
+.compare-box .angle {
     float: right;
     margin-top: 5px;
     font-weight: bold;
 }
-.compare-box li{
+
+.compare-box li {
     padding: 10px 0;
     border-bottom: 1px dashed #e6e6e6;
     text-align: left;
@@ -58,18 +66,28 @@
     font-size: 16px;
 }
 
-.compare-box li .text{
-    display:inline-block;
+.compare-box li .text {
+    display: inline-block;
     flex: 1;
     color: #0d95f0;
-    
 }
-.compare-box li .anticon{
+
+.compare-box li .anticon {
     color: #b3b3b3;
     margin-top: 5px;
     cursor: pointer;
 }
-.compare-box button{
+
+.compare-box button {
     margin-top: 10px;
 }
 
+
+/* 
+.table-title+nz-table {
+    width: 1200px;
+} */
+
+.table-col>div.ellipsis {
+    width: 200px;
+}

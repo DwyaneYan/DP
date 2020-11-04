@@ -1,0 +1,7 @@
+<!-- 上传单个文件组件 -->
+<nz-upload [nzCustomRequest]='customRequest' [nzAction]="url" [(nzFileList)]="nzFileList" [nzBeforeUpload]="beforeUpload">
+    <button nz-button nzShape="round" nzType="primary" nzGhost *ngIf="button(permission)||!permission" [disabled]="disabled" type="button">
+      <i nz-icon nzType="upload"></i>
+      {{buttonName}}
+  </button>
+</nz-upload>

@@ -7,63 +7,33 @@ export class MaterialsContrastService {
 
   constructor(public http: HttpClient) { }
   //静态拉伸对比
-  async GetMaterials(array)
-  {
-      let ids = {ids:array}
-      let api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum";
-    let res= await this.http.get(api,{params:ids}).toPromise()
-    return res;    //res是一个promise对象
+  async GetMaterials(array){
+    let p = {ids:array}
+    let api = "/api/hangang/contrast/GetStaticTensionDataDetailsNum";
+    let res= await this.http.get(api,{params:p}).toPromise()
+    return res;    //res是一个promise对象,如果不.toPromise()就是一个可观察对象
   }
 
-   async getMaterialsByIds(params)
-  {
-    let ids = {ids:params}
+  async getMaterialsByIds(params){
+    let p = {ids:params}
     let api ="/api/hangang/material/materialsByIds";
-    let res= await this.http.get(api,{params:ids})
-    .toPromise()
+    let res= await this.http.get(api,{params:p}).toPromise()
     return res;  //返回请求到的数据(Promise对象)
   }
 
   // 低周疲劳对比
-  async LowCycleFatigue(array)
-  {
-    if(array.length>1){
-      var api
-      api = "/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
-    api +=array[0];
-    for(var j=1;j<array.length;j++){   
-    api+="&ids="+array[j]
-    }
-    let res= await this.http.get(api).toPromise()
+  async LowCycleFatigue(array){
+    let p = {ids:array}
+    let api = '/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum'
+    let res= await this.http.get(api,{params:p}).toPromise()
     return res;    
   }
 
-  else {
-  let api = "/api/hangang/contrast/LowCycleFatigueDataDetailItemsNum?ids=";
-  let res= await this.http.get(api+array[0]).toPromise()
-  return res;
-}
-
-}
 //化学成分对比
-async ChemicalElement(array)
-{
-  if(array.length>1){
-    var api
-    api = "/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
-  api +=array[0];
-  for(var j=1;j<array.length;j++){   
-  api+="&ids="+array[j]
-  }
-  let res= await this.http.get(api).toPromise()
+async ChemicalElement(array){
+  let api = "/api/hangang/contrast/ChemicalElementDataDetailsNum";
+  let p = {ids:array}
+  let res= await this.http.get(api,{params:p}).toPromise()
   return res;    
-}
-
-else {
-let api = "/api/hangang/contrast/ChemicalElementDataDetailsNum?ids=";
-let res= await this.http.get(api+array[0]).toPromise()
-return res;
-}
-
 }
 }

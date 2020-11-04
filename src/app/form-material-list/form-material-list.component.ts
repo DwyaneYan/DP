@@ -1,17 +1,15 @@
 import { Component, OnInit, Input, OnChanges ,Output,EventEmitter} from '@angular/core';
-// import { MaterialListService } from './material-list.service'
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { valHooks } from 'jquery';
-import {Router,} from "@angular/router";
+// import {Router,} from "@angular/router";
 import {button} from 'src/app/picture'
-
-@Injectable({
-  providedIn: 'root'
-})
+import { CommonService } from '../common.service'
+// @Injectable({
+//   providedIn: 'root'
+// })
 @Component({
   selector: 'app-form-material-list',
   templateUrl: './form-material-list.component.html',
@@ -31,18 +29,19 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   disabled = false
   dataAll = [] //数据库所有材料
   @Input() data = []; //筛选得到的所有材料列表数据
-  @Output() private reGet=new EventEmitter<string>();
+  @Output() private reGet = new EventEmitter<string>();
     //对比按钮点击事件
     contrast = true
     delete = true
-    title = ''
+  title = ''
+  
   constructor(
-    // private materiallistService: MaterialListService,
-    private FormExperimentalItemComponent: FormExperimentalItemComponent,
-    private ApiService: ApiService,
+    public ApiService: ApiService,
     private modalService: NzModalService,
     private nzMessageService: NzMessageService,
-    private Router: Router,
+    // private Router: Router,
+    private commonService: CommonService, //组件模板要使用这个服务
+
   ) { }
 
   ngOnChanges() {
@@ -55,8 +54,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     })
     console.log(this.listOfAllData,this.dataAll)
     this.totalCount = this.listOfAllData.length; //数据个数
-    this.listOfAllData.map(val=>{val.checked = false}) //不设置checked属性值是undefined
-    debugger
+    this.listOfAllData.map(val=>{val.checked = false}) //不设置checked属性值是undefined  
     this.listOfAllData.forEach(val=>{
       for(let b= 0;b<this.total;b++){
         if(this.dataAll[b].materialDto.id == val.id){
@@ -70,7 +68,6 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
   //#region 模块 
 
   ngOnInit(): void {
-    // this.listOfAllData = this.data //全部材料;
   }
 //处理筛选
   screening(){
@@ -80,39 +77,6 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
       this.dataAll.forEach(val=>{val.materialDto.checked = false})//全部未选中
     })
   }
-
-getURl(id,data){
-  //查询这条材料做了哪些试验
-  this.ApiService.GetTrials(id).then((res: any) => {
-    let trialName = []
-    let menu = this.FormExperimentalItemComponent.menu
-    res.forEach((val) => {
-      trialName.push(val.name)
-    });
-    let length = menu.length
-    for (let a = 0; a < length; a++) {
-      if (trialName.includes(menu[a].names) && button(menu[a].name)) {
-        if (button(menu[a].children[0])) { 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/table`);  
-         }
-        else if (button(menu[a].children[1])) { 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/picture`);  
-        }
-        else if (button(menu[a].children[2])) { 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/report`);  
-        }
-        else if (button(menu[a].children[3])){ 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/typical-part`);  
-        }
-        break
-      }
-      else{
-        this.Router.navigateByUrl(`/display/${id}`);  
-      }
-    }
-  })
-}
-
 
   contrasts = []
   contrastID
@@ -179,34 +143,33 @@ getURl(id,data){
   
 
   compared() {
-this.checkbox = !this.checkbox; //表格第一列
-this.delete = !this.delete; //删除按钮禁用
-this.checkList = [];  //选中的对比材料
-this.contrastID = '';
-this.disabled = false; //第一列不禁用
-this.listOfAllData.map(val=>val.checked = false) //第一列全部取消选中
-this.contrasts = [] //选中的id
-this.screening()
+    this.checkbox = !this.checkbox; //表格第一列
+    this.delete = !this.delete; //删除按钮禁用
+    this.checkList = [];  //选中的对比材料
+    this.contrastID = '';
+    this.disabled = false; //第一列不禁用
+    this.listOfAllData.map(val=>val.checked = false) //第一列全部取消选中
+    this.contrasts = [] //选中的id
+    this.screening()
 
   }
   //删除材料
   del(){
-     this.checkbox = !this.checkbox;
-    console.log(this.delete,this.checkbox)
-     this.listOfAllData.map(val=>val.checked = false)
-this.screening()
-     this.contrast = !this.contrast;//禁用对比按钮
-     this.checkList = [];
-     this.contrasts = []
-this.disabled = false//第一列不禁用
+    this.checkbox = !this.checkbox;
+    // console.log(this.delete,this.checkbox)
+    this.listOfAllData.map(val=>val.checked = false)
+    this.screening()
+    this.contrast = !this.contrast;//禁用对比按钮
+    this.checkList = [];
+    this.contrasts = []
+    this.disabled = false//第一列不禁用
   }
-  cancel(): void {
-  }
+
 
   confirm(): void {
     let ids = []
     this.checkList.map(val=>ids.push(val.confirm.id))
-    console.log(ids)
+    // console.log(ids)
     this.ApiService.delMaterials(ids).then((res:any)=>{
       this.nzMessageService.info('删除成功');
       this.reGet.emit();
@@ -216,6 +179,5 @@ this.disabled = false//第一列不禁用
   }
   getTitle(){
     this.title = `确定删除这${this.checkList.length}条材料？`
-
   }
 }

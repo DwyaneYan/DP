@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap, map } from "rxjs/operators";
-import { PagePlatformComponent } from "../page-platform/page-platform.component";
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { MaterialsContrastService } from "./materials-contrast.service";
-import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
-@Injectable({
-  providedIn: 'root'
-})
+// import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
+import { CommonService } from '../common.service'
+import { PlotPicture} from '../picture'
+// @Injectable({
+//   providedIn: 'root'
+// })
 @Component({
   selector: "app-page-contrast",
   templateUrl: "./page-contrast.component.html",
@@ -19,9 +19,9 @@ import { connectableObservableDescriptor } from "rxjs/internal/observable/Connec
 export class PageContrastComponent implements OnInit {
   viewAdd = false //添加推荐材料弹框
   valuetj = []
-  StaticTension=[]//静态拉伸
+  StaticTension = []//静态拉伸
   LowCycleFatigue = [];//低周疲劳
-  ChemicalElement=[];//化学成分
+  ChemicalElement = [];//化学成分
   listItem = { 
     StaticTension: true ,
     LowCycleFatigue: true ,
@@ -37,7 +37,8 @@ export class PageContrastComponent implements OnInit {
   listArr = [
     ["StaticTension", "yieldStrength"],
     ["LowCycleFatigue", "totalStrainAmplitude"],
-    ["ChemicalElement","contentRatioC"]];
+    ["ChemicalElement", "contentRatioC"]
+  ];
   pageConfiguration = [
     {
       name: "静态拉伸",
@@ -131,13 +132,10 @@ export class PageContrastComponent implements OnInit {
 
   visible = false;
   isVisible =false;
-  options2;
-
   constructor(
-    private router: Router,
+    private commonService: CommonService,
     private routerinfo: ActivatedRoute,
     private MaterialsContrastService: MaterialsContrastService,
-    private PagePlatformComponent:PagePlatformComponent,
     private ApiService: ApiService,
     private message: NzMessageService
   ) {}
@@ -148,62 +146,38 @@ export class PageContrastComponent implements OnInit {
       .addClass("vertical")
       .find("th, td")
       .wrapInner("<div>");
-    //$('table').addClass('vertical');//数字会变垂直，不能用
     this.contrastID = this.routerinfo.snapshot.queryParams["materialids"];
     if(this.contrastID){
     this.array = this.contrastID.split(",");}
     else{this.array=[]}
     this.getGetMaterialss();
     this.getGetMaterials();
-    // this.getGetManufacturers();
-    // this.navScroll();
   }
-// 请求对比数据
- getGetMaterials() {
-    // if(this.array.length!=0) {
-       this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
-      this.StaticTension = res; 
-      console.log(this.array.length,this.StaticTension)
-      this.changeStatus(this.listArr);
-});
-     this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
-    this.LowCycleFatigue= res; 
-    this.changeStatus(this.listArr);
-});
-
- this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) => {
-  this.ChemicalElement= res;
+  // 对比数据
+async getGetMaterials() {
+  await  this.MaterialsContrastService.GetMaterials(this.array).then((res: any) => {
+    this.StaticTension = res; 
+    });
+  await  this.MaterialsContrastService.LowCycleFatigue(this.array).then((res: any) => {
+    this.LowCycleFatigue = res; 
+  });
+  await this.MaterialsContrastService.ChemicalElement(this.array).then((res: any) => {
+    this.ChemicalElement= res;
+  })
   this.changeStatus(this.listArr);
-})
-    
-
-  // }
-  // else{
-  //   this.StaticTension=[]
-  //   // console.log(this.array,this.StaticTension.length)
-  // }
-
 }
-// reelNumber=[]
-//表头数据，调了多次接口，很慢
+//表头数据
   public  getGetMaterialss() {
-    // for (var i = 0; i < this.array.length; i++) {
-    //   let ob = {Id:this.array[i]}
        this.MaterialsContrastService.getMaterialsByIds(this.array).then(
         (res: any) => {
           // console.log(res.items)
           let comparisonMaterialList = res;
           comparisonMaterialList.map(val=>{
             this.name.push(val.name)
-            this.manu.push(val.manufactoryName);         //暂时没有返回生产厂家名，只有厂家id
+            this.manu.push(val.manufactoryName);   
             this.model.push(val.model);
             this.reelNumber.push(val.reelNumber)
           })
-          console.log(this.name,this.manu,this.model,this.reelNumber)
-          // this.name[i] = res.items[0].name; 
-          // this.manu[i] = res.items[0].manufactoryName;          
-          // this.model[i] = res.items[0].model;
-          // this.reelNumber[i]=res.items[0].reelNumber
         }
       );
     // }
@@ -227,11 +201,6 @@ export class PageContrastComponent implements OnInit {
       }
 
       let pos = document.documentElement.scrollTop;
-      // if (pos > 300) {
-      //   document.querySelector(".navUl").style.display = "block";
-      // } else {
-      //   document.querySelector(".navUl").style.display = "none";
-      // }
       var menus = document.getElementById("navList").getElementsByTagName("li");
       var items = document
         .getElementById("con")
@@ -265,61 +234,14 @@ export class PageContrastComponent implements OnInit {
     var _id = document.getElementById(value);
     window.scrollTo(0, _id.offsetTop);
   }
-  three
-d =[]
-e =[]
-f =[]
-g=[]
+
 
   showModal() {
     this.viewAdd = true
     this.valuetj = []
-this.ops()
-
-  }
-  ops(){
-    this.ApiService.GetManufacturers().then((res: any) => {
-      let listManufacturers = res.items;
-      let temp = [];//可选项数据列表
-      listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
-      let lengthTemp = temp.length
-        this.ApiService.GetMater({}).then((res:any)=>{
-          let allMaterials = res.data
-  for(let a= 0;a<lengthTemp;a++){
-    temp[a].children = []
-    let name = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value) //牌号数组,牌号会重复
-     let nameAfter = this.PagePlatformComponent.uniqueArr(name,'name') //牌号去重
-   let lengthName = nameAfter.length
-   nameAfter.map(val=>temp[a].children.push({value:val.materialDto.name,label:val.materialDto.name}))
-  for(let b= 0;b<lengthName;b++){
-    temp[a].children[b].children = []
-    let model = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name) //型号规格数组，重复
-    let modelAfter = this.PagePlatformComponent.uniqueArr(model,'model') //型号规格去重
-    let lengthModel = modelAfter.length
-    modelAfter.map(val=>temp[a].children[b].children.push({value:val.materialDto.model,label:val.materialDto.model}))
-    for(let c = 0;c<lengthModel;c++){
-      temp[a].children[b].children[c].children = []
-      let reelNumber = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name && item.materialDto.model == modelAfter[c].materialDto.model) //卷号数组，重复
-      let reelNumberAfter = this.PagePlatformComponent.uniqueArr(reelNumber,'reelNumber') //卷号去重
-   console.log(2111,reelNumber,reelNumberAfter)
-   // let lengthreelNumber = reelNumberAfter.length
-      reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.materialDto.reelNumber,label:val.materialDto.reelNumber,isLeaf: true}))
-   console.log(temp[a].children[b].children[c])
-  
-    }
-  
-  }
-// }
-// else{
-//   temp[a].children = undefined
-// }
-  }
-  this.nzOptions = temp
-  console.log(this.nzOptions)
-        })
-      
-    })
-  
+    this.commonService.ops(this.ApiService).then((res: any) => {
+      this.nzOptions = res
+    });
   }
   refreshStatus(value, e): void {
     if (value == "hideItem" && e == true) {
@@ -344,12 +266,6 @@ this.ops()
     });
 
   }
-  // cac() {
-  //   this.checkbox = false;
-  // }
-  // showo(value) {
-
-  // }
   hideItem() {
     this.listItemBlank = this.listItem;
   }
@@ -385,7 +301,6 @@ this.ops()
     }
   }
 
-  // 
   pat = {
     Name: "", //材料名称
     ManufactoryId: "", //生产厂家
@@ -395,17 +310,7 @@ this.ops()
     url:""
   };
 
-  // 字符串数组去重
-  unique1(array) {
-    var n = []; //一个新的临时数组
-    //遍历当前数组
-    for (var i = 0; i < array.length; i++) {
-      //如果当前数组的第i已经保存进了临时数组，那么跳过，
-      //否则把当前项push到临时数组里面
-      if (n.indexOf(array[i]) == -1) n.push(array[i]);
-    }
-    return n;
-  }
+
 
 
   open(): void {
@@ -414,12 +319,7 @@ this.ops()
   close(): void {
     this.visible = false;
   }
-  fenge(arry,p){
-    let arry1=arry.toString().split(p)
-    return arry1
-  }
   contrastStaticTension(param,des,trialType){
-   
       let data = [];
       let xData = [];
       console.log(this[trialType])
@@ -431,103 +331,79 @@ this.ops()
         ${this.reelNumber[i]}
         `)
       })
-    this.PlotPicture(data, xData, des);
-  }
-  contrastLowCycleFatigue(param,des){
-
-      let data = [];
-      let xData = [];
-      this.LowCycleFatigue.forEach((iterator,i,array) => {
-        data.push(iterator[param]);
-        xData.push(this.name[i])
-      })
-    this.PlotPicture(data, xData, des);
+      this.isVisible = true;
+      this.options = PlotPicture(data, xData, des);
   }
 
-  public PlotPicture(data, xData, des) {
-        this.isVisible = true;
-        this.options = {
-          title: {
-            text: des,
-            x: "center",
-            y: "top"
-          },
-          xAxis: {
-            type: "category",
-            data: xData,
-            "axisLabel":{
-              interval: 0
-            }
+  // public PlotPicture(data, xData, des) {
+  //       this.isVisible = true;
+  //       this.options = {
+  //         title: {
+  //           text: des,
+  //           x: "center",
+  //           y: "top"
+  //         },
+  //         xAxis: {
+  //           type: "category",
+  //           data: xData,
+  //           "axisLabel":{
+  //             interval: 0
+  //           }
       
-          },
-          yAxis: {
-            type: "value"
-          },
-          series: [
-            {
-              data: data,
-              type: "line",
-              // 显示数值
-              itemStyle : { normal: {label : {show: true}}}
-            }
-          ]
-        };
-      }
+  //         },
+  //         yAxis: {
+  //           type: "value"
+  //         },
+  //         series: [
+  //           {
+  //             data: data,
+  //             type: "line",
+  //             // 显示数值
+  //             itemStyle : { normal: {label : {show: true}}}
+  //           }
+  //         ]
+  //       };
+  //     }
     
   handleOk(): void {
-  //     console.log("Button ok clicked!");
       this.isVisible = false;
-    }
+  }
     
   handleCancel(): void {
-  //     console.log("Button cancel clicked!");
-      this.isVisible = false;
-    }
+    this.isVisible = false;
+  }
   handleCanceltj(){
-this.viewAdd = false;
-this.valuetj = []
+    this.viewAdd = false;
+    this.valuetj = []
   }
   handleOkdb(){
-    // this.pat.ManufactoryId = this.valuetj[0];
-    // this.pat.Name = this.valuetj[1];
-    // this.pat.Model = this.valuetj[2];
-    // this.pat.ReelNumber =this.valuetj[3];
     if(this.valuetj[0]){
-    this.pat.type = 'tszf'
-    this.pat.url = `?manufactoryId=${this.valuetj[0]}&name=${encodeURIComponent(this.valuetj[1])}&model=${this.valuetj[2]}&reelNumber=${this.valuetj[3]}`
-    // this.name =[];
-    // this.model =[];
-    // this.manu=[];
-    // this.reelNumber= []
-    // console.log(this.pat)
-    this.ApiService.GetMater(this.pat).then((res: any) => {
-      // console.log(res)
-      if(res.data.length){
-      this.addlist = res.data;
-      this.array.push(this.addlist[0].materialDto.id);
-      // this.getGetMaterialss();
-      this.name.push(this.addlist[0].materialDto.name);
-      this.model.push(this.addlist[0].materialDto.model);
-      this.manu.push(this.addlist[0].materialDto.manufactoryName)
-      this.reelNumber.push(this.addlist[0].materialDto.reelNumber);
-      this.getGetMaterials();
-      this.array.toString();
-      window.history.pushState(
-        null,
-        null,
-        `/contrast?materialids=${this.array}`
-      );
-      }
-      else{
-        this.message.info('未找到材料');
-      }
-     this.viewAdd = false;
-    });
-    // this.valuetj = []
-  }
-  else{
-    this.viewAdd = false;
-    // this.valuetj = []
-  }
+      this.pat.type = 'tszf'
+      this.pat.url = `?manufactoryId=${this.valuetj[0]}&name=${encodeURIComponent(this.valuetj[1])}&model=${this.valuetj[2]}&reelNumber=${this.valuetj[3]}`
+      this.ApiService.GetMater(this.pat).then((res: any) => {
+        if(res.data.length){
+        this.addlist = res.data;
+        this.array.push(this.addlist[0].materialDto.id);
+        this.name.push(this.addlist[0].materialDto.name);
+        this.model.push(this.addlist[0].materialDto.model);
+        this.manu.push(this.addlist[0].materialDto.manufactoryName)
+        this.reelNumber.push(this.addlist[0].materialDto.reelNumber);
+        this.getGetMaterials();
+        this.array.toString();
+        window.history.pushState(
+          null,
+          null,
+          `/contrast?materialids=${this.array}`
+        );
+        }
+        else{
+          this.message.info('未找到材料');
+        }
+        this.viewAdd = false;
+      });
+    }
+    else{
+      this.viewAdd = false;
+    }
   }
 }

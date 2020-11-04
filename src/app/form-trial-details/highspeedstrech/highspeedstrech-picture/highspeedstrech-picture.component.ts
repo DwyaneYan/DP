@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {getname,enlarge} from 'src/app/picture'
+import {getname,enlarge,unique1} from 'src/app/picture'
 
 import { ApiService } from 'src/app/api.service';
 
@@ -56,7 +56,7 @@ this.two.push(this.trialDataDetail[a])
 else{this.one.push(this.trialDataDetail[a])}
 }
 this.one.map(val=>this.three.push(val.testTarget))
-this.four=this.unique1(this.three)
+this.four=unique1(this.three)
 this.name= getname(this.one[0]?this.one[0].fileString:'').afterName
 this.ImgPathOne=getname(this.one[0]?this.one[0].fileString:'').ImgPathOne
     })  
@@ -255,14 +255,5 @@ classdata(name,p1,p2,da,datas,p3,p4){
   //               }
   //           }
   //       }
-  unique1(array) {
-    var n = []; //一个新的临时数组
-    //遍历当前数组
-    for (var i = 0; i < array.length; i++) {
-      //如果当前数组的第i已经保存进了临时数组，那么跳过，
-      //否则把当前项push到临时数组里面
-      if (n.indexOf(array[i]) == -1) n.push(array[i]);
-    }
-    return n;
-  } 
+
 }

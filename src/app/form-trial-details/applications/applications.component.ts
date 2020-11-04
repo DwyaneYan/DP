@@ -5,7 +5,7 @@ import { switchMap} from 'rxjs/operators';
 import { ApiService } from 'src/app/api.service';
 import {button} from 'src/app/picture'
 import { of } from "rxjs"
-import { SimulationCardComponent } from "src/app/simulation-card/simulation-card.component"
+import { CommonService } from "../../common.service"
 import pdf from 'pdfobject'
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {getname,enlarge} from 'src/app/picture'
@@ -37,7 +37,7 @@ export class ApplicationsComponent implements OnInit {
     private router: Router,
     public http: HttpClient,
     private nzMessageService: NzMessageService,
-    private SimulationCardComponent: SimulationCardComponent,
+    private commonService: CommonService,
     public ApiService: ApiService,
     public TrialNameService: TrialNameService,
 
@@ -97,7 +97,7 @@ handleOk(): void {
 
   this.isVisibless = false;
 let url=` /api/hangang/ApplicationCaseExportOne?id=${this.materialId}`
-  this.SimulationCardComponent.download("应用案例.xls",url)
+  this.commonService.download("应用案例.xls",url)
 
 }
 
