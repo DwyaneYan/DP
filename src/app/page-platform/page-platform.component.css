@@ -2,12 +2,14 @@
     width: 1200px;
     margin: 0 auto;
 }
-nz-divider{
-    margin:20px 0
+
+nz-divider {
+    margin: 20px 0
 }
+
 .model-box {
     color: #000000;
-    background-color:#f8fdff;
+    background-color: #f8fdff;
     font-size: 16px;
     font-family: "Microsoft YaHei";
     border-radius: 5px;
@@ -94,7 +96,7 @@ nz-divider{
     box-sizing: content-box;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin: 0 0 20px 25px;
+    margin: 0 0 20px 20px;
     position: relative;
     cursor: pointer;
     transition: all 0.5s ease-in-out;

@@ -4,7 +4,6 @@ import { UploadXHRArgs,UploadFile,UploadFilter } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { button, menu} from 'src/app/picture'//是js不是ts服务
 import { UploadChangeParam } from 'ng-zorro-antd/upload';
-// import { FormExperimentalItemComponent } from '../form-experimental-item/form-experimental-item.component';
 import { CommonService } from '../common.service'
 
 import { Injectable } from '@angular/core';
@@ -124,47 +123,6 @@ export class PagePlatformComponent implements OnInit {
   ngOnInit() {  
     this.showma();//查询所有推荐材料
   }
-
-// ops(){
-//   this.ApiService.GetManufacturers().then((res: any) => {
-//     this.listManufacturers = res.items;
-//     let temp = [];//可选项数据列表
-//     this.listManufacturers.map(val=>{temp.push({value:val.id,label:val.name})})
-//     let lengthTemp = temp.length
-//     this.ApiService.GetMater({}).then((res:any)=>{
-//       let allMaterials = res.data
-//       for(let a= 0;a<lengthTemp;a++){
-//         temp[a].children = []
-//         let name = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value) //牌号数组,牌号会重复
-//         let nameAfter = this.uniqueArr(name,'name') //牌号去重
-//         let lengthName = nameAfter.length
-//         nameAfter.map(val=>temp[a].children.push({value:val.materialDto.name,label:val.materialDto.name}))
-//         for(let b= 0;b<lengthName;b++){
-//           temp[a].children[b].children = []
-//           let model = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name) //型号规格数组，重复
-//           let modelAfter = this.uniqueArr(model,'model') //型号规格去重
-//           let lengthModel = modelAfter.length
-//           modelAfter.map(val=>temp[a].children[b].children.push({value:val.materialDto.model,label:val.materialDto.model}))
-//           for(let c = 0;c<lengthModel;c++){
-//             temp[a].children[b].children[c].children = []
-//             let reelNumber = allMaterials.filter(item=>item.materialDto.manufactoryId == temp[a].value && item.materialDto.name == nameAfter[b].materialDto.name && item.materialDto.model == modelAfter[c].materialDto.model) //卷号数组，重复
-//             let reelNumberAfter = this.uniqueArr(reelNumber,'reelNumber') //卷号去重
-//             reelNumberAfter.map(val=>temp[a].children[b].children[c].children.push({value:val.materialDto.reelNumber,label:val.materialDto.reelNumber,isLeaf: true}))
-//           }
-//         }
-
-//       }
-//       this.nzOptions = temp
-//     })   
-//   })
-
-// }
-
-//   uniqueArr(arr1,p) {
-//     const res = new Map();
-//     return arr1.filter((a) => !res.has(a['materialDto'][p]) && res.set(a['materialDto'][p], 1)) //对象数组根据属性去重
-//   }
-
 formData = new FormData();
 formDataList = []
 returnFalse = false

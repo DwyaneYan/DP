@@ -1,6 +1,6 @@
 /**
  * name:http服务
- * describe:对http请求做统一处理
+ * describe:对http请求做统一处理，暂没有用到
  */
 import { Injectable } from '@angular/core';
 import {HttpClient}  from '@angular/common/http';

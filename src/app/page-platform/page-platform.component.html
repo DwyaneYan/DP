@@ -74,7 +74,7 @@
                     添加推荐材料
                 </button>
                 <nz-modal [(nzVisible)]="isVisible1" nzTitle="添加推荐材料" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzMaskClosable=false>
-                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料"></nz-cascader>
+                    <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" (ngModelChange)="onChanges($event)" nzPlaceHolder="添加推荐材料" [nzShowSearch]="true"></nz-cascader>
                     &nbsp;&nbsp;&nbsp;
                     <app-upload [url]='maUrl' [buttonName]="'上传图片'" [type]="'photo'" [hz]="['image/jpeg','image/png']" [error]="'只能上传JPG和PNG'" *ngIf="showi"></app-upload>
                 </nz-modal>
@@ -90,7 +90,7 @@
                     <div class='material-pic'>
                         <img [src]="material.avatarUrl" *ngIf='material.avatarUrl;else elseBlock' />
                         <ng-template #elseBlock>
-                            <img src="../../assets/images/tj.png" />
+                            <img src="../../assets/images/tj1.jpg" />
                         </ng-template>
                     </div>
 
