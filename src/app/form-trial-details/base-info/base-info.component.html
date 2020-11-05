@@ -1,7 +1,7 @@
 <div class="info-box" *ngFor="let data of baseInfo">
     <div class='paihao'>
         <div class="title">材料牌号{{ data.materialDto.name }}</div>
-        <button nz-button nzType="primary" (click)="showModal()">修改</button>
+        <button nz-button nzType="primary" (click)="showModal()" *ngIf="button('update-material-info')">修改</button>
     </div>
     <div class="detail">
         <span>卷号：{{ data.materialDto.reelNumber}}</span>

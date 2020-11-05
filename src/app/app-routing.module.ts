@@ -47,300 +47,341 @@ import { TypicalPartComponent } from 'src/app/typical-part/typical-part.componen
 import { button } from 'src/app/picture'
 import { PictureComponent } from './picture/picture.component';
 import { TrailnameComponent } from './trailname/trailname.component';
+import { initRouter } from './init-routers'
+// import { ApiService } from './api.service'
 
-
-  let allRoutes:any =[
-    { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
-    { path: 'login', component: PageLoginComponent},
-    { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
-    { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
-    { path: 'display/:materialId', component:PageDisplayComponent,
-    canActivateChild: [LoginGuardService],
-      children:[
-        {
-          path: 'static-tension-home', component: TrailnameComponent,
-          children:[
-            { path: 'table', component: StaticTensionTableComponent ,permissions:"jtls1"},
-            { path: 'picture', component: StaticTensionPictureComponent,permissions:"jtls2"},
-            { path: 'report', component:ReportComponent,permissions:"jtls3"},
-            { path: 'typical-part', component:TypicalPartComponent,permissions:"jtls4"},
-  
-          ]  
-        },
-        { 
-          path: 'bending', component: TrailnameComponent,
-          children:[
-            { path: 'table', component: BendingTableComponent ,permissions:"wq1"},
-            { path: 'picture', component: BendingPictureComponent ,permissions:"wq2"},
-            { path: 'report', component:ReportComponent ,permissions:"wq3" },
-            { path: 'typical-part', component: TypicalPartComponent,permissions:"wq4" },
-            
-          ]  
-        },
-  
-        { 
-          path: 'compression', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: CompressionTableComponent ,permissions:"ys1"},
-            { path: 'picture', component: CompressionPictureComponent ,permissions:"ys2" },
-            { path: 'report', component: ReportComponent , permissions:"ys3"},
-            { path: 'typical-part', component: TypicalPartComponent, permissions:"ys4" },
-           
-          ]  
-        },
-        { 
-          path: 'highspeedstrech', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: HighspeedstrechTableComponent,permissions:"gsls1"},
-            { path: 'picture', component: HighspeedstrechPictureComponent  ,permissions:"gsls2" },
-            { path: 'report', component: ReportComponent  ,permissions:"gsls3" },
-            { path: 'typical-part', component:TypicalPartComponent  ,permissions:"gsls4" },
-            
-          ]  
-        }, 
-         { 
-          path: 'lowcyclefatigue', component:TrailnameComponent,
-          children:[
-            { path: 'table', component:  LowcyclefatigueTableComponent,permissions:"dzpl1"},
-            { path: 'picture', component:  PictureComponent   ,permissions:"dzpl2" },
-            { path: 'report', component:  ReportComponent    ,permissions:"dzpl3"},
-            { path: 'typical-part', component: TypicalPartComponent  ,permissions:"dzpl4" },
-             
-          ]  
-        },
-        { 
-          path: 'highcyclefatigue', component:TrailnameComponent,
-          children:[
-            { path: 'table', component:  HighcyclefatigueTableComponent,permissions:"gzpl1"},
-            { path: 'picture', component:  PictureComponent  ,permissions:"gzpl2"   },
-            { path: 'report', component:  ReportComponent   ,permissions:"gzpl3"  },
-            { path: 'typical-part', component: TypicalPartComponent  ,permissions:"gzpl4"  },
-            
-          ]  
-        },
-        { 
-          path: 'metallographic', component:TrailnameComponent,
-          children:[
-            { path: 'table', component:  MetallographicTableComponent,permissions:"jx1" },
-            { path: 'picture', component:  PictureComponent ,permissions:"jx2"    },
-            { path: 'report', component:  ReportComponent  ,permissions:"jx3"  },
-            { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jx4"  },
-            
-          ]  
-        },
-        { 
-          path: 'physicalperformance', component: TrailnameComponent,
-          children:[
-            { path: 'table', component:  PhysicalperformanceTableComponent ,permissions:"wlxn1"},
-            { path: 'picture', component:  PhysicalperformancePictureComponent   ,permissions:"wlxn2"  },
-            { path: 'report', component:  ReportComponent    ,permissions:"wlxn3"  },
-            { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"wlxn4" },
-             
-          ]  
-        },
-        { 
-          path: 'chemicalelement', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: ChemicalelementTableComponent,permissions:"hxcf1"},
-            { path: 'picture', component:  ChemicalelementPictureComponent  ,permissions:"hxcf2"  },
-            { path: 'report', component:  ReportComponent ,permissions:"hxcf3"   },
-            { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hxcf4" },
-            
-          ]  
-        },
-        { 
-          path: 'prohibited-substance', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: ProhibitedSubstanceTableComponent,permissions:"jywz1"},
-            { path: 'picture', component:  ProhibitedSubstancePictureComponent  ,permissions:"jywz2" },
-            { path: 'report', component:  ReportComponent,permissions:"jywz3"   },
-            { path: 'typical-part', component:  TypicalPartComponent ,permissions:"jywz4" },
-             
-          ]  
-        }, 
-        { 
-          path: 'dent-resistance', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: DentResistanceTableComponent ,permissions:"kaxn1"},
-            { path: 'picture', component:  PictureComponent ,permissions:"kaxn2" },
-            { path: 'report', component:  ReportComponent  ,permissions:"kaxn3"},
-            { path: 'typical-part', component: TypicalPartComponent ,permissions:"kaxn4"},
-            
-          ]  
-        },
-        { 
-          path: 'secondary-working-embrittlement', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent,permissions:"ecjgcx1"},
-            { path: 'picture', component:  PictureComponent  ,permissions:"ecjgcx2" },
-            { path: 'report', component:   ReportComponent  ,permissions:"ecjgcx3" },
-            { path: 'typical-part', component: TypicalPartComponent  ,permissions:"ecjgcx4" },
-            
-          ]  
-        },
-        { 
-          path: 'flanging-clasp', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: FlangingClaspTableComponent,permissions:"fbkh1"},
-            { path: 'picture', component:  PictureComponent  ,permissions:"fbkh2" },
-            { path: 'report', component:  ReportComponent   ,permissions:"fbkh3"},
-            { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"fbkh4"},
-             
-          ]  
-        },
-        { 
-          path: 'hydrogen-induced-delayed-fracture', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: HydrogenInducedDelayedFractureTableComponent,permissions:"qzyckl1" },
-            { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent ,permissions:"qzyckl2"  },
-            { path: 'report', component: ReportComponent ,permissions:"qzyckl3"  },
-            { path: 'typical-part', component:TypicalPartComponent ,permissions:"qzyckl4"},
-            
-          ]  
-        },
-        { 
-          path: 'welding', component:TrailnameComponent,
-          children:[
-            { path: 'table', component: WeldingTableComponent,permissions:"hjxn1"  },
-            { path: 'picture', component:  PictureComponent   ,permissions:"hjxn2" },
-            { path: 'report', component:  ReportComponent  ,permissions:"hjxn3"  },
-            { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hjxn4"  },
-           
-          ]  
-        },
-        { 
-          path: 'cementing', component:TrailnameComponent ,
-          children:[
-            { path: 'table', component:CementingTableComponent ,permissions:"jjxn1" },
-            { path: 'picture', component:  PictureComponent  ,permissions:"jjxn2"    },
-            { path: 'report', component:  ReportComponent   ,permissions:"jjxn3" },
-            { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jjxn4" },
-             
-          ]  
-        },
-        { 
-          path: 'painting', component:TrailnameComponent ,
-          children:[
-            { path: 'table', component:PaintingTableComponent,permissions:"tzxn1" },
-            { path: 'picture', component:  PictureComponent  ,permissions:"tzxn2"  },
-            { path: 'report', component:  ReportComponent  ,permissions:"tzxn3"  },
-            { path: 'typical-part', component:  TypicalPartComponent ,permissions:"tzxn4"  },
-            
-          ]  
-        },
-        { 
-          path: 'fld', component:TrailnameComponent ,
-          children:[
-            { path: 'table', component:FldTableComponent ,permissions:"fld1" },
-            { path: 'picture', component:  FldPictureComponent ,permissions:"fld2"     },
-            { path: 'report', component:  ReportComponent  ,permissions:"fld3"  },
-            { path: 'typical-part', component:  TypicalPartComponent ,permissions:"fld4" },
-            
-          ]  
-        },
-        { 
-          path: 'rebound', 
-          component:TrailnameComponent ,
-          children:[
-            { path: 'table', component:ReboundTableComponent,permissions:"htxn1"  },
-            { path: 'picture', component:  PictureComponent    ,permissions:"htxn2"  },
-            { path: 'report', component:  ReportComponent   ,permissions:"htxn3" },
-            { path: 'typical-part', component: TypicalPartComponent ,permissions:"htxn4"}
-          ]  
-        },
-        { 
-          path: 'bake-hardening', component:TrailnameComponent ,
-          children:[
-            { path: 'table', component: BakeHardeningTableComponent  ,permissions:"hkyh1" },
-            { path: 'picture', component:  BakeHardeningPictureComponent ,permissions:"hkyh2"  },
-            { path: 'report', component:  ReportComponent ,permissions:"hkyh3"   },
-            { path: 'typical-part', component: TypicalPartComponent  ,permissions:"hkyh4" },
-            
-          ]  
-        },
-        { 
-          path: 'surface-property', component:TrailnameComponent   ,
-          children:[
-            { path: 'table', component: SurfacePropertyTableComponent,permissions:"bmxn1"  },
-            { path: 'picture', component:  SurfacePropertyPictureComponent  ,permissions:"bmxn2" },
-            { path: 'report', component:  ReportComponent  ,permissions:"bmxn3" },
-            { path: 'typical-part', component: TypicalPartComponent,permissions:"bmxn4" },
-           
-          ]  
-        },
-        { 
-          path: 'applications/:car', component:ApplicationsComponent   ,
-          
-        },
-        { 
-          path: 'simulationCard', component:SimulationCardComponent   , 
-        }
-    ]},
-    { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
-    { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
-    { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
-  
-  ]
-  // let baseRouter:any =[
+//刷新页面都会执行这个文件
+  // let allRoutes:any =[
   //   { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
   //   { path: 'login', component: PageLoginComponent},
   //   { path: 'platform', component: PagePlatformComponent,canActivate: [LoginGuardService]},
   //   { path: 'material', component: PageMaterialComponent,canActivate: [LoginGuardService]},
+  //   { path: 'display/:materialId', component:PageDisplayComponent,
+  //   canActivateChild: [LoginGuardService],
+  //     children:[
+  //       {
+  //         path: 'static-tension-home', component: TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: StaticTensionTableComponent ,permissions:"jtls1"},
+  //           { path: 'picture', component: StaticTensionPictureComponent,permissions:"jtls2"},
+  //           { path: 'report', component:ReportComponent,permissions:"jtls3"},
+  //           { path: 'typical-part', component:TypicalPartComponent,permissions:"jtls4"},
+  
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'bending', component: TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: BendingTableComponent ,permissions:"wq1"},
+  //           { path: 'picture', component: BendingPictureComponent ,permissions:"wq2"},
+  //           { path: 'report', component:ReportComponent ,permissions:"wq3" },
+  //           { path: 'typical-part', component: TypicalPartComponent,permissions:"wq4" },
+            
+  //         ]  
+  //       },
+  
+  //       { 
+  //         path: 'compression', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: CompressionTableComponent ,permissions:"ys1"},
+  //           { path: 'picture', component: CompressionPictureComponent ,permissions:"ys2" },
+  //           { path: 'report', component: ReportComponent , permissions:"ys3"},
+  //           { path: 'typical-part', component: TypicalPartComponent, permissions:"ys4" },
+           
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'highspeedstrech', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: HighspeedstrechTableComponent,permissions:"gsls1"},
+  //           { path: 'picture', component: HighspeedstrechPictureComponent  ,permissions:"gsls2" },
+  //           { path: 'report', component: ReportComponent  ,permissions:"gsls3" },
+  //           { path: 'typical-part', component:TypicalPartComponent  ,permissions:"gsls4" },
+            
+  //         ]  
+  //       }, 
+  //        { 
+  //         path: 'lowcyclefatigue', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component:  LowcyclefatigueTableComponent,permissions:"dzpl1"},
+  //           { path: 'picture', component:  PictureComponent   ,permissions:"dzpl2" },
+  //           { path: 'report', component:  ReportComponent    ,permissions:"dzpl3"},
+  //           { path: 'typical-part', component: TypicalPartComponent  ,permissions:"dzpl4" },
+             
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'highcyclefatigue', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component:  HighcyclefatigueTableComponent,permissions:"gzpl1"},
+  //           { path: 'picture', component:  PictureComponent  ,permissions:"gzpl2"   },
+  //           { path: 'report', component:  ReportComponent   ,permissions:"gzpl3"  },
+  //           { path: 'typical-part', component: TypicalPartComponent  ,permissions:"gzpl4"  },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'metallographic', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component:  MetallographicTableComponent,permissions:"jx1" },
+  //           { path: 'picture', component:  PictureComponent ,permissions:"jx2"    },
+  //           { path: 'report', component:  ReportComponent  ,permissions:"jx3"  },
+  //           { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jx4"  },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'physicalperformance', component: TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component:  PhysicalperformanceTableComponent ,permissions:"wlxn1"},
+  //           { path: 'picture', component:  PhysicalperformancePictureComponent   ,permissions:"wlxn2"  },
+  //           { path: 'report', component:  ReportComponent    ,permissions:"wlxn3"  },
+  //           { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"wlxn4" },
+             
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'chemicalelement', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: ChemicalelementTableComponent,permissions:"hxcf1"},
+  //           { path: 'picture', component:  ChemicalelementPictureComponent  ,permissions:"hxcf2"  },
+  //           { path: 'report', component:  ReportComponent ,permissions:"hxcf3"   },
+  //           { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hxcf4" },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'prohibited-substance', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: ProhibitedSubstanceTableComponent,permissions:"jywz1"},
+  //           { path: 'picture', component:  ProhibitedSubstancePictureComponent  ,permissions:"jywz2" },
+  //           { path: 'report', component:  ReportComponent,permissions:"jywz3"   },
+  //           { path: 'typical-part', component:  TypicalPartComponent ,permissions:"jywz4" },
+             
+  //         ]  
+  //       }, 
+  //       { 
+  //         path: 'dent-resistance', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: DentResistanceTableComponent ,permissions:"kaxn1"},
+  //           { path: 'picture', component:  PictureComponent ,permissions:"kaxn2" },
+  //           { path: 'report', component:  ReportComponent  ,permissions:"kaxn3"},
+  //           { path: 'typical-part', component: TypicalPartComponent ,permissions:"kaxn4"},
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'secondary-working-embrittlement', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: SecondaryWorkingEmbrittlementTableComponent,permissions:"ecjgcx1"},
+  //           { path: 'picture', component:  PictureComponent  ,permissions:"ecjgcx2" },
+  //           { path: 'report', component:   ReportComponent  ,permissions:"ecjgcx3" },
+  //           { path: 'typical-part', component: TypicalPartComponent  ,permissions:"ecjgcx4" },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'flanging-clasp', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: FlangingClaspTableComponent,permissions:"fbkh1"},
+  //           { path: 'picture', component:  PictureComponent  ,permissions:"fbkh2" },
+  //           { path: 'report', component:  ReportComponent   ,permissions:"fbkh3"},
+  //           { path: 'typical-part', component:  TypicalPartComponent   ,permissions:"fbkh4"},
+             
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'hydrogen-induced-delayed-fracture', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: HydrogenInducedDelayedFractureTableComponent,permissions:"qzyckl1" },
+  //           { path: 'picture', component: HydrogenInducedDelayedFracturePictureComponent ,permissions:"qzyckl2"  },
+  //           { path: 'report', component: ReportComponent ,permissions:"qzyckl3"  },
+  //           { path: 'typical-part', component:TypicalPartComponent ,permissions:"qzyckl4"},
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'welding', component:TrailnameComponent,
+  //         children:[
+  //           { path: 'table', component: WeldingTableComponent,permissions:"hjxn1"  },
+  //           { path: 'picture', component:  PictureComponent   ,permissions:"hjxn2" },
+  //           { path: 'report', component:  ReportComponent  ,permissions:"hjxn3"  },
+  //           { path: 'typical-part', component:  TypicalPartComponent ,permissions:"hjxn4"  },
+           
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'cementing', component:TrailnameComponent ,
+  //         children:[
+  //           { path: 'table', component:CementingTableComponent ,permissions:"jjxn1" },
+  //           { path: 'picture', component:  PictureComponent  ,permissions:"jjxn2"    },
+  //           { path: 'report', component:  ReportComponent   ,permissions:"jjxn3" },
+  //           { path: 'typical-part', component: TypicalPartComponent  ,permissions:"jjxn4" },
+             
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'painting', component:TrailnameComponent ,
+  //         children:[
+  //           { path: 'table', component:PaintingTableComponent,permissions:"tzxn1" },
+  //           { path: 'picture', component:  PictureComponent  ,permissions:"tzxn2"  },
+  //           { path: 'report', component:  ReportComponent  ,permissions:"tzxn3"  },
+  //           { path: 'typical-part', component:  TypicalPartComponent ,permissions:"tzxn4"  },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'fld', component:TrailnameComponent ,
+  //         children:[
+  //           { path: 'table', component:FldTableComponent ,permissions:"fld1" },
+  //           { path: 'picture', component:  FldPictureComponent ,permissions:"fld2"     },
+  //           { path: 'report', component:  ReportComponent  ,permissions:"fld3"  },
+  //           { path: 'typical-part', component:  TypicalPartComponent ,permissions:"fld4" },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'rebound', 
+  //         component:TrailnameComponent ,
+  //         children:[
+  //           { path: 'table', component:ReboundTableComponent,permissions:"htxn1"  },
+  //           { path: 'picture', component:  PictureComponent    ,permissions:"htxn2"  },
+  //           { path: 'report', component:  ReportComponent   ,permissions:"htxn3" },
+  //           { path: 'typical-part', component: TypicalPartComponent ,permissions:"htxn4"}
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'bake-hardening', component:TrailnameComponent ,
+  //         children:[
+  //           { path: 'table', component: BakeHardeningTableComponent  ,permissions:"hkyh1" },
+  //           { path: 'picture', component:  BakeHardeningPictureComponent ,permissions:"hkyh2"  },
+  //           { path: 'report', component:  ReportComponent ,permissions:"hkyh3"   },
+  //           { path: 'typical-part', component: TypicalPartComponent  ,permissions:"hkyh4" },
+            
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'surface-property', component:TrailnameComponent   ,
+  //         children:[
+  //           { path: 'table', component: SurfacePropertyTableComponent,permissions:"bmxn1"  },
+  //           { path: 'picture', component:  SurfacePropertyPictureComponent  ,permissions:"bmxn2" },
+  //           { path: 'report', component:  ReportComponent  ,permissions:"bmxn3" },
+  //           { path: 'typical-part', component: TypicalPartComponent,permissions:"bmxn4" },
+           
+  //         ]  
+  //       },
+  //       { 
+  //         path: 'applications/:car', component:ApplicationsComponent   ,
+          
+  //       },
+  //       { 
+  //         path: 'simulationCard', component:SimulationCardComponent   , 
+  //       }
+  //   ]},
   //   { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
   //   { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
   //   { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
   
   // ]
-  let permissions = JSON.parse(window.sessionStorage.getItem("permissions"))
-  // let allRoutes:any = permissions ? initRouter : baseRouter 
-  let length = allRoutes[4].children.length-2; 
-  if(permissions){
-  for(let a=0;a<length;a++){
-    if(!button(allRoutes[4].children[a].path)){
-      delete allRoutes[4].children[a];
-    }
-    else{
-        let array =[]  //删除子路由数组中的元素
-        allRoutes[4].children[a].children.forEach((item,index,arr)=>{
-          if(!button(item.permissions)){
-            array.push(index)}
-         else{
-        delete item.permissions}
-      })
-      for(let i =0;i<array.length;i++){
-        allRoutes[4].children[a].children.splice(array[i]-i,1)
-      }
-      //设置默认展示图表
-        let onePath = allRoutes[4].children[a].children[0]
-        if(onePath){
-          let defaultPath = {
-            path: '',
-            redirectTo: onePath.path,
-            pathMatch: 'full'
+
+  // let permissions = JSON.parse(window.sessionStorage.getItem("permissions"))
+  // let length = allRoutes[4].children.length - 2; 
+  
+  // if(permissions){
+  //   for(let a=0;a<length;a++){
+  //     if(!button(allRoutes[4].children[a].path)){
+  //       delete allRoutes[4].children[a];//删除数组元素，留下undefined
+  //     }
+  //     else{
+  //         let array = []  
+  //         allRoutes[4].children[a].children.forEach((item,index,arr)=>{
+  //           if(!button(item.permissions)){
+  //             array.push(index) //没有权限字符的子路由索引数组
+  //           }
+  //           else{
+  //             delete item.permissions //删除对象中的属性
+  //           }
+  //         })
+  //         for(let i =0;i<array.length;i++){
+  //           allRoutes[4].children[a].children.splice(array[i]-i,1)//剩下含有权限字符的子路由
+  //         }
+  //       //设置默认展示图表
+  //         let onePath = allRoutes[4].children[a].children[0]//如果还有子路由
+  //         if(onePath){
+  //           let defaultPath = {
+  //             path: '',
+  //             redirectTo: onePath.path,
+  //             pathMatch: 'full'
+  //           }
+            
+  //           allRoutes[4].children[a].children.push(defaultPath)//设置默认子路由
+  //         }
+
+    
+  //     }
+  
+  //   }  
+  //   allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+  //     return item != undefined
+  //   });//删除路由中的空元素
+  //   if(!button("viewCar")){
+  //     allRoutes[4].children.splice(length,1)
+  //   }   
+  // }
+ function selfReloadRouter(p){
+    let allRoutes:any = p
+    let length = allRoutes[4].children.length-2;
+    let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+    if(permissions){
+      for(let a=0;a<length;a++){
+        if(!button(allRoutes[4].children[a].path)){
+          delete allRoutes[4].children[a];
+        }
+        else{    
+          let array =[]  //删除子路由数组中的元素
+          allRoutes[4].children[a].children.forEach((item,index,arr)=>{
+            if(!button(item.permissions)){
+              array.push(index)
+            }
+            else{
+              delete item.permissions
+            }
+          })
+          for(let i =0;i<array.length;i++){
+            allRoutes[4].children[a].children.splice(array[i]-i,1)
           }
-          //待优化
-          allRoutes[4].children[a].children.push(defaultPath)
-      }
-
-  
+          //设置默认展示图表
+          let onePath = allRoutes[4].children[a].children[0]
+          if(onePath){
+            let defaultPath = {
+              path: '',
+              redirectTo: onePath.path,
+              pathMatch: 'full'
+            }
+            allRoutes[4].children[a].children.push(defaultPath)
+          }
+        }    
+      }  
+      allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+        return item != undefined
+      });//删除路由中的空元素
+      if(!button("viewCar")){
+        allRoutes[4].children.splice(length,1)
+      }   
     }
-  
-  }  
-  allRoutes[4].children = allRoutes[4].children.filter(function(item) {
-    return item != undefined
-     });//删除路由中的空元素
-  if(!button("viewCar")){
-   allRoutes[4].children.splice(length,1)
-  }   
+    return allRoutes
   }
-
-let currentRoutes: Routes = allRoutes
+// let currentRoutes: Routes = allRoutes
+ let currentRoutes: Routes = selfReloadRouter(initRouter())//模块外部怎么使用服务
 
 
 
 @NgModule({
   imports: [ RouterModule.forRoot(currentRoutes,{scrollPositionRestoration: 'enabled' }) ],  //初始化路由器,并让它开始监听浏览器中的地址变化,导航后页面滚动条滚动到顶部
-  exports: [ RouterModule ],  //导出 RouterModule 让路由器的相关指令可以在 AppModule 中的组件中使用。
+  exports: [RouterModule],  //导出 RouterModule 让路由器的相关指令可以在 AppModule 中的组件中使用。并不是导出AppRoutingModule
+  providers: [
+    //ApiService //服务必须注入才能使用，在模块里服务通过这种方式注入，在组件里通过在构造函数中定义完成注入
+  ],
 })
 export class AppRoutingModule {
 

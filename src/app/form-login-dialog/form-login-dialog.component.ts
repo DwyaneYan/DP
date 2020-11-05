@@ -22,13 +22,14 @@ export class FormLoginDialogComponent implements OnInit {
   token = "";
   loading = false;
   submitForm(): void {
-    this.loading = true
+    
     //校验状态
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
     if (this.validateForm.valid) {
+      this.loading = true
       if (this.validateForm.value.remember) {
         this.cookies.set("userName", this.validateForm.value.userName);
         this.cookies.set("password", this.validateForm.value.password);
@@ -71,6 +72,7 @@ export class FormLoginDialogComponent implements OnInit {
             }
             //直接进入平台首页
             else {
+              //登陆成功获取到权限字符后重写路由数组
               this.router.config = this.ApiService.selfReloadRouter(initRouter())
               this.router.navigateByUrl("/platform")//路由导航和在导航栏直接导航的区别,手动导航就会执行路由配置文件
             }

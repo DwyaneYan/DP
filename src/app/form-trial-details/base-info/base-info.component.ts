@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/api.service';
 import { FormBuilder } from '@angular/forms';
 import { NameService } from './name.service'
+import { button } from '../../picture'
 @Component({
   selector: 'app-base-info',
   templateUrl: './base-info.component.html',
@@ -23,7 +24,7 @@ export class BaseInfoComponent implements OnInit {
     materialStandard: [null],
     id:[null]
   })
-  
+  button = button 
   constructor(
     public http: HttpClient,
     private ApiService: ApiService,

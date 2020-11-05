@@ -8,7 +8,7 @@ import {
   HttpHeaderResponse,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable,of } from 'rxjs';
+import { Observable,of,throwError  } from 'rxjs';
 import { mergeMap, catchError, tap} from 'rxjs/operators';
 import { NzMessageService } from "ng-zorro-antd";
 
@@ -34,7 +34,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       mergeMap((event: any) => {
         // console.log(event)
         if (event instanceof HttpResponse && event.status === 200) {
-          // console.log(event);
+          // console.log(event,222222222222);
           //获取状态码，没有则默认成功状态
           // const code = event.body.code || 200;
           // // 获取错误信息
@@ -62,6 +62,8 @@ export class AuthInterceptorService implements HttpInterceptor {
     this.message.error(
             event.status + ": " + event.statusText
           );
-    return of(event);
+    // return of(event);
+    //catchError 运算符并分析错误，最后使用 throwError 重新抛出它,才能在catch中捕获，of(event)只会在then 中
+    return throwError(event);
   }
 }

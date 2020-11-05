@@ -106,6 +106,7 @@ import { UploadComponent } from './upload/upload.component'
 
 @NgModule({
   declarations: [
+    //全部是需要的组件
     AppComponent,
     PageLoginComponent,
     PagePlatformComponent,
@@ -196,6 +197,7 @@ import { UploadComponent } from './upload/upload.component'
     UploadComponent,
   ],
   imports: [
+    //以下全部是需要的模块
     //BrowserModule模块提供了在Web浏览器中运行angular应用程序所需的功能
     BrowserModule,
     NgZorroAntdModule,

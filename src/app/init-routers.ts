@@ -75,7 +75,7 @@ import { Page404Component } from './page404/page404.component'
 import { TypicalPartComponent } from 'src/app/typical-part/typical-part.component';
 import { PictureComponent } from './picture/picture.component';
 import { TrailnameComponent } from './trailname/trailname.component';
-
+//初始化路由数组
 function initRouter(){
   let allRoute:any =[
     { path: '', redirectTo: '/platform' ,pathMatch: 'full'},
@@ -307,16 +307,13 @@ function initRouter(){
         { 
           path: 'simulationCard', component:SimulationCardComponent   , 
         }
-    ]},
-    // { path: 'userManual', component: PageUsermanualComponent,canActivate: [LoginGuardService]},
-  
+    ]},  
     { path: 'contrast', component: PageContrastComponent,canActivate: [LoginGuardService]},
     { path: '404', component: Page404Component ,canActivate: [LoginGuardService]},
     { path: '**', redirectTo: '/404' ,pathMatch: 'full',},
   
   ]
-  let allRoutes1:any = allRoute
-  return allRoutes1
+  return allRoute
 }
 
 export {initRouter}

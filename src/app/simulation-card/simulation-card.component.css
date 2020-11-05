@@ -90,9 +90,14 @@ nz-modal /deep/ .ant-modal-body {
     margin-top: 30px;
     width: 295px;
     height: 330px;
-    overflow: auto;
+    /* overflow: auto; */
     border: 1px solid #e6e6e6;
     border-radius: 6px;
+}
+
+.download-content {
+    height: 283px;
+    overflow: auto;
 }
 
 .download-item h3 {
@@ -101,6 +106,7 @@ nz-modal /deep/ .ant-modal-body {
     line-height: 45px;
     background: #fafafa;
     border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 0px
 }
 
 .download-box {

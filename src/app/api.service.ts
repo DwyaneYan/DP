@@ -16,7 +16,8 @@ export class ApiService {
     ) { }
     toVIm = `https://vim.hansteel.cn/view`   //跳转到vim线上，记得加/view
     // toVIm = `http://localhost:4280` //跳转到vim     
-    toRuoYi = `http://10.80.27.201:81`
+    // toRuoYi = `http://10.80.27.201:81`
+    toRuoYi = `http://localhost:81`
   
   //筛选材料
   async GetMater(params?){
@@ -524,13 +525,13 @@ async getInfo(){
   .toPromise()
  return res;
   }
-  // 查询用户个人信息
-async  getUserProfile() {
-  let api=`/devhg-api/system/user/profile`
-  let res= await this.http.get(api)
-  .toPromise()
- return res;
-}
+//   // 查询用户个人信息
+// async  getUserProfile() {
+//   let api=`/devhg-api/system/user/profile`
+//   let res= await this.http.get(api)
+//   .toPromise()
+//  return res;
+// }
 // //获取路由，暂不使用
 // async getRouters(p){
 //   let api=`/devhg-api/getRouters`
@@ -630,9 +631,9 @@ async bindMater(a,b){
  return res;
 }
 // 根据材料id删除材料
-async delMaterials(materialIds){
+async delMaterials(obj){
   let api = `/api/hangang/material`;
-  let params = {params:{ids:materialIds}}
+  let params = {params:obj}
   let res= await this.http.delete(api,params)
   .toPromise()
 
@@ -647,29 +648,30 @@ handleTime(date){
   )[0] : ''
 }
 
-//自定义重置路由的方法
+//自定义重置路由的方法，传入初始化路由数组，返回根据权限字符处理后的路由数组
   selfReloadRouter(p){
     let allRoutes:any = p
     let length = allRoutes[4].children.length-2;
     let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
     if(permissions){
-    for(let a=0;a<length;a++){
-      if(!button(allRoutes[4].children[a].path)){
-        delete allRoutes[4].children[a];
-      }
-      else{
-    
+      for(let a=0;a<length;a++){
+        if(!button(allRoutes[4].children[a].path)){
+          delete allRoutes[4].children[a];
+        }
+        else{    
           let array =[]  //删除子路由数组中的元素
           allRoutes[4].children[a].children.forEach((item,index,arr)=>{
             if(!button(item.permissions)){
-              array.push(index)}
-           else{
-          delete item.permissions}
-        })
-        for(let i =0;i<array.length;i++){
-          allRoutes[4].children[a].children.splice(array[i]-i,1)
-        }
-        //设置默认展示图表
+              array.push(index)
+            }
+            else{
+              delete item.permissions
+            }
+          })
+          for(let i =0;i<array.length;i++){
+            allRoutes[4].children[a].children.splice(array[i]-i,1)
+          }
+          //设置默认展示图表
           let onePath = allRoutes[4].children[a].children[0]
           if(onePath){
             let defaultPath = {
@@ -677,20 +679,16 @@ handleTime(date){
               redirectTo: onePath.path,
               pathMatch: 'full'
             }
-            //待优化
             allRoutes[4].children[a].children.push(defaultPath)
-        }
-
-    
-      }
-    
-    }  
-    allRoutes[4].children = allRoutes[4].children.filter(function(item) {
-      return item != undefined
-       });//删除路由中的空元素
-    if(!button("viewCar")){
-     allRoutes[4].children.splice(length,1)
-    }   
+          }
+        }    
+      }  
+      allRoutes[4].children = allRoutes[4].children.filter(function(item) {
+        return item != undefined
+      });//删除路由中的空元素
+      if(!button("viewCar")){
+        allRoutes[4].children.splice(length,1)
+      }   
     }
     return allRoutes
   }

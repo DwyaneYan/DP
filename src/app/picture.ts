@@ -52,7 +52,7 @@ function  common(a,callback){
     }
   }
   }
-  //按钮权限
+  //按钮对应权限字符是否在permissions中存在，存在则页面显示按钮
   function button(p):Boolean{
     let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
     if(permissions && permissions.permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){

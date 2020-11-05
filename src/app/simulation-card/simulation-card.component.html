@@ -18,13 +18,17 @@
 <div class="mt20 download-list">
     <div class="download-item" *ngFor="let item of after">
         <h3>{{item}}</h3>
-        <ng-template ngFor let-data1 [ngForOf]="data[item]" let-i="index">
-            <div class="download-box" *ngIf="button('downloadCard');else elseBlock">
-                <a class="download-text" nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
+        <div class='download-content'>
+            <ng-template ngFor let-data1 [ngForOf]="data[item]" let-i="index">
+                <div class="download-box" *ngIf="button('downloadCard');else elseBlock">
+                    <a class="download-text" nz-popconfirm nzPopconfirmTitle="是否下载文件?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirm(data1,rea[item][i])" (nzOnCancel)="cancel()">
                     {{data1}}</a>
-            </div>
-            <ng-template #elseBlock>{{data1}}<br><br></ng-template>
-        </ng-template>
+                </div>
+                <ng-template #elseBlock>
+                    <div class="download-box">{{data1}}</div>
+                </ng-template>
+            </ng-template>
+        </div>
     </div>
 
 </div>

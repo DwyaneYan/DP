@@ -12,31 +12,34 @@ export class FormNavigationComponent implements OnInit {
   href=''
   toShouye = this.ApiService.toVIm + `/car-type?type=hangang`
   token=''
-  userName //用户名,即登录名
-  isVisible=false //登录过期提示框
+  userName = undefined //用户名,即登录名
+  isVisible = false //登录过期提示框
   constructor(
     private ApiService: ApiService,
     public router:Router
   ) { }
   ngOnInit() {
-      let res=JSON.parse(sessionStorage.getItem("permissions"))
-      if(res && res.roles && (res.roles.indexOf('adminHG')!=-1 || res.roles.indexOf('admin')!=-1)){     //permissions的roles中包含权限字符adminHG或者admin才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
-          this.system=true
-        }else{
-          this.system = false
-        }
+    let res = JSON.parse(sessionStorage.getItem("permissions"))
+    if(res && res.roles && (res.roles.indexOf('adminHG')!=-1 || res.roles.indexOf('admin')!=-1)){     //permissions的roles中包含权限字符adminHG或者admin才是管理员，只有管理员才能操作系统管理，可根据实际情况修改
+        this.system=true
+      }else{
+        this.system = false
+    }
+    if (res && res.user) {
+      this.userName = res.user.userName      
+    }
   //获取用户名,token失效返回code是多少?，token失效则移除session中的token
-    this.ApiService.getUserProfile().then((res:any)=>{
-      if(res.code==500){
-        sessionStorage.removeItem("token")
-        sessionStorage.removeItem("permissions")
-        this.isVisible = true;
-        this.userName = undefined
-        }
-      else if(res.code == 200){
-      this.userName=res.data.userName
-      }
-    })
+    // this.ApiService.getUserProfile().then((res:any)=>{
+    //   if(res.code==500){
+    //     sessionStorage.removeItem("token")
+    //     sessionStorage.removeItem("permissions")
+    //     this.isVisible = true;
+    //     this.userName = undefined
+    //     }
+    //   else if(res.code == 200){
+    //   this.userName=res.data.userName
+    //   }
+    // })
     
   }
   // 点击系统管理前验证token是否失效

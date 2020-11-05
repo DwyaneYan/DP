@@ -113,7 +113,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
          
     }
   }
-
+//选中列表移除item
   shanchu(x) {
     for (var j = 0; j < this.checkList.length; j++) {
       if (this.checkList[j].materialDto.id == x) {
@@ -153,7 +153,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     this.screening()
 
   }
-  //删除材料
+  //开始删除按钮
   del(){
     this.checkbox = !this.checkbox;
     // console.log(this.delete,this.checkbox)
@@ -165,16 +165,27 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     this.disabled = false//第一列不禁用
   }
 
-
+//确定删除
   confirm(): void {
-    let ids = []
-    this.checkList.map(val=>ids.push(val.confirm.id))
-    // console.log(ids)
-    this.ApiService.delMaterials(ids).then((res:any)=>{
+    let materialIds = []//id数组
+    let permissions = JSON.parse(sessionStorage.getItem("permissions"))
+    let oper_name = undefined 
+    let oper_ip = undefined
+    if (permissions && permissions.user) {
+      oper_name = permissions.user.userName //用户名
+      oper_ip = permissions.user.phonenumber
+    }   
+    this.checkList.map(val => materialIds.push(val.materialDto.id))
+    let obj = {
+      materialIds,
+      oper_name,
+      oper_ip
+    }
+    this.ApiService.delMaterials(obj).then((res:any)=>{
       this.nzMessageService.info('删除成功');
       this.reGet.emit();
       this.checkList = []
-    })
+    }).catch((res:any)=>{console.log(33333333333333)})
 
   }
   getTitle(){
