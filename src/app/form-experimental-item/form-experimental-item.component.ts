@@ -48,6 +48,15 @@ export class FormExperimentalItemComponent implements OnInit {
          this.trialName.push(val.name)
        });
      } 
+    let locationArr = [];
+    for(let i=0;i<this.trialName.length;i++){
+        if(this.trialName[i].indexOf('金相') >= 0){
+           locationArr.push(i);
+        }
+     }
+    let bbb='显微组织';
+    this.trialName.splice(locationArr[0], 1, bbb);
+    console.log( this.trialName)
 
   })
 
