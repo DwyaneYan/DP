@@ -138,14 +138,13 @@ let arr2Length = arr2.length
     this.option2=this.classdata('真应力真应变','真应变','真应力',xData2,arr2,"realStrain",'realStress');
     this.option3=this.classdata('真塑性应变真应力','真塑性应变','真应力',xData3,arr3,"realPlasticStrainHalf",'realPlasticStressHalf');
     this.option4=this.classdata('真塑性应变真应力延伸到1','真塑性应变','真应力',xData4,arr3,"realPlasticStrainExtend",'realPlasticStressExtend');
-  console.log(this.option4)
+  // console.log(this.option4)
   }
 classdata(name,p1,p2,da,datas,p3,p4){
   let option = {
-    // width:'650px',//
     title: {
       text: name
-        },   
+    },   
    tooltip: {
     trigger: 'axis',
     backgroundColor: "white",
@@ -179,7 +178,7 @@ classdata(name,p1,p2,da,datas,p3,p4){
     legend: {
       data: [],
       orient: 'horizontal',
-       left: '30px',
+      left: '30px',
       top: '40px',
       // height: 200
     },//图例

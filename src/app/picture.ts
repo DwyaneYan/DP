@@ -96,40 +96,46 @@ var menu = [
   {name:"hydrogen-induced-delayed-fracture",children:['qzyckl1','qzyckl2','qzyckl3','qzyckl4'],names:"氢致延迟开裂"},
 ]
 //试验项目折线图的配置项和数据
- function PlotPicture(data, xData, des) {
-   let  options = {
-        title: {
-          text: des,
-          x: "center",
-          y: "top"
-        },
-        xAxis: {
-          type: "category",
-          data: xData
-        },
-        yAxis: {
-          type: "value"
-        },
-        series: [
-          {
-            data: data,
-            type: "line",
-            //显示数值
-            itemStyle : { normal: {label : {show: true}}}
-          }
-        ],
-        tooltip : {
-          trigger: 'axis',
-          axisPointer: {
-              type: 'cross',
-              label: {
-                  backgroundColor: '#6a7985'
-              }
+function PlotPicture(data, xData, des) {
+  let options = {
+    title: {
+      text: des,
+      x: "center",
+      y: "top"
+    },
+    xAxis: {
+      type: "category",
+      data: xData,
+    },
+    yAxis: {
+      type: "value"
+    },
+    series: [
+      {
+        data: data,
+        type: "line",
+    //显示数值
+        itemStyle : { normal: {label : {show: true}}}
+      }
+    ],
+    tooltip : {
+      trigger: 'axis',
+      axisPointer: {
+          type: 'cross',
+          label: {
+              backgroundColor: '#6a7985'
           }
-        }  
-      };
+      }
+    },
+    //坐标系
+    grid: {
+      containLabel: false,
+      bottom:"80px"
+    }, 
+        
+  };
   return options
-    }
+}
  //对象数组按某个属性值分组
 function  groupBy(array, f) {
       let groups = {};

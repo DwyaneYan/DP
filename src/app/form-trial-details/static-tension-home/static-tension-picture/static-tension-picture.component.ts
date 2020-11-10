@@ -128,7 +128,7 @@ console.log(xData,xData2)
         data: [],
         orient: 'horizontal',
         left: '30px',
-       top: '40px',
+        top: '40px',
 
       }
     };

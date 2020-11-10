@@ -322,12 +322,13 @@ async getGetMaterials() {
   contrastStaticTension(param,des,trialType){
       let data = [];
       let xData = [];
-      console.log(this[trialType])
+      // console.log(xData)
       this[trialType].forEach((iterator,i,array) => {
         data.push(iterator[param]);
-        xData.push(`${this.name[i]},
-        ${this.model[i]},
-        ${this.manu[i]},
+        xData.push(`
+        ${this.name[i]}
+        ${this.model[i]}
+        ${this.manu[i]}
         ${this.reelNumber[i]}
         `)
       })
