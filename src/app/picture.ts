@@ -40,29 +40,27 @@ function  common(a,callback){
       let hz = arr[0].slice(arr[0].lastIndexOf(".")+1) //第一个报告名的后缀名
 
       if(hz == "pdf"){
-     let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${encodeURIComponent(arr[0])}`//文件名进行url转码，指向报告地址,如果不是pdf会直接下载
-    //  console.log(pdf)
+        let b=`/api/hangang/trialdatadetail/CommonFileStringStreamDocument?documentName=${encodeURIComponent(arr[0])}`//文件名进行url转码，指向报告地址,如果不是pdf会直接下载
         let options = {
             pdfOpenParams: { scrollbars: '0', toolbar: '0', statusbar: '0'},
             fallbackLink: '您的浏览器暂不支持pdf'
         }
-     pdf.embed(b, "#pdf1",options)
-     callback([b,arr[0].slice(arr[0].indexOf("_")+1)])
-    //  return [b,arr[0].slice(arr[0].indexOf("_")+1)]
+        pdf.embed(b, "#pdf1",options)
+        callback([b,arr[0].slice(arr[0].indexOf("_")+1)])
     }
   }
   }
-  //按钮对应权限字符是否在permissions中存在，存在则页面显示按钮
-  function button(p):Boolean{
-    let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
-    if(permissions && permissions.permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
-      return true
-    }
-    else{
-      return false
-    }
-  
+//按钮对应权限字符是否在permissions中存在，存在则页面显示按钮
+function button(p):Boolean{
+  let permissions =JSON.parse(window.sessionStorage.getItem("permissions"))
+  if(permissions && permissions.permissions && (permissions.permissions.indexOf(`${p}`)!=-1 || permissions.roles.indexOf("admin")!=-1)){
+    return true
   }
+  else{
+    return false
+  }
+
+}
 //放大、缩小图片
 function enlarge(src,ImgPathOne){
   let options = {
@@ -95,7 +93,7 @@ var menu = [
   {name:"secondary-working-embrittlement",children:['ecjgcx1','ecjgcx2','ecjgcx3','ecjgcx4'],names:"二次加工脆性"},
   {name:"hydrogen-induced-delayed-fracture",children:['qzyckl1','qzyckl2','qzyckl3','qzyckl4'],names:"氢致延迟开裂"},
 ]
-//试验项目折线图的配置项和数据
+//试验项目折线图的配置项和数据，折线图的整个高度为460px
 function PlotPicture(data, xData, des) {
   let options = {
     title: {
@@ -127,10 +125,9 @@ function PlotPicture(data, xData, des) {
           }
       }
     },
-    //坐标系
     grid: {
       containLabel: false,
-      bottom:"80px"
+      bottom:"70px"
     }, 
         
   };
