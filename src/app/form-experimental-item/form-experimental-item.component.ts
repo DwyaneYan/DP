@@ -38,6 +38,7 @@ export class FormExperimentalItemComponent implements OnInit {
     for(let a=0;a<length;a++){
       this.routerLink[a]=`/display/${this.materialId}/${this.menu[a].name}`
     }
+    console.log(this.button(menu[19].name),this.trialName.includes(menu[19].names))
 }
 
  GetTrials(){
@@ -48,15 +49,14 @@ export class FormExperimentalItemComponent implements OnInit {
          this.trialName.push(val.name)
        });
      } 
-    let locationArr = [];
+    let locationArr = []; //查找金相位置
     for(let i=0;i<this.trialName.length;i++){
         if(this.trialName[i].indexOf('金相') >= 0){
            locationArr.push(i);
         }
      }
-    let bbb='显微组织';
-    this.trialName.splice(locationArr[0], 1, bbb);
-    console.log( this.trialName)
+    let bbb = '显微组织';
+     if (locationArr.length) { this.trialName.splice(locationArr[0], 1, bbb); }//替换金相成显微组织
 
   })
 

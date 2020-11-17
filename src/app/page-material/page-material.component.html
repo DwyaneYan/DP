@@ -18,14 +18,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <span class="label">生产厂家 :</span>
                 <span class="limit-tag" [class.selected]="params.ManufactoryId ==''" (click)="filtrationMaterial({id:''})">不限</span>
                 <span *ngFor="let item of listManufacturers">
                     <span class="limit-tag" (click)="filtrationMaterial(item)"
                         [class.selected]="params.ManufactoryId == item.id"> {{item.name}} </span>
                 </span>
-            </div>
+            </div> -->
             <div class="row">
                 <span class="label">型号规格 :</span>
                 <span class="limit-tag" [class.selected]="params.Model =='' && params.MinModel == '' && params.MaxModel == ''" (click)="filtrationMaterial({Model:'',MinModel:'',MaxModel:''})">不限</span>

@@ -50,9 +50,21 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
    // this.listOfAllData = this.data //全部材料实际显示的,
     this.data.forEach((val,index) => {
       this.listOfAllData.push(val.materialDto);
-      this.listOfAllData[index]['trials'] = val.trials
+      this.listOfAllData[index]['trials'] = val.trials//数组
     })
-    console.log(this.listOfAllData,this.dataAll)
+    debugger;
+    this.listOfAllData.map(item => {
+      if (item.trials.length > 2 ) {
+        item.trialAfter = item.trials[0] + ','  + item.trials[1] + '\n' + item.trials.slice(2,4).toString()
+      }
+      else if (item.trials.length <= 2) {
+        item.trialAfter = item.trials
+      }
+      // else {
+      //   item.trialAfter = item.trials.slice(0,4).toString()
+      // }
+    })
+    console.log(this.listOfAllData)
     this.totalCount = this.listOfAllData.length; //数据个数
     this.listOfAllData.map(val=>{val.checked = false}) //不设置checked属性值是undefined  
     this.listOfAllData.forEach(val=>{
@@ -62,7 +74,7 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
         }
       }
     })
-    console.log(this.listOfAllData,this.dataAll)
+    console.log(this.listOfAllData)
 
   }
   //#region 模块 

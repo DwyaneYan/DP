@@ -1,52 +1,75 @@
 .w1200 {
-  width: 1200px;
-  margin: 0 auto;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .navigation {
-  margin: 0;
-  height: 250px;
-  background: url('../../assets/images/navigation-bg.jpg') no-repeat center;
-  background-size: cover;
-  padding: 20px 0;
-  min-width: 1200px;
+    margin: 0;
+    height: 250px;
+    background: url('../../assets/images/navigation-bg.jpg') no-repeat center;
+    background-size: cover;
+    padding: 20px 0;
+    min-width: 1200px;
 }
 
-
 .navigation-box {
-  display: flex;
+    display: flex;
 }
 
 .navigation-list {
-  list-style: none;
-  flex: 1;
-  margin-left: 20px;
+    list-style: none;
+    flex: 1;
+    margin-left: 20px;
 }
 
 .navigation-list .navigation-item {
-  padding: 0 21px;
-  display: inline-block;
+    padding: 0 21px;
+    display: inline-block;
 }
 
 .navigation-list .navigation-item a {
-  color: #fff;
-  font-size: 18px;
-  line-height: 42px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 42px;
 }
 
 .navigation-list .navigation-item .user {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .navigation-list .navigation-item:last-child {
-  float: right;
+    float: right;
 }
 
 .cdk-overlay-pane {
-  width: 98px !important;
-  min-width: auto !important;
+    width: 98px !important;
+    min-width: auto !important;
 }
 
 .navigation-list .navigation-item.active {
-  background: #f60
+    background: #f60
+}
+
+.navigation-logo span {
+    color: white;
+    font-family: "汉仪粗黑简";
+    font-size: 13px
+}
+
+
+/* .navigation-logo span:first-child {
+    letter-spacing: 3px;
+    font-size: 20px;
+    font-weight: bolder;
+} */
+
+.navigation-logo span:first-child {
+    letter-spacing: 3px;
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.navigation-logo {
+    position: relative;
+    left: -40px
 }

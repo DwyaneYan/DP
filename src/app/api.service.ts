@@ -14,8 +14,8 @@ export class ApiService {
     private router: Router,
     private TrialNameService: TrialNameService,
     ) { }
-    toVIm = `https://vim.hansteel.cn/view`   //跳转到vim线上，记得加/view
-    // toVIm = `http://localhost:4280` //跳转到vim     
+    // toVIm = `https://vim.hansteel.cn/view`   //跳转到vim线上，记得加/view
+    toVIm = `http://localhost:4280` //跳转到vim     
     // toRuoYi = `http://10.80.27.201:81`
     toRuoYi = `https://auth.hansteel.cn`
   

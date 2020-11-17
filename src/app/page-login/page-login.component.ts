@@ -7,9 +7,15 @@ import { Component, OnInit } from "@angular/core";
 })
 export class PageLoginComponent implements OnInit {
   images = [
-    "../../assets/images/login_box.png",
-    "../../assets/images/login_box22.jpg",
-    "../../assets/images/login_box33.png",
+    "../../assets/images/login_box01.png",
+    "../../assets/images/login_box02.png",
+    "../../assets/images/login_box03.png",
+    "../../assets/images/login_box04.png",
+    "../../assets/images/login_box05.png",
+    "../../assets/images/login_box06.png",
+    "../../assets/images/login_box07.png",
+    "../../assets/images/login_box08.png",
+    "../../assets/images/login_box09.png",
   ];
   constructor() {}
 

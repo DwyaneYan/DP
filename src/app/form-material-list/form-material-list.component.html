@@ -4,12 +4,12 @@
     <thead>
         <tr>
             <th nzWidth="80px" *ngIf="checkbox" class="header"></th>
-            <th nzWidth="180px" class="header">材料名称</th>
-            <th nzWidth="180px" class="header">生产厂家</th>
-            <th nzWidth="150px" class="header">型号规格</th>
-            <th nzWidth="150px" class="header">屈服强度</th>
-            <th nzWidth="200px" class="header">试验项目</th>
-            <th nzWidth="150px" class="header">卷号</th>
+            <th nzWidth="300px" class="header">材料名称</th>
+            <!-- <th nzWidth="180px" class="header">生产厂家</th> -->
+            <th nzWidth="300px" class="header">型号规格</th>
+            <!-- <th nzWidth="150px" class="header">屈服强度</th> -->
+            <th nzWidth="300px" class="header">试验项目</th>
+            <!-- <th nzWidth="150px" class="header">卷号</th> -->
             <th class="header">操作</th>
         </tr>
     </thead>
@@ -17,13 +17,16 @@
         <tr *ngFor="let data of rowSelectionTable.data">
             <td nzShowCheckbox *ngIf="checkbox" [nzDisabled]="disabled" [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event,data.id)" class="table-col" name="chk"></td>
             <td class="table-col">{{ data.name }}</td>
-            <td class="table-col">{{ data.manufactoryName }}</td>
+            <!-- <td class="table-col">{{ data.manufactoryName }}</td> -->
             <td class="table-col">{{ data.model }}</td>
-            <td class="table-col">{{ data.strength }}</td>
-            <td class="table-col">
+            <!-- <td class="table-col">{{ data.strength }}</td> -->
+            <!-- <td class="table-col">
                 <div class='ellipsis' [title]='data.trials'>{{ data.trials }}</div>
+            </td> -->
+            <td class="table-col" [title]='data.trials' style="white-space: pre;">
+                {{ data.trialAfter }}
             </td>
-            <td class="table-col">{{ data.reelNumber }}</td>
+            <!-- <td class="table-col">{{ data.reelNumber }}</td> -->
             <td class="table-col" (click)="commonService.getURl(data.id,ApiService)" style="color:#1890ff;cursor:pointer">查看</td>
         </tr>
     </tbody>
