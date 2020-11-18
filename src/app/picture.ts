@@ -104,6 +104,9 @@ function PlotPicture(data, xData, des) {
     xAxis: {
       type: "category",
       data: xData,
+      axisLabel: {
+        interval: 0,
+        rotate:-30}
     },
     yAxis: {
       type: "value"
@@ -126,8 +129,10 @@ function PlotPicture(data, xData, des) {
       }
     },
     grid: {
-      containLabel: false,
-      bottom:"70px"
+      containLabel: true,
+      right: '90px',
+      left:'10px'
+      // bottom:1
     }, 
         
   };

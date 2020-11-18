@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { ApiService } from 'src/app/api.service';
-import { menu } from '../picture'
+import { menu ,button} from '../picture'
 @Component({
   selector: 'app-trailname',
   templateUrl: './trailname.component.html',
@@ -12,7 +12,8 @@ export class TrailnameComponent implements OnInit {
   p1='' //数据表
   p2='' //数据图
   p3='' //报告
-  p4='' //典型零部件
+  p4 = '' //典型零部件
+  button = button
   currentInfo = menu.filter((item)=>{return item.name == this.route.snapshot.routeConfig.path})
   constructor(
     private route: ActivatedRoute,

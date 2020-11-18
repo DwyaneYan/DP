@@ -182,10 +182,10 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
     let materialIds = []//id数组
     let permissions = JSON.parse(sessionStorage.getItem("permissions"))
     let oper_name = undefined 
-    let oper_ip = undefined
+    let oper_ip = "127.0.0.1"
     if (permissions && permissions.user) {
       oper_name = permissions.user.userName //用户名
-      oper_ip = permissions.user.phonenumber
+      // oper_ip = permissions.user.phonenumber
     }   
     this.checkList.map(val => materialIds.push(val.materialDto.id))
     let obj = {

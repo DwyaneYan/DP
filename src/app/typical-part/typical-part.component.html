@@ -1,6 +1,6 @@
 <div class="content">
     <!-- <button nz-button nzType="primary" (click)="goVim()">查看模型</button> -->
-    <button nz-button nzType="primary" (click)="openDialog()">绑定零件</button>
+    <button nz-button nzType="primary" (click)="openDialog()" *ngIf="button('HGBoundParts')">绑定零件</button>
     <nz-modal [(nzVisible)]="isVisible" nzTitle="绑定零件" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
         <nz-cascader [nzOptions]="nzOptions" [(ngModel)]="values" [nzShowSearch]="true" [nzOptionRender]="renderTpl"></nz-cascader>
         <ng-template #renderTpl let-option let-index="index">

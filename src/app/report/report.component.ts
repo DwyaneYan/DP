@@ -63,15 +63,15 @@ else if(name1=='surface-property'){this.GetTrialDataDetailss('getSurfaceProperty
   public async GetTrialDataDetailss(p) {
     await this.ApiService[p](this.materialId).then((res: any) => {
       this.trialDataDetail = res
-      let one=''//报告名，现在只能显示一个报告，即一个字符串
+      let one = ''//报告名，现在只能显示一个报告，即一个字符串
       let length = this.trialDataDetail.length
       for(let a=0;a<length;a++)
       {
         //报告在detail表的fileKey，图片在detail表的fileString
         if(this.trialDataDetail[a] && this.trialDataDetail[a].fileKey!=null){
           one = this.trialDataDetail[a].fileKey
-          break
         }
+        break
       }
       let that = this;
     common(one,function(value){

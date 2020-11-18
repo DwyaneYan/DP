@@ -16,8 +16,8 @@ export class ApiService {
     ) { }
     // toVIm = `https://vim.hansteel.cn/view`   //跳转到vim线上，记得加/view
     toVIm = `http://localhost:4280` //跳转到vim     
-    // toRuoYi = `http://10.80.27.201:81`
-    toRuoYi = `https://auth.hansteel.cn`
+    toRuoYi = `http://localhost:81`
+    // toRuoYi = `https://auth.hansteel.cn`
   
   //筛选材料
   async GetMater(params?){

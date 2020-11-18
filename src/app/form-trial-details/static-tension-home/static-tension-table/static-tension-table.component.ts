@@ -65,6 +65,8 @@ export class StaticTensionTableComponent implements OnInit {
     .then((res: any) => {    
     this.trialDataDetail = res;
     }) 
+    this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
+    this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
     this.loading = false;
     this.ApiService.GetMater({ id: this.materialId }).then((res: any) => {
       if (this.trialDataDetail.length) {
@@ -72,8 +74,7 @@ export class StaticTensionTableComponent implements OnInit {
           this.trialDataDetail[0].dates = this.ApiService.handleTime(this.trialDataDetail[0].dates)
           this.trialDataDetail[0].dateEnds = this.ApiService.handleTime(this.trialDataDetail[0].dateEnds)
       }
-      this.trialDataDetail1=this.trialDataDetail.slice(0,this.trialDataDetail.length-9)
-      this.trialDataDetail2=this.trialDataDetail.slice(this.trialDataDetail.length-9)
+      
     })
     
   }

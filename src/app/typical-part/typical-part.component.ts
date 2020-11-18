@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { button} from '../picture'
+
 @Component({
   selector: 'app-typical-part',
   templateUrl: './typical-part.component.html',
@@ -11,6 +13,7 @@ export class TypicalPartComponent implements OnInit {
   nzOptions = []
   values = [];
   isVisible = false;
+  button = button
   constructor(
     private router: Router,
     private ApiService: ApiService,

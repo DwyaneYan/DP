@@ -328,8 +328,6 @@ async getGetMaterials() {
         xData.push(`
         ${this.name[i]}
         ${this.model[i]}
-        ${this.manu[i]}
-        ${this.reelNumber[i]}
         `)
       })
       this.isVisible = true;
