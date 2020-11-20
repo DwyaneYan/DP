@@ -52,7 +52,6 @@ export class FormMaterialListComponent implements OnChanges, OnInit {
       this.listOfAllData.push(val.materialDto);
       this.listOfAllData[index]['trials'] = val.trials//数组
     })
-    debugger;
     this.listOfAllData.map(item => {
       if (item.trials.length > 2 ) {
         item.trialAfter = item.trials[0] + ','  + item.trials[1] + '\n' + item.trials.slice(2,4).toString()

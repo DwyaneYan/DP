@@ -42,26 +42,27 @@ export class FormNavigationComponent implements OnInit {
     // })
     
   }
-  // 点击系统管理前验证token是否失效
+  // 点击系统管理前验证token是否失效,系统管理虽然是菜单，但是是在ry中管理的，在这边这个标签无法通过路由守卫管理，只能单独处理
   checkToken(){
-  //如果sessionStorage中有token
-    if(sessionStorage.getItem("token")){
-          //用token调若依的getInfo接口，如果返回不是操作成功表明token失效，那么移除sessionStorage中的token并且提示重新登录
+    // if(sessionStorage.getItem("token")){
+          //用token调若依的getInfo接口，如果返回不是操作成功表明token失效，那么移除sessionStorage中的token并且直接跳到登录页，
+    //这个操作也可以写在请求拦截器里
       this.ApiService.getInfo().then((res:any)=>{
         if(res.msg!="操作成功"){
           sessionStorage.removeItem("token")
           sessionStorage.removeItem("permissions")
-          this.isVisible = true
+          // this.isVisible = true
+          this.router.navigateByUrl("/login");
         }
         else{
         //如果操作成功表示token还未失效，那么带着token跳转到系统管理
-          this.token= sessionStorage.getItem("token")
+          this.token = sessionStorage.getItem("token")
           window.open(`${this.ApiService.toRuoYi}/system/user?token=${this.token}`)
         }
       })
-    }else{
-        this. isVisible=true
-    }
+    // }else{
+    //     this. isVisible=true
+    // }
   }
 
   handleOk(): void {
@@ -74,9 +75,11 @@ export class FormNavigationComponent implements OnInit {
   }
 
   out(){
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("permissions");
-    this.ApiService.logout().then((res:any)=>{
+    // sessionStorage.removeItem("token");
+    // sessionStorage.removeItem("permissions");
+    this.ApiService.logout().then((res: any) => {
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("permissions");
       this.router.navigateByUrl('/login')
     })
   }

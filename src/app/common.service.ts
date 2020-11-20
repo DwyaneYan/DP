@@ -22,29 +22,31 @@ export class CommonService {
   //查询这条材料做了哪些试验
   ApiService.GetTrials(id).then((res: any) => {
     let trialName = []
-    if (res.length) {
+    // if (res.length) {
       res.forEach((val) => {
         trialName.push(val.name)
       });
-    }
-    let length = menu.length
+    // }
+    let length = menu.length;
     for (let a = 0; a < length; a++) {
+      //这样才能保证跳入第一个
       if (trialName.includes(menu[a].names) && button(menu[a].name)) {
-        if (button(menu[a].children[0])) { 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/table`);  
-         }
-        else if (button(menu[a].children[1])) { 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/picture`);  
-        }
-        else if (button(menu[a].children[2])) { 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/report`);  
-        }
-        else if (button(menu[a].children[3])){ 
-          this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/typical-part`);  
-        }
-        break
+        // if (button(menu[a].children[0])) { 
+        //   this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/table`);  
+        //  }
+        // else if (button(menu[a].children[1])) { 
+        //   this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/picture`);  
+        // }
+        // else if (button(menu[a].children[2])) { 
+        //   this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/report`);  
+        // }
+        // else if (button(menu[a].children[3])){ 
+        //   this.Router.navigateByUrl(`/display/${id}/${menu[a].name}/typical-part`);  
+        // }
+        this.Router.navigateByUrl(`/display/${id}/${menu[a].name}`); 
+        break;
       }
-      else{
+      else if(!trialName.length){
         this.Router.navigateByUrl(`/display/${id}`);  
       }
     }

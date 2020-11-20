@@ -13,6 +13,8 @@ export class TrailnameComponent implements OnInit {
   p2='' //数据图
   p3='' //报告
   p4 = '' //典型零部件
+  // isVisible = false;
+  title = ''
   button = button
   currentInfo = menu.filter((item)=>{return item.name == this.route.snapshot.routeConfig.path})
   constructor(
@@ -26,13 +28,16 @@ export class TrailnameComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(menu,this.currentInfo,this.route.snapshot.routeConfig.path)
     this.p1 = this.currentInfo[0].children[0]
     this.p2 = this.currentInfo[0].children[1]
     this.p3 = this.currentInfo[0].children[2]
-    this.p4 = this.currentInfo[0].children[3]
+    this.p4 = this.currentInfo[0].children[3];
+    this.title = `是否删除${this.currentInfo[0].names}`
   }
-  deleteTrial(){
-    this.ApiService.deleteTrial(this.materialId,this.currentInfo[0].names)
+
+
+    confirm(): void {
+    this.ApiService.deleteTrial(this.materialId, this.currentInfo[0].names)
+
   }
 }

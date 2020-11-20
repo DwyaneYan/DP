@@ -66,7 +66,7 @@ export class TypicalPartComponent implements OnInit {
 
   }
   goVim(p){
-    window.open(`${this.ApiService.toVIm}/car-model?carModelId=${p.projectId}&type=hangang&directoryId=${p.directoryId}&filterName=${p.name}`)
+    window.open(`${this.ApiService.toVIm}/car-model?carModelId=${p.projectId}&type=hangang&directoryId=${p.directoryId}&filterName=${p.name}`,'_self')
   }
   openDialog(){
     this.isVisible = true;

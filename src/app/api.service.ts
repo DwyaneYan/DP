@@ -14,8 +14,8 @@ export class ApiService {
     private router: Router,
     private TrialNameService: TrialNameService,
     ) { }
-    // toVIm = `https://vim.hansteel.cn/view`   //跳转到vim线上，记得加/view
-    toVIm = `http://localhost:4280` //跳转到vim     
+     toVIm = `https://vim.hansteel.cn/view`   //跳转到vim线上，记得加/view
+    //toVIm = `http://localhost:4280` //跳转到vim     
     toRuoYi = `http://localhost:81`
     // toRuoYi = `https://auth.hansteel.cn`
   
@@ -707,21 +707,24 @@ async upDateBase(obj){
 // 删除试验项目
  deleteTrial(materialId,name){
   this.GetTrials(materialId).then((res:any) => {
-      let data = res.filter(function(item){return item.name == name }) 
+    let data = res.filter(function (item) { return item.name == name }) 
+    // console.log(data)
+    if (data.length) {
       let obj = {
         materialId,
-        trialId:data[0].id
+        trialId: data[0].id
       }
-      this.deleteMaterialTrial(obj).then((res:any)=>{
-        this.GetTrials(materialId).then((res:any) => {
+      this.deleteMaterialTrial(obj).then((res: any) => {
+        this.GetTrials(materialId).then((res: any) => {
           let trialName = []
           res.forEach((val) => {
             trialName.push(val.name)
-          }); 
+          });
           this.TrialNameService.trialName.next(trialName);
           this.router.navigateByUrl(`/display/${materialId}`)
+        })
       })
-      })
+    }
     })
 
 }

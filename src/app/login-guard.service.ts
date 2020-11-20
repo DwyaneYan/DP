@@ -40,7 +40,7 @@ export class LoginGuardService implements CanActivate, CanActivateChild{
     // 判断用户是否登入
     const user = sessionStorage.getItem("token");
     const permisssions = sessionStorage.getItem("permissions");
-    //没有登陆并且没有权限但有vim，要带上参数跳到登录页
+    //没有登陆并且没有权限但有vim(现在不会出现这种情况了，除非用户把vim新打开窗口会出现这样)，要带上参数跳到登录页
     if ((!user||!permisssions) && window.location.search.indexOf("vim") != -1 ) {
     let p = window.location.pathname.slice(1)
     let name = p.replace(/\//g, '&')

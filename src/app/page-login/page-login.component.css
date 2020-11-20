@@ -57,10 +57,11 @@
     font-size: 20px;
 }
 
-#login-dialog+.foot {
-    position: absolute !important;
+.foot {
+    position: absolute;
     bottom: 20px;
     color: white;
     text-align: center;
     font: 12px "宋体";
+    width: 100%;
 }

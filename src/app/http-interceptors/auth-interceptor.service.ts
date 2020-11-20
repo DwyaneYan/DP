@@ -34,7 +34,6 @@ export class AuthInterceptorService implements HttpInterceptor {
       mergeMap((event: any) => {
         // console.log(event)
         if (event instanceof HttpResponse && event.status === 200) {
-          // console.log(event,222222222222);
           //获取状态码，没有则默认成功状态
           // const code = event.body.code || 200;
           // // 获取错误信息
